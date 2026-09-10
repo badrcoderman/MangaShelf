@@ -1,0 +1,9 @@
+{
+  "scope": "in-memory Mach-O headers and packaging rejection paths only",
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "success": true,
+  "real_ios_bundle_packaged": false,
+  "ipa_created": false
+}

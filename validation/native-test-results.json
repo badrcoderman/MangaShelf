@@ -1,0 +1,10 @@
+{
+  "native_tests": 34,
+  "failures": 0,
+  "errors": 0,
+  "random_pb_and_zip_cases": 3000,
+  "mutated_zip_cases": 1500,
+  "compiler": "system cc with -Wall -Wextra -Wconversion -Werror",
+  "swift_tests": "not run on Linux without Swift",
+  "ios_build": "not run; Xcode is unavailable"
+}

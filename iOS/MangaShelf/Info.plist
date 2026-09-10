@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleDisplayName</key><string>MangaShelf</string>
+  <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+  <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+  <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>0.1.0</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleDevelopmentRegion</key><string>ar</string>
+  <key>CFBundleLocalizations</key><array><string>ar</string></array>
+  <key>LSRequiresIPhoneOS</key><true/>
+  <key>UILaunchScreen</key><dict/>
+  <key>UIApplicationSupportsIndirectInputEvents</key><true/>
+  <key>UISupportedInterfaceOrientations</key><array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+  <key>UISupportedInterfaceOrientations~ipad</key><array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+  <key>UTImportedTypeDeclarations</key><array><dict>
+    <key>UTTypeIdentifier</key><string>app.mangashelf.cbz</string>
+    <key>UTTypeDescription</key><string>Comic Book ZIP Archive</string>
+    <key>UTTypeConformsTo</key><array><string>public.zip-archive</string></array>
+    <key>UTTypeTagSpecification</key><dict>
+      <key>public.filename-extension</key><array><string>cbz</string></array>
+      <key>public.mime-type</key><string>application/vnd.comicbook+zip</string>
+    </dict>
+  </dict></array>
+</dict></plist>

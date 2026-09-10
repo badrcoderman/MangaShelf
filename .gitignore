@@ -1,0 +1,10 @@
+.DS_Store
+.build/
+build/
+__pycache__/
+*.pyc
+xcuserdata/
+*.xcuserstate
+*.p12
+*.mobileprovision
+ExportOptions.plist

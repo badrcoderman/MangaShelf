@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "stdout": "ASan/UBSan: 30000 random inputs and 30000 seeded mutations completed.\n",
+  "stderr": "",
+  "instrumentation": [
+    "AddressSanitizer",
+    "UndefinedBehaviorSanitizer"
+  ],
+  "leak_detection": "disabled: runtime denies /proc task access",
+  "random_inputs": 30000,
+  "seeded_mutations": 30000,
+  "scope": "C ZIP/GZIP/Protobuf only; not Swift, image codecs or JVM"
+}

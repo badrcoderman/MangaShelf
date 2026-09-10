@@ -1,0 +1,241 @@
+// !$*UTF8*$!
+{
+	"archiveVersion" = "1";
+	"classes" = {
+	};
+	"objectVersion" = "56";
+	"objects" = {
+		"678DF55B84282CA725C9023C" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/AppModel.swift";
+			"sourceTree" = "<group>";
+		};
+		"872247D6705554E6DFD1E56D" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "678DF55B84282CA725C9023C";
+		};
+		"9EC3262D6346F0BF029CE7B9" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/BrowseView.swift";
+			"sourceTree" = "<group>";
+		};
+		"33FBD61F934E956FB8377B52" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "9EC3262D6346F0BF029CE7B9";
+		};
+		"B2B0F47DAE8FC4A5A02A363A" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/LibraryView.swift";
+			"sourceTree" = "<group>";
+		};
+		"290BA72B43F95E236840C1C8" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "B2B0F47DAE8FC4A5A02A363A";
+		};
+		"36895890DB87F123F278FE19" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/MangaShelfApp.swift";
+			"sourceTree" = "<group>";
+		};
+		"27A279F989D02D26EDF9AEAE" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "36895890DB87F123F278FE19";
+		};
+		"E6C544117A101FE859793C62" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/ReaderView.swift";
+			"sourceTree" = "<group>";
+		};
+		"E95143B513FE381330A01AF3" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E6C544117A101FE859793C62";
+		};
+		"03AF56BE2C9FDF9DEFBDE818" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/SettingsView.swift";
+			"sourceTree" = "<group>";
+		};
+		"D2740EFD5804A93FE8C32426" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "03AF56BE2C9FDF9DEFBDE818";
+		};
+		"A4CC6BC01A927E2A78FD3BEC" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.xml";
+			"path" = "MangaShelf/PrivacyInfo.xcprivacy";
+			"sourceTree" = "<group>";
+		};
+		"9CEEC13202AFBF12EE3ABB99" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "text.plist.xml";
+			"path" = "MangaShelf/Info.plist";
+			"sourceTree" = "<group>";
+		};
+		"A8792157CB4F27FB949C035F" = {
+			"isa" = "PBXFileReference";
+			"explicitFileType" = "wrapper.application";
+			"includeInIndex" = "0";
+			"path" = "MangaShelf.app";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+		};
+		"0A3E27B8CA818264D75C8D81" = {
+			"isa" = "PBXGroup";
+			"children" = ("A8792157CB4F27FB949C035F",);
+			"name" = "Products";
+			"sourceTree" = "<group>";
+		};
+		"C69913C7EE4DFDD011BE172F" = {
+			"isa" = "PBXGroup";
+			"children" = ("678DF55B84282CA725C9023C", "9EC3262D6346F0BF029CE7B9", "B2B0F47DAE8FC4A5A02A363A", "36895890DB87F123F278FE19", "E6C544117A101FE859793C62", "03AF56BE2C9FDF9DEFBDE818", "A4CC6BC01A927E2A78FD3BEC", "9CEEC13202AFBF12EE3ABB99", "0A3E27B8CA818264D75C8D81",);
+			"sourceTree" = "<group>";
+		};
+		"BC4A71180870F7945155FBB0" = {
+			"isa" = "XCLocalSwiftPackageReference";
+			"relativePath" = "..";
+		};
+		"4BA9EF21491BD6CFD0ACBB24" = {
+			"isa" = "XCSwiftPackageProductDependency";
+			"package" = "BC4A71180870F7945155FBB0";
+			"productName" = "ReaderCore";
+		};
+		"E684E446F81C7C6A3204D35F" = {
+			"isa" = "PBXBuildFile";
+			"productRef" = "4BA9EF21491BD6CFD0ACBB24";
+		};
+		"878A52FC5FF6A57D50B7B870" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = "2147483647";
+			"files" = ("872247D6705554E6DFD1E56D", "33FBD61F934E956FB8377B52", "290BA72B43F95E236840C1C8", "27A279F989D02D26EDF9AEAE", "E95143B513FE381330A01AF3", "D2740EFD5804A93FE8C32426",);
+			"runOnlyForDeploymentPostprocessing" = "0";
+		};
+		"E2AA269EB967A8853A258BFA" = {
+			"isa" = "PBXFrameworksBuildPhase";
+			"buildActionMask" = "2147483647";
+			"files" = ("E684E446F81C7C6A3204D35F",);
+			"runOnlyForDeploymentPostprocessing" = "0";
+		};
+		"CE592D926B548708CFD0C61E" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "A4CC6BC01A927E2A78FD3BEC";
+		};
+		"41D311A605520FC7B8B9A980" = {
+			"isa" = "PBXResourcesBuildPhase";
+			"buildActionMask" = "2147483647";
+			"files" = ("CE592D926B548708CFD0C61E",);
+			"runOnlyForDeploymentPostprocessing" = "0";
+		};
+		"33D5227E042B5F8E0C3334E0" = {
+			"isa" = "XCBuildConfiguration";
+			"name" = "Debug";
+			"buildSettings" = {
+				"PRODUCT_BUNDLE_IDENTIFIER" = "app.mangashelf.reader";
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"INFOPLIST_FILE" = "MangaShelf/Info.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"SWIFT_VERSION" = "5.0";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"ENABLE_PREVIEWS" = "YES";
+				"LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks",);
+				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+			};
+		};
+		"083D9CB36248AB893085C99E" = {
+			"isa" = "XCBuildConfiguration";
+			"name" = "Release";
+			"buildSettings" = {
+				"PRODUCT_BUNDLE_IDENTIFIER" = "app.mangashelf.reader";
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"INFOPLIST_FILE" = "MangaShelf/Info.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"SWIFT_VERSION" = "5.0";
+				"SWIFT_STRICT_CONCURRENCY" = "targeted";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"ENABLE_PREVIEWS" = "YES";
+				"LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks",);
+				"SWIFT_OPTIMIZATION_LEVEL" = "-O";
+			};
+		};
+		"F3B146211E02435B32990D07" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = ("33D5227E042B5F8E0C3334E0", "083D9CB36248AB893085C99E",);
+			"defaultConfigurationIsVisible" = "0";
+			"defaultConfigurationName" = "Release";
+		};
+		"34A04005BCAF206EEC990BD9" = {
+			"isa" = "PBXNativeTarget";
+			"buildConfigurationList" = "F3B146211E02435B32990D07";
+			"buildPhases" = ("878A52FC5FF6A57D50B7B870", "E2AA269EB967A8853A258BFA", "41D311A605520FC7B8B9A980",);
+			"buildRules" = ();
+			"dependencies" = ();
+			"name" = "MangaShelf";
+			"packageProductDependencies" = ("4BA9EF21491BD6CFD0ACBB24",);
+			"productName" = "MangaShelf";
+			"productReference" = "A8792157CB4F27FB949C035F";
+			"productType" = "com.apple.product-type.application";
+		};
+		"EC5EDADA146B7778556B78CB" = {
+			"isa" = "XCBuildConfiguration";
+			"name" = "Debug";
+			"buildSettings" = {
+				"SDKROOT" = "iphoneos";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"SWIFT_VERSION" = "5.0";
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+				"GCC_C_LANGUAGE_STANDARD" = "c11";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+			};
+		};
+		"74201C4322622635F0083C0F" = {
+			"isa" = "XCBuildConfiguration";
+			"name" = "Release";
+			"buildSettings" = {
+				"SDKROOT" = "iphoneos";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"SWIFT_VERSION" = "5.0";
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+				"GCC_C_LANGUAGE_STANDARD" = "c11";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-O";
+			};
+		};
+		"A2CAB0B14ADF02BBA641F0D6" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = ("EC5EDADA146B7778556B78CB", "74201C4322622635F0083C0F",);
+			"defaultConfigurationIsVisible" = "0";
+			"defaultConfigurationName" = "Release";
+		};
+		"244210E48437B6556980A702" = {
+			"isa" = "PBXProject";
+			"attributes" = {
+				"LastUpgradeCheck" = "1500";
+				"BuildIndependentTargetsInParallel" = "YES";
+			};
+			"buildConfigurationList" = "A2CAB0B14ADF02BBA641F0D6";
+			"compatibilityVersion" = "Xcode 14.0";
+			"developmentRegion" = "ar";
+			"hasScannedForEncodings" = "0";
+			"knownRegions" = ("ar", "en", "Base",);
+			"mainGroup" = "C69913C7EE4DFDD011BE172F";
+			"packageReferences" = ("BC4A71180870F7945155FBB0",);
+			"productRefGroup" = "0A3E27B8CA818264D75C8D81";
+			"projectDirPath" = "";
+			"projectRoot" = "";
+			"targets" = ("34A04005BCAF206EEC990BD9",);
+		};
+	};
+	"rootObject" = "244210E48437B6556980A702";
+}

@@ -1,0 +1,11 @@
+{
+  "project": "MangaShelf",
+  "stage": "0.1 source checkpoint",
+  "vendored_third_party_code": [],
+  "copied_ipa_payloads": [],
+  "remote_swift_packages": [],
+  "system_dependencies": ["Swift standard library", "Foundation", "SwiftUI", "UIKit", "ImageIO", "UniformTypeIdentifiers", "zlib"],
+  "jvm_runtime": null,
+  "jvm_status": "not integrated",
+  "source_policy": "Review, pin and build every future runtime dependency from its documented source; no binary payload reuse from the analyzed IPA."
+}

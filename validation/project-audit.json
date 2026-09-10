@@ -1,0 +1,9 @@
+{
+  "scope": "provenance/build-structure only, not malware detection or Swift compilation",
+  "prebuilt_app_payloads": 0,
+  "files": 36,
+  "failures": [],
+  "swift_compilation": "NOT RUN",
+  "ios_runtime": "NOT RUN",
+  "live_repository": "NOT TESTED"
+}
