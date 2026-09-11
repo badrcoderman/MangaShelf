@@ -10,8 +10,7 @@ struct BrowseView: View {
     var body: some View {
         List {
             Section {
-                Label("المصدر المحلي", systemImage: "folder")
-                Text("استورد CBZ أو ZIP من المكتبة للقراءة دون اتصال.").font(.caption).foregroundStyle(.secondary)
+                NavigationLink { LibraryView() } label: { SettingsRow(title: "المصدر المحلي", symbol: "folder", color: .blue) }
             }
             Section {
                 if model.state.repositories.isEmpty { Text("لم تضف مستودعات بعد.").foregroundStyle(.secondary) }
@@ -28,10 +27,11 @@ struct BrowseView: View {
                 Button("إضافة مستودع", systemImage: "plus") { adding = true }.disabled(fetching || model.busy)
                 if fetching { ProgressView("قراءة الفهرس…") }
             } header: { Text("المستودعات") } footer: {
-                Text("هذه المرحلة تعرض الفهارس فقط. لا تُنزّل أو تُشغّل JAR؛ محرك الإضافات لم يُدمج بعد. تحميل الفهرس لا يمنح المستودع الثقة.")
+                Text("يمكن عرض قوائم الإضافات. تثبيت الإضافات وتشغيل المصادر غير متاحين في هذه النسخة بعد.")
             }
         }
         .navigationTitle("تصفح")
+        .navigationBarTitleDisplayMode(.inline)
         .confirmationDialog("إزالة المستودع من القائمة؟", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } })) {
             if let removing {
                 Button("إزالة", role: .destructive) { Task { await model.perform { try await $0.removeRepository(id: removing.id) } }; self.removing = nil }
@@ -42,15 +42,14 @@ struct BrowseView: View {
             TextField("https://…/index.pb", text: $url).textInputAutocapitalization(.never).autocorrectionDisabled()
             Button("قراءة الفهرس") { Task { await fetch() } }
             Button("إلغاء", role: .cancel) {}
-        } message: { Text("سيُرسل طلب HTTPS إلى الرابط الذي تحدده. لن تُثبّت أي إضافة.") }
+        } message: { Text("أدخل رابط فهرس المستودع لعرض إضافاته.") }
     }
     @MainActor private func fetch() async {
         guard !fetching else { return }; fetching = true; defer { fetching = false }
         do {
             let clean = url.trimmingCharacters(in: .whitespacesAndNewlines)
-            let repository = try await SecureHTTP().repository(clean)
-            await model.perform { try await $0.saveRepository(repository) }
-        } catch { model.errorMessage = error.localizedDescription }
+            try await model.refreshRepository(clean)
+        } catch { model.errorMessage = "تعذر تحميل المستودع. تحقق من الرابط والاتصال ثم أعد المحاولة." }
     }
 }
 
@@ -65,7 +64,7 @@ private struct RepositoryView: View {
             List {
                 Section {
                     Toggle("روابط JAR الصريحة فقط", isOn: $jarOnly)
-                    Text("الفهرس غير موثّق الثقة؛ لا يوجد تنفيذ للإضافات في هذه المرحلة.").font(.caption).foregroundStyle(.secondary)
+                    Text("عرض معلومات الإضافات؛ التثبيت غير متاح بعد.").font(.caption).foregroundStyle(.secondary)
                 }
                 let entries = repository.index.extensions.filter {
                     (!jarOnly || $0.jarURL != nil) && (query.isEmpty || $0.name.localizedStandardContains(query) || $0.sources.contains { $0.language.localizedStandardContains(query) })
@@ -80,15 +79,14 @@ private struct RepositoryView: View {
                         }.padding(.vertical, 5)
                     }
                 }
-            }.navigationTitle(repository.index.name).searchable(text: $query, prompt: "اسم الإضافة أو اللغة")
+            }.navigationTitle(repository.index.name).navigationBarTitleDisplayMode(.inline).searchable(text: $query, prompt: "اسم الإضافة أو اللغة")
                 .toolbar {
                     Button("تحديث الفهرس", systemImage: "arrow.clockwise") {
                         Task {
                             refreshing = true; defer { refreshing = false }
                             do {
-                                let updated = try await SecureHTTP().repository(repository.url)
-                                await model.perform { try await $0.saveRepository(updated) }
-                            } catch { model.errorMessage = error.localizedDescription }
+                                try await model.refreshRepository(repository.url)
+                            } catch { model.errorMessage = "تعذر تحديث الفهرس. احتُفظ بالقائمة السابقة." }
                         }
                     }.disabled(refreshing || model.busy)
                 }

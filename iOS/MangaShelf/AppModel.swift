@@ -1,10 +1,28 @@
 import SwiftUI
 import ReaderCore
 
+enum ArabicError {
+    static func describe(_ error: Error) -> String {
+        if let failure = error as? ReaderFailure { return failure.message }
+        let code = error as NSError
+        if code.domain == NSURLErrorDomain {
+            switch code.code {
+            case NSURLErrorCancelled: return "أُلغيت العملية."
+            case NSURLErrorNotConnectedToInternet: return "لا يوجد اتصال بالإنترنت."
+            case NSURLErrorTimedOut: return "انتهت مهلة الاتصال؛ أعد المحاولة."
+            default: return "تعذر الاتصال بالخدمة. تحقق من الشبكة ثم أعد المحاولة."
+            }
+        }
+        if error is DecodingError { return "ملف البيانات غير صالح أو غير متوافق مع هذه النسخة." }
+        return "تعذر إكمال العملية. تحقق من الملف والمساحة المتاحة ثم أعد المحاولة."
+    }
+}
+
 @MainActor final class AppModel: ObservableObject {
     @Published private(set) var state = LibraryState()
     @Published private(set) var ready = false
     @Published private(set) var busy = false
+    @Published private(set) var refreshingRepositories = false
     @Published var errorMessage: String?
     private var store: LibraryStore?
 
@@ -15,14 +33,20 @@ import ReaderCore
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let root = support.appendingPathComponent("MangaShelf", isDirectory: true)
             store = try LibraryStore(root: root)
-            if let store { state = await store.snapshot(); ready = true }
-        } catch { errorMessage = "تعذر فتح بيانات المكتبة. لم تُحذف أو تُستبدل البيانات.\n\(error.localizedDescription)" }
+            if let store {
+                state = await store.snapshot(); ready = true
+                DiagnosticsCenter.shared.record("المكتبة", "تم فتح بيانات المكتبة")
+            }
+        } catch { errorMessage = "تعذر فتح بيانات المكتبة. لم تُحذف أو تُستبدل البيانات.\n\(ArabicError.describe(error))" }
     }
     func perform(_ operation: (LibraryStore) async throws -> Void) async {
         guard let store, !busy else { return }
         busy = true; defer { busy = false }
         do { try await operation(store); state = await store.snapshot() }
-        catch { errorMessage = error.localizedDescription }
+        catch {
+            DiagnosticsCenter.shared.recordFailure("عملية مكتبة", error)
+            errorMessage = ArabicError.describe(error)
+        }
     }
     func importFiles(_ urls: [URL]) async {
         await perform { store in
@@ -30,7 +54,7 @@ import ReaderCore
             for url in urls {
                 let access = url.startAccessingSecurityScopedResource()
                 do { _ = try await store.importComic(from: url) }
-                catch { failures.append("\(url.lastPathComponent): \(error.localizedDescription)") }
+                catch { failures.append("\(url.lastPathComponent): \(ArabicError.describe(error))") }
                 if access { url.stopAccessingSecurityScopedResource() }
             }
             if !failures.isEmpty { throw ReaderFailure(failures.joined(separator: "\n")) }
@@ -46,11 +70,50 @@ import ReaderCore
         // Progress must not be dropped because another UI operation is in flight.
         guard let store else { return }
         do { try await store.updateProgress(id: id, page: page); state = await store.snapshot() }
-        catch { errorMessage = "تعذر حفظ تقدم القراءة: \(error.localizedDescription)" }
+        catch { errorMessage = "تعذر حفظ تقدم القراءة: \(ArabicError.describe(error))" }
     }
     func backup() async throws -> Data {
         guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
         return try await store.exportMetadata()
+    }
+    func refreshRepository(_ url: String) async throws {
+        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        let started = Date()
+        let existingID = state.repositories.first { $0.url == url }?.id
+        do {
+            let repository = try await SecureHTTP().repository(url)
+            try Task.checkCancellation()
+            if let existingID {
+                try await store.updateRepository(id: existingID, index: repository.index, fetchedAt: repository.fetchedAt)
+            } else { try await store.saveRepository(repository) }
+            state = await store.snapshot()
+            DiagnosticsCenter.shared.record("المستودعات", "اكتمل تحديث الفهرس", duration: Date().timeIntervalSince(started))
+        } catch {
+            DiagnosticsCenter.shared.recordFailure("تحديث فهرس", error)
+            throw error
+        }
+    }
+    func refreshAllRepositories() async {
+        guard !refreshingRepositories else { return }
+        refreshingRepositories = true
+        defer { refreshingRepositories = false }
+        var failures = 0
+        for repository in state.repositories {
+            if Task.isCancelled { return }
+            do { try await refreshRepository(repository.url) }
+            catch is CancellationError { return }
+            catch { failures += 1 }
+        }
+        if failures > 0 { errorMessage = "تعذر تحديث \(failures) مستودع. احتُفظ بالفهرس السابق لكل مستودع تعذر تحديثه." }
+    }
+    func storageUsage() async throws -> [String: Int64] {
+        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        return try await store.storageUsage()
+    }
+    func validateStorage() async throws {
+        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        try await store.validateStoredMetadata()
+        DiagnosticsCenter.shared.record("البيانات", "اجتاز ملف المكتبة فحص البنية والعلاقات")
     }
     func restore(_ url: URL) async {
         await perform { store in

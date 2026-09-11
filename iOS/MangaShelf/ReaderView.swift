@@ -28,6 +28,7 @@ actor CoverService {
     static let shared = CoverService()
     private let cache = NSCache<NSURL, UIImage>()
     init() { cache.totalCostLimit = 32 * 1024 * 1024; cache.countLimit = 100 }
+    func clear() { cache.removeAllObjects() }
     func cover(_ url: URL) throws -> UIImage {
         try Task.checkCancellation()
         if let image = cache.object(forKey: url as NSURL) { return image }
@@ -149,7 +150,7 @@ struct ReaderView: View {
                 pageCount = pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount-1)
                 session = opened
                 if settings.mode == .paged { await loadPage() }
-            } catch { failure = error.localizedDescription }
+            } catch { failure = ArabicError.describe(error) }
         }
         .task(id: page) {
             guard session != nil else { return }
@@ -181,7 +182,7 @@ struct ReaderView: View {
             displayedPages.insert(requested)
             await model.progress(id: bookID, page: requested)
         } catch is CancellationError { return }
-        catch { if requested == page { failure = error.localizedDescription } }
+        catch { if requested == page { failure = ArabicError.describe(error) } }
     }
     private func webtoon(_ session: ComicSession) -> some View {
         GeometryReader { viewport in
@@ -223,7 +224,7 @@ private struct WebtoonPage: View {
             } else if let error { Text("الصفحة \(index + 1): \(error)").foregroundStyle(.white).padding().frame(minHeight: 180) }
             else { ProgressView().tint(.white).frame(maxWidth: .infinity, minHeight: 300) }
         }
-        .task { do { image = try await session.image(at: index); onReady() } catch { self.error = error.localizedDescription } }
+        .task { do { image = try await session.image(at: index); onReady() } catch { self.error = ArabicError.describe(error) } }
         .onDisappear { image = nil }
     }
 }

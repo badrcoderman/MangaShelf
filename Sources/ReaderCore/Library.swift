@@ -100,6 +100,32 @@ public actor LibraryStore {
         } else { state = LibraryState() }
     }
     public func snapshot() -> LibraryState { state }
+    public func validateStoredMetadata() throws {
+        try state.validate()
+        if manager.fileExists(atPath: metadata.path) {
+            let data = try Self.readBounded(metadata, maximum: 32 * 1024 * 1024)
+            try JSONDecoder().decode(LibraryState.self, from: data).validate()
+        }
+    }
+    public func storageUsage() throws -> [String: Int64] {
+        var usage: [String: Int64] = ["الكتب": 0, "المحذوفات": 0, "بيانات المكتبة": 0]
+        for (folder, label) in [("Books", "الكتب"), ("Trash", "المحذوفات")] {
+            let directory = root.appendingPathComponent(folder, isDirectory: true)
+            guard manager.fileExists(atPath: directory.path) else { continue }
+            let files = try manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+            for file in files {
+                let values = try file.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+                if values.isRegularFile == true, values.isSymbolicLink != true {
+                    usage[label, default: 0] += Int64(values.fileSize ?? 0)
+                }
+            }
+        }
+        if manager.fileExists(atPath: metadata.path) {
+            let size = try metadata.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
+            usage["بيانات المكتبة"] = Int64(size)
+        }
+        return usage
+    }
     public func bookURL(_ book: LibraryBook) -> URL {
         root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
     }
@@ -230,6 +256,15 @@ public actor LibraryStore {
     }
     public func removeRepository(id: UUID) throws {
         var candidate = state; candidate.repositories.removeAll { $0.id == id }; try commit(candidate)
+    }
+    public func updateRepository(id: UUID, index: RepositoryIndex, fetchedAt: Date) throws {
+        var candidate = state
+        guard let position = candidate.repositories.firstIndex(where: { $0.id == id }) else {
+            throw ReaderFailure("أُزيل المستودع أثناء التحديث؛ لم يُعد إدراجه.")
+        }
+        candidate.repositories[position].index = index
+        candidate.repositories[position].fetchedAt = fetchedAt
+        try commit(candidate)
     }
     public func exportMetadata() throws -> Data {
         try JSONEncoder().encode(state)

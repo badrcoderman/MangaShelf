@@ -83,4 +83,42 @@ final class ReaderCoreTests: XCTestCase {
         XCTAssertThrowsError(try LibraryStore(root: root))
         XCTAssertEqual(try Data(contentsOf: url), bytes)
     }
+    func testDiagnosticsMeasureFilesWithoutChangingMetadata() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent("MangaShelfTests-" + UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = try LibraryStore(root: root)
+        let comic = try XCTUnwrap(Bundle.module.url(forResource: "TestComic", withExtension: "cbz", subdirectory: "Fixtures"))
+        _ = try await store.importComic(from: comic)
+        let metadata = root.appendingPathComponent("library.json")
+        let before = try Data(contentsOf: metadata)
+        let usage = try await store.storageUsage()
+        try await store.validateStoredMetadata()
+        XCTAssertEqual(usage["الكتب"], Int64(try Data(contentsOf: comic).count))
+        XCTAssertEqual(usage["بيانات المكتبة"], Int64(before.count))
+        XCTAssertEqual(try Data(contentsOf: metadata), before)
+    }
+    func testStoredValidationDetectsCorruptionWithoutReplacingIt() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent("MangaShelfTests-" + UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = try LibraryStore(root: root)
+        try await store.addCategory("تصنيف")
+        let metadata = root.appendingPathComponent("library.json")
+        let broken = Data("not valid JSON".utf8)
+        try broken.write(to: metadata)
+        do { try await store.validateStoredMetadata(); XCTFail("Corrupt on-disk metadata was accepted") }
+        catch { XCTAssertEqual(try Data(contentsOf: metadata), broken) }
+    }
+    func testLateRepositoryRefreshDoesNotRestoreDeletedRepository() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent("MangaShelfTests-" + UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = try LibraryStore(root: root)
+        let index = try RepositoryDecoder.decode(fixture("index", "pb"))
+        let repository = SavedRepository(url: "https://example.invalid/index.pb", index: index)
+        try await store.saveRepository(repository)
+        try await store.removeRepository(id: repository.id)
+        do { try await store.updateRepository(id: repository.id, index: index, fetchedAt: Date()); XCTFail("Deleted repository returned") }
+        catch { }
+        let after = await store.snapshot()
+        XCTAssertTrue(after.repositories.isEmpty)
+    }
 }

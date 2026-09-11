@@ -22,7 +22,16 @@ public enum ComicArchive {
     }
     private static func check(_ status: ms_status) throws {
         guard status == MS_OK else {
-            throw ReaderFailure("تعذر فتح الأرشيف: \(String(cString: ms_status_message(status)))")
+            let message: String
+            switch status {
+            case MS_INVALID: message = "بنية الملف غير صالحة أو بياناته غير مكتملة."
+            case MS_LIMIT: message = "يتجاوز الأرشيف حدود الحجم أو عدد الملفات المسموح بها."
+            case MS_UNSUPPORTED: message = "يستخدم الأرشيف صيغة أو طريقة ضغط غير مدعومة."
+            case MS_INTEGRITY: message = "لم يجتز محتوى الأرشيف فحص سلامة البيانات."
+            case MS_MEMORY: message = "لا تتوفر ذاكرة كافية لفتح الأرشيف."
+            default: message = "تعذر قراءة الأرشيف."
+            }
+            throw ReaderFailure(message)
         }
     }
     public static func pages(in data: Data) throws -> [ArchivePage] {
