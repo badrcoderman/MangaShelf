@@ -76,8 +76,8 @@
   },
   {
     "path": "docs/ARCHITECTURE-AR.md",
-    "bytes": 5093,
-    "sha256": "19c7e0da6ebd90579c730fc6740506f6a63077d05d2fa032a2740f9332e2955b"
+    "bytes": 5361,
+    "sha256": "de8436f7c0ac7b19b1fcc4f2dc00adce713161752111ed743fcc9cd3769dcfb5"
   },
   {
     "path": "docs/BUILD-0.2-AR.md",
@@ -105,9 +105,14 @@
     "sha256": "2408ea46275c1bc5023e93c6e4e64ddb65c292c7c0e2efe5c2dacee7c71aba1a"
   },
   {
+    "path": "docs/TACHIYOMI-IOS-REVIEW-AR.md",
+    "bytes": 5545,
+    "sha256": "65e930f3a26f3f1e768ea0e1eb30557384ffd7519910dd12b53527b8842238e4"
+  },
+  {
     "path": "docs/UPSTREAM-SOURCES.json",
-    "bytes": 1657,
-    "sha256": "619e1bfad38831dd483f59bc0b476bd835a791845f57c5f7f36c58070abf5a1f"
+    "bytes": 3232,
+    "sha256": "28e2a989bc3510e7272b563379ba91e8f45c222b6de02b8cf93dc8b193c28210"
   },
   {
     "path": "iOS/MangaShelf/AppModel.swift",

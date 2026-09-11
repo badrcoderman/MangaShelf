@@ -32,6 +32,7 @@
 | [Tachimanga/Tachidesk-Server](https://github.com/tachimanga/Tachidesk-Server) | خلفية أصلية منشورة من حساب المشروع | تحديد المستودع ووصفه؛ لم يُبنَ أو يُدمج |
 | [Mihon](https://github.com/mihonapp/mihon) | نماذج المصادر والمكتبة والميزات | تحديد البنية العامة؛ لا دمج لكود Android |
 | [Tachiyomi](https://github.com/tachiyomiorg) | المرجع التاريخي والتوافق | مرجع تاريخي، لا تثبيت من مرايا مجهولة |
+| [SakurasoftLtd/tachiyomi-ios](https://github.com/SakurasoftLtd/tachiyomi-ios) | مرجع UIKit قديم لتقسيم تبويبات iOS | مراجعة commit `ae1016a`؛ نموذج أولي بلا محرك مصادر أو قارئ، ولا يُدمج مباشرة |
 | [Suwayomi-Server](https://github.com/Suwayomi/Suwayomi-Server) | مرشح لخلفية توافق الإضافات | تحديد المشروع؛ يلزم اختيار commit وبناء واختبار |
 | [Tachidesk-Sorayomi](https://github.com/Suwayomi/Tachidesk-Sorayomi) | مرجع واجهة Flutter | الصفحة الرسمية تصفه مؤرشفًا؛ لم يُعتمد كتَبعية |
 

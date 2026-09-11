@@ -1,5 +1,30 @@
 {
   "schema_version": 1,
+  "additional_sources": [
+    {
+      "repository": "https://github.com/SakurasoftLtd/tachiyomi-ios.git",
+      "commit": "ae1016a9683432a33fbc6bff955ae2f8a50409ad",
+      "branch": "master",
+      "last_commit_at": "2022-02-21T17:29:24Z",
+      "role": "reference-only UIKit prototype; not an integrated dependency",
+      "license": "no root LICENSE file or GitHub license metadata found at reviewed commit",
+      "reviewed_file_hashes": {
+        "README.md": "cd9dc5dd37d7b5038681afa825bb32ce95885abdbe7712a3ed51f749af800b86",
+        "Podfile": "b1dba2a25726647708ef8838a1b97ead27132f5ce96e1db2396f269fc9ecef9b",
+        "Podfile.lock": "3d8337a778615364596f4e8ac9f8097b69309947eb5baa6785c9a71433e3e387",
+        "Tachiyomi.xcodeproj/project.pbxproj": "ff272e0de82ca695e414972b7137939c00ec0f4b9418ef4312299c34362504a9",
+        "Tachiyomi/Source/Interface/Navigation/NavigableTab.swift": "5efbb0c95f309e7dd3c5abdabc348402536e5216e3df22bc2711878fbb6e9f5a",
+        "Tachiyomi/Source/Interface/Library/LibraryRootViewModel.swift": "e1300134d92af6d245306260406e1a2ee71bc384a224ac41fa0092547ddaa112",
+        "Tachiyomi/Source/Interface/Browse/BrowseSourcesViewController.swift": "d65ac6821da9eb52c9d72a5f0ef5cdd286b737c859c62f9ca1bab4b6ea3285b9"
+      },
+      "findings": [
+        "UIKit prototype with 26 application Swift files",
+        "library data is hard-coded through Observable.just and marked TEMP",
+        "updates and history screens are empty",
+        "no extension loading, repository index parsing, reader, downloads, or JAR runtime"
+      ]
+    }
+  ],
   "repository": "https://github.com/tachimanga/Tachidesk-Server.git",
   "commit": "2e52214106ffab02d13ff61a620def78414a8a45",
   "role": "study checkout; not an integrated application dependency",
