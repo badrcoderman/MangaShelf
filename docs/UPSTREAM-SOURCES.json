@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/tachimanga/Tachidesk-Server.git",
+  "commit": "2e52214106ffab02d13ff61a620def78414a8a45",
+  "role": "study checkout; not an integrated application dependency",
+  "root_license": "MPL-2.0; nested licenses require separate review",
+  "reviewed_file_hashes": {
+    "LICENSE": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "server/build.gradle.kts": "b276f903c9860fcb1105377a0fee42ec7ff5df764e27808bd7deb9a357c67095",
+    "server/src/main/kotlin/eu/kanade/tachiyomi/LICENSE": "168593836b75e38257b4f4f7454cf4112695c04f3f5a381d51a3f05accd0bd8d",
+    "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/JavaChannel.kt": "06a845dc2b58eef7c3342a458bfa2a95e8e4a139e7b5e5c9d04554faa2e0222d",
+    "AndroidCompat/src/main/java/org/tachiyomi/NativeChannel.java": "c03343009c75b291825d2b2104c7699001cbb7ca67a4ddc5cb7e3d1b2c793108",
+    "server/src/main/java/org/tachiyomi/NativeNet.java": "cb2efa271ef4956b6711d84ff649203d592b02bc3b9e902c3ecb14a413cd0b6e",
+    "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/extension/github/ExtensionGithubApi.kt": "6003dee95f93889eba82566a3abc0cdd2cdc2d9e69d03b8be1117937cb14ae6b",
+    "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/util/PackageTools.kt": "4c22bd93e3aeddad4846f81299fbcc8a4c440d5e7b55fe62263c06507579c97a"
+  },
+  "build_attempt": {
+    "command": "./gradlew :server:compileKotlin --no-daemon --console=plain",
+    "result": "blocked before Kotlin compilation",
+    "reason": "Network is unreachable downloading Gradle 8.14.4"
+  },
+  "ios_build": "not attempted; Xcode unavailable",
+  "specimen_binary_reuse": false
+}
