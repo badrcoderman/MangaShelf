@@ -147,10 +147,12 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         defer { session.invalidateAndCancel() }
         var request = URLRequest(url: url)
-        request.setValue("MangaShelf/0.1", forHTTPHeaderField: "User-Agent")
+        request.setValue("MangaShelf/0.3", forHTTPHeaderField: "User-Agent")
         let (bytes, response) = try await session.bytes(for: request)
         guard let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode) else {
-            throw ReaderFailure("فشل تحميل الفهرس: HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+            let code = (response as? HTTPURLResponse)?.statusCode ?? 0
+            if code == 429 { throw ReaderFailure("طلبات كثيرة إلى المصدر. انتظر قليلًا ثم أعد المحاولة.") }
+            throw ReaderFailure("تعذر التحميل من الخدمة (HTTP \(code)).")
         }
         let maximum = BoundedGzip.maximumBytes
         guard response.expectedContentLength <= Int64(maximum) else { throw ReaderFailure("الفهرس يتجاوز الحد المسموح.") }

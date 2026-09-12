@@ -16,43 +16,51 @@ struct MetadataBackup: FileDocument {
 struct SettingsRow: View {
     let title: String
     let symbol: String
-    var color: Color = .blue
     var body: some View {
-        Label {
-            Text(title).foregroundStyle(.primary)
-        } icon: {
-            Image(systemName: symbol).font(.system(size: 15, weight: .semibold))
-                .foregroundStyle(.white).frame(width: 29, height: 29)
-                .background(color, in: RoundedRectangle(cornerRadius: 7))
-        }.padding(.vertical, 3)
+        HStack(spacing: 16) {
+            Image(systemName: symbol).font(.system(size: 23, weight: .medium))
+                .frame(width: 28).foregroundStyle(ShelfStyle.secondary)
+            Text(title).font(.body).foregroundStyle(ShelfStyle.secondary)
+        }.padding(.vertical, 6)
     }
 }
 
 struct SettingsView: View {
     @AppStorage("diagnostics.enabled") private var developerEnabled = false
+    private func row<Destination: View>(_ title: String, _ symbol: String, @ViewBuilder destination: () -> Destination) -> some View {
+        NavigationLink(destination: destination) {
+            HStack(spacing: 16) {
+                SettingsRow(title: title, symbol: symbol)
+                Spacer(minLength: 4)
+                Image(systemName: "chevron.left").font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(ShelfStyle.secondary.opacity(0.45))
+            }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
+        }.buttonStyle(.plain)
+    }
     var body: some View {
-        List {
-            Section {
-                NavigationLink { ReaderPreferencesView() } label: { SettingsRow(title: "القارئ", symbol: "book.pages", color: .blue) }
-                NavigationLink { AppearancePreferencesView() } label: { SettingsRow(title: "المظهر", symbol: "paintpalette", color: .purple) }
-                NavigationLink { CategoryManagementView() } label: { SettingsRow(title: "التصنيفات", symbol: "folder", color: .orange) }
-            }
-            Section {
-                NavigationLink { StorageView() } label: { SettingsRow(title: "التخزين", symbol: "externaldrive", color: .teal) }
-                NavigationLink { BackupPreferencesView() } label: { SettingsRow(title: "النسخ الاحتياطي والاستعادة", symbol: "arrow.clockwise.icloud", color: .green) }
-            }
-            Section {
-                NavigationLink { AboutView() } label: { SettingsRow(title: "حول", symbol: "info.circle", color: .gray) }
-                if developerEnabled {
-                    NavigationLink { DeveloperView() } label: { SettingsRow(title: "أدوات المطوّرين", symbol: "wrench.and.screwdriver", color: .indigo) }
-                }
-            }
-        }.listStyle(.insetGrouped)
-            .navigationTitle("المزيد").navigationBarTitleDisplayMode(.inline)
+        ScrollView {
+            VStack(spacing: 0) {
+                row("عام", "slider.horizontal.3") { GeneralPreferencesView() }
+                row("المظهر", "paintpalette.fill") { AppearancePreferencesView() }
+                row("المكتبة", "books.vertical") { LibraryPreferencesView() }
+                row("القارئ", "book.closed.fill") { ReaderPreferencesView() }
+                row("مزامنة", "cloud") { FeatureStatusView(feature: .sync) }
+                row("يتتبع", "arrow.triangle.2.circlepath") { FeatureStatusView(feature: .tracking) }
+                row("الإضافات", "safari.fill") { RepositoriesView() }
+                row("النسخ الاحتياطي والاستعادة", "arrow.counterclockwise.circle") { BackupHubView() }
+                row("إعدادات الأمان", "shield.lefthalf.filled") { PrivacyPreferencesView() }
+                row("رؤى القراءة", "chart.xyaxis.line") { ReadingInsightsView() }
+                row("التنزيلات", "arrow.down.to.line") { DownloadsView() }
+                Rectangle().fill(ShelfStyle.border).frame(height: 1).padding(.vertical, 8)
+                row("مساعدة", "questionmark.circle.fill") { HelpView() }
+                row("حول", "info.circle") { AboutView() }
+                if developerEnabled { row("أدوات المطوّرين", "wrench.and.screwdriver") { DeveloperView().shelfPage() } }
+            }.padding(.top, 4)
+        }.shelfRoot("المزيد", filled: true, left: { EmptyView() }, right: { EmptyView() })
     }
 }
 
-private struct ReaderPreferencesView: View {
+struct ReaderPreferencesView: View {
     @EnvironmentObject private var model: AppModel
     private func setting<T>(_ path: WritableKeyPath<ReaderSettings, T>) -> Binding<T> {
         Binding(get: { model.state.settings[keyPath: path] }, set: { value in
@@ -76,7 +84,7 @@ private struct ReaderPreferencesView: View {
                 Toggle("إظهار رقم الصفحة", isOn: setting(\.showPageNumber))
                 Toggle("إبقاء الشاشة مضاءة", isOn: setting(\.keepScreenAwake))
             }
-        }.disabled(model.busy)
+        }.disabled(model.busy).shelfPage()
             .navigationTitle("القارئ").navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -99,11 +107,11 @@ private struct AppearancePreferencesView: View {
             Section("المكتبة") {
                 Stepper("عدد أعمدة الأغلفة: \(columns)", value: $columns, in: 2...5)
             }
-        }.navigationTitle("المظهر").navigationBarTitleDisplayMode(.inline)
+        }.shelfPage().navigationTitle("المظهر").navigationBarTitleDisplayMode(.inline)
     }
 }
 
-private struct BackupPreferencesView: View {
+struct BackupPreferencesView: View {
     @EnvironmentObject private var model: AppModel
     @State private var exporting = false
     @State private var importing = false
@@ -121,7 +129,7 @@ private struct BackupPreferencesView: View {
             } footer: {
                 Text("تتضمن النسخة تقدم القراءة والعلامات وبيانات المكتبة. ملفات الكتب ليست مضمنة. يستعيد الدمج تقدم الكتب الموجودة بالمعرّف نفسه؛ نسخ Tachimanga وMihon غير مدعومة في هذه النسخة.")
             }
-        }.disabled(model.busy)
+        }.disabled(model.busy).shelfPage()
             .navigationTitle("النسخ الاحتياطي").navigationBarTitleDisplayMode(.inline)
             .fileExporter(isPresented: $exporting, document: backup, contentType: .json, defaultFilename: "MangaShelf-metadata-backup") { result in
                 if case .failure(let error) = result { model.errorMessage = "تعذر حفظ النسخة الاحتياطية."; DiagnosticsCenter.shared.recordFailure("تصدير نسخة", error) }
@@ -135,7 +143,7 @@ private struct BackupPreferencesView: View {
     }
 }
 
-private struct AboutView: View {
+struct AboutView: View {
     @AppStorage("diagnostics.enabled") private var developerEnabled = false
     @State private var taps = 0
     @State private var showChanges = false
@@ -144,8 +152,8 @@ private struct AboutView: View {
         List {
             Section {
                 VStack(spacing: 12) {
-                    Image(systemName: "books.vertical.fill").font(.system(size: 46)).foregroundStyle(.blue)
-                        .frame(width: 92, height: 92).background(Color.blue.opacity(0.09), in: RoundedRectangle(cornerRadius: 22))
+                    Image(systemName: "books.vertical.fill").font(.system(size: 46)).foregroundStyle(ShelfStyle.accent)
+                        .frame(width: 92, height: 92).background(ShelfStyle.accent.opacity(0.09), in: RoundedRectangle(cornerRadius: 22))
                     Text("رفّ المانجا").font(.title2.bold())
                     Text("نسخة تطوير").font(.subheadline).foregroundStyle(.secondary)
                 }.frame(maxWidth: .infinity).padding(.vertical, 20)
@@ -159,6 +167,13 @@ private struct AboutView: View {
             }
             Section {
                 DisclosureGroup("سجل التغييرات", isExpanded: $showChanges) {
+                    DisclosureGroup("تحديث الواجهة — المرحلة الأولى") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("١٢ سبتمبر ٢٠٢٦").font(.caption).foregroundStyle(.secondary)
+                            Text("شريط تبويبات عائم، وألوان داكنة موحدة، وشبكة أغلفة وتفاصيل بتخطيط عربي.")
+                            Text("ربط عناوين المصادر بالمكتبة والتاريخ والتحديثات، وحفظ تقدم القراءة عند مسح التاريخ.")
+                        }.font(.footnote).padding(.vertical, 8)
+                    }
                     DisclosureGroup("نسخة التطوير ٠.٢.٠") {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("١١ سبتمبر ٢٠٢٦ — تغييرات قيد التحقق على الجهاز").font(.caption).foregroundStyle(.secondary)
@@ -177,7 +192,7 @@ private struct AboutView: View {
                 Text("قارئ مستقل بميزات مجانية. هذه النسخة تدعم الكتب المحلية وفهارس المستودعات؛ تشغيل الإضافات والترجمة لم يكتمل بعد.")
                     .font(.footnote).foregroundStyle(.secondary)
             }
-        }.navigationTitle("حول").navigationBarTitleDisplayMode(.inline)
+        }.shelfPage().navigationTitle("حول").navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -198,7 +213,7 @@ struct CategoryManagementView: View {
                     Button("حذف التصنيف", systemImage: "trash", role: .destructive) { deleting = category }.labelStyle(.iconOnly)
                 }
             }.onMove { indices, destination in Task { await model.perform { try await $0.reorderCategories(from: indices, to: destination) } } }
-        }.disabled(model.busy)
+        }.disabled(model.busy).shelfPage()
             .navigationTitle("التصنيفات").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) { Button("تصنيف جديد", systemImage: "plus") { adding = true } }

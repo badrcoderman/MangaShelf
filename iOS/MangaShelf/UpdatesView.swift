@@ -2,54 +2,56 @@ import SwiftUI
 import ReaderCore
 
 struct UpdatesView: View {
-    @EnvironmentObject private var model: AppModel
-    private var additions: [LibraryBook] { model.state.books.sorted { $0.addedAt > $1.addedAt } }
+    @EnvironmentObject private var online: OnlineModel
+    @State private var reading: MangaChapter?
+    private var updates: [(MangaSeries, MangaChapter)] {
+        online.state.series.filter(\.inLibrary).flatMap { item in
+            item.chapters.filter { item.newChapterIDs.contains($0.id) }.map { (item.series, $0) }
+        }.sorted { ($0.1.publishedAt ?? .distantPast) > ($1.1.publishedAt ?? .distantPast) }
+    }
     var body: some View {
-        List {
-            if additions.isEmpty && model.state.repositories.isEmpty {
-                ContentUnavailableView("لا توجد تحديثات", systemImage: "arrow.triangle.2.circlepath", description: Text("تظهر هنا آخر إضافات المكتبة وتحديثات فهارس المستودعات."))
-            }
-            if !model.state.repositories.isEmpty {
-                Section {
-                    ForEach(model.state.repositories.sorted { $0.fetchedAt > $1.fetchedAt }) { repository in
-                        HStack(spacing: 12) {
-                            Image(systemName: "shippingbox").foregroundStyle(.blue).frame(width: 36)
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(repository.index.name).font(.subheadline.weight(.medium))
-                                Text("تحديث فهرس — \(repository.index.extensions.count) إضافة").font(.caption).foregroundStyle(.secondary)
-                                Text(repository.fetchedAt, format: .dateTime.day().month().hour().minute()).font(.caption2).foregroundStyle(.secondary)
+        Group {
+            if updates.isEmpty {
+                VStack(spacing: 0) {
+                    Spacer()
+                    ShelfEmptyState(title: "لا توجد فصول جديدة")
+                    if online.updating { ProgressView("جارٍ التحديث…") }
+                    else { Button("تحديث") { Task { await online.refreshLibrary() } } }
+                    Spacer()
+                }
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 18) {
+                        ForEach(updates, id: \.1.id) { entry in
+                            HStack(spacing: 14) {
+                                Button { reading = entry.1 } label: {
+                                    HStack(spacing: 14) {
+                                        RemoteCover(url: entry.0.coverURL).frame(width: 62).clipShape(RoundedRectangle(cornerRadius: 10))
+                                        VStack(alignment: .leading, spacing: 7) {
+                                            Text(entry.0.title).font(.body).foregroundStyle(ShelfStyle.text).lineLimit(2)
+                                            Text(entry.1.displayTitle).font(.subheadline).foregroundStyle(ShelfStyle.secondary).lineLimit(2)
+                                            if let date = entry.1.publishedAt { Text(date, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary) }
+                                        }.frame(maxWidth: .infinity, alignment: .leading)
+                                    }.contentShape(Rectangle())
+                                }.buttonStyle(.plain)
+                                ShelfIconButton("تنزيل الفصل", symbol: online.download(entry.1.id)?.phase == .complete ? "checkmark.circle.fill" : "arrow.down.circle") {
+                                    Task { await online.enqueue([entry.1]) }
+                                }.foregroundStyle(ShelfStyle.secondary)
                             }
-                        }.padding(.vertical, 5)
-                    }
-                } header: { Text("فهارس المستودعات") } footer: { Text("تحديث الفهرس يجلب قائمة الإضافات؛ متابعة الفصول الجديدة ليست متاحة في هذه النسخة بعد.") }
-            }
-            if !additions.isEmpty {
-                Section("آخر إضافات المكتبة") {
-                    ForEach(additions) { book in
-                        NavigationLink { BookDetailView(bookID: book.id) } label: {
-                            HStack(spacing: 12) {
-                                BookCover(book: book).frame(width: 44).clipShape(RoundedRectangle(cornerRadius: 4))
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(book.title).font(.subheadline.weight(.medium)).lineLimit(2)
-                                    Text("أُضيف للمكتبة — \(book.pageCount) صفحة").font(.caption).foregroundStyle(.secondary)
-                                    Text(book.addedAt, format: .dateTime.day().month().hour().minute()).font(.caption2).foregroundStyle(.secondary)
-                                }
-                            }.padding(.vertical, 3)
                         }
-                    }
-                }
+                    }.padding(14)
+                }.refreshable { await online.refreshLibrary() }
             }
-        }.listStyle(.plain)
-            .navigationTitle("التحديثات").navigationBarTitleDisplayMode(.inline)
-            .refreshable { await model.refreshAllRepositories() }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    if model.refreshingRepositories { ProgressView().controlSize(.small) }
-                    else {
-                        Button("تحديث الفهارس", systemImage: "arrow.clockwise") { Task { await model.refreshAllRepositories() } }
-                            .disabled(model.state.repositories.isEmpty)
-                    }
-                }
+        }.shelfRoot("التحديثات", left: {
+            HStack(spacing: 0) {
+                NavigationLink { SourcePreferencesView().shelfPage() } label: { ShelfIcon(symbol: "gearshape.fill") }
+                    .buttonStyle(.plain).accessibilityLabel("إعدادات المصادر")
+                Menu {
+                    Button("تحديث المكتبة", systemImage: "arrow.clockwise") { Task { await online.refreshLibrary() } }.disabled(online.updating)
+                    NavigationLink { DownloadsView().shelfPage() } label: { Label("التنزيلات", systemImage: "arrow.down") }
+                } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel("خيارات التحديثات")
             }
+        }, right: { ShelfBackupLink() })
+            .fullScreenCover(item: $reading) { OnlineReaderView(chapter: $0) }
     }
 }

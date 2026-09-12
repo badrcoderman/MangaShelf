@@ -1,7 +1,7 @@
 import SwiftUI
 import ReaderCore
 
-struct BrowseView: View {
+struct RepositoriesView: View {
     @EnvironmentObject private var model: AppModel
     @State private var adding = false
     @State private var url = "https://github.com/keiyoushi/extensions/raw/repo/index.pb"
@@ -10,7 +10,7 @@ struct BrowseView: View {
     var body: some View {
         List {
             Section {
-                NavigationLink { LibraryView() } label: { SettingsRow(title: "المصدر المحلي", symbol: "folder", color: .blue) }
+                NavigationLink { LibraryView(isRoot: false) } label: { SettingsRow(title: "المصدر المحلي", symbol: "folder") }
             }
             Section {
                 if model.state.repositories.isEmpty { Text("لم تضف مستودعات بعد.").foregroundStyle(.secondary) }
@@ -30,7 +30,8 @@ struct BrowseView: View {
                 Text("يمكن عرض قوائم الإضافات. تثبيت الإضافات وتشغيل المصادر غير متاحين في هذه النسخة بعد.")
             }
         }
-        .navigationTitle("تصفح")
+        .shelfPage()
+        .navigationTitle("المستودعات")
         .navigationBarTitleDisplayMode(.inline)
         .confirmationDialog("إزالة المستودع من القائمة؟", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } })) {
             if let removing {
@@ -79,7 +80,7 @@ private struct RepositoryView: View {
                         }.padding(.vertical, 5)
                     }
                 }
-            }.navigationTitle(repository.index.name).navigationBarTitleDisplayMode(.inline).searchable(text: $query, prompt: "اسم الإضافة أو اللغة")
+            }.shelfPage().navigationTitle(repository.index.name).navigationBarTitleDisplayMode(.inline).searchable(text: $query, prompt: "اسم الإضافة أو اللغة")
                 .toolbar {
                     Button("تحديث الفهرس", systemImage: "arrow.clockwise") {
                         Task {

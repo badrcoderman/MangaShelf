@@ -15,6 +15,16 @@
 			"isa" = "PBXBuildFile";
 			"fileRef" = "678DF55B84282CA725C9023C";
 		};
+		"D98D32F53079410F15754FB5" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/BrowseHomeView.swift";
+			"sourceTree" = "<group>";
+		};
+		"FF034C61FFB5E86F73CB7F89" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "D98D32F53079410F15754FB5";
+		};
 		"9EC3262D6346F0BF029CE7B9" = {
 			"isa" = "PBXFileReference";
 			"lastKnownFileType" = "sourcecode.swift";
@@ -34,6 +44,16 @@
 		"F049EB7D0D36ED8029CD2CB1" = {
 			"isa" = "PBXBuildFile";
 			"fileRef" = "7C32DA5551C18B52D61AAF1D";
+		};
+		"A9FEF99C409765876C454219" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/HistoryView.swift";
+			"sourceTree" = "<group>";
+		};
+		"5D8BE66919F6D28FEF666A9D" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "A9FEF99C409765876C454219";
 		};
 		"B2B0F47DAE8FC4A5A02A363A" = {
 			"isa" = "PBXFileReference";
@@ -55,6 +75,36 @@
 			"isa" = "PBXBuildFile";
 			"fileRef" = "36895890DB87F123F278FE19";
 		};
+		"34D96FAADDE66193E9E16132" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/OnlineLibraryViews.swift";
+			"sourceTree" = "<group>";
+		};
+		"4A0B0FFFA54892BEEEA547C0" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "34D96FAADDE66193E9E16132";
+		};
+		"EB1361D8313C9E1E19834992" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/OnlineModel.swift";
+			"sourceTree" = "<group>";
+		};
+		"5AE7494E049EA4B5526A2E34" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "EB1361D8313C9E1E19834992";
+		};
+		"40A79804E2A583D2230CC95D" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/OnlineReaderView.swift";
+			"sourceTree" = "<group>";
+		};
+		"5A52183E1E0C015EA724B439" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "40A79804E2A583D2230CC95D";
+		};
 		"E6C544117A101FE859793C62" = {
 			"isa" = "PBXFileReference";
 			"lastKnownFileType" = "sourcecode.swift";
@@ -74,6 +124,56 @@
 		"D2740EFD5804A93FE8C32426" = {
 			"isa" = "PBXBuildFile";
 			"fileRef" = "03AF56BE2C9FDF9DEFBDE818";
+		};
+		"025CFFD8D9721467C74DE41F" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/ShelfDetailHero.swift";
+			"sourceTree" = "<group>";
+		};
+		"4A2162F041DC281197DECF87" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "025CFFD8D9721467C74DE41F";
+		};
+		"E1922B570BCE4C39422E681B" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/ShelfScreenPreviews.swift";
+			"sourceTree" = "<group>";
+		};
+		"4ACDACC362FC223CA684E3F1" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E1922B570BCE4C39422E681B";
+		};
+		"DE0DC5E4E155C1A34DB7B700" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/ShelfStyle.swift";
+			"sourceTree" = "<group>";
+		};
+		"D0D3575CC9EE3110DA0A0D4D" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "DE0DC5E4E155C1A34DB7B700";
+		};
+		"7A016BA7D0E3429EC8C673D3" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/SourceViews.swift";
+			"sourceTree" = "<group>";
+		};
+		"0E21964C266B54845FCB371B" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "7A016BA7D0E3429EC8C673D3";
+		};
+		"E5909737C1A22BC5D0FDCB35" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "MangaShelf/SupportingSettingsViews.swift";
+			"sourceTree" = "<group>";
+		};
+		"518252F2980738DE596C018C" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "E5909737C1A22BC5D0FDCB35";
 		};
 		"265C02CB2A18289FE6D8316C" = {
 			"isa" = "PBXFileReference";
@@ -112,7 +212,7 @@
 		};
 		"C69913C7EE4DFDD011BE172F" = {
 			"isa" = "PBXGroup";
-			"children" = ("678DF55B84282CA725C9023C", "9EC3262D6346F0BF029CE7B9", "7C32DA5551C18B52D61AAF1D", "B2B0F47DAE8FC4A5A02A363A", "36895890DB87F123F278FE19", "E6C544117A101FE859793C62", "03AF56BE2C9FDF9DEFBDE818", "265C02CB2A18289FE6D8316C", "A4CC6BC01A927E2A78FD3BEC", "9CEEC13202AFBF12EE3ABB99", "0A3E27B8CA818264D75C8D81",);
+			"children" = ("678DF55B84282CA725C9023C", "D98D32F53079410F15754FB5", "9EC3262D6346F0BF029CE7B9", "7C32DA5551C18B52D61AAF1D", "A9FEF99C409765876C454219", "B2B0F47DAE8FC4A5A02A363A", "36895890DB87F123F278FE19", "34D96FAADDE66193E9E16132", "EB1361D8313C9E1E19834992", "40A79804E2A583D2230CC95D", "E6C544117A101FE859793C62", "03AF56BE2C9FDF9DEFBDE818", "025CFFD8D9721467C74DE41F", "E1922B570BCE4C39422E681B", "DE0DC5E4E155C1A34DB7B700", "7A016BA7D0E3429EC8C673D3", "E5909737C1A22BC5D0FDCB35", "265C02CB2A18289FE6D8316C", "A4CC6BC01A927E2A78FD3BEC", "9CEEC13202AFBF12EE3ABB99", "0A3E27B8CA818264D75C8D81",);
 			"sourceTree" = "<group>";
 		};
 		"BC4A71180870F7945155FBB0" = {
@@ -131,7 +231,7 @@
 		"878A52FC5FF6A57D50B7B870" = {
 			"isa" = "PBXSourcesBuildPhase";
 			"buildActionMask" = "2147483647";
-			"files" = ("872247D6705554E6DFD1E56D", "33FBD61F934E956FB8377B52", "F049EB7D0D36ED8029CD2CB1", "290BA72B43F95E236840C1C8", "27A279F989D02D26EDF9AEAE", "E95143B513FE381330A01AF3", "D2740EFD5804A93FE8C32426", "C4608FAF3D90C38A77665731",);
+			"files" = ("872247D6705554E6DFD1E56D", "FF034C61FFB5E86F73CB7F89", "33FBD61F934E956FB8377B52", "F049EB7D0D36ED8029CD2CB1", "5D8BE66919F6D28FEF666A9D", "290BA72B43F95E236840C1C8", "27A279F989D02D26EDF9AEAE", "4A0B0FFFA54892BEEEA547C0", "5AE7494E049EA4B5526A2E34", "5A52183E1E0C015EA724B439", "E95143B513FE381330A01AF3", "D2740EFD5804A93FE8C32426", "4A2162F041DC281197DECF87", "4ACDACC362FC223CA684E3F1", "D0D3575CC9EE3110DA0A0D4D", "0E21964C266B54845FCB371B", "518252F2980738DE596C018C", "C4608FAF3D90C38A77665731",);
 			"runOnlyForDeploymentPostprocessing" = "0";
 		};
 		"E2AA269EB967A8853A258BFA" = {

@@ -41,8 +41,23 @@
   },
   {
     "path": "Sources/ReaderCore/Library.swift",
-    "bytes": 15713,
-    "sha256": "a8b8845b9169f68c16e803233f3374a056f40df2a5f0ef1bf35432c51f9ddcca"
+    "bytes": 16011,
+    "sha256": "ff6fdecdc83a33ca1354dc6b9c3e0e8de4d8bf9a778d98fef3b17640dd0884aa"
+  },
+  {
+    "path": "Sources/ReaderCore/MangaDexSource.swift",
+    "bytes": 8664,
+    "sha256": "6cd05b0f97e4f4ee7600e05df83ef7fa2c4a4b995ba69461642e56e243daacdf"
+  },
+  {
+    "path": "Sources/ReaderCore/OnlineModels.swift",
+    "bytes": 6712,
+    "sha256": "6dbac585a6a4ce4d4f843ba13759d8568309e40618ef02931b5bd577978bccc6"
+  },
+  {
+    "path": "Sources/ReaderCore/OnlineStore.swift",
+    "bytes": 12514,
+    "sha256": "a09a5fe380aea656f06eab6b1cd2eac6b54f4ee0bfc2ac9984c42a0ec7a59497"
   },
   {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
@@ -70,6 +85,11 @@
     "sha256": "50f478374496e331eedcf6fcf35707b3408ebfc44514527f196b0612c4bc3198"
   },
   {
+    "path": "Tests/ReaderCoreTests/HistoryPersistenceTests.swift",
+    "bytes": 3828,
+    "sha256": "8d2f731f03ee90639d71fef6e3b4e1beec06c6bfd649caaeb746f0f7520df679"
+  },
+  {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
     "bytes": 7714,
     "sha256": "d7ccb48ed8ed777884be9552217d303a1b4645a8378652a193eabe1424f876e2"
@@ -85,9 +105,19 @@
     "sha256": "171443e71b95a4c165d2b5e14fbaccdb310b5f31dc33134f74b7f71388590933"
   },
   {
+    "path": "docs/BUILD-STAGES-AR.md",
+    "bytes": 4051,
+    "sha256": "0a3a124ed89f5933e4a9942a69d70067ede396c2e7b537652721cc77206d47d6"
+  },
+  {
     "path": "docs/FEATURES-AR.md",
     "bytes": 15443,
     "sha256": "2b84d1ea13280c87ddb385c5d22272b5df7f3ca941ebe61fe28806da5c799e92"
+  },
+  {
+    "path": "docs/PHASE-1-UI-AR.md",
+    "bytes": 6890,
+    "sha256": "bfb3faaf8c03476d2887f2a7162ab0769c8e9bce1019461a9edf92ff38a2d7ef"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -101,8 +131,8 @@
   },
   {
     "path": "docs/STATUS-AR.md",
-    "bytes": 3294,
-    "sha256": "2408ea46275c1bc5023e93c6e4e64ddb65c292c7c0e2efe5c2dacee7c71aba1a"
+    "bytes": 3765,
+    "sha256": "caaf663e5a424da905d690b67e58a6c27442f35a933d3c98cfe1344ae21da9e3"
   },
   {
     "path": "docs/TACHIYOMI-IOS-REVIEW-AR.md",
@@ -116,18 +146,28 @@
   },
   {
     "path": "iOS/MangaShelf/AppModel.swift",
-    "bytes": 9750,
-    "sha256": "f37c55ad9d500263561b0b88126c4e7d31095c2d751517a0c1b9aaa1f7581bf1"
+    "bytes": 9942,
+    "sha256": "5813f82cdeccd7ef04ffc48cf131e0408f516feeefa0546af77d8129f74e565e"
+  },
+  {
+    "path": "iOS/MangaShelf/BrowseHomeView.swift",
+    "bytes": 7294,
+    "sha256": "06aeae4eabf9047e36cbc2b6b185478bdfe2a373fb4fde4d68987e3f8aa5f221"
   },
   {
     "path": "iOS/MangaShelf/BrowseView.swift",
-    "bytes": 5977,
-    "sha256": "b7b77222385897e59338ae43f9f15813ae54ec23cb396beb25b8547be6d93b9b"
+    "bytes": 6027,
+    "sha256": "8f61afff2fbe7bc306c76abad3e5874f6c4e0db0e511f8563bea16d63438f5c7"
   },
   {
     "path": "iOS/MangaShelf/DiagnosticsView.swift",
     "bytes": 10892,
     "sha256": "9c4ff7192c2d66134fde6105279fc8e8ea8a7711a6091c56694a33709a2c2bcc"
+  },
+  {
+    "path": "iOS/MangaShelf/HistoryView.swift",
+    "bytes": 6058,
+    "sha256": "3a072857ebcb1c3614dba0b53585dda2d93c28d28207d5b4597df0daa416ab34"
   },
   {
     "path": "iOS/MangaShelf/Info.plist",
@@ -136,13 +176,28 @@
   },
   {
     "path": "iOS/MangaShelf/LibraryView.swift",
-    "bytes": 17509,
-    "sha256": "cef6960ba4d7fcdd783ec6403657778945b0b011aad8577b6064842158266d62"
+    "bytes": 18515,
+    "sha256": "1fa03dbd1dc2cba1e0a693776b402b8d9e86a9c31ed312a4d31e5edb83478472"
   },
   {
     "path": "iOS/MangaShelf/MangaShelfApp.swift",
-    "bytes": 2331,
-    "sha256": "582bc034562708ab9e1ded588efb5722e8be896c72211efa1177d9ee833569ee"
+    "bytes": 2776,
+    "sha256": "7b62e4ba00420c4fe65c743d6951d5bf15d7549b95219d1ff8cbcf192e8e4cec"
+  },
+  {
+    "path": "iOS/MangaShelf/OnlineLibraryViews.swift",
+    "bytes": 5277,
+    "sha256": "f265a218cda56142d11f2182750d5524780b6c18a8c98bd39c3e156ac2974150"
+  },
+  {
+    "path": "iOS/MangaShelf/OnlineModel.swift",
+    "bytes": 10302,
+    "sha256": "469819a8f64b4845e9981e27486b1c28f61bca4f664420643d8aa5451d10c11b"
+  },
+  {
+    "path": "iOS/MangaShelf/OnlineReaderView.swift",
+    "bytes": 14467,
+    "sha256": "210b71f88dedeed4295f9026b3b86cd00837bc154c575c2d9c1b0138d52cce5a"
   },
   {
     "path": "iOS/MangaShelf/PrivacyInfo.xcprivacy",
@@ -151,23 +206,48 @@
   },
   {
     "path": "iOS/MangaShelf/ReaderView.swift",
-    "bytes": 13912,
-    "sha256": "d5bba6375da5d04fd5831a11ae96ab7e0d06d2a862536f59508808fddac0869e"
+    "bytes": 14014,
+    "sha256": "a01c8a11f17f73a09c313173d5ed24db8c0551e032577037ce31d8add7710dbf"
   },
   {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 12890,
-    "sha256": "e3be95a03c059daf4340003a0db9c7b6ebb224b480c802517d907d2c67bb2ecc"
+    "bytes": 14392,
+    "sha256": "314389026fde9fc2941f4cfa1e9bd6ffee978d09946a0acc85e68ad300982467"
+  },
+  {
+    "path": "iOS/MangaShelf/ShelfDetailHero.swift",
+    "bytes": 1677,
+    "sha256": "2d5413ade0139c34926af21bf104bd579f08b4a0ab1d6533195eb4eb4cc6b705"
+  },
+  {
+    "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
+    "bytes": 1539,
+    "sha256": "70491a597ba3099d8e6e93396d4427c83e9f9e1e463a95d8381f25139987c89f"
+  },
+  {
+    "path": "iOS/MangaShelf/ShelfStyle.swift",
+    "bytes": 10786,
+    "sha256": "e4905b3db8fe6699a2eec43dd390823772472a92bb3037f9218960801a174dd2"
+  },
+  {
+    "path": "iOS/MangaShelf/SourceViews.swift",
+    "bytes": 15948,
+    "sha256": "7f06042f7bfe8ca27589e526242371025a7c1921277323b68d969d0b2bc269a9"
+  },
+  {
+    "path": "iOS/MangaShelf/SupportingSettingsViews.swift",
+    "bytes": 6650,
+    "sha256": "3096ea5e2f9245b7e5cd47c90b034ef5885a6708fd80a3ec9b3de653efc9ec43"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
-    "bytes": 3431,
-    "sha256": "eb989cab38faa234c79dbeeb8a1b6e93222a7261a6f55c963645d7b1e0943a51"
+    "bytes": 3506,
+    "sha256": "a251a3158afff13d29da5d64232bf93154dc8824ecea049544f73263b6b620df"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/project.pbxproj",
-    "bytes": 8756,
-    "sha256": "9c93f1d29a1b3e9112dd98aeaa813f66f8203a194eb08820a8909514b2cc1b8f"
+    "bytes": 12304,
+    "sha256": "f8025763c647e487f3172b034346f29de5f4ef247680063026c09367f4d65649"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/xcshareddata/xcschemes/MangaShelf.xcscheme",

@@ -6,7 +6,7 @@ public enum AppAppearance: String, Codable, CaseIterable, Sendable { case system
 public struct ReaderSettings: Codable, Sendable {
     public var mode: ReaderMode = .paged
     public var direction: ReadingDirection = .rightToLeft
-    public var appearance: AppAppearance = .system
+    public var appearance: AppAppearance = .dark
     public var showPageNumber = true
     public var keepScreenAwake = true
     public init() {}
@@ -245,6 +245,13 @@ public actor LibraryStore {
     }
     public func saveSettings(_ settings: ReaderSettings) throws {
         var candidate = state; candidate.settings = settings; try commit(candidate)
+    }
+    public func clearReadingHistory(bookID: UUID? = nil) throws {
+        var candidate = state
+        for index in candidate.books.indices where bookID == nil || candidate.books[index].id == bookID {
+            candidate.books[index].lastReadAt = nil
+        }
+        try commit(candidate)
     }
     public func saveRepository(_ repository: SavedRepository) throws {
         var candidate = state

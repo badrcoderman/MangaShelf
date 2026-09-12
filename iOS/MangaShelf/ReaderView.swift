@@ -113,7 +113,7 @@ struct ReaderView: View {
                         Button(bookmark ? "إزالة العلامة" : "إضافة علامة", systemImage: bookmark ? "bookmark.fill" : "bookmark") {
                             Task { await model.perform { try await $0.toggleBookmark(id: bookID, page: page) } }
                         }.labelStyle(.iconOnly).disabled(model.busy || pageCount == 0)
-                    }.padding().background(.ultraThinMaterial)
+                    }.padding().background(ShelfStyle.header.opacity(0.96))
                     Spacer()
                     if pageCount > 0, settings.mode == .paged {
                         VStack(spacing: 14) {
@@ -128,15 +128,16 @@ struct ReaderView: View {
                                 Slider(value: Binding(get: { Double(page) }, set: { page = Int($0) }), in: 0...Double(pageCount-1), step: 1)
                                     .accessibilityLabel("الانتقال إلى صفحة")
                             }
-                        }.padding().background(.ultraThinMaterial)
+                        }.padding().background(ShelfStyle.header.opacity(0.96))
                     }
-                }.tint(.primary)
+                }.tint(ShelfStyle.accent).foregroundStyle(ShelfStyle.text)
             }
             if settings.showPageNumber, !controls || settings.mode == .webtoon, pageCount > 0 {
-                VStack { Spacer(); Text("\(page + 1) / \(pageCount)").font(.caption.monospacedDigit()).padding(7).background(.ultraThinMaterial, in: Capsule()) }
+                VStack { Spacer(); Text("\(page + 1) / \(pageCount)").font(.caption.monospacedDigit()).padding(7).background(ShelfStyle.header.opacity(0.96), in: Capsule()) }
                     .padding(.bottom, 10).allowsHitTesting(false)
             }
         }
+        .preferredColorScheme(.dark)
         .statusBarHidden(!controls)
         .task {
             previousIdleSetting = UIApplication.shared.isIdleTimerDisabled
@@ -229,7 +230,7 @@ private struct WebtoonPage: View {
     }
 }
 
-private struct ZoomableImage: UIViewRepresentable {
+struct ZoomableImage: UIViewRepresentable {
     let image: UIImage
     @Binding var zoomed: Bool
     func makeUIView(context: Context) -> ZoomScrollView {
@@ -253,7 +254,7 @@ private struct ZoomableImage: UIViewRepresentable {
         }
     }
 }
-private final class ZoomScrollView: UIScrollView {
+final class ZoomScrollView: UIScrollView {
     let imageView = UIImageView()
     override func layoutSubviews() {
         super.layoutSubviews()
