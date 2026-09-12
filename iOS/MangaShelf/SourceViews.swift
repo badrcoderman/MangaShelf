@@ -246,13 +246,15 @@ struct SourcePreferencesView: View {
     @AppStorage("source.dataSaver") private var saver = false
     var body: some View {
         Form {
-            Section("MangaDex") {
+            Section {
                 Picker("لغة الفصول", selection: $language) {
                     Text("العربية").tag("ar"); Text("الإنجليزية").tag("en"); Text("اليابانية").tag("ja")
                     Text("الكورية").tag("ko"); Text("الفرنسية").tag("fr"); Text("كل اللغات").tag("")
                 }
                 Toggle("توفير البيانات في الفصول الجديدة", isOn: $saver)
-            } footer: { Text("اختيار اللغة يحدد الفصول ونتائج البحث المتاحة لدى المصدر. واجهة التطبيق تبقى عربية.") }
+            } header: { Text("MangaDex") } footer: {
+                Text("اختيار اللغة يحدد الفصول ونتائج البحث المتاحة لدى المصدر. واجهة التطبيق تبقى عربية.")
+            }
         }.shelfPage().navigationTitle("إعدادات المصادر").navigationBarTitleDisplayMode(.inline)
     }
 }
