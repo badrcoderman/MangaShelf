@@ -42,7 +42,7 @@ sources=add("sources","PBXSourcesBuildPhase",buildActionMask="2147483647",files=
 frameworks=add("frameworks","PBXFrameworksBuildPhase",buildActionMask="2147483647",files=[framework],runOnlyForDeploymentPostprocessing="0")
 privacy_build=add("privacy-build","PBXBuildFile",fileRef=privacy)
 resources=add("resources","PBXResourcesBuildPhase",buildActionMask="2147483647",files=[privacy_build]+resource_builds,runOnlyForDeploymentPostprocessing="0")
-base={"SDKROOT":"iphoneos","IPHONEOS_DEPLOYMENT_TARGET":"17.0","SWIFT_VERSION":"5.0","CLANG_ENABLE_MODULES":"YES",
+base={"SDKROOT":"iphoneos","IPHONEOS_DEPLOYMENT_TARGET":"26.0","SWIFT_VERSION":"5.0","CLANG_ENABLE_MODULES":"YES",
       "CLANG_ENABLE_OBJC_ARC":"YES","ENABLE_USER_SCRIPT_SANDBOXING":"YES","GCC_C_LANGUAGE_STANDARD":"c11"}
 target_settings={"PRODUCT_BUNDLE_IDENTIFIER":"app.mangashelf.reader","PRODUCT_NAME":"$(TARGET_NAME)","INFOPLIST_FILE":"MangaShelf/Info.plist",
                  "GENERATE_INFOPLIST_FILE":"NO","TARGETED_DEVICE_FAMILY":"1,2","CODE_SIGN_STYLE":"Automatic",

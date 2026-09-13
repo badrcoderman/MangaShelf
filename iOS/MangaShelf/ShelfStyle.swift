@@ -11,11 +11,12 @@ enum ShelfStyle {
                            blue: CGFloat(hex & 255) / 255, alpha: 1)
         })
     }
-    static let background = color(0x18181A, light: 0xFAFAFC)
-    static let header = color(0x24262C, light: 0xECEEF4)
+    static let background = color(0x141416, light: 0xFAFAFC)
+    static let header = color(0x1C1D21, light: 0xECEEF4)
+    static let menu = color(0x202124, light: 0xF3F4F8)
     static let selected = color(0x3B3B3F, light: 0xDFE5F2)
-    static let accent = color(0xA8C2FF, light: 0x345DA8)
-    static let text = color(0xE7E8ED, light: 0x202126)
+    static let accent = color(0xAEC6FF, light: 0x345DA8)
+    static let text = color(0xF4F5FA, light: 0x202126)
     static let secondary = color(0xC7C9D0, light: 0x555A63)
     static let border = color(0x34353A, light: 0xD7D9DE)
     static let onAccent = color(0x17223B, light: 0xFFFFFF)
@@ -114,6 +115,7 @@ struct ShelfHeader<Left: View, Right: View>: View {
 }
 
 struct ShelfTabBar: View {
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @Environment(\.locale) private var interfaceLocale
     @Environment(\.shelfTabSelection) private var selection
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -137,8 +139,9 @@ struct ShelfTabBar: View {
                     .accessibilityIdentifier("tab.\(tab.rawValue)")
             }
         }.environment(\.layoutDirection, .leftToRight)
-            .padding(4).background(.ultraThinMaterial, in: Capsule())
-            .overlay(Capsule().strokeBorder(ShelfStyle.border, lineWidth: 1))
+            .padding(4)
+            .background { if reduceTransparency { Capsule().fill(ShelfStyle.menu) } }
+            .glassEffect(reduceTransparency ? .identity : .regular, in: Capsule())
             .frame(maxWidth: 540).padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 6)
             .frame(maxWidth: .infinity)
     }

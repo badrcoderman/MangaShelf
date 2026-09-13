@@ -5,6 +5,8 @@ struct UpdatesView: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var online: OnlineModel
     @State private var reading: MangaChapter?
+    @State private var showOptions = false
+    @State private var showDownloads = false
     private var updates: [(MangaSeries, MangaChapter)] {
         online.state.series.filter(\.inLibrary).flatMap { item in
             item.chapters.filter { item.newChapterIDs.contains($0.id) }.map { (item.series, $0) }
@@ -47,12 +49,18 @@ struct UpdatesView: View {
             HStack(spacing: 0) {
                 NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "gearshape.fill") }
                     .buttonStyle(.plain).accessibilityLabel(L10n.string("Source settings"))
-                Menu {
-                    TachiButton(L10n.string("Update library"), systemImage: "arrow.clockwise") { Task { await online.refreshLibrary() } }.disabled(online.updating)
-                    NavigationLink { DownloadsView().shelfPage() } label: { TachiLabel(L10n.string("Downloads"), systemImage: "arrow.down") }
-                } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Update options"))
+                Button { showOptions.toggle() } label: {
+                    ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90))
+                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Update options"))
             }
         }, right: { ShelfBackupLink() })
+            .shelfOverflow(isPresented: $showOptions, title: L10n.string("Update options"), actions: [
+                ShelfOverflowAction(id: "update", title: L10n.string("Update library"), symbol: "arrow.clockwise", enabled: !online.updating) {
+                    Task { await online.refreshLibrary() }
+                },
+                ShelfOverflowAction(id: "downloads", title: L10n.string("Downloads"), symbol: "arrow.down") { showDownloads = true }
+            ])
+            .navigationDestination(isPresented: $showDownloads) { DownloadsView().shelfPage() }
             .fullScreenCover(item: $reading) { OnlineReaderView(chapter: $0) }
     }
 }

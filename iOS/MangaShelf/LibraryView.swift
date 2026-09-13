@@ -26,6 +26,8 @@ struct LibraryView: View {
     @State private var importing = false
     @State private var filtering = false
     @State private var showSearch = false
+    @State private var showOptions = false
+    @State private var showCategories = false
 
     private var entries: [ShelfLibraryEntry] {
         let local = model.state.books.filter { book in
@@ -112,17 +114,22 @@ struct LibraryView: View {
             HStack(spacing: 0) {
                 ShelfIconButton(L10n.string("Search"), symbol: "magnifyingglass") { showSearch.toggle(); if !showSearch { query = "" } }
                 ShelfIconButton(L10n.string("Filter and display"), symbol: "line.3.horizontal.decrease") { filtering = true }
-                Menu {
-                    TachiButton(L10n.string("Import book"), systemImage: "plus") { importing = true }.disabled(model.busy)
-                    NavigationLink { CategoryManagementView() } label: { TachiLabel(L10n.string("Manage categories"), systemImage: "folder") }
-                    TachiButton(L10n.string("Update library"), systemImage: "arrow.clockwise") { Task { await online.refreshLibrary() } }
-                        .disabled(online.updating)
-                } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Library options"))
+                Button { showOptions.toggle() } label: {
+                    ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90))
+                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Library options"))
             }
         }, right: {
             if isRoot { ShelfBackupLink() }
             else { ShelfIconButton(L10n.string("Back"), symbol: "chevron.right") { dismiss() } }
         })
+        .shelfOverflow(isPresented: $showOptions, title: L10n.string("Library options"), actions: [
+            ShelfOverflowAction(id: "import", title: L10n.string("Import book"), symbol: "plus", enabled: !model.busy) { importing = true },
+            ShelfOverflowAction(id: "categories", title: L10n.string("Manage categories"), symbol: "folder") { showCategories = true },
+            ShelfOverflowAction(id: "update", title: L10n.string("Update library"), symbol: "arrow.clockwise", enabled: !online.updating) {
+                Task { await online.refreshLibrary() }
+            }
+        ])
+        .navigationDestination(isPresented: $showCategories) { CategoryManagementView() }
         .fileImporter(isPresented: $importing, allowedContentTypes: [.zip, UTType(filenameExtension: "cbz") ?? .data], allowsMultipleSelection: true) { result in
             switch result {
             case .success(let urls): Task { await model.importFiles(urls) }

@@ -15,6 +15,11 @@ jobs:
         run: |
           xcodebuild -version
           swift --version
+          SDK_VERSION=$(xcrun --sdk iphoneos --show-sdk-version)
+          if [ "${SDK_VERSION%%.*}" -lt 26 ]; then
+            echo "::error::MangaShelf requires Xcode with iOS 26 SDK or newer."
+            exit 1
+          fi
       - name: Build unsigned device IPA
         run: bash scripts/build-ios.sh unsigned
       - name: Upload IPA
