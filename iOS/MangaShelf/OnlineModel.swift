@@ -22,17 +22,17 @@ extension SecureHTTP: SourceTransport {
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let opened = try OnlineStore(root: support.appendingPathComponent("MangaShelf/Online", isDirectory: true))
             store = opened; state = await opened.snapshot(); ready = true
-        } catch { errorMessage = "تعذر فتح مكتبة المصادر. " + ArabicError.describe(error) }
+        } catch { errorMessage = L10n.string("Could not open the source library. ") + AppError.describe(error) }
     }
     func saved(_ id: String) -> SavedSeries? { state.series.first { $0.id == id } }
     func download(_ id: String) -> ChapterDownload? { state.downloads.first { $0.id == id } }
     private func requireStore() throws -> OnlineStore {
-        guard let store else { throw ReaderFailure("مكتبة المصادر غير جاهزة. أعد فتح التطبيق.") }
+        guard let store else { throw ReaderFailure(L10n.string("The source library is not ready. Reopen the app.")) }
         return store
     }
     func mutate(_ operation: (OnlineStore) async throws -> Void) async {
         do { let store = try requireStore(); try await operation(store); state = await store.snapshot() }
-        catch { errorMessage = ArabicError.describe(error); DiagnosticsCenter.shared.recordFailure("مكتبة المصادر", error) }
+        catch { errorMessage = AppError.describe(error); DiagnosticsCenter.shared.recordFailure(L10n.string("Source library"), error) }
     }
     func save(_ series: MangaSeries, favorite: Bool? = nil) async {
         await mutate { try await $0.save(series, favorite: favorite) }
@@ -47,7 +47,7 @@ extension SecureHTTP: SourceTransport {
         try await store.save(details)
         try await store.setChapters(seriesID: series.id, chapters: chapters, language: selectedLanguage)
         state = await store.snapshot()
-        DiagnosticsCenter.shared.record("المصادر", "تحديث تفاصيل العنوان والفصول: \(chapters.count)")
+        DiagnosticsCenter.shared.record(L10n.string("Sources"), L10n.format("Updated title details and chapters: %@", String(describing: chapters.count)))
     }
     func refreshLibrary() async {
         guard !updating else { return }; updating = true; defer { updating = false }
@@ -56,12 +56,12 @@ extension SecureHTTP: SourceTransport {
             if Task.isCancelled { break }
             do { try await refresh(item.series) } catch is CancellationError { break } catch { failures += 1 }
         }
-        if failures > 0 { errorMessage = "تعذر تحديث \(failures) عنوان. بقيت الفصول المحفوظة متاحة." }
+        if failures > 0 { errorMessage = L10n.format("Could not update %@ titles. Saved chapters remain available.", String(describing: failures)) }
     }
     func pages(_ chapter: MangaChapter, refresh: Bool = false) async throws -> ChapterPages {
         let store = try requireStore()
         if !refresh, let cached = try await store.cachedPages(chapterID: chapter.id) { return cached }
-        if chapter.externalURL != nil { throw ReaderFailure("هذا الفصل متاح لدى الناشر عبر الموقع فقط.") }
+        if chapter.externalURL != nil { throw ReaderFailure(L10n.string("This chapter is only available on the publisher's website.")) }
         let pages = try await source.pages(chapterID: chapter.id, dataSaver: dataSaver)
         try Task.checkCancellation(); try await store.savePages(pages)
         return pages
@@ -69,7 +69,7 @@ extension SecureHTTP: SourceTransport {
     func imageData(chapter: MangaChapter, pages: ChapterPages, index: Int) async throws -> Data {
         let store = try requireStore()
         if let data = try await store.cachedImage(chapterID: chapter.id, index: index) { return data }
-        guard pages.urls.indices.contains(index) else { throw ReaderFailure("الصفحة غير موجودة.") }
+        guard pages.urls.indices.contains(index) else { throw ReaderFailure(L10n.string("The page does not exist.")) }
         let bytes: Data
         do { bytes = try await SecureHTTP().get(pages.urls[index]) }
         catch is CancellationError { throw CancellationError() }
@@ -78,7 +78,7 @@ extension SecureHTTP: SourceTransport {
             let current = try await self.pages(chapter, refresh: true)
             guard current.urls.count == pages.urls.count,
                   current.urls.map({ URL(string: $0)?.lastPathComponent }) == pages.urls.map({ URL(string: $0)?.lastPathComponent }) else {
-                throw ReaderFailure("تغيرت صفحات الفصل؛ أغلقه وافتحه مرة أخرى.")
+                throw ReaderFailure(L10n.string("The chapter pages have changed. Close and reopen the chapter."))
             }
             bytes = try await SecureHTTP().get(current.urls[index])
         }
@@ -112,7 +112,7 @@ extension SecureHTTP: SourceTransport {
     }
     private func runDownloads() async {
         var backgroundID: UIBackgroundTaskIdentifier = .invalid
-        backgroundID = UIApplication.shared.beginBackgroundTask(withName: "حفظ صفحات الفصل") {
+        backgroundID = UIApplication.shared.beginBackgroundTask(withName: L10n.string("Save chapter pages")) {
             Task { @MainActor in self.worker?.cancel() }
         }
         defer {
@@ -136,11 +136,11 @@ extension SecureHTTP: SourceTransport {
                 try Task.checkCancellation()
                 try await store.updateDownload(id: job.id, phase: .complete, finished: total, total: total)
                 state = await store.snapshot()
-                DiagnosticsCenter.shared.record("التنزيلات", "اكتمل حفظ فصل: \(total) صفحة")
+                DiagnosticsCenter.shared.record(L10n.string("Downloads"), L10n.format("Chapter saved: %@ pages", String(describing: total)))
             } catch {
                 let paused = Task.isCancelled || error is CancellationError
                 await mutate { try await $0.updateDownload(id: job.id, phase: paused ? .paused : .failed,
-                    finished: finished, total: total, failure: paused ? nil : ArabicError.describe(error)) }
+                    finished: finished, total: total, failure: paused ? nil : AppError.describe(error)) }
                 if paused { break }
             }
         }
@@ -167,6 +167,7 @@ actor NetworkImageCache {
 }
 
 struct RemoteCover: View {
+    @Environment(\.locale) private var interfaceLocale
     let url: String?
     @State private var image: UIImage?
     var body: some View {

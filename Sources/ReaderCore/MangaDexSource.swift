@@ -12,15 +12,15 @@ public struct MangaDexSource: MangaSource {
     private func request<T: Decodable>(_ path: String, _ query: [URLQueryItem] = []) async throws -> T {
         var url = URLComponents(string: "https://api.mangadex.org")!
         url.path = path; url.queryItems = query.isEmpty ? nil : query
-        guard let endpoint = url.url else { throw ReaderFailure("عنوان المصدر غير صالح.") }
+        guard let endpoint = url.url else { throw ReaderFailure(ReaderText.string("Invalid source title.")) }
         return try JSONDecoder().decode(T.self, from: await transport.get(endpoint))
     }
     private func validID(_ id: String) throws -> String {
-        guard let uuid = UUID(uuidString: id) else { throw ReaderFailure("معرّف المصدر غير صالح.") }
+        guard let uuid = UUID(uuidString: id) else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         return uuid.uuidString.lowercased()
     }
     public func search(query: String, page: Int, language: String = "ar", latest: Bool = false) async throws -> MangaSearchPage {
-        guard (0..<500).contains(page), query.count <= 512 else { throw ReaderFailure("تجاوز البحث الحدود المسموحة.") }
+        guard (0..<500).contains(page), query.count <= 512 else { throw ReaderFailure(ReaderText.string("The search exceeded the allowed limits.")) }
         var args = [URLQueryItem(name: "limit", value: "30"), .init(name: "offset", value: String(page * 30)),
                     .init(name: "includes[]", value: "cover_art"), .init(name: "includes[]", value: "author"),
                     .init(name: "contentRating[]", value: "safe"), .init(name: "contentRating[]", value: "suggestive"),
@@ -51,7 +51,7 @@ public struct MangaDexSource: MangaSource {
             }
             offset += result.data.count
             if result.data.isEmpty || offset >= (result.total ?? offset) { break }
-            guard offset < 10_000 else { throw ReaderFailure("عدد الفصول يتجاوز حد المصدر. اختر لغة محددة.") }
+            guard offset < 10_000 else { throw ReaderFailure(ReaderText.string("Chapter count exceeds the source limit. Choose a specific language.")) }
         }
         return chapters
     }
@@ -59,11 +59,11 @@ public struct MangaDexSource: MangaSource {
         let id = try validID(chapterID)
         let result: AtHome = try await request("/at-home/server/" + id)
         guard HTTPSPolicy.accepts(result.baseUrl), !result.chapter.hash.isEmpty,
-              result.chapter.hash.allSatisfy({ $0.isHexDigit }) else { throw ReaderFailure("رابط صفحات المصدر غير صالح.") }
+              result.chapter.hash.allSatisfy({ $0.isHexDigit }) else { throw ReaderFailure(ReaderText.string("Invalid source page URL.")) }
         let names = dataSaver ? result.chapter.dataSaver : result.chapter.data
         let urls = try names.map { name -> String in
             guard !name.isEmpty, name.count < 512, !name.contains("/"), !name.contains("\\"), name != ".", name != ".." else {
-                throw ReaderFailure("اسم ملف صفحة غير صالح.")
+                throw ReaderFailure(ReaderText.string("Invalid page filename."))
             }
             return URL(string: result.baseUrl)!.appendingPathComponent(dataSaver ? "data-saver" : "data")
                 .appendingPathComponent(result.chapter.hash).appendingPathComponent(name).absoluteString
@@ -85,12 +85,12 @@ public struct MangaDexSource: MangaSource {
         }
         struct Tag: Decodable { var attributes: Attributes; struct Attributes: Decodable { var name: [String: String] } }
         func model() throws -> MangaSeries {
-            guard UUID(uuidString: id) != nil else { throw ReaderFailure("معرّف عنوان غير صالح من المصدر.") }
+            guard UUID(uuidString: id) != nil else { throw ReaderFailure(ReaderText.string("Invalid title identifier from the source.")) }
             func localized(_ strings: [String: String]) -> String {
                 strings["ar"] ?? strings["en"] ?? strings.keys.sorted().compactMap { strings[$0] }.first ?? ""
             }
             let title = localized(attributes.title)
-            guard !title.isEmpty else { throw ReaderFailure("المصدر أعاد عنوانًا فارغًا.") }
+            guard !title.isEmpty else { throw ReaderFailure(ReaderText.string("The source returned an empty title.")) }
             let filename = relationships.first { $0.type == "cover_art" }?.attributes?.fileName
             let cover: String? = filename.flatMap { name in
                 guard !name.contains("/"), !name.contains("\\") else { return nil }
@@ -109,14 +109,14 @@ public struct MangaDexSource: MangaSource {
             var publishAt: String?; var externalUrl: String?
         }
         func model(seriesID: String) throws -> MangaChapter {
-            guard UUID(uuidString: id) != nil else { throw ReaderFailure("معرّف فصل غير صالح من المصدر.") }
+            guard UUID(uuidString: id) != nil else { throw ReaderFailure(ReaderText.string("Invalid chapter identifier from the source.")) }
             let formatter = ISO8601DateFormatter()
             let date = attributes.publishAt.flatMap { text -> Date? in
                 if let value = formatter.date(from: text) { return value }
                 formatter.formatOptions.insert(.withFractionalSeconds); return formatter.date(from: text)
             }
             return MangaChapter(id: id, seriesID: seriesID, title: attributes.title ?? "", number: attributes.chapter,
-                volume: attributes.volume, language: attributes.translatedLanguage ?? "", group: relationships.filter { $0.type == "scanlation_group" }.compactMap { $0.attributes?.name }.joined(separator: "، "),
+                volume: attributes.volume, language: attributes.translatedLanguage ?? "", group: relationships.filter { $0.type == "scanlation_group" }.compactMap { $0.attributes?.name }.joined(separator: ReaderText.string(", ")),
                 publishedAt: date, externalURL: attributes.externalUrl)
         }
     }

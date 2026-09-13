@@ -1,6 +1,27 @@
 {
-  "tool": "tree-sitter-swift",
-  "files": 12,
-  "parse_errors": [],
-  "scope": "grammar only; not Swift type checking, SDK validation, or runtime testing"
+  "files": 33,
+  "new_syntax_diagnostics": [],
+  "parser_limitations": [
+    {
+      "file": "iOS/MangaShelf/OnlineModel.swift",
+      "unchanged_parser_diagnostics": [
+        {
+          "type": "ERROR",
+          "row": 64,
+          "text": "if chapter"
+        },
+        {
+          "type": "ERROR",
+          "row": 72,
+          "text": "guard pages"
+        },
+        {
+          "type": "ERROR",
+          "row": 72,
+          "text": "else"
+        }
+      ]
+    }
+  ],
+  "swift_typechecking": "NOT RUN"
 }

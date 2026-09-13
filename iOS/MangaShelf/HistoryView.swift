@@ -12,6 +12,7 @@ private struct HistoryEntry: Identifiable {
 }
 
 struct HistoryView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @EnvironmentObject private var online: OnlineModel
     @State private var query = ""
@@ -37,10 +38,10 @@ struct HistoryView: View {
     private var entries: [HistoryEntry] { allEntries.filter { query.isEmpty || $0.title.localizedStandardContains(query) } }
     var body: some View {
         VStack(spacing: 0) {
-            if showSearch { ShelfSearchField(text: $query, prompt: "البحث في التاريخ") }
+            if showSearch { ShelfSearchField(text: $query, prompt: L10n.string("Search history")) }
             if entries.isEmpty {
                 Spacer()
-                ShelfEmptyState(title: allEntries.isEmpty ? "لا يوجد تاريخ قراءة" : "لا توجد نتائج")
+                ShelfEmptyState(title: allEntries.isEmpty ? L10n.string("No reading history") : L10n.string("No results"))
                 Spacer()
             } else {
                 ScrollView {
@@ -49,19 +50,19 @@ struct HistoryView: View {
                     }.padding(.horizontal, 12).padding(.top, 8)
                 }
             }
-        }.shelfRoot("التاريخ", left: {
+        }.shelfRoot(L10n.string("History"), left: {
             HStack(spacing: 0) {
-                ShelfIconButton("بحث", symbol: "magnifyingglass") { showSearch.toggle(); if !showSearch { query = "" } }
-                ShelfIconButton("مسح تاريخ القراءة", symbol: "trash") { removal = nil; confirmRemoval = true }
+                ShelfIconButton(L10n.string("Search"), symbol: "magnifyingglass") { showSearch.toggle(); if !showSearch { query = "" } }
+                ShelfIconButton(L10n.string("Clear reading history"), symbol: "trash") { removal = nil; confirmRemoval = true }
                     .disabled(allEntries.isEmpty || clearing)
             }
         }, right: { ShelfBackupLink() })
             .fullScreenCover(item: $readingBook) { ReaderView(bookID: $0.id, startPage: nil) }
             .fullScreenCover(item: $readingChapter) { OnlineReaderView(chapter: $0) }
-            .confirmationDialog(removal == nil ? "مسح تاريخ القراءة بالكامل؟" : "إزالة هذا العنصر من التاريخ؟", isPresented: $confirmRemoval, titleVisibility: .visible) {
-                Button("مسح التاريخ", role: .destructive) { Task { await clearHistory() } }
-                Button("إلغاء", role: .cancel) { removal = nil }
-            } message: { Text("تبقى الكتب والتنزيلات والصفحات المحفوظة والعلامات المرجعية كما هي.") }
+            .confirmationDialog(removal == nil ? L10n.string("Clear all reading history?") : L10n.string("Remove this item from history?"), isPresented: $confirmRemoval, titleVisibility: .visible) {
+                Button(L10n.string("Clear history"), role: .destructive) { Task { await clearHistory() } }
+                Button(L10n.string("Cancel"), role: .cancel) { removal = nil }
+            } message: { Text(L10n.string("Books, downloads, saved pages, and bookmarks stay unchanged.")) }
     }
     private func row(_ entry: HistoryEntry) -> some View {
         HStack(alignment: .top, spacing: 12) {
@@ -81,14 +82,14 @@ struct HistoryView: View {
                     VStack(alignment: .leading, spacing: 7) {
                         Text(entry.title).font(.body.weight(.medium)).foregroundStyle(ShelfStyle.text).lineLimit(2)
                         switch entry.content {
-                        case .local(let book): Text("الصفحة \(book.currentPage + 1) من \(book.pageCount)")
-                        case .remote(_, let chapter, _): Text(chapter.displayTitle).lineLimit(2)
+                        case .local(let book): Text(L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
+                        case .remote(_, let chapter, _): Text(chapter.localizedTitle).lineLimit(2)
                         }
-                        Label { Text(entry.date, style: .relative) } icon: { Image(systemName: "clock") }
+                        Label { Text(entry.date, style: .relative) } icon: { TachiIcon(symbol: "clock", size: 16) }
                     }.font(.subheadline).foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
                 }.contentShape(Rectangle())
             }.buttonStyle(.plain)
-            ShelfIconButton("إزالة من التاريخ", symbol: "trash") { removal = entry; confirmRemoval = true }
+            ShelfIconButton(L10n.string("Remove from history"), symbol: "trash") { removal = entry; confirmRemoval = true }
                 .foregroundStyle(ShelfStyle.secondary).disabled(clearing)
         }
     }

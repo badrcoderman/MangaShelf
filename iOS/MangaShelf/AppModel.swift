@@ -1,20 +1,20 @@
 import SwiftUI
 import ReaderCore
 
-enum ArabicError {
+enum AppError {
     static func describe(_ error: Error) -> String {
-        if let failure = error as? ReaderFailure { return failure.message }
+        if let failure = error as? ReaderFailure { return L10n.string(failure.message) }
         let code = error as NSError
         if code.domain == NSURLErrorDomain {
             switch code.code {
-            case NSURLErrorCancelled: return "أُلغيت العملية."
-            case NSURLErrorNotConnectedToInternet: return "لا يوجد اتصال بالإنترنت."
-            case NSURLErrorTimedOut: return "انتهت مهلة الاتصال؛ أعد المحاولة."
-            default: return "تعذر الاتصال بالخدمة. تحقق من الشبكة ثم أعد المحاولة."
+            case NSURLErrorCancelled: return L10n.string("The operation was cancelled.")
+            case NSURLErrorNotConnectedToInternet: return L10n.string("No internet connection.")
+            case NSURLErrorTimedOut: return L10n.string("The connection timed out. Try again.")
+            default: return L10n.string("Could not connect to the service. Check your connection and try again.")
             }
         }
-        if error is DecodingError { return "ملف البيانات غير صالح أو غير متوافق مع هذه النسخة." }
-        return "تعذر إكمال العملية. تحقق من الملف والمساحة المتاحة ثم أعد المحاولة."
+        if error is DecodingError { return L10n.string("The data file is invalid or incompatible with this version.") }
+        return L10n.string("Could not complete the operation. Check the file and available storage, then try again.")
     }
 }
 
@@ -35,17 +35,17 @@ enum ArabicError {
             store = try LibraryStore(root: root)
             if let store {
                 state = await store.snapshot(); ready = true
-                DiagnosticsCenter.shared.record("المكتبة", "تم فتح بيانات المكتبة")
+                DiagnosticsCenter.shared.record(L10n.string("Library"), L10n.string("Library data opened"))
             }
-        } catch { errorMessage = "تعذر فتح بيانات المكتبة. لم تُحذف أو تُستبدل البيانات.\n\(ArabicError.describe(error))" }
+        } catch { errorMessage = L10n.format("Could not open library data. No data was deleted or replaced.\n%@", String(describing: AppError.describe(error))) }
     }
     func perform(_ operation: (LibraryStore) async throws -> Void) async {
         guard let store, !busy else { return }
         busy = true; defer { busy = false }
         do { try await operation(store); state = await store.snapshot() }
         catch {
-            DiagnosticsCenter.shared.recordFailure("عملية مكتبة", error)
-            errorMessage = ArabicError.describe(error)
+            DiagnosticsCenter.shared.recordFailure(L10n.string("Library operation"), error)
+            errorMessage = AppError.describe(error)
         }
     }
     func importFiles(_ urls: [URL]) async {
@@ -54,7 +54,7 @@ enum ArabicError {
             for url in urls {
                 let access = url.startAccessingSecurityScopedResource()
                 do { _ = try await store.importComic(from: url) }
-                catch { failures.append("\(url.lastPathComponent): \(ArabicError.describe(error))") }
+                catch { failures.append("\(url.lastPathComponent): \(AppError.describe(error))") }
                 if access { url.stopAccessingSecurityScopedResource() }
             }
             if !failures.isEmpty { throw ReaderFailure(failures.joined(separator: "\n")) }
@@ -63,21 +63,21 @@ enum ArabicError {
     }
     func book(_ id: UUID) -> LibraryBook? { state.books.first { $0.id == id } }
     func url(for book: LibraryBook) async throws -> URL {
-        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         return await store.bookURL(book)
     }
     func progress(id: UUID, page: Int) async {
         // Progress must not be dropped because another UI operation is in flight.
         guard let store else { return }
         do { try await store.updateProgress(id: id, page: page); state = await store.snapshot() }
-        catch { errorMessage = "تعذر حفظ تقدم القراءة: \(ArabicError.describe(error))" }
+        catch { errorMessage = L10n.format("Could not save reading progress: %@", String(describing: AppError.describe(error))) }
     }
     func backup() async throws -> Data {
-        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         return try await store.exportMetadata()
     }
     func refreshRepository(_ url: String) async throws {
-        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         let started = Date()
         let existingID = state.repositories.first { $0.url == url }?.id
         do {
@@ -87,9 +87,9 @@ enum ArabicError {
                 try await store.updateRepository(id: existingID, index: repository.index, fetchedAt: repository.fetchedAt)
             } else { try await store.saveRepository(repository) }
             state = await store.snapshot()
-            DiagnosticsCenter.shared.record("المستودعات", "اكتمل تحديث الفهرس", duration: Date().timeIntervalSince(started))
+            DiagnosticsCenter.shared.record(L10n.string("Repositories"), L10n.string("Repository index updated"), duration: Date().timeIntervalSince(started))
         } catch {
-            DiagnosticsCenter.shared.recordFailure("تحديث فهرس", error)
+            DiagnosticsCenter.shared.recordFailure(L10n.string("Update index"), error)
             throw error
         }
     }
@@ -104,16 +104,16 @@ enum ArabicError {
             catch is CancellationError { return }
             catch { failures += 1 }
         }
-        if failures > 0 { errorMessage = "تعذر تحديث \(failures) مستودع. احتُفظ بالفهرس السابق لكل مستودع تعذر تحديثه." }
+        if failures > 0 { errorMessage = L10n.format("Could not update %@ repositories. Their previous indexes were preserved.", String(describing: failures)) }
     }
     func storageUsage() async throws -> [String: Int64] {
-        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         return try await store.storageUsage()
     }
     func validateStorage() async throws {
-        guard let store else { throw ReaderFailure("المكتبة غير جاهزة.") }
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         try await store.validateStoredMetadata()
-        DiagnosticsCenter.shared.record("البيانات", "اجتاز ملف المكتبة فحص البنية والعلاقات")
+        DiagnosticsCenter.shared.record(L10n.string("Data"), L10n.string("Library structure and relationships passed validation"))
     }
     func restore(_ url: URL) async {
         await perform { store in
@@ -121,7 +121,7 @@ enum ArabicError {
             defer { if access { url.stopAccessingSecurityScopedResource() } }
             let data = try LibraryStore.readBounded(url, maximum: 32 * 1024 * 1024)
             let restored = try await store.mergeMetadataBackup(data)
-            self.errorMessage = "تم دمج تقدم \(restored) كتاب محلي. هذه نسخة بيانات فقط ولا تحتوي ملفات الكتب أو الإضافات."
+            self.errorMessage = L10n.format("Merged progress for %@ local books. This metadata backup contains no book files or extensions.", String(describing: restored))
         }
     }
 }
@@ -135,7 +135,7 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
     }
     func get(_ text: String) async throws -> Data {
         guard HTTPSPolicy.accepts(text), let url = URL(string: text) else {
-            throw ReaderFailure("يلزم رابط HTTPS دون بيانات دخول أو منفذ مخصص.")
+            throw ReaderFailure(L10n.string("A HTTPS URL without credentials or a custom port is required."))
         }
         let configuration = URLSessionConfiguration.ephemeral
         configuration.httpShouldSetCookies = false
@@ -151,14 +151,14 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
         let (bytes, response) = try await session.bytes(for: request)
         guard let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode) else {
             let code = (response as? HTTPURLResponse)?.statusCode ?? 0
-            if code == 429 { throw ReaderFailure("طلبات كثيرة إلى المصدر. انتظر قليلًا ثم أعد المحاولة.") }
-            throw ReaderFailure("تعذر التحميل من الخدمة (HTTP \(code)).")
+            if code == 429 { throw ReaderFailure(L10n.string("Too many requests to the source. Wait a moment and try again.")) }
+            throw ReaderFailure(L10n.format("Could not download from the service (HTTP %@).", String(describing: code)))
         }
         let maximum = BoundedGzip.maximumBytes
-        guard response.expectedContentLength <= Int64(maximum) else { throw ReaderFailure("الفهرس يتجاوز الحد المسموح.") }
+        guard response.expectedContentLength <= Int64(maximum) else { throw ReaderFailure(L10n.string("The index exceeds the allowed limit.")) }
         var data = Data(); data.reserveCapacity(min(maximum, max(0, Int(response.expectedContentLength))))
         for try await byte in bytes {
-            guard data.count < maximum else { throw ReaderFailure("الفهرس يتجاوز الحد المسموح.") }
+            guard data.count < maximum else { throw ReaderFailure(L10n.string("The index exceeds the allowed limit.")) }
             data.append(byte)
             if data.count % 65536 == 0 { try Task.checkCancellation() }
         }
@@ -169,7 +169,7 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
         var index = try await Task.detached(priority: .userInitiated) { try RepositoryDecoder.decode(data) }.value
         if !index.hasEmbeddedList, let listURL = index.extensionListURL {
             guard let resolved = URL(string: listURL, relativeTo: URL(string: url))?.absoluteURL,
-                  HTTPSPolicy.accepts(resolved.absoluteString) else { throw ReaderFailure("رابط قائمة الإضافات غير آمن.") }
+                  HTTPSPolicy.accepts(resolved.absoluteString) else { throw ReaderFailure(L10n.string("The extension list URL is not secure.")) }
             let listData = try await get(resolved.absoluteString)
             index.extensions = try await Task.detached { try RepositoryDecoder.decodeExternalList(listData) }.value
         }

@@ -13,11 +13,11 @@ enum ShelfStyle {
     }
     static let background = color(0x18181A, light: 0xFAFAFC)
     static let header = color(0x24262C, light: 0xECEEF4)
-    static let selected = color(0x3A3A3C, light: 0xDFE5F2)
-    static let accent = color(0xADC6FF, light: 0x345DA8)
-    static let text = color(0xE8EBF2, light: 0x202126)
-    static let secondary = color(0xC4C7CE, light: 0x555A63)
-    static let border = color(0x38383A, light: 0xD7D9DE)
+    static let selected = color(0x3B3B3F, light: 0xDFE5F2)
+    static let accent = color(0xA8C2FF, light: 0x345DA8)
+    static let text = color(0xE7E8ED, light: 0x202126)
+    static let secondary = color(0xC7C9D0, light: 0x555A63)
+    static let border = color(0x34353A, light: 0xD7D9DE)
     static let onAccent = color(0x17223B, light: 0xFFFFFF)
     static let pageInset: CGFloat = 10
     static let gridSpacing: CGFloat = 6
@@ -30,11 +30,11 @@ enum ShelfTab: Int, CaseIterable, Identifiable {
     var id: Int { rawValue }
     var title: String {
         switch self {
-        case .library: return "المكتبة"
-        case .updates: return "التحديثات"
-        case .browse: return "تصفح"
-        case .history: return "التاريخ"
-        case .more: return "المزيد"
+        case .library: return L10n.string("Library")
+        case .updates: return L10n.string("Updates")
+        case .browse: return L10n.string("Browse")
+        case .history: return L10n.string("History")
+        case .more: return L10n.string("More")
         }
     }
     var symbol: String {
@@ -59,14 +59,16 @@ extension EnvironmentValues {
 }
 
 struct ShelfIcon: View {
+    @Environment(\.locale) private var interfaceLocale
     let symbol: String
     var body: some View {
-        Image(systemName: symbol).font(.system(size: 23, weight: .medium))
+        TachiIcon(symbol: symbol, size: 22)
             .frame(width: 44, height: 44).contentShape(Rectangle())
     }
 }
 
 struct ShelfIconButton: View {
+    @Environment(\.locale) private var interfaceLocale
     let title: String
     let symbol: String
     let action: () -> Void
@@ -80,6 +82,7 @@ struct ShelfIconButton: View {
 }
 
 struct ShelfHeader<Left: View, Right: View>: View {
+    @Environment(\.locale) private var interfaceLocale
     let title: String
     var filled = false
     @ViewBuilder var left: () -> Left
@@ -111,6 +114,7 @@ struct ShelfHeader<Left: View, Right: View>: View {
 }
 
 struct ShelfTabBar: View {
+    @Environment(\.locale) private var interfaceLocale
     @Environment(\.shelfTabSelection) private var selection
     @Environment(\.dynamicTypeSize) private var typeSize
     var body: some View {
@@ -119,7 +123,8 @@ struct ShelfTabBar: View {
             ForEach(ShelfTab.allCases) { tab in
                 Button { selection.wrappedValue = tab.rawValue } label: {
                     VStack(spacing: 2) {
-                        Image(systemName: tab.symbol).font(.system(size: 26, weight: .semibold))
+                        if tab == .library { ShelfBooksIcon() }
+                        else { TachiIcon(symbol: tab.symbol, size: 25) }
                         Text(tab.title).font(.caption2).lineLimit(1).minimumScaleFactor(0.8)
                     }.frame(maxWidth: .infinity).frame(minHeight: typeSize.isAccessibilitySize ? 76 : 54)
                         .foregroundStyle(selection.wrappedValue == tab.rawValue ? ShelfStyle.accent : ShelfStyle.text)
@@ -132,7 +137,7 @@ struct ShelfTabBar: View {
                     .accessibilityIdentifier("tab.\(tab.rawValue)")
             }
         }.environment(\.layoutDirection, .leftToRight)
-            .padding(4).background(ShelfStyle.background, in: Capsule())
+            .padding(4).background(.ultraThinMaterial, in: Capsule())
             .overlay(Capsule().strokeBorder(ShelfStyle.border, lineWidth: 1))
             .frame(maxWidth: 540).padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 6)
             .frame(maxWidth: .infinity)
@@ -174,14 +179,15 @@ extension View {
 }
 
 struct ShelfSearchField: View {
+    @Environment(\.locale) private var interfaceLocale
     @Binding var text: String
     let prompt: String
     var body: some View {
         HStack(spacing: 10) {
-            Image(systemName: "magnifyingglass").foregroundStyle(ShelfStyle.secondary)
+            TachiIcon(symbol: "magnifyingglass", size: 21).foregroundStyle(ShelfStyle.secondary)
             TextField(prompt, text: $text).submitLabel(.search).autocorrectionDisabled()
             if !text.isEmpty {
-                ShelfIconButton("مسح البحث", symbol: "xmark.circle.fill") { text = "" }
+                ShelfIconButton(L10n.string("Clear search"), symbol: "xmark.circle.fill") { text = "" }
             }
         }.padding(.horizontal, 12).frame(minHeight: 44)
             .background(ShelfStyle.header, in: RoundedRectangle(cornerRadius: 12))
@@ -190,6 +196,7 @@ struct ShelfSearchField: View {
 }
 
 struct ShelfEmptyState: View {
+    @Environment(\.locale) private var interfaceLocale
     let title: String
     var message: String? = nil
     var body: some View {
@@ -223,7 +230,7 @@ struct ShelfCoverLabel: ViewModifier {
                 Text(title).font(.subheadline).foregroundStyle(.white).lineLimit(2)
                     .multilineTextAlignment(.leading).padding(9)
             }
-            .overlay(alignment: .topLeading) {
+            .overlay(alignment: .topTrailing) {
                 if let badge {
                     Text(badge).font(.caption).monospacedDigit()
                         .foregroundStyle(ShelfStyle.onAccent).padding(.horizontal, 5).padding(.vertical, 5)
@@ -234,9 +241,10 @@ struct ShelfCoverLabel: ViewModifier {
 }
 
 struct ShelfBackupLink: View {
+    @Environment(\.locale) private var interfaceLocale
     var body: some View {
         NavigationLink { BackupHubView() } label: { ShelfIcon(symbol: "cloud") }
-            .buttonStyle(.plain).accessibilityLabel("النسخ الاحتياطي")
+            .buttonStyle(.plain).accessibilityLabel(L10n.string("Backup"))
     }
 }
 
@@ -244,13 +252,13 @@ struct ShelfBackupLink: View {
 struct ShelfStyle_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ShelfHeader(title: "المكتبة", left: { ShelfIcon(symbol: "magnifyingglass") }, right: { ShelfBackupLink() })
+            ShelfHeader(title: L10n.string("Library"), left: { ShelfIcon(symbol: "magnifyingglass") }, right: { ShelfBackupLink() })
             Spacer()
-            ShelfEmptyState(title: "لا توجد فصول جديدة")
+            ShelfEmptyState(title: L10n.string("No new chapters"))
             Spacer()
             ShelfTabBar()
-        }.background(ShelfStyle.background).environment(\.layoutDirection, .rightToLeft)
-            .environment(\.locale, Locale(identifier: "ar")).preferredColorScheme(.dark)
+        }.background(ShelfStyle.background).environment(\.layoutDirection, L10n.language.direction)
+            .environment(\.locale, L10n.language.locale).preferredColorScheme(.dark)
     }
 }
 #endif

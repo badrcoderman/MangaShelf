@@ -6,7 +6,7 @@ public enum AppAppearance: String, Codable, CaseIterable, Sendable { case system
 public struct ReaderSettings: Codable, Sendable {
     public var mode: ReaderMode = .paged
     public var direction: ReadingDirection = .rightToLeft
-    public var appearance: AppAppearance = .dark
+    public var appearance: AppAppearance = .system
     public var showPageNumber = true
     public var keepScreenAwake = true
     public init() {}
@@ -50,27 +50,27 @@ public struct LibraryState: Codable, Sendable {
     public init() {}
     public func validate() throws {
         guard schemaVersion == 1, books.count <= 20_000, categories.count <= 500, repositories.count <= 50 else {
-            throw ReaderFailure("نسخة البيانات غير مدعومة أو تجاوزت الحدود.")
+            throw ReaderFailure(ReaderText.string("Unsupported data version or exceeded limits."))
         }
         guard Set(books.map(\.id)).count == books.count,
               Set(categories.map(\.id)).count == categories.count,
-              Set(repositories.map(\.id)).count == repositories.count else { throw ReaderFailure("معرّفات مكررة في البيانات.") }
+              Set(repositories.map(\.id)).count == repositories.count else { throw ReaderFailure(ReaderText.string("Duplicate data identifiers.")) }
         let categoryIDs = Set(categories.map(\.id))
         for category in categories {
             guard !category.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, category.name.count <= 100 else {
-                throw ReaderFailure("اسم تصنيف غير صالح.")
+                throw ReaderFailure(ReaderText.string("Invalid category name."))
             }
         }
         for book in books {
             guard !book.title.isEmpty, book.title.count <= 512, (1...4096).contains(book.pageCount),
                   (0..<book.pageCount).contains(book.currentPage),
                   book.bookmarks.allSatisfy({ (0..<book.pageCount).contains($0) }),
-                  book.categories.isSubset(of: categoryIDs) else { throw ReaderFailure("بيانات كتاب غير صالحة.") }
+                  book.categories.isSubset(of: categoryIDs) else { throw ReaderFailure(ReaderText.string("Invalid book data.")) }
         }
         for repo in repositories {
             guard HTTPSPolicy.accepts(repo.url), repo.index.extensions.count <= 20_000,
                   Set(repo.index.extensions.map(\.id)).count == repo.index.extensions.count else {
-                throw ReaderFailure("بيانات مستودع غير صالحة.")
+                throw ReaderFailure(ReaderText.string("Invalid repository data."))
             }
         }
     }
@@ -132,7 +132,7 @@ public actor LibraryStore {
     private func commit(_ candidate: LibraryState) throws {
         try candidate.validate()
         let data = try JSONEncoder().encode(candidate)
-        guard data.count <= 32 * 1024 * 1024 else { throw ReaderFailure("قاعدة البيانات أكبر من الحد المسموح.") }
+        guard data.count <= 32 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("The database exceeds the size limit.")) }
         try data.write(to: metadata, options: .atomic)
         state = candidate
     }
@@ -142,7 +142,7 @@ public actor LibraryStore {
         var result = Data()
         while let chunk = try file.read(upToCount: 256 * 1024), !chunk.isEmpty {
             guard result.count <= maximum, chunk.count <= maximum - result.count else {
-                throw ReaderFailure("الملف يتجاوز حد الحجم المسموح.")
+                throw ReaderFailure(ReaderText.string("The file exceeds the size limit."))
             }
             result.append(chunk)
         }
@@ -152,7 +152,7 @@ public actor LibraryStore {
         let data = try Self.readBounded(url, maximum: ComicArchive.maximumArchiveBytes)
         let pages = try ComicArchive.pages(in: data)
         let rawTitle = url.deletingPathExtension().lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines)
-        let book = LibraryBook(title: String((rawTitle.isEmpty ? "كتاب محلي" : rawTitle).prefix(512)), pageCount: pages.count)
+        let book = LibraryBook(title: String((rawTitle.isEmpty ? ReaderText.string("Local book") : rawTitle).prefix(512)), pageCount: pages.count)
         let destination = bookURL(book)
         try data.write(to: destination, options: .atomic)
         var candidate = state; candidate.books.insert(book, at: 0)
@@ -166,8 +166,8 @@ public actor LibraryStore {
     }
     public func updateProgress(id: UUID, page: Int) throws {
         var candidate = state
-        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure("الكتاب غير موجود.") }
-        guard (0..<candidate.books[index].pageCount).contains(page) else { throw ReaderFailure("رقم الصفحة غير صالح.") }
+        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
+        guard (0..<candidate.books[index].pageCount).contains(page) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
         candidate.books[index].currentPage = page; candidate.books[index].lastReadAt = Date()
         if page == candidate.books[index].pageCount - 1 { candidate.books[index].completed = true }
         try commit(candidate)
@@ -175,32 +175,32 @@ public actor LibraryStore {
     public func toggleBookmark(id: UUID, page: Int) throws {
         var candidate = state
         guard let index = candidate.books.firstIndex(where: { $0.id == id }),
-              (0..<candidate.books[index].pageCount).contains(page) else { throw ReaderFailure("صفحة غير صالحة.") }
+              (0..<candidate.books[index].pageCount).contains(page) else { throw ReaderFailure(ReaderText.string("Invalid page.")) }
         if candidate.books[index].bookmarks.contains(page) { candidate.books[index].bookmarks.remove(page) }
         else { candidate.books[index].bookmarks.insert(page) }
         try commit(candidate)
     }
     public func setCompleted(id: UUID, completed: Bool) throws {
         var candidate = state
-        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure("الكتاب غير موجود.") }
+        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
         candidate.books[index].completed = completed
         try commit(candidate)
     }
     public func addCategory(_ name: String) throws {
         let clean = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !state.categories.contains(where: { $0.name.localizedCaseInsensitiveCompare(clean) == .orderedSame }) else {
-            throw ReaderFailure("التصنيف موجود بالفعل.")
+            throw ReaderFailure(ReaderText.string("The category already exists."))
         }
         var candidate = state; candidate.categories.append(LibraryCategory(name: clean)); try commit(candidate)
     }
     public func renameBook(id: UUID, title: String) throws {
         var candidate = state
-        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure("الكتاب غير موجود.") }
+        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
         candidate.books[index].title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         try commit(candidate)
     }
     public func removeBook(id: UUID) throws {
-        guard let book = state.books.first(where: { $0.id == id }) else { throw ReaderFailure("الكتاب غير موجود.") }
+        guard let book = state.books.first(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
         // Removing from the library retains the archive in Trash. Commit metadata
         // before any later, separately implemented permanent-cleanup operation.
         let trash = root.appendingPathComponent("Trash", isDirectory: true)
@@ -213,7 +213,7 @@ public actor LibraryStore {
         catch {
             if exists {
                 do { try manager.moveItem(at: to, to: from) }
-                catch { throw ReaderFailure("تعذر إكمال الإزالة واستعادة الملف؛ الأرشيف محفوظ في مجلد Trash. لم يُحذف نهائيًا.") }
+                catch { throw ReaderFailure(ReaderText.string("Could not finish removal or restore the file. The archive is preserved in Trash and was not permanently deleted.")) }
             }
             throw error
         }
@@ -225,7 +225,7 @@ public actor LibraryStore {
     }
     public func reorderCategories(from: IndexSet, to: Int) throws {
         guard (0...state.categories.count).contains(to), from.allSatisfy({ state.categories.indices.contains($0) }) else {
-            throw ReaderFailure("ترتيب تصنيفات غير صالح.")
+            throw ReaderFailure(ReaderText.string("Invalid category order."))
         }
         var candidate = state
         let moved = from.sorted().map { candidate.categories[$0] }
@@ -237,7 +237,7 @@ public actor LibraryStore {
     public func assignCategory(bookID: UUID, categoryID: UUID, included: Bool) throws {
         var candidate = state
         guard let i = candidate.books.firstIndex(where: { $0.id == bookID }), state.categories.contains(where: { $0.id == categoryID }) else {
-            throw ReaderFailure("الكتاب أو التصنيف غير موجود.")
+            throw ReaderFailure(ReaderText.string("The book or category does not exist."))
         }
         if included { candidate.books[i].categories.insert(categoryID) }
         else { candidate.books[i].categories.remove(categoryID) }
@@ -267,7 +267,7 @@ public actor LibraryStore {
     public func updateRepository(id: UUID, index: RepositoryIndex, fetchedAt: Date) throws {
         var candidate = state
         guard let position = candidate.repositories.firstIndex(where: { $0.id == id }) else {
-            throw ReaderFailure("أُزيل المستودع أثناء التحديث؛ لم يُعد إدراجه.")
+            throw ReaderFailure(ReaderText.string("The repository was removed during the update and was not added again."))
         }
         candidate.repositories[position].index = index
         candidate.repositories[position].fetchedAt = fetchedAt
@@ -279,7 +279,7 @@ public actor LibraryStore {
     // Metadata-only merge; never executes JARs, imports paths or deletes local books.
     // New-device recovery of media requires the original CBZ files separately.
     public func mergeMetadataBackup(_ data: Data) throws -> Int {
-        guard data.count <= 32 * 1024 * 1024 else { throw ReaderFailure("ملف النسخة الاحتياطية كبير جدًا.") }
+        guard data.count <= 32 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("The backup file is too large.")) }
         let imported = try JSONDecoder().decode(LibraryState.self, from: data)
         try imported.validate()
         var candidate = state, restored = 0

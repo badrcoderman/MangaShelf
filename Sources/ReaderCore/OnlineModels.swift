@@ -27,7 +27,7 @@ public struct MangaChapter: Codable, Identifiable, Hashable, Sendable {
     public var publishedAt: Date?
     public var externalURL: String?
     public var displayTitle: String {
-        let label = number.map { "الفصل \($0)" } ?? "فصل"
+        let label = number.map { ReaderText.format("Chapter %@", String(describing: $0)) } ?? ReaderText.string("Chapter")
         return title.isEmpty ? label : label + " — " + title
     }
     public init(id: String, seriesID: String, title: String = "", number: String? = nil,
@@ -42,7 +42,7 @@ public struct ChapterPages: Codable, Sendable {
     public let urls: [String]
     public init(chapterID: String, urls: [String]) throws {
         guard UUID(uuidString: chapterID) != nil, !urls.isEmpty, urls.count <= 4096,
-              urls.allSatisfy(HTTPSPolicy.accepts) else { throw ReaderFailure("قائمة صفحات الفصل غير صالحة.") }
+              urls.allSatisfy(HTTPSPolicy.accepts) else { throw ReaderFailure(ReaderText.string("Invalid chapter page list.")) }
         self.chapterID = chapterID; self.urls = urls
     }
 }
@@ -91,19 +91,19 @@ public struct OnlineState: Codable, Sendable {
     public func validate() throws {
         guard version == 1, series.count <= 20_000, downloads.count <= 20_000,
               Set(series.map(\.id)).count == series.count, Set(downloads.map(\.id)).count == downloads.count else {
-            throw ReaderFailure("بيانات مكتبة المصادر غير صالحة.")
+            throw ReaderFailure(ReaderText.string("Invalid source library data."))
         }
         for item in series {
             guard UUID(uuidString: item.id) != nil, item.series.sourceID == "mangadex",
                   !item.series.title.isEmpty, item.series.title.count <= 2048,
                   item.series.coverURL.map(HTTPSPolicy.accepts) ?? true,
                   item.chapters.count <= 30_000, Set(item.chapters.map(\.id)).count == item.chapters.count,
-                  item.progress.count <= 30_000 else { throw ReaderFailure("بيانات عنوان غير صالحة.") }
-            for chapter in item.chapters { try Self.validateChapter(chapter); guard chapter.seriesID == item.id else { throw ReaderFailure("فصل مرتبط بعنوان آخر.") } }
+                  item.progress.count <= 30_000 else { throw ReaderFailure(ReaderText.string("Invalid title data.")) }
+            for chapter in item.chapters { try Self.validateChapter(chapter); guard chapter.seriesID == item.id else { throw ReaderFailure(ReaderText.string("A chapter belongs to a different title.")) } }
             for (key, value) in item.progress {
                 guard UUID(uuidString: key) != nil, (0...4096).contains(value.pageCount), value.page >= 0,
                       value.page < max(1, value.pageCount), value.bookmarks.allSatisfy({ $0 >= 0 && $0 < value.pageCount }) else {
-                    throw ReaderFailure("تقدم قراءة غير صالح.")
+                    throw ReaderFailure(ReaderText.string("Invalid reading progress."))
                 }
             }
         }
@@ -112,13 +112,13 @@ public struct OnlineState: Codable, Sendable {
             guard series.contains(where: { $0.id == download.chapter.seriesID }),
                   (0...4096).contains(download.totalPages), (0...download.totalPages).contains(download.finishedPages),
                   download.phase != .complete || (download.totalPages > 0 && download.finishedPages == download.totalPages) else {
-                throw ReaderFailure("بيانات تنزيل غير صالحة.")
+                throw ReaderFailure(ReaderText.string("Invalid download data."))
             }
         }
     }
     private static func validateChapter(_ chapter: MangaChapter) throws {
         guard UUID(uuidString: chapter.id) != nil, UUID(uuidString: chapter.seriesID) != nil,
-              chapter.title.count <= 2048 else { throw ReaderFailure("معرّف فصل غير صالح.") }
+              chapter.title.count <= 2048 else { throw ReaderFailure(ReaderText.string("Invalid chapter identifier.")) }
     }
 }
 

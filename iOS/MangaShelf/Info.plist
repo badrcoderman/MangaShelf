@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>رفّ المانجا</string>
+	<string>MangaShelf</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
@@ -13,14 +13,19 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2.0</string>
+	<string>0.3.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>ar</string>
+	<string>en</string>
 	<key>CFBundleLocalizations</key>
 	<array>
+		<string>en</string>
 		<string>ar</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MaterialIcons-Regular.otf</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

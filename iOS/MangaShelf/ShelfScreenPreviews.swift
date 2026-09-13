@@ -4,6 +4,7 @@ import SwiftUI
 /// Native SwiftUI previews of the actual screens. Empty models never read or modify
 /// the user's library; these previews are not included in release builds.
 private struct ShelfPreviewHost<Content: View>: View {
+    @AppStorage("app.language") private var language: AppLanguage = .english
     @StateObject private var model = AppModel()
     @StateObject private var online = OnlineModel()
     let tab: Int
@@ -12,8 +13,8 @@ private struct ShelfPreviewHost<Content: View>: View {
         NavigationStack { content() }
             .environmentObject(model).environmentObject(online)
             .environment(\.shelfTabSelection, .constant(tab))
-            .environment(\.layoutDirection, .rightToLeft)
-            .environment(\.locale, Locale(identifier: "ar"))
+            .environment(\.layoutDirection, language.direction)
+            .environment(\.locale, language.locale)
             .tint(ShelfStyle.accent).preferredColorScheme(.dark)
     }
 }
@@ -28,6 +29,9 @@ struct ShelfScreenPreviews: PreviewProvider {
             ShelfPreviewHost(tab: 4) { SettingsView() }.previewDisplayName("المزيد")
             ShelfPreviewHost(tab: 4) { SettingsView() }
                 .environment(\.dynamicTypeSize, .accessibility3).previewDisplayName("المزيد — نص كبير")
+            ShelfPreviewHost(tab: 4) { GeneralPreferencesView() }.previewDisplayName("General and language")
+            ShelfPreviewHost(tab: 4) { AppearancePreferencesView() }.previewDisplayName("Appearance")
+            ShelfPreviewHost(tab: 4) { ReaderPreferencesView() }.previewDisplayName("Reader settings")
         }
     }
 }

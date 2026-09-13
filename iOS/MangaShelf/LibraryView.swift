@@ -11,6 +11,7 @@ private enum ShelfLibraryEntry: Identifiable {
 }
 
 struct LibraryView: View {
+    @Environment(\.locale) private var interfaceLocale
     var isRoot = true
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var model: AppModel
@@ -66,23 +67,23 @@ struct LibraryView: View {
     }
     var body: some View {
         VStack(spacing: 0) {
-            if showSearch { ShelfSearchField(text: $query, prompt: "البحث في المكتبة") }
+            if showSearch { ShelfSearchField(text: $query, prompt: L10n.string("Search library")) }
             if !model.state.categories.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
-                        categoryTab("الكل", id: nil)
+                        categoryTab(L10n.string("All"), id: nil)
                         ForEach(model.state.categories) { categoryTab($0.name, id: $0.id) }
                     }.padding(.horizontal, 16)
                 }.padding(.bottom, 8)
             }
             if entries.isEmpty {
                 Spacer()
-                ShelfEmptyState(title: libraryIsEmpty ? "المكتبة فارغة" : "لا توجد نتائج",
-                                message: libraryIsEmpty ? "استورد كتابًا أو أضف عنوانًا من المصادر." : nil)
+                ShelfEmptyState(title: libraryIsEmpty ? L10n.string("Library is empty") : L10n.string("No results"),
+                                message: libraryIsEmpty ? L10n.string("Import a book or add a title from a source.") : nil)
                 if libraryIsEmpty {
-                    Button("استيراد كتاب") { importing = true }.disabled(model.busy)
+                    Button(L10n.string("Import book")) { importing = true }.disabled(model.busy)
                 } else {
-                    Button("إزالة التصفية") { query = ""; category = nil; readFilter = "all"; bookmarksOnly = false }
+                    Button(L10n.string("Clear filters")) { query = ""; category = nil; readFilter = "all"; bookmarksOnly = false }
                 }
                 Spacer()
             } else {
@@ -94,7 +95,7 @@ struct LibraryView: View {
                                 NavigationLink { BookDetailView(bookID: book.id) } label: { BookCard(book: book) }
                                     .buttonStyle(.plain)
                                     .contextMenu {
-                                        Button(book.completed ? "تحديد كغير مقروء" : "تحديد كمقروء", systemImage: "checkmark.circle") {
+                                        TachiButton(book.completed ? L10n.string("Mark as unread") : L10n.string("Mark as read"), systemImage: "checkmark.circle") {
                                             Task { await model.perform { try await $0.setCompleted(id: book.id, completed: !book.completed) } }
                                         }.disabled(model.busy)
                                     }
@@ -107,25 +108,25 @@ struct LibraryView: View {
                 }.refreshable { await online.refreshLibrary() }
             }
         }
-        .shelfRoot(isRoot ? "المكتبة" : "مصدر محلّي", showTabs: isRoot, left: {
+        .shelfRoot(isRoot ? L10n.string("Library") : L10n.string("Local source"), showTabs: isRoot, left: {
             HStack(spacing: 0) {
-                ShelfIconButton("بحث", symbol: "magnifyingglass") { showSearch.toggle(); if !showSearch { query = "" } }
-                ShelfIconButton("تصفية وعرض", symbol: "line.3.horizontal.decrease") { filtering = true }
+                ShelfIconButton(L10n.string("Search"), symbol: "magnifyingglass") { showSearch.toggle(); if !showSearch { query = "" } }
+                ShelfIconButton(L10n.string("Filter and display"), symbol: "line.3.horizontal.decrease") { filtering = true }
                 Menu {
-                    Button("استيراد كتاب", systemImage: "plus") { importing = true }.disabled(model.busy)
-                    NavigationLink { CategoryManagementView() } label: { Label("إدارة التصنيفات", systemImage: "folder") }
-                    Button("تحديث المكتبة", systemImage: "arrow.clockwise") { Task { await online.refreshLibrary() } }
+                    TachiButton(L10n.string("Import book"), systemImage: "plus") { importing = true }.disabled(model.busy)
+                    NavigationLink { CategoryManagementView() } label: { TachiLabel(L10n.string("Manage categories"), systemImage: "folder") }
+                    TachiButton(L10n.string("Update library"), systemImage: "arrow.clockwise") { Task { await online.refreshLibrary() } }
                         .disabled(online.updating)
-                } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel("خيارات المكتبة")
+                } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Library options"))
             }
         }, right: {
             if isRoot { ShelfBackupLink() }
-            else { ShelfIconButton("رجوع", symbol: "chevron.right") { dismiss() } }
+            else { ShelfIconButton(L10n.string("Back"), symbol: "chevron.right") { dismiss() } }
         })
         .fileImporter(isPresented: $importing, allowedContentTypes: [.zip, UTType(filenameExtension: "cbz") ?? .data], allowsMultipleSelection: true) { result in
             switch result {
             case .success(let urls): Task { await model.importFiles(urls) }
-            case .failure(let error): model.errorMessage = "تعذر فتح الملفات المختارة."; DiagnosticsCenter.shared.recordFailure("استيراد ملفات", error)
+            case .failure(let error): model.errorMessage = L10n.string("Could not open the selected files."); DiagnosticsCenter.shared.recordFailure(L10n.string("Import files"), error)
             }
         }
         .sheet(isPresented: $filtering) { filterSheet }
@@ -135,24 +136,24 @@ struct LibraryView: View {
     }
     private var filterSheet: some View {
         NavigationStack {
-            Form {
-                Section("التصفية") {
-                    Picker("حالة القراءة", selection: $readFilter) {
-                        Text("الكل").tag("all"); Text("لم أبدأها").tag("unread")
-                        Text("أقرأها حاليًا").tag("reading"); Text("مكتملة القراءة").tag("completed")
+            TachiList {
+                Section(L10n.string("Filters")) {
+                    Picker(L10n.string("Reading status"), selection: $readFilter) {
+                        Text(L10n.string("All")).tag("all"); Text(L10n.string("Not started")).tag("unread")
+                        Text(L10n.string("Reading")).tag("reading"); Text(L10n.string("Finished reading")).tag("completed")
                     }
-                    Toggle("تحتوي علامات مرجعية", isOn: $bookmarksOnly)
+                    Toggle(L10n.string("Has bookmarks"), isOn: $bookmarksOnly)
                 }
-                Section("الترتيب") {
-                    Picker("ترتيب حسب", selection: $sorting) {
-                        Text("تاريخ الإضافة").tag("added"); Text("العنوان").tag("title"); Text("آخر قراءة").tag("recent")
-                        Text("عدد صفحات الكتب المحلية").tag("pages")
+                Section(L10n.string("Sorting")) {
+                    Picker(L10n.string("Sort by"), selection: $sorting) {
+                        Text(L10n.string("Date added")).tag("added"); Text(L10n.string("Title")).tag("title"); Text(L10n.string("Last read")).tag("recent")
+                        Text(L10n.string("Local book page count")).tag("pages")
                     }
                 }
-                Section("العرض") { Stepper("عدد الأعمدة: \(columnCount)", value: $columnCount, in: 2...5) }
-            }.shelfPage().navigationTitle("خيارات المكتبة").navigationBarTitleDisplayMode(.inline)
-                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("تم") { filtering = false } } }
-        }.presentationDetents([.medium, .large])
+                Section(L10n.string("Display")) { Stepper(L10n.format("Columns: %@", String(describing: columnCount)), value: $columnCount, in: 2...5) }
+            }.shelfPage().navigationTitle(L10n.string("Library options")).navigationBarTitleDisplayMode(.inline)
+                .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.string("Done")) { filtering = false } } }
+        }.tachiSheet()
     }
     private func categoryTab(_ name: String, id: UUID?) -> some View {
         Button { category = id } label: {
@@ -166,6 +167,7 @@ struct LibraryView: View {
 }
 
 struct BookCover: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @AppStorage("diagnostics.showImageBounds") private var imageBounds = false
     let book: LibraryBook
@@ -199,16 +201,18 @@ struct BookCover: View {
 }
 
 struct BookCard: View {
+    @Environment(\.locale) private var interfaceLocale
     let book: LibraryBook
     var body: some View {
         BookCover(book: book)
             .modifier(ShelfCoverLabel(title: book.title, badge: book.completed ? nil : "1"))
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("\(book.title)، \(book.pageCount) صفحة، \(book.completed ? "مقروء" : "غير مكتمل")")
+            .accessibilityLabel(L10n.format("%@, %@ pages, %@", String(describing: book.title), String(describing: book.pageCount), String(describing: book.completed ? L10n.string("Read") : L10n.string("Incomplete"))))
     }
 }
 
 struct BookDetailView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     let bookID: UUID
     @State private var reading = false
@@ -222,36 +226,36 @@ struct BookDetailView: View {
         if let book = model.book(bookID) {
             ScrollView {
                 VStack(spacing: 22) {
-                    ShelfDetailHero(title: book.title, author: "مؤلف مجهول", source: "مصدر محلي", status: "غير معروف") {
+                    ShelfDetailHero(title: book.title, author: L10n.string("Unknown author"), source: L10n.string("Local source"), status: L10n.string("Unknown")) {
                         BookCover(book: book)
                     }
                     HStack {
-                        Label("في المكتبة", systemImage: "heart.fill").foregroundStyle(ShelfStyle.accent)
+                        TachiLabel(L10n.string("In library"), systemImage: "heart.fill").foregroundStyle(ShelfStyle.accent)
                         Spacer()
-                        NavigationLink { FeatureStatusView(feature: .tracking) } label: { Label("يتتبع", systemImage: "arrow.triangle.2.circlepath") }
+                        NavigationLink { FeatureStatusView(feature: .tracking) } label: { TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath") }
                             .foregroundStyle(ShelfStyle.secondary)
                     }.font(.subheadline).padding(.horizontal, 40)
-                    Button(book.lastReadAt == nil && book.currentPage == 0 ? "ابدأ القراءة" : "متابعة القراءة") {
+                    Button(book.lastReadAt == nil && book.currentPage == 0 ? L10n.string("Start reading") : L10n.string("Continue reading")) {
                         startPage = nil; reading = true
                     }.buttonStyle(ShelfPrimaryButtonStyle()).padding(.horizontal, 15)
                     HStack {
-                        Text("١ فصل").font(.body)
+                        Text(L10n.string("1 chapter")).font(.body)
                         Spacer()
-                        ShelfIconButton("خيارات الكتاب", symbol: "line.3.horizontal.decrease") { showingOptions = true }
+                        ShelfIconButton(L10n.string("Book options"), symbol: "line.3.horizontal.decrease") { showingOptions = true }
                     }.padding(.horizontal, 15)
                     Button { startPage = nil; reading = true } label: {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(book.title).font(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
-                            Text(book.lastReadAt == nil ? "\(book.pageCount) صفحة" : "الصفحة \(book.currentPage + 1) من \(book.pageCount)")
+                            Text(book.lastReadAt == nil ? L10n.format("%@ pages", String(describing: book.pageCount)) : L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
                                 .font(.caption).foregroundStyle(ShelfStyle.secondary)
                             Text(book.addedAt, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary)
                         }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16).padding(.vertical, 6)
                     }.buttonStyle(.plain)
                     if !book.bookmarks.isEmpty {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("العلامات المرجعية").font(.headline)
+                            Text(L10n.string("Bookmarks")).font(.headline)
                             ForEach(book.bookmarks.sorted(), id: \.self) { page in
-                                Button("الصفحة \(page + 1)", systemImage: "bookmark.fill") { startPage = page; reading = true }
+                                TachiButton(L10n.format("Page %@", String(describing: page + 1)), systemImage: "bookmark.fill") { startPage = page; reading = true }
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading).padding(16)
                     }
@@ -261,42 +265,42 @@ struct BookDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Menu {
-                            Button("خيارات الكتاب", systemImage: "slider.horizontal.3") { showingOptions = true }
-                            Button("تغيير الاسم", systemImage: "pencil") { newTitle = book.title; renaming = true }
-                            Button("إزالة من المكتبة", systemImage: "trash", role: .destructive) { removing = true }
+                            TachiButton(L10n.string("Book options"), systemImage: "slider.horizontal.3") { showingOptions = true }
+                            TachiButton(L10n.string("Rename"), systemImage: "pencil") { newTitle = book.title; renaming = true }
+                            TachiButton(L10n.string("Remove from library"), systemImage: "trash", role: .destructive) { removing = true }
                         } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.disabled(model.busy)
                     }
                 }
                 .sheet(isPresented: $showingOptions) {
                     NavigationStack {
-                        Form {
-                            Toggle("مقروء", isOn: Binding(get: { model.book(bookID)?.completed ?? false }, set: { value in
+                        TachiList {
+                            Toggle(L10n.string("Read"), isOn: Binding(get: { model.book(bookID)?.completed ?? false }, set: { value in
                                 Task { await model.perform { try await $0.setCompleted(id: bookID, completed: value) } }
                             }))
-                            Section("التصنيفات") {
+                            Section(L10n.string("Categories")) {
                                 ForEach(model.state.categories) { item in
                                     Toggle(item.name, isOn: Binding(get: { model.book(bookID)?.categories.contains(item.id) ?? false }, set: { value in
                                         Task { await model.perform { try await $0.assignCategory(bookID: bookID, categoryID: item.id, included: value) } }
                                     }))
                                 }
-                                NavigationLink { CategoryManagementView() } label: { Text("إدارة التصنيفات") }
+                                NavigationLink { CategoryManagementView() } label: { Text(L10n.string("Manage categories")) }
                             }
-                        }.disabled(model.busy).shelfPage().navigationTitle("خيارات الكتاب")
-                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("تم") { showingOptions = false } } }
-                    }.presentationDetents([.medium, .large])
+                        }.disabled(model.busy).shelfPage().navigationTitle(L10n.string("Book options"))
+                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.string("Done")) { showingOptions = false } } }
+                    }.tachiSheet()
                 }
-                .alert("اسم الكتاب", isPresented: $renaming) {
-                    TextField("الاسم", text: $newTitle)
-                    Button("حفظ") { Task { await model.perform { try await $0.renameBook(id: bookID, title: newTitle) } } }
-                    Button("إلغاء", role: .cancel) {}
+                .alert(L10n.string("Book name"), isPresented: $renaming) {
+                    TextField(L10n.string("Name"), text: $newTitle)
+                    Button(L10n.string("Save")) { Task { await model.perform { try await $0.renameBook(id: bookID, title: newTitle) } } }
+                    Button(L10n.string("Cancel"), role: .cancel) {}
                 }
-                .confirmationDialog("إزالة الكتاب وتقدمه من المكتبة؟", isPresented: $removing, titleVisibility: .visible) {
-                    Button("إزالة", role: .destructive) {
+                .confirmationDialog(L10n.string("Remove this book and its progress from the library?"), isPresented: $removing, titleVisibility: .visible) {
+                    Button(L10n.string("Remove"), role: .destructive) {
                         Task { await model.perform { try await $0.removeBook(id: bookID) }; if model.book(bookID) == nil { dismiss() } }
                     }
-                    Button("إلغاء", role: .cancel) {}
+                    Button(L10n.string("Cancel"), role: .cancel) {}
                 }
                 .fullScreenCover(isPresented: $reading) { ReaderView(bookID: book.id, startPage: startPage) }
-        } else { ContentUnavailableView("الكتاب غير موجود", systemImage: "book.closed").shelfPage() }
+        } else { ContentUnavailableView(L10n.string("Book not found"), systemImage: "book.closed").shelfPage() }
     }
 }

@@ -9,6 +9,7 @@ cd "$project_root"
 mode="${1:-simulator}"
 case "$mode" in
   simulator)
+    python3 scripts/check_ui_resources.py
     swift test
     xcodebuild -project iOS/MangaShelf.xcodeproj -scheme MangaShelf \
       -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
@@ -17,6 +18,7 @@ case "$mode" in
   unsigned)
     # A fresh, task-owned build directory prevents stale signing files from
     # entering an archive intended for later sideload signing.
+    python3 scripts/check_ui_resources.py
     swift test
     mkdir -p build/Export
     unsigned_build="$(mktemp -d "$project_root/build/Unsigned-XXXXXX")"
@@ -32,6 +34,7 @@ case "$mode" in
   archive)
     : "${MANGASHELF_TEAM_ID:?Set MANGASHELF_TEAM_ID to your Apple development team.}"
     : "${MANGASHELF_BUNDLE_ID:?Set MANGASHELF_BUNDLE_ID to a bundle ID you control.}"
+    python3 scripts/check_ui_resources.py
     swift test
     xcodebuild -project iOS/MangaShelf.xcodeproj -scheme MangaShelf -configuration Release \
       -destination 'generic/platform=iOS' -archivePath build/MangaShelf.xcarchive \

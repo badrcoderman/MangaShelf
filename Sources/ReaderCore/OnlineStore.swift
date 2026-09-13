@@ -19,11 +19,11 @@ public actor OnlineStore {
     private func commit(_ candidate: OnlineState) throws {
         try candidate.validate()
         let bytes = try JSONEncoder().encode(candidate)
-        guard bytes.count <= 64 * 1024 * 1024 else { throw ReaderFailure("تجاوزت بيانات المكتبة حد الحجم.") }
+        guard bytes.count <= 64 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("Library data exceeds the size limit.")) }
         try bytes.write(to: metadata, options: .atomic); state = candidate
     }
     private func seriesIndex(_ id: String, in candidate: OnlineState) throws -> Int {
-        guard let i = candidate.series.firstIndex(where: { $0.id == id }) else { throw ReaderFailure("العنوان غير موجود في المكتبة.") }
+        guard let i = candidate.series.firstIndex(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The title is not in the library.")) }
         return i
     }
     public func save(_ series: MangaSeries, favorite: Bool? = nil) throws {
@@ -44,7 +44,7 @@ public actor OnlineStore {
         try commit(candidate)
     }
     public func setChapters(seriesID: String, chapters: [MangaChapter], language: String, now: Date = Date()) throws {
-        guard chapters.allSatisfy({ $0.seriesID == seriesID }) else { throw ReaderFailure("فصول مرتبطة بعنوان آخر.") }
+        guard chapters.allSatisfy({ $0.seriesID == seriesID }) else { throw ReaderFailure(ReaderText.string("Chapters belong to a different title.")) }
         var candidate = state; let index = try seriesIndex(seriesID, in: candidate)
         let previous = candidate.series[index]
         let oldIDs = Set(previous.chapters.map(\.id))
@@ -68,9 +68,9 @@ public actor OnlineStore {
         try commit(candidate)
     }
     public func progress(seriesID: String, chapterID: String, page: Int, count: Int) throws {
-        guard (1...4096).contains(count), (0..<count).contains(page) else { throw ReaderFailure("رقم الصفحة غير صالح.") }
+        guard (1...4096).contains(count), (0..<count).contains(page) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
         var candidate = state; let i = try seriesIndex(seriesID, in: candidate)
-        guard candidate.series[i].chapters.contains(where: { $0.id == chapterID }) else { throw ReaderFailure("الفصل غير موجود.") }
+        guard candidate.series[i].chapters.contains(where: { $0.id == chapterID }) else { throw ReaderFailure(ReaderText.string("The chapter does not exist.")) }
         var p = candidate.series[i].progress[chapterID] ?? ChapterProgress()
         p.page = page; p.pageCount = count; p.lastReadAt = Date(); p.read = p.read || page == count - 1
         p.bookmarks = p.bookmarks.filter { $0 < count }
@@ -101,19 +101,19 @@ public actor OnlineStore {
     }
     public func bookmark(seriesID: String, chapterID: String, page: Int) throws {
         var candidate = state; let i = try seriesIndex(seriesID, in: candidate)
-        guard var p = candidate.series[i].progress[chapterID], (0..<p.pageCount).contains(page) else { throw ReaderFailure("افتح الصفحة أولًا لحفظ علامتها.") }
+        guard var p = candidate.series[i].progress[chapterID], (0..<p.pageCount).contains(page) else { throw ReaderFailure(ReaderText.string("Open the page before adding a bookmark.")) }
         if p.bookmarks.contains(page) { p.bookmarks.remove(page) } else { p.bookmarks.insert(page) }
         candidate.series[i].progress[chapterID] = p; try commit(candidate)
     }
     private func directory(_ id: String) throws -> URL {
-        guard let uuid = UUID(uuidString: id) else { throw ReaderFailure("معرّف التخزين غير صالح.") }
+        guard let uuid = UUID(uuidString: id) else { throw ReaderFailure(ReaderText.string("Invalid storage identifier.")) }
         return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(uuid.uuidString, isDirectory: true)
     }
     public func cachedPages(chapterID: String) throws -> ChapterPages? {
         let url = try directory(chapterID).appendingPathComponent("pages.json")
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
         let value = try JSONDecoder().decode(ChapterPages.self, from: LibraryStore.readBounded(url, maximum: 4 * 1024 * 1024))
-        guard value.chapterID == chapterID else { throw ReaderFailure("بيانات الصفحات لا تخص الفصل.") }
+        guard value.chapterID == chapterID else { throw ReaderFailure(ReaderText.string("Page data does not belong to this chapter.")) }
         return try ChapterPages(chapterID: value.chapterID, urls: value.urls)
     }
     public func savePages(_ pages: ChapterPages) throws {
@@ -127,7 +127,7 @@ public actor OnlineStore {
         try JSONEncoder().encode(pages).write(to: dir.appendingPathComponent("pages.json"), options: .atomic)
     }
     private func pageURL(chapterID: String, index: Int) throws -> URL {
-        guard (0..<4096).contains(index) else { throw ReaderFailure("رقم الصفحة غير صالح.") }
+        guard (0..<4096).contains(index) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
         return try directory(chapterID).appendingPathComponent(String(index) + ".image")
     }
     public func cachedImage(chapterID: String, index: Int) throws -> Data? {
@@ -137,7 +137,7 @@ public actor OnlineStore {
     }
     public func saveImage(_ data: Data, chapterID: String, index: Int) throws {
         guard !data.isEmpty, data.count <= 32 * 1024 * 1024, let pages = try cachedPages(chapterID: chapterID),
-              pages.urls.indices.contains(index) else { throw ReaderFailure("ملف صفحة غير صالح.") }
+              pages.urls.indices.contains(index) else { throw ReaderFailure(ReaderText.string("Invalid page file.")) }
         try data.write(to: pageURL(chapterID: chapterID, index: index), options: .atomic)
     }
     public func enqueue(_ chapters: [MangaChapter]) throws {
@@ -166,7 +166,7 @@ public actor OnlineStore {
     }
     public func exportMetadata() throws -> Data { try JSONEncoder().encode(state) }
     public func mergeBackup(_ bytes: Data) throws {
-        guard bytes.count <= 64 * 1024 * 1024 else { throw ReaderFailure("النسخة أكبر من الحد المسموح.") }
+        guard bytes.count <= 64 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("The backup exceeds the size limit.")) }
         let incoming = try JSONDecoder().decode(OnlineState.self, from: bytes); try incoming.validate()
         var candidate = state
         for item in incoming.series {

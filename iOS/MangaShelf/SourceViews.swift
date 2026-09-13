@@ -2,6 +2,7 @@ import SwiftUI
 import ReaderCore
 
 struct SourceCatalogView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var online: OnlineModel
     @AppStorage("source.language") private var language = "ar"
     @AppStorage("library.columns") private var columns = 2
@@ -18,25 +19,25 @@ struct SourceCatalogView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                Picker("عرض", selection: $latest) { Text("الأكثر متابعة").tag(false); Text("آخر التحديثات").tag(true) }
+                Picker(L10n.string("View"), selection: $latest) { Text(L10n.string("Popular")).tag(false); Text(L10n.string("Latest updates")).tag(true) }
                     .pickerStyle(.segmented).padding(.horizontal)
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ShelfStyle.gridSpacing), count: typeSize.isAccessibilitySize ? 1 : max(2, min(5, columns))), spacing: ShelfStyle.gridSpacing) {
                     ForEach(items) { item in
                         NavigationLink { SeriesDetailView(series: item) } label: { MangaCard(series: item) }.buttonStyle(.plain)
                     }
                 }.padding(.horizontal, ShelfStyle.pageInset)
-                if loading { ProgressView("تحميل العناوين…").padding() }
+                if loading { ProgressView(L10n.string("Loading titles…")).padding() }
                 if let error {
                     Text(error).foregroundStyle(.secondary).multilineTextAlignment(.center).padding()
-                    Button("إعادة المحاولة") { Task { await fetch(reset: items.isEmpty) } }.disabled(loading)
+                    Button(L10n.string("Retry")) { Task { await fetch(reset: items.isEmpty) } }.disabled(loading)
                 } else if items.isEmpty && !loading {
-                    ContentUnavailableView("لا توجد نتائج", systemImage: "magnifyingglass", description: Text("جرّب عنوانًا آخر أو غيّر لغة الفصول من إعدادات المصادر."))
+                    ContentUnavailableView(L10n.string("No results"), systemImage: "magnifyingglass", description: Text(L10n.string("Try another title or change chapter language in Source settings.")))
                 }
-                if hasMore && !loading { Button("تحميل المزيد") { Task { await fetch(reset: false) } }.padding() }
+                if hasMore && !loading { Button(L10n.string("Load more")) { Task { await fetch(reset: false) } }.padding() }
             }.padding(.vertical, 8)
         }.shelfPage().navigationTitle("MangaDex").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $query, prompt: "ابحث عن مانجا أو مانهوا")
-            .toolbar { NavigationLink { SourcePreferencesView() } label: { Image(systemName: "slider.horizontal.3") }.accessibilityLabel("إعدادات المصدر") }
+            .searchable(text: $query, prompt: L10n.string("Search manga or manhwa"))
+            .toolbar { NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "slider.horizontal.3") }.accessibilityLabel(L10n.string("Source settings")) }
             .task(id: requestID) {
                 do { try await Task.sleep(nanoseconds: 350_000_000); try Task.checkCancellation(); await fetch(reset: true) } catch { }
             }.refreshable { await fetch(reset: true) }
@@ -51,11 +52,12 @@ struct SourceCatalogView: View {
             let existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { !existing.contains($0.id) })
             hasMore = result.hasMore; nextPage += 1; loading = false
         } catch is CancellationError { if identity == requestID { loading = false } }
-        catch { if identity == requestID { self.error = ArabicError.describe(error); loading = false } }
+        catch { if identity == requestID { self.error = AppError.describe(error); loading = false } }
     }
 }
 
 struct MangaCard: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var online: OnlineModel
     let series: MangaSeries
     private var badge: String? {
@@ -70,6 +72,7 @@ struct MangaCard: View {
 }
 
 struct SeriesDetailView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var online: OnlineModel
     @EnvironmentObject private var local: AppModel
     @AppStorage("source.language") private var language = "ar"
@@ -88,7 +91,7 @@ struct SeriesDetailView: View {
         let entries = (saved?.chapters ?? []).filter {
             (language.isEmpty || $0.language == language) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&
             (!downloadedOnly || online.download($0.id)?.phase == .complete) &&
-            (search.isEmpty || $0.displayTitle.localizedStandardContains(search))
+            (search.isEmpty || $0.localizedTitle.localizedStandardContains(search))
         }
         return reversed ? Array(entries.reversed()) : entries
     }
@@ -103,23 +106,23 @@ struct SeriesDetailView: View {
         ScrollView {
             VStack(spacing: 22) {
                 ShelfDetailHero(title: item.title,
-                    author: item.authors.isEmpty ? "مؤلف مجهول" : item.authors.joined(separator: "، "),
+                    author: item.authors.isEmpty ? L10n.string("Unknown author") : item.authors.joined(separator: L10n.string(", ")),
                     source: "MangaDex", status: statusLabel) { RemoteCover(url: item.coverURL) }
                 HStack {
                     Button { Task { await online.save(item, favorite: !(saved?.inLibrary ?? false)) } } label: {
-                        Label(saved?.inLibrary == true ? "في المكتبة" : "إضافة للمكتبة",
+                        TachiLabel(saved?.inLibrary == true ? L10n.string("In library") : L10n.string("Add to library"),
                               systemImage: saved?.inLibrary == true ? "heart.fill" : "heart")
                     }.foregroundStyle(ShelfStyle.accent).disabled(!online.ready)
                     Spacer()
                     NavigationLink { FeatureStatusView(feature: .tracking) } label: {
-                        Label("يتتبع", systemImage: "arrow.triangle.2.circlepath")
+                        TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath")
                     }.foregroundStyle(ShelfStyle.secondary)
                 }.font(.subheadline).padding(.horizontal, 32)
                 if !item.synopsis.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(item.synopsis).font(.subheadline).foregroundStyle(ShelfStyle.secondary)
                             .lineLimit(expanded ? nil : 3).textSelection(.enabled)
-                        Button(expanded ? "عرض أقل" : "قراءة الوصف") { expanded.toggle() }.font(.caption)
+                        Button(expanded ? L10n.string("Show less") : L10n.string("Read description")) { expanded.toggle() }.font(.caption)
                     }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
                 }
                 if !item.tags.isEmpty {
@@ -135,26 +138,26 @@ struct SeriesDetailView: View {
                                         included: !(saved?.categories.contains(category.id) ?? false))
                                 } }
                             } label: {
-                                Label(category.name, systemImage: saved?.categories.contains(category.id) == true ? "checkmark.circle.fill" : "circle")
+                                TachiLabel(category.name, systemImage: saved?.categories.contains(category.id) == true ? "checkmark.circle.fill" : "circle")
                             }
                         }
-                    } label: { Label("تصنيفات المكتبة", systemImage: "folder") }
+                    } label: { TachiLabel(L10n.string("Library categories"), systemImage: "folder") }
                 }
-                Button(saved?.lastReadAt == nil ? "ابدأ القراءة" : "متابعة القراءة") {
+                Button(saved?.lastReadAt == nil ? L10n.string("Start reading") : L10n.string("Continue reading")) {
                     reading = startChapter
                 }.buttonStyle(ShelfPrimaryButtonStyle()).disabled(startChapter == nil)
                     .padding(.horizontal, 15)
-                if loading { ProgressView("تحديث التفاصيل والفصول…") }
+                if loading { ProgressView(L10n.string("Updating details and chapters…")) }
                 if let failure {
                     VStack(spacing: 8) {
                         Text(failure).font(.subheadline).foregroundStyle(ShelfStyle.secondary)
-                        Button("إعادة المحاولة") { Task { await refresh() } }
+                        Button(L10n.string("Retry")) { Task { await refresh() } }
                     }.padding(.horizontal, 16)
                 }
                 chapterToolbar
-                if showingChapterSearch { ShelfSearchField(text: $search, prompt: "البحث في الفصول") }
+                if showingChapterSearch { ShelfSearchField(text: $search, prompt: L10n.string("Search chapters")) }
                 if chapters.isEmpty && !loading {
-                    Text("لا توجد فصول تطابق اللغة والتصفية الحالية.").font(.subheadline)
+                    Text(L10n.string("No chapters match the current language and filters.")).font(.subheadline)
                         .foregroundStyle(ShelfStyle.secondary).padding(.horizontal, 16)
                 }
                 LazyVStack(spacing: 0) {
@@ -166,9 +169,9 @@ struct SeriesDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Button("تحديث", systemImage: "arrow.clockwise") { Task { await refresh() } }.disabled(loading)
-                        NavigationLink { SourcePreferencesView().shelfPage() } label: { Label("إعدادات المصدر", systemImage: "slider.horizontal.3") }
-                    } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel("خيارات العنوان")
+                        TachiButton(L10n.string("Refresh"), systemImage: "arrow.clockwise") { Task { await refresh() } }.disabled(loading)
+                        NavigationLink { SourcePreferencesView() } label: { TachiLabel(L10n.string("Source settings"), systemImage: "slider.horizontal.3") }
+                    } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Title options"))
                 }
             }
             .task(id: item.id + language) { await refresh() }
@@ -178,40 +181,40 @@ struct SeriesDetailView: View {
     @State private var showingChapterSearch = false
     private var chapterToolbar: some View {
         HStack(spacing: 0) {
-            Text("\(chapters.count) فصل").font(.body)
+            Text(L10n.format("%@ chapters", String(describing: chapters.count))).font(.body)
             Spacer()
-            ShelfIconButton("البحث في الفصول", symbol: "magnifyingglass") {
+            ShelfIconButton(L10n.string("Search chapters"), symbol: "magnifyingglass") {
                 showingChapterSearch.toggle(); if !showingChapterSearch { search = "" }
             }
             Menu {
                 ForEach([1, 5, 10], id: \.self) { count in
-                    Button("تنزيل \(count) فصول غير مقروءة") {
+                    Button(L10n.format("Download %@ unread chapters", String(describing: count))) {
                         let selected = (saved?.chapters ?? []).reversed().filter {
                             (language.isEmpty || $0.language == language) && saved?.progress[$0.id]?.read != true
                         }
                         Task { await online.enqueue(Array(selected.prefix(count))) }
                     }
                 }
-                Button("تنزيل الفصول المعروضة") { Task { await online.enqueue(chapters) } }
-            } label: { ShelfIcon(symbol: "arrow.down.to.line") }.accessibilityLabel("تنزيل فصول")
+                Button(L10n.string("Download visible chapters")) { Task { await online.enqueue(chapters) } }
+            } label: { ShelfIcon(symbol: "arrow.down.to.line") }.accessibilityLabel(L10n.string("Download chapters"))
             Menu {
-                Toggle("غير المقروء فقط", isOn: $unreadOnly)
-                Toggle("المنزّل فقط", isOn: $downloadedOnly)
-                Toggle("الأقدم أولًا", isOn: $reversed)
-                Button("تحديد المعروض كمقروء") {
+                Toggle(L10n.string("Unread only"), isOn: $unreadOnly)
+                Toggle(L10n.string("Downloaded only"), isOn: $downloadedOnly)
+                Toggle(L10n.string("Oldest first"), isOn: $reversed)
+                Button(L10n.string("Mark visible as read")) {
                     Task { await online.mutate { try await $0.markRead(seriesID: item.id, chapterIDs: chapters.map(\.id), read: true) } }
                 }
-                Button("تحديد المعروض كغير مقروء") {
+                Button(L10n.string("Mark visible as unread")) {
                     Task { await online.mutate { try await $0.markRead(seriesID: item.id, chapterIDs: chapters.map(\.id), read: false) } }
                 }
-            } label: { ShelfIcon(symbol: "line.3.horizontal.decrease") }.accessibilityLabel("تصفية الفصول")
+            } label: { ShelfIcon(symbol: "line.3.horizontal.decrease") }.accessibilityLabel(L10n.string("Filter chapters"))
         }.foregroundStyle(ShelfStyle.secondary).padding(.horizontal, 14)
     }
     private func chapterRow(_ chapter: MangaChapter) -> some View {
         HStack(spacing: 12) {
             Button { reading = chapter } label: {
                 VStack(alignment: .leading, spacing: 7) {
-                    Text(chapter.displayTitle).font(.body)
+                    Text(chapter.localizedTitle).font(.body)
                         .foregroundStyle(saved?.progress[chapter.id]?.read == true ? ShelfStyle.secondary : ShelfStyle.text)
                     HStack {
                         if let date = chapter.publishedAt { Text(date, style: .date) }
@@ -219,13 +222,13 @@ struct SeriesDetailView: View {
                     }.font(.caption).foregroundStyle(ShelfStyle.secondary)
                 }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 12).contentShape(Rectangle())
             }.buttonStyle(.plain)
-            ShelfIconButton("تنزيل " + chapter.displayTitle,
+            ShelfIconButton(L10n.string("Download ") + chapter.localizedTitle,
                             symbol: online.download(chapter.id)?.phase == .complete ? "checkmark.circle.fill" : "arrow.down.circle") {
                 Task { await online.enqueue([chapter]) }
             }.foregroundStyle(ShelfStyle.secondary)
         }.padding(.horizontal, 16)
             .contextMenu {
-                Button(saved?.progress[chapter.id]?.read == true ? "غير مقروء" : "مقروء") {
+                Button(saved?.progress[chapter.id]?.read == true ? L10n.string("Unread") : L10n.string("Read")) {
                     Task { await online.mutate {
                         try await $0.markRead(seriesID: item.id, chapterIDs: [chapter.id], read: saved?.progress[chapter.id]?.read != true)
                     } }
@@ -233,28 +236,10 @@ struct SeriesDetailView: View {
             }
     }
     private var statusLabel: String {
-        switch item.status { case "ongoing": return "مستمر"; case "completed": return "مكتمل"; case "hiatus": return "متوقف مؤقتًا"; case "cancelled": return "ملغى"; default: return "الحالة غير محددة" }
+        switch item.status { case "ongoing": return L10n.string("Ongoing"); case "completed": return L10n.string("Completed"); case "hiatus": return L10n.string("Paused"); case "cancelled": return L10n.string("Cancelled"); default: return L10n.string("Unknown status") }
     }
     @MainActor private func refresh() async {
         guard !loading else { return }; loading = true; failure = nil; defer { loading = false }
-        do { try await online.refresh(item) } catch is CancellationError { } catch { failure = ArabicError.describe(error) }
-    }
-}
-
-struct SourcePreferencesView: View {
-    @AppStorage("source.language") private var language = "ar"
-    @AppStorage("source.dataSaver") private var saver = false
-    var body: some View {
-        Form {
-            Section {
-                Picker("لغة الفصول", selection: $language) {
-                    Text("العربية").tag("ar"); Text("الإنجليزية").tag("en"); Text("اليابانية").tag("ja")
-                    Text("الكورية").tag("ko"); Text("الفرنسية").tag("fr"); Text("كل اللغات").tag("")
-                }
-                Toggle("توفير البيانات في الفصول الجديدة", isOn: $saver)
-            } header: { Text("MangaDex") } footer: {
-                Text("اختيار اللغة يحدد الفصول ونتائج البحث المتاحة لدى المصدر. واجهة التطبيق تبقى عربية.")
-            }
-        }.shelfPage().navigationTitle("إعدادات المصادر").navigationBarTitleDisplayMode(.inline)
+        do { try await online.refresh(item) } catch is CancellationError { } catch { failure = AppError.describe(error) }
     }
 }

@@ -39,8 +39,8 @@ private struct PBMessage {
             var cursor = 0, result: [PBField] = [], field = ms_pb_field()
             while cursor < buffer.count {
                 let status = ms_pb_next(buffer.bindMemory(to: UInt8.self).baseAddress, buffer.count, &cursor, &field)
-                guard status == MS_OK else { throw ReaderFailure("بيانات Protobuf غير صالحة.") }
-                guard result.count < 100_000 else { throw ReaderFailure("عدد حقول الفهرس كبير جدًا.") }
+                guard status == MS_OK else { throw ReaderFailure(ReaderText.string("Invalid Protobuf data.")) }
+                guard result.count < 100_000 else { throw ReaderFailure(ReaderText.string("The index contains too many fields.")) }
                 let bytes = field.bytes.map { Data(bytes: $0, count: field.length) } ?? Data()
                 result.append(PBField(number: field.number, wire: field.wire_type, value: field.integer, data: bytes))
             }
@@ -49,20 +49,20 @@ private struct PBMessage {
     }
     func blobs(_ number: UInt32) throws -> [Data] {
         let matches = fields.filter { $0.number == number }
-        guard matches.allSatisfy({ $0.wire == 2 }) else { throw ReaderFailure("نوع حقل Protobuf غير صحيح.") }
+        guard matches.allSatisfy({ $0.wire == 2 }) else { throw ReaderFailure(ReaderText.string("Invalid Protobuf field type.")) }
         return matches.map(\.data)
     }
     func blob(_ number: UInt32) throws -> Data? { try blobs(number).last }
     func string(_ number: UInt32, limit: Int = 8192) throws -> String? {
         guard let data = try blob(number) else { return nil }
         guard data.count <= limit, let result = String(data: data, encoding: .utf8), !result.contains("\0") else {
-            throw ReaderFailure("نص غير صالح داخل الفهرس.")
+            throw ReaderFailure(ReaderText.string("Invalid text in the index."))
         }
         return result
     }
     func integer(_ number: UInt32) throws -> UInt64? {
         let matches = fields.filter { $0.number == number }
-        guard matches.allSatisfy({ $0.wire == 0 }) else { throw ReaderFailure("نوع رقم Protobuf غير صحيح.") }
+        guard matches.allSatisfy({ $0.wire == 0 }) else { throw ReaderFailure(ReaderText.string("Invalid Protobuf numeric type.")) }
         return matches.last?.value
     }
 }
@@ -70,19 +70,19 @@ private struct PBMessage {
 public enum RepositoryDecoder {
     public static func decode(_ input: Data) throws -> RepositoryIndex {
         let data = try BoundedGzip.decodeIfNeeded(input)
-        guard !data.isEmpty else { throw ReaderFailure("الفهرس فارغ.") }
+        guard !data.isEmpty else { throw ReaderFailure(ReaderText.string("The index is empty.")) }
         let first = data.first(where: { ![9, 10, 13, 32].contains($0) })
         // A protobuf tag 0x0a resembles JSON whitespace; the next byte may be
         // '[' or '{' as a string length. Do not classify binary data by that alone.
         if first == 91, let legacy = try? legacyJSON(data) { return legacy }
         if first == 123, (try? JSONSerialization.jsonObject(with: data)) != nil {
-            throw ReaderFailure("بيانات JSON الوصفية ليست فهرسًا مدعومًا بعد؛ استخدم index.pb أو index.min.json.")
+            throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
         }
         let root = try PBMessage(data)
-        let name = try root.string(1) ?? "مستودع"
+        let name = try root.string(1) ?? ReaderText.string("Repository")
         let list = try root.blob(101)
         let listURL = try root.string(102)
-        guard list != nil || listURL != nil else { throw ReaderFailure("لم نعثر على قائمة إضافات أو رابطها داخل الفهرس.") }
+        guard list != nil || listURL != nil else { throw ReaderFailure(ReaderText.string("No extension list or link was found in the index.")) }
         return RepositoryIndex(name: name, signingKey: try root.string(3), extensionListURL: listURL,
                                extensions: try list.map(decodeList) ?? [], hasEmbeddedList: list != nil)
     }
@@ -91,12 +91,12 @@ public enum RepositoryDecoder {
     }
     private static func decodeList(_ data: Data) throws -> [ExtensionRecord] {
         let blobs = try PBMessage(data).blobs(1)
-        guard blobs.count <= 20_000 else { throw ReaderFailure("قائمة الإضافات كبيرة جدًا.") }
+        guard blobs.count <= 20_000 else { throw ReaderFailure(ReaderText.string("The extension list is too large.")) }
         var packages = Set<String>(), result: [ExtensionRecord] = []
         for blob in blobs {
             let item = try PBMessage(blob)
             guard let package = try item.string(2, limit: 512), !package.isEmpty, packages.insert(package).inserted else {
-                throw ReaderFailure("معرّف إضافة فارغ أو مكرر.")
+                throw ReaderFailure(ReaderText.string("Empty or duplicate extension identifier."))
             }
             let resources = try PBMessage(item.blob(3) ?? Data())
             let sources = try item.blobs(8).map { bytes -> SourceRecord in
@@ -128,15 +128,15 @@ public enum RepositoryDecoder {
     }
     private static func legacyJSON(_ data: Data) throws -> RepositoryIndex {
         let items = try JSONDecoder().decode([Legacy].self, from: data)
-        guard items.count <= 20_000 else { throw ReaderFailure("قائمة الإضافات كبيرة جدًا.") }
+        guard items.count <= 20_000 else { throw ReaderFailure(ReaderText.string("The extension list is too large.")) }
         var packages = Set<String>()
         let entries = try items.map { item -> ExtensionRecord in
-            guard !item.pkg.isEmpty, packages.insert(item.pkg).inserted else { throw ReaderFailure("إضافة مكررة أو معرّف غير صالح.") }
+            guard !item.pkg.isEmpty, packages.insert(item.pkg).inserted else { throw ReaderFailure(ReaderText.string("Duplicate extension or invalid identifier.")) }
             return ExtensionRecord(name: item.name, packageName: item.pkg, versionName: item.version ?? "",
                                    versionCode: item.code ?? 0, jarURL: item.jarUrl, iconURL: nil,
                                    sources: (item.sources ?? []).map { SourceRecord(id: $0.id, name: $0.name ?? "", language: $0.lang ?? "", homeURL: $0.baseUrl) })
         }
-        return RepositoryIndex(name: "مستودع JSON", signingKey: nil, extensionListURL: nil,
+        return RepositoryIndex(name: ReaderText.string("JSON repository"), signingKey: nil, extensionListURL: nil,
                                extensions: entries, hasEmbeddedList: true)
     }
 }

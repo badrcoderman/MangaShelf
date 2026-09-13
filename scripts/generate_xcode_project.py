@@ -25,6 +25,13 @@ for path in sorted((ROOT/"iOS/MangaShelf").glob("*.swift")):
 privacy=add("privacy","PBXFileReference",lastKnownFileType="text.xml",path="MangaShelf/PrivacyInfo.xcprivacy",sourceTree="<group>")
 plist=add("plist","PBXFileReference",lastKnownFileType="text.plist.xml",path="MangaShelf/Info.plist",sourceTree="<group>")
 file_refs.extend([privacy,plist])
+resource_builds=[]
+for path in sorted((ROOT/"iOS/MangaShelf/Resources").iterdir()):
+    kind = "folder" if path.suffix == ".lproj" else "file"
+    ref=add("resource:"+path.name,"PBXFileReference",lastKnownFileType=kind,
+            path="MangaShelf/Resources/"+path.name,sourceTree="<group>")
+    file_refs.append(ref)
+    resource_builds.append(add("resource-build:"+path.name,"PBXBuildFile",fileRef=ref))
 product=add("product","PBXFileReference",explicitFileType="wrapper.application",includeInIndex="0",path="MangaShelf.app",sourceTree="BUILT_PRODUCTS_DIR")
 products=add("products","PBXGroup",children=[product],name="Products",sourceTree="<group>")
 group=add("root-group","PBXGroup",children=file_refs+[products],sourceTree="<group>")
@@ -34,7 +41,7 @@ framework=add("reader-core-build","PBXBuildFile",productRef=dependency)
 sources=add("sources","PBXSourcesBuildPhase",buildActionMask="2147483647",files=source_builds,runOnlyForDeploymentPostprocessing="0")
 frameworks=add("frameworks","PBXFrameworksBuildPhase",buildActionMask="2147483647",files=[framework],runOnlyForDeploymentPostprocessing="0")
 privacy_build=add("privacy-build","PBXBuildFile",fileRef=privacy)
-resources=add("resources","PBXResourcesBuildPhase",buildActionMask="2147483647",files=[privacy_build],runOnlyForDeploymentPostprocessing="0")
+resources=add("resources","PBXResourcesBuildPhase",buildActionMask="2147483647",files=[privacy_build]+resource_builds,runOnlyForDeploymentPostprocessing="0")
 base={"SDKROOT":"iphoneos","IPHONEOS_DEPLOYMENT_TARGET":"17.0","SWIFT_VERSION":"5.0","CLANG_ENABLE_MODULES":"YES",
       "CLANG_ENABLE_OBJC_ARC":"YES","ENABLE_USER_SCRIPT_SANDBOXING":"YES","GCC_C_LANGUAGE_STANDARD":"c11"}
 target_settings={"PRODUCT_BUNDLE_IDENTIFIER":"app.mangashelf.reader","PRODUCT_NAME":"$(TARGET_NAME)","INFOPLIST_FILE":"MangaShelf/Info.plist",
@@ -45,7 +52,7 @@ target=add("target","PBXNativeTarget",buildConfigurationList=config_list("target
            buildRules=[],dependencies=[],name="MangaShelf",packageProductDependencies=[dependency],productName="MangaShelf",productReference=product,
            productType="com.apple.product-type.application")
 project=add("project","PBXProject",attributes={"LastUpgradeCheck":"1500","BuildIndependentTargetsInParallel":"YES"},
-            buildConfigurationList=config_list("project-config",base),compatibilityVersion="Xcode 14.0",developmentRegion="ar",
+            buildConfigurationList=config_list("project-config",base),compatibilityVersion="Xcode 14.0",developmentRegion="en",
             hasScannedForEncodings="0",knownRegions=["ar","en","Base"],mainGroup=group,packageReferences=[package],productRefGroup=products,
             projectDirPath="",projectRoot="",targets=[target])
 document={"archiveVersion":"1","classes":{},"objectVersion":"56","objects":objects,"rootObject":project}

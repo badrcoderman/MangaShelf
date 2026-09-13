@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ShelfDetailHero<Cover: View>: View {
+    @Environment(\.locale) private var interfaceLocale
     let title: String
     let author: String
     let source: String
@@ -16,7 +17,7 @@ struct ShelfDetailHero<Cover: View>: View {
                 Text(author).font(.subheadline)
                 Text("\(status) · \(source)").font(.subheadline)
                 NavigationLink { SourceCatalogView(initialQuery: title) } label: {
-                    Label("البحث العام", systemImage: "magnifyingglass").font(.subheadline)
+                    TachiLabel(L10n.string("Global search"), systemImage: "magnifyingglass").font(.subheadline)
                 }
             }.foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
         }.padding(.horizontal, 12).padding(.top, 12).padding(.bottom, 8)

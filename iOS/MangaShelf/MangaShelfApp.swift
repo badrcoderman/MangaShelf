@@ -2,6 +2,7 @@ import SwiftUI
 import ReaderCore
 
 @main struct MangaShelfApp: App {
+    @AppStorage("app.language") private var language: AppLanguage = .english
     @StateObject private var model = AppModel()
     @StateObject private var online = OnlineModel()
     var body: some Scene {
@@ -9,19 +10,20 @@ import ReaderCore
             RootView()
                 .environmentObject(model)
                 .environmentObject(online)
-                .environment(\.locale, Locale(identifier: "ar"))
-                .environment(\.layoutDirection, .rightToLeft)
+                .environment(\.locale, language.locale)
+                .environment(\.layoutDirection, language.direction)
                 .tint(ShelfStyle.accent)
                 .preferredColorScheme(model.state.settings.appearance == .system ? nil : model.state.settings.appearance == .dark ? .dark : .light)
                 .task { await model.start(); await online.start() }
-                .alert("تنبيه", isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
-                    Button("حسنًا", role: .cancel) { model.errorMessage = nil }
+                .alert(L10n.string("Notice"), isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
+                    Button(L10n.string("OK"), role: .cancel) { model.errorMessage = nil }
                 } message: { Text(model.errorMessage ?? "") }
         }
     }
 }
 
 struct RootView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @EnvironmentObject private var online: OnlineModel
     @SceneStorage("navigation.selectedTab") private var selectedTab = 0
@@ -37,15 +39,15 @@ struct RootView: View {
                 }
                 .environment(\.shelfTabSelection, $selectedTab)
                 .tint(ShelfStyle.accent)
-                .alert("تعذر إكمال العملية", isPresented: Binding(get: { online.errorMessage != nil }, set: { if !$0 { online.errorMessage = nil } })) {
-                    Button("حسنًا", role: .cancel) { online.errorMessage = nil }
+                .alert(L10n.string("Could not complete the operation"), isPresented: Binding(get: { online.errorMessage != nil }, set: { if !$0 { online.errorMessage = nil } })) {
+                    Button(L10n.string("OK"), role: .cancel) { online.errorMessage = nil }
                 } message: { Text(online.errorMessage ?? "") }
-            } else if model.busy { ProgressView("فتح المكتبة…") }
+            } else if model.busy { ProgressView(L10n.string("Opening library…")) }
             else {
                 ContentUnavailableView {
-                    Label("تعذر فتح المكتبة", systemImage: "externaldrive.badge.exclamationmark")
-                } description: { Text("حُفظت بياناتك كما هي. أعد المحاولة لمعرفة الخطأ.") } actions: {
-                    Button("إعادة المحاولة") { Task { await model.start() } }
+                    TachiLabel(L10n.string("Could not open the library"), systemImage: "externaldrive.badge.exclamationmark")
+                } description: { Text(L10n.string("Your data has been preserved. Try again to see the error.")) } actions: {
+                    Button(L10n.string("Retry")) { Task { await model.start() } }
                 }
             }
         }

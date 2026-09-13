@@ -2,114 +2,92 @@ import SwiftUI
 import ReaderCore
 
 struct BackupHubView: View {
+    @Environment(\.locale) private var interfaceLocale
     var body: some View {
-        List {
-            NavigationLink { BackupPreferencesView() } label: { SettingsRow(title: "نسخة الكتب المحلية", symbol: "books.vertical") }
-            NavigationLink { OnlineBackupView().shelfPage() } label: { SettingsRow(title: "نسخة مكتبة المصادر", symbol: "safari") }
-        }.listStyle(.plain).shelfPage().navigationTitle("النسخ الاحتياطي والاستعادة").navigationBarTitleDisplayMode(.inline)
+        TachiList {
+            NavigationLink { BackupPreferencesView() } label: { SettingsRow(title: L10n.string("Local library backup"), symbol: "books.vertical") }
+            NavigationLink { OnlineBackupView() } label: { SettingsRow(title: L10n.string("Source library backup"), symbol: "safari") }
+        }.listStyle(.plain).tachiPage(L10n.string("Backup and restore"))
     }
 }
 
-struct GeneralPreferencesView: View {
-    var body: some View {
-        Form {
-            Section("الواجهة") {
-                LabeledContent("اللغة", value: "العربية")
-                LabeledContent("اتجاه الواجهة", value: "من اليمين إلى اليسار")
-            }
-            Section {
-                NavigationLink { SourcePreferencesView().shelfPage() } label: { Text("إعدادات المصادر") }
-                NavigationLink { StorageView().shelfPage() } label: { Text("إدارة التخزين") }
-            }
-        }.shelfPage().navigationTitle("عام").navigationBarTitleDisplayMode(.inline)
-    }
-}
 
-struct LibraryPreferencesView: View {
-    @AppStorage("library.columns") private var columns = 2
-    @AppStorage("library.sort") private var sorting = "added"
-    var body: some View {
-        Form {
-            Section("العرض") {
-                Stepper("عدد الأعمدة: \(columns)", value: $columns, in: 2...5)
-                Picker("ترتيب العناوين", selection: $sorting) {
-                    Text("تاريخ الإضافة").tag("added"); Text("العنوان").tag("title"); Text("آخر قراءة").tag("recent")
-                }
-            }
-            NavigationLink { CategoryManagementView() } label: { Text("إدارة التصنيفات") }
-        }.shelfPage().navigationTitle("المكتبة").navigationBarTitleDisplayMode(.inline)
-    }
-}
+
+
 
 /// Honest availability information for features scheduled after the interface phase.
 /// These destinations contain no switches that pretend to enable an absent service.
 struct FeatureStatusView: View {
+    @Environment(\.locale) private var interfaceLocale
     enum Feature {
         case sync, tracking, migration
         var title: String {
-            switch self { case .sync: return "مزامنة"; case .tracking: return "يتتبع"; case .migration: return "ترحيل" }
+            switch self { case .sync: return L10n.string("Sync"); case .tracking: return L10n.string("Tracking"); case .migration: return L10n.string("Migrate") }
         }
         var message: String {
             switch self {
-            case .sync: return "المزامنة بين الأجهزة غير متاحة في هذا الإصدار. يمكنك تصدير بيانات مكتبتك من النسخ الاحتياطي."
-            case .tracking: return "ربط خدمات تتبع القراءة غير متاح في هذا الإصدار. يُحفظ تقدم قراءتك داخل التطبيق."
-            case .migration: return "نقل عنوان بين مصدرين غير متاح حتى اكتمال تشغيل إضافات المصادر."
+            case .sync: return L10n.string("Device sync is not available in this version. You can export your library data from Backup and restore.")
+            case .tracking: return L10n.string("Reading tracker services are not connected in this version. Your progress is saved in the app.")
+            case .migration: return L10n.string("Moving a title between sources requires a working extension runtime.")
             }
         }
     }
     let feature: Feature
     var body: some View {
         VStack(spacing: 12) {
-            ShelfEmptyState(title: "غير متاح حاليًا", message: feature.message)
-            if feature == .sync { NavigationLink("النسخ الاحتياطي") { BackupHubView() } }
-            if feature == .migration { NavigationLink("المستودعات") { RepositoriesView() } }
+            ShelfEmptyState(title: L10n.string("Not available yet"), message: feature.message)
+            if feature == .sync { NavigationLink(L10n.string("Backup")) { BackupHubView() } }
+            if feature == .migration { NavigationLink(L10n.string("Repositories")) { RepositoriesView() } }
         }.frame(maxWidth: .infinity, maxHeight: .infinity).shelfPage()
             .navigationTitle(feature.title).navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct PrivacyPreferencesView: View {
+    @Environment(\.locale) private var interfaceLocale
     var body: some View {
-        List {
-            Section("البيانات") {
-                Text("تُحفظ مكتبتك وتقدم القراءة على جهازك. احتفظ بالنسخ التي تصدّرها في مكان تثق به.")
-                Text("عند استخدام مصدر، يُرسل طلب البحث أو الفصل إلى ذلك المصدر لتحميل المحتوى.")
+        TachiList {
+            Section(L10n.string("Data")) {
+                Text(L10n.string("Your library and reading progress are stored on your device. Keep exported backups somewhere you trust."))
+                Text(L10n.string("When using a source, search or chapter requests are sent to that source to load content."))
             }
-            Section("التحكم") {
-                NavigationLink { StorageView().shelfPage() } label: { Text("عرض التخزين") }
-                NavigationLink { RepositoriesView() } label: { Text("إدارة المستودعات") }
+            Section(L10n.string("Controls")) {
+                NavigationLink { StorageView().shelfPage() } label: { Text(L10n.string("View storage")) }
+                NavigationLink { RepositoriesView() } label: { Text(L10n.string("Manage repositories")) }
             }
-        }.shelfPage().navigationTitle("إعدادات الأمان").navigationBarTitleDisplayMode(.inline)
+        }.tachiPage(L10n.string("Security settings"))
     }
 }
 
 struct ReadingInsightsView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @EnvironmentObject private var online: OnlineModel
     private var readChapters: Int { online.state.series.reduce(0) { $0 + $1.progress.values.filter(\.read).count } }
     var body: some View {
-        List {
-            Section("المكتبة") {
-                LabeledContent("كتب محلية", value: "\(model.state.books.count)")
-                LabeledContent("عناوين المصادر", value: "\(online.state.series.filter(\.inLibrary).count)")
-                LabeledContent("تصنيفات", value: "\(model.state.categories.count)")
+        TachiList {
+            Section(L10n.string("Library")) {
+                LabeledContent(L10n.string("Local books"), value: "\(model.state.books.count)")
+                LabeledContent(L10n.string("Source titles"), value: "\(online.state.series.filter(\.inLibrary).count)")
+                LabeledContent(L10n.string("Categories"), value: "\(model.state.categories.count)")
             }
-            Section("القراءة") {
-                LabeledContent("كتب محلية مكتملة", value: "\(model.state.books.filter(\.completed).count)")
-                LabeledContent("فصول محددة كمقروءة", value: "\(readChapters)")
-                LabeledContent("فصول منزّلة", value: "\(online.state.downloads.filter { $0.phase == .complete }.count)")
+            Section(L10n.string("Reading")) {
+                LabeledContent(L10n.string("Completed local books"), value: "\(model.state.books.filter(\.completed).count)")
+                LabeledContent(L10n.string("Chapters marked as read"), value: "\(readChapters)")
+                LabeledContent(L10n.string("Downloaded chapters"), value: "\(online.state.downloads.filter { $0.phase == .complete }.count)")
             }
-        }.shelfPage().navigationTitle("رؤى القراءة").navigationBarTitleDisplayMode(.inline)
+        }.tachiPage(L10n.string("Reading insights"))
     }
 }
 
 struct HelpView: View {
+    @Environment(\.locale) private var interfaceLocale
     var body: some View {
-        List {
-            Section("الكتب المحلية") { Text("من المكتبة، افتح قائمة الخيارات ثم اختر استيراد كتاب. يمكنك استيراد ملفات CBZ أو ZIP التي تحتوي على صور.") }
-            Section("المصادر") { Text("افتح تصفح ثم اختر مصدرًا متاحًا. ابحث عن العنوان، وافتح تفاصيله ثم أضفه إلى المكتبة أو ابدأ القراءة.") }
-            Section("التنزيلات") { Text("افتح قائمة فصول العنوان واضغط زر التنزيل. تظهر حالة الفصول في المزيد ← التنزيلات.") }
-            Section("الإضافات") { Text("إضافة مستودع تعرض فهرسه فقط في هذا الإصدار. تشغيل إضافات JAR لم يتوفر بعد.") }
-        }.shelfPage().navigationTitle("مساعدة").navigationBarTitleDisplayMode(.inline)
+        TachiList {
+            Section(L10n.string("Local books")) { Text(L10n.string("In Library, open the options menu and choose Import book. You can import CBZ or ZIP files containing images.")) }
+            Section(L10n.string("Sources")) { Text(L10n.string("Open Browse and choose an available source. Search for a title, open its details, then add it to your library or start reading.")) }
+            Section(L10n.string("Downloads")) { Text(L10n.string("Open a title's chapter list and tap Download. Chapter status appears in More → Downloads.")) }
+            Section(L10n.string("Extensions")) { Text(L10n.string("Adding a repository only displays its index in this version. Running JAR extensions is not available yet.")) }
+        }.tachiPage(L10n.string("Help"))
     }
 }

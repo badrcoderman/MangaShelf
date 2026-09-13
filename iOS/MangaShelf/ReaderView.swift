@@ -11,14 +11,14 @@ enum ImageDecoder {
               let height = info[kCGImagePropertyPixelHeight] as? NSNumber,
               width.doubleValue > 0, height.doubleValue > 0,
               width.doubleValue * height.doubleValue <= 200_000_000 else {
-            throw ReaderFailure("الصورة غير مدعومة أو أبعادها أكبر من الحد المسموح.")
+            throw ReaderFailure(L10n.string("The image is unsupported or exceeds the dimension limit."))
         }
         let options: [CFString: Any] = [kCGImageSourceCreateThumbnailFromImageAlways: true,
                                         kCGImageSourceCreateThumbnailWithTransform: true,
                                         kCGImageSourceThumbnailMaxPixelSize: maximumDimension,
                                         kCGImageSourceShouldCacheImmediately: true]
         guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary) else {
-            throw ReaderFailure("تعذر فك صورة الصفحة.")
+            throw ReaderFailure(L10n.string("Could not decode the page image."))
         }
         return UIImage(cgImage: image)
     }
@@ -33,7 +33,7 @@ actor CoverService {
         try Task.checkCancellation()
         if let image = cache.object(forKey: url as NSURL) { return image }
         let data = try LibraryStore.readBounded(url, maximum: ComicArchive.maximumArchiveBytes)
-        guard let first = try ComicArchive.pages(in: data).first else { throw ReaderFailure("لا توجد صفحات.") }
+        guard let first = try ComicArchive.pages(in: data).first else { throw ReaderFailure(L10n.string("No pages.")) }
         let image = try ImageDecoder.thumbnail(ComicArchive.extract(first, from: data), maximumDimension: 420)
         cache.setObject(image, forKey: url as NSURL, cost: Int(image.size.width * image.size.height * 4))
         return image
@@ -51,7 +51,7 @@ actor ComicSession {
     }
     func image(at page: Int) throws -> UIImage {
         try Task.checkCancellation()
-        guard pages.indices.contains(page) else { throw ReaderFailure("الصفحة غير موجودة.") }
+        guard pages.indices.contains(page) else { throw ReaderFailure(L10n.string("The page does not exist.")) }
         if let cached = cache.object(forKey: NSNumber(value: page)) { return cached }
         let bytes = try ComicArchive.extract(pages[page], from: data)
         let image = try ImageDecoder.thumbnail(bytes, maximumDimension: 4096)
@@ -66,6 +66,7 @@ private struct PageFrames: PreferenceKey {
 }
 
 struct ReaderView: View {
+    @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var phase
@@ -77,6 +78,9 @@ struct ReaderView: View {
     @State private var image: UIImage?
     @State private var failure: String?
     @State private var controls = true
+    @State private var settingsOpen = false
+    @AppStorage("reader.dim") private var dim = 0.0
+    @AppStorage("reader.spacing") private var spacing = 0.0
     @State private var previousIdleSetting = false
     @State private var zoomed = false
     @State private var displayedPages = Set<Int>()
@@ -87,7 +91,7 @@ struct ReaderView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             if let failure {
-                ContentUnavailableView("تعذر عرض الصفحة", systemImage: "exclamationmark.triangle", description: Text(failure)).foregroundStyle(.white)
+                ContentUnavailableView(L10n.string("Could not display the page"), systemImage: "exclamationmark.triangle", description: Text(failure)).foregroundStyle(.white)
             } else if let session, pageCount > 0 {
                 if settings.mode == .webtoon {
                     webtoon(session)
@@ -101,16 +105,18 @@ struct ReaderView: View {
                         })
                         .ignoresSafeArea(edges: controls ? [] : [.top, .bottom])
                 } else { ProgressView().tint(.white) }
-            } else { ProgressView("فتح الكتاب…").tint(.white).foregroundStyle(.white) }
+            } else { ProgressView(L10n.string("Opening book…")).tint(.white).foregroundStyle(.white) }
 
+            Color.black.opacity(min(0.75, max(0, dim))).allowsHitTesting(false).ignoresSafeArea()
             if controls {
                 VStack(spacing: 0) {
                     HStack {
-                        Button("إغلاق", systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
+                        TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
                         Spacer()
-                        Text(model.book(bookID)?.title ?? "القارئ").font(.subheadline.weight(.semibold)).lineLimit(1)
+                        Text(model.book(bookID)?.title ?? L10n.string("Reader")).font(.subheadline.weight(.semibold)).lineLimit(1)
                         Spacer()
-                        Button(bookmark ? "إزالة العلامة" : "إضافة علامة", systemImage: bookmark ? "bookmark.fill" : "bookmark") {
+                        ShelfIconButton(L10n.string("Reader settings"), symbol: "slider.horizontal.3") { settingsOpen = true }
+                        TachiButton(bookmark ? L10n.string("Remove bookmark") : L10n.string("Add bookmark"), systemImage: bookmark ? "bookmark.fill" : "bookmark") {
                             Task { await model.perform { try await $0.toggleBookmark(id: bookID, page: page) } }
                         }.labelStyle(.iconOnly).disabled(model.busy || pageCount == 0)
                     }.padding().background(ShelfStyle.header.opacity(0.96))
@@ -118,15 +124,15 @@ struct ReaderView: View {
                     if pageCount > 0, settings.mode == .paged {
                         VStack(spacing: 14) {
                             HStack {
-                                Button("السابق", systemImage: "backward.end") { advance(-1) }.disabled(page == 0)
+                                TachiButton(L10n.string("Previous"), systemImage: "backward.end") { advance(-1) }.disabled(page == 0)
                                 Spacer()
                                 Text("\(page + 1) / \(pageCount)").monospacedDigit()
                                 Spacer()
-                                Button("التالي", systemImage: "forward.end") { advance(1) }.disabled(page == pageCount - 1)
+                                TachiButton(L10n.string("Next"), systemImage: "forward.end") { advance(1) }.disabled(page == pageCount - 1)
                             }
                             if pageCount > 1 {
                                 Slider(value: Binding(get: { Double(page) }, set: { page = Int($0) }), in: 0...Double(pageCount-1), step: 1)
-                                    .accessibilityLabel("الانتقال إلى صفحة")
+                                    .accessibilityLabel(L10n.string("Go to page"))
                             }
                         }.padding().background(ShelfStyle.header.opacity(0.96))
                     }
@@ -139,19 +145,22 @@ struct ReaderView: View {
         }
         .preferredColorScheme(.dark)
         .statusBarHidden(!controls)
+        .sheet(isPresented: $settingsOpen) {
+            NavigationStack { ReaderPreferencesView() }.tachiSheet()
+        }
         .task {
             previousIdleSetting = UIApplication.shared.isIdleTimerDisabled
             UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake
-            guard let book = model.book(bookID) else { failure = "الكتاب غير موجود."; return }
+            guard let book = model.book(bookID) else { failure = L10n.string("The book does not exist."); return }
             do {
                 let url = try await model.url(for: book)
                 let opened = try await Task.detached(priority: .userInitiated) { try ComicSession(url: url) }.value
                 let pages = await opened.pages
-                guard pages.count == book.pageCount else { throw ReaderFailure("تغير ملف الكتاب؛ لا يمكن تطبيق تقدم قديم عليه.") }
+                guard pages.count == book.pageCount else { throw ReaderFailure(L10n.string("The book file has changed; old progress cannot be applied.")) }
                 pageCount = pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount-1)
                 session = opened
                 if settings.mode == .paged { await loadPage() }
-            } catch { failure = ArabicError.describe(error) }
+            } catch { failure = AppError.describe(error) }
         }
         .task(id: page) {
             guard session != nil else { return }
@@ -162,6 +171,12 @@ struct ReaderView: View {
         }
         .onChange(of: phase) { _, value in
             UIApplication.shared.isIdleTimerDisabled = value == .active && settings.keepScreenAwake
+        }
+        .onChange(of: settings.keepScreenAwake) { _, value in
+            UIApplication.shared.isIdleTimerDisabled = phase == .active && value
+        }
+        .task(id: settings.mode) {
+            if session != nil, settings.mode == .paged { await loadPage() }
         }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = previousIdleSetting
@@ -183,13 +198,13 @@ struct ReaderView: View {
             displayedPages.insert(requested)
             await model.progress(id: bookID, page: requested)
         } catch is CancellationError { return }
-        catch { if requested == page { failure = ArabicError.describe(error) } }
+        catch { if requested == page { failure = AppError.describe(error) } }
     }
     private func webtoon(_ session: ComicSession) -> some View {
         GeometryReader { viewport in
             ScrollViewReader { proxy in
                 ScrollView {
-                    LazyVStack(spacing: 0) {
+                    LazyVStack(spacing: min(24, max(0, spacing))) {
                         ForEach(0..<pageCount, id: \.self) { index in
                             WebtoonPage(session: session, index: index, onReady: { _ = displayedPages.insert(index) }).id(index)
                         }
@@ -210,6 +225,7 @@ struct ReaderView: View {
 }
 
 private struct WebtoonPage: View {
+    @Environment(\.locale) private var interfaceLocale
     let session: ComicSession
     let index: Int
     let onReady: () -> Void
@@ -222,10 +238,10 @@ private struct WebtoonPage: View {
                     .background(GeometryReader { geometry in
                         Color.clear.preference(key: PageFrames.self, value: [index: geometry.frame(in: .named("readerScroll"))])
                     })
-            } else if let error { Text("الصفحة \(index + 1): \(error)").foregroundStyle(.white).padding().frame(minHeight: 180) }
+            } else if let error { Text(L10n.format("Page %@: %@", String(describing: index + 1), String(describing: error))).foregroundStyle(.white).padding().frame(minHeight: 180) }
             else { ProgressView().tint(.white).frame(maxWidth: .infinity, minHeight: 300) }
         }
-        .task { do { image = try await session.image(at: index); onReady() } catch { self.error = ArabicError.describe(error) } }
+        .task { do { image = try await session.image(at: index); onReady() } catch { self.error = AppError.describe(error) } }
         .onDisappear { image = nil }
     }
 }
