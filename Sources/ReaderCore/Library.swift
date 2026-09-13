@@ -256,6 +256,7 @@ public actor LibraryStore {
     public func saveRepository(_ repository: SavedRepository) throws {
         var candidate = state
         if let index = candidate.repositories.firstIndex(where: { $0.url == repository.url }) {
+            try Self.validateRepositoryKey(previous: candidate.repositories[index].index, incoming: repository.index)
             candidate.repositories[index].index = repository.index
             candidate.repositories[index].fetchedAt = repository.fetchedAt
         } else { candidate.repositories.append(repository) }
@@ -269,9 +270,17 @@ public actor LibraryStore {
         guard let position = candidate.repositories.firstIndex(where: { $0.id == id }) else {
             throw ReaderFailure(ReaderText.string("The repository was removed during the update and was not added again."))
         }
+        try Self.validateRepositoryKey(previous: candidate.repositories[position].index, incoming: index)
         candidate.repositories[position].index = index
         candidate.repositories[position].fetchedAt = fetchedAt
         try commit(candidate)
+    }
+    // Key continuity only: this does not authenticate an index or verify JAR signatures.
+    private static func validateRepositoryKey(previous: RepositoryIndex, incoming: RepositoryIndex) throws {
+        guard let key = previous.signingKey, !key.isEmpty else { return }
+        guard incoming.signingKey == key else {
+            throw ReaderFailure(ReaderText.string("The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again."))
+        }
     }
     public func exportMetadata() throws -> Data {
         try JSONEncoder().encode(state)

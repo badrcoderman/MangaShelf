@@ -929,3 +929,5 @@
 "١١ سبتمبر ٢٠٢٦ — تغييرات قيد التحقق على الجهاز" = "September 11, 2026 — device validation pending";
 "١٢ سبتمبر ٢٠٢٦" = "September 12, 2026";
 "١٣ سبتمبر ٢٠٢٦" = "September 13, 2026";
+
+"The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again." = "The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again.";

@@ -41,8 +41,8 @@
   },
   {
     "path": "Sources/ReaderCore/Library.swift",
-    "bytes": 16047,
-    "sha256": "981384957a98d66bcce8b9223e0a6cb3525cfbd9b19b59dea26aaf0d4efaaf05"
+    "bytes": 16795,
+    "sha256": "2b71ae9cce99a2d7de39bb2f8a9b4fd478e0d4772cdca2a7d761f141abec54f0"
   },
   {
     "path": "Sources/ReaderCore/MangaDexSource.swift",
@@ -71,13 +71,13 @@
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
-    "bytes": 78717,
-    "sha256": "8c8442ac498a027184f73db112cc80f140fc2c380240d01cceeeb08259dd0ead"
+    "bytes": 79043,
+    "sha256": "94a0492a0960dd5b018a795cc4b04bbd45cf78e73ac5326257b252181bd86c02"
   },
   {
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
-    "bytes": 64365,
-    "sha256": "17a382a0fdc4b883b616660d2de8e14fd5daa632804d37c17e80f25c59cf878a"
+    "bytes": 64639,
+    "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -111,8 +111,8 @@
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
-    "bytes": 7714,
-    "sha256": "d7ccb48ed8ed777884be9552217d303a1b4645a8378652a193eabe1424f876e2"
+    "bytes": 9657,
+    "sha256": "fc48475ccfcd70f30ed2ecd3bea616c401b8a6974457dda08001be7d13da36a9"
   },
   {
     "path": "docs/ARCHITECTURE-AR.md",
@@ -146,8 +146,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 2241,
-    "sha256": "9f40a3b2c5b73fbac888e2d29f2c69034c3a4d38084db83e7eda93f311e0319e"
+    "bytes": 3074,
+    "sha256": "521527d2cad2bcd4766c2a8a16841f6b23fc04552f528afaa0844189ba0d599c"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -271,13 +271,13 @@
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
-    "bytes": 78717,
-    "sha256": "8c8442ac498a027184f73db112cc80f140fc2c380240d01cceeeb08259dd0ead"
+    "bytes": 79043,
+    "sha256": "94a0492a0960dd5b018a795cc4b04bbd45cf78e73ac5326257b252181bd86c02"
   },
   {
     "path": "iOS/MangaShelf/Resources/en.lproj/Localizable.strings",
-    "bytes": 64365,
-    "sha256": "17a382a0fdc4b883b616660d2de8e14fd5daa632804d37c17e80f25c59cf878a"
+    "bytes": 64639,
+    "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
   },
   {
     "path": "iOS/MangaShelf/SettingsView.swift",

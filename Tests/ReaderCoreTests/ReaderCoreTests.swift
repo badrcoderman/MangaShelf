@@ -121,4 +121,37 @@ final class ReaderCoreTests: XCTestCase {
         let after = await store.snapshot()
         XCTAssertTrue(after.repositories.isEmpty)
     }
+    func testRepositoryKeyContinuityPreservesDiskOnRejectedUpdates() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = try LibraryStore(root: root)
+        var original = try RepositoryDecoder.decode(fixture("index", "pb"))
+        original.signingKey = "first-owner-key"
+        let repository = SavedRepository(url: "https://example.invalid/index.pb", index: original)
+        try await store.saveRepository(repository)
+        let metadata = root.appendingPathComponent("library.json")
+        let before = try Data(contentsOf: metadata)
+        for replacement in ["different-key", nil, ""] as [String?] {
+            var changed = original
+            changed.signingKey = replacement
+            do {
+                try await store.updateRepository(id: repository.id, index: changed, fetchedAt: Date())
+                XCTFail("Changed or removed key accepted by refresh")
+            } catch { XCTAssertTrue(error is ReaderFailure) }
+            do {
+                try await store.saveRepository(SavedRepository(url: repository.url, index: changed))
+                XCTFail("Duplicate URL bypassed key continuity")
+            } catch { XCTAssertTrue(error is ReaderFailure) }
+            XCTAssertEqual(try Data(contentsOf: metadata), before)
+            let snapshot = await store.snapshot()
+            XCTAssertEqual(snapshot.repositories.first?.index.signingKey, original.signingKey)
+        }
+        original.name = "Updated name"
+        try await store.updateRepository(id: repository.id, index: original, fetchedAt: Date())
+        let reopened = try LibraryStore(root: root)
+        let saved = await reopened.snapshot()
+        XCTAssertEqual(saved.repositories.first?.index.name, "Updated name")
+        XCTAssertEqual(saved.repositories.first?.id, repository.id)
+    }
+
 }
