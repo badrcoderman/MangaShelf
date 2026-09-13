@@ -13,6 +13,21 @@ jobs:
           persist-credentials: false
       - name: Toolchain
         run: |
+          SELECTED=""
+          for APP in /Applications/Xcode*.app; do
+            DEVELOPER_PATH="$APP/Contents/Developer"
+            SDK_VERSION=$(DEVELOPER_DIR="$DEVELOPER_PATH" xcrun --sdk iphoneos --show-sdk-version 2>/dev/null) || continue
+            if [ "${SDK_VERSION%%.*}" -ge 26 ]; then
+              SELECTED="$DEVELOPER_PATH"
+              break
+            fi
+          done
+          if [ -z "$SELECTED" ]; then
+            echo "::error::No installed Xcode supports iOS 26."
+            exit 1
+          fi
+          export DEVELOPER_DIR="$SELECTED"
+          echo "DEVELOPER_DIR=$SELECTED" >> "$GITHUB_ENV"
           xcodebuild -version
           swift --version
           SDK_VERSION=$(xcrun --sdk iphoneos --show-sdk-version)
