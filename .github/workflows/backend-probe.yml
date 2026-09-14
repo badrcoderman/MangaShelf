@@ -1,0 +1,34 @@
+name: Verify upstream JAR backend
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: tachimanga/Tachidesk-Server
+          ref: 2e52214106ffab02d13ff61a620def78414a8a45
+          persist-credentials: false
+      - name: Compile pinned upstream backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          export JAVA_HOME="$JAVA_HOME_17_X64"
+          export PATH="$JAVA_HOME/bin:$PATH"
+          mkdir -p probe-results
+          git rev-parse HEAD > probe-results/revision.txt
+          java -version 2> probe-results/java-version.txt
+          sha256sum libs/*.jar > probe-results/upstream-binary-dependencies.txt
+          ./gradlew :server:compileKotlin --no-daemon --console=plain 2>&1 | tee probe-results/compile.log
+      - name: Preserve diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: upstream-backend-probe
+          path: probe-results/
+          if-no-files-found: error
+          retention-days: 14
