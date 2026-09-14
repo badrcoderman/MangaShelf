@@ -1,0 +1,443 @@
+{
+  "revision": "2e52214106ffab02d13ff61a620def78414a8a45",
+  "scope": "Static declared native methods and dependencies; not execution or iOS compatibility",
+  "native_methods": [
+    {
+      "path": "AndroidCompat/src/main/java/android/database/sqlite/SQLiteDebug.java",
+      "line": 32,
+      "return_type": "void",
+      "method": "nativeGetPagerStats",
+      "parameters": "PagerStats stats"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/database/sqlite/SQLiteGlobal.java",
+      "line": 40,
+      "return_type": "int",
+      "method": "nativeReleaseMemory",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 264,
+      "return_type": "long[]",
+      "method": "createNativeImage",
+      "parameters": "byte[] bytes"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 266,
+      "return_type": "long",
+      "method": "createNativeCanvas",
+      "parameters": "int width, int height"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 268,
+      "return_type": "void",
+      "method": "drawBitmap",
+      "parameters": "long imageRef, long canvasRef, int[] src, int []dst"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 270,
+      "return_type": "void",
+      "method": "drawPointNative",
+      "parameters": "long canvasRef, int x, int y, int color"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 272,
+      "return_type": "void",
+      "method": "setPixelsNative",
+      "parameters": "long canvasRef, int[] pixels, int offset, int stride, int x, int y, int width, int height"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 277,
+      "return_type": "byte[]",
+      "method": "getImage",
+      "parameters": "long canvasRef, int format, int quality"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 279,
+      "return_type": "byte[]",
+      "method": "compressImage",
+      "parameters": "long imageRef, int format, int quality"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 281,
+      "return_type": "int",
+      "method": "getPixel",
+      "parameters": "long imageRef, int x, int y"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 283,
+      "return_type": "void",
+      "method": "getPixels",
+      "parameters": "long imageRef, int[] pixels, int offset, int stride, int x, int y, int width, int height"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 286,
+      "return_type": "long",
+      "method": "createCroppedImage",
+      "parameters": "long sourceImageRef, long sourceCanvasRef, int x, int y, int width, int height"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 289,
+      "return_type": "void",
+      "method": "releaseNativeImage",
+      "parameters": "long imageRef"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/graphics/Bitmap.java",
+      "line": 290,
+      "return_type": "void",
+      "method": "releaseNativeCanvas",
+      "parameters": "long canvasRef"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 425,
+      "return_type": "long",
+      "method": "getElapsedCpuTime",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 514,
+      "return_type": "int",
+      "method": "getUidForName",
+      "parameters": "String name"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 521,
+      "return_type": "int",
+      "method": "getGidForName",
+      "parameters": "String name"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 584,
+      "return_type": "void",
+      "method": "setCanSelfBackground",
+      "parameters": "boolean backgroundOk"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 670,
+      "return_type": "int[]",
+      "method": "getExclusiveCores",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 762,
+      "return_type": "boolean",
+      "method": "setSwappiness",
+      "parameters": "int pid, boolean is_increased"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 771,
+      "return_type": "void",
+      "method": "setArgV0",
+      "parameters": "String text"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 787,
+      "return_type": "int",
+      "method": "setUid",
+      "parameters": "int uid"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 789,
+      "return_type": "int",
+      "method": "setGid",
+      "parameters": "int uid"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 796,
+      "return_type": "void",
+      "method": "sendSignal",
+      "parameters": "int pid, int signal"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 813,
+      "return_type": "void",
+      "method": "sendSignalQuiet",
+      "parameters": "int pid, int signal"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 816,
+      "return_type": "long",
+      "method": "getFreeMemory",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 819,
+      "return_type": "long",
+      "method": "getTotalMemory",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 822,
+      "return_type": "void",
+      "method": "readProcLines",
+      "parameters": "String path, String[] reqFields, long[] outSizes"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 826,
+      "return_type": "int[]",
+      "method": "getPids",
+      "parameters": "String path, int[] lastArray"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 852,
+      "return_type": "boolean",
+      "method": "readProcFile",
+      "parameters": "String file, int[] format, String[] outStrings, long[] outLongs, float[] outFloats"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 856,
+      "return_type": "boolean",
+      "method": "parseProcLine",
+      "parameters": "byte[] buffer, int startIndex, int endIndex, int[] format, String[] outStrings, long[] outLongs, float[] outFloats"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 859,
+      "return_type": "int[]",
+      "method": "getPidsForCommands",
+      "parameters": "String[] cmds"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 868,
+      "return_type": "long",
+      "method": "getPss",
+      "parameters": "int pid"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 889,
+      "return_type": "int",
+      "method": "killProcessGroup",
+      "parameters": "int uid, int pid"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/os/Process.java",
+      "line": 895,
+      "return_type": "void",
+      "method": "removeAllProcessGroups",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/webkit/McCookieManager.java",
+      "line": 175,
+      "return_type": "byte[]",
+      "method": "nativeGetCookie0",
+      "parameters": "byte[] urlUtf8"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/webkit/McCookieManager.java",
+      "line": 176,
+      "return_type": "void",
+      "method": "nativeSetCookie0",
+      "parameters": "byte[] urlUtf8, byte[] valueUtf8"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/webkit/WebView.java",
+      "line": 1213,
+      "return_type": "long",
+      "method": "createNativeWebview",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/webkit/WebView.java",
+      "line": 1232,
+      "return_type": "void",
+      "method": "invokeNative",
+      "parameters": "long ref, byte[] method, byte[] reqJsonUtf8"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/android/webkit/WebView.java",
+      "line": 1234,
+      "return_type": "void",
+      "method": "releaseNativeWebView",
+      "parameters": "long ref"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 196,
+      "return_type": "long",
+      "method": "createContext",
+      "parameters": ""
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 197,
+      "return_type": "void",
+      "method": "destroyContext",
+      "parameters": "long context"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 198,
+      "return_type": "Object",
+      "method": "evaluate",
+      "parameters": "long context, String sourceCode, String fileName"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 199,
+      "return_type": "long",
+      "method": "get",
+      "parameters": "long context, String name, Object[] methods"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 200,
+      "return_type": "void",
+      "method": "set",
+      "parameters": "long context, String name, Object object, Object[] methods"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 201,
+      "return_type": "Object",
+      "method": "call",
+      "parameters": "long context, long instance, Object method, Object[] args"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 202,
+      "return_type": "Object",
+      "method": "execute",
+      "parameters": "long context, byte[] bytecode"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/app/cash/quickjs/QuickJs.java",
+      "line": 203,
+      "return_type": "byte[]",
+      "method": "compile",
+      "parameters": "long context, String sourceCode, String fileName"
+    },
+    {
+      "path": "AndroidCompat/src/main/java/org/tachiyomi/NativeChannel.java",
+      "line": 18,
+      "return_type": "void",
+      "method": "call_utf8",
+      "parameters": "byte[] topicUtf8, byte[] contentUtf8"
+    },
+    {
+      "path": "server/src/main/java/org/tachiyomi/NativeNet.java",
+      "line": 41,
+      "return_type": "byte[][]",
+      "method": "call_utf8",
+      "parameters": "byte[] jsonUtf8, Buffer buffer"
+    },
+    {
+      "path": "server/src/main/java/org/tachiyomi/NativeString.java",
+      "line": 11,
+      "return_type": "int",
+      "method": "indexOf",
+      "parameters": "String a, String b"
+    }
+  ],
+  "cloud_imports": [
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/CategoryTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.CategoryDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/ChapterTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.ChapterDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/ExtensionTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.ExtensionDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/HistoryTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.HistoryDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/MangaTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.MangaDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/RepoTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.RepoDTO"
+      ]
+    },
+    {
+      "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/model/table/TrackRecordTable.kt",
+      "imports": [
+        "app.tachimanga.cloud.enums.DataType",
+        "app.tachimanga.cloud.model.dto.SyncCommitDTO",
+        "app.tachimanga.cloud.model.dto.manga.TrackRecordDTO"
+      ]
+    }
+  ],
+  "tracked_jar_files": [
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "bytes": 60756,
+      "sha256": "91a239400bb638f36a1795d8fdf7939d532cdc7d794d1119b7261aac158b1e60"
+    },
+    {
+      "path": "libs/android.jar",
+      "bytes": 2972502,
+      "sha256": "ae7e68cb080cf8f6c50a31276fbc8e1c836be133ea5ef4233c6dd197724753a6"
+    },
+    {
+      "path": "libs/cloud-api-1.0.0.jar",
+      "bytes": 42429,
+      "sha256": "469414a1982509f0db0763115328f78b0c07083b7a6e0d8732329ab663b67a6f"
+    },
+    {
+      "path": "libs/sqlite-jdbc-ios-3.41.0.0.jar",
+      "bytes": 221028,
+      "sha256": "d55bd9de97005299583e2b9b00346f08bb153bfc62281c78a907b17a71771c12"
+    }
+  ]
+}
