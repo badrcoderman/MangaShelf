@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: libffi/libffi
-          ref: 3d0ce1e6fcf19f853894862abcbac0ae78a7be60
+          ref: 12ffd1f9dc56fcea79d2f742f424301ae668d663
           path: runtime-src/libffi
           persist-credentials: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
