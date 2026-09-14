@@ -1,0 +1,62 @@
+name: Build experimental iOS JVM
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  runtime:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: openjdk/mobile
+          ref: c1ed06aaef34c8dccf71e236d1ffa20918a77cfb
+          path: runtime-src/mobile
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: libffi/libffi
+          ref: 3d0ce1e6fcf19f853894862abcbac0ae78a7be60
+          path: runtime-src/libffi
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: OpenPrinting/cups
+          ref: 2e5573560cfa2da65002f86b41bd1770c9853c4d
+          path: runtime-src/cups
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '26'
+      - name: Select iOS 26 toolchain
+        run: |
+          for APP in /Applications/Xcode*.app; do
+            DEV="$APP/Contents/Developer"
+            SDK=$(DEVELOPER_DIR="$DEV" xcrun --sdk iphoneos --show-sdk-version 2>/dev/null) || continue
+            if [ "${SDK%%.*}" -ge 26 ]; then
+              echo "DEVELOPER_DIR=$DEV" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          echo '::error::iOS 26 SDK missing'
+          exit 1
+      - name: Install build tools
+        run: brew install autoconf automake libtool texinfo
+      - name: Build iOS Zero runtime
+        run: bash scripts/build-ios-jvm.sh
+      - name: Preserve build evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ios-jvm-build
+          path: |
+            build/ios-jvm/
+            runtime-src/mobile/build/*/configure.log
+            runtime-src/mobile/build/*/make-support/failure-summary
+          if-no-files-found: warn
+          retention-days: 14
