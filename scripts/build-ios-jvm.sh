@@ -20,6 +20,7 @@ clang="$(xcrun --sdk iphoneos --find clang)"
   make -j3
   make install
 ) 2>&1 | tee "$out/logs/libffi.log"
+python3 scripts/verify_ios_archive.py "$out/ffi/lib/libffi.a" > "$out/logs/libffi-platform.json"
 (
   cd "$mobile"
   bash configure --with-conf-name=mangashelf-ios-zero \
@@ -32,6 +33,7 @@ clang="$(xcrun --sdk iphoneos --find clang)"
 ) 2>&1 | tee "$out/logs/openjdk.log"
 archive="$mobile/build/mangashelf-ios-zero/images/static-libs/lib/zero/libjvm.a"
 test -s "$archive"
+python3 scripts/verify_ios_archive.py "$archive" > "$out/logs/jvm-platform.json"
 xcrun lipo -info "$archive" | tee "$out/logs/architecture.txt"
 xcrun nm -g "$archive" > "$out/logs/symbols.txt"
 # Keep source-built outputs separate from the application until execution is verified.
