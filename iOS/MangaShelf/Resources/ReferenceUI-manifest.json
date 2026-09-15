@@ -1,0 +1,277 @@
+[
+  {
+    "path": "ReferenceUI/AppIcon60x60@2x.png",
+    "source": "AppIcon60x60@2x.png",
+    "sha256": "ad29da84ba6dc3b24fff77763b153f4fa4955f9fec231f993e02bf1d76257005"
+  },
+  {
+    "path": "ReferenceUI/AppIcon76x76@2x~ipad.png",
+    "source": "AppIcon76x76@2x~ipad.png",
+    "sha256": "bf2b3759ca599021b67f5d93019668eface0798010a4afb815bc4edde91383ae"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/success-black@2x.png",
+    "source": "SVProgressHUD.bundle/success-black@2x.png",
+    "sha256": "b0fde46e2f336ee7e1bf041c2cbb9d4902fb74fc837fff299c18f8ac5460dc80"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/error-black@2x.png",
+    "source": "SVProgressHUD.bundle/error-black@2x.png",
+    "sha256": "2f01868d885727239a1323d7011aabdde28fc18e30e340d258efed40580b45a5"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/error-black.png",
+    "source": "SVProgressHUD.bundle/error-black.png",
+    "sha256": "df5d7223069042fa7fdca5c0a955941df198f97dd49e5891dac2e3cc4f129a44"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/success.png",
+    "source": "SVProgressHUD.bundle/success.png",
+    "sha256": "ca73293df59e81d911b82401b7dc76d6e2ef0e39c09072551fb903398330002b"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/error.png",
+    "source": "SVProgressHUD.bundle/error.png",
+    "sha256": "048c80a9a1e33522e56e0ee76ea8d5ed0b708b8795d79b472f4e14bf70cb9703"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/success@2x.png",
+    "source": "SVProgressHUD.bundle/success@2x.png",
+    "sha256": "340549b187011bf96504bad5dabde3699d2914549ff6064ff2e17ed5b870ce60"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/success-black.png",
+    "source": "SVProgressHUD.bundle/success-black.png",
+    "sha256": "96c97b57ed7330f1ce22f87986978f2004b67bf9f3b80773a335d9c3e070d37b"
+  },
+  {
+    "path": "ReferenceUI/SVProgressHUD.bundle/error@2x.png",
+    "source": "SVProgressHUD.bundle/error@2x.png",
+    "sha256": "fd2cbc446f7a2fd89ce5816d5a8a6ffed3621aae562bf472cafa4b2926b23524"
+  },
+  {
+    "path": "icomoon.ttf",
+    "source": "Frameworks/App.framework/flutter_assets/fonts/icomoon.ttf",
+    "sha256": "17cf3d63edbe81d716f97b110f9659555f81ea6db8b05c02c68c610da0737f5f"
+  },
+  {
+    "path": "MaterialIcons-Regular.otf",
+    "source": "Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf",
+    "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453"
+  },
+  {
+    "path": "CupertinoIcons.ttf",
+    "source": "Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf",
+    "sha256": "67c44fe9183b002e79dde7f6977e2988661c9a3e4a3c5fce968787efdbed823c"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png",
+    "sha256": "5017e6327655fd2cc1625c0a8f3897fc74234df9306c67eed57b39d6d4c5b9de"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png",
+    "sha256": "885b2be7cbb6db8208c4be52d9901079343fcf406a44d599ea28c206558d6842"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png",
+    "sha256": "951b5933e63d05968188c6540e13dcb69b7af9c202ce473252ca24539603698f"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png",
+    "sha256": "e0c7d610dabe206452f6359c78b56d26364ad0b4701679f243573e0694a9b461"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png",
+    "sha256": "b71a9e962a59042693848ba1be50dda6ea5f5079d06b5bc181f999db0fbaa8b5"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png",
+    "sha256": "4d356185d8a1f2ced1bf2663a21e445126a71b410981c9dfbbaa6571a7ddaaff"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png",
+    "sha256": "e75fb6f8ee15f1fcde394e6265a4f3835c91e0e881da280a14f9cafe31e9613b"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png",
+    "sha256": "80ebdef093d0ed4ef8be3a72ea1d8c63d42f8124b1b40fc8f0fc8f8c8ae06257"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png",
+    "sha256": "fc0eeb673b1bae616bde16938770c8cf8dd386757a322479501dbdb3bd9c3193"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png",
+    "sha256": "d0d3ab0d387e23899126722018061f40b0ea7c0362c836dc72ec8afc0878650d"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png",
+    "sha256": "26c6a7406e619632a826ba74385d9ec3495d6579368758faeb95d56550309b2e"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png",
+    "sha256": "e089c6fd2829154cfddabe6466d49fddb3f38d7607a738d9fa1282805c0ee0c4"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png",
+    "sha256": "e458eb4f0af97c38d8d9e2b847b7daf1a10921beaeb96cea70d62b26b4fd8345"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png",
+    "sha256": "81f2916fd2f5e016468aca859c06acb3cc294a57a549d2956f4ea621ab85c33b"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png",
+    "sha256": "0c632af9fe7025d0f17feb6b0755edcb2b3102df5b21275995a3c7254b2649f4"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png",
+    "sha256": "c5cf080b3ff5e30402aca03bb4c9cfbd14addf7d801c9af65a3083c60cedb8a7"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png",
+    "sha256": "c761871179e19405de41527da7bd62a48de5f8a1bf894bd53ddb181ad73ce6e4"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png",
+    "sha256": "04b7d1533adf2077e2780649e5f66ac8fb35a2ed8df1183a861fe3921d7276da"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png",
+    "sha256": "110490d955ff684ed0cfe224911beb245df480afb7007ef3b8d2009ffea3755c"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png",
+    "sha256": "93a93527e35a852d7d1a8d1f5630f25526ebbed20d8067bce2eae4dbb2c9d5a2"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png",
+    "sha256": "554e86d851629bd51e46da0def1eedf4e977b41c985294271ed52b22fc64ca52"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png",
+    "sha256": "a1de8d8515df9bd1967d5335501615817823c0f3e221a070b6443f111cf1b3e9"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png",
+    "sha256": "99f319ddd24e588d6d69744923c5577014872f9b471ac63bc993e037322c2754"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png",
+    "sha256": "fa8b11a84e0b5b172bde677fd0ea183b9e845ac163fb010011b0949409cfc3f0"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png",
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png",
+    "sha256": "99a13ee26c70c62bceadfe4bb17e7abea514a8d811bd0e4d10c14b10d5f8a743"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png",
+    "sha256": "90707b5633aaf0ed8d5c99b06a94daccc389bc3b13a31771c174b634d9ece9a5"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png",
+    "sha256": "938e57ee0ee7a81604a297a2b7603cf4c481449c1bd965b3aa1695ce400994ff"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png",
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png",
+    "sha256": "4853aa17aa2cccc21507ad1abbb6fbdc17a1179ed3361b987a7bc77bc1876e70"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png",
+    "sha256": "46595653f3e4a466a8fed8f124d3577cc88f0445f496fc0691b04183fed15e31"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png",
+    "sha256": "38512852c57239494e17ce95cb583472b6d586f472f0adfcd19e6a081f73aca5"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png",
+    "sha256": "d33a24949f98d6496ff73d54b997064315fe456a9663a82f951109e7658955f2"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png",
+    "sha256": "c0b0eab4652656a086a0787c1197be8ad1ed4b57ffd1e326e6fa30501dc9ab32"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png",
+    "sha256": "90a229c10af7186af07488cdfbfcde7972413416db50acca049aa8d1aadfde2a"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png",
+    "sha256": "cb511dcb57fc37a9def4a89701264db50fa2666e578883ef692cc04674d29c72"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png",
+    "sha256": "c95e2a42ef0d62b11e8538783a90db8f178eb274ca255801ffedcfd7504c5ea4"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png",
+    "sha256": "8d1df7f03ea9dbc2b7ef00a992afafc97ab739926a62a6c9b3a561cc68265b8e"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png",
+    "sha256": "e895ad56da6485b2b3603c22773e6a8a72633b03255d4edf8abe31bbfb2080be"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png",
+    "sha256": "34e5ce9c98dad4f8ad3bb2324dc15de76c5cccbb6d5bc1cea6b4b9dedd956efa"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png",
+    "sha256": "440221c0f9639c63dd2da3cd3b11e07f4b2b89550600e53a74d9b97eb1d86297"
+  },
+  {
+    "path": "ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png",
+    "source": "Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png",
+    "sha256": "484be715616b6b9997f2406065fdc0b13b1a03a167de58bb27388d7b66a192bd"
+  }
+]

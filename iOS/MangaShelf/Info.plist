@@ -26,6 +26,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MaterialIcons-Regular.otf</string>
+		<string>icomoon.ttf</string>
+		<string>CupertinoIcons.ttf</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

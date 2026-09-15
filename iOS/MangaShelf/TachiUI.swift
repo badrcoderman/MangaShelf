@@ -83,23 +83,32 @@ struct TachiIcon: View {
     var size: CGFloat = 22
     var body: some View {
         Group {
-            if let glyph = TachiGlyph.matching(symbol), let scalar = UnicodeScalar(glyph.rawValue) {
+            if let code = TachiCustomGlyph.matching(symbol), let scalar = UnicodeScalar(code) {
+                Text(verbatim: String(scalar)).font(.custom("icomoon", fixedSize: size))
+            } else if let glyph = TachiGlyph.matching(symbol), let scalar = UnicodeScalar(glyph.rawValue) {
                 Text(verbatim: String(scalar)).font(.custom("MaterialIcons-Regular", fixedSize: size))
             } else { Image(systemName: symbol).font(.system(size: size, weight: .regular)) }
         }.frame(width: size, height: size).accessibilityHidden(true)
     }
 }
 
+/// Glyphs identified by visual comparison with the extracted IcoMoon atlas.
+enum TachiCustomGlyph {
+    static func matching(_ symbol: String) -> UInt32? {
+        switch symbol {
+        case "line.3.horizontal.decrease": return 0xE914
+        case "pencil": return 0xE90F
+        case "square.and.arrow.up": return 0xE916
+        case "eye.slash", "eyeglasses": return 0xE90E
+        case "crop": return 0xE904
+        default: return nil
+        }
+    }
+}
+
 struct ShelfBooksIcon: View {
-    @Environment(\.locale) private var interfaceLocale
     var body: some View {
-        HStack(alignment: .bottom, spacing: 2) {
-            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 23)
-            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 19)
-                .overlay(alignment: .top) { Rectangle().fill(ShelfStyle.background).frame(width: 3, height: 1).padding(.top, 3) }
-            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 27)
-            RoundedRectangle(cornerRadius: 1).frame(width: 4, height: 24).rotationEffect(.degrees(-7), anchor: .bottom)
-        }.frame(width: 27, height: 27).environment(\.layoutDirection, .leftToRight).accessibilityHidden(true)
+        TachiIcon(symbol: "books.vertical.fill", size: 27)
     }
 }
 

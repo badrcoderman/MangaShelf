@@ -17,6 +17,7 @@ private struct ShelfOverflowModifier: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @AccessibilityFocusState private var menuFocused: Bool
+    @State private var contentHeight: CGFloat = 0
 
     private func dismiss() { isPresented = false }
 
@@ -56,11 +57,16 @@ private struct ShelfOverflowModifier: ViewModifier {
                                         .opacity(action.enabled ? 1 : 0.4)
                                     }
                                 }
+                                .onGeometryChange(for: CGFloat.self) { proxy in
+                                    proxy.size.height
+                                } action: { height in
+                                    contentHeight = height
+                                }
                             }
                             .scrollBounceBehavior(.basedOnSize)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(width: min(296, max(0, geometry.size.width - 24)))
-                            .frame(maxHeight: max(0, geometry.size.height - 72))
+                            .frame(width: min(296, max(0, geometry.size.width - 24)),
+                                   height: min(contentHeight > 0 ? contentHeight : CGFloat(actions.count) * 56,
+                                               max(0, geometry.size.height - 72)))
                             .foregroundStyle(ShelfStyle.text)
                             .background {
                                 if reduceTransparency {

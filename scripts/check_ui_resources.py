@@ -62,7 +62,9 @@ check('MaterialIcons-Regular' in ps,'Incorrect font PostScript name')
 info=plistlib.loads((APP/'Info.plist').read_bytes())
 check(info.get('CFBundleDevelopmentRegion')=='en','English must be the default')
 check(set(info.get('CFBundleLocalizations',[]))=={'en','ar'},'Declare both locales')
-check(info.get('UIAppFonts')==['MaterialIcons-Regular.otf'],'Register icon font')
+check(set(info.get('UIAppFonts', [])) == {'MaterialIcons-Regular.otf', 'icomoon.ttf', 'CupertinoIcons.ttf'}, 'Register all bundled icon fonts')
+for name in info.get('UIAppFonts', []):
+    check((RES/name).is_file(), 'Missing registered font: '+name)
 project=(ROOT/'iOS/MangaShelf.xcodeproj/project.pbxproj').read_text()
 for resource in ('en.lproj','ar.lproj','MaterialIcons-Regular.otf','MaterialIcons-LICENSE.txt'):
     check('MangaShelf/Resources/'+resource in project,'Missing Xcode resource: '+resource)

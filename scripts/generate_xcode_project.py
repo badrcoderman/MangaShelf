@@ -27,7 +27,7 @@ plist=add("plist","PBXFileReference",lastKnownFileType="text.plist.xml",path="Ma
 file_refs.extend([privacy,plist])
 resource_builds=[]
 for path in sorted((ROOT/"iOS/MangaShelf/Resources").iterdir()):
-    kind = "folder" if path.suffix == ".lproj" else "file"
+    kind = "folder" if path.is_dir() else "file"
     ref=add("resource:"+path.name,"PBXFileReference",lastKnownFileType=kind,
             path="MangaShelf/Resources/"+path.name,sourceTree="<group>")
     file_refs.append(ref)
