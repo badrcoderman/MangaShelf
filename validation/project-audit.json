@@ -1,7 +1,7 @@
 {
   "scope": "provenance/build-structure only, not malware detection or Swift compilation",
   "prebuilt_app_payloads": 0,
-  "files": 78,
+  "files": 150,
   "failures": [],
   "swift_compilation": "NOT RUN",
   "ios_runtime": "NOT RUN",

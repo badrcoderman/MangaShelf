@@ -47,7 +47,7 @@ struct SettingsView: View {
                 row(L10n.string("About"), "info.circle") { AboutView() }
                 if developerEnabled { row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() } }
             }.padding(.top, 4)
-        }.shelfRoot(L10n.string("More"), filled: true, left: { EmptyView() }, right: { EmptyView() })
+        }.shelfRoot(L10n.string("More"), filled: false, left: { EmptyView() }, right: { EmptyView() })
     }
 }
 

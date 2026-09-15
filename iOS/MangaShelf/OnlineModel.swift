@@ -68,8 +68,10 @@ extension SecureHTTP: SourceTransport {
     }
     func imageData(chapter: MangaChapter, pages: ChapterPages, index: Int) async throws -> Data {
         let store = try requireStore()
+        guard pages.chapterID == chapter.id, pages.urls.indices.contains(index) else {
+            throw ReaderFailure(L10n.string("The page does not exist."))
+        }
         if let data = try await store.cachedImage(chapterID: chapter.id, index: index) { return data }
-        guard pages.urls.indices.contains(index) else { throw ReaderFailure(L10n.string("The page does not exist.")) }
         let bytes: Data
         do { bytes = try await SecureHTTP().get(pages.urls[index]) }
         catch is CancellationError { throw CancellationError() }
@@ -139,8 +141,19 @@ extension SecureHTTP: SourceTransport {
                 DiagnosticsCenter.shared.record(L10n.string("Downloads"), L10n.format("Chapter saved: %@ pages", String(describing: total)))
             } catch {
                 let paused = Task.isCancelled || error is CancellationError
-                await mutate { try await $0.updateDownload(id: job.id, phase: paused ? .paused : .failed,
-                    finished: finished, total: total, failure: paused ? nil : AppError.describe(error)) }
+                let downloadFailure = error
+                do {
+                    let store = try requireStore()
+                    try await store.updateDownload(id: job.id, phase: paused ? .paused : .failed,
+                        finished: finished, total: total, failure: paused ? nil : AppError.describe(downloadFailure))
+                    state = await store.snapshot()
+                } catch {
+                    // If persistence fails, the snapshot can still contain this queued job.
+                    // Stop instead of selecting it repeatedly (e.g. disk full).
+                    errorMessage = AppError.describe(error)
+                    DiagnosticsCenter.shared.recordFailure(L10n.string("Downloads"), error)
+                    break
+                }
                 if paused { break }
             }
         }

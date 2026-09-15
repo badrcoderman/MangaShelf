@@ -1,8 +1,18 @@
 [
   {
+    "path": ".github/workflows/backend-probe.yml",
+    "bytes": 1220,
+    "sha256": "7b2ac47dab88b3133fcd89e20a72e9eb5e23a89c25d5c6c395036f02a3443adf"
+  },
+  {
+    "path": ".github/workflows/ios-jvm.yml",
+    "bytes": 2236,
+    "sha256": "307418b5df6c923d1db9c36959c625bf2b7a3f7fd7b3dd6b2a9ef9d158c86001"
+  },
+  {
     "path": ".github/workflows/ios.yml",
-    "bytes": 973,
-    "sha256": "aa608ae6c32272ddbf24c1003ef129a3455c61e1eac22b6de29a784133c8d681"
+    "bytes": 1600,
+    "sha256": "43e84c90c6426f4c23b27bf005f71503ff51d3f5be07ccd397566b8ad30390c8"
   },
   {
     "path": ".gitignore",
@@ -48,6 +58,11 @@
     "path": "Sources/ReaderCore/MangaDexSource.swift",
     "bytes": 8714,
     "sha256": "0afc16b8d61e9351e0e5644629820a8905893a85748c1a9b11f707ec9aa7af22"
+  },
+  {
+    "path": "Sources/ReaderCore/NativeNetworkContract.swift",
+    "bytes": 3319,
+    "sha256": "9ff597eac475a7bf231a1caca2c9912be1fce5b91d533b622b1152f7d1d62220"
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
@@ -110,6 +125,11 @@
     "sha256": "2cb55a3f2a0eba4036b7af64b47da42b709deafd60e0421e71c1f7d993245cc8"
   },
   {
+    "path": "Tests/ReaderCoreTests/NativeNetworkContractTests.swift",
+    "bytes": 2213,
+    "sha256": "fd8fae3d0b1a6d3ee14f672702e03525cecfabe75dc4db69bb968a07edecc405"
+  },
+  {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
     "bytes": 9657,
     "sha256": "fc48475ccfcd70f30ed2ecd3bea616c401b8a6974457dda08001be7d13da36a9"
@@ -140,14 +160,24 @@
     "sha256": "a6d38f9bf4fec189c8c064cf60b04a1c0b53d10a9dc889a793847082b8ce59f8"
   },
   {
+    "path": "docs/JAR-BACKEND-BUILD.json",
+    "bytes": 2426,
+    "sha256": "a426a682ca711e1e678e45469e27ba8d191301444c1f296c5ec6ecb999cfd5a7"
+  },
+  {
+    "path": "docs/JAR-BACKEND-INVENTORY.json",
+    "bytes": 14074,
+    "sha256": "9cfc2aabb1b12f558748f7f8bfe9fc6e56f7716b621705e8fd922f83fef962b8"
+  },
+  {
     "path": "docs/PHASE-1-UI-AR.md",
     "bytes": 4742,
     "sha256": "3b2e8054388f4e0b139aced7b9171604f953a8f3b5333dc1a531a52e25e15969"
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 3074,
-    "sha256": "521527d2cad2bcd4766c2a8a16841f6b23fc04552f528afaa0844189ba0d599c"
+    "bytes": 7681,
+    "sha256": "e5d9a9b8690a0ad7cc82b2b68587e6dfe15fe24d7dbdf628c9f19415ee9768b2"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -165,6 +195,21 @@
     "sha256": "d897a86435d9f9e676d10bb4ffddda463871af40a826fcc8415c551d32b097b5"
   },
   {
+    "path": "docs/RUNTIME-PROBE-HOST.json",
+    "bytes": 246,
+    "sha256": "bf1bfcf7bed5d178dc2385864c7989345ff1eb64514da6936760c1cab65fe2ab"
+  },
+  {
+    "path": "docs/RUNTIME-REFERENCE-AR.md",
+    "bytes": 4499,
+    "sha256": "4e9c44529c83e2f810233f89f46ce5fec885e9c017ecf20e0972ab28afc30684"
+  },
+  {
+    "path": "docs/RUNTIME-REFERENCE.json",
+    "bytes": 16431,
+    "sha256": "c9eade6ee36a37e8c62af416b0ca7793cc951c1ba41c15294238edf166e5bda9"
+  },
+  {
     "path": "docs/STATUS-AR.md",
     "bytes": 3124,
     "sha256": "2b1d28c8d5832ae8607074e668df3d1ec90fbcb9a6c6c18e5c0b9bd51fe62986"
@@ -178,6 +223,11 @@
     "path": "docs/UPSTREAM-SOURCES.json",
     "bytes": 3232,
     "sha256": "28e2a989bc3510e7272b563379ba91e8f45c222b6de02b8cf93dc8b193c28210"
+  },
+  {
+    "path": "docs/ui-reference-integration.md",
+    "bytes": 1311,
+    "sha256": "d1dd43fb69d5199eeec970b57c073d2282233204410cc44a71c2dec24f68aaa6"
   },
   {
     "path": "iOS/MangaShelf/AppModel.swift",
@@ -206,8 +256,8 @@
   },
   {
     "path": "iOS/MangaShelf/Info.plist",
-    "bytes": 2065,
-    "sha256": "f8cc4f80e1ae3f882b058402eb20639bdecad41b42fd5bedc28ac478446cd097"
+    "bytes": 2134,
+    "sha256": "a5be7dd834f31f20f62c2f5487561a063939261918dd7bf9dc3077fa4a73ceab"
   },
   {
     "path": "iOS/MangaShelf/InterfacePreferences.swift",
@@ -241,8 +291,8 @@
   },
   {
     "path": "iOS/MangaShelf/OnlineModel.swift",
-    "bytes": 10399,
-    "sha256": "e8eb9cbaa650056967f05218758558c860d88ffbbf292a66de3cf5d715588bc8"
+    "bytes": 11017,
+    "sha256": "78e52f5de01654bb6d379d055afb4b792f05bd18aeedeedb62074734f8c2d07a"
   },
   {
     "path": "iOS/MangaShelf/OnlineReaderView.swift",
@@ -260,6 +310,11 @@
     "sha256": "f13bcaf0d7dede6358d00fb36268579b3cdff2037e4f3e34f30c7d82496ccbba"
   },
   {
+    "path": "iOS/MangaShelf/Resources/CupertinoIcons.ttf",
+    "bytes": 257628,
+    "sha256": "67c44fe9183b002e79dde7f6977e2988661c9a3e4a3c5fce968787efdbed823c"
+  },
+  {
     "path": "iOS/MangaShelf/Resources/MaterialIcons-LICENSE.txt",
     "bytes": 10285,
     "sha256": "a0bb7aefef5d928e670ab2fbe27cd098bd7acd8738a65acd3dbf61497390ab60"
@@ -268,6 +323,271 @@
     "path": "iOS/MangaShelf/Resources/MaterialIcons-Regular.otf",
     "bytes": 1645184,
     "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/AppIcon60x60@2x.png",
+    "bytes": 5442,
+    "sha256": "ad29da84ba6dc3b24fff77763b153f4fa4955f9fec231f993e02bf1d76257005"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/AppIcon76x76@2x~ipad.png",
+    "bytes": 7131,
+    "sha256": "bf2b3759ca599021b67f5d93019668eface0798010a4afb815bc4edde91383ae"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png",
+    "bytes": 16938,
+    "sha256": "99a13ee26c70c62bceadfe4bb17e7abea514a8d811bd0e4d10c14b10d5f8a743"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png",
+    "bytes": 25334,
+    "sha256": "4853aa17aa2cccc21507ad1abbb6fbdc17a1179ed3361b987a7bc77bc1876e70"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png",
+    "bytes": 21452,
+    "sha256": "e458eb4f0af97c38d8d9e2b847b7daf1a10921beaeb96cea70d62b26b4fd8345"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png",
+    "bytes": 6856,
+    "sha256": "b71a9e962a59042693848ba1be50dda6ea5f5079d06b5bc181f999db0fbaa8b5"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png",
+    "bytes": 34874,
+    "sha256": "554e86d851629bd51e46da0def1eedf4e977b41c985294271ed52b22fc64ca52"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png",
+    "bytes": 10591,
+    "sha256": "d0d3ab0d387e23899126722018061f40b0ea7c0362c836dc72ec8afc0878650d"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png",
+    "bytes": 7190,
+    "sha256": "a1de8d8515df9bd1967d5335501615817823c0f3e221a070b6443f111cf1b3e9"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png",
+    "bytes": 25977,
+    "sha256": "c761871179e19405de41527da7bd62a48de5f8a1bf894bd53ddb181ad73ce6e4"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png",
+    "bytes": 6331,
+    "sha256": "938e57ee0ee7a81604a297a2b7603cf4c481449c1bd965b3aa1695ce400994ff"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png",
+    "bytes": 6921,
+    "sha256": "80ebdef093d0ed4ef8be3a72ea1d8c63d42f8124b1b40fc8f0fc8f8c8ae06257"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png",
+    "bytes": 32855,
+    "sha256": "951b5933e63d05968188c6540e13dcb69b7af9c202ce473252ca24539603698f"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png",
+    "bytes": 10678,
+    "sha256": "e0c7d610dabe206452f6359c78b56d26364ad0b4701679f243573e0694a9b461"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png",
+    "bytes": 9494,
+    "sha256": "38512852c57239494e17ce95cb583472b6d586f472f0adfcd19e6a081f73aca5"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png",
+    "bytes": 20932,
+    "sha256": "0c632af9fe7025d0f17feb6b0755edcb2b3102df5b21275995a3c7254b2649f4"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png",
+    "bytes": 19597,
+    "sha256": "81f2916fd2f5e016468aca859c06acb3cc294a57a549d2956f4ea621ab85c33b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png",
+    "bytes": 32553,
+    "sha256": "fa8b11a84e0b5b172bde677fd0ea183b9e845ac163fb010011b0949409cfc3f0"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png",
+    "bytes": 24528,
+    "sha256": "885b2be7cbb6db8208c4be52d9901079343fcf406a44d599ea28c206558d6842"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png",
+    "bytes": 6147,
+    "sha256": "93a93527e35a852d7d1a8d1f5630f25526ebbed20d8067bce2eae4dbb2c9d5a2"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png",
+    "bytes": 7224,
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png",
+    "bytes": 5229,
+    "sha256": "04b7d1533adf2077e2780649e5f66ac8fb35a2ed8df1183a861fe3921d7276da"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png",
+    "bytes": 7224,
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png",
+    "bytes": 4936,
+    "sha256": "c5cf080b3ff5e30402aca03bb4c9cfbd14addf7d801c9af65a3083c60cedb8a7"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png",
+    "bytes": 6884,
+    "sha256": "90707b5633aaf0ed8d5c99b06a94daccc389bc3b13a31771c174b634d9ece9a5"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png",
+    "bytes": 7366,
+    "sha256": "99f319ddd24e588d6d69744923c5577014872f9b471ac63bc993e037322c2754"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png",
+    "bytes": 25548,
+    "sha256": "e089c6fd2829154cfddabe6466d49fddb3f38d7607a738d9fa1282805c0ee0c4"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png",
+    "bytes": 25599,
+    "sha256": "fc0eeb673b1bae616bde16938770c8cf8dd386757a322479501dbdb3bd9c3193"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png",
+    "bytes": 23082,
+    "sha256": "110490d955ff684ed0cfe224911beb245df480afb7007ef3b8d2009ffea3755c"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png",
+    "bytes": 22427,
+    "sha256": "4d356185d8a1f2ced1bf2663a21e445126a71b410981c9dfbbaa6571a7ddaaff"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png",
+    "bytes": 5473,
+    "sha256": "5017e6327655fd2cc1625c0a8f3897fc74234df9306c67eed57b39d6d4c5b9de"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png",
+    "bytes": 7229,
+    "sha256": "26c6a7406e619632a826ba74385d9ec3495d6579368758faeb95d56550309b2e"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png",
+    "bytes": 7856,
+    "sha256": "c0b0eab4652656a086a0787c1197be8ad1ed4b57ffd1e326e6fa30501dc9ab32"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png",
+    "bytes": 16910,
+    "sha256": "46595653f3e4a466a8fed8f124d3577cc88f0445f496fc0691b04183fed15e31"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png",
+    "bytes": 16850,
+    "sha256": "d33a24949f98d6496ff73d54b997064315fe456a9663a82f951109e7658955f2"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png",
+    "bytes": 9255,
+    "sha256": "e75fb6f8ee15f1fcde394e6265a4f3835c91e0e881da280a14f9cafe31e9613b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png",
+    "bytes": 2640,
+    "sha256": "e895ad56da6485b2b3603c22773e6a8a72633b03255d4edf8abe31bbfb2080be"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png",
+    "bytes": 3350,
+    "sha256": "440221c0f9639c63dd2da3cd3b11e07f4b2b89550600e53a74d9b97eb1d86297"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png",
+    "bytes": 10794,
+    "sha256": "90a229c10af7186af07488cdfbfcde7972413416db50acca049aa8d1aadfde2a"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png",
+    "bytes": 24835,
+    "sha256": "484be715616b6b9997f2406065fdc0b13b1a03a167de58bb27388d7b66a192bd"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png",
+    "bytes": 26691,
+    "sha256": "cb511dcb57fc37a9def4a89701264db50fa2666e578883ef692cc04674d29c72"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png",
+    "bytes": 20183,
+    "sha256": "34e5ce9c98dad4f8ad3bb2324dc15de76c5cccbb6d5bc1cea6b4b9dedd956efa"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png",
+    "bytes": 5572,
+    "sha256": "c95e2a42ef0d62b11e8538783a90db8f178eb274ca255801ffedcfd7504c5ea4"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png",
+    "bytes": 8060,
+    "sha256": "8d1df7f03ea9dbc2b7ef00a992afafc97ab739926a62a6c9b3a561cc68265b8e"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/error-black.png",
+    "bytes": 1544,
+    "sha256": "df5d7223069042fa7fdca5c0a955941df198f97dd49e5891dac2e3cc4f129a44"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/error-black@2x.png",
+    "bytes": 2001,
+    "sha256": "2f01868d885727239a1323d7011aabdde28fc18e30e340d258efed40580b45a5"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/error.png",
+    "bytes": 371,
+    "sha256": "048c80a9a1e33522e56e0ee76ea8d5ed0b708b8795d79b472f4e14bf70cb9703"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/error@2x.png",
+    "bytes": 739,
+    "sha256": "fd2cbc446f7a2fd89ce5816d5a8a6ffed3621aae562bf472cafa4b2926b23524"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/success-black.png",
+    "bytes": 1718,
+    "sha256": "96c97b57ed7330f1ce22f87986978f2004b67bf9f3b80773a335d9c3e070d37b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/success-black@2x.png",
+    "bytes": 2193,
+    "sha256": "b0fde46e2f336ee7e1bf041c2cbb9d4902fb74fc837fff299c18f8ac5460dc80"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/success.png",
+    "bytes": 508,
+    "sha256": "ca73293df59e81d911b82401b7dc76d6e2ef0e39c09072551fb903398330002b"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI/SVProgressHUD.bundle/success@2x.png",
+    "bytes": 872,
+    "sha256": "340549b187011bf96504bad5dabde3699d2914549ff6064ff2e17ed5b870ce60"
+  },
+  {
+    "path": "iOS/MangaShelf/Resources/ReferenceUI-manifest.json",
+    "bytes": 14250,
+    "sha256": "dd9a9665d0d23106159628e457ff14d1db60feec91325e90300f8752664a0e04"
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
@@ -280,9 +600,14 @@
     "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
   },
   {
+    "path": "iOS/MangaShelf/Resources/icomoon.ttf",
+    "bytes": 6344,
+    "sha256": "17cf3d63edbe81d716f97b110f9659555f81ea6db8b05c02c68c610da0737f5f"
+  },
+  {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 11623,
-    "sha256": "0b432ca444406c89ce89ba9ea65e31c279bbca263d48e3bc3fbd516aaef54934"
+    "bytes": 11624,
+    "sha256": "8ffc65ee664e3c9e3321c82d75ec9c9470a3a412ab77097b13b60810040198b8"
   },
   {
     "path": "iOS/MangaShelf/ShelfDetailHero.swift",
@@ -291,8 +616,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfOverflow.swift",
-    "bytes": 4886,
-    "sha256": "87460cf1aabf354b14679a27c7bd0a3a2cb0c280d5c1c72cb21adfb5949d22fb"
+    "bytes": 5257,
+    "sha256": "67b6493aeb29282100819c58c92bdf0a4d148eb3a420f75930df7b8a70499a92"
   },
   {
     "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
@@ -316,8 +641,8 @@
   },
   {
     "path": "iOS/MangaShelf/TachiUI.swift",
-    "bytes": 14526,
-    "sha256": "d6641854c3dc37cc11922c68e8883585d9a1317f3b1f07c55d41061389ed552b"
+    "bytes": 14552,
+    "sha256": "7ac049aff4ed4df2835f4eb14a0540f61e4e6654cb4524694d43dedba3f64089"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
@@ -326,8 +651,8 @@
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/project.pbxproj",
-    "bytes": 15473,
-    "sha256": "ddd8629f72ec152335c51d2ad4def585d33cd3cc359ee99b6edc449c7bd28e46"
+    "bytes": 16868,
+    "sha256": "f0db866088c7e9fc865063d29325f14f12382e9e174a2f754f63607811960363"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/xcshareddata/xcschemes/MangaShelf.xcscheme",
@@ -335,9 +660,24 @@
     "sha256": "ed569dc179be2d8522c00abec7def3e60d4bd0f9d210f5fd121466e531aab492"
   },
   {
+    "path": "runtime-probe/plugin/probe/SourceProbe.java",
+    "bytes": 232,
+    "sha256": "8c483b5bbf236b79bf25e2bf1e17ce9c922b5dee3425a7dd207ab640c21e86c4"
+  },
+  {
+    "path": "runtime-probe/src/mangashelf/probe/RuntimeProbe.java",
+    "bytes": 2956,
+    "sha256": "3091ad7c071b9f20fe44a04eb8da172423f7467195609c0627fdff3c70080c9a"
+  },
+  {
     "path": "scripts/audit_project.py",
     "bytes": 3341,
     "sha256": "5e96f9257e25aaa5a685d48b0379ce62ab34cc27bb935caa38749b642f5852c8"
+  },
+  {
+    "path": "scripts/build-ios-jvm.sh",
+    "bytes": 1930,
+    "sha256": "4b9e9e88881d65ba515a723fee394140d7ea8c60ae5cf367a6d44c8536a41321"
   },
   {
     "path": "scripts/build-ios.sh",
@@ -346,8 +686,8 @@
   },
   {
     "path": "scripts/check_ui_resources.py",
-    "bytes": 4544,
-    "sha256": "a7d179cfb0fd7e6cd606f683f69376acb83eeed33e4d4aba1527643c6a168f61"
+    "bytes": 4712,
+    "sha256": "578b8898ee076f5d1b991e4750f3e2bcfa834058606ccd1cada5b491d59cf551"
   },
   {
     "path": "scripts/fuzz_native.c",
@@ -356,8 +696,18 @@
   },
   {
     "path": "scripts/generate_xcode_project.py",
-    "bytes": 6587,
-    "sha256": "face818667355b454a56e6025087c0c107da345606870f685527a7d17a56c196"
+    "bytes": 6577,
+    "sha256": "ec3cfcf702dcd3b52df27364bf28dc684f835dbb9f7ed178fd530247a7595582"
+  },
+  {
+    "path": "scripts/inspect_jar_backend.py",
+    "bytes": 2737,
+    "sha256": "4d27bd376a6bb4e8a5893cddf2bdc77056e811e4bab27bb996c7fc52e356aeb7"
+  },
+  {
+    "path": "scripts/inspect_runtime_reference.py",
+    "bytes": 1666,
+    "sha256": "b14bea067f162f61683bd5e5fcc1e3c2811b125e2c9946be32590095bcaff98d"
   },
   {
     "path": "scripts/inventory_reference_components.py",
@@ -375,6 +725,11 @@
     "sha256": "6ed1a5c5fca2bbbd6338557c83859746a5b2d58b958a59a9081139fb77fefe7c"
   },
   {
+    "path": "scripts/run-runtime-probe.py",
+    "bytes": 1283,
+    "sha256": "857d9c61aa3ab612870bdd0a757b64c23cc3352257993997ae5773b941ac1ab4"
+  },
+  {
     "path": "scripts/run_sanitizers.py",
     "bytes": 1747,
     "sha256": "a054cd9b3088f824d39ff4713c3246e45102d82ebe0dcca70f318b3b240f9993"
@@ -388,5 +743,10 @@
     "path": "scripts/test_packaging.py",
     "bytes": 2625,
     "sha256": "0128b13710d16603fd764317b48febf2803d29ab0a53429cbfe8ce9a57488e87"
+  },
+  {
+    "path": "scripts/verify_ios_archive.py",
+    "bytes": 3164,
+    "sha256": "90ac15c2a0f971f8d43c42898f9f82c45085d283a24b36220190a7602cf4de0d"
   }
 ]
