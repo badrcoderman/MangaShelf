@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "stdout": "VM: OpenJDK 64-Bit Server VM 17.0.20+8-1-24.04-Ubuntu\nPASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\n",
+  "stderr": "",
+  "scope": "Host VM only; does not verify iOS, JNI, or real extensions."
+}

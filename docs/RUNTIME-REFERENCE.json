@@ -1,0 +1,649 @@
+{
+  "source": "User-supplied Tachimanga IPA, static extraction",
+  "runtime_symbols": [
+    {
+      "name": "_J9_CreateJavaVM",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_attach",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_extnet",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_j2gss",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_jaas",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_java",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_net",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_nio",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_prefs",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_sqlitejdbc",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_verify",
+      "type": 15,
+      "section": 1
+    },
+    {
+      "name": "_JNI_OnLoad_zip",
+      "type": 15,
+      "section": 1
+    }
+  ],
+  "launcher_methods": [
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "launchJVM:",
+      "file_offset": 131164,
+      "address": "0x10002005c"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "startServer",
+      "file_offset": 134052,
+      "address": "0x100020ba4"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "stopServer",
+      "file_offset": 134120,
+      "address": "0x100020be8"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "startSocket",
+      "file_offset": 134188,
+      "address": "0x100020c2c"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "waitRequestDone",
+      "file_offset": 134256,
+      "address": "0x100020c70"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "stopSocket",
+      "file_offset": 134324,
+      "address": "0x100020cb4"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "pingStatus",
+      "file_offset": 134392,
+      "address": "0x100020cf8"
+    },
+    {
+      "class": "JavaLauncher",
+      "kind": "+",
+      "selector": "javaChannel:content:",
+      "file_offset": 134412,
+      "address": "0x100020d0c"
+    }
+  ],
+  "launch_literals": [
+    {
+      "instruction_address": "0x1000200d8",
+      "target_address": "0x1008d8760",
+      "kind": "__cfstring",
+      "text": "jre"
+    },
+    {
+      "instruction_address": "0x100020100",
+      "target_address": "0x1007b3e2e",
+      "kind": "__cstring",
+      "text": "OPENJ9_JAVA_OPTIONS"
+    },
+    {
+      "instruction_address": "0x100020108",
+      "target_address": "0x1007b3e42",
+      "kind": "__cstring",
+      "text": "-Dcom.ibm.tools.attach.enable=no"
+    },
+    {
+      "instruction_address": "0x100020118",
+      "target_address": "0x1007b3e63",
+      "kind": "__cstring",
+      "text": "_JAVA_LAUNCHER_DEBUG"
+    },
+    {
+      "instruction_address": "0x100020120",
+      "target_address": "0x1007b253c",
+      "kind": "__cstring",
+      "text": "1"
+    },
+    {
+      "instruction_address": "0x100020150",
+      "target_address": "0x1008d8780",
+      "kind": "__cfstring",
+      "text": "launchJ..."
+    },
+    {
+      "instruction_address": "0x1000201ac",
+      "target_address": "0x1008d87a0",
+      "kind": "__cfstring",
+      "text": "-Djava.class.path=%@"
+    },
+    {
+      "instruction_address": "0x1000201e0",
+      "target_address": "0x1008d87c0",
+      "kind": "__cfstring",
+      "text": "MCHome.bundle"
+    },
+    {
+      "instruction_address": "0x1000201f8",
+      "target_address": "0x1008d87e0",
+      "kind": "__cfstring",
+      "text": "res.zip"
+    },
+    {
+      "instruction_address": "0x100020230",
+      "target_address": "0x1008d87a0",
+      "kind": "__cfstring",
+      "text": "-Djava.class.path=%@"
+    },
+    {
+      "instruction_address": "0x10002029c",
+      "target_address": "0x1008d8820",
+      "kind": "__cfstring",
+      "text": "-Xms"
+    },
+    {
+      "instruction_address": "0x1000202c0",
+      "target_address": "0x1008d8840",
+      "kind": "__cfstring",
+      "text": "xmsConfig = %@"
+    },
+    {
+      "instruction_address": "0x1000202d4",
+      "target_address": "0x1008d8800",
+      "kind": "__cfstring",
+      "text": "-Xms128M"
+    },
+    {
+      "instruction_address": "0x100020320",
+      "target_address": "0x1008d8880",
+      "kind": "__cfstring",
+      "text": "-Xmx"
+    },
+    {
+      "instruction_address": "0x100020344",
+      "target_address": "0x1008d88a0",
+      "kind": "__cfstring",
+      "text": "xmxConfig = %@"
+    },
+    {
+      "instruction_address": "0x100020358",
+      "target_address": "0x1008d8860",
+      "kind": "__cfstring",
+      "text": "-Xmx256M"
+    },
+    {
+      "instruction_address": "0x10002037c",
+      "target_address": "0x1008d88c0",
+      "kind": "__cfstring",
+      "text": "flutter.config.set_timezone"
+    },
+    {
+      "instruction_address": "0x1000203f4",
+      "target_address": "0x1008d88e0",
+      "kind": "__cfstring",
+      "text": "-Xint"
+    },
+    {
+      "instruction_address": "0x100020404",
+      "target_address": "0x1008d8900",
+      "kind": "__cfstring",
+      "text": "-Djava.compiler=NONE"
+    },
+    {
+      "instruction_address": "0x100020414",
+      "target_address": "0x1008d6a40",
+      "kind": "__cfstring",
+      "text": "1"
+    },
+    {
+      "instruction_address": "0x100020450",
+      "target_address": "0x1008d8920",
+      "kind": "__cfstring",
+      "text": "-Duser.timezone=%@"
+    },
+    {
+      "instruction_address": "0x10002048c",
+      "target_address": "0x1008d8940",
+      "kind": "__cfstring",
+      "text": "-XX:-UseCompressedClassPointers"
+    },
+    {
+      "instruction_address": "0x10002049c",
+      "target_address": "0x1008d8960",
+      "kind": "__cfstring",
+      "text": "-Xshareclasses:none"
+    },
+    {
+      "instruction_address": "0x1000204ac",
+      "target_address": "0x1008d8980",
+      "kind": "__cfstring",
+      "text": "-XX:-OpenJ9CommandLineEnv"
+    },
+    {
+      "instruction_address": "0x1000204bc",
+      "target_address": "0x1008d89a0",
+      "kind": "__cfstring",
+      "text": "-Xdump:heap:none"
+    },
+    {
+      "instruction_address": "0x1000204cc",
+      "target_address": "0x1008d89c0",
+      "kind": "__cfstring",
+      "text": "-Xdump:snap:none"
+    },
+    {
+      "instruction_address": "0x1000204e4",
+      "target_address": "0x1008d89e0",
+      "kind": "__cfstring",
+      "text": "-Duser.dir=%@"
+    },
+    {
+      "instruction_address": "0x10002051c",
+      "target_address": "0x1008d8a00",
+      "kind": "__cfstring",
+      "text": "-Djava.home=%@"
+    },
+    {
+      "instruction_address": "0x10002055c",
+      "target_address": "0x1008d8a20",
+      "kind": "__cfstring",
+      "text": "-Duser.home=%@"
+    },
+    {
+      "instruction_address": "0x100020594",
+      "target_address": "0x1008d8a60",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.skipInit=0"
+    },
+    {
+      "instruction_address": "0x10002059c",
+      "target_address": "0x1008d8a40",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.skipInit=1"
+    },
+    {
+      "instruction_address": "0x1000205bc",
+      "target_address": "0x1008d8aa0",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.cleanDb=0"
+    },
+    {
+      "instruction_address": "0x1000205c4",
+      "target_address": "0x1008d8a80",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.cleanDb=1"
+    },
+    {
+      "instruction_address": "0x1000205e4",
+      "target_address": "0x1008d8ae0",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.vacuum=0"
+    },
+    {
+      "instruction_address": "0x1000205ec",
+      "target_address": "0x1008d8ac0",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.vacuum=1"
+    },
+    {
+      "instruction_address": "0x100020620",
+      "target_address": "0x1008d8b00",
+      "kind": "__cfstring",
+      "text": "-Dapp.tachimanga.childfirst=%@"
+    },
+    {
+      "instruction_address": "0x100020670",
+      "target_address": "0x1008d8b20",
+      "kind": "__cfstring",
+      "text": "flutter.config.joptions"
+    },
+    {
+      "instruction_address": "0x10002069c",
+      "target_address": "0x1008d8b40",
+      "kind": "__cfstring",
+      "text": " "
+    },
+    {
+      "instruction_address": "0x100020820",
+      "target_address": "0x1008d8b60",
+      "kind": "__cfstring",
+      "text": "options n %@"
+    },
+    {
+      "instruction_address": "0x10002083c",
+      "target_address": "0x1008d8b80",
+      "kind": "__cfstring",
+      "text": "options[%d] = %s"
+    },
+    {
+      "instruction_address": "0x100020884",
+      "target_address": "0x1008d8b60",
+      "kind": "__cfstring",
+      "text": "options n %@"
+    },
+    {
+      "instruction_address": "0x1000208c8",
+      "target_address": "0x1008d8ba0",
+      "kind": "__cfstring",
+      "text": "Failed to start the runtime engine (code: %d)"
+    },
+    {
+      "instruction_address": "0x100020910",
+      "target_address": "0x1007b40f5",
+      "kind": "__cstring",
+      "text": "suwayomi/tachidesk/MainKt"
+    },
+    {
+      "instruction_address": "0x100020918",
+      "target_address": "0x1007b1196",
+      "kind": "__cstring",
+      "text": "main"
+    },
+    {
+      "instruction_address": "0x100020920",
+      "target_address": "0x1007b28d7",
+      "kind": "__cstring",
+      "text": "([Ljava/lang/String;)V"
+    },
+    {
+      "instruction_address": "0x100020954",
+      "target_address": "0x1008d8bc0",
+      "kind": "__cfstring",
+      "text": "Failed to start the backend service (code: %d)"
+    },
+    {
+      "instruction_address": "0x1000209c4",
+      "target_address": "0x1008d6340",
+      "kind": "__cfstring",
+      "text": "error"
+    },
+    {
+      "instruction_address": "0x100020a08",
+      "target_address": "0x1008d8be0",
+      "kind": "__cfstring",
+      "text": "%@_%@"
+    },
+    {
+      "instruction_address": "0x100020a50",
+      "target_address": "0x1008d6320",
+      "kind": "__cfstring",
+      "text": "SERVER:BOOT:FAILED"
+    },
+    {
+      "instruction_address": "0x100020ac0",
+      "target_address": "0x1008d8c00",
+      "kind": "__cfstring",
+      "text": "[BOOT]launchJ done, cost: %@"
+    },
+    {
+      "instruction_address": "0x100020bb4",
+      "target_address": "0x1007b40f5",
+      "kind": "__cstring",
+      "text": "suwayomi/tachidesk/MainKt"
+    },
+    {
+      "instruction_address": "0x100020bbc",
+      "target_address": "0x1007b4161",
+      "kind": "__cstring",
+      "text": "startServer"
+    },
+    {
+      "instruction_address": "0x100020bc4",
+      "target_address": "0x1007b0f84",
+      "kind": "__cstring",
+      "text": "()V"
+    },
+    {
+      "instruction_address": "0x100020c3c",
+      "target_address": "0x1007b40f5",
+      "kind": "__cstring",
+      "text": "suwayomi/tachidesk/MainKt"
+    },
+    {
+      "instruction_address": "0x100020c44",
+      "target_address": "0x1007b4178",
+      "kind": "__cstring",
+      "text": "startSocket"
+    },
+    {
+      "instruction_address": "0x100020c4c",
+      "target_address": "0x1007b0f84",
+      "kind": "__cstring",
+      "text": "()V"
+    },
+    {
+      "instruction_address": "0x10003c854",
+      "target_address": "0x1008db0e0",
+      "kind": "__cfstring",
+      "text": "flutter.config.childFirst"
+    },
+    {
+      "instruction_address": "0x10003c85c",
+      "target_address": "0x1008d6a40",
+      "kind": "__cfstring",
+      "text": "1"
+    },
+    {
+      "instruction_address": "0x10003c8c0",
+      "target_address": "0x1008d69a0",
+      "kind": "__cfstring",
+      "text": "url"
+    },
+    {
+      "instruction_address": "0x10003c8e0",
+      "target_address": "0x1008d58e0",
+      "kind": "__cfstring",
+      "text": ""
+    },
+    {
+      "instruction_address": "0x10003c918",
+      "target_address": "0x1008db100",
+      "kind": "__cfstring",
+      "text": "BACKEND_JAR_LAUNCH"
+    },
+    {
+      "instruction_address": "0x10003ca8c",
+      "target_address": "0x1008db120",
+      "kind": "__cfstring",
+      "text": "launch start, param:%@"
+    },
+    {
+      "instruction_address": "0x10003caa8",
+      "target_address": "0x1008db140",
+      "kind": "__cfstring",
+      "text": "launch end"
+    },
+    {
+      "instruction_address": "0x10003cb68",
+      "target_address": "0x1008db160",
+      "kind": "__cfstring",
+      "text": "[BOOT]afterLaunch, err=%@"
+    },
+    {
+      "instruction_address": "0x10003cb90",
+      "target_address": "0x1008d5ac0",
+      "kind": "__cfstring",
+      "text": "x"
+    },
+    {
+      "instruction_address": "0x10003cbb0",
+      "target_address": "0x1008d58e0",
+      "kind": "__cfstring",
+      "text": ""
+    },
+    {
+      "instruction_address": "0x10003cbe8",
+      "target_address": "0x1008db180",
+      "kind": "__cfstring",
+      "text": "BACKEND:LAUNCH:FAIL"
+    },
+    {
+      "instruction_address": "0x10003d23c",
+      "target_address": "0x1008db340",
+      "kind": "__cfstring",
+      "text": "[bgtask]startSocket..."
+    },
+    {
+      "instruction_address": "0x10003d260",
+      "target_address": "0x1008db360",
+      "kind": "__cfstring",
+      "text": "[bgtask] startSocket done"
+    },
+    {
+      "instruction_address": "0x10003d2b8",
+      "target_address": "0x1008db380",
+      "kind": "__cfstring",
+      "text": "flutter.config.restartSocket"
+    },
+    {
+      "instruction_address": "0x10003d2d8",
+      "target_address": "0x1008d6a40",
+      "kind": "__cfstring",
+      "text": "1"
+    },
+    {
+      "instruction_address": "0x10003d30c",
+      "target_address": "0x1008db3a0",
+      "kind": "__cfstring",
+      "text": "[Socket]restartSocket enable=%@, config=%@"
+    },
+    {
+      "instruction_address": "0x10003d3e8",
+      "target_address": "0x1008db3c0",
+      "kind": "__cfstring",
+      "text": "[Socket]restartSocket check..."
+    },
+    {
+      "instruction_address": "0x10003d49c",
+      "target_address": "0x1008db3e0",
+      "kind": "__cfstring",
+      "text": "[Socket]restartSocket check1, r=%@"
+    },
+    {
+      "instruction_address": "0x10003d4ec",
+      "target_address": "0x1008db400",
+      "kind": "__cfstring",
+      "text": "SOCKET:CHECK1:%@"
+    },
+    {
+      "instruction_address": "0x10003d5ac",
+      "target_address": "0x1008db420",
+      "kind": "__cfstring",
+      "text": "[Socket] last:%@, diff:%@"
+    },
+    {
+      "instruction_address": "0x10003d700",
+      "target_address": "0x1008db0a0",
+      "kind": "__cfstring",
+      "text": "SOCKET:RESTART"
+    },
+    {
+      "instruction_address": "0x10003d728",
+      "target_address": "0x1008db440",
+      "kind": "__cfstring",
+      "text": "[Socket]restart..."
+    },
+    {
+      "instruction_address": "0x10003d748",
+      "target_address": "0x1008db460",
+      "kind": "__cfstring",
+      "text": "[Socket]restart done, check again..."
+    },
+    {
+      "instruction_address": "0x10003d880",
+      "target_address": "0x1008db480",
+      "kind": "__cfstring",
+      "text": "[Socket]restartSocket check2, after restart, r=%@"
+    },
+    {
+      "instruction_address": "0x10003d8d0",
+      "target_address": "0x1008db4a0",
+      "kind": "__cfstring",
+      "text": "SOCKET:CHECK2:%@"
+    },
+    {
+      "instruction_address": "0x10003d98c",
+      "target_address": "0x1008db4c0",
+      "kind": "__cfstring",
+      "text": "SOCKET:WAIT"
+    },
+    {
+      "instruction_address": "0x10003da48",
+      "target_address": "0x1008db4e0",
+      "kind": "__cfstring",
+      "text": "[Socket]restartSocket check2, after 3s, r=%@"
+    },
+    {
+      "instruction_address": "0x10003da98",
+      "target_address": "0x1008db500",
+      "kind": "__cfstring",
+      "text": "SOCKET:CHECK3:%@"
+    },
+    {
+      "instruction_address": "0x10003e514",
+      "target_address": "0x1008d8060",
+      "kind": "__cfstring",
+      "text": "CFBundleVersion"
+    },
+    {
+      "instruction_address": "0x10003e594",
+      "target_address": "0x1008d6a40",
+      "kind": "__cfstring",
+      "text": "1"
+    }
+  ],
+  "linked_runtime_libraries": [],
+  "module_count": 63,
+  "limits": [
+    "Launch literals are from previously captured ARM64 analysis, not a live launch trace.",
+    "Defined symbols support embedded/static-linkage inference, not a recovered link map.",
+    "No claim that all library modules are needed.",
+    "iOS OpenJ9 SDK source and exact upstream patch set not recovered."
+  ]
+}
