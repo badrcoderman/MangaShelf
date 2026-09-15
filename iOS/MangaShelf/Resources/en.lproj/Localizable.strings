@@ -931,3 +931,18 @@
 "١٣ سبتمبر ٢٠٢٦" = "September 13, 2026";
 
 "The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again." = "The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again.";
+"Invalid extension data." = "Invalid extension data.";
+"Invalid source data." = "Invalid source data.";
+"The extension package exceeds the allowed limit." = "The extension package exceeds the allowed limit.";
+"The extension store is not ready." = "The extension store is not ready.";
+"Not staged" = "Not staged";
+"JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet." = "JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet.";
+"JAR downloaded and inspected" = "JAR downloaded and inspected";
+"JAR staged for a future runtime" = "JAR staged for a future runtime";
+"Staged JAR · %@" = "Staged JAR · %@";
+"Indexed JAR — not staged" = "Indexed JAR — not staged";
+"Remove staged JAR" = "Remove staged JAR";
+"Inspect JAR" = "Inspect JAR";
+"Review JAR before staging" = "Review JAR before staging";
+"Stage for later runtime" = "Stage for later runtime";
+"Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed." = "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.";
