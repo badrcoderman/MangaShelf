@@ -50,6 +50,11 @@
     "sha256": "1510d71339e21bb005c64e8127b298065c8048653cafac32b1e08bb5b47d504c"
   },
   {
+    "path": "Sources/ReaderCore/JARInspection.swift",
+    "bytes": 3495,
+    "sha256": "9763e6018c79e0c395bb3647cc6a37ffb5d8ecb6a5a7538a868398c31dab5da5"
+  },
+  {
     "path": "Sources/ReaderCore/Library.swift",
     "bytes": 16795,
     "sha256": "2b71ae9cce99a2d7de39bb2f8a9b4fd478e0d4772cdca2a7d761f141abec54f0"
@@ -63,6 +68,11 @@
     "path": "Sources/ReaderCore/NativeNetworkContract.swift",
     "bytes": 3319,
     "sha256": "9ff597eac475a7bf231a1caca2c9912be1fce5b91d533b622b1152f7d1d62220"
+  },
+  {
+    "path": "Sources/ReaderCore/NativeNetworkTransport.swift",
+    "bytes": 6817,
+    "sha256": "72592abd122217d71f169d64c26a2eed44bf613f48e4f0f8f96de0b3e1c5729c"
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
@@ -93,6 +103,11 @@
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
     "bytes": 64639,
     "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
+  },
+  {
+    "path": "Sources/ReaderCore/StagedExtensionStore.swift",
+    "bytes": 4480,
+    "sha256": "928fc4967112cc5a761f2f82c482257ab573411eef7bc2cdbc8fce3279c18640"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -176,8 +191,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 7681,
-    "sha256": "e5d9a9b8690a0ad7cc82b2b68587e6dfe15fe24d7dbdf628c9f19415ee9768b2"
+    "bytes": 10035,
+    "sha256": "9fa3dee6b09ab98a0b2e0c7e6b0965e2ddd4821d1040333f882674d74e2b93ae"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -208,6 +223,11 @@
     "path": "docs/RUNTIME-REFERENCE.json",
     "bytes": 16431,
     "sha256": "c9eade6ee36a37e8c62af416b0ca7793cc951c1ba41c15294238edf166e5bda9"
+  },
+  {
+    "path": "docs/STABILITY-2026-09-15-AR.md",
+    "bytes": 1176,
+    "sha256": "e7435aa57f1c4e45d159ed451e5133970813920d217a9ae36d2e4b668aca28f6"
   },
   {
     "path": "docs/STATUS-AR.md",
@@ -658,6 +678,21 @@
     "path": "iOS/MangaShelf.xcodeproj/xcshareddata/xcschemes/MangaShelf.xcscheme",
     "bytes": 1396,
     "sha256": "ed569dc179be2d8522c00abec7def3e60d4bd0f9d210f5fd121466e531aab492"
+  },
+  {
+    "path": "runtime-native/MSJavaRuntime.c",
+    "bytes": 5325,
+    "sha256": "d4d99e425b48b96238fb54e7429b2a785279f712acb2793e87fe852653d3f648"
+  },
+  {
+    "path": "runtime-native/MSJavaRuntime.h",
+    "bytes": 934,
+    "sha256": "3df5ae27923f0c800a0af2a16dfbcfcb8fbdc8654201ca20e9cfda9c28614272"
+  },
+  {
+    "path": "runtime-native/host_probe.c",
+    "bytes": 1192,
+    "sha256": "af17c40d7ba97e74f832f64dec1bd7b05ca801b7c087f8c2058a4977f9bf6a9d"
   },
   {
     "path": "runtime-probe/plugin/probe/SourceProbe.java",
