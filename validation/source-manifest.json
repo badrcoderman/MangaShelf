@@ -31,8 +31,8 @@
   },
   {
     "path": "README-AR.md",
-    "bytes": 9427,
-    "sha256": "ed3db8714fe2aff6a61c46eeecac19dd117564ead7d7f257fa9770e8196bb30f"
+    "bytes": 9440,
+    "sha256": "fce672336975fa15950eb060b457b4f852cbb01a5d779e28dee51f58218f9086"
   },
   {
     "path": "Sources/CSafeArchive/archive.c",
@@ -96,8 +96,8 @@
   },
   {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
-    "bytes": 13591,
-    "sha256": "cc6d07477940b4b62745ea1253700f46b3629eec2719a5fb07326df6a0612e5b"
+    "bytes": 13769,
+    "sha256": "a0a15cba2517274afe9683d7329689d9496f885e0b00653d47ad0bd06e642d1a"
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
@@ -171,8 +171,8 @@
   },
   {
     "path": "docs/FEATURES-AR.md",
-    "bytes": 15443,
-    "sha256": "2b84d1ea13280c87ddb385c5d22272b5df7f3ca941ebe61fe28806da5c799e92"
+    "bytes": 15699,
+    "sha256": "f3f9a4eb76c4006ab5c38b3c94c489fbd8b6b82ad2181967586f6b4cc5c13c3e"
   },
   {
     "path": "docs/INTERFACE-STYLE-AR.md",
@@ -196,8 +196,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 10035,
-    "sha256": "9fa3dee6b09ab98a0b2e0c7e6b0965e2ddd4821d1040333f882674d74e2b93ae"
+    "bytes": 11759,
+    "sha256": "de28431b7aaaefaaf20938244ed07640e507962391872377c44df7d21ae74271"
   },
   {
     "path": "docs/PORTING-AR.md",

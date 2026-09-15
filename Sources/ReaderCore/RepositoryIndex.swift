@@ -106,9 +106,12 @@ public enum RepositoryDecoder {
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         // A protobuf tag 0x0a resembles JSON whitespace; the next byte may be
         // '[' or '{' as a string length. Do not classify binary data by that alone.
-        if first == 91 || first == 123 {
+        if first == 91, let legacy = try? legacyJSON(data) { return legacy }
+        if first == 123 {
             if let legacy = try? legacyJSON(data) { return legacy }
-            throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
+            if (try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])) != nil {
+                throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
+            }
         }
         let root = try PBMessage(data)
         let name = try root.string(1) ?? ReaderText.string("Repository")
@@ -124,8 +127,7 @@ public enum RepositoryDecoder {
         let data = try BoundedGzip.decodeIfNeeded(input)
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         if first == 91 || first == 123 {
-            let index = try legacyJSON(data)
-            return index.extensions
+            if let index = try? legacyJSON(data) { return index.extensions }
         }
         return try decodeList(data)
     }
