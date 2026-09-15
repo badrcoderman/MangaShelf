@@ -1,0 +1,13 @@
+{
+  "platform": "Linux",
+  "exit_code": 0,
+  "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\nPASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\n",
+  "stderr": "",
+  "checks": [
+    "JNI VM creation",
+    "native thread attach/detach",
+    "separate JAR and reflection",
+    "Java exception recovery"
+  ],
+  "scope": "Host JNI integration; no claim of iOS runtime or real extension support."
+}
