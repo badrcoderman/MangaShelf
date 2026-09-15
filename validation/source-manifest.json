@@ -5,6 +5,11 @@
     "sha256": "7b2ac47dab88b3133fcd89e20a72e9eb5e23a89c25d5c6c395036f02a3443adf"
   },
   {
+    "path": ".github/workflows/ios-jvm-link.yml",
+    "bytes": 1551,
+    "sha256": "f2a6f8053a74d14eb0ca8e444e666f278519eee0e9d9968dfddc1a54ee4d049d"
+  },
+  {
     "path": ".github/workflows/ios-jvm.yml",
     "bytes": 2236,
     "sha256": "307418b5df6c923d1db9c36959c625bf2b7a3f7fd7b3dd6b2a9ef9d158c86001"
@@ -753,6 +758,11 @@
     "path": "scripts/inventory_reference_components.py",
     "bytes": 4570,
     "sha256": "87756d9d2aff299d25e9ffbe0d084c8e0430f3d281ff83bf3f706fa50628db31"
+  },
+  {
+    "path": "scripts/link-ios-jvm-probe.sh",
+    "bytes": 1621,
+    "sha256": "a48a4406e71c670e64e953fe7fd887d7ae851e2747ea5f50142795a6610c7395"
   },
   {
     "path": "scripts/make_fixtures.py",

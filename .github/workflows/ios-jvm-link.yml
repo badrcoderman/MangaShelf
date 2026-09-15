@@ -1,0 +1,45 @@
+name: Link experimental iOS JVM
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  link:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: openjdk/mobile
+          ref: c1ed06aaef34c8dccf71e236d1ffa20918a77cfb
+          path: runtime-src/mobile
+          persist-credentials: false
+      - name: Download source-built runtime evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 34793104716 --repo "$GITHUB_REPOSITORY" --name ios-jvm-build --dir build/ios-jvm-evidence
+      - name: Select toolchain
+        run: |
+          for APP in /Applications/Xcode*.app; do
+            DEV="$APP/Contents/Developer"
+            SDK=$(DEVELOPER_DIR="$DEV" xcrun --sdk iphoneos --show-sdk-version 2>/dev/null) || continue
+            if [ "${SDK%%.*}" -ge 26 ]; then
+              echo "DEVELOPER_DIR=$DEV" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          exit 1
+      - name: Link ARM64 iOS probe
+        run: bash scripts/link-ios-jvm-probe.sh
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ios-jvm-link-evidence
+          path: build/ios-jvm-link/
+          if-no-files-found: warn
+          retention-days: 14
