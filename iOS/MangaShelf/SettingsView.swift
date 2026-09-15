@@ -45,7 +45,7 @@ struct SettingsView: View {
                 TachiDivider()
                 row(L10n.string("Help"), "questionmark.circle.fill") { HelpView() }
                 row(L10n.string("About"), "info.circle") { AboutView() }
-                if developerEnabled { row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() } }
+                row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() }
             }.padding(.top, 4)
         }.shelfRoot(L10n.string("More"), filled: false, left: { EmptyView() }, right: { EmptyView() })
     }
@@ -97,15 +97,14 @@ struct AboutView: View {
         TachiList {
             Section {
                 VStack(spacing: 12) {
-                    ShelfBooksIcon().foregroundStyle(ShelfStyle.accent).padding(.bottom, 4)
-                    Text(L10n.string("MangaShelf")).font(.title2.bold())
-                    Text(L10n.string("Development build")).font(.subheadline).foregroundStyle(.secondary)
-                }.frame(maxWidth: .infinity).padding(.vertical, 20)
+                    TachiIcon(symbol: "books.vertical.fill", size: 56).foregroundStyle(ShelfStyle.text)
+                }.frame(maxWidth: .infinity).padding(.vertical, 30)
+                TachiDivider()
                 Button {
                     guard !developerEnabled else { return }
                     taps += 1
                     if taps >= 7 { developerEnabled = true; taps = 0 }
-                } label: { LabeledContent(L10n.string("Version"), value: version).foregroundStyle(.primary) }
+                } label: { TachiRowLabel(title: L10n.string("Version"), subtitle: version, symbol: "info.circle") }
                 if developerEnabled { TachiLabel(L10n.string("Developer tools enabled"), systemImage: "checkmark.circle").foregroundStyle(.secondary) }
                 else if taps >= 4 { Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps))).font(.caption).foregroundStyle(.secondary) }
             }
@@ -140,7 +139,8 @@ struct AboutView: View {
                 }
             }
             Section {
-                NavigationLink(L10n.string("Open-source licenses")) { MaterialLicenseView() }
+                TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle.fill") { HelpView() }
+                TachiNavigationRow(title: L10n.string("Open-source licenses"), symbol: "doc.text") { MaterialLicenseView() }
                 Text(L10n.string("An independent reader with free features. Supports local books and source indexes. Extension execution and translation are not complete yet."))
                     .font(.footnote).foregroundStyle(.secondary)
             }

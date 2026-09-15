@@ -64,17 +64,11 @@ private struct ShelfOverflowModifier: ViewModifier {
                                 }
                             }
                             .scrollBounceBehavior(.basedOnSize)
-                            .frame(width: min(296, max(0, geometry.size.width - 24)),
+                            .frame(width: min(264, max(0, geometry.size.width - 32)),
                                    height: min(contentHeight > 0 ? contentHeight : CGFloat(actions.count) * 56,
                                                max(0, geometry.size.height - 72)))
                             .foregroundStyle(ShelfStyle.text)
-                            .background {
-                                if reduceTransparency {
-                                    RoundedRectangle(cornerRadius: 22).fill(ShelfStyle.menu)
-                                }
-                            }
-                            .glassEffect(reduceTransparency ? .identity : .regular,
-                                         in: RoundedRectangle(cornerRadius: 22))
+                            .background(ShelfStyle.menu, in: RoundedRectangle(cornerRadius: 16))
                             .shadow(color: .black.opacity(0.2), radius: 18, y: 8)
                             .environment(\.layoutDirection, direction)
                             .accessibilityElement(children: .contain)
@@ -84,7 +78,7 @@ private struct ShelfOverflowModifier: ViewModifier {
                             .accessibilityAction(.escape) { dismiss() }
                             .padding(.top, 48)
                             .padding(.leading, 12)
-                            .transition(.opacity.combined(with: .scale(scale: reduceMotion ? 1 : 0.97, anchor: .topLeading)))
+                            .transition(.opacity)
                         }.environment(\.layoutDirection, .leftToRight)
                     }
                     .onAppear { menuFocused = true }

@@ -196,8 +196,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 11759,
-    "sha256": "de28431b7aaaefaaf20938244ed07640e507962391872377c44df7d21ae74271"
+    "bytes": 13488,
+    "sha256": "14c89682867310433204d53f81db24bcefd6fece10c16ecc001eab78ceb2e70f"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -271,8 +271,8 @@
   },
   {
     "path": "iOS/MangaShelf/DiagnosticsView.swift",
-    "bytes": 10972,
-    "sha256": "2d918ee14eb9d30527a14c13b5a3d116ede9cffa7b8df9ac42b73310886ad011"
+    "bytes": 11080,
+    "sha256": "d3c9e6d24934d2bb673e6da8c5324d4ecfc15f9da5eca4a2d75da335f34b91be"
   },
   {
     "path": "iOS/MangaShelf/HistoryView.swift",
@@ -631,8 +631,8 @@
   },
   {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 11624,
-    "sha256": "8ffc65ee664e3c9e3321c82d75ec9c9470a3a412ab77097b13b60810040198b8"
+    "bytes": 11615,
+    "sha256": "4abbedd70e2ee87b4367d90945fba0781cb6395b0fc62b024a52db56e84a22d5"
   },
   {
     "path": "iOS/MangaShelf/ShelfDetailHero.swift",
@@ -641,8 +641,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfOverflow.swift",
-    "bytes": 5257,
-    "sha256": "67b6493aeb29282100819c58c92bdf0a4d148eb3a420f75930df7b8a70499a92"
+    "bytes": 4858,
+    "sha256": "c9e3b61ac7cfb62e169ce11ccc79df98d0c12aa39fc10110eb06d4047379d5b3"
   },
   {
     "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
@@ -666,8 +666,8 @@
   },
   {
     "path": "iOS/MangaShelf/TachiUI.swift",
-    "bytes": 14552,
-    "sha256": "7ac049aff4ed4df2835f4eb14a0540f61e4e6654cb4524694d43dedba3f64089"
+    "bytes": 15321,
+    "sha256": "2a05ae2628c41d7992d25079d152f176aa87ca7a8d5d44b4576bc1cfd026e70f"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
@@ -711,8 +711,8 @@
   },
   {
     "path": "scripts/audit_project.py",
-    "bytes": 3341,
-    "sha256": "5e96f9257e25aaa5a685d48b0379ce62ab34cc27bb935caa38749b642f5852c8"
+    "bytes": 3359,
+    "sha256": "2433f5c222305f112495d194194c9947eefb39f77c54cb1f37d1194d6901d167"
   },
   {
     "path": "scripts/build-ios-jvm.sh",

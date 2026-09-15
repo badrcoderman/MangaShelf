@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-ignored={".git",".build","build","__pycache__","validation"}
+ignored={".git",".build","build","build-artifacts","__pycache__","validation"}
 forbidden_suffixes={".ipa",".dylib",".so",".a",".class",".jar",".apk",".framework"}
 magic={b"\xcf\xfa\xed\xfe",b"\xfe\xed\xfa\xcf",b"\xca\xfe\xba\xbe",b"\x7fELF"}
 hashes=[];failures=[]
