@@ -286,8 +286,8 @@
   },
   {
     "path": "iOS/MangaShelf/InterfacePreferences.swift",
-    "bytes": 7901,
-    "sha256": "ea3d95c6fbc9c22c9c2e053694780dbbff57ca16f710be2b19b49e1ca68dc204"
+    "bytes": 6840,
+    "sha256": "2de6fff36d61b4d603ffdabee20d824f4baac9f74658dcea3ef2597f36019cad"
   },
   {
     "path": "iOS/MangaShelf/LibraryView.swift",
@@ -666,8 +666,8 @@
   },
   {
     "path": "iOS/MangaShelf/TachiUI.swift",
-    "bytes": 15321,
-    "sha256": "2a05ae2628c41d7992d25079d152f176aa87ca7a8d5d44b4576bc1cfd026e70f"
+    "bytes": 17489,
+    "sha256": "6fe2be9d45be6a5ffdc5170e9362fd5b0f52adea4a43351012c5b6744e15f851"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",

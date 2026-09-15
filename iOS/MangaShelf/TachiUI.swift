@@ -261,6 +261,46 @@ struct TachiToggleRow: View {
             .toggleStyle(TachiToggleStyle()).frame(minHeight: 56).padding(.horizontal, 18)
     }
 }
+
+/// Inline choices keep settings independent of the system popup menu appearance.
+struct TachiChoiceRow<Value: Hashable>: View {
+    let title: String
+    let symbol: String
+    @Binding var selection: Value
+    let choices: [(Value, String)]
+    @State private var expanded = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    var body: some View {
+        VStack(spacing: 0) {
+            Button { expanded.toggle() } label: {
+                HStack {
+                    TachiRowLabel(title: title, subtitle: choices.first { $0.0 == selection }?.1, symbol: symbol)
+                    Image(systemName: expanded ? "chevron.up" : "chevron.down")
+                        .font(.system(size: 14)).foregroundStyle(ShelfStyle.secondary)
+                }.padding(.horizontal, 18).contentShape(Rectangle())
+            }.buttonStyle(.plain).accessibilityValue(choices.first { $0.0 == selection }?.1 ?? "")
+            if expanded {
+                VStack(spacing: 0) {
+                    ForEach(choices, id: \.0) { choice in
+                        Button {
+                            selection = choice.0
+                            expanded = false
+                        } label: {
+                            HStack(spacing: 16) {
+                                TachiIcon(symbol: selection == choice.0 ? "checkmark.circle" : "circle", size: 22)
+                                Text(choice.1).frame(maxWidth: .infinity, alignment: .leading)
+                            }.foregroundStyle(selection == choice.0 ? ShelfStyle.accent : ShelfStyle.text)
+                                .padding(.horizontal, 20).padding(.vertical, 14).frame(minHeight: 48)
+                                .contentShape(Rectangle())
+                        }.buttonStyle(.plain)
+                            .accessibilityAddTraits(selection == choice.0 ? [.isSelected] : [])
+                    }
+                }.background(ShelfStyle.menu, in: RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 18).padding(.bottom, 12)
+            }
+        }.animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: expanded)
+    }
+}
 struct TachiToggleStyle: ToggleStyle {
     @Environment(\.isEnabled) private var enabled
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
