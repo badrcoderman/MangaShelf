@@ -196,8 +196,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 13488,
-    "sha256": "14c89682867310433204d53f81db24bcefd6fece10c16ecc001eab78ceb2e70f"
+    "bytes": 14525,
+    "sha256": "de973a5c72ca68ca86b70ca968007cf29ef384550a971c4037ccb19f379463ef"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -696,8 +696,8 @@
   },
   {
     "path": "runtime-native/host_probe.c",
-    "bytes": 1192,
-    "sha256": "af17c40d7ba97e74f832f64dec1bd7b05ca801b7c087f8c2058a4977f9bf6a9d"
+    "bytes": 1980,
+    "sha256": "3eed5b73e4212febcdb9cf84cd97a2f23d9e399ac1eb268afc8352f43e6e62d4"
   },
   {
     "path": "runtime-probe/plugin/probe/SourceProbe.java",
