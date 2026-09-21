@@ -1003,3 +1003,9 @@
 "١١ سبتمبر ٢٠٢٦ — تغييرات قيد التحقق على الجهاز" = "١١ سبتمبر ٢٠٢٦ — تغييرات قيد التحقق على الجهاز";
 "١٢ سبتمبر ٢٠٢٦" = "١٢ سبتمبر ٢٠٢٦";
 "١٣ سبتمبر ٢٠٢٦" = "١٣ سبتمبر ٢٠٢٦";
+"JVM extension execution engine" = "محرك تشغيل إضافات JVM";
+"September 22, 2026" = "٢٢ سبتمبر ٢٠٢٦";
+"Full JVM extension execution engine with dynamic classloading and JNI bridge." = "محرك تشغيل إضافات JVM كامل مع التحميل الديناميكي للفئات وجسر JNI الأصلي.";
+"Execute search, popular titles, details, chapters, and pages from extension sources." = "تنفيذ عمليات البحث والأعمال الشائعة والتفاصيل وقوائم الفصول والصفحات من مصادر الإضافات.";
+"Integrated active extension sources directly into Browse and Source Catalog views." = "دمج مصادر الإضافات النشطة مباشرة في شاشة التصفح وكتالوج المصادر.";
+"High-performance NativeNet and NativeChannel transport with full memory safety." = "نقل عالي الأداء لطلبات الشبكة والقنوات عبر NativeNet مع أمان تام للذاكرة.";

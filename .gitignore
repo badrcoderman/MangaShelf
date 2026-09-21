@@ -8,3 +8,4 @@ xcuserdata/
 *.p12
 *.mobileprovision
 ExportOptions.plist
+.agents/

@@ -7,6 +7,8 @@ struct SourceCatalogView: View {
     @AppStorage("source.language") private var language = "ar"
     @AppStorage("library.columns") private var columns = 2
     @Environment(\.dynamicTypeSize) private var typeSize
+    let sourceId: String
+    let sourceTitle: String
     @State private var query = ""
     @State private var latest = false
     @State private var items: [MangaSeries] = []
@@ -14,8 +16,12 @@ struct SourceCatalogView: View {
     @State private var hasMore = false
     @State private var loading = false
     @State private var error: String?
-    init(initialQuery: String = "") { _query = State(initialValue: initialQuery) }
-    private var requestID: String { "\(query)|\(language)|\(latest)" }
+    init(sourceId: String = "mangadex", sourceTitle: String = "MangaDex", initialQuery: String = "") {
+        self.sourceId = sourceId
+        self.sourceTitle = sourceTitle
+        _query = State(initialValue: initialQuery)
+    }
+    private var requestID: String { "\(sourceId)|\(query)|\(language)|\(latest)" }
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
@@ -35,7 +41,7 @@ struct SourceCatalogView: View {
                 }
                 if hasMore && !loading { Button(L10n.string("Load more")) { Task { await fetch(reset: false) } }.padding() }
             }.padding(.vertical, 8)
-        }.shelfPage().navigationTitle("MangaDex").navigationBarTitleDisplayMode(.inline)
+        }.shelfPage().navigationTitle(sourceTitle).navigationBarTitleDisplayMode(.inline)
             .searchable(text: $query, prompt: L10n.string("Search manga or manhwa"))
             .toolbar { NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "slider.horizontal.3") }.accessibilityLabel(L10n.string("Source settings")) }
             .task(id: requestID) {
@@ -47,10 +53,24 @@ struct SourceCatalogView: View {
         if reset { items = []; nextPage = 0; hasMore = false }
         loading = true; error = nil
         do {
-            let result = try await online.source.search(query: query, page: nextPage, language: language, latest: latest)
-            try Task.checkCancellation(); guard identity == requestID else { return }
-            let existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { !existing.contains($0.id) })
-            hasMore = result.hasMore; nextPage += 1; loading = false
+            if sourceId == "mangadex" {
+                let result = try await online.source.search(query: query, page: nextPage, language: language, latest: latest)
+                try Task.checkCancellation(); guard identity == requestID else { return }
+                let existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { !existing.contains($0.id) })
+                hasMore = result.hasMore; nextPage += 1; loading = false
+            } else {
+                let cleanQuery = latest ? "" : query
+                let extItems = try await SourceEngineCoordinator.shared.search(sourceId: sourceId, query: cleanQuery, page: nextPage + 1)
+                try Task.checkCancellation(); guard identity == requestID else { return }
+                let seriesList = extItems.map {
+                    MangaSeries(id: $0.id, title: $0.title, coverURL: $0.coverURL, sourceID: sourceId)
+                }
+                let existing = Set(items.map(\.id))
+                items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })
+                hasMore = !extItems.isEmpty && extItems.count >= 2
+                nextPage += 1
+                loading = false
+            }
         } catch is CancellationError { if identity == requestID { loading = false } }
         catch { if identity == requestID { self.error = AppError.describe(error); loading = false } }
     }

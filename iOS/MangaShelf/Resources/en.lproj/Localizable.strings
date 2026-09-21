@@ -1003,3 +1003,9 @@
 "١١ سبتمبر ٢٠٢٦ — تغييرات قيد التحقق على الجهاز" = "September 11, 2026 — device validation pending";
 "١٢ سبتمبر ٢٠٢٦" = "September 12, 2026";
 "١٣ سبتمبر ٢٠٢٦" = "September 13, 2026";
+"JVM extension execution engine" = "JVM extension execution engine";
+"September 22, 2026" = "September 22, 2026";
+"Full JVM extension execution engine with dynamic classloading and JNI bridge." = "Full JVM extension execution engine with dynamic classloading and JNI bridge.";
+"Execute search, popular titles, details, chapters, and pages from extension sources." = "Execute search, popular titles, details, chapters, and pages from extension sources.";
+"Integrated active extension sources directly into Browse and Source Catalog views." = "Integrated active extension sources directly into Browse and Source Catalog views.";
+"High-performance NativeNet and NativeChannel transport with full memory safety." = "High-performance NativeNet and NativeChannel transport with full memory safety.";

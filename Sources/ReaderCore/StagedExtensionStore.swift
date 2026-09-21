@@ -23,6 +23,14 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
         self.isActive = isActive
     }
 
+    public var displayName: String {
+        let parts = packageName.split(separator: ".")
+        if let last = parts.last {
+            return last.prefix(1).uppercased() + last.dropFirst()
+        }
+        return packageName
+    }
+
     enum CodingKeys: String, CodingKey {
         case packageName, versionCode, digest, stagedAt, inspection, isTrusted, isActive
     }
@@ -129,6 +137,7 @@ public actor StagedExtensionStore {
             throw error
         }
     }
+    public func blobURL(for digest: String) -> URL { blob(digest) }
     private func blob(_ digest: String) -> URL { root.appendingPathComponent(digest + ".jar") }
     private static func validDigest(_ value: String) -> Bool {
         value.utf8.count == 64 && value.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) }

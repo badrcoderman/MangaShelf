@@ -27,7 +27,7 @@ int ms_java_start(ms_create_vm_fn create_vm, const char *classpath, const char *
     }
     /* JVM restart in one process is not assumed safe, including after a failed launch. */
     start_attempted = 1;
-    JavaVMOption options[] = {{"-Xint", NULL}, {"-Xms32M", NULL}, {"-Xmx256M", NULL}, {cp, NULL}, {home, NULL}};
+    JavaVMOption options[] = {{(char *)"-Xint", NULL}, {(char *)"-Xms32M", NULL}, {(char *)"-Xmx256M", NULL}, {cp, NULL}, {home, NULL}};
     JavaVMInitArgs args = {0};
     args.version = JNI_VERSION_1_8;
     args.nOptions = (jint)(sizeof(options)/sizeof(options[0]));
@@ -136,10 +136,16 @@ void ms_java_register_native_channel(ms_native_channel_fn handler) {
 JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *env, jclass cls, jbyteArray jsonUtf8, jobject buffer) {
     (void)cls;
     if (!env || !jsonUtf8) return NULL;
+    if ((*env)->PushLocalFrame(env, 16) != JNI_OK) return NULL;
+
     jsize json_len = (*env)->GetArrayLength(env, jsonUtf8);
-    if (json_len <= 0 || json_len > 256 * 1024) return NULL;
+    if (json_len <= 0 || json_len > 256 * 1024) {
+        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
+    }
     jbyte *json_bytes = (*env)->GetByteArrayElements(env, jsonUtf8, NULL);
-    if (!json_bytes) return NULL;
+    if (!json_bytes) {
+        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
+    }
 
     uint8_t *req_body = NULL;
     size_t req_body_len = 0;
@@ -147,12 +153,18 @@ JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *e
     jbyte *body_bytes = NULL;
 
     if (buffer) {
-        jclass buf_cls = (*env)->GetObjectClass(env, buffer);
-        if (buf_cls) {
-            jmethodID read_bytes_mid = (*env)->GetMethodID(env, buf_cls, "readByteArray", "()[B");
-            if (read_bytes_mid) {
-                body_array = (jbyteArray)(*env)->CallObjectMethod(env, buffer, read_bytes_mid);
-                if ((*env)->ExceptionCheck(env)) {
+        jclass byte_arr_cls = (*env)->FindClass(env, "[B");
+        if (byte_arr_cls && (*env)->IsInstanceOf(env, buffer, byte_arr_cls)) {
+            body_array = (jbyteArray)buffer;
+        } else {
+            if ((*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
+            jclass buf_cls = (*env)->GetObjectClass(env, buffer);
+            if (buf_cls) {
+                jmethodID read_bytes_mid = (*env)->GetMethodID(env, buf_cls, "readByteArray", "()[B");
+                if (read_bytes_mid) {
+                    body_array = (jbyteArray)(*env)->CallObjectMethod(env, buffer, read_bytes_mid);
+                }
+                if (!read_bytes_mid || (*env)->ExceptionCheck(env)) {
                     (*env)->ExceptionClear(env);
                     body_array = NULL;
                 }
@@ -190,17 +202,32 @@ JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *e
         (*env)->ReleaseByteArrayElements(env, body_array, body_bytes, JNI_ABORT);
     }
 
-    jclass byte_array_class = (*env)->FindClass(env, "[B");
-    if (!byte_array_class) return NULL;
-    jobjectArray result = (*env)->NewObjectArray(env, 2, byte_array_class, NULL);
-    if (!result) return NULL;
-
     const char *fallback_error = "{\"code\":500,\"error\":\"NativeNet transport unavailable\"}";
     int is_fallback = 0;
     if (status != 0 || !resp_meta || resp_meta_len == 0) {
+        if (status != 0 && resp_meta && free_fn) {
+            free_fn(resp_meta);
+        }
         resp_meta = (void *)fallback_error;
         resp_meta_len = strlen(fallback_error);
         is_fallback = 1;
+    }
+
+    jclass byte_array_class = (*env)->FindClass(env, "[B");
+    if (!byte_array_class) {
+        if (free_fn) {
+            if (resp_meta && !is_fallback) free_fn(resp_meta);
+            if (resp_body) free_fn(resp_body);
+        }
+        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
+    }
+    jobjectArray result = (*env)->NewObjectArray(env, 2, byte_array_class, NULL);
+    if (!result) {
+        if (free_fn) {
+            if (resp_meta && !is_fallback) free_fn(resp_meta);
+            if (resp_body) free_fn(resp_body);
+        }
+        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
     }
 
     jbyteArray meta_out = (*env)->NewByteArray(env, (jsize)resp_meta_len);
@@ -209,19 +236,21 @@ JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *e
         (*env)->SetObjectArrayElement(env, result, 0, meta_out);
     }
 
-    if (resp_body && resp_body_len > 0 && resp_body_len <= 64 * 1024 * 1024) {
-        jbyteArray body_out = (*env)->NewByteArray(env, (jsize)resp_body_len);
-        if (body_out) {
-            (*env)->SetByteArrayRegion(env, body_out, 0, (jsize)resp_body_len, (const jbyte *)resp_body);
-            (*env)->SetObjectArrayElement(env, result, 1, body_out);
+    jsize body_len_to_alloc = (resp_body && resp_body_len > 0 && resp_body_len <= 64 * 1024 * 1024)
+                              ? (jsize)resp_body_len : 0;
+    jbyteArray body_out = (*env)->NewByteArray(env, body_len_to_alloc);
+    if (body_out) {
+        if (body_len_to_alloc > 0) {
+            (*env)->SetByteArrayRegion(env, body_out, 0, body_len_to_alloc, (const jbyte *)resp_body);
         }
+        (*env)->SetObjectArrayElement(env, result, 1, body_out);
     }
 
     if (free_fn) {
         if (resp_meta && !is_fallback) free_fn(resp_meta);
         if (resp_body) free_fn(resp_body);
     }
-    return result;
+    return (jobjectArray)(*env)->PopLocalFrame(env, result);
 }
 
 JNIEXPORT void JNICALL Java_org_tachiyomi_NativeChannel_call_1utf8(JNIEnv *env, jclass cls, jbyteArray topicUtf8, jbyteArray contentUtf8) {

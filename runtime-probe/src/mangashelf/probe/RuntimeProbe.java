@@ -43,9 +43,26 @@ public final class RuntimeProbe {
         finally { Files.deleteIfExists(test); }
         return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O";
     }
+    public static final class MockOkioBuffer {
+        private final byte[] data;
+
+        public MockOkioBuffer(byte[] data) {
+            this.data = data;
+        }
+
+        public byte[] readByteArray() {
+            return data;
+        }
+    }
+
+    public static Object createMockBuffer(String text) {
+        return new MockOkioBuffer(text != null ? text.getBytes(StandardCharsets.UTF_8) : new byte[0]);
+    }
+
     public static void main(String[] args) throws Exception {
         if (args.length != 2) throw new IllegalArgumentException("plugin.jar writable-directory");
         System.out.println("VM: " + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version"));
         System.out.println(run(args[0], args[1]));
     }
 }
+

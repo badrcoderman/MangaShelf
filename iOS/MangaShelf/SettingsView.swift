@@ -111,6 +111,15 @@ struct AboutView: View {
             }
             Section {
                 DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
+                    DisclosureGroup(L10n.string("JVM extension execution engine")) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L10n.string("September 22, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("Full JVM extension execution engine with dynamic classloading and JNI bridge."))
+                            Text(L10n.string("Execute search, popular titles, details, chapters, and pages from extension sources."))
+                            Text(L10n.string("Integrated active extension sources directly into Browse and Source Catalog views."))
+                            Text(L10n.string("High-performance NativeNet and NativeChannel transport with full memory safety."))
+                        }.font(.footnote).padding(.vertical, 8)
+                    }
                     DisclosureGroup(L10n.string("Phase three — library and organization")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)

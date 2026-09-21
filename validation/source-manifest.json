@@ -21,8 +21,8 @@
   },
   {
     "path": ".gitignore",
-    "bytes": 114,
-    "sha256": "dda7edd84b746ec80a625e21d5365354db1259d0a7f803660e41fac5e09280ea"
+    "bytes": 123,
+    "sha256": "9c4cf59cbeb7dee47502c2f89da20c639c09069959d3b1e8e1532465da9e323d"
   },
   {
     "path": "AGENT.md",
@@ -45,6 +45,11 @@
     "sha256": "fce672336975fa15950eb060b457b4f852cbb01a5d779e28dee51f58218f9086"
   },
   {
+    "path": "Sources/CSafeArchive/MSJNIBridge.c",
+    "bytes": 3055,
+    "sha256": "bdc1bfd36489f22b38c1f6cd7d4fa46380350e526b04d968a2db43e1521c68c1"
+  },
+  {
     "path": "Sources/CSafeArchive/archive.c",
     "bytes": 7671,
     "sha256": "72e8514b9d5ed10de7814c62ef3ca9061d3e62baeb8f2a2dbd97d609cd9ae8e2"
@@ -55,9 +60,19 @@
     "sha256": "644325152abf0cac8317d64bc7ed594fc46b16ed0b9f928087bedb1eb2a3aa48"
   },
   {
+    "path": "Sources/CSafeArchive/include/MSJNIBridge.h",
+    "bytes": 2370,
+    "sha256": "1ed8b54821c5e2279b0378d9af732a560a45b077c221fe75b93aff3fefd8b1fc"
+  },
+  {
     "path": "Sources/ReaderCore/Archive.swift",
     "bytes": 5631,
     "sha256": "1510d71339e21bb005c64e8127b298065c8048653cafac32b1e08bb5b47d504c"
+  },
+  {
+    "path": "Sources/ReaderCore/ExtensionRuntime.swift",
+    "bytes": 10642,
+    "sha256": "ff10c57b8e96f095c3bf6b2d0779e5468b9b91ebfb9bb588e61c365dca6a7dac"
   },
   {
     "path": "Sources/ReaderCore/JARInspection.swift",
@@ -116,23 +131,28 @@
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
-    "bytes": 85543,
-    "sha256": "a55cbe751463a290dde30861f9547003ca06dca74094722a38d3598776786ecf"
+    "bytes": 86560,
+    "sha256": "55da7cf303e960b8e89a42cde5094c1170919a667418f3d9c60d2dbcd5fb9288"
   },
   {
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
-    "bytes": 69735,
-    "sha256": "76096f6ec5fbc7aac3f2fdd406e9275686297ea62aa3389d72472544334361f2"
+    "bytes": 70529,
+    "sha256": "243b0a5e4a36b8f3645402fcc8ee1efa0aa6f38bb633a2afe1c3f37921076507"
   },
   {
     "path": "Sources/ReaderCore/SourceEngine.swift",
-    "bytes": 5357,
-    "sha256": "425923adb9885077b57478e7d270b4d19b874806b7acedd655fc176d2f1cfe1c"
+    "bytes": 5085,
+    "sha256": "06065c9c14e2df076934bf3f5fcc14dfb92ea92b2a4079d3593b199f148f755b"
   },
   {
     "path": "Sources/ReaderCore/StagedExtensionStore.swift",
-    "bytes": 7153,
-    "sha256": "0cc4f0f639c3923807ad470c19b94bd42c5f90c92b8aaf0314df40f8db9e9e5d"
+    "bytes": 7457,
+    "sha256": "d1099c6ddc79008473461d7496819dfe2b356f13889e5055175c6875f6c237ce"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/ExtensionEngineTests.swift",
+    "bytes": 5154,
+    "sha256": "9c419aa2ec16bcb7861cbb615de2570dea4f03cc2acf0cc6ffb09560b79571b6"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -331,8 +351,8 @@
   },
   {
     "path": "iOS/MangaShelf/BrowseHomeView.swift",
-    "bytes": 13651,
-    "sha256": "656110999fe154a5b619b6d5a40ac0f6ae05dcaca3315ab1aa1a58cbaa421699"
+    "bytes": 14952,
+    "sha256": "75769e63d21d0fd4e2d8f93b057925cb6f3963941106a0a1dfee2b2ac37b08eb"
   },
   {
     "path": "iOS/MangaShelf/BrowseView.swift",
@@ -386,8 +406,8 @@
   },
   {
     "path": "iOS/MangaShelf/OnlineModel.swift",
-    "bytes": 11568,
-    "sha256": "90b7318fbd44617c77d42ba9ab22b43b34db0beb863854136f30a69a368f3639"
+    "bytes": 13174,
+    "sha256": "5d5c8937cf51cb97d02aaafae8ce223b68619a3a512799f8ad2ec3e9f68985c1"
   },
   {
     "path": "iOS/MangaShelf/OnlineReaderView.swift",
@@ -686,13 +706,13 @@
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
-    "bytes": 85543,
-    "sha256": "a55cbe751463a290dde30861f9547003ca06dca74094722a38d3598776786ecf"
+    "bytes": 86560,
+    "sha256": "55da7cf303e960b8e89a42cde5094c1170919a667418f3d9c60d2dbcd5fb9288"
   },
   {
     "path": "iOS/MangaShelf/Resources/en.lproj/Localizable.strings",
-    "bytes": 69735,
-    "sha256": "76096f6ec5fbc7aac3f2fdd406e9275686297ea62aa3389d72472544334361f2"
+    "bytes": 70529,
+    "sha256": "243b0a5e4a36b8f3645402fcc8ee1efa0aa6f38bb633a2afe1c3f37921076507"
   },
   {
     "path": "iOS/MangaShelf/Resources/icomoon.ttf",
@@ -701,8 +721,8 @@
   },
   {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 13637,
-    "sha256": "abdc52f46e5dd7ff23f6e40e63142e3d3e80a5859f936b487c90220a9a7a3694"
+    "bytes": 14507,
+    "sha256": "8cce6bd89bcf707be7f84e28aae5ab57cb401e7887e9631163d3bc6965c46e40"
   },
   {
     "path": "iOS/MangaShelf/ShelfDetailHero.swift",
@@ -726,8 +746,8 @@
   },
   {
     "path": "iOS/MangaShelf/SourceViews.swift",
-    "bytes": 15269,
-    "sha256": "bffd1fb8dd23e185f3fe7820f66f8640163c881111242569c2bbdf706d90454f"
+    "bytes": 16296,
+    "sha256": "5fd1b42f1a13cba23fef1803b9768d8e9676ffc33ca644c91fc15be6f76799d1"
   },
   {
     "path": "iOS/MangaShelf/SupportingSettingsViews.swift",
@@ -752,7 +772,7 @@
   {
     "path": "iOS/MangaShelf.xcodeproj/project.pbxproj",
     "bytes": 17227,
-    "sha256": "6261d6b37705d6c9076be9f4b88fccc88830142eaebb3cbd1561c63413b7ba4c"
+    "sha256": "43f48fca9f49ec45fffcce46a32ba5f65775bc438867f14edeb11f76c3eb1107"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/xcshareddata/xcschemes/MangaShelf.xcscheme",
@@ -761,8 +781,8 @@
   },
   {
     "path": "runtime-native/MSJavaRuntime.c",
-    "bytes": 10860,
-    "sha256": "15394b9547d7b45dc0d936bdbec578774f2851bcd19e527b0886aba3c7de859e"
+    "bytes": 12032,
+    "sha256": "5a4438a79de13069e6e7c7157a60d0d80d15eee37a23476b0b24ecbd530cc82e"
   },
   {
     "path": "runtime-native/MSJavaRuntime.h",
@@ -776,8 +796,8 @@
   },
   {
     "path": "runtime-native/host_probe.c",
-    "bytes": 6035,
-    "sha256": "ccd30ae197b4c39d7cad6324594cb17ea754d360782b4077aac56d00d910d3ab"
+    "bytes": 9708,
+    "sha256": "4ce2a3f41db7fa4d28954dde7ec4c93d2376940cb18426e4c6417abde8fedb0b"
   },
   {
     "path": "runtime-native/ios_jvm_compat.cpp",
@@ -791,13 +811,18 @@
   },
   {
     "path": "runtime-probe/src/mangashelf/probe/RuntimeProbe.java",
-    "bytes": 2956,
-    "sha256": "3091ad7c071b9f20fe44a04eb8da172423f7467195609c0627fdff3c70080c9a"
+    "bytes": 3375,
+    "sha256": "84b8334d7ee95f9dd675d997f45bc3928bc9926a6f30151265271fd5ccf04759"
+  },
+  {
+    "path": "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java",
+    "bytes": 13645,
+    "sha256": "fa148b2061562f26288234af8391bf5835c75e82d63356837a241cfe7dfd52a1"
   },
   {
     "path": "scripts/audit_project.py",
-    "bytes": 3359,
-    "sha256": "2433f5c222305f112495d194194c9947eefb39f77c54cb1f37d1194d6901d167"
+    "bytes": 3369,
+    "sha256": "e4391e55818d035bcb24314f09aa6abf898cc32a24f540a634414de9541f16c5"
   },
   {
     "path": "scripts/build-ios-jvm.sh",
@@ -811,8 +836,8 @@
   },
   {
     "path": "scripts/build-native-runtime-probe.py",
-    "bytes": 1663,
-    "sha256": "912dc4a0f396679e4f5f8011a4512aa896bd2510586ab25651a437b7e2adb6a5"
+    "bytes": 3022,
+    "sha256": "c58e27df4ef80f0792be8fefe48e08bd940c34a2234e1c39bc62b13090c8cc0d"
   },
   {
     "path": "scripts/check_ui_resources.py",
