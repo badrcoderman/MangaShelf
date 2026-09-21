@@ -71,8 +71,8 @@
   },
   {
     "path": "Sources/ReaderCore/ExtensionRuntime.swift",
-    "bytes": 10890,
-    "sha256": "53400ffe5b34a4ef20dfe570c2e4b70c27b63e8697fc286f27c3df98914acb06"
+    "bytes": 10888,
+    "sha256": "104d01a8ff2041201ea58ab70fd51b71964c0226715f3f6b936ba5bc2e0bd7ec"
   },
   {
     "path": "Sources/ReaderCore/JARInspection.swift",

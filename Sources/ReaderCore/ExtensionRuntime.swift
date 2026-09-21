@@ -207,7 +207,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
             let sid = extractField(from: payload, key: "sourceId") ?? "src"
             return """
             {
-              "title":"Manga Details (\(sid))",
+              "title":"Sample Manga Details",
               "author":"Author",
               "artist":"Artist",
               "description":"Description for \(sid)",
