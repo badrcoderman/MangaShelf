@@ -134,8 +134,12 @@ public actor OnlineStore {
         candidate.series[i].progress[chapterID] = p; try commit(candidate)
     }
     private func directory(_ id: String) throws -> URL {
-        guard let uuid = UUID(uuidString: id) else { throw ReaderFailure(ReaderText.string("Invalid storage identifier.")) }
-        return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(uuid.uuidString, isDirectory: true)
+        if let uuid = UUID(uuidString: id) {
+            return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(uuid.uuidString, isDirectory: true)
+        }
+        let safe = id.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+        guard !safe.isEmpty, safe.count <= 128 else { throw ReaderFailure(ReaderText.string("Invalid storage identifier.")) }
+        return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(safe, isDirectory: true)
     }
     public func cachedPages(chapterID: String) throws -> ChapterPages? {
         let url = try directory(chapterID).appendingPathComponent("pages.json")

@@ -91,7 +91,7 @@ extension SecureHTTP: SourceTransport {
         let pages: ChapterPages
         if let sid = seriesItem?.series.sourceID, sid != "mangadex" {
             let pageItems = try await SourceEngineCoordinator.shared.fetchPages(sourceId: sid, chapterURL: "/chapter/\(chapter.id)")
-            pages = ChapterPages(chapterID: chapter.id, urls: pageItems.compactMap { $0.imageURL ?? $0.url })
+            pages = try ChapterPages(chapterID: chapter.id, urls: pageItems.compactMap { $0.imageURL ?? $0.url })
         } else {
             pages = try await source.pages(chapterID: chapter.id, dataSaver: dataSaver)
         }

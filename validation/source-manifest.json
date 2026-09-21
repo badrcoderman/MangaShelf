@@ -106,13 +106,13 @@
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
-    "bytes": 6788,
-    "sha256": "58eb9e260af9e7597cb551c14b48b02b23697287301733f94584b52c2ade4494"
+    "bytes": 7190,
+    "sha256": "9f0eafb43061c21d9bb5bef363f67fa268fbb0337ddb917eb8702b155f496a5e"
   },
   {
     "path": "Sources/ReaderCore/OnlineStore.swift",
-    "bytes": 13757,
-    "sha256": "5d2c8149f9918c26b8334a2791b8c2a20b7f1608c91e92643860711cbb0a8849"
+    "bytes": 14028,
+    "sha256": "cc48e1cbfa288bf5b8490e3dc1493cc6961307954640f634d5e612284de37787"
   },
   {
     "path": "Sources/ReaderCore/ReaderText.swift",
@@ -406,8 +406,8 @@
   },
   {
     "path": "iOS/MangaShelf/OnlineModel.swift",
-    "bytes": 13174,
-    "sha256": "5d5c8937cf51cb97d02aaafae8ce223b68619a3a512799f8ad2ec3e9f68985c1"
+    "bytes": 13178,
+    "sha256": "7775f59e24fd345bff8db666234d4d54cb989f8c354b918887a1a20c84d8c8d5"
   },
   {
     "path": "iOS/MangaShelf/OnlineReaderView.swift",
