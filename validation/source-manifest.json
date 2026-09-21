@@ -721,8 +721,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfStyle.swift",
-    "bytes": 11407,
-    "sha256": "4a2eda4bd04397cc3cf7cd782ba85fd2c569fbad03437a978226b9fb9cde6a6d"
+    "bytes": 11462,
+    "sha256": "01c8ad90d527fe25396b7d1ecb357520c286bdf440fa9bc6bbcbb71a08d285d0"
   },
   {
     "path": "iOS/MangaShelf/SourceViews.swift",

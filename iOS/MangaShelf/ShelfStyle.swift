@@ -14,6 +14,7 @@ enum ShelfStyle {
     static let background = color(0x141416, light: 0xFAFAFC)
     static let header = color(0x1C1D21, light: 0xECEEF4)
     static let menu = color(0x202124, light: 0xF3F4F8)
+    static let card = color(0x1F2024, light: 0xF6F7FA)
     static let selected = color(0x3B3B3F, light: 0xDFE5F2)
     static let accent = color(0xAEC6FF, light: 0x345DA8)
     static let text = color(0xF4F5FA, light: 0x202126)
