@@ -111,8 +111,8 @@
   },
   {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
-    "bytes": 14035,
-    "sha256": "6a3bd1b93e06fbb7a998d201008ca48fee742222328bcfac2866d8cde74d2f50"
+    "bytes": 14387,
+    "sha256": "85b60bff862d2275a2d09f91a805ed37441f533709cca46fa5b683aad15f6ab6"
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",

@@ -174,10 +174,25 @@ public enum RepositoryDecoder {
                 ?? c.decode(String.self, forKey: .packageName))
             version = Self.string(c, .version) ?? Self.string(c, .versionName)
             code = Self.number(c, .code) ?? Self.number(c, .versionCode)
-            jarUrl = Self.string(c, .jarUrl) ?? Self.string(c, .jarURL) ?? Self.string(c, .jar)
-                ?? Self.string(c, .apkUrl) ?? Self.string(c, .apkURL) ?? Self.string(c, .apk)
-                ?? Self.string(c, .downloadUrl) ?? Self.string(c, .downloadURL) ?? Self.string(c, .url)
-            iconUrl = Self.string(c, .iconUrl) ?? Self.string(c, .iconURL) ?? Self.string(c, .icon)
+            var resolvedJar: String? = nil
+            let candidateJarKeys: [CodingKeys] = [.jarUrl, .jarURL, .jar, .apkUrl, .apkURL, .apk, .downloadUrl, .downloadURL, .url]
+            for key in candidateJarKeys {
+                if let val = Self.string(c, key) {
+                    resolvedJar = val
+                    break
+                }
+            }
+            jarUrl = resolvedJar
+
+            var resolvedIcon: String? = nil
+            let candidateIconKeys: [CodingKeys] = [.iconUrl, .iconURL, .icon]
+            for key in candidateIconKeys {
+                if let val = Self.string(c, key) {
+                    resolvedIcon = val
+                    break
+                }
+            }
+            iconUrl = resolvedIcon
             sources = try c.decodeIfPresent([LegacySource].self, forKey: .sources)
         }
 
