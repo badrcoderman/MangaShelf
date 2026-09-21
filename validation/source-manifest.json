@@ -75,6 +75,11 @@
     "sha256": "0afc16b8d61e9351e0e5644629820a8905893a85748c1a9b11f707ec9aa7af22"
   },
   {
+    "path": "Sources/ReaderCore/NativeBridge.swift",
+    "bytes": 2263,
+    "sha256": "29fd1b88af7940d5fa2b67086f2c1d36fa5d6126dceab5de2a0da98acf9445f5"
+  },
+  {
     "path": "Sources/ReaderCore/NativeNetworkContract.swift",
     "bytes": 3319,
     "sha256": "9ff597eac475a7bf231a1caca2c9912be1fce5b91d533b622b1152f7d1d62220"
@@ -120,9 +125,14 @@
     "sha256": "a1bc84fec4db30a4a5012327d0920570f5f7a4ac7f9c6ebb5daa470c4bd375e0"
   },
   {
+    "path": "Sources/ReaderCore/SourceEngine.swift",
+    "bytes": 5330,
+    "sha256": "15ee0cc81acf5feda6b43bd38e52cb548cc9ea8ac3c2170b5d76e9fd5b7472a8"
+  },
+  {
     "path": "Sources/ReaderCore/StagedExtensionStore.swift",
-    "bytes": 4480,
-    "sha256": "928fc4967112cc5a761f2f82c482257ab573411eef7bc2cdbc8fce3279c18640"
+    "bytes": 7153,
+    "sha256": "0cc4f0f639c3923807ad470c19b94bd42c5f90c92b8aaf0314df40f8db9e9e5d"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -158,6 +168,11 @@
     "path": "Tests/ReaderCoreTests/NativeNetworkContractTests.swift",
     "bytes": 2213,
     "sha256": "fd8fae3d0b1a6d3ee14f672702e03525cecfabe75dc4db69bb968a07edecc405"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift",
+    "bytes": 6952,
+    "sha256": "243a3d43fbf9691e5bd8bb3914e994654a36c46c92352ffd658d5b33ac8ea7c1"
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
@@ -236,8 +251,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 15451,
-    "sha256": "2f82eb50ebd71ce1728c93de7d0bb1a6087763c45dc04f5dc96bed55ea4cd06e"
+    "bytes": 16928,
+    "sha256": "6b7109b7e3347e73c3a2b1230af42e344e145752cf300a712941b2b33fcc15a4"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -281,8 +296,8 @@
   },
   {
     "path": "docs/STATUS-AR.md",
-    "bytes": 3124,
-    "sha256": "2b1d28c8d5832ae8607074e668df3d1ec90fbcb9a6c6c18e5c0b9bd51fe62986"
+    "bytes": 2868,
+    "sha256": "6bcc226f2f4cb1107fbba784b8580c581bd4afd5a95348d21c56d167b5933a37"
   },
   {
     "path": "docs/TACHIYOMI-IOS-REVIEW-AR.md",
@@ -301,13 +316,13 @@
   },
   {
     "path": "iOS/MangaShelf/AppModel.swift",
-    "bytes": 11220,
-    "sha256": "bb40327bee90d94db1dae3d293ee2ec68a7468e477bb9829a181225afe6e0c15"
+    "bytes": 11883,
+    "sha256": "3147f2341fc088792a171ce19acd3d4eb09340370ef2788e89c71e860951abe0"
   },
   {
     "path": "iOS/MangaShelf/BrowseHomeView.swift",
-    "bytes": 7946,
-    "sha256": "734cfa6352a22e82165ecaf26af2e090c5e2447a2fbb49ea71893721bad17d08"
+    "bytes": 10893,
+    "sha256": "02f700f61b3eabea303c0e4258a17bdf100c698b6c2953f6f46288f856b8f904"
   },
   {
     "path": "iOS/MangaShelf/BrowseView.swift",
@@ -686,8 +701,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfOverflow.swift",
-    "bytes": 4858,
-    "sha256": "c9e3b61ac7cfb62e169ce11ccc79df98d0c12aa39fc10110eb06d4047379d5b3"
+    "bytes": 4994,
+    "sha256": "b725785d8e1e539fc89474cce1d8a9689faabf634bce1ff4d308f65b12906b72"
   },
   {
     "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
@@ -731,13 +746,13 @@
   },
   {
     "path": "runtime-native/MSJavaRuntime.c",
-    "bytes": 5325,
-    "sha256": "d4d99e425b48b96238fb54e7429b2a785279f712acb2793e87fe852653d3f648"
+    "bytes": 10860,
+    "sha256": "15394b9547d7b45dc0d936bdbec578774f2851bcd19e527b0886aba3c7de859e"
   },
   {
     "path": "runtime-native/MSJavaRuntime.h",
-    "bytes": 934,
-    "sha256": "3df5ae27923f0c800a0af2a16dfbcfcb8fbdc8654201ca20e9cfda9c28614272"
+    "bytes": 2042,
+    "sha256": "86765846dcb21246d2b8b026bde794ca651fc1db80af722e60c6dfd1bdf78589"
   },
   {
     "path": "runtime-native/README.md",
@@ -746,8 +761,8 @@
   },
   {
     "path": "runtime-native/host_probe.c",
-    "bytes": 1980,
-    "sha256": "3eed5b73e4212febcdb9cf84cd97a2f23d9e399ac1eb268afc8352f43e6e62d4"
+    "bytes": 6035,
+    "sha256": "ccd30ae197b4c39d7cad6324594cb17ea754d360782b4077aac56d00d910d3ab"
   },
   {
     "path": "runtime-native/ios_jvm_compat.cpp",

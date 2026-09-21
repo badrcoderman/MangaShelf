@@ -27,7 +27,7 @@ private struct ShelfOverflowModifier: ViewModifier {
             .overlay {
                 if isPresented {
                     GeometryReader { geometry in
-                        ZStack(alignment: .topLeading) {
+                        ZStack(alignment: direction == .rightToLeft ? .topTrailing : .topLeading) {
                             Color.black.opacity(0.12)
                                 .contentShape(Rectangle())
                                 .onTapGesture { dismiss() }
@@ -68,7 +68,7 @@ private struct ShelfOverflowModifier: ViewModifier {
                                    height: min(contentHeight > 0 ? contentHeight : CGFloat(actions.count) * 56,
                                                max(0, geometry.size.height - 72)))
                             .foregroundStyle(ShelfStyle.text)
-                            .background(ShelfStyle.menu, in: RoundedRectangle(cornerRadius: 16))
+                            .background(reduceTransparency ? ShelfStyle.menu : ShelfStyle.menu.opacity(0.96), in: RoundedRectangle(cornerRadius: 16))
                             .shadow(color: .black.opacity(0.2), radius: 18, y: 8)
                             .environment(\.layoutDirection, direction)
                             .accessibilityElement(children: .contain)
@@ -77,7 +77,7 @@ private struct ShelfOverflowModifier: ViewModifier {
                             .accessibilityFocused($menuFocused)
                             .accessibilityAction(.escape) { dismiss() }
                             .padding(.top, 48)
-                            .padding(.leading, 12)
+                            .padding(direction == .rightToLeft ? .trailing : .leading, 12)
                             .transition(.opacity)
                         }.environment(\.layoutDirection, .leftToRight)
                     }

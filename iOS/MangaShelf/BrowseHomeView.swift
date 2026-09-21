@@ -119,8 +119,43 @@ struct ExtensionsCatalogView: View {
                                     }
                                     Spacer()
                                     if let staged = model.stagedExtension(packageName: entry.packageName) {
-                                        Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
-                                            .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                        VStack(alignment: .trailing, spacing: 4) {
+                                            Text(L10n.format("Staged · %@", String(describing: staged.versionCode)))
+                                                .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                            HStack(spacing: 8) {
+                                                Button {
+                                                    Task {
+                                                        do { try await model.setExtensionTrust(packageName: entry.packageName, trusted: !staged.isTrusted) }
+                                                        catch { model.errorMessage = AppError.describe(error) }
+                                                    }
+                                                } label: {
+                                                    TachiIcon(symbol: staged.isTrusted ? "shield.checkmark.fill" : "shield", size: 16)
+                                                        .foregroundStyle(staged.isTrusted ? ShelfStyle.accent : ShelfStyle.secondary)
+                                                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Trust status"))
+
+                                                if staged.isTrusted {
+                                                    Button {
+                                                        Task {
+                                                            do { try await model.setExtensionActive(packageName: entry.packageName, active: !staged.isActive) }
+                                                            catch { model.errorMessage = AppError.describe(error) }
+                                                        }
+                                                    } label: {
+                                                        TachiIcon(symbol: staged.isActive ? "checkmark.circle.fill" : "circle", size: 16)
+                                                            .foregroundStyle(staged.isActive ? ShelfStyle.accent : ShelfStyle.secondary)
+                                                    }.buttonStyle(.plain).accessibilityLabel(L10n.string("Active status"))
+                                                }
+
+                                                Button {
+                                                    Task {
+                                                        do { try await model.removeStagedExtension(packageName: entry.packageName) }
+                                                        catch { model.errorMessage = AppError.describe(error) }
+                                                    }
+                                                } label: {
+                                                    TachiIcon(symbol: "trash", size: 16)
+                                                        .foregroundStyle(ShelfStyle.secondary)
+                                                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Remove staged JAR"))
+                                            }
+                                        }
                                     } else {
                                         Text(L10n.string("Not staged")).font(.caption).foregroundStyle(ShelfStyle.secondary)
                                     }

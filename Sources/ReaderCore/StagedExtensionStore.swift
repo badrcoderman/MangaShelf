@@ -8,6 +8,35 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
     public let digest: String
     public let stagedAt: Date
     public let inspection: JARInspection
+    public var isTrusted: Bool
+    public var isActive: Bool
+
+    public init(packageName: String, versionCode: UInt64, digest: String,
+                stagedAt: Date, inspection: JARInspection,
+                isTrusted: Bool = false, isActive: Bool = false) {
+        self.packageName = packageName
+        self.versionCode = versionCode
+        self.digest = digest
+        self.stagedAt = stagedAt
+        self.inspection = inspection
+        self.isTrusted = isTrusted
+        self.isActive = isActive
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case packageName, versionCode, digest, stagedAt, inspection, isTrusted, isActive
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        packageName = try container.decode(String.self, forKey: .packageName)
+        versionCode = try container.decode(UInt64.self, forKey: .versionCode)
+        digest = try container.decode(String.self, forKey: .digest)
+        stagedAt = try container.decode(Date.self, forKey: .stagedAt)
+        inspection = try container.decode(JARInspection.self, forKey: .inspection)
+        isTrusted = try container.decodeIfPresent(Bool.self, forKey: .isTrusted) ?? false
+        isActive = try container.decodeIfPresent(Bool.self, forKey: .isActive) ?? false
+    }
 }
 
 /// Durable candidate packages. Staging never means installed, trusted, or activated in a JVM.
@@ -46,13 +75,38 @@ public actor StagedExtensionStore {
         }
         let inspection = try JARInspection.inspect(data)
         let record = StagedExtension(packageName: packageName, versionCode: versionCode,
-                                     digest: digest, stagedAt: Date(), inspection: inspection)
+                                     digest: digest, stagedAt: Date(), inspection: inspection,
+                                     isTrusted: false, isActive: false)
         let candidate = records.filter { $0.id != packageName } + [record]
         guard candidate.count <= 10_000 else { throw StagedExtensionError.invalidIndex }
         // Blob first, atomic index last: failures never point the index at an incomplete JAR.
         try data.write(to: blob(digest), options: .atomic)
         try commit(candidate)
         return record
+    }
+    public func setTrust(packageName: String, trusted: Bool) throws {
+        guard let idx = records.firstIndex(where: { $0.id == packageName }) else {
+            throw StagedExtensionError.notFound
+        }
+        var updated = records
+        var item = updated[idx]
+        item.isTrusted = trusted
+        if !trusted { item.isActive = false }
+        updated[idx] = item
+        try commit(updated)
+    }
+    public func setActive(packageName: String, active: Bool) throws {
+        guard let idx = records.firstIndex(where: { $0.id == packageName }) else {
+            throw StagedExtensionError.notFound
+        }
+        var updated = records
+        guard updated[idx].isTrusted || !active else {
+            throw StagedExtensionError.untrustedActivation
+        }
+        var item = updated[idx]
+        item.isActive = active
+        updated[idx] = item
+        try commit(updated)
     }
     public func remove(packageName: String) throws {
         let candidate = records.filter { $0.id != packageName }
@@ -65,6 +119,15 @@ public actor StagedExtensionStore {
         let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
         guard digest == record.digest else { throw StagedExtensionError.digestMismatch }
         return data
+    }
+    /// Verifies package on disk and rolls back if file has been corrupted.
+    public func verifiedPackageWithRollback(packageName: String) throws -> Data {
+        do {
+            return try verifiedPackage(packageName: packageName)
+        } catch {
+            try? remove(packageName: packageName)
+            throw error
+        }
     }
     private func blob(_ digest: String) -> URL { root.appendingPathComponent(digest + ".jar") }
     private static func validDigest(_ value: String) -> Bool {
@@ -79,5 +142,5 @@ public actor StagedExtensionStore {
 }
 
 public enum StagedExtensionError: Error, Equatable {
-    case invalidIndex, invalidIdentity, digestMismatch, downgrade, versionConflict, notFound
+    case invalidIndex, invalidIdentity, digestMismatch, downgrade, versionConflict, notFound, untrustedActivation
 }

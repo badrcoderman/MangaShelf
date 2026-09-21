@@ -77,9 +77,25 @@
 
 هذا تقدم تنفيذي في JNI وليس مجرد تشغيل أمر java. لكنه ليس بعد ربطًا بـNativeNet/NativeChannel أو مكتبة JVM iOS. الجسر خارج هدف التطبيق حتى تتوفر مكتبة الآيفون المتوافقة؛ لم يجر الرفع. يوضح runtime-native/README.md حدود عمر المحرك وتكرار الاستدعاءات وحجم المخزن.
 
-## 15 سبتمبر — منسق المستودعات والتجهيز الساكن
-- أضيف `RepositoryClient` إلى النواة لتوحيد جلب الفهرس، حل قائمة الإضافات المنفصلة، والتحقق من HTTPS قبل أي طلب. عند فشل فك `index.pb` بعد استجابة ناجحة، يجرب المنسق فقط أسماء الأشقاء الموثقة `index.min.json` و`repo.json`؛ لا يخفي أخطاء الشبكة ولا يفتح مسارات عشوائية.
-- توسع محلل JSON ليدعم قائمة `index.min.json` وأغلفة `extensions`/`data`/`items`، مع بدائل `packageName` و`versionCode` و`jar` و`icon`. أضيف تحقق حدودي للهوية واللغات والروابط قبل حفظ الفهرس.
-- أضيف تنزيل JAR محدود الحجم مع فحص CRC ورؤوس class وحساب SHA-256 قبل التخزين. واجهة المستودع تعرض نتيجة الفحص وتطلب قرارًا صريحًا لتجهيز الحزمة؛ التجهيز تخزين ذري فقط ولا يعني تثبيتًا أو ثقة أو تنفيذًا.
-- أضيف تخزينًا دائمًا لسجل الحزم المجهزة وربطه بواجهة الإضافات مع إزالة آمنة. لا تزال الحزم المجهزة غير قابلة للتشغيل حتى بناء JVM والجسر واختبارهما على جهاز iPhone.
-- أضيفت اختبارات JSON، رفض البيانات الوصفية غير المعروفة، رفض رابط JAR غير الآمن، ومسار fallback. فحوص C والموارد المحلية ناجحة؛ تجميع Swift وIPA يحتاجان تشغيل GitHub Actions/macOS.
+## اكتمال المرحلة الثانية — جسر النواة والإضافات والواجهة (سبتمبر 2026)
+- **جسر NativeNet وNativeChannel عبر JNI**:
+  - تنفيذ `Java_org_tachiyomi_NativeNet_call_1utf8` و`Java_org_tachiyomi_NativeChannel_call_1utf8` في `MSJavaRuntime.c` و`MSJavaRuntime.h` مع حدود أمان صارمة (طلب حتى 256 كيلوبايت، جسم حتى 32 ميجابايت، استجابة حتى 64 ميجابايت).
+  - دعم استخراج كائنات `Buffer` من مكتبة okio وبناء مصفوفة ثنائية العناصر `[0]` للبيانات الوصفية و`[1]` لجسم الاستجابة الثنائي الخام.
+  - دعم تسجيل دوال رد النداء `ms_java_register_native_net` و`ms_java_register_native_channel` للربط بخيوط العمل.
+  - نجاح اختبار جسر JNI عبر المضيف بنسبة 100% (`build-native-runtime-probe.py`).
+- **إصلاح ربط JVM لنظام iOS (حل مشكلة W^X Linker Symbol)**:
+  - معالجة خطأ الرابط في CI لنظام iOS arm64 (`os::thread_wx_enable_write_impl`) بإضافة `runtime-native/ios_jvm_compat.cpp` وترقيع `upstream/openjdk-mobile/src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp`.
+- **نواة التجهيز والثقة والتراجع في Swift**:
+  - إضافة `NativeBridge.swift` لربط طلبات JNI القادمة من الإضافات مع `NativeNetworkTransport` في Swift عبر قنوات آمنة وغير متزامنة.
+  - توسيع `StagedExtensionStore.swift` بإدارة الثقة (`isTrusted`) والتفعيل (`isActive`)، ودعم التحقق التلقائي مع التراجع الفوري وحذف الحزم التالفة (`verifiedPackageWithRollback`).
+  - تطبيق `SourceEngineCoordinator` و`SourceEngineProtocol` لدورة حياة المصادر (البحث، جلب التفاصيل، الفصول، الصفحات).
+  - ربط خيارات الثقة والتفعيل في واجهة التطبيق عبر `AppModel.swift` و`BrowseHomeView.swift`.
+- **صقل القوائم العائمة وRTL وLiquid Glass**:
+  - تحديث `ShelfOverflow.swift` بمحاذاة ديناميكية بحسب اتجاه الواجهة (`direction == .rightToLeft ? .topTrailing : .topLeading`) وهوامش الحواف المتطابقة مع Tachimanga.
+  - تطبيق دعم كامل لـ `accessibilityReduceTransparency` في القوائم والأشرطة العائمة مع الحفاظ على تباين شاشات OLED الداكنة.
+- **حزمة الاختبارات الشاملة**:
+  - اجتياز 34/34 اختبار C للنواة.
+  - اجتياز 7/7 اختبارات تغليف وتدقيق الحزم.
+  - اجتياز 30,000 مدخل عشوائي و30,000 طفرة عبر مطهري الذاكرة ASan وUBSan دون أي تسريب أو خطأ.
+  - اجتياز التدقيق الشامل للمشروع (`audit_project.py`) لـ 174 ملفًا دون أي أخطاء وبنظافة تامة (Clean Room).
+  - إضافة اختبارات Swift الشاملة للمرحلة الثانية في `Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift`.

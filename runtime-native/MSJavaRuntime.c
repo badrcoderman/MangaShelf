@@ -112,3 +112,143 @@ finish:
     if (attached && (*vm)->DetachCurrentThread(vm) != JNI_OK) result = MS_JAVA_THREAD;
     return result;
 }
+
+static ms_native_net_fn registered_net_fn = NULL;
+static ms_buffer_free_fn registered_free_fn = NULL;
+static pthread_mutex_t net_lock = PTHREAD_MUTEX_INITIALIZER;
+
+static ms_native_channel_fn registered_channel_fn = NULL;
+static pthread_mutex_t channel_lock = PTHREAD_MUTEX_INITIALIZER;
+
+void ms_java_register_native_net(ms_native_net_fn handler, ms_buffer_free_fn free_fn) {
+    pthread_mutex_lock(&net_lock);
+    registered_net_fn = handler;
+    registered_free_fn = free_fn;
+    pthread_mutex_unlock(&net_lock);
+}
+
+void ms_java_register_native_channel(ms_native_channel_fn handler) {
+    pthread_mutex_lock(&channel_lock);
+    registered_channel_fn = handler;
+    pthread_mutex_unlock(&channel_lock);
+}
+
+JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *env, jclass cls, jbyteArray jsonUtf8, jobject buffer) {
+    (void)cls;
+    if (!env || !jsonUtf8) return NULL;
+    jsize json_len = (*env)->GetArrayLength(env, jsonUtf8);
+    if (json_len <= 0 || json_len > 256 * 1024) return NULL;
+    jbyte *json_bytes = (*env)->GetByteArrayElements(env, jsonUtf8, NULL);
+    if (!json_bytes) return NULL;
+
+    uint8_t *req_body = NULL;
+    size_t req_body_len = 0;
+    jbyteArray body_array = NULL;
+    jbyte *body_bytes = NULL;
+
+    if (buffer) {
+        jclass buf_cls = (*env)->GetObjectClass(env, buffer);
+        if (buf_cls) {
+            jmethodID read_bytes_mid = (*env)->GetMethodID(env, buf_cls, "readByteArray", "()[B");
+            if (read_bytes_mid) {
+                body_array = (jbyteArray)(*env)->CallObjectMethod(env, buffer, read_bytes_mid);
+                if ((*env)->ExceptionCheck(env)) {
+                    (*env)->ExceptionClear(env);
+                    body_array = NULL;
+                }
+            }
+        }
+        if (body_array) {
+            jsize b_len = (*env)->GetArrayLength(env, body_array);
+            if (b_len > 0 && b_len <= 32 * 1024 * 1024) {
+                req_body_len = (size_t)b_len;
+                body_bytes = (*env)->GetByteArrayElements(env, body_array, NULL);
+                req_body = (uint8_t *)body_bytes;
+            }
+        }
+    }
+
+    pthread_mutex_lock(&net_lock);
+    ms_native_net_fn net_fn = registered_net_fn;
+    ms_buffer_free_fn free_fn = registered_free_fn;
+    pthread_mutex_unlock(&net_lock);
+
+    void *resp_meta = NULL;
+    size_t resp_meta_len = 0;
+    void *resp_body = NULL;
+    size_t resp_body_len = 0;
+    int status = -1;
+    if (net_fn) {
+        status = net_fn((const void *)json_bytes, (size_t)json_len,
+                        req_body, req_body_len,
+                        &resp_meta, &resp_meta_len,
+                        &resp_body, &resp_body_len);
+    }
+
+    (*env)->ReleaseByteArrayElements(env, jsonUtf8, json_bytes, JNI_ABORT);
+    if (body_array && body_bytes) {
+        (*env)->ReleaseByteArrayElements(env, body_array, body_bytes, JNI_ABORT);
+    }
+
+    jclass byte_array_class = (*env)->FindClass(env, "[B");
+    if (!byte_array_class) return NULL;
+    jobjectArray result = (*env)->NewObjectArray(env, 2, byte_array_class, NULL);
+    if (!result) return NULL;
+
+    const char *fallback_error = "{\"code\":500,\"error\":\"NativeNet transport unavailable\"}";
+    int is_fallback = 0;
+    if (status != 0 || !resp_meta || resp_meta_len == 0) {
+        resp_meta = (void *)fallback_error;
+        resp_meta_len = strlen(fallback_error);
+        is_fallback = 1;
+    }
+
+    jbyteArray meta_out = (*env)->NewByteArray(env, (jsize)resp_meta_len);
+    if (meta_out) {
+        (*env)->SetByteArrayRegion(env, meta_out, 0, (jsize)resp_meta_len, (const jbyte *)resp_meta);
+        (*env)->SetObjectArrayElement(env, result, 0, meta_out);
+    }
+
+    if (resp_body && resp_body_len > 0 && resp_body_len <= 64 * 1024 * 1024) {
+        jbyteArray body_out = (*env)->NewByteArray(env, (jsize)resp_body_len);
+        if (body_out) {
+            (*env)->SetByteArrayRegion(env, body_out, 0, (jsize)resp_body_len, (const jbyte *)resp_body);
+            (*env)->SetObjectArrayElement(env, result, 1, body_out);
+        }
+    }
+
+    if (free_fn) {
+        if (resp_meta && !is_fallback) free_fn(resp_meta);
+        if (resp_body) free_fn(resp_body);
+    }
+    return result;
+}
+
+JNIEXPORT void JNICALL Java_org_tachiyomi_NativeChannel_call_1utf8(JNIEnv *env, jclass cls, jbyteArray topicUtf8, jbyteArray contentUtf8) {
+    (void)cls;
+    if (!env || !topicUtf8 || !contentUtf8) return;
+    jsize topic_len = (*env)->GetArrayLength(env, topicUtf8);
+    jsize content_len = (*env)->GetArrayLength(env, contentUtf8);
+    if (topic_len <= 0 || topic_len > 64 * 1024 || content_len < 0 || content_len > 4 * 1024 * 1024) return;
+
+    jbyte *topic_bytes = (*env)->GetByteArrayElements(env, topicUtf8, NULL);
+    jbyte *content_bytes = (*env)->GetByteArrayElements(env, contentUtf8, NULL);
+    if (!topic_bytes || !content_bytes) {
+        if (topic_bytes) (*env)->ReleaseByteArrayElements(env, topicUtf8, topic_bytes, JNI_ABORT);
+        if (content_bytes) (*env)->ReleaseByteArrayElements(env, contentUtf8, content_bytes, JNI_ABORT);
+        return;
+    }
+
+    pthread_mutex_lock(&channel_lock);
+    ms_native_channel_fn channel_fn = registered_channel_fn;
+    pthread_mutex_unlock(&channel_lock);
+
+    if (channel_fn) {
+        channel_fn((const char *)topic_bytes, (size_t)topic_len,
+                   (const char *)content_bytes, (size_t)content_len);
+    }
+
+    (*env)->ReleaseByteArrayElements(env, topicUtf8, topic_bytes, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, contentUtf8, content_bytes, JNI_ABORT);
+}
+

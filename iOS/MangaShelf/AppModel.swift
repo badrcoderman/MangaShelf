@@ -120,6 +120,16 @@ enum AppError {
         try await stagedStore.remove(packageName: packageName)
         stagedExtensions = await stagedStore.snapshot()
     }
+    func setExtensionTrust(packageName: String, trusted: Bool) async throws {
+        guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        try await stagedStore.setTrust(packageName: packageName, trusted: trusted)
+        stagedExtensions = await stagedStore.snapshot()
+    }
+    func setExtensionActive(packageName: String, active: Bool) async throws {
+        guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        try await stagedStore.setActive(packageName: packageName, active: active)
+        stagedExtensions = await stagedStore.snapshot()
+    }
     func stagedExtension(packageName: String) -> StagedExtension? {
         stagedExtensions.first { $0.packageName == packageName }
     }
