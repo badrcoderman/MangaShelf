@@ -37,4 +37,5 @@ ms_status ms_zip_extract(const ms_zip *, const ms_zip_entry *, uint8_t *, size_t
 ms_status ms_gzip_decode(const uint8_t *, size_t, uint8_t *, size_t, size_t *);
 ms_status ms_pb_next(const uint8_t *, size_t, size_t *, ms_pb_field *);
 const char *ms_status_message(ms_status);
+#include "MSJNIBridge.h"
 #endif

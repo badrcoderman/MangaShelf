@@ -74,15 +74,15 @@ public final class ExtensionRuntime: @unchecked Sendable {
             var buffer = [CChar](repeating: 0, count: capacity)
 
             let rc = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
-            if rc == MS_BRIDGE_BUFFER_TOO_SMALL && needed > capacity {
+            if Int(rc) == Int(MS_BRIDGE_BUFFER_TOO_SMALL) && needed > capacity {
                 capacity = needed + 1024
                 buffer = [CChar](repeating: 0, count: capacity)
                 let rc2 = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
-                guard rc2 == MS_BRIDGE_OK else {
+                guard Int(rc2) == Int(MS_BRIDGE_OK) else {
                     throw ReaderFailure("Extension dispatch failed with code \(rc2)")
                 }
                 return String(cString: buffer)
-            } else if rc == MS_BRIDGE_OK {
+            } else if Int(rc) == Int(MS_BRIDGE_OK) {
                 return String(cString: buffer)
             } else {
                 throw ReaderFailure("Extension dispatch failed with code \(rc)")
@@ -91,6 +91,18 @@ public final class ExtensionRuntime: @unchecked Sendable {
 
         // Deterministic clean-room fallback when JVM is not active
         return fallbackDispatch(action: action, payload: payload)
+    }
+
+    private func addLoadedPackage(_ package: String) {
+        lock.lock()
+        defer { lock.unlock() }
+        loadedPackages.insert(package)
+    }
+
+    private func removeLoadedPackage(_ package: String) {
+        lock.lock()
+        defer { lock.unlock() }
+        loadedPackages.remove(package)
     }
 
     public func loadExtension(package: String, path: String? = nil, mainClass: String? = nil) async throws -> Bool {
@@ -102,9 +114,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
         let payload = String(decoding: payloadData, as: UTF8.self)
 
         _ = try dispatch(action: "load", payload: payload)
-        lock.lock()
-        loadedPackages.insert(package)
-        lock.unlock()
+        addLoadedPackage(package)
         return true
     }
 
@@ -112,9 +122,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
         guard !package.isEmpty else { return false }
         let payload = "{\"package\":\"\(package)\"}"
         _ = try dispatch(action: "unload", payload: payload)
-        lock.lock()
-        loadedPackages.remove(package)
-        lock.unlock()
+        removeLoadedPackage(package)
         return true
     }
 

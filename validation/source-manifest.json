@@ -56,8 +56,8 @@
   },
   {
     "path": "Sources/CSafeArchive/include/CSafeArchive.h",
-    "bytes": 1352,
-    "sha256": "644325152abf0cac8317d64bc7ed594fc46b16ed0b9f928087bedb1eb2a3aa48"
+    "bytes": 1377,
+    "sha256": "4ae3fc6a3245abe3abbbfbc7ba7cd3d445df5fd1f5ef8c196d3e78c1ccf2a366"
   },
   {
     "path": "Sources/CSafeArchive/include/MSJNIBridge.h",
@@ -71,8 +71,8 @@
   },
   {
     "path": "Sources/ReaderCore/ExtensionRuntime.swift",
-    "bytes": 10642,
-    "sha256": "ff10c57b8e96f095c3bf6b2d0779e5468b9b91ebfb9bb588e61c365dca6a7dac"
+    "bytes": 10890,
+    "sha256": "53400ffe5b34a4ef20dfe570c2e4b70c27b63e8697fc286f27c3df98914acb06"
   },
   {
     "path": "Sources/ReaderCore/JARInspection.swift",
