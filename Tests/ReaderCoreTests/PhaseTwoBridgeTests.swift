@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 @testable import ReaderCore
 
 final class PhaseTwoBridgeTests: XCTestCase {
@@ -41,7 +42,8 @@ final class PhaseTwoBridgeTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: tempDir) }
 
         let store = try StagedExtensionStore(root: tempDir)
-        XCTAssertTrue(await store.snapshot().isEmpty)
+        let initialSnapshot = await store.snapshot()
+        XCTAssertTrue(initialSnapshot.isEmpty)
 
         // Generate a minimal valid zip file representing a JAR
         let dummyBytes = [UInt8]("PK\u{05}\u{06}\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".utf8)
