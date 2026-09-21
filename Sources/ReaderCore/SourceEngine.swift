@@ -70,10 +70,10 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
     }
 
     public func search(sourceId: String, query: String, page: Int) async throws -> [SourceMangaItem] {
-        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier")) }
+        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         // Bounded query limit
         let cleanQuery = String(query.prefix(256)).trimmingCharacters(in: .whitespacesAndNewlines)
-        guard page >= 1, page <= 10_000 else { throw ReaderFailure(ReaderText.string("Page number out of bounds")) }
+        guard page >= 1, page <= 10_000 else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
         
         // When active VM is connected, this executes through NativeChannel/JNI.
         // For deterministic offline testing, returns formatted synthetic source records.
@@ -89,14 +89,14 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
     }
 
     public func fetchDetails(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails {
-        guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid request")) }
+        guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         return SourceMangaDetails(title: "Sample Manga Details", author: "Author", artist: "Artist",
                                   description: "Description of the title", genre: ["Action", "Adventure"],
                                   status: "Ongoing", coverURL: nil)
     }
 
     public func fetchChapters(sourceId: String, mangaURL: String) async throws -> [SourceChapterItem] {
-        guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid request")) }
+        guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         return [
             SourceChapterItem(id: "ch-2", name: "Chapter 2", url: "\(mangaURL)/2", chapterNumber: 2.0),
             SourceChapterItem(id: "ch-1", name: "Chapter 1", url: "\(mangaURL)/1", chapterNumber: 1.0)
@@ -104,7 +104,7 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
     }
 
     public func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
-        guard !sourceId.isEmpty, !chapterURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid request")) }
+        guard !sourceId.isEmpty, !chapterURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source page URL.")) }
         return (1...5).map { index in
             SourcePageItem(index: index, url: "\(chapterURL)/page/\(index)", imageURL: "\(chapterURL)/img/\(index).png")
         }

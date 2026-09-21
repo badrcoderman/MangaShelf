@@ -946,3 +946,5 @@
 "Review JAR before staging" = "مراجعة JAR قبل التجهيز";
 "Stage for later runtime" = "تجهيز لمحرك مستقبلي";
 "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed." = "نجح الفحص الساكن لـ %@. بصمة SHA-256: %@. الأصناف: %@. ستُحفظ الحزمة فقط؛ ولن تُثبت أو تُنفذ.";
+"Trust status" = "حالة الثقة";
+"Active status" = "حالة التفعيل";

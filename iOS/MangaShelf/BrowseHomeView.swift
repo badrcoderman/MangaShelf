@@ -120,7 +120,7 @@ struct ExtensionsCatalogView: View {
                                     Spacer()
                                     if let staged = model.stagedExtension(packageName: entry.packageName) {
                                         VStack(alignment: .trailing, spacing: 4) {
-                                            Text(L10n.format("Staged · %@", String(describing: staged.versionCode)))
+                                            Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
                                                 .font(.caption).foregroundStyle(ShelfStyle.accent)
                                             HStack(spacing: 8) {
                                                 Button {

@@ -941,6 +941,8 @@
 "Review JAR before staging" = "Review JAR before staging";
 "Stage for later runtime" = "Stage for later runtime";
 "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed." = "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.";
+"Trust status" = "Trust status";
+"Active status" = "Active status";
 "Invalid extension data." = "Invalid extension data.";
 "Invalid source data." = "Invalid source data.";
 "The extension package exceeds the allowed limit." = "The extension package exceeds the allowed limit.";
