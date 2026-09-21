@@ -100,7 +100,8 @@ final class PhaseThreeLibraryTests: XCTestCase {
         let book = try await store.importComic(from: file)
 
         try await store.moveToTrash(id: book.id)
-        XCTAssertEqual(await store.snapshot().books.filter(\.isDeleted).count, 1)
+        let trashCount = await store.snapshot().books.filter(\.isDeleted).count
+        XCTAssertEqual(trashCount, 1)
 
         try await store.emptyTrash()
         let emptySnapshot = await store.snapshot()
