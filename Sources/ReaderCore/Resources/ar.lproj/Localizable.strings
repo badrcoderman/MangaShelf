@@ -948,3 +948,8 @@
 "The extension package exceeds the allowed limit." = "حزمة الإضافة تتجاوز الحد المسموح.";
 "The extension store is not ready." = "تخزين الإضافات غير جاهز.";
 "Not staged" = "غير مجهز";
+"Phase two — engine bridge and UI polish" = "المرحلة الثانية — جسر المحرك وصقل الواجهة";
+"September 21, 2026" = "٢١ سبتمبر ٢٠٢٦";
+"NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport." = "جسر NativeNet وNativeChannel الأصلي عبر JNI مع قيود أمان ونقل ثنائي مباشر.";
+"Extension staging with explicit trust, active toggles, and corruption rollback." = "تجهيز الإضافات مع إدارة صريحة للثقة والتفعيل والتراجع التلقائي عند التلف.";
+"RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls." = "قوائم عائمة محاذاة للاتجاهين (RTL/LTR)، وتدرجات OLED الداكنة، وضبط Liquid Glass.";

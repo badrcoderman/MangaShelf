@@ -948,3 +948,8 @@
 "The extension package exceeds the allowed limit." = "The extension package exceeds the allowed limit.";
 "The extension store is not ready." = "The extension store is not ready.";
 "Not staged" = "Not staged";
+"Phase two — engine bridge and UI polish" = "Phase two — engine bridge and UI polish";
+"September 21, 2026" = "September 21, 2026";
+"NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport." = "NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport.";
+"Extension staging with explicit trust, active toggles, and corruption rollback." = "Extension staging with explicit trust, active toggles, and corruption rollback.";
+"RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls." = "RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls.";

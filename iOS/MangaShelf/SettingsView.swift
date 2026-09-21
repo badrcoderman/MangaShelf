@@ -110,6 +110,14 @@ struct AboutView: View {
             }
             Section {
                 DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
+                    DisclosureGroup(L10n.string("Phase two — engine bridge and UI polish")) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport."))
+                            Text(L10n.string("Extension staging with explicit trust, active toggles, and corruption rollback."))
+                            Text(L10n.string("RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls."))
+                        }.font(.footnote).padding(.vertical, 8)
+                    }
                     DisclosureGroup(L10n.string("Interface and language update")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("September 13, 2026")).font(.caption).foregroundStyle(.secondary)

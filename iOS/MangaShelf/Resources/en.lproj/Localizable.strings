@@ -948,3 +948,8 @@
 "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed." = "Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.";
 "Trust status" = "Trust status";
 "Active status" = "Active status";
+"Phase two — engine bridge and UI polish" = "Phase two — engine bridge and UI polish";
+"September 21, 2026" = "September 21, 2026";
+"NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport." = "NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport.";
+"Extension staging with explicit trust, active toggles, and corruption rollback." = "Extension staging with explicit trust, active toggles, and corruption rollback.";
+"RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls." = "RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls.";
