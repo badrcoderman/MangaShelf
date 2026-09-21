@@ -45,9 +45,14 @@ final class PhaseTwoBridgeTests: XCTestCase {
         let initialSnapshot = await store.snapshot()
         XCTAssertTrue(initialSnapshot.isEmpty)
 
-        // Generate a minimal valid zip file representing a JAR
-        let dummyBytes = [UInt8]("PK\u{05}\u{06}\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".utf8)
-        let jarData = Data(dummyBytes)
+        // Valid minimal JAR containing A.class (CA FE BA BE, Java 8)
+        let jarData = Data([
+            80, 75, 3, 4, 20, 0, 0, 0, 0, 0, 0, 132, 53, 93, 200, 93, 61, 198, 10, 0, 0, 0, 10, 0, 0, 0, 7, 0, 0, 0,
+            65, 46, 99, 108, 97, 115, 115, 202, 254, 186, 190, 0, 0, 0, 52, 0, 0, 80, 75, 1, 2, 20, 3, 20, 0, 0, 0,
+            0, 0, 0, 132, 53, 93, 200, 93, 61, 198, 10, 0, 0, 0, 10, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            128, 1, 0, 0, 0, 0, 65, 46, 99, 108, 97, 115, 115, 80, 75, 5, 6, 0, 0, 0, 0, 1, 0, 1, 0, 53, 0, 0, 0,
+            47, 0, 0, 0, 0, 0
+        ])
 
         // Compute actual SHA256 digest
         var hasher = CryptoKit.SHA256()
@@ -98,7 +103,13 @@ final class PhaseTwoBridgeTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: tempDir) }
 
         let store = try StagedExtensionStore(root: tempDir)
-        let jarData = Data("PK\u{05}\u{06}\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0".utf8)
+        let jarData = Data([
+            80, 75, 3, 4, 20, 0, 0, 0, 0, 0, 0, 132, 53, 93, 200, 93, 61, 198, 10, 0, 0, 0, 10, 0, 0, 0, 7, 0, 0, 0,
+            65, 46, 99, 108, 97, 115, 115, 202, 254, 186, 190, 0, 0, 0, 52, 0, 0, 80, 75, 1, 2, 20, 3, 20, 0, 0, 0,
+            0, 0, 0, 132, 53, 93, 200, 93, 61, 198, 10, 0, 0, 0, 10, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            128, 1, 0, 0, 0, 0, 65, 46, 99, 108, 97, 115, 115, 80, 75, 5, 6, 0, 0, 0, 0, 1, 0, 1, 0, 53, 0, 0, 0,
+            47, 0, 0, 0, 0, 0
+        ])
         var hasher = CryptoKit.SHA256()
         hasher.update(data: jarData)
         let digest = hasher.finalize().map { String(format: "%02x", $0) }.joined()

@@ -171,8 +171,8 @@
   },
   {
     "path": "Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift",
-    "bytes": 7015,
-    "sha256": "1b8d05edd814578eaf328b0bda34c21732a6e69ef46da6de8ccee9f7532414f9"
+    "bytes": 7866,
+    "sha256": "23604664232f4ea127fd684de61b1e2ee8fe66ec85c01246167d4d0cbf64f653"
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
