@@ -164,7 +164,6 @@ public enum RepositoryDecoder {
         enum CodingKeys: String, CodingKey {
             case name, pkg, packageName, version, versionName, code, versionCode
             case jarUrl, jarURL, jar, iconUrl, iconURL, icon, sources
-            case apk, apkUrl, apkURL, downloadUrl, downloadURL, url
         }
 
         init(from decoder: Decoder) throws {
@@ -175,7 +174,7 @@ public enum RepositoryDecoder {
             version = Self.string(c, .version) ?? Self.string(c, .versionName)
             code = Self.number(c, .code) ?? Self.number(c, .versionCode)
             var resolvedJar: String? = nil
-            let candidateJarKeys: [CodingKeys] = [.jarUrl, .jarURL, .jar, .apkUrl, .apkURL, .apk, .downloadUrl, .downloadURL, .url]
+            let candidateJarKeys: [CodingKeys] = [.jarUrl, .jarURL, .jar]
             for key in candidateJarKeys {
                 if let val = Self.string(c, key) {
                     resolvedJar = val

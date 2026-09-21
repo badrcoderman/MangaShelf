@@ -111,8 +111,8 @@
   },
   {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
-    "bytes": 14387,
-    "sha256": "85b60bff862d2275a2d09f91a805ed37441f533709cca46fa5b683aad15f6ab6"
+    "bytes": 14261,
+    "sha256": "6139271883059ce2cf8a44c33c24055bb53cf1f24674e08c46b1811bb8677c90"
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
@@ -171,8 +171,8 @@
   },
   {
     "path": "Tests/ReaderCoreTests/PhaseThreeLibraryTests.swift",
-    "bytes": 8300,
-    "sha256": "7fbf861e3696a391a7b0e80faedfc2d124b0467bf4323175f1ab94a9d0ef84da"
+    "bytes": 8298,
+    "sha256": "9cf5b6dd719204a8716883796fa38fbfe0fb0f3e002da69e4ba5ccea143e9efb"
   },
   {
     "path": "Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift",
