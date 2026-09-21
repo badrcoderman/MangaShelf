@@ -13,6 +13,8 @@ for name in MSJavaRuntime host_probe; do
     -I"$headers/share/native/include" -I"$headers/unix/native/include" \
     -c "runtime-native/$name.c" -o "$out/$name.o"
 done
+xcrun --sdk iphoneos clang++ "${common[@]}" -Wall -Wextra -Werror \
+  -c "runtime-native/ios_jvm_compat.cpp" -o "$out/ios_jvm_compat.o"
 libraries=()
 for name in java net nio zip jimage verify; do
   archive="$evidence/static-libs/lib/lib$name.a"
@@ -24,7 +26,7 @@ for archive in "$evidence/static-libs/lib/zero/libjvm.a" "$evidence/ffi/lib/libf
   test -s "$archive"
   libraries+=(-Xlinker -force_load -Xlinker "$archive")
 done
-xcrun --sdk iphoneos clang++ "${common[@]}" "$out/MSJavaRuntime.o" "$out/host_probe.o" \
+xcrun --sdk iphoneos clang++ "${common[@]}" "$out/MSJavaRuntime.o" "$out/host_probe.o" "$out/ios_jvm_compat.o" \
   "${libraries[@]}" -lz -liconv -framework Foundation -framework Security \
   -framework SystemConfiguration -framework CoreFoundation \
   -o "$out/MangaShelfRuntimeLinkProbe" 2>&1 | tee "$out/link.log"

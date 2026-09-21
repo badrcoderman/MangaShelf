@@ -750,6 +750,11 @@
     "sha256": "3eed5b73e4212febcdb9cf84cd97a2f23d9e399ac1eb268afc8352f43e6e62d4"
   },
   {
+    "path": "runtime-native/ios_jvm_compat.cpp",
+    "bytes": 416,
+    "sha256": "ac66f00db16a724b22bc87471ae00c45d308a9e4e57f130fdb67ccc4fa33b733"
+  },
+  {
     "path": "runtime-probe/plugin/probe/SourceProbe.java",
     "bytes": 232,
     "sha256": "8c483b5bbf236b79bf25e2bf1e17ce9c922b5dee3425a7dd207ab640c21e86c4"
@@ -811,8 +816,8 @@
   },
   {
     "path": "scripts/link-ios-jvm-probe.sh",
-    "bytes": 1621,
-    "sha256": "a48a4406e71c670e64e953fe7fd887d7ae851e2747ea5f50142795a6610c7395"
+    "bytes": 1781,
+    "sha256": "f3fc922ebe2eac06e50d4591f07885a46f7a1878940b6d0e38de4378dd688631"
   },
   {
     "path": "scripts/make_fixtures.py",
