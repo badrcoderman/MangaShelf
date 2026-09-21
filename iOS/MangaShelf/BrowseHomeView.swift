@@ -105,7 +105,7 @@ struct ExtensionsCatalogView: View {
                 ShelfSearchField(text: $query, prompt: L10n.string("Search extensions"))
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 16) {
-                        Text(L10n.string("The index can be viewed. Installing and running JAR extensions is not available yet."))
+                        Text(L10n.string("JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet."))
                             .font(.footnote).foregroundStyle(ShelfStyle.secondary)
                         ForEach(model.state.repositories) { repository in
                             Text(repository.index.name).font(.headline)
@@ -118,7 +118,12 @@ struct ExtensionsCatalogView: View {
                                             .font(.caption).foregroundStyle(ShelfStyle.secondary)
                                     }
                                     Spacer()
-                                    Text(L10n.string("Not installed")).font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                    if let staged = model.stagedExtension(packageName: entry.packageName) {
+                                        Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
+                                            .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                    } else {
+                                        Text(L10n.string("Not staged")).font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                    }
                                 }.padding(.vertical, 8)
                             }
                         }

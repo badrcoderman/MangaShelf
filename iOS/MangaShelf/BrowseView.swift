@@ -62,12 +62,14 @@ private struct RepositoryView: View {
     @State private var query = ""
     @State private var jarOnly = true
     @State private var refreshing = false
+    @State private var preparingPackage: String?
+    @State private var pendingArtifact: DownloadedExtension?
     var body: some View {
         if let repository = model.state.repositories.first(where: { $0.id == repositoryID }) {
             TachiList {
                 Section {
                     Toggle(L10n.string("Explicit JAR URLs only"), isOn: $jarOnly)
-                    Text(L10n.string("View extension details. Installation is not available yet.")).font(.caption).foregroundStyle(.secondary)
+                    Text(L10n.string("JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet.")).font(.caption).foregroundStyle(.secondary)
                 }
                 let entries = repository.index.extensions.filter {
                     (!jarOnly || $0.jarURL != nil) && (query.isEmpty || $0.name.localizedStandardContains(query) || $0.sources.contains { $0.language.localizedStandardContains(query) })
@@ -78,7 +80,40 @@ private struct RepositoryView: View {
                             HStack { Text(item.name).font(.headline); Spacer(); Text(item.versionName).font(.caption).foregroundStyle(.secondary) }
                             Text(item.packageName).font(.caption2).foregroundStyle(.secondary).textSelection(.enabled)
                             Text(Array(Set(item.sources.map(\.language))).sorted().joined(separator: " · ")).font(.caption)
-                            TachiLabel(item.jarURL == nil ? L10n.string("No explicit JAR URL") : L10n.string("Indexed JAR — not installed"), systemImage: "shippingbox").font(.caption).foregroundStyle(item.jarURL == nil ? Color.secondary : Color.indigo)
+                            HStack(spacing: 12) {
+                                if let staged = model.stagedExtension(packageName: item.packageName) {
+                                    TachiLabel(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)), systemImage: "checkmark.circle")
+                                        .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                    Spacer()
+                                    Button {
+                                        Task {
+                                            do { try await model.removeStagedExtension(packageName: item.packageName) }
+                                            catch { model.errorMessage = AppError.describe(error) }
+                                        }
+                                    } label: {
+                                        TachiIcon(symbol: "trash", size: 20).frame(width: 40, height: 40)
+                                    }.buttonStyle(.plain).foregroundStyle(ShelfStyle.secondary)
+                                        .accessibilityLabel(L10n.string("Remove staged JAR"))
+                                } else if item.jarURL == nil {
+                                    TachiLabel(L10n.string("No explicit JAR URL"), systemImage: "shippingbox")
+                                        .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                } else {
+                                    TachiLabel(L10n.string("Indexed JAR — not staged"), systemImage: "shippingbox")
+                                        .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                    Spacer()
+                                    Button {
+                                        Task { await inspect(item) }
+                                    } label: {
+                                        if preparingPackage == item.packageName {
+                                            ProgressView().frame(width: 40, height: 40)
+                                        } else {
+                                            TachiIcon(symbol: "arrow.down.circle", size: 21).frame(width: 40, height: 40)
+                                        }
+                                    }.buttonStyle(.plain).disabled(preparingPackage != nil)
+                                        .foregroundStyle(ShelfStyle.accent)
+                                        .accessibilityLabel(L10n.string("Inspect JAR"))
+                                }
+                            }
                         }.padding(.vertical, 5)
                     }
                 }
@@ -93,6 +128,33 @@ private struct RepositoryView: View {
                         }
                     }.disabled(refreshing || model.busy)
                 }
+                .confirmationDialog(L10n.string("Review JAR before staging"), isPresented: Binding(get: { pendingArtifact != nil }, set: { if !$0 { pendingArtifact = nil } }), titleVisibility: .visible) {
+                    if let artifact = pendingArtifact {
+                        Button(L10n.string("Stage for later runtime")) {
+                            Task { await stage(artifact) }
+                        }
+                    }
+                    Button(L10n.string("Cancel"), role: .cancel) { pendingArtifact = nil }
+                } message: {
+                    if let artifact = pendingArtifact {
+                        Text(L10n.format("Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.", artifact.packageName, artifact.digest, String(describing: artifact.inspection.classes.count)))
+                    }
+                }
         } else { ContentUnavailableView(L10n.string("Repository not found"), systemImage: "externaldrive") }
+    }
+
+    @MainActor private func inspect(_ item: ExtensionRecord) async {
+        guard preparingPackage == nil else { return }
+        preparingPackage = item.packageName
+        defer { preparingPackage = nil }
+        do { pendingArtifact = try await model.prepareExtension(item) }
+        catch { model.errorMessage = AppError.describe(error) }
+    }
+
+    @MainActor private func stage(_ artifact: DownloadedExtension) async {
+        do {
+            try await model.stageExtension(artifact)
+            pendingArtifact = nil
+        } catch { model.errorMessage = AppError.describe(error) }
     }
 }

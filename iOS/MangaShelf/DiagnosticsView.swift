@@ -59,10 +59,11 @@ struct DiagnosticEvent: Identifiable {
                 LabeledContent(L10n.string("Repositories"), value: model.state.repositories.count.formatted())
                 LabeledContent(L10n.string("Indexed extensions"), value: model.state.repositories.reduce(0) { $0 + $1.index.extensions.count }.formatted())
                 LabeledContent(L10n.string("Extension runtime"), value: L10n.string("Not integrated"))
+                LabeledContent("JAR", value: model.stagedExtensions.count.formatted())
             }
             Section(L10n.string("Logging and display")) {
-                Toggle(L10n.string("Record diagnostic events"), isOn: $recording)
-                Toggle(L10n.string("Show cover image bounds"), isOn: $imageBounds)
+                TachiToggleRow(title: L10n.string("Record diagnostic events"), symbol: "doc.text", isOn: $recording)
+                TachiToggleRow(title: L10n.string("Show cover image bounds"), symbol: "crop", isOn: $imageBounds)
                 NavigationLink(L10n.string("Event log")) { DiagnosticEventsView() }
                 Button(L10n.string("Preview diagnostic report")) { showReport = true }
                 Button(L10n.string("Clear diagnostic log"), role: .destructive) { diagnostics.clear() }
@@ -97,7 +98,7 @@ struct DiagnosticEvent: Identifiable {
                 Toggle(L10n.string("Show developer tools in More"), isOn: $enabled)
             } footer: { Text(L10n.string("Checks apply to local data. The log keeps the last 200 events in memory and clears when the app fully closes.")) }
         }
-        .navigationTitle(L10n.string("Developer tools")).navigationBarTitleDisplayMode(.inline)
+        .tachiPage(L10n.string("Developer tools"))
         .confirmationDialog(L10n.string("Reset reader and appearance settings to defaults?"), isPresented: $confirmingReset, titleVisibility: .visible) {
             Button(L10n.string("Reset"), role: .destructive) { Task { await model.perform { try await $0.saveSettings(ReaderSettings()) } } }
             Button(L10n.string("Cancel"), role: .cancel) {}

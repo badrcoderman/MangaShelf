@@ -23,8 +23,10 @@ enum AppError {
     @Published private(set) var ready = false
     @Published private(set) var busy = false
     @Published private(set) var refreshingRepositories = false
+    @Published private(set) var stagedExtensions: [StagedExtension] = []
     @Published var errorMessage: String?
     private var store: LibraryStore?
+    private var stagedStore: StagedExtensionStore?
 
     func start() async {
         guard !ready, !busy else { return }
@@ -33,8 +35,11 @@ enum AppError {
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let root = support.appendingPathComponent("MangaShelf", isDirectory: true)
             store = try LibraryStore(root: root)
+            stagedStore = try StagedExtensionStore(root: root.appendingPathComponent("Extensions", isDirectory: true))
             if let store {
-                state = await store.snapshot(); ready = true
+                state = await store.snapshot()
+                if let stagedStore { stagedExtensions = await stagedStore.snapshot() }
+                ready = true
                 DiagnosticsCenter.shared.record(L10n.string("Library"), L10n.string("Library data opened"))
             }
         } catch { errorMessage = L10n.format("Could not open library data. No data was deleted or replaced.\n%@", String(describing: AppError.describe(error))) }
@@ -81,7 +86,7 @@ enum AppError {
         let started = Date()
         let existingID = state.repositories.first { $0.url == url }?.id
         do {
-            let repository = try await SecureHTTP().repository(url)
+            let repository = try await RepositoryClient(transport: SecureHTTP()).fetch(url: url)
             try Task.checkCancellation()
             if let existingID {
                 try await store.updateRepository(id: existingID, index: repository.index, fetchedAt: repository.fetchedAt)
@@ -92,6 +97,31 @@ enum AppError {
             DiagnosticsCenter.shared.recordFailure(L10n.string("Update index"), error)
             throw error
         }
+    }
+    /// Downloads and statically inspects an extension. No code is loaded or
+    /// executed; the returned digest is shown before the caller stages it.
+    func prepareExtension(_ entry: ExtensionRecord) async throws -> DownloadedExtension {
+        guard ready else { throw ReaderFailure(L10n.string("The library is not ready.")) }
+        let artifact = try await RepositoryClient(transport: SecureHTTP()).download(entry)
+        DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("JAR downloaded and inspected"))
+        return artifact
+    }
+    /// Staging is durable storage for a future runtime, not installation or
+    /// activation. The UI passes the digest only after explicit review.
+    func stageExtension(_ artifact: DownloadedExtension) async throws {
+        guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        _ = try await stagedStore.stage(packageName: artifact.packageName, versionCode: artifact.versionCode,
+                                        data: artifact.data, expectedDigest: artifact.digest)
+        stagedExtensions = await stagedStore.snapshot()
+        DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("JAR staged for a future runtime"))
+    }
+    func removeStagedExtension(packageName: String) async throws {
+        guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        try await stagedStore.remove(packageName: packageName)
+        stagedExtensions = await stagedStore.snapshot()
+    }
+    func stagedExtension(packageName: String) -> StagedExtension? {
+        stagedExtensions.first { $0.packageName == packageName }
     }
     func refreshAllRepositories() async {
         guard !refreshingRepositories else { return }
@@ -163,16 +193,5 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
             if data.count % 65536 == 0 { try Task.checkCancellation() }
         }
         return data
-    }
-    func repository(_ url: String) async throws -> SavedRepository {
-        let data = try await get(url)
-        var index = try await Task.detached(priority: .userInitiated) { try RepositoryDecoder.decode(data) }.value
-        if !index.hasEmbeddedList, let listURL = index.extensionListURL {
-            guard let resolved = URL(string: listURL, relativeTo: URL(string: url))?.absoluteURL,
-                  HTTPSPolicy.accepts(resolved.absoluteString) else { throw ReaderFailure(L10n.string("The extension list URL is not secure.")) }
-            let listData = try await get(resolved.absoluteString)
-            index.extensions = try await Task.detached { try RepositoryDecoder.decodeExternalList(listData) }.value
-        }
-        return SavedRepository(url: url, index: index)
     }
 }

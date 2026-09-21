@@ -41,11 +41,39 @@ final class ReaderCoreTests: XCTestCase {
         XCTAssertNil(index.extensions[0].jarURL)
         XCTAssertEqual(index.extensions[0].sources[0].id, "4508733312114627536")
     }
+    func testLegacyJSONSupportsMinifiedAliasesAndEnvelope() throws {
+        let data = Data(#"{"name":"Mirror","extensions":[{"name":"Test","packageName":"test.extension","jar":"https://example.invalid/test.jar","versionName":"1.2","versionCode":"12","sources":[{"id":7,"name":"Test","language":"en","homeUrl":"https://example.invalid"}]}]}"#.utf8)
+        let index = try RepositoryDecoder.decode(data)
+        XCTAssertEqual(index.name, "Mirror")
+        XCTAssertEqual(index.extensions.first?.packageName, "test.extension")
+        XCTAssertEqual(index.extensions.first?.jarURL, "https://example.invalid/test.jar")
+        XCTAssertEqual(index.extensions.first?.versionCode, 12)
+        XCTAssertEqual(index.extensions.first?.sources.first?.language, "en")
+    }
+    func testJSONRepositoryMetadataWithoutEntriesIsRejected() {
+        XCTAssertThrowsError(try RepositoryDecoder.decode(Data(#"{"name":"Mirror","version":1}"#.utf8)))
+    }
+    func testRepositoryIndexRejectsInsecureArtifactURL() throws {
+        var index = try RepositoryDecoder.decode(fixture("index", "pb"))
+        index.extensions[0].jarURL = "http://example.invalid/test.jar"
+        XCTAssertThrowsError(try index.validate())
+    }
     func testURLPolicy() {
         XCTAssertTrue(HTTPSPolicy.accepts("https://github.com/keiyoushi/extensions/raw/repo/index.pb"))
         for value in ["http://host/index.pb", "https://user:pass@host/index.pb", "file:///etc/passwd", "javascript:alert(1)", "https://host:4567/index.pb", "https://host/index.pb#fragment"] {
             XCTAssertFalse(HTTPSPolicy.accepts(value), value)
         }
+    }
+    func testRepositoryClientFallsBackToSiblingJSONIndex() async throws {
+        let primary = URL(string: "https://example.invalid/index.pb")!
+        let fallback = URL(string: "https://example.invalid/index.min.json")!
+        let transport = MapTransport(responses: [
+            primary.absoluteString: Data("not an index".utf8),
+            fallback.absoluteString: Data(#"[{"name":"Fallback","pkg":"fallback.extension","version":"1","code":1}]"#.utf8)
+        ])
+        let repository = try await RepositoryClient(transport: transport).fetch(url: primary.absoluteString)
+        XCTAssertEqual(repository.index.name, "JSON repository")
+        XCTAssertEqual(repository.index.extensions.first?.packageName, "fallback.extension")
     }
     func testLibraryRejectsOutOfRangeProgress() throws {
         var state = LibraryState(); var book = LibraryBook(title: "Local", pageCount: 3); book.currentPage = 3
@@ -154,4 +182,13 @@ final class ReaderCoreTests: XCTestCase {
         XCTAssertEqual(saved.repositories.first?.id, repository.id)
     }
 
+}
+
+private final class MapTransport: SourceTransport, @unchecked Sendable {
+    let responses: [String: Data]
+    init(responses: [String: Data]) { self.responses = responses }
+    func get(_ url: URL) async throws -> Data {
+        guard let data = responses[url.absoluteString] else { throw URLError(.fileDoesNotExist) }
+        return data
+    }
 }

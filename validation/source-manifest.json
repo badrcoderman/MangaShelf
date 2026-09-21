@@ -5,6 +5,11 @@
     "sha256": "7b2ac47dab88b3133fcd89e20a72e9eb5e23a89c25d5c6c395036f02a3443adf"
   },
   {
+    "path": ".github/workflows/ios-jvm-link.yml",
+    "bytes": 1551,
+    "sha256": "f2a6f8053a74d14eb0ca8e444e666f278519eee0e9d9968dfddc1a54ee4d049d"
+  },
+  {
     "path": ".github/workflows/ios-jvm.yml",
     "bytes": 2236,
     "sha256": "307418b5df6c923d1db9c36959c625bf2b7a3f7fd7b3dd6b2a9ef9d158c86001"
@@ -20,6 +25,11 @@
     "sha256": "dda7edd84b746ec80a625e21d5365354db1259d0a7f803660e41fac5e09280ea"
   },
   {
+    "path": "AGENT.md",
+    "bytes": 13381,
+    "sha256": "3d02eebf6df0df5b6cf81189fdd5a8d24e0822403679e513beb20b9db6831536"
+  },
+  {
     "path": "DEPENDENCIES.json",
     "bytes": 501,
     "sha256": "18d8889766135327fe2ea6fffb224dea92983b455b482a38e87f25c878d3bbab"
@@ -31,8 +41,8 @@
   },
   {
     "path": "README-AR.md",
-    "bytes": 9427,
-    "sha256": "ed3db8714fe2aff6a61c46eeecac19dd117564ead7d7f257fa9770e8196bb30f"
+    "bytes": 9440,
+    "sha256": "fce672336975fa15950eb060b457b4f852cbb01a5d779e28dee51f58218f9086"
   },
   {
     "path": "Sources/CSafeArchive/archive.c",
@@ -50,6 +60,11 @@
     "sha256": "1510d71339e21bb005c64e8127b298065c8048653cafac32b1e08bb5b47d504c"
   },
   {
+    "path": "Sources/ReaderCore/JARInspection.swift",
+    "bytes": 3495,
+    "sha256": "9763e6018c79e0c395bb3647cc6a37ffb5d8ecb6a5a7538a868398c31dab5da5"
+  },
+  {
     "path": "Sources/ReaderCore/Library.swift",
     "bytes": 16795,
     "sha256": "2b71ae9cce99a2d7de39bb2f8a9b4fd478e0d4772cdca2a7d761f141abec54f0"
@@ -63,6 +78,11 @@
     "path": "Sources/ReaderCore/NativeNetworkContract.swift",
     "bytes": 3319,
     "sha256": "9ff597eac475a7bf231a1caca2c9912be1fce5b91d533b622b1152f7d1d62220"
+  },
+  {
+    "path": "Sources/ReaderCore/NativeNetworkTransport.swift",
+    "bytes": 6817,
+    "sha256": "72592abd122217d71f169d64c26a2eed44bf613f48e4f0f8f96de0b3e1c5729c"
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
@@ -80,19 +100,29 @@
     "sha256": "74f49043c47c662edd30024c8383d0f6f575744a59125eed5e03920c534cca81"
   },
   {
+    "path": "Sources/ReaderCore/RepositoryClient.swift",
+    "bytes": 4976,
+    "sha256": "49620df2d08be42e59451089a7469a439585f9f96a853853cebbb1a38fd68fd6"
+  },
+  {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
-    "bytes": 7841,
-    "sha256": "cb9725eae1786ad7812a1f88637eecc5e38d19f7f8ffd6054b1f637059e5f95a"
+    "bytes": 13769,
+    "sha256": "a0a15cba2517274afe9683d7329689d9496f885e0b00653d47ad0bd06e642d1a"
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
-    "bytes": 79043,
-    "sha256": "94a0492a0960dd5b018a795cc4b04bbd45cf78e73ac5326257b252181bd86c02"
+    "bytes": 80526,
+    "sha256": "6c4e4808c5164101bdca5699fbadca8b18984ce092fd2d224af173d5009e2450"
   },
   {
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
-    "bytes": 64639,
-    "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
+    "bytes": 65904,
+    "sha256": "a1bc84fec4db30a4a5012327d0920570f5f7a4ac7f9c6ebb5daa470c4bd375e0"
+  },
+  {
+    "path": "Sources/ReaderCore/StagedExtensionStore.swift",
+    "bytes": 4480,
+    "sha256": "928fc4967112cc5a761f2f82c482257ab573411eef7bc2cdbc8fce3279c18640"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -131,8 +161,8 @@
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
-    "bytes": 9657,
-    "sha256": "fc48475ccfcd70f30ed2ecd3bea616c401b8a6974457dda08001be7d13da36a9"
+    "bytes": 11959,
+    "sha256": "5ea7aa0491bfe10d72b0b59727d4fb8d317e55fdbda8cd0479ddc8499f671c89"
   },
   {
     "path": "docs/ARCHITECTURE-AR.md",
@@ -145,19 +175,44 @@
     "sha256": "171443e71b95a4c165d2b5e14fbaccdb310b5f31dc33134f74b7f71388590933"
   },
   {
+    "path": "docs/BUILD-RELEASE-AR.md",
+    "bytes": 1539,
+    "sha256": "35e0082c97997feb48860810489597c9ad279368dd9f4a608f10177802d409d8"
+  },
+  {
     "path": "docs/BUILD-STAGES-AR.md",
     "bytes": 6375,
     "sha256": "56725efcbc82544c5569f8655de0ace8197a1ce96184cd381da39f9f4c054790"
   },
   {
+    "path": "docs/CODING-STYLE-AR.md",
+    "bytes": 3278,
+    "sha256": "ac655c61063db7ad50aa036c2ee5dd0c0e3e03c975133eb5382f892fb193388d"
+  },
+  {
+    "path": "docs/CONTINUATION-PLAN-AR.md",
+    "bytes": 2815,
+    "sha256": "2a45f6f7b0d55c1613df2a034d3842ac55ee3b742e97427c36d595244f8fa23f"
+  },
+  {
     "path": "docs/FEATURES-AR.md",
-    "bytes": 15443,
-    "sha256": "2b84d1ea13280c87ddb385c5d22272b5df7f3ca941ebe61fe28806da5c799e92"
+    "bytes": 15699,
+    "sha256": "f3f9a4eb76c4006ab5c38b3c94c489fbd8b6b82ad2181967586f6b4cc5c13c3e"
+  },
+  {
+    "path": "docs/HANDOFF-AR.md",
+    "bytes": 2752,
+    "sha256": "5637c9091ca8e140aafec0d4d6f37bab777f6374130b8c413e46b8255794d296"
   },
   {
     "path": "docs/INTERFACE-STYLE-AR.md",
     "bytes": 5353,
     "sha256": "a6d38f9bf4fec189c8c064cf60b04a1c0b53d10a9dc889a793847082b8ce59f8"
+  },
+  {
+    "path": "docs/IPA-STATIC-ANALYSIS-AR.md",
+    "bytes": 3227,
+    "sha256": "94229a59747f7f36e476af9d12e150b27552fba493d68b610a04bba0c3fecfed"
   },
   {
     "path": "docs/JAR-BACKEND-BUILD.json",
@@ -170,14 +225,19 @@
     "sha256": "9cfc2aabb1b12f558748f7f8bfe9fc6e56f7716b621705e8fd922f83fef962b8"
   },
   {
+    "path": "docs/JNI-HOST-RESULT.json",
+    "bytes": 434,
+    "sha256": "6b2c27fb582ebd29fc6a151c486c5c7a69d2bdeeb46acd3bb67139ea1934543e"
+  },
+  {
     "path": "docs/PHASE-1-UI-AR.md",
     "bytes": 4742,
     "sha256": "3b2e8054388f4e0b139aced7b9171604f953a8f3b5333dc1a531a52e25e15969"
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 7681,
-    "sha256": "e5d9a9b8690a0ad7cc82b2b68587e6dfe15fe24d7dbdf628c9f19415ee9768b2"
+    "bytes": 15451,
+    "sha256": "2f82eb50ebd71ce1728c93de7d0bb1a6087763c45dc04f5dc96bed55ea4cd06e"
   },
   {
     "path": "docs/PORTING-AR.md",
@@ -210,6 +270,16 @@
     "sha256": "c9eade6ee36a37e8c62af416b0ca7793cc951c1ba41c15294238edf166e5bda9"
   },
   {
+    "path": "docs/SECURITY-LICENSE-AR.md",
+    "bytes": 1334,
+    "sha256": "59bbacfe66e7523f7b9c3adb60b340e351a1c62fcb8c797656690bd2caad76bd"
+  },
+  {
+    "path": "docs/STABILITY-2026-09-15-AR.md",
+    "bytes": 1176,
+    "sha256": "e7435aa57f1c4e45d159ed451e5133970813920d217a9ae36d2e4b668aca28f6"
+  },
+  {
     "path": "docs/STATUS-AR.md",
     "bytes": 3124,
     "sha256": "2b1d28c8d5832ae8607074e668df3d1ec90fbcb9a6c6c18e5c0b9bd51fe62986"
@@ -231,23 +301,23 @@
   },
   {
     "path": "iOS/MangaShelf/AppModel.swift",
-    "bytes": 9920,
-    "sha256": "5b9afc35c5c210589084fe23294d4fe7347142bfd429633987187ee81dbc58de"
+    "bytes": 11220,
+    "sha256": "bb40327bee90d94db1dae3d293ee2ec68a7468e477bb9829a181225afe6e0c15"
   },
   {
     "path": "iOS/MangaShelf/BrowseHomeView.swift",
-    "bytes": 7500,
-    "sha256": "8f894302978c54136daf02860e20bb7e70064ccfb2e890d4cfaec2b06084a04e"
+    "bytes": 7946,
+    "sha256": "734cfa6352a22e82165ecaf26af2e090c5e2447a2fbb49ea71893721bad17d08"
   },
   {
     "path": "iOS/MangaShelf/BrowseView.swift",
-    "bytes": 6226,
-    "sha256": "4b5fb7e8ca9b622782b1ccb41027f57399ba7ef8a2bdd91336eea61dc5f12114"
+    "bytes": 10242,
+    "sha256": "a7e11e15513b863665d3b4a06fce1a0b2588790ff21b77f4b2fdc50585716f31"
   },
   {
     "path": "iOS/MangaShelf/DiagnosticsView.swift",
-    "bytes": 10972,
-    "sha256": "2d918ee14eb9d30527a14c13b5a3d116ede9cffa7b8df9ac42b73310886ad011"
+    "bytes": 11080,
+    "sha256": "d3c9e6d24934d2bb673e6da8c5324d4ecfc15f9da5eca4a2d75da335f34b91be"
   },
   {
     "path": "iOS/MangaShelf/HistoryView.swift",
@@ -261,8 +331,8 @@
   },
   {
     "path": "iOS/MangaShelf/InterfacePreferences.swift",
-    "bytes": 7901,
-    "sha256": "ea3d95c6fbc9c22c9c2e053694780dbbff57ca16f710be2b19b49e1ca68dc204"
+    "bytes": 6840,
+    "sha256": "2de6fff36d61b4d603ffdabee20d824f4baac9f74658dcea3ef2597f36019cad"
   },
   {
     "path": "iOS/MangaShelf/LibraryView.swift",
@@ -591,13 +661,13 @@
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
-    "bytes": 79043,
-    "sha256": "94a0492a0960dd5b018a795cc4b04bbd45cf78e73ac5326257b252181bd86c02"
+    "bytes": 80526,
+    "sha256": "946be39130d7b2a92e0494f5ebe28c14bd8b78c4d8417c7ff89a3cf8971a7881"
   },
   {
     "path": "iOS/MangaShelf/Resources/en.lproj/Localizable.strings",
-    "bytes": 64639,
-    "sha256": "9d0f5ff74813ba3af28f1cbf4887e0d84cded8b3681b39dafa277b9e4c5a65c2"
+    "bytes": 65904,
+    "sha256": "d84c1f120ace95eb0cd2d3b839e9d4e8b54a97e10c70a7eb6015d8580d4b8789"
   },
   {
     "path": "iOS/MangaShelf/Resources/icomoon.ttf",
@@ -606,8 +676,8 @@
   },
   {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 11624,
-    "sha256": "8ffc65ee664e3c9e3321c82d75ec9c9470a3a412ab77097b13b60810040198b8"
+    "bytes": 11615,
+    "sha256": "4abbedd70e2ee87b4367d90945fba0781cb6395b0fc62b024a52db56e84a22d5"
   },
   {
     "path": "iOS/MangaShelf/ShelfDetailHero.swift",
@@ -616,8 +686,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfOverflow.swift",
-    "bytes": 5257,
-    "sha256": "67b6493aeb29282100819c58c92bdf0a4d148eb3a420f75930df7b8a70499a92"
+    "bytes": 4858,
+    "sha256": "c9e3b61ac7cfb62e169ce11ccc79df98d0c12aa39fc10110eb06d4047379d5b3"
   },
   {
     "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
@@ -641,8 +711,8 @@
   },
   {
     "path": "iOS/MangaShelf/TachiUI.swift",
-    "bytes": 14552,
-    "sha256": "7ac049aff4ed4df2835f4eb14a0540f61e4e6654cb4524694d43dedba3f64089"
+    "bytes": 17489,
+    "sha256": "6fe2be9d45be6a5ffdc5170e9362fd5b0f52adea4a43351012c5b6744e15f851"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
@@ -660,6 +730,26 @@
     "sha256": "ed569dc179be2d8522c00abec7def3e60d4bd0f9d210f5fd121466e531aab492"
   },
   {
+    "path": "runtime-native/MSJavaRuntime.c",
+    "bytes": 5325,
+    "sha256": "d4d99e425b48b96238fb54e7429b2a785279f712acb2793e87fe852653d3f648"
+  },
+  {
+    "path": "runtime-native/MSJavaRuntime.h",
+    "bytes": 934,
+    "sha256": "3df5ae27923f0c800a0af2a16dfbcfcb8fbdc8654201ca20e9cfda9c28614272"
+  },
+  {
+    "path": "runtime-native/README.md",
+    "bytes": 2074,
+    "sha256": "cf22bb59fcad2c388d55b2a379ee67910d97866ae9c9265795b3b3848796c794"
+  },
+  {
+    "path": "runtime-native/host_probe.c",
+    "bytes": 1980,
+    "sha256": "3eed5b73e4212febcdb9cf84cd97a2f23d9e399ac1eb268afc8352f43e6e62d4"
+  },
+  {
     "path": "runtime-probe/plugin/probe/SourceProbe.java",
     "bytes": 232,
     "sha256": "8c483b5bbf236b79bf25e2bf1e17ce9c922b5dee3425a7dd207ab640c21e86c4"
@@ -671,8 +761,8 @@
   },
   {
     "path": "scripts/audit_project.py",
-    "bytes": 3341,
-    "sha256": "5e96f9257e25aaa5a685d48b0379ce62ab34cc27bb935caa38749b642f5852c8"
+    "bytes": 3359,
+    "sha256": "2433f5c222305f112495d194194c9947eefb39f77c54cb1f37d1194d6901d167"
   },
   {
     "path": "scripts/build-ios-jvm.sh",
@@ -683,6 +773,11 @@
     "path": "scripts/build-ios.sh",
     "bytes": 2352,
     "sha256": "3d4122551973f36ce86d7ceed4a12a58617e143f8f9d130b6350ea9c66454e4c"
+  },
+  {
+    "path": "scripts/build-native-runtime-probe.py",
+    "bytes": 1663,
+    "sha256": "912dc4a0f396679e4f5f8011a4512aa896bd2510586ab25651a437b7e2adb6a5"
   },
   {
     "path": "scripts/check_ui_resources.py",
@@ -713,6 +808,11 @@
     "path": "scripts/inventory_reference_components.py",
     "bytes": 4570,
     "sha256": "87756d9d2aff299d25e9ffbe0d084c8e0430f3d281ff83bf3f706fa50628db31"
+  },
+  {
+    "path": "scripts/link-ios-jvm-probe.sh",
+    "bytes": 1621,
+    "sha256": "a48a4406e71c670e64e953fe7fd887d7ae851e2747ea5f50142795a6610c7395"
   },
   {
     "path": "scripts/make_fixtures.py",

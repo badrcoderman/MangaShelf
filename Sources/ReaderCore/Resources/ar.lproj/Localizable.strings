@@ -931,3 +931,18 @@
 "١٣ سبتمبر ٢٠٢٦" = "١٣ سبتمبر ٢٠٢٦";
 
 "The repository key changed or is missing. The saved index was kept. Verify the repository owner before removing and adding it again." = "تغيّر مفتاح المستودع أو اختفى. احتُفظ بالفهرس السابق. تحقّق من مالك المستودع قبل حذفه وإضافته مجددًا.";
+"JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet." = "يمكن تنزيل حزم JAR لفحصها ساكنًا وتجهيزها لمحرك مستقبلي. لا يُنفّذ أي شيء على هذا الجهاز حاليًا.";
+"JAR downloaded and inspected" = "تم تنزيل JAR وفحصه ساكنًا";
+"JAR staged for a future runtime" = "تم تجهيز JAR لمحرك مستقبلي";
+"Staged JAR · %@" = "JAR مجهز · %@";
+"Indexed JAR — not staged" = "JAR مفهرس — غير مجهز";
+"Remove staged JAR" = "إزالة JAR المجهز";
+"Inspect JAR" = "فحص JAR";
+"Review JAR before staging" = "مراجعة JAR قبل التجهيز";
+"Stage for later runtime" = "تجهيز لمحرك مستقبلي";
+"Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed." = "نجح الفحص الساكن لـ %@. بصمة SHA-256: %@. الأصناف: %@. ستُحفظ الحزمة فقط؛ ولن تُثبت أو تُنفذ.";
+"Invalid extension data." = "بيانات الإضافة غير صالحة.";
+"Invalid source data." = "بيانات المصدر غير صالحة.";
+"The extension package exceeds the allowed limit." = "حزمة الإضافة تتجاوز الحد المسموح.";
+"The extension store is not ready." = "تخزين الإضافات غير جاهز.";
+"Not staged" = "غير مجهز";

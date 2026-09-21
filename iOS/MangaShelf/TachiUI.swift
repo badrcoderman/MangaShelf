@@ -164,7 +164,11 @@ private struct TachiPageModifier: ViewModifier {
             .background(ShelfStyle.background.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .top, spacing: 0) {
                 HStack(spacing: 0) {
-                    ShelfIconButton(L10n.string("Back"), symbol: direction == .rightToLeft ? "chevron.right" : "chevron.left") { dismiss() }
+                    ShelfIconButton(L10n.string("Back"), symbol: direction == .rightToLeft ? "chevron.right" : "chevron.left") {
+                        var transaction = Transaction()
+                        transaction.disablesAnimations = true
+                        withTransaction(transaction) { dismiss() }
+                    }
                     Text(title).font(.system(size: titleSize, weight: .semibold))
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
@@ -193,34 +197,40 @@ struct TachiSectionTitle: View {
 struct TachiRowLabel: View {
     @Environment(\.locale) private var interfaceLocale
     @ScaledMetric(relativeTo: .body) private var titleSize = 16.0
-    @ScaledMetric(relativeTo: .caption) private var subtitleSize = 12.0
+    @ScaledMetric(relativeTo: .caption) private var subtitleSize = 13.0
     let title: String
     var subtitle: String? = nil
     var symbol: String? = nil
     var body: some View {
         HStack(spacing: 16) {
             if let symbol { TachiIcon(symbol: symbol, size: 21).frame(width: 26).foregroundStyle(ShelfStyle.secondary) }
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 7) {
                 Text(title).font(.system(size: titleSize)).foregroundStyle(ShelfStyle.text)
-                if let subtitle { Text(subtitle).font(.system(size: subtitleSize)).foregroundStyle(ShelfStyle.secondary) }
+                if let subtitle { Text(subtitle).font(.system(size: subtitleSize)).foregroundStyle(ShelfStyle.secondary).fixedSize(horizontal: false, vertical: true) }
             }.frame(maxWidth: .infinity, alignment: .leading)
-        }.padding(.vertical, 10)
+        }.padding(.vertical, 14)
     }
 }
 struct TachiNavigationRow<Destination: View>: View {
+    @State private var isPresented = false
     @Environment(\.locale) private var interfaceLocale
     let title: String
     let symbol: String
     @ViewBuilder var destination: () -> Destination
     @Environment(\.layoutDirection) private var direction
     var body: some View {
-        NavigationLink(destination: destination) {
+        Button {
+            var transaction = Transaction()
+            transaction.disablesAnimations = true
+            withTransaction(transaction) { isPresented = true }
+        } label: {
             HStack(spacing: 12) {
                 TachiRowLabel(title: title, symbol: symbol)
                 TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 17)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
             }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
         }.buttonStyle(.plain)
+            .navigationDestination(isPresented: $isPresented, destination: destination)
     }
 }
 struct TachiMenuRow<Options: View>: View {
@@ -251,8 +261,49 @@ struct TachiToggleRow: View {
             .toggleStyle(TachiToggleStyle()).frame(minHeight: 56).padding(.horizontal, 18)
     }
 }
+
+/// Inline choices keep settings independent of the system popup menu appearance.
+struct TachiChoiceRow<Value: Hashable>: View {
+    let title: String
+    let symbol: String
+    @Binding var selection: Value
+    let choices: [(Value, String)]
+    @State private var expanded = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    var body: some View {
+        VStack(spacing: 0) {
+            Button { expanded.toggle() } label: {
+                HStack {
+                    TachiRowLabel(title: title, subtitle: choices.first { $0.0 == selection }?.1, symbol: symbol)
+                    Image(systemName: expanded ? "chevron.up" : "chevron.down")
+                        .font(.system(size: 14)).foregroundStyle(ShelfStyle.secondary)
+                }.padding(.horizontal, 18).contentShape(Rectangle())
+            }.buttonStyle(.plain).accessibilityValue(choices.first { $0.0 == selection }?.1 ?? "")
+            if expanded {
+                VStack(spacing: 0) {
+                    ForEach(choices, id: \.0) { choice in
+                        Button {
+                            selection = choice.0
+                            expanded = false
+                        } label: {
+                            HStack(spacing: 16) {
+                                TachiIcon(symbol: selection == choice.0 ? "checkmark.circle" : "circle", size: 22)
+                                Text(choice.1).frame(maxWidth: .infinity, alignment: .leading)
+                            }.foregroundStyle(selection == choice.0 ? ShelfStyle.accent : ShelfStyle.text)
+                                .padding(.horizontal, 20).padding(.vertical, 14).frame(minHeight: 48)
+                                .contentShape(Rectangle())
+                        }.buttonStyle(.plain)
+                            .accessibilityAddTraits(selection == choice.0 ? [.isSelected] : [])
+                    }
+                }.background(ShelfStyle.menu, in: RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 18).padding(.bottom, 12)
+            }
+        }.animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: expanded)
+    }
+}
 struct TachiToggleStyle: ToggleStyle {
     @Environment(\.isEnabled) private var enabled
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 12) {
             configuration.label
@@ -261,8 +312,9 @@ struct TachiToggleStyle: ToggleStyle {
                     .overlay(Capsule().strokeBorder(ShelfStyle.secondary.opacity(configuration.isOn ? 0 : 0.45), lineWidth: 2))
                     .overlay(alignment: configuration.isOn ? .trailing : .leading) {
                         Circle().fill(configuration.isOn ? ShelfStyle.onAccent : ShelfStyle.secondary.opacity(0.55))
-                            .frame(width: 16, height: 16).padding(3)
-                    }.frame(width: 38, height: 23).frame(width: 48, height: 44).contentShape(Rectangle())
+                            .frame(width: configuration.isOn ? 24 : 17, height: configuration.isOn ? 24 : 17).padding(configuration.isOn ? 4 : 7.5)
+                    }.frame(width: 52, height: 32).frame(width: 56, height: 44).contentShape(Rectangle())
+                    .animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: configuration.isOn)
             }.buttonStyle(.plain).accessibilityHidden(true)
         }.opacity(enabled ? 1 : 0.45).accessibilityElement(children: .combine)
             .accessibilityValue(L10n.string(configuration.isOn ? "On" : "Off"))
