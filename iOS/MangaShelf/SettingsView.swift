@@ -38,6 +38,7 @@ struct SettingsView: View {
                 row(L10n.string("Sync"), "cloud") { FeatureStatusView(feature: .sync) }
                 row(L10n.string("Tracking"), "arrow.triangle.2.circlepath") { FeatureStatusView(feature: .tracking) }
                 row(L10n.string("Extensions"), "safari.fill") { RepositoriesView() }
+                row(L10n.string("Trash"), "trash") { TrashManagementView() }
                 row(L10n.string("Backup and restore"), "arrow.counterclockwise.circle") { BackupHubView() }
                 row(L10n.string("Security settings"), "shield.lefthalf.filled") { PrivacyPreferencesView() }
                 row(L10n.string("Reading insights"), "chart.xyaxis.line") { ReadingInsightsView() }
@@ -110,6 +111,17 @@ struct AboutView: View {
             }
             Section {
                 DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
+                    DisclosureGroup(L10n.string("Phase three — library and organization")) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("Multi-select mode with batch category assignment, batch completion toggle, and safe trash deletion."))
+                            Text(L10n.string("Per-category customizable layout (Comfortable Grid, Compact Grid, List) and sorting preferences."))
+                            Text(L10n.string("Advanced library filters by source, reading progress, and downloaded status."))
+                            Text(L10n.string("Soft deletion with dedicated Trash screen, book restoration, and permanent empty trash."))
+                            Text(L10n.string("Personal notes on titles, reading time statistics, and random title picker."))
+                            Text(L10n.string("Direct extension download and staging with static bytecode inspection and relative URL resolution."))
+                        }.font(.footnote).padding(.vertical, 8)
+                    }
                     DisclosureGroup(L10n.string("Phase two — engine bridge and UI polish")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)

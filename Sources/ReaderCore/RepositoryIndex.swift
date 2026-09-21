@@ -164,6 +164,7 @@ public enum RepositoryDecoder {
         enum CodingKeys: String, CodingKey {
             case name, pkg, packageName, version, versionName, code, versionCode
             case jarUrl, jarURL, jar, iconUrl, iconURL, icon, sources
+            case apk, apkUrl, apkURL, downloadUrl, downloadURL, url
         }
 
         init(from decoder: Decoder) throws {
@@ -174,6 +175,8 @@ public enum RepositoryDecoder {
             version = Self.string(c, .version) ?? Self.string(c, .versionName)
             code = Self.number(c, .code) ?? Self.number(c, .versionCode)
             jarUrl = Self.string(c, .jarUrl) ?? Self.string(c, .jarURL) ?? Self.string(c, .jar)
+                ?? Self.string(c, .apkUrl) ?? Self.string(c, .apkURL) ?? Self.string(c, .apk)
+                ?? Self.string(c, .downloadUrl) ?? Self.string(c, .downloadURL) ?? Self.string(c, .url)
             iconUrl = Self.string(c, .iconUrl) ?? Self.string(c, .iconURL) ?? Self.string(c, .icon)
             sources = try c.decodeIfPresent([LegacySource].self, forKey: .sources)
         }

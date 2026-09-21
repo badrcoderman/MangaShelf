@@ -37,6 +37,15 @@ extension SecureHTTP: SourceTransport {
     func save(_ series: MangaSeries, favorite: Bool? = nil) async {
         await mutate { try await $0.save(series, favorite: favorite) }
     }
+    func batchAssignCategories(seriesIDs: [String], categoryIDs: Set<UUID>) async {
+        await mutate { try await $0.batchSetCategories(seriesIDs: seriesIDs, categoryIDs: categoryIDs) }
+    }
+    func batchSetFavorite(seriesIDs: [String], inLibrary: Bool) async {
+        await mutate { try await $0.batchSetFavorite(seriesIDs: seriesIDs, inLibrary: inLibrary) }
+    }
+    func batchSetCompleted(seriesIDs: [String], completed: Bool) async {
+        await mutate { try await $0.batchSetCompleted(seriesIDs: seriesIDs, completed: completed) }
+    }
     func refresh(_ series: MangaSeries) async throws {
         let store = try requireStore(); let selectedLanguage = language
         try await store.save(series)

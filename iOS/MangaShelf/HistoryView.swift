@@ -23,7 +23,7 @@ struct HistoryView: View {
     @State private var confirmRemoval = false
     @State private var clearing = false
     private var allEntries: [HistoryEntry] {
-        let books = model.state.books.compactMap { book -> HistoryEntry? in
+        let books = model.activeBooks.compactMap { book -> HistoryEntry? in
             guard let date = book.lastReadAt else { return nil }
             return HistoryEntry(content: .local(book), date: date)
         }

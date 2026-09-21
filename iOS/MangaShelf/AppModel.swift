@@ -66,10 +66,43 @@ enum AppError {
         }
         if let store { state = await store.snapshot() }
     }
+    var activeBooks: [LibraryBook] { state.books.filter { !$0.isDeleted } }
+    var trashedBooks: [LibraryBook] { state.books.filter { $0.isDeleted } }
     func book(_ id: UUID) -> LibraryBook? { state.books.first { $0.id == id } }
     func url(for book: LibraryBook) async throws -> URL {
         guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         return await store.bookURL(book)
+    }
+    func categoryDisplayOptions(categoryID: UUID?) -> CategoryDisplayOptions {
+        if let categoryID, let opt = state.categoryPreferences[categoryID] { return opt }
+        return state.defaultDisplayOptions
+    }
+    func setCategoryDisplayOptions(categoryID: UUID?, options: CategoryDisplayOptions) async {
+        await perform { try await $0.setCategoryDisplayOptions(categoryID: categoryID, options: options) }
+    }
+    func batchAssignCategories(bookIDs: [UUID], categoryIDs: Set<UUID>) async {
+        await perform { try await $0.batchAssignCategories(bookIDs: bookIDs, categoryIDs: categoryIDs) }
+    }
+    func batchSetCompleted(bookIDs: [UUID], completed: Bool) async {
+        await perform { try await $0.batchSetCompleted(bookIDs: bookIDs, completed: completed) }
+    }
+    func batchMoveToTrash(bookIDs: [UUID]) async {
+        await perform { try await $0.batchMoveToTrash(ids: bookIDs) }
+    }
+    func batchRestoreFromTrash(bookIDs: [UUID]) async {
+        await perform { try await $0.batchRestoreFromTrash(ids: bookIDs) }
+    }
+    func permanentlyDelete(bookIDs: [UUID]) async {
+        await perform { try await $0.permanentlyDelete(ids: bookIDs) }
+    }
+    func emptyTrash() async {
+        await perform { try await $0.emptyTrash() }
+    }
+    func setBookNotes(id: UUID, notes: String?) async {
+        await perform { try await $0.setBookNotes(id: id, notes: notes) }
+    }
+    func addReadingTime(id: UUID, duration: TimeInterval) async {
+        await perform { try await $0.addReadingTime(id: id, duration: duration) }
     }
     func progress(id: UUID, page: Int) async {
         // Progress must not be dropped because another UI operation is in flight.

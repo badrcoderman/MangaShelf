@@ -11,6 +11,31 @@ public struct ReaderSettings: Codable, Sendable {
     public var keepScreenAwake = true
     public init() {}
 }
+public enum LibrarySortOption: String, Codable, CaseIterable, Sendable {
+    case added, title, recent, pages, unread
+}
+
+public enum LibraryDisplayMode: String, Codable, CaseIterable, Sendable {
+    case gridComfortable, gridCompact, list
+}
+
+public struct CategoryDisplayOptions: Codable, Hashable, Sendable {
+    public var sortOption: LibrarySortOption
+    public var sortAscending: Bool
+    public var displayMode: LibraryDisplayMode
+    public var columnCount: Int
+
+    public init(sortOption: LibrarySortOption = .added,
+                sortAscending: Bool = false,
+                displayMode: LibraryDisplayMode = .gridComfortable,
+                columnCount: Int = 2) {
+        self.sortOption = sortOption
+        self.sortAscending = sortAscending
+        self.displayMode = displayMode
+        self.columnCount = columnCount
+    }
+}
+
 public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
     public let id: UUID
     public var title: String
@@ -21,10 +46,54 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
     public var categories: Set<UUID>
     public let addedAt: Date
     public var lastReadAt: Date?
+    public var notes: String?
+    public var totalReadingTime: TimeInterval
+    public var isDeleted: Bool
+    public var deletedAt: Date?
     public var filename: String { id.uuidString + ".cbz" }
     public init(id: UUID = UUID(), title: String, pageCount: Int) {
         self.id = id; self.title = title; self.pageCount = pageCount; currentPage = 0
         completed = false; bookmarks = []; categories = []; addedAt = Date(); lastReadAt = nil
+        notes = nil; totalReadingTime = 0; isDeleted = false; deletedAt = nil
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, pageCount, currentPage, completed, bookmarks, categories, addedAt, lastReadAt
+        case notes, totalReadingTime, isDeleted, deletedAt
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(UUID.self, forKey: .id)
+        title = try c.decode(String.self, forKey: .title)
+        pageCount = try c.decode(Int.self, forKey: .pageCount)
+        currentPage = try c.decode(Int.self, forKey: .currentPage)
+        completed = try c.decode(Bool.self, forKey: .completed)
+        bookmarks = try c.decode(Set<Int>.self, forKey: .bookmarks)
+        categories = try c.decode(Set<UUID>.self, forKey: .categories)
+        addedAt = try c.decode(Date.self, forKey: .addedAt)
+        lastReadAt = try c.decodeIfPresent(Date.self, forKey: .lastReadAt)
+        notes = try c.decodeIfPresent(String.self, forKey: .notes)
+        totalReadingTime = try c.decodeIfPresent(TimeInterval.self, forKey: .totalReadingTime) ?? 0
+        isDeleted = try c.decodeIfPresent(Bool.self, forKey: .isDeleted) ?? false
+        deletedAt = try c.decodeIfPresent(Date.self, forKey: .deletedAt)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(title, forKey: .title)
+        try c.encode(pageCount, forKey: .pageCount)
+        try c.encode(currentPage, forKey: .currentPage)
+        try c.encode(completed, forKey: .completed)
+        try c.encode(bookmarks, forKey: .bookmarks)
+        try c.encode(categories, forKey: .categories)
+        try c.encode(addedAt, forKey: .addedAt)
+        try c.encodeIfPresent(lastReadAt, forKey: .lastReadAt)
+        try c.encodeIfPresent(notes, forKey: .notes)
+        if totalReadingTime > 0 { try c.encode(totalReadingTime, forKey: .totalReadingTime) }
+        if isDeleted { try c.encode(isDeleted, forKey: .isDeleted) }
+        try c.encodeIfPresent(deletedAt, forKey: .deletedAt)
     }
 }
 public struct LibraryCategory: Codable, Identifiable, Hashable, Sendable {
@@ -47,9 +116,39 @@ public struct LibraryState: Codable, Sendable {
     public var categories: [LibraryCategory] = []
     public var repositories: [SavedRepository] = []
     public var settings = ReaderSettings()
+    public var categoryPreferences: [UUID: CategoryDisplayOptions] = [:]
+    public var defaultDisplayOptions = CategoryDisplayOptions()
+
+    enum CodingKeys: String, CodingKey {
+        case schemaVersion, books, categories, repositories, settings, categoryPreferences, defaultDisplayOptions
+    }
+
     public init() {}
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try c.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? 1
+        books = try c.decodeIfPresent([LibraryBook].self, forKey: .books) ?? []
+        categories = try c.decodeIfPresent([LibraryCategory].self, forKey: .categories) ?? []
+        repositories = try c.decodeIfPresent([SavedRepository].self, forKey: .repositories) ?? []
+        settings = try c.decodeIfPresent(ReaderSettings.self, forKey: .settings) ?? ReaderSettings()
+        categoryPreferences = try c.decodeIfPresent([UUID: CategoryDisplayOptions].self, forKey: .categoryPreferences) ?? [:]
+        defaultDisplayOptions = try c.decodeIfPresent(CategoryDisplayOptions.self, forKey: .defaultDisplayOptions) ?? CategoryDisplayOptions()
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(schemaVersion, forKey: .schemaVersion)
+        try c.encode(books, forKey: .books)
+        try c.encode(categories, forKey: .categories)
+        try c.encode(repositories, forKey: .repositories)
+        try c.encode(settings, forKey: .settings)
+        try c.encode(categoryPreferences, forKey: .categoryPreferences)
+        try c.encode(defaultDisplayOptions, forKey: .defaultDisplayOptions)
+    }
+
     public func validate() throws {
-        guard schemaVersion == 1, books.count <= 20_000, categories.count <= 500, repositories.count <= 50 else {
+        guard schemaVersion == 1, books.count <= 20_000, categories.count <= 500, repositories.count <= 50, categoryPreferences.count <= 500 else {
             throw ReaderFailure(ReaderText.string("Unsupported data version or exceeded limits."))
         }
         guard Set(books.map(\.id)).count == books.count,
@@ -66,6 +165,9 @@ public struct LibraryState: Codable, Sendable {
                   (0..<book.pageCount).contains(book.currentPage),
                   book.bookmarks.allSatisfy({ (0..<book.pageCount).contains($0) }),
                   book.categories.isSubset(of: categoryIDs) else { throw ReaderFailure(ReaderText.string("Invalid book data.")) }
+            if let notes = book.notes {
+                guard notes.count <= 4096 else { throw ReaderFailure(ReaderText.string("Invalid book notes.")) }
+            }
         }
         for repo in repositories {
             guard HTTPSPolicy.accepts(repo.url), repo.index.extensions.count <= 20_000,
@@ -126,8 +228,15 @@ public actor LibraryStore {
         }
         return usage
     }
+    public func trashURL(_ book: LibraryBook) -> URL {
+        root.appendingPathComponent("Trash", isDirectory: true).appendingPathComponent(book.filename)
+    }
     public func bookURL(_ book: LibraryBook) -> URL {
-        root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
+        if book.isDeleted {
+            let trash = trashURL(book)
+            if manager.fileExists(atPath: trash.path) { return trash }
+        }
+        return root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
     }
     private func commit(_ candidate: LibraryState) throws {
         try candidate.validate()
@@ -199,27 +308,149 @@ public actor LibraryStore {
         candidate.books[index].title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         try commit(candidate)
     }
-    public func removeBook(id: UUID) throws {
-        guard let book = state.books.first(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
-        // Removing from the library retains the archive in Trash. Commit metadata
-        // before any later, separately implemented permanent-cleanup operation.
+    public func moveToTrash(id: UUID) throws {
+        try batchMoveToTrash(ids: [id])
+    }
+
+    public func batchMoveToTrash(ids: [UUID]) throws {
+        let set = Set(ids)
+        var candidate = state
         let trash = root.appendingPathComponent("Trash", isDirectory: true)
         try manager.createDirectory(at: trash, withIntermediateDirectories: true)
-        let from = bookURL(book), to = trash.appendingPathComponent(UUID().uuidString + ".cbz")
-        let exists = manager.fileExists(atPath: from.path)
-        if exists { try manager.moveItem(at: from, to: to) }
-        var candidate = state; candidate.books.removeAll { $0.id == id }
+        var movedFiles: [(from: URL, to: URL)] = []
+
+        for i in candidate.books.indices where set.contains(candidate.books[i].id) {
+            let book = candidate.books[i]
+            candidate.books[i].isDeleted = true
+            candidate.books[i].deletedAt = Date()
+            let from = root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
+            let to = trashURL(book)
+            if manager.fileExists(atPath: from.path) && !manager.fileExists(atPath: to.path) {
+                try manager.moveItem(at: from, to: to)
+                movedFiles.append((from: from, to: to))
+            }
+        }
+
         do { try commit(candidate) }
         catch {
-            if exists {
-                do { try manager.moveItem(at: to, to: from) }
-                catch { throw ReaderFailure(ReaderText.string("Could not finish removal or restore the file. The archive is preserved in Trash and was not permanently deleted.")) }
+            for item in movedFiles {
+                try? manager.moveItem(at: item.to, to: item.from)
             }
             throw error
         }
     }
+
+    public func restoreFromTrash(id: UUID) throws {
+        try batchRestoreFromTrash(ids: [id])
+    }
+
+    public func batchRestoreFromTrash(ids: [UUID]) throws {
+        let set = Set(ids)
+        var candidate = state
+        let booksDir = root.appendingPathComponent("Books", isDirectory: true)
+        try manager.createDirectory(at: booksDir, withIntermediateDirectories: true)
+        var movedFiles: [(from: URL, to: URL)] = []
+
+        for i in candidate.books.indices where set.contains(candidate.books[i].id) {
+            let book = candidate.books[i]
+            candidate.books[i].isDeleted = false
+            candidate.books[i].deletedAt = nil
+            let from = trashURL(book)
+            let to = root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
+            if manager.fileExists(atPath: from.path) && !manager.fileExists(atPath: to.path) {
+                try manager.moveItem(at: from, to: to)
+                movedFiles.append((from: from, to: to))
+            }
+        }
+
+        do { try commit(candidate) }
+        catch {
+            for item in movedFiles {
+                try? manager.moveItem(at: item.to, to: item.from)
+            }
+            throw error
+        }
+    }
+
+    public func permanentlyDelete(ids: [UUID]) throws {
+        let set = Set(ids)
+        var candidate = state
+        for book in candidate.books where set.contains(book.id) {
+            let t = trashURL(book)
+            let b = root.appendingPathComponent("Books", isDirectory: true).appendingPathComponent(book.filename)
+            if manager.fileExists(atPath: t.path) { try? manager.removeItem(at: t) }
+            if manager.fileExists(atPath: b.path) { try? manager.removeItem(at: b) }
+        }
+        candidate.books.removeAll { set.contains($0.id) }
+        try commit(candidate)
+    }
+
+    public func emptyTrash() throws {
+        let trashedIDs = state.books.filter(\.isDeleted).map(\.id)
+        try permanentlyDelete(ids: trashedIDs)
+    }
+
+    public func removeBook(id: UUID) throws {
+        try moveToTrash(id: id)
+    }
+
+    public func batchAssignCategories(bookIDs: [UUID], categoryIDs: Set<UUID>) throws {
+        let idSet = Set(bookIDs)
+        let validCategoryIDs = Set(state.categories.map(\.id))
+        guard categoryIDs.isSubset(of: validCategoryIDs) else {
+            throw ReaderFailure(ReaderText.string("Invalid category."))
+        }
+        var candidate = state
+        for i in candidate.books.indices where idSet.contains(candidate.books[i].id) {
+            candidate.books[i].categories = categoryIDs
+        }
+        try commit(candidate)
+    }
+
+    public func batchSetCompleted(bookIDs: [UUID], completed: Bool) throws {
+        let idSet = Set(bookIDs)
+        var candidate = state
+        for i in candidate.books.indices where idSet.contains(candidate.books[i].id) {
+            candidate.books[i].completed = completed
+        }
+        try commit(candidate)
+    }
+
+    public func setBookNotes(id: UUID, notes: String?) throws {
+        var candidate = state
+        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else {
+            throw ReaderFailure(ReaderText.string("The book does not exist."))
+        }
+        let clean = notes?.trimmingCharacters(in: .whitespacesAndNewlines)
+        candidate.books[index].notes = clean?.isEmpty == true ? nil : clean
+        try commit(candidate)
+    }
+
+    public func addReadingTime(id: UUID, duration: TimeInterval) throws {
+        guard duration > 0 else { return }
+        var candidate = state
+        guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { return }
+        candidate.books[index].totalReadingTime += duration
+        try commit(candidate)
+    }
+
+    public func setCategoryDisplayOptions(categoryID: UUID?, options: CategoryDisplayOptions) throws {
+        var candidate = state
+        if let categoryID {
+            guard candidate.categories.contains(where: { $0.id == categoryID }) else {
+                throw ReaderFailure(ReaderText.string("The category does not exist."))
+            }
+            candidate.categoryPreferences[categoryID] = options
+        } else {
+            candidate.defaultDisplayOptions = options
+        }
+        try commit(candidate)
+    }
+
     public func removeCategory(id: UUID) throws {
-        var candidate = state; candidate.categories.removeAll { $0.id == id }
+        var candidate = state
+        candidate.categories.removeAll { $0.id == id }
+        candidate.categoryPreferences.removeValue(forKey: id)
         for i in candidate.books.indices { candidate.books[i].categories.remove(id) }
         try commit(candidate)
     }

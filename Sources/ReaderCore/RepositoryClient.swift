@@ -26,6 +26,21 @@ public struct RepositoryClient: Sendable {
             }.value
             resolved.hasEmbeddedList = true
         }
+        let baseDir = base.deletingLastPathComponent()
+        for i in resolved.extensions.indices {
+            if let rawJar = resolved.extensions[i].jarURL, !rawJar.isEmpty, !rawJar.lowercased().hasPrefix("https://") {
+                if let fullJar = URL(string: rawJar, relativeTo: baseDir)?.absoluteString,
+                   HTTPSPolicy.accepts(fullJar) {
+                    resolved.extensions[i].jarURL = fullJar
+                }
+            }
+            if let rawIcon = resolved.extensions[i].iconURL, !rawIcon.isEmpty, !rawIcon.lowercased().hasPrefix("https://") {
+                if let fullIcon = URL(string: rawIcon, relativeTo: baseDir)?.absoluteString,
+                   HTTPSPolicy.accepts(fullIcon) {
+                    resolved.extensions[i].iconURL = fullIcon
+                }
+            }
+        }
         try resolved.validate()
         return SavedRepository(url: text, index: resolved)
     }

@@ -43,6 +43,34 @@ public actor OnlineStore {
         else { candidate.series[index].categories.remove(categoryID) }
         try commit(candidate)
     }
+    public func batchSetCategories(seriesIDs: [String], categoryIDs: Set<UUID>) throws {
+        let set = Set(seriesIDs)
+        var candidate = state
+        for i in candidate.series.indices where set.contains(candidate.series[i].id) {
+            candidate.series[i].categories = categoryIDs
+        }
+        try commit(candidate)
+    }
+    public func batchSetFavorite(seriesIDs: [String], inLibrary: Bool) throws {
+        let set = Set(seriesIDs)
+        var candidate = state
+        for i in candidate.series.indices where set.contains(candidate.series[i].id) {
+            candidate.series[i].inLibrary = inLibrary
+        }
+        try commit(candidate)
+    }
+    public func batchSetCompleted(seriesIDs: [String], completed: Bool) throws {
+        let set = Set(seriesIDs)
+        var candidate = state
+        for i in candidate.series.indices where set.contains(candidate.series[i].id) {
+            for ch in candidate.series[i].chapters {
+                var p = candidate.series[i].progress[ch.id] ?? ChapterProgress()
+                p.read = completed
+                candidate.series[i].progress[ch.id] = p
+            }
+        }
+        try commit(candidate)
+    }
     public func setChapters(seriesID: String, chapters: [MangaChapter], language: String, now: Date = Date()) throws {
         guard chapters.allSatisfy({ $0.seriesID == seriesID }) else { throw ReaderFailure(ReaderText.string("Chapters belong to a different title.")) }
         var candidate = state; let index = try seriesIndex(seriesID, in: candidate)

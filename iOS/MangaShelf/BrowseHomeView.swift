@@ -89,6 +89,8 @@ struct ExtensionsCatalogView: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @State private var query = ""
+    @State private var preparingPackage: String?
+    @State private var pendingArtifact: DownloadedExtension?
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -157,7 +159,24 @@ struct ExtensionsCatalogView: View {
                                             }
                                         }
                                     } else {
-                                        Text(L10n.string("Not staged")).font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                        if preparingPackage == entry.packageName {
+                                            ProgressView().controlSize(.small)
+                                        } else {
+                                            Button {
+                                                Task { await inspect(entry) }
+                                            } label: {
+                                                HStack(spacing: 4) {
+                                                    TachiIcon(symbol: "arrow.down.circle", size: 14)
+                                                    Text(L10n.string("Download")).font(.caption.weight(.medium))
+                                                }
+                                                .padding(.horizontal, 10).padding(.vertical, 5)
+                                                .background(ShelfStyle.accent.opacity(0.15))
+                                                .foregroundStyle(ShelfStyle.accent)
+                                                .clipShape(Capsule())
+                                            }
+                                            .buttonStyle(.plain)
+                                            .accessibilityLabel(L10n.format("Download extension %@", entry.name))
+                                        }
                                     }
                                 }.padding(.vertical, 8)
                             }
@@ -166,5 +185,32 @@ struct ExtensionsCatalogView: View {
                 }.refreshable { await model.refreshAllRepositories() }
             }
         }
+        .confirmationDialog(L10n.string("Review JAR before staging"), isPresented: Binding(get: { pendingArtifact != nil }, set: { if !$0 { pendingArtifact = nil } }), titleVisibility: .visible) {
+            if let artifact = pendingArtifact {
+                Button(L10n.string("Stage for later runtime")) {
+                    Task { await stage(artifact) }
+                }
+            }
+            Button(L10n.string("Cancel"), role: .cancel) { pendingArtifact = nil }
+        } message: {
+            if let artifact = pendingArtifact {
+                Text(L10n.format("Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.", artifact.packageName, artifact.digest, String(describing: artifact.inspection.classes.count)))
+            }
+        }
+    }
+
+    @MainActor private func inspect(_ item: ExtensionRecord) async {
+        guard preparingPackage == nil else { return }
+        preparingPackage = item.packageName
+        defer { preparingPackage = nil }
+        do { pendingArtifact = try await model.prepareExtension(item) }
+        catch { model.errorMessage = AppError.describe(error) }
+    }
+
+    @MainActor private func stage(_ artifact: DownloadedExtension) async {
+        do {
+            try await model.stageExtension(artifact)
+            pendingArtifact = nil
+        } catch { model.errorMessage = AppError.describe(error) }
     }
 }

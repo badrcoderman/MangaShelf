@@ -50,6 +50,11 @@ public struct JARInspection: Codable, Sendable {
                     guard major >= 45 else { throw JARInspectionError.invalidClass }
                     maximum = max(maximum, major)
                     classes.append(name)
+                } else if name.hasSuffix(".dex") {
+                    guard bytes.count >= 8, Array(bytes.prefix(4)) == [0x64, 0x65, 0x78, 0x0A] else {
+                        throw JARInspectionError.invalidClass
+                    }
+                    classes.append(name)
                 }
             }
             guard !classes.isEmpty else { throw JARInspectionError.noClasses }
