@@ -361,8 +361,8 @@
   },
   {
     "path": "iOS/MangaShelf/LibraryView.swift",
-    "bytes": 41326,
-    "sha256": "7ace66ea583a7c1c072496be5262690826377fbf339388dbf02637701c4b26d9"
+    "bytes": 41649,
+    "sha256": "7b3191ba28ebe762b53cbdaaf1756eaa1d4c52581a8a5f474c5aa844ee1ec8a5"
   },
   {
     "path": "iOS/MangaShelf/Localization.swift",
@@ -741,8 +741,8 @@
   },
   {
     "path": "iOS/MangaShelf/TrashManagementView.swift",
-    "bytes": 8616,
-    "sha256": "ac581ee339c5ee5911e3fb1ff4a5edb75f6ce8000d75dd4f9fad90fc3e605eb7"
+    "bytes": 8369,
+    "sha256": "6b4b36b1dc96d0284e5887dceb38df39b7af487b0f1ea78371d7a21caea94edb"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",

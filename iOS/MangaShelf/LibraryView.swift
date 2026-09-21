@@ -602,7 +602,7 @@ struct ShelfListRow: View {
                     .frame(width: 48, height: 68)
                     .clipShape(RoundedRectangle(cornerRadius: 6))
             case .remote(let item):
-                MangaCover(url: item.series.coverURL, placeholderSymbol: "photo")
+                RemoteCover(url: item.series.coverURL)
                     .frame(width: 48, height: 68)
                     .clipShape(RoundedRectangle(cornerRadius: 6))
             }
@@ -714,128 +714,200 @@ struct BookDetailView: View {
 
     var body: some View {
         if let book = model.book(bookID) {
-            ScrollView {
-                VStack(spacing: 22) {
-                    ShelfDetailHero(title: book.title, author: L10n.string("Unknown author"), source: L10n.string("Local source"), status: L10n.string("Unknown")) {
-                        BookCover(book: book)
-                    }
-                    HStack {
-                        TachiLabel(L10n.string("In library"), systemImage: "heart.fill").foregroundStyle(ShelfStyle.accent)
-                        Spacer()
-                        NavigationLink { FeatureStatusView(feature: .tracking) } label: { TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath") }
-                            .foregroundStyle(ShelfStyle.secondary)
-                    }.font(.subheadline).padding(.horizontal, 40)
-                    Button(book.lastReadAt == nil && book.currentPage == 0 ? L10n.string("Start reading") : L10n.string("Continue reading")) {
-                        startPage = nil; reading = true
-                    }.buttonStyle(ShelfPrimaryButtonStyle()).padding(.horizontal, 15)
-
-                    if book.totalReadingTime > 0 {
-                        HStack(spacing: 6) {
-                            Image(systemName: "clock")
-                            Text(L10n.format("Reading time: %@", formattedReadingTime(book.totalReadingTime)))
-                        }
-                        .font(.caption)
-                        .foregroundStyle(ShelfStyle.secondary)
-                        .padding(.horizontal, 16)
-                    }
-
-                    HStack {
-                        Text(L10n.string("1 chapter")).font(.body)
-                        Spacer()
-                        ShelfIconButton(L10n.string("Book options"), symbol: "line.3.horizontal.decrease") { showingOptions = true }
-                    }.padding(.horizontal, 15)
-                    Button { startPage = nil; reading = true } label: {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(book.title).font(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
-                            Text(book.lastReadAt == nil ? L10n.format("%@ pages", String(describing: book.pageCount)) : L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
-                                .font(.caption).foregroundStyle(ShelfStyle.secondary)
-                            Text(book.addedAt, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary)
-                        }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16).padding(.vertical, 6)
-                    }.buttonStyle(.plain)
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Text(L10n.string("Notes")).font(.headline)
-                            Spacer()
-                            Button(book.notes == nil ? L10n.string("Add note") : L10n.string("Edit note")) {
-                                notesText = book.notes ?? ""
-                                editingNotes = true
-                            }
-                            .font(.caption)
-                            .foregroundStyle(ShelfStyle.accent)
-                        }
-                        if let notes = book.notes, !notes.isEmpty {
-                            Text(notes)
-                                .font(.body)
-                                .foregroundStyle(ShelfStyle.text)
-                                .padding(12)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(ShelfStyle.card)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                        }
-                    }
-                    .padding(.horizontal, 16)
-
-                    if !book.bookmarks.isEmpty {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(L10n.string("Bookmarks")).font(.headline)
-                            ForEach(book.bookmarks.sorted(), id: \.self) { page in
-                                TachiButton(L10n.format("Page %@", String(describing: page + 1)), systemImage: "bookmark.fill") { startPage = page; reading = true }
-                            }
-                        }.frame(maxWidth: .infinity, alignment: .leading).padding(16)
-                    }
-                }.padding(.bottom, 24)
-            }.shelfPage().navigationTitle("").navigationBarTitleDisplayMode(.inline)
+            bookContent(book)
+                .shelfPage().navigationTitle("").navigationBarTitleDisplayMode(.inline)
                 .toolbarBackground(.hidden, for: .navigationBar)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Menu {
-                            TachiButton(L10n.string("Book options"), systemImage: "slider.horizontal.3") { showingOptions = true }
-                            TachiButton(L10n.string("Rename"), systemImage: "pencil") { newTitle = book.title; renaming = true }
-                            TachiButton(L10n.string("Remove from library"), systemImage: "trash", role: .destructive) { removing = true }
-                        } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.disabled(model.busy)
-                    }
-                }
-                .sheet(isPresented: $showingOptions) {
-                    NavigationStack {
-                        TachiList {
-                            Toggle(L10n.string("Read"), isOn: Binding(get: { model.book(bookID)?.completed ?? false }, set: { value in
-                                Task { await model.perform { try await $0.setCompleted(id: bookID, completed: value) } }
-                            }))
-                            Section(L10n.string("Categories")) {
-                                ForEach(model.state.categories) { item in
-                                    Toggle(item.name, isOn: Binding(get: { model.book(bookID)?.categories.contains(item.id) ?? false }, set: { value in
-                                        Task { await model.perform { try await $0.assignCategory(bookID: bookID, categoryID: item.id, included: value) } }
-                                    }))
-                                }
-                                NavigationLink { CategoryManagementView() } label: { Text(L10n.string("Manage categories")) }
-                            }
-                        }.disabled(model.busy).shelfPage().navigationTitle(L10n.string("Book options"))
-                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.string("Done")) { showingOptions = false } } }
-                    }.tachiSheet()
-                }
-                .alert(L10n.string("Book name"), isPresented: $renaming) {
-                    TextField(L10n.string("Name"), text: $newTitle)
-                    Button(L10n.string("Save")) { Task { await model.perform { try await $0.renameBook(id: bookID, title: newTitle) } } }
-                    Button(L10n.string("Cancel"), role: .cancel) {}
-                }
-                .alert(L10n.string("Personal notes"), isPresented: $editingNotes) {
-                    TextField(L10n.string("Write your notes here..."), text: $notesText)
-                    Button(L10n.string("Save")) {
-                        Task { await model.setBookNotes(id: bookID, notes: notesText) }
-                    }
-                    Button(L10n.string("Cancel"), role: .cancel) {}
-                }
-                .confirmationDialog(L10n.string("Remove this book and its progress from the library?"), isPresented: $removing, titleVisibility: .visible) {
-                    Button(L10n.string("Remove"), role: .destructive) {
-                        Task {
-                            await model.batchMoveToTrash(bookIDs: [bookID])
-                            if model.book(bookID) == nil || model.book(bookID)?.isDeleted == true { dismiss() }
-                        }
-                    }
-                    Button(L10n.string("Cancel"), role: .cancel) {}
-                }
+                .toolbar { toolbarContent(book) }
+                .sheet(isPresented: $showingOptions) { optionsSheet }
+                .alert(L10n.string("Book name"), isPresented: $renaming) { renamingAlert }
+                .alert(L10n.string("Personal notes"), isPresented: $editingNotes) { notesAlert }
+                .confirmationDialog(L10n.string("Remove this book and its progress from the library?"), isPresented: $removing, titleVisibility: .visible) { removalDialog }
                 .fullScreenCover(isPresented: $reading) { ReaderView(bookID: book.id, startPage: startPage) }
-        } else { ContentUnavailableView(L10n.string("Book not found"), systemImage: "book.closed").shelfPage() }
+        } else {
+            ContentUnavailableView(L10n.string("Book not found"), systemImage: "book.closed").shelfPage()
+        }
+    }
+
+    @ViewBuilder
+    private func bookContent(_ book: LibraryBook) -> some View {
+        ScrollView {
+            VStack(spacing: 22) {
+                ShelfDetailHero(title: book.title, author: L10n.string("Unknown author"), source: L10n.string("Local source"), status: L10n.string("Unknown")) {
+                    BookCover(book: book)
+                }
+                heroStats
+                readActionButton(book)
+                readingTimeBadge(book)
+                chapterHeader
+                bookProgressCard(book)
+                notesSection(book)
+                bookmarksSection(book)
+            }
+            .padding(.bottom, 24)
+        }
+    }
+
+    private var heroStats: some View {
+        HStack {
+            TachiLabel(L10n.string("In library"), systemImage: "heart.fill").foregroundStyle(ShelfStyle.accent)
+            Spacer()
+            NavigationLink { FeatureStatusView(feature: .tracking) } label: { TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath") }
+                .foregroundStyle(ShelfStyle.secondary)
+        }
+        .font(.subheadline)
+        .padding(.horizontal, 40)
+    }
+
+    @ViewBuilder
+    private func readActionButton(_ book: LibraryBook) -> some View {
+        Button(book.lastReadAt == nil && book.currentPage == 0 ? L10n.string("Start reading") : L10n.string("Continue reading")) {
+            startPage = nil; reading = true
+        }
+        .buttonStyle(ShelfPrimaryButtonStyle())
+        .padding(.horizontal, 15)
+    }
+
+    @ViewBuilder
+    private func readingTimeBadge(_ book: LibraryBook) -> some View {
+        if book.totalReadingTime > 0 {
+            HStack(spacing: 6) {
+                Image(systemName: "clock")
+                Text(L10n.format("Reading time: %@", formattedReadingTime(book.totalReadingTime)))
+            }
+            .font(.caption)
+            .foregroundStyle(ShelfStyle.secondary)
+            .padding(.horizontal, 16)
+        }
+    }
+
+    private var chapterHeader: some View {
+        HStack {
+            Text(L10n.string("1 chapter")).font(.body)
+            Spacer()
+            ShelfIconButton(L10n.string("Book options"), symbol: "line.3.horizontal.decrease") { showingOptions = true }
+        }
+        .padding(.horizontal, 15)
+    }
+
+    @ViewBuilder
+    private func bookProgressCard(_ book: LibraryBook) -> some View {
+        Button { startPage = nil; reading = true } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(book.title).font(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
+                Text(book.lastReadAt == nil ? L10n.format("%@ pages", String(describing: book.pageCount)) : L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
+                    .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                Text(book.addedAt, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 6)
+        }
+        .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func notesSection(_ book: LibraryBook) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(L10n.string("Notes")).font(.headline)
+                Spacer()
+                Button(book.notes == nil ? L10n.string("Add note") : L10n.string("Edit note")) {
+                    notesText = book.notes ?? ""
+                    editingNotes = true
+                }
+                .font(.caption)
+                .foregroundStyle(ShelfStyle.accent)
+            }
+            if let notes = book.notes, !notes.isEmpty {
+                Text(notes)
+                    .font(.body)
+                    .foregroundStyle(ShelfStyle.text)
+                    .padding(12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(ShelfStyle.card)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .padding(.horizontal, 16)
+    }
+
+    @ViewBuilder
+    private func bookmarksSection(_ book: LibraryBook) -> some View {
+        if !book.bookmarks.isEmpty {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(L10n.string("Bookmarks")).font(.headline)
+                ForEach(book.bookmarks.sorted(), id: \.self) { page in
+                    TachiButton(L10n.format("Page %@", String(describing: page + 1)), systemImage: "bookmark.fill") { startPage = page; reading = true }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+        }
+    }
+
+    @ToolbarContentBuilder
+    private func toolbarContent(_ book: LibraryBook) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Menu {
+                TachiButton(L10n.string("Book options"), systemImage: "slider.horizontal.3") { showingOptions = true }
+                TachiButton(L10n.string("Rename"), systemImage: "pencil") { newTitle = book.title; renaming = true }
+                TachiButton(L10n.string("Remove from library"), systemImage: "trash", role: .destructive) { removing = true }
+            } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }
+            .disabled(model.busy)
+        }
+    }
+
+    private var optionsSheet: some View {
+        NavigationStack {
+            TachiList {
+                Toggle(L10n.string("Read"), isOn: Binding(get: { model.book(bookID)?.completed ?? false }, set: { value in
+                    Task { await model.perform { try await $0.setCompleted(id: bookID, completed: value) } }
+                }))
+                Section(L10n.string("Categories")) {
+                    ForEach(model.state.categories) { item in
+                        Toggle(item.name, isOn: Binding(get: { model.book(bookID)?.categories.contains(item.id) ?? false }, set: { value in
+                            Task { await model.perform { try await $0.assignCategory(bookID: bookID, categoryID: item.id, included: value) } }
+                        }))
+                    }
+                    NavigationLink { CategoryManagementView() } label: { Text(L10n.string("Manage categories")) }
+                }
+            }
+            .disabled(model.busy)
+            .shelfPage()
+            .navigationTitle(L10n.string("Book options"))
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(L10n.string("Done")) { showingOptions = false }
+                }
+            }
+        }
+        .tachiSheet()
+    }
+
+    @ViewBuilder
+    private var renamingAlert: some View {
+        TextField(L10n.string("Name"), text: $newTitle)
+        Button(L10n.string("Save")) { Task { await model.perform { try await $0.renameBook(id: bookID, title: newTitle) } } }
+        Button(L10n.string("Cancel"), role: .cancel) {}
+    }
+
+    @ViewBuilder
+    private var notesAlert: some View {
+        TextField(L10n.string("Write your notes here..."), text: $notesText)
+        Button(L10n.string("Save")) {
+            Task { await model.setBookNotes(id: bookID, notes: notesText) }
+        }
+        Button(L10n.string("Cancel"), role: .cancel) {}
+    }
+
+    @ViewBuilder
+    private var removalDialog: some View {
+        Button(L10n.string("Remove"), role: .destructive) {
+            Task {
+                await model.batchMoveToTrash(bookIDs: [bookID])
+                if model.book(bookID) == nil || model.book(bookID)?.isDeleted == true { dismiss() }
+            }
+        }
+        Button(L10n.string("Cancel"), role: .cancel) {}
     }
 }
