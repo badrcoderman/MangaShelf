@@ -56,16 +56,18 @@ extension SecureHTTP: SourceTransport {
             details = try await source.details(id: series.id)
             chapters = try await source.chapters(seriesID: series.id, language: selectedLanguage)
         } else {
-            let extDetails = try await SourceEngineCoordinator.shared.fetchDetails(sourceId: series.sourceID, mangaURL: "/manga/\(series.id)")
-            let extChapters = try await SourceEngineCoordinator.shared.fetchChapters(sourceId: series.sourceID, mangaURL: "/manga/\(series.id)")
+            let mangaURL = try series.requireSourceURL()
+            let extDetails = try await SourceEngineCoordinator.shared.fetchDetails(sourceId: series.sourceID, mangaURL: mangaURL)
+            let extChapters = try await SourceEngineCoordinator.shared.fetchChapters(sourceId: series.sourceID, mangaURL: mangaURL)
             details = MangaSeries(id: series.id, title: extDetails.title, synopsis: extDetails.description ?? "",
                                   coverURL: extDetails.coverURL ?? series.coverURL,
                                   authors: extDetails.author.map { [$0] } ?? [],
                                   tags: extDetails.genre, status: extDetails.status ?? "ongoing",
-                                  sourceID: series.sourceID)
+                                  sourceID: series.sourceID, sourceURL: mangaURL)
             chapters = extChapters.map {
                 MangaChapter(id: $0.id, seriesID: series.id, title: $0.name, number: String($0.chapterNumber),
-                             language: selectedLanguage, publishedAt: Date(timeIntervalSince1970: TimeInterval($0.dateUpload)))
+                             language: selectedLanguage, publishedAt: Date(timeIntervalSince1970: TimeInterval($0.dateUpload)),
+                             sourceURL: $0.url)
             }
         }
         try Task.checkCancellation()
@@ -90,7 +92,7 @@ extension SecureHTTP: SourceTransport {
         let seriesItem = state.series.first { $0.id == chapter.seriesID }
         let pages: ChapterPages
         if let sid = seriesItem?.series.sourceID, sid != "mangadex" {
-            let pageItems = try await SourceEngineCoordinator.shared.fetchPages(sourceId: sid, chapterURL: "/chapter/\(chapter.id)")
+            let pageItems = try await SourceEngineCoordinator.shared.fetchPages(sourceId: sid, chapterURL: chapter.requireSourceURL())
             pages = try ChapterPages(chapterID: chapter.id, urls: pageItems.compactMap { $0.imageURL ?? $0.url })
         } else {
             pages = try await source.pages(chapterID: chapter.id, dataSaver: dataSaver)

@@ -40,19 +40,30 @@ typedef int (*ms_bridge_dispatch_fn)(const char *action,
 /* Registration functions */
 void ms_bridge_register_net(ms_bridge_net_fn handler, ms_bridge_free_fn free_fn);
 void ms_bridge_register_channel(ms_bridge_channel_fn handler);
+/* Installing a dispatcher enables dispatch; NULL removes it and disables dispatch. */
 void ms_bridge_register_dispatcher(ms_bridge_dispatch_fn dispatcher);
 
-/* Execution functions */
+/* Availability requires an installed dispatcher. Setting zero disables new calls;
+ * setting nonzero enables them only while a dispatcher is installed. Callbacks
+ * run outside the registration lock: a previously captured call may finish after
+ * disabling or unregistering. The caller must manage callback code lifetime. */
 int ms_bridge_is_vm_available(void);
 void ms_bridge_set_vm_available(int available);
 
+/* Initializes optional *needed to zero and output[0] to NUL when capacity > 0,
+ * including on errors and before calling the dispatcher. NULL output is valid
+ * only with zero capacity (a size query); needed is optional. The dispatcher
+ * remains responsible for its response bounds and needed-length convention. */
 int ms_bridge_dispatch(const char *action,
                        const char *payload_json,
                        char *output,
                        size_t capacity,
                        size_t *needed);
 
-/* Triggers registered network handler (invoked by JNI or tests) */
+/* Initializes each supplied response output to NULL/zero before invoking the
+ * network handler. Outputs remain empty with no handler or invalid input:
+ * req_json must be non-NULL, and req_body may be NULL only for an empty body.
+ * Output pointers are optional. The handler owns response allocation rules. */
 void ms_bridge_invoke_net(const char *req_json,
                           const uint8_t *req_body,
                           size_t req_body_len,

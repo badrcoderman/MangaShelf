@@ -53,6 +53,38 @@ public final class RuntimeProbe {
         public byte[] readByteArray() {
             return data;
         }
+
+        public long size() {
+            return data.length;
+        }
+    }
+
+    /** Synthetic malformed buffers; never uses a reference or third-party class. */
+    public static final class BoundaryBuffer {
+        private final int mode;
+        public int reads;
+
+        public BoundaryBuffer(int mode) { this.mode = mode; }
+
+        public long size() {
+            if (mode == 0) return 32L * 1024 * 1024 + 1;
+            if (mode == 1) return -1;
+            if (mode == 2) throw new IllegalStateException("Synthetic size failure");
+            return mode == 7 ? 0 : 1;
+        }
+
+        public byte[] readByteArray() {
+            reads++;
+            if (mode == 3) throw new IllegalStateException("Synthetic read failure");
+            if (mode == 4) return null;
+            if (mode == 5) return new byte[2];
+            if (mode == 6) return new byte[32 * 1024 * 1024 + 1];
+            return new byte[0];
+        }
+    }
+
+    public static final class BoundaryMissingRead {
+        public long size() { return 0; }
     }
 
     public static Object createMockBuffer(String text) {

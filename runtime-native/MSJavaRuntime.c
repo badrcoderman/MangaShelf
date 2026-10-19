@@ -133,122 +133,131 @@ void ms_java_register_native_channel(ms_native_channel_fn handler) {
     pthread_mutex_unlock(&channel_lock);
 }
 
+/* All lengths reaching this helper have been bounded below JNI's signed jsize. */
+static jobjectArray net_response(JNIEnv *env, const void *meta, size_t meta_len,
+                                const void *body, size_t body_len) {
+    if (!meta || !meta_len || meta_len > MS_JAVA_NET_MAX_METADATA ||
+        body_len > MS_JAVA_NET_MAX_RESPONSE_BODY || (!body && body_len)) return NULL;
+    jclass byte_array_class = (*env)->FindClass(env, "[B");
+    if (!byte_array_class) return NULL;
+    jobjectArray result = (*env)->NewObjectArray(env, 2, byte_array_class, NULL);
+    if (!result) return NULL;
+    jbyteArray meta_out = (*env)->NewByteArray(env, (jsize)meta_len);
+    if (!meta_out) return NULL;
+    (*env)->SetByteArrayRegion(env, meta_out, 0, (jsize)meta_len, (const jbyte *)meta);
+    if ((*env)->ExceptionCheck(env)) return NULL;
+    (*env)->SetObjectArrayElement(env, result, 0, meta_out);
+    if ((*env)->ExceptionCheck(env)) return NULL;
+    jbyteArray body_out = (*env)->NewByteArray(env, (jsize)body_len);
+    if (!body_out) return NULL;
+    if (body_len) {
+        (*env)->SetByteArrayRegion(env, body_out, 0, (jsize)body_len, (const jbyte *)body);
+        if ((*env)->ExceptionCheck(env)) return NULL;
+    }
+    (*env)->SetObjectArrayElement(env, result, 1, body_out);
+    return (*env)->ExceptionCheck(env) ? NULL : result;
+}
+
 JNIEXPORT jobjectArray JNICALL Java_org_tachiyomi_NativeNet_call_1utf8(JNIEnv *env, jclass cls, jbyteArray jsonUtf8, jobject buffer) {
     (void)cls;
-    if (!env || !jsonUtf8) return NULL;
+    if (!env || (*env)->ExceptionCheck(env)) return NULL;
     if ((*env)->PushLocalFrame(env, 16) != JNI_OK) return NULL;
-
-    jsize json_len = (*env)->GetArrayLength(env, jsonUtf8);
-    if (json_len <= 0 || json_len > 256 * 1024) {
-        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
-    }
-    jbyte *json_bytes = (*env)->GetByteArrayElements(env, jsonUtf8, NULL);
-    if (!json_bytes) {
-        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
-    }
-
-    uint8_t *req_body = NULL;
+    const char *error = NULL;
+    jobjectArray result = NULL;
+    jsize json_len = 0;
+    jbyte *json_bytes = NULL;
     size_t req_body_len = 0;
     jbyteArray body_array = NULL;
     jbyte *body_bytes = NULL;
+    void *resp_meta = NULL, *resp_body = NULL;
+    size_t resp_meta_len = 0, resp_body_len = 0;
+    ms_buffer_free_fn free_fn = NULL;
+
+    if (!jsonUtf8) {
+        error = "{\"code\":400,\"error\":\"Invalid NativeNet request metadata\"}";
+        goto respond;
+    }
+    json_len = (*env)->GetArrayLength(env, jsonUtf8);
+    if ((*env)->ExceptionCheck(env)) goto cleanup;
+    if (json_len <= 0 || json_len > MS_JAVA_NET_MAX_METADATA) {
+        error = "{\"code\":400,\"error\":\"Invalid NativeNet request metadata\"}";
+        goto respond;
+    }
 
     if (buffer) {
         jclass byte_arr_cls = (*env)->FindClass(env, "[B");
-        if (byte_arr_cls && (*env)->IsInstanceOf(env, buffer, byte_arr_cls)) {
+        jlong expected_body_len = -1;
+        if (!byte_arr_cls) goto cleanup;
+        if ((*env)->IsInstanceOf(env, buffer, byte_arr_cls)) {
             body_array = (jbyteArray)buffer;
         } else {
-            if ((*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
             jclass buf_cls = (*env)->GetObjectClass(env, buffer);
-            if (buf_cls) {
-                jmethodID read_bytes_mid = (*env)->GetMethodID(env, buf_cls, "readByteArray", "()[B");
-                if (read_bytes_mid) {
-                    body_array = (jbyteArray)(*env)->CallObjectMethod(env, buffer, read_bytes_mid);
-                }
-                if (!read_bytes_mid || (*env)->ExceptionCheck(env)) {
-                    (*env)->ExceptionClear(env);
-                    body_array = NULL;
-                }
-            }
+            if (!buf_cls) goto cleanup;
+            /* Check Okio's size before its allocating, consuming readByteArray. */
+            jmethodID size_mid = (*env)->GetMethodID(env, buf_cls, "size", "()J");
+            if (!size_mid) goto invalid_body;
+            expected_body_len = (*env)->CallLongMethod(env, buffer, size_mid);
+            if ((*env)->ExceptionCheck(env)) goto invalid_body;
+            if (expected_body_len < 0 || expected_body_len > MS_JAVA_NET_MAX_REQUEST_BODY) goto invalid_body;
+            jmethodID read_bytes_mid = (*env)->GetMethodID(env, buf_cls, "readByteArray", "()[B");
+            if (!read_bytes_mid) goto invalid_body;
+            body_array = (jbyteArray)(*env)->CallObjectMethod(env, buffer, read_bytes_mid);
+            if ((*env)->ExceptionCheck(env) || !body_array) goto invalid_body;
         }
-        if (body_array) {
-            jsize b_len = (*env)->GetArrayLength(env, body_array);
-            if (b_len > 0 && b_len <= 32 * 1024 * 1024) {
-                req_body_len = (size_t)b_len;
-                body_bytes = (*env)->GetByteArrayElements(env, body_array, NULL);
-                req_body = (uint8_t *)body_bytes;
-            }
+        jsize b_len = (*env)->GetArrayLength(env, body_array);
+        if ((*env)->ExceptionCheck(env)) goto cleanup;
+        if (b_len < 0 || b_len > MS_JAVA_NET_MAX_REQUEST_BODY ||
+            (expected_body_len >= 0 && expected_body_len != b_len)) goto invalid_body;
+        req_body_len = (size_t)b_len;
+        if (b_len > 0) {
+            body_bytes = (*env)->GetByteArrayElements(env, body_array, NULL);
+            if (!body_bytes) goto cleanup;
         }
     }
+    json_bytes = (*env)->GetByteArrayElements(env, jsonUtf8, NULL);
+    if (!json_bytes) goto cleanup;
 
     pthread_mutex_lock(&net_lock);
     ms_native_net_fn net_fn = registered_net_fn;
-    ms_buffer_free_fn free_fn = registered_free_fn;
+    free_fn = registered_free_fn;
     pthread_mutex_unlock(&net_lock);
 
-    void *resp_meta = NULL;
-    size_t resp_meta_len = 0;
-    void *resp_body = NULL;
-    size_t resp_body_len = 0;
-    int status = -1;
-    if (net_fn) {
-        status = net_fn((const void *)json_bytes, (size_t)json_len,
-                        req_body, req_body_len,
-                        &resp_meta, &resp_meta_len,
-                        &resp_body, &resp_body_len);
+    if (!net_fn || !free_fn) {
+        error = "{\"code\":500,\"error\":\"NativeNet transport unavailable\"}";
+        goto respond;
     }
-
-    (*env)->ReleaseByteArrayElements(env, jsonUtf8, json_bytes, JNI_ABORT);
-    if (body_array && body_bytes) {
+    int status = net_fn((const void *)json_bytes, (size_t)json_len,
+                        body_bytes, req_body_len,
+                        &resp_meta, &resp_meta_len, &resp_body, &resp_body_len);
+    if (status != 0) {
+        error = "{\"code\":500,\"error\":\"NativeNet transport failed\"}";
+    } else if (!resp_meta || !resp_meta_len || resp_meta_len > MS_JAVA_NET_MAX_METADATA ||
+               resp_body_len > MS_JAVA_NET_MAX_RESPONSE_BODY ||
+               (!resp_body && resp_body_len) || (resp_body && resp_body == resp_meta)) {
+        error = "{\"code\":500,\"error\":\"Invalid NativeNet transport response\"}";
+    }
+    goto respond;
+invalid_body:
+    /* A rejected body is a failed request, never an empty successful upload. */
+    if ((*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
+    error = "{\"code\":400,\"error\":\"Invalid NativeNet request body\"}";
+respond:
+    if (json_bytes) {
+        (*env)->ReleaseByteArrayElements(env, jsonUtf8, json_bytes, JNI_ABORT);
+        json_bytes = NULL;
+    }
+    if (body_bytes) {
         (*env)->ReleaseByteArrayElements(env, body_array, body_bytes, JNI_ABORT);
+        body_bytes = NULL;
     }
-
-    const char *fallback_error = "{\"code\":500,\"error\":\"NativeNet transport unavailable\"}";
-    int is_fallback = 0;
-    if (status != 0 || !resp_meta || resp_meta_len == 0) {
-        if (status != 0 && resp_meta && free_fn) {
-            free_fn(resp_meta);
-        }
-        resp_meta = (void *)fallback_error;
-        resp_meta_len = strlen(fallback_error);
-        is_fallback = 1;
-    }
-
-    jclass byte_array_class = (*env)->FindClass(env, "[B");
-    if (!byte_array_class) {
-        if (free_fn) {
-            if (resp_meta && !is_fallback) free_fn(resp_meta);
-            if (resp_body) free_fn(resp_body);
-        }
-        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
-    }
-    jobjectArray result = (*env)->NewObjectArray(env, 2, byte_array_class, NULL);
-    if (!result) {
-        if (free_fn) {
-            if (resp_meta && !is_fallback) free_fn(resp_meta);
-            if (resp_body) free_fn(resp_body);
-        }
-        return (jobjectArray)(*env)->PopLocalFrame(env, NULL);
-    }
-
-    jbyteArray meta_out = (*env)->NewByteArray(env, (jsize)resp_meta_len);
-    if (meta_out) {
-        (*env)->SetByteArrayRegion(env, meta_out, 0, (jsize)resp_meta_len, (const jbyte *)resp_meta);
-        (*env)->SetObjectArrayElement(env, result, 0, meta_out);
-    }
-
-    jsize body_len_to_alloc = (resp_body && resp_body_len > 0 && resp_body_len <= 64 * 1024 * 1024)
-                              ? (jsize)resp_body_len : 0;
-    jbyteArray body_out = (*env)->NewByteArray(env, body_len_to_alloc);
-    if (body_out) {
-        if (body_len_to_alloc > 0) {
-            (*env)->SetByteArrayRegion(env, body_out, 0, body_len_to_alloc, (const jbyte *)resp_body);
-        }
-        (*env)->SetObjectArrayElement(env, result, 1, body_out);
-    }
-
+    if (error) result = net_response(env, error, strlen(error), NULL, 0);
+    else result = net_response(env, resp_meta, resp_meta_len, resp_body, resp_body_len);
+cleanup:
+    if (json_bytes) (*env)->ReleaseByteArrayElements(env, jsonUtf8, json_bytes, JNI_ABORT);
+    if (body_bytes) (*env)->ReleaseByteArrayElements(env, body_array, body_bytes, JNI_ABORT);
     if (free_fn) {
-        if (resp_meta && !is_fallback) free_fn(resp_meta);
-        if (resp_body) free_fn(resp_body);
+        if (resp_meta) free_fn(resp_meta);
+        if (resp_body && resp_body != resp_meta) free_fn(resp_body);
     }
     return (jobjectArray)(*env)->PopLocalFrame(env, result);
 }

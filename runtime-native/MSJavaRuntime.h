@@ -13,7 +13,16 @@ int ms_java_call_string2(const char *class_name, const char *method_name,
                          const char *first, const char *second,
                          char *output, size_t capacity, size_t *needed);
 
-/* NativeNet transport bridge. Invoked from Java worker threads. */
+/* NativeNet transport bridge. Invoked synchronously from Java worker threads.
+ * Request spans are borrowed only for the callback. Response buffers must be
+ * separately owned allocations released by free_fn, including on callback error.
+ * A non-NULL handler requires a non-NULL free_fn. No response bytes are borrowed.
+ */
+enum {
+    MS_JAVA_NET_MAX_METADATA = 256 * 1024,
+    MS_JAVA_NET_MAX_REQUEST_BODY = 32 * 1024 * 1024,
+    MS_JAVA_NET_MAX_RESPONSE_BODY = 64 * 1024 * 1024
+};
 typedef int (*ms_native_net_fn)(const void *req_json, size_t req_json_len,
                                 const void *req_body, size_t req_body_len,
                                 void **resp_meta, size_t *resp_meta_len,

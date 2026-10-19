@@ -41,13 +41,13 @@
   },
   {
     "path": "README-AR.md",
-    "bytes": 9440,
-    "sha256": "fce672336975fa15950eb060b457b4f852cbb01a5d779e28dee51f58218f9086"
+    "bytes": 9793,
+    "sha256": "74ac297cc70253dbf44bb78dd0a8922753359aa3b9df162fdbc58068ef6bb966"
   },
   {
     "path": "Sources/CSafeArchive/MSJNIBridge.c",
-    "bytes": 3055,
-    "sha256": "bdc1bfd36489f22b38c1f6cd7d4fa46380350e526b04d968a2db43e1521c68c1"
+    "bytes": 3151,
+    "sha256": "358e08b437f98ba4e590483a52a107a57d9ed441af1df268f75645ce878ae3fb"
   },
   {
     "path": "Sources/CSafeArchive/archive.c",
@@ -61,8 +61,8 @@
   },
   {
     "path": "Sources/CSafeArchive/include/MSJNIBridge.h",
-    "bytes": 2370,
-    "sha256": "1ed8b54821c5e2279b0378d9af732a560a45b077c221fe75b93aff3fefd8b1fc"
+    "bytes": 3318,
+    "sha256": "bfd582b5e3e137e47d331b62c2ae869d3014d3936ca4c5d011a299604f9432e4"
   },
   {
     "path": "Sources/ReaderCore/Archive.swift",
@@ -71,8 +71,8 @@
   },
   {
     "path": "Sources/ReaderCore/ExtensionRuntime.swift",
-    "bytes": 10888,
-    "sha256": "104d01a8ff2041201ea58ab70fd51b71964c0226715f3f6b936ba5bc2e0bd7ec"
+    "bytes": 8672,
+    "sha256": "beb811726bcd6561318b9c83cf375fa84d1127da92a6b990c03d299cf491419b"
   },
   {
     "path": "Sources/ReaderCore/JARInspection.swift",
@@ -106,8 +106,8 @@
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
-    "bytes": 7190,
-    "sha256": "9f0eafb43061c21d9bb5bef363f67fa268fbb0337ddb917eb8702b155f496a5e"
+    "bytes": 8115,
+    "sha256": "2616368b24ed26055e4cd52e6dac1338ce500f2b8916b65f1170321567cb8f5f"
   },
   {
     "path": "Sources/ReaderCore/OnlineStore.swift",
@@ -131,13 +131,13 @@
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
-    "bytes": 86560,
-    "sha256": "55da7cf303e960b8e89a42cde5094c1170919a667418f3d9c60d2dbcd5fb9288"
+    "bytes": 87009,
+    "sha256": "ae3a74d899a46a20747532db09b4e114cb550a42063a022c1ab4363843c3b402"
   },
   {
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
-    "bytes": 70529,
-    "sha256": "243b0a5e4a36b8f3645402fcc8ee1efa0aa6f38bb633a2afe1c3f37921076507"
+    "bytes": 70902,
+    "sha256": "65f44e07ef1de39efe8f5d65f8dad898fcb3c50247f770c956b1a799c6960139"
   },
   {
     "path": "Sources/ReaderCore/SourceEngine.swift",
@@ -151,8 +151,8 @@
   },
   {
     "path": "Tests/ReaderCoreTests/ExtensionEngineTests.swift",
-    "bytes": 5154,
-    "sha256": "9c419aa2ec16bcb7861cbb615de2570dea4f03cc2acf0cc6ffb09560b79571b6"
+    "bytes": 15681,
+    "sha256": "38b56a443ad3f6b878327bc3fec645864c732a686b9a8bea33871df1c5fd8eee"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
@@ -196,13 +196,18 @@
   },
   {
     "path": "Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift",
-    "bytes": 7866,
-    "sha256": "23604664232f4ea127fd684de61b1e2ee8fe66ec85c01246167d4d0cbf64f653"
+    "bytes": 7891,
+    "sha256": "dfd03c30fbaf304fa4a2b1b4d3367cbae7abcc812afdbe298e23a08f02ff7107"
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
     "bytes": 11959,
     "sha256": "5ea7aa0491bfe10d72b0b59727d4fb8d317e55fdbda8cd0479ddc8499f671c89"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceURLPersistenceTests.swift",
+    "bytes": 2841,
+    "sha256": "7c0982cd2721cac296854e46f6d127adc7b2337b318e4ff6699cdc6825a487b9"
   },
   {
     "path": "docs/ARCHITECTURE-AR.md",
@@ -276,8 +281,8 @@
   },
   {
     "path": "docs/PHASE-2-PROGRESS-AR.md",
-    "bytes": 16928,
-    "sha256": "6b7109b7e3347e73c3a2b1230af42e344e145752cf300a712941b2b33fcc15a4"
+    "bytes": 17461,
+    "sha256": "113ad983b0af43d368f4dac1eab5ce76625308d8845ce26965bb643fc7cb66b0"
   },
   {
     "path": "docs/PHASE-3-PROGRESS-AR.md",
@@ -288,6 +293,11 @@
     "path": "docs/PORTING-AR.md",
     "bytes": 8797,
     "sha256": "c58ea02efb226c989cc66ddd700192495de4e9a956c885c6a948a224538f00eb"
+  },
+  {
+    "path": "docs/REA-REVIEW-AR.md",
+    "bytes": 12229,
+    "sha256": "d9a9e06934d7e1e80b896ca51a30a24be53197adf7098f4d59c3ce2c1f031f80"
   },
   {
     "path": "docs/RECOVERY-AR.md",
@@ -326,8 +336,8 @@
   },
   {
     "path": "docs/STATUS-AR.md",
-    "bytes": 2694,
-    "sha256": "520c15133f8a260299c38e342169eb9f227535e63d90019879b5d4fe30b15e61"
+    "bytes": 3726,
+    "sha256": "9375eee3d9d4f33e6f8402bb3d47698d91cbcb96bd98bf7f872d16aa37aecdba"
   },
   {
     "path": "docs/TACHIYOMI-IOS-REVIEW-AR.md",
@@ -406,8 +416,8 @@
   },
   {
     "path": "iOS/MangaShelf/OnlineModel.swift",
-    "bytes": 13178,
-    "sha256": "7775f59e24fd345bff8db666234d4d54cb989f8c354b918887a1a20c84d8c8d5"
+    "bytes": 13280,
+    "sha256": "3a05b4189f7edd2a12b1b917880d0529be7905c890023a336c520e2bf86d16c8"
   },
   {
     "path": "iOS/MangaShelf/OnlineReaderView.swift",
@@ -706,13 +716,13 @@
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
-    "bytes": 86560,
-    "sha256": "55da7cf303e960b8e89a42cde5094c1170919a667418f3d9c60d2dbcd5fb9288"
+    "bytes": 87009,
+    "sha256": "ae3a74d899a46a20747532db09b4e114cb550a42063a022c1ab4363843c3b402"
   },
   {
     "path": "iOS/MangaShelf/Resources/en.lproj/Localizable.strings",
-    "bytes": 70529,
-    "sha256": "243b0a5e4a36b8f3645402fcc8ee1efa0aa6f38bb633a2afe1c3f37921076507"
+    "bytes": 70902,
+    "sha256": "65f44e07ef1de39efe8f5d65f8dad898fcb3c50247f770c956b1a799c6960139"
   },
   {
     "path": "iOS/MangaShelf/Resources/icomoon.ttf",
@@ -746,8 +756,8 @@
   },
   {
     "path": "iOS/MangaShelf/SourceViews.swift",
-    "bytes": 16296,
-    "sha256": "5fd1b42f1a13cba23fef1803b9768d8e9676ffc33ca644c91fc15be6f76799d1"
+    "bytes": 16612,
+    "sha256": "d9ec17b330235a781d581912fa83e1d5101b8b1ee83e49dc831a9d3a651d37a1"
   },
   {
     "path": "iOS/MangaShelf/SupportingSettingsViews.swift",
@@ -781,23 +791,23 @@
   },
   {
     "path": "runtime-native/MSJavaRuntime.c",
-    "bytes": 12032,
-    "sha256": "5a4438a79de13069e6e7c7157a60d0d80d15eee37a23476b0b24ecbd530cc82e"
+    "bytes": 13553,
+    "sha256": "56b17692b520518d25bf98ea528c712f90dff8f1c320c11832026d8138a8ea30"
   },
   {
     "path": "runtime-native/MSJavaRuntime.h",
-    "bytes": 2042,
-    "sha256": "86765846dcb21246d2b8b026bde794ca651fc1db80af722e60c6dfd1bdf78589"
+    "bytes": 2459,
+    "sha256": "6fc8101575711e5da9f27b651e9e1172bc7fdea5cd22eac0f8451039fe2e3cc4"
   },
   {
     "path": "runtime-native/README.md",
-    "bytes": 2074,
-    "sha256": "cf22bb59fcad2c388d55b2a379ee67910d97866ae9c9265795b3b3848796c794"
+    "bytes": 4095,
+    "sha256": "cd87eefd8ae56402f0807fbf8986508f0b45846fdc62f8c8de41c5bef9ceae47"
   },
   {
     "path": "runtime-native/host_probe.c",
-    "bytes": 9708,
-    "sha256": "4ce2a3f41db7fa4d28954dde7ec4c93d2376940cb18426e4c6417abde8fedb0b"
+    "bytes": 16414,
+    "sha256": "e62074396bfa50844111d87bb6a6871186794e9174e4610b43a09565adc9d00e"
   },
   {
     "path": "runtime-native/ios_jvm_compat.cpp",
@@ -811,8 +821,8 @@
   },
   {
     "path": "runtime-probe/src/mangashelf/probe/RuntimeProbe.java",
-    "bytes": 3375,
-    "sha256": "84b8334d7ee95f9dd675d997f45bc3928bc9926a6f30151265271fd5ccf04759"
+    "bytes": 4409,
+    "sha256": "f126aa773626ddc874eab94b62fd353f78486872cd5f99312660fdeee6acf7c8"
   },
   {
     "path": "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java",
@@ -823,6 +833,11 @@
     "path": "scripts/audit_project.py",
     "bytes": 3369,
     "sha256": "e4391e55818d035bcb24314f09aa6abf898cc32a24f540a634414de9541f16c5"
+  },
+  {
+    "path": "scripts/bridge_regression.c",
+    "bytes": 9961,
+    "sha256": "fa3ec69e82baa3675d5249547e1238e86da60a7540987667423fd9b220418ff2"
   },
   {
     "path": "scripts/build-ios-jvm.sh",
@@ -836,8 +851,8 @@
   },
   {
     "path": "scripts/build-native-runtime-probe.py",
-    "bytes": 3022,
-    "sha256": "c58e27df4ef80f0792be8fefe48e08bd940c34a2234e1c39bc62b13090c8cc0d"
+    "bytes": 3219,
+    "sha256": "f8b21616fee6c43ccaf92a868c6c0f2a6d84491aee09f2a2eddc164bd7fe5fac"
   },
   {
     "path": "scripts/check_ui_resources.py",
@@ -893,6 +908,11 @@
     "path": "scripts/run_sanitizers.py",
     "bytes": 1747,
     "sha256": "a054cd9b3088f824d39ff4713c3246e45102d82ebe0dcca70f318b3b240f9993"
+  },
+  {
+    "path": "scripts/test_bridge.py",
+    "bytes": 3467,
+    "sha256": "d7c525bffd37326b060d517a9482fe0ea4db9b6636c1f0f141f47b397032882b"
   },
   {
     "path": "scripts/test_native.py",

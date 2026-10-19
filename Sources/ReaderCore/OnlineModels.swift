@@ -9,10 +9,22 @@ public struct MangaSeries: Codable, Identifiable, Hashable, Sendable {
     public var tags: [String]
     public var status: String
     public var sourceID: String
+    /// Opaque URL returned by the extension, distinct from our storage identifier.
+    /// Optional so libraries saved before this field was added still decode.
+    public var sourceURL: String?
     public init(id: String, title: String, synopsis: String = "", coverURL: String? = nil,
-                authors: [String] = [], tags: [String] = [], status: String = "", sourceID: String = "mangadex") {
+                authors: [String] = [], tags: [String] = [], status: String = "", sourceID: String = "mangadex",
+                sourceURL: String? = nil) {
         self.id = id; self.title = title; self.synopsis = synopsis; self.coverURL = coverURL
         self.authors = authors; self.tags = tags; self.status = status; self.sourceID = sourceID
+        self.sourceURL = sourceURL
+    }
+
+    public func requireSourceURL() throws -> String {
+        guard let sourceURL, !sourceURL.isEmpty else {
+            throw ReaderFailure(ReaderText.string("Invalid source title."))
+        }
+        return sourceURL
     }
 }
 
@@ -26,14 +38,25 @@ public struct MangaChapter: Codable, Identifiable, Hashable, Sendable {
     public var group: String
     public var publishedAt: Date?
     public var externalURL: String?
+    /// Extension lookup URL; externalURL instead denotes a publisher-only chapter.
+    public var sourceURL: String?
     public var displayTitle: String {
         let label = number.map { ReaderText.format("Chapter %@", String(describing: $0)) } ?? ReaderText.string("Chapter")
         return title.isEmpty ? label : label + " — " + title
     }
     public init(id: String, seriesID: String, title: String = "", number: String? = nil,
-                volume: String? = nil, language: String = "ar", group: String = "", publishedAt: Date? = nil, externalURL: String? = nil) {
+                volume: String? = nil, language: String = "ar", group: String = "", publishedAt: Date? = nil,
+                externalURL: String? = nil, sourceURL: String? = nil) {
         self.id = id; self.seriesID = seriesID; self.title = title; self.number = number; self.volume = volume
         self.language = language; self.group = group; self.publishedAt = publishedAt; self.externalURL = externalURL
+        self.sourceURL = sourceURL
+    }
+
+    public func requireSourceURL() throws -> String {
+        guard let sourceURL, !sourceURL.isEmpty else {
+            throw ReaderFailure(ReaderText.string("Invalid source page URL."))
+        }
+        return sourceURL
     }
 }
 
