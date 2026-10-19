@@ -1,0 +1,947 @@
+{
+  "timestamp": "2026-10-19T23:05:21.904906+00:00",
+  "command": "python3 scripts/test_extension_runner.py",
+  "scope": "Host Java runner, synthetic project fixtures only; no specimen execution or iOS compatibility claim.",
+  "inputs": {
+    "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java": "7e031e41ecd4436d703b77195096fc5ba11288b1ed562228d09dd92ba5c09db8",
+    "runtime-probe/tests/mangashelf/runtime/RunnerHost.java": "f0ddfd83224fdc737c4f78fb936d1ffee0ac02918dbab19a140c0d00c2a4f6fe",
+    "runtime-probe/tests/fixtures/SyntheticSources.java": "424cb6c4affef57849d6a8c53eecaf2bba7591efac69324d371c5147fb9b7479"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/java",
+        "-version"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/javac",
+        "--release",
+        "8",
+        "-encoding",
+        "UTF-8",
+        "-Xlint:all,-options",
+        "-Werror",
+        "-d",
+        "/tmp/mangashelf-runner-u30zn4bc/host",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/src/mangashelf/runtime/ExtensionRunner.java",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/tests/mangashelf/runtime/RunnerHost.java"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/javac",
+        "--release",
+        "8",
+        "-encoding",
+        "UTF-8",
+        "-Xlint:all,-options",
+        "-Werror",
+        "-d",
+        "/tmp/mangashelf-runner-u30zn4bc/fixture",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/tests/fixtures/SyntheticSources.java"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/java",
+        "-Xmx128m",
+        "-cp",
+        "/tmp/mangashelf-runner-u30zn4bc/host",
+        "mangashelf.runtime.RunnerHost"
+      ],
+      "returncode": 0,
+      "stdout": "eyJzdGF0dXMiOiJvayIsImVuZ2luZSI6Ik1hbmdhU2hlbGYgZXhwZXJpbWVudGFsIGhvc3QgcnVubmVyIiwidmVyc2lvbiI6IjEuMC4wIn0=\neyJlcnJvciI6Ik1pc3NpbmcgYWN0aW9uLiIsImNvZGUiOiJpbnZhbGlkX2FjdGlvbiJ9\neyJlcnJvciI6IlVua25vd24gYWN0aW9uOiB1bmtub3duXCJcXFxuIiwiY29kZSI6InVua25vd25fYWN0aW9uIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogbWFpbkNsYXNzIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4dGVuc2lvbiBhcmNoaXZlIGZpbGUgbm90IGZvdW5kLiIsImNvZGUiOiJsb2FkX2ZhaWxlZCJ9\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBDbGFzc05vdEZvdW5kRXhjZXB0aW9uIiwiY29kZSI6ImxvYWRfZmFpbGVkIn0=\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoibG9hZF9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYWJzZW50Iiwic291cmNlSWQiOiJudW1lcmljLXNvdXJjZS0xMjMiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IlVubG9hZCB0aGUgcGFja2FnZSBiZWZvcmUgbG9hZGluZyBpdCBhZ2Fpbi4iLCJjb2RlIjoiYWxyZWFkeV9sb2FkZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgaWRlbnRpZmllciBpcyBhbHJlYWR5IGxvYWRlZC4iLCJjb2RlIjoic291cmNlX2NvbmZsaWN0In0=\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIGEgSlNPTiBhcnJheS4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogaWQiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogQXNzZXJ0aW9uRXJyb3IiLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\nW10=\nW3siaWQiOiAiZml4dHVyZS9cIlxcXHQiLCAidGl0bGUiOiAiXHUwNjM5XHUwNjMxXHUwNjI4XHUwNjRhIFx1ZDgzZFx1ZGNkYSBcInF1b3RlZFwiIFxcIG5ld2xpbmVcbiIsICJjb3ZlclVSTCI6IG51bGwsICJ1cmwiOiAiL21hbmdhL1wiXFwifV0=\nW10=\neyJlcnJvciI6IlNvdXJjZSBtZXRob2Qgc2VhcmNoTWFuZ2EgZmFpbGVkOiBJbGxlZ2FsQXJndW1lbnRFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogTWFsZm9ybWVkIEpTT04gYXQgY2hhcmFjdGVyIDAuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgc3RyaW5nIGZpZWxkOiBpZCIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgc3RyaW5nIGZpZWxkOiB1cmwiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJ0aXRsZSI6IlN5bnRoZXRpYyBEZXRhaWxzIiwiYXV0aG9yIjpudWxsLCJhcnRpc3QiOm51bGwsImRlc2NyaXB0aW9uIjoiRml4dHVyZSBvbmx5IiwiZ2VucmUiOlsiVGVzdCJdLCJzdGF0dXMiOiJvbmdvaW5nIiwiY292ZXJVUkwiOm51bGx9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IGdlbnJlIGVudHJpZXMgbXVzdCBiZSBzdHJpbmdzLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzMi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\nW3siaWQiOiJmaXh0dXJlLWNoYXB0ZXIiLCJuYW1lIjoiU3ludGhldGljIENoYXB0ZXIiLCJ1cmwiOiIvZml4dHVyZS9jaGFwdGVyIiwiY2hhcHRlck51bWJlciI6MS41LCJkYXRlVXBsb2FkIjoxNzAwMDAwMDAwLCJzY2FubGF0b3IiOm51bGx9XQ==\nW10=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBzdHJpbmcgZmllbGQ6IGlkIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBJbnZhbGlkIGNoYXB0ZXIgbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\nW3siaW5kZXgiOjAsInVybCI6Ii9maXh0dXJlL3BhZ2UiLCJpbWFnZVVSTCI6Imh0dHBzOi8vZml4dHVyZS5pbnZhbGlkL3BhZ2UucG5nIn1d\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBFeHBlY3RlZCBhIEpTT04gbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBObyBjaGFwdGVyIHBhZ2VzIHdlcmUgcmV0dXJuZWQuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgbWFuZ2FEZXRhaWxzIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgY2hhcHRlckxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcGFnZUxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzLiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyNy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyMC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNS4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA5LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogc291cmNlSWQiLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoibm8tbWV0aG9kcyIsInNvdXJjZUlkIjoibm8tbWV0aG9kcyIsImhhc0luc3RhbmNlIjp0cnVlfQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IG1hbmdhRGV0YWlscyB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IGNoYXB0ZXJMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBhZ2VMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoid3Jvbmctc2lnbmF0dXJlIiwic291cmNlSWQiOiJ3cm9uZy1zaWduYXR1cmUiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiY2xhc3NwYXRoIiwic291cmNlSWQiOiJjbGFzc3BhdGgiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\nW10=\neyJzdGF0dXMiOiJ1bmxvYWRlZCIsInBhY2thZ2UiOiJhYnNlbnQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSBwYWNrYWdlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6Im5vdF9sb2FkZWQifQ==\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYW5vdGhlciIsInNvdXJjZUlkIjoibnVtZXJpYy1zb3VyY2UtMTIzIiwiaGFzSW5zdGFuY2UiOnRydWV9\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\n",
+      "stderr": ""
+    }
+  ],
+  "tests": [
+    {
+      "name": "ping",
+      "passed": true,
+      "response": {
+        "status": "ok",
+        "engine": "MangaShelf experimental host runner",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "name": "null action is explicit error",
+      "passed": true,
+      "response": {
+        "error": "Missing action.",
+        "code": "invalid_action"
+      }
+    },
+    {
+      "name": "unknown action escapes correctly",
+      "passed": true,
+      "response": {
+        "error": "Unknown action: unknown\"\\\n",
+        "code": "unknown_action"
+      }
+    },
+    {
+      "name": "missing source / popular",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing source / search",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing source / details",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing source / chapters",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing source / pages",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "load without mainClass cannot succeed",
+      "passed": true,
+      "response": {
+        "error": "Expected string field: mainClass",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "failed load registers no source",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing archive",
+      "passed": true,
+      "response": {
+        "error": "Extension archive file not found.",
+        "code": "load_failed"
+      }
+    },
+    {
+      "name": "missing class",
+      "passed": true,
+      "response": {
+        "error": "Could not create source instance: ClassNotFoundException",
+        "code": "load_failed"
+      }
+    },
+    {
+      "name": "constructor failure",
+      "passed": true,
+      "response": {
+        "error": "Could not create source instance: IllegalStateException",
+        "code": "load_failed"
+      }
+    },
+    {
+      "name": "constructor failure registers no source",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "successful retry after failed load",
+      "passed": true,
+      "response": {
+        "status": "loaded",
+        "package": "absent",
+        "sourceId": "numeric-source-123",
+        "hasInstance": true
+      }
+    },
+    {
+      "name": "package is not silently a source alias",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "explicit source identifier works",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture-popular",
+          "title": "Synthetic Popular",
+          "url": "/fixture/manga",
+          "coverURL": null
+        }
+      ]
+    },
+    {
+      "name": "duplicate package rejected",
+      "passed": true,
+      "response": {
+        "error": "Unload the package before loading it again.",
+        "code": "already_loaded"
+      }
+    },
+    {
+      "name": "duplicate source rejected",
+      "passed": true,
+      "response": {
+        "error": "The source identifier is already loaded.",
+        "code": "source_conflict"
+      }
+    },
+    {
+      "name": "failed replacements preserve existing source",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture-popular",
+          "title": "Synthetic Popular",
+          "url": "/fixture/manga",
+          "coverURL": null
+        }
+      ]
+    },
+    {
+      "name": "popular explicit failure / page 2",
+      "passed": true,
+      "response": {
+        "error": "Source method popularManga failed: IllegalStateException",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 3",
+      "passed": true,
+      "response": {
+        "error": "The source must return a JSON string.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 4",
+      "passed": true,
+      "response": {
+        "error": "The source must return a JSON string.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 5",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Malformed JSON at character 1.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 6",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Expected a JSON array.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 7",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Expected string field: id",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 9",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Expected string field: title",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 10",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: JSON exceeds the size limit.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 11",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Malformed JSON at character 16.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 12",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid popular data: Expected a JSON object.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "popular explicit failure / page 13",
+      "passed": true,
+      "response": {
+        "error": "Source method popularManga failed: AssertionError",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "genuine empty popular response stays empty",
+      "passed": true,
+      "response": []
+    },
+    {
+      "name": "escaped Unicode query reaches source intact",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture/\"\\\t",
+          "title": "عربي 📚 \"quoted\" \\ newline\n",
+          "coverURL": null,
+          "url": "/manga/\"\\"
+        }
+      ]
+    },
+    {
+      "name": "empty search response stays empty",
+      "passed": true,
+      "response": []
+    },
+    {
+      "name": "search invocation failure",
+      "passed": true,
+      "response": {
+        "error": "Source method searchManga failed: IllegalArgumentException",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "invalid search reply / not JSON",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Malformed JSON at character 0.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON array.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / [{}]",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected string field: id",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / [null]",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON object.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / null",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON array.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / [true]",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON object.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / [{\"id\":\"a\",\"title\":\"t\",\"url\":false}]",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected string field: url",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "details from synthetic source",
+      "passed": true,
+      "response": {
+        "title": "Synthetic Details",
+        "author": null,
+        "artist": null,
+        "description": "Fixture only",
+        "genre": [
+          "Test"
+        ],
+        "status": "ongoing",
+        "coverURL": null
+      }
+    },
+    {
+      "name": "invalid details / null",
+      "passed": true,
+      "response": {
+        "error": "The source must return a JSON string.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid details / wrong-shape",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid details data: Expected string field: title",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid details / wrong-genre",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid details data: genre entries must be strings.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid details / malformed",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid details data: Malformed JSON at character 32.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "chapters from synthetic source",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture-chapter",
+          "name": "Synthetic Chapter",
+          "url": "/fixture/chapter",
+          "chapterNumber": 1.5,
+          "dateUpload": 1700000000,
+          "scanlator": null
+        }
+      ]
+    },
+    {
+      "name": "genuine empty chapters response",
+      "passed": true,
+      "response": []
+    },
+    {
+      "name": "invalid chapters / null",
+      "passed": true,
+      "response": {
+        "error": "The source must return a JSON string.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid chapters / wrong-shape",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid chapters data: Expected string field: id",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid chapters / infinite-number",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid chapters data: Invalid chapter number.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid chapters / fractional-date",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid chapters data: Expected a 64-bit integer.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid chapters / overflow-date",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid chapters data: Expected a 64-bit integer.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "pages from synthetic source",
+      "passed": true,
+      "response": [
+        {
+          "index": 0,
+          "url": "/fixture/page",
+          "imageURL": "https://fixture.invalid/page.png"
+        }
+      ]
+    },
+    {
+      "name": "invalid pages / null",
+      "passed": true,
+      "response": {
+        "error": "The source must return a JSON string.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid pages / wrong-shape",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid pages data: Expected a JSON number.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid pages / empty",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid pages data: No chapter pages were returned.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid pages / negative-index",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid pages data: Invalid page index.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid pages / overflow-index",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid pages data: Invalid page index.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invocation failure / details",
+      "passed": true,
+      "response": {
+        "error": "Source method mangaDetails failed: IllegalStateException",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "invocation failure / chapters",
+      "passed": true,
+      "response": {
+        "error": "Source method chapterList failed: IllegalStateException",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "invocation failure / pages",
+      "passed": true,
+      "response": {
+        "error": "Source method pageList failed: IllegalStateException",
+        "code": "invocation_failed"
+      }
+    },
+    {
+      "name": "invalid page field / 0",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / -1",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / 10001",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / 1.5",
+      "passed": true,
+      "response": {
+        "error": "Expected a 64-bit integer.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / True",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / '1'",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / None",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid page field / 9223372036854775808",
+      "passed": true,
+      "response": {
+        "error": "Expected a 64-bit integer.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 71",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON object.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 72",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON object.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 73",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 3.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 74",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 27.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 75",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 20.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 76",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 16.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 77",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 15.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 78",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 9.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 79",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 8.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 80",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 8.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 81",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 16.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 82",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 12.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 83",
+      "passed": true,
+      "response": {
+        "error": "Malformed JSON at character 13.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 84",
+      "passed": true,
+      "response": {
+        "error": "JSON exceeds the size limit.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "depth limit",
+      "passed": true,
+      "response": {
+        "error": "JSON exceeds the structure limit.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "value count limit",
+      "passed": true,
+      "response": {
+        "error": "JSON exceeds the structure limit.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "escaped field name is decoded",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture-popular",
+          "title": "Synthetic Popular",
+          "url": "/fixture/manga",
+          "coverURL": null
+        }
+      ]
+    },
+    {
+      "name": "key text inside query cannot spoof sourceId",
+      "passed": true,
+      "response": {
+        "error": "Expected string field: sourceId",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "load unsupported source",
+      "passed": true,
+      "response": {
+        "status": "loaded",
+        "package": "no-methods",
+        "sourceId": "no-methods",
+        "hasInstance": true
+      }
+    },
+    {
+      "name": "unsupported method / popular",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement popularManga with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "unsupported method / search",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement searchManga with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "unsupported method / details",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement mangaDetails with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "unsupported method / chapters",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement chapterList with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "unsupported method / pages",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement pageList with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "load wrong-signature source",
+      "passed": true,
+      "response": {
+        "status": "loaded",
+        "package": "wrong-signature",
+        "sourceId": "wrong-signature",
+        "hasInstance": true
+      }
+    },
+    {
+      "name": "no loose reflection matching / popular",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement popularManga with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "no loose reflection matching / search",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement searchManga with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "classpath loader need not be URLClassLoader",
+      "passed": true,
+      "response": {
+        "status": "loaded",
+        "package": "classpath",
+        "sourceId": "classpath",
+        "hasInstance": true
+      }
+    },
+    {
+      "name": "classpath fixture executes",
+      "passed": true,
+      "response": []
+    },
+    {
+      "name": "unload source by package",
+      "passed": true,
+      "response": {
+        "status": "unloaded",
+        "package": "absent"
+      }
+    },
+    {
+      "name": "unloaded source no longer works",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "unknown unload cannot claim success",
+      "passed": true,
+      "response": {
+        "error": "The package is not loaded.",
+        "code": "not_loaded"
+      }
+    },
+    {
+      "name": "source identifier reusable after unload",
+      "passed": true,
+      "response": {
+        "status": "loaded",
+        "package": "another",
+        "sourceId": "numeric-source-123",
+        "hasInstance": true
+      }
+    },
+    {
+      "name": "reloaded source works",
+      "passed": true,
+      "response": [
+        {
+          "id": "fixture-popular",
+          "title": "Synthetic Popular",
+          "url": "/fixture/manga",
+          "coverURL": null
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "test_count": 105
+}
