@@ -134,7 +134,7 @@ final class PhaseTwoBridgeTests: XCTestCase {
     }
 
     func testSourceEngineCoordinatorLifecycle() async throws {
-        let coordinator = SourceEngineCoordinator.shared
+        let coordinator = SourceEngineCoordinator(runtime: makeExtensionTestRuntime())
 
         // Search bounds
         do {
@@ -158,7 +158,7 @@ final class PhaseTwoBridgeTests: XCTestCase {
 
         // Details
         let details = try await coordinator.fetchDetails(sourceId: "src-1", mangaURL: "/manga/sample-1")
-        XCTAssertEqual(details.title, "Sample Manga Details")
+        XCTAssertEqual(details.title, "Fixture Details")
         XCTAssertEqual(details.genre, ["Action", "Adventure"])
 
         // Chapters

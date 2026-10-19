@@ -1,7 +1,7 @@
 import Foundation
 import CSafeArchive
 
-/// Manages the execution lifecycle of extensions running inside or simulated for MangaShelf.
+/// Manages the execution lifecycle of extensions running inside MangaShelf.
 /// Bridges Swift calls to the C/JNI layer, serializes JSON command payloads, and decodes responses.
 public final class ExtensionRuntime: @unchecked Sendable {
     public static let shared = ExtensionRuntime()
@@ -9,9 +9,17 @@ public final class ExtensionRuntime: @unchecked Sendable {
     private let lock = NSLock()
     private var loadedPackages: Set<String> = []
     private var handlersRegistered = false
+    private let dispatchHandler: ((String, String) throws -> String)?
 
     public init() {
+        dispatchHandler = nil
         registerBridgeHandlersIfNeeded()
+    }
+
+    /// Dependency injection for independently testing the command contract.
+    /// The app's public initializer always uses the native bridge.
+    init(dispatchHandler: @escaping (String, String) throws -> String) {
+        self.dispatchHandler = dispatchHandler
     }
 
     private func registerBridgeHandlersIfNeeded() {
@@ -64,33 +72,52 @@ public final class ExtensionRuntime: @unchecked Sendable {
         })
     }
 
-    /// Primary dispatch function sending an action and JSON payload to the underlying bridge.
+    /// Executes the native action once with an experimental fixed 16 KiB response buffer.
+    /// A larger response fails: replaying an action to resize can repeat its side effects.
     public func dispatch(action: String, payload: String = "{}") throws -> String {
+        if let dispatchHandler { return try dispatchHandler(action, payload) }
         registerBridgeHandlersIfNeeded()
 
-        if ms_bridge_is_vm_available() != 0 {
-            var capacity: size_t = 16384
-            var needed: size_t = 0
-            var buffer = [CChar](repeating: 0, count: capacity)
-
-            let rc = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
-            if Int(rc) == Int(MS_BRIDGE_BUFFER_TOO_SMALL) && needed > capacity {
-                capacity = needed + 1024
-                buffer = [CChar](repeating: 0, count: capacity)
-                let rc2 = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
-                guard Int(rc2) == Int(MS_BRIDGE_OK) else {
-                    throw ReaderFailure("Extension dispatch failed with code \(rc2)")
-                }
-                return String(cString: buffer)
-            } else if Int(rc) == Int(MS_BRIDGE_OK) {
-                return String(cString: buffer)
-            } else {
-                throw ReaderFailure("Extension dispatch failed with code \(rc)")
-            }
+        guard ms_bridge_is_vm_available() != 0 else {
+            throw ReaderFailure(ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet."))
         }
 
-        // Deterministic clean-room fallback when JVM is not active
-        return fallbackDispatch(action: action, payload: payload)
+        let capacity: size_t = 16384
+        var needed: size_t = 0
+        var buffer = [CChar](repeating: 0, count: capacity)
+
+        let rc = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
+        if Int(rc) == Int(MS_BRIDGE_NOT_STARTED) {
+            throw ReaderFailure(ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet."))
+        }
+        if Int(rc) == Int(MS_BRIDGE_BUFFER_TOO_SMALL) {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
+        guard Int(rc) == Int(MS_BRIDGE_OK) else {
+            throw ReaderFailure(ReaderText.format("Extension dispatch failed with code %@.", String(rc)))
+        }
+        guard needed <= capacity, let end = buffer.firstIndex(of: 0),
+              let response = String(bytes: buffer[..<end].map { UInt8(bitPattern: $0) }, encoding: .utf8) else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
+        return response
+    }
+
+    private func payload(_ fields: [String: Any]) throws -> String {
+        let bytes = try JSONSerialization.data(withJSONObject: fields)
+        return String(decoding: bytes, as: UTF8.self)
+    }
+
+    private struct LifecycleResponse: Decodable {
+        let status: String
+        let error: String?
+    }
+
+    private func requireAcknowledgment(_ json: String, status: String) throws {
+        guard let response = try? JSONDecoder().decode(LifecycleResponse.self, from: Data(json.utf8)),
+              response.status == status, response.error == nil else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
     }
 
     private func addLoadedPackage(_ package: String) {
@@ -110,18 +137,16 @@ public final class ExtensionRuntime: @unchecked Sendable {
         var dict: [String: String] = ["package": package]
         if let path = path { dict["path"] = path }
         if let mainClass = mainClass { dict["mainClass"] = mainClass }
-        let payloadData = try JSONSerialization.data(withJSONObject: dict)
-        let payload = String(decoding: payloadData, as: UTF8.self)
-
-        _ = try dispatch(action: "load", payload: payload)
+        let response = try dispatch(action: "load", payload: payload(dict))
+        try requireAcknowledgment(response, status: "loaded")
         addLoadedPackage(package)
         return true
     }
 
     public func unloadExtension(package: String) async throws -> Bool {
         guard !package.isEmpty else { return false }
-        let payload = "{\"package\":\"\(package)\"}"
-        _ = try dispatch(action: "unload", payload: payload)
+        let response = try dispatch(action: "unload", payload: payload(["package": package]))
+        try requireAcknowledgment(response, status: "unloaded")
         removeLoadedPackage(package)
         return true
     }
@@ -134,114 +159,33 @@ public final class ExtensionRuntime: @unchecked Sendable {
 
     public func popular(sourceId: String, page: Int = 1) async throws -> [SourceMangaItem] {
         guard !sourceId.isEmpty else { return [] }
-        let payload = "{\"sourceId\":\"\(sourceId)\",\"page\":\(page)}"
-        let jsonStr = try dispatch(action: "popular", payload: payload)
-        guard let data = jsonStr.data(using: .utf8) else { return [] }
-        return try JSONDecoder().decode([SourceMangaItem].self, from: data)
+        let jsonStr = try dispatch(action: "popular", payload: payload(["sourceId": sourceId, "page": page]))
+        return try JSONDecoder().decode([SourceMangaItem].self, from: Data(jsonStr.utf8))
     }
 
     public func search(sourceId: String, query: String, page: Int = 1) async throws -> [SourceMangaItem] {
         guard !sourceId.isEmpty else { return [] }
-        let sanitized = query.replacingOccurrences(of: "\"", with: "\\\"")
-        let payload = "{\"sourceId\":\"\(sourceId)\",\"query\":\"\(sanitized)\",\"page\":\(page)}"
-        let jsonStr = try dispatch(action: "search", payload: payload)
-        guard let data = jsonStr.data(using: .utf8) else { return [] }
-        return try JSONDecoder().decode([SourceMangaItem].self, from: data)
+        let jsonStr = try dispatch(action: "search", payload: payload(["sourceId": sourceId, "query": query, "page": page]))
+        return try JSONDecoder().decode([SourceMangaItem].self, from: Data(jsonStr.utf8))
     }
 
     public func details(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails {
         guard !sourceId.isEmpty else {
             throw ReaderFailure(ReaderText.string("Invalid source identifier."))
         }
-        let payload = "{\"sourceId\":\"\(sourceId)\",\"url\":\"\(mangaURL)\"}"
-        let jsonStr = try dispatch(action: "details", payload: payload)
-        guard let data = jsonStr.data(using: .utf8) else {
-            throw ReaderFailure("Failed to parse manga details.")
-        }
-        return try JSONDecoder().decode(SourceMangaDetails.self, from: data)
+        let jsonStr = try dispatch(action: "details", payload: payload(["sourceId": sourceId, "url": mangaURL]))
+        return try JSONDecoder().decode(SourceMangaDetails.self, from: Data(jsonStr.utf8))
     }
 
     public func chapters(sourceId: String, mangaURL: String) async throws -> [SourceChapterItem] {
         guard !sourceId.isEmpty else { return [] }
-        let payload = "{\"sourceId\":\"\(sourceId)\",\"url\":\"\(mangaURL)\"}"
-        let jsonStr = try dispatch(action: "chapters", payload: payload)
-        guard let data = jsonStr.data(using: .utf8) else { return [] }
-        return try JSONDecoder().decode([SourceChapterItem].self, from: data)
+        let jsonStr = try dispatch(action: "chapters", payload: payload(["sourceId": sourceId, "url": mangaURL]))
+        return try JSONDecoder().decode([SourceChapterItem].self, from: Data(jsonStr.utf8))
     }
 
     public func pages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
         guard !sourceId.isEmpty else { return [] }
-        let payload = "{\"sourceId\":\"\(sourceId)\",\"url\":\"\(chapterURL)\"}"
-        let jsonStr = try dispatch(action: "pages", payload: payload)
-        guard let data = jsonStr.data(using: .utf8) else { return [] }
-        return try JSONDecoder().decode([SourcePageItem].self, from: data)
-    }
-
-    private func fallbackDispatch(action: String, payload: String) -> String {
-        switch action {
-        case "ping":
-            return "{\"status\":\"ok\",\"engine\":\"MangaShelf Fallback Engine\"}"
-        case "load":
-            return "{\"status\":\"loaded\"}"
-        case "unload":
-            return "{\"status\":\"unloaded\"}"
-        case "popular":
-            let sid = extractField(from: payload, key: "sourceId") ?? "src"
-            let pageStr = extractField(from: payload, key: "page") ?? "1"
-            return """
-            [
-              {"id":"\(sid)-pop-1","title":"Popular \(sid.capitalized) 1","coverURL":null,"url":"/manga/\(sid)/1"},
-              {"id":"\(sid)-pop-2","title":"Popular \(sid.capitalized) 2","coverURL":null,"url":"/manga/\(sid)/2"}
-            ]
-            """
-        case "search":
-            let sid = extractField(from: payload, key: "sourceId") ?? "src"
-            let query = extractField(from: payload, key: "query") ?? ""
-            let title = query.isEmpty ? "Sample Manga" : "\(query) Result 1"
-            return """
-            [
-              {"id":"\(sid)-search-1","title":"\(title)","coverURL":null,"url":"/manga/\(sid)/search1"}
-            ]
-            """
-        case "details":
-            let sid = extractField(from: payload, key: "sourceId") ?? "src"
-            return """
-            {
-              "title":"Sample Manga Details",
-              "author":"Author",
-              "artist":"Artist",
-              "description":"Description for \(sid)",
-              "genre":["Action","Adventure"],
-              "status":"Ongoing",
-              "coverURL":null
-            }
-            """
-        case "chapters":
-            let url = extractField(from: payload, key: "url") ?? "/manga/sample"
-            return """
-            [
-              {"id":"ch-2","name":"Chapter 2","url":"\(url)/2","chapterNumber":2.0,"dateUpload":1700000000,"scanlator":null},
-              {"id":"ch-1","name":"Chapter 1","url":"\(url)/1","chapterNumber":1.0,"dateUpload":1690000000,"scanlator":null}
-            ]
-            """
-        case "pages":
-            let url = extractField(from: payload, key: "url") ?? "/chapter/1"
-            let pages = (1...5).map { index in
-                "{\"index\":\(index),\"url\":\"\(url)/page/\(index)\",\"imageURL\":\"\(url)/img/\(index).png\"}"
-            }.joined(separator: ",")
-            return "[\(pages)]"
-        default:
-            return "{\"error\":\"Unknown fallback action \(action)\"}"
-        }
-    }
-
-    private func extractField(from json: String, key: String) -> String? {
-        guard let data = json.data(using: .utf8),
-              let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            return nil
-        }
-        if let str = dict[key] as? String { return str }
-        if let num = dict[key] as? NSNumber { return num.stringValue }
-        return nil
+        let jsonStr = try dispatch(action: "pages", payload: payload(["sourceId": sourceId, "url": chapterURL]))
+        return try JSONDecoder().decode([SourcePageItem].self, from: Data(jsonStr.utf8))
     }
 }

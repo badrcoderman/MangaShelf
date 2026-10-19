@@ -35,8 +35,8 @@ jni_headers = args.jni_headers or (java_home / 'include')
 sys_name = 'darwin' if platform.system() == 'Darwin' else 'linux'
 jni_platform_headers = args.jni_platform_headers or (java_home / 'include' / sys_name)
 
-if not (out / 'main.jar').is_file() or not (out / 'plugin.jar').is_file():
-    subprocess.run(['python3', str(root / 'scripts/run-runtime-probe.py')], check=True)
+# Rebuild project-owned fixtures so stale JARs cannot hide a source change.
+subprocess.run(['python3', str(root / 'scripts/run-runtime-probe.py')], check=True)
 
 for path in [jni_headers / 'jni.h', jni_platform_headers / 'jni_md.h', out / 'main.jar', out / 'plugin.jar']:
     if not path.is_file():
@@ -68,7 +68,10 @@ result = {
         'native thread attach/detach',
         'separate JAR and reflection',
         'Java exception recovery',
-        'Okio buffer extraction',
+        'synthetic Okio-shaped buffer extraction',
+        'request metadata/body rejection before transport',
+        'body size preflight before consuming buffer',
+        'malformed/oversize response rejection and buffer release',
         'small buffer sizing probe',
         'NativeChannel topic and content validation',
         'missing method exception recovery',

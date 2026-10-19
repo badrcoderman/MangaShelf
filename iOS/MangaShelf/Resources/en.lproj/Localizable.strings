@@ -1009,3 +1009,6 @@
 "Execute search, popular titles, details, chapters, and pages from extension sources." = "Execute search, popular titles, details, chapters, and pages from extension sources.";
 "Integrated active extension sources directly into Browse and Source Catalog views." = "Integrated active extension sources directly into Browse and Source Catalog views.";
 "High-performance NativeNet and NativeChannel transport with full memory safety." = "High-performance NativeNet and NativeChannel transport with full memory safety.";
+"The extension runtime is unavailable. JAR extensions cannot run on this device yet." = "The extension runtime is unavailable. JAR extensions cannot run on this device yet.";
+"The extension runtime returned an invalid response." = "The extension runtime returned an invalid response.";
+"Extension dispatch failed with code %@." = "Extension dispatch failed with code %@.";

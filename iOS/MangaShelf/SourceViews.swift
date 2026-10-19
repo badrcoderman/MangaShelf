@@ -63,7 +63,7 @@ struct SourceCatalogView: View {
                 let extItems = try await SourceEngineCoordinator.shared.search(sourceId: sourceId, query: cleanQuery, page: nextPage + 1)
                 try Task.checkCancellation(); guard identity == requestID else { return }
                 let seriesList = extItems.map {
-                    MangaSeries(id: $0.id, title: $0.title, coverURL: $0.coverURL, sourceID: sourceId)
+                    MangaSeries(id: $0.id, title: $0.title, coverURL: $0.coverURL, sourceID: sourceId, sourceURL: $0.url)
                 }
                 let existing = Set(items.map(\.id))
                 items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })
@@ -106,7 +106,14 @@ struct SeriesDetailView: View {
     @State private var reversed = false
     @State private var search = ""
     private var saved: SavedSeries? { online.saved(series.id) }
-    private var item: MangaSeries { saved?.series ?? series }
+    private var item: MangaSeries {
+        guard var stored = saved?.series else { return series }
+        // A new search result can repair an older library entry that predates sourceURL.
+        if stored.sourceID == series.sourceID, stored.sourceURL?.isEmpty ?? true {
+            stored.sourceURL = series.sourceURL
+        }
+        return stored
+    }
     private var chapters: [MangaChapter] {
         let entries = (saved?.chapters ?? []).filter {
             (language.isEmpty || $0.language == language) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&

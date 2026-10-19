@@ -1,0 +1,9 @@
+{
+  "scope": "Regression harness compiled against original HEAD bridge, without modified production source",
+  "compile_exit_code": 0,
+  "compile_stderr": "",
+  "execution_exit_code": -6,
+  "execution_stdout": "",
+  "execution_stderr": "original-bridge: /workspace/scratch/e0ae53a3cbb5/MangaShelf/scripts/bridge_regression.c:44: test_absent_dispatcher_cannot_be_enabled: Assertion `ms_bridge_is_vm_available() == 0' failed.\n",
+  "regression_detected": true
+}

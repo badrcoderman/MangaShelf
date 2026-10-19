@@ -1,0 +1,48 @@
+{
+  "captured_at": "2026-10-19T21:04:08.509709+00:00",
+  "mangashelf_base": "23f95feb5cf06aaee47b93391f5a05a2bbe9850c",
+  "rea": {
+    "repository": "https://github.com/morluto/rea",
+    "source_revision": "b4938aed58737293a6987630476632619713f5cd",
+    "executed_cli": "rea-agents@6.7.0"
+  },
+  "upstream": {
+    "repository": "https://github.com/tachimanga/Tachidesk-Server",
+    "revision": "2e52214106ffab02d13ff61a620def78414a8a45",
+    "files": {
+      "server/src/main/java/org/tachiyomi/NativeNet.java": {
+        "bytes": 4528,
+        "sha256": "cb2efa271ef4956b6711d84ff649203d592b02bc3b9e902c3ecb14a413cd0b6e"
+      },
+      "AndroidCompat/src/main/java/org/tachiyomi/NativeChannel.java": {
+        "bytes": 823,
+        "sha256": "c03343009c75b291825d2b2104c7699001cbb7ca67a4ddc5cb7e3d1b2c793108"
+      },
+      "server/src/main/kotlin/suwayomi/tachidesk/Main.kt": {
+        "bytes": 1725,
+        "sha256": "7067e5d7ba240198647700cf24486fcff96fc52fb6246682d0d070cccd9f6989"
+      },
+      "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/JavaChannel.kt": {
+        "bytes": 3767,
+        "sha256": "06a845dc2b58eef7c3342a458bfa2a95e8e4a139e7b5e5c9d04554faa2e0222d"
+      },
+      "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/util/PackageTools.kt": {
+        "bytes": 6875,
+        "sha256": "4c22bd93e3aeddad4846f81299fbcc8a4c440d5e7b55fe62263c06507579c97a"
+      },
+      "server/build.gradle.kts": {
+        "bytes": 5493,
+        "sha256": "b276f903c9860fcb1105377a0fee42ec7ff5df764e27808bd7deb9a357c67095"
+      },
+      "libs/cloud-api-1.0.0.jar": {
+        "bytes": 42429,
+        "sha256": "469414a1982509f0db0763115328f78b0c07083b7a6e0d8732329ab663b67a6f"
+      },
+      "libs/sqlite-jdbc-ios-3.41.0.0.jar": {
+        "bytes": 221028,
+        "sha256": "d55bd9de97005299583e2b9b00346f08bb153bfc62281c78a907b17a71771c12"
+      }
+    }
+  },
+  "scope": "Static public JAR inventories and focused source review; no Tachimanga IPA supplied locally, no specimen execution, no iOS runtime verification."
+}

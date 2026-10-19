@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
+#include <stdint.h>
 
 static const char *plugin, *directory;
 static int worker_result;
@@ -59,8 +60,130 @@ static int dummy_net_handler(const void *req_json, size_t req_json_len,
     return 0;
 }
 
+static int dummy_free_called;
+
 static void dummy_free(void *ptr) {
+    dummy_free_called++;
     free(ptr);
+}
+
+static int response_mode;
+static int response_called;
+
+static int boundary_net_handler(const void *req_json, size_t req_json_len,
+                                const void *req_body, size_t req_body_len,
+                                void **resp_meta, size_t *resp_meta_len,
+                                void **resp_body, size_t *resp_body_len) {
+    (void)req_json; (void)req_json_len; (void)req_body; (void)req_body_len;
+    response_called++;
+    *resp_meta = response_mode == 6 ? NULL : copy_str("{\"code\":200}");
+    *resp_meta_len = strlen("{\"code\":200}");
+    *resp_body = response_mode == 5 || response_mode == 10 ? NULL : copy_str("body");
+    *resp_body_len = 4;
+    switch (response_mode) {
+        case 1: *resp_meta_len = MS_JAVA_NET_MAX_METADATA + 1; break;
+        case 2: *resp_meta_len = SIZE_MAX; break;
+        case 3: *resp_body_len = MS_JAVA_NET_MAX_RESPONSE_BODY + 1; break;
+        case 4: *resp_body_len = SIZE_MAX; break;
+        case 5: *resp_body_len = 1; break;
+        case 7: *resp_meta_len = 0; break;
+        case 8: return -1;
+        case 9:
+            free(*resp_body);
+            *resp_body = *resp_meta;
+            *resp_body_len = *resp_meta_len;
+            break;
+        case 10: case 11: *resp_body_len = 0; break;
+        default: break;
+    }
+    return 0;
+}
+
+static int net_result_matches(JNIEnv *env, jobjectArray result, int code, jsize body_length) {
+    if ((*env)->ExceptionCheck(env) || !result || (*env)->GetArrayLength(env, result) != 2) return 0;
+    jbyteArray meta = (jbyteArray)(*env)->GetObjectArrayElement(env, result, 0);
+    jbyteArray body = (jbyteArray)(*env)->GetObjectArrayElement(env, result, 1);
+    if (!meta || !body || (*env)->GetArrayLength(env, body) != body_length) return 0;
+    jsize length = (*env)->GetArrayLength(env, meta);
+    char bytes[256], expected[32];
+    if (length <= 0 || (size_t)length >= sizeof(bytes)) return 0;
+    (*env)->GetByteArrayRegion(env, meta, 0, length, (jbyte *)bytes);
+    bytes[length] = 0;
+    snprintf(expected, sizeof(expected), "\"code\":%d", code);
+    return !(*env)->ExceptionCheck(env) && strstr(bytes, expected) != NULL;
+}
+
+static int test_native_net_boundaries(JNIEnv *env, jbyteArray json) {
+    ms_java_register_native_net(boundary_net_handler, dummy_free);
+    response_mode = 0;
+    jclass type = (*env)->FindClass(env, "mangashelf/probe/RuntimeProbe$BoundaryBuffer");
+    if (!type) return 40;
+    jmethodID constructor = (*env)->GetMethodID(env, type, "<init>", "(I)V");
+    jfieldID reads = (*env)->GetFieldID(env, type, "reads", "I");
+    if (!constructor || !reads) return 41;
+    for (int mode = 0; mode <= 7; mode++) {
+        if ((*env)->PushLocalFrame(env, 8) != JNI_OK) return 42;
+        jobject body = (*env)->NewObject(env, type, constructor, (jint)mode);
+        if (!body || (*env)->ExceptionCheck(env)) return 43;
+        response_called = 0;
+        jobjectArray result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, json, body);
+        int valid = net_result_matches(env, result, mode == 7 ? 200 : 400, mode == 7 ? 4 : 0);
+        jint read_count = (*env)->GetIntField(env, body, reads);
+        if (!valid || response_called != (mode == 7 ? 1 : 0) || read_count != (mode <= 2 ? 0 : 1)) return 44 + mode;
+        (*env)->PopLocalFrame(env, NULL);
+    }
+    const char *unsupported_types[] = {"java/lang/Object", "mangashelf/probe/RuntimeProbe$BoundaryMissingRead"};
+    for (size_t i = 0; i < sizeof(unsupported_types) / sizeof(unsupported_types[0]); i++) {
+        if ((*env)->PushLocalFrame(env, 8) != JNI_OK) return 72;
+        jclass unsupported = (*env)->FindClass(env, unsupported_types[i]);
+        if (!unsupported) return 73;
+        jmethodID init = (*env)->GetMethodID(env, unsupported, "<init>", "()V");
+        if (!init) return 74;
+        jobject body = (*env)->NewObject(env, unsupported, init);
+        if (!body || (*env)->ExceptionCheck(env)) return 75;
+        response_called = 0;
+        jobjectArray result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, json, body);
+        if (!net_result_matches(env, result, 400, 0) || response_called) return 76;
+        (*env)->PopLocalFrame(env, NULL);
+    }
+    /* A byte-array request exceeding the body limit must never reach transport. */
+    if ((*env)->PushLocalFrame(env, 8) != JNI_OK) return 52;
+    jbyteArray oversized = (*env)->NewByteArray(env, MS_JAVA_NET_MAX_REQUEST_BODY + 1);
+    if (!oversized) return 53;
+    response_called = 0;
+    jobjectArray result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, json, oversized);
+    if (!net_result_matches(env, result, 400, 0) || response_called) return 54;
+    (*env)->PopLocalFrame(env, NULL);
+    /* Missing/empty/oversize metadata must also fail before transport. */
+    for (int mode = 0; mode < 3; mode++) {
+        if ((*env)->PushLocalFrame(env, 8) != JNI_OK) return 55;
+        jbyteArray metadata = mode == 0 ? NULL : (*env)->NewByteArray(env, mode == 1 ? 0 : MS_JAVA_NET_MAX_METADATA + 1);
+        if (mode && !metadata) return 56;
+        response_called = 0;
+        result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, metadata, NULL);
+        if (!net_result_matches(env, result, 400, 0) || response_called) return 57;
+        (*env)->PopLocalFrame(env, NULL);
+    }
+    for (response_mode = 0; response_mode <= 11; response_mode++) {
+        if ((*env)->PushLocalFrame(env, 8) != JNI_OK) return 58;
+        response_called = 0;
+        dummy_free_called = 0;
+        result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, json, NULL);
+        int successful = response_mode == 0 || response_mode >= 10;
+        int expected_frees = response_mode == 5 || response_mode == 6 || response_mode == 9 || response_mode == 10 ? 1 : 2;
+        jsize expected_body = response_mode == 0 ? 4 : 0;
+        if (!net_result_matches(env, result, successful ? 200 : 500, expected_body) ||
+            response_called != 1 || dummy_free_called != expected_frees) return 59 + response_mode;
+        (*env)->PopLocalFrame(env, NULL);
+    }
+    /* Reject callbacks whose response memory cannot be released. */
+    ms_java_register_native_net(boundary_net_handler, NULL);
+    response_called = 0;
+    result = Java_org_tachiyomi_NativeNet_call_1utf8(env, NULL, json, NULL);
+    if (!net_result_matches(env, result, 500, 0) || response_called) return 71;
+    ms_java_register_native_net(NULL, NULL);
+    puts("PASS: NativeNet rejects invalid bodies and malformed/oversize responses without invoking transport or truncating success");
+    return 0;
 }
 
 static int dummy_channel_called = 0;
@@ -178,8 +301,9 @@ static int test_native_net_and_channel(void) {
         return 27;
     }
 
+    int boundary_status = test_native_net_boundaries(env, json_arr);
     if (need_detach) (*vm)->DetachCurrentThread(vm);
-    return 0;
+    return boundary_status;
 }
 
 int main(int argc, char **argv) {

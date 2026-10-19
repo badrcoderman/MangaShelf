@@ -1,0 +1,50 @@
+{
+  "timestamp_utc": "2026-10-19T21:05:22.434840+00:00",
+  "scope": "Project-owned C/JNI bridge and synthetic fixtures on Linux OpenJDK 17; no reference code, iOS, production Swift adapter or real extensions executed.",
+  "host": {
+    "platform": "Linux",
+    "exit_code": 0,
+    "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\nPASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\nPASS: NativeNet rejects invalid bodies and malformed/oversize responses without invoking transport or truncating success\n",
+    "stderr": "Picked up JAVA_TOOL_OPTIONS: -Xcheck:jni\n",
+    "checks": [
+      "JNI VM creation",
+      "native thread attach/detach",
+      "separate JAR and reflection",
+      "Java exception recovery",
+      "synthetic Okio-shaped buffer extraction",
+      "request metadata/body rejection before transport",
+      "body size preflight before consuming buffer",
+      "malformed/oversize response rejection and buffer release",
+      "small buffer sizing probe",
+      "NativeChannel topic and content validation",
+      "missing method exception recovery",
+      "concurrent multithreaded dispatch"
+    ],
+    "scope": "Host JNI integration; no claim of iOS runtime or real extension support."
+  },
+  "host_command": "JAVA_TOOL_OPTIONS=-Xcheck:jni python3 scripts/build-native-runtime-probe.py --java-home /usr/lib/jvm/java-17-openjdk-amd64 --jni-headers /tmp/mangashelf-jni --jni-platform-headers /tmp/mangashelf-jni/linux",
+  "additional_boundary_scenarios": 27,
+  "sanitizers": {
+    "exit_code": 0,
+    "compile_flags": "-std=c11 -Wall -Wextra -Wconversion -Werror -g -O1 -fno-omit-frame-pointer -fsanitize=address,undefined",
+    "command": "ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1 JAVA_TOOL_OPTIONS=-Xcheck:jni /tmp/mangashelf-jni-asan build/runtime-probe/main.jar /usr/lib/jvm/java-17-openjdk-amd64 build/runtime-probe/plugin.jar build/runtime-probe",
+    "result": "All host probe checks completed with expected PASS output and no JNI/ASan/UBSan diagnostics.",
+    "leak_detection": "disabled; allocation release counts checked for synthetic NativeNet callbacks"
+  },
+  "jni_headers": [
+    {
+      "url": "https://raw.githubusercontent.com/openjdk/jdk17u/jdk-17.0.20-ga/src/java.base/share/native/include/jni.h",
+      "sha256": "1266aea5b9f5d5db1cb6f8e5c6c43cfa7f80bc4f72d7fe42c6131bb939dc70f4"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openjdk/jdk17u/jdk-17.0.20-ga/src/java.base/unix/native/include/jni_md.h",
+      "sha256": "88cb5c33e306900dd35a78d5a439087123b8e91b0986bb5acb42cc9bd2fcc42e"
+    }
+  ],
+  "limitations": [
+    "JNI allocation failures are not fault-injected.",
+    "NativeChannel only checks a valid topic/content pair.",
+    "Native pointer allocation size/provenance cannot be validated by pointer/length descriptors.",
+    "Java native-method symbol resolution, real Okio, Swift adapter and iOS are unverified."
+  ]
+}

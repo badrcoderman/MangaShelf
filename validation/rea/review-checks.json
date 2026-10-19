@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-10-19T21:06:51.463503+00:00",
+  "archive_tests": {
+    "count": 34,
+    "result": "pass",
+    "evidence": "validation/native-test-results.json"
+  },
+  "packaging_tests": {
+    "count": 7,
+    "result": "pass",
+    "evidence": "validation/packaging-test-results.json"
+  },
+  "native_bridge": {
+    "count": 9,
+    "result": "pass (strict and ASan/UBSan, leaks disabled)",
+    "evidence": "validation/bridge-test-results.json"
+  },
+  "jni_host": {
+    "additional_boundary_scenarios": 27,
+    "result": "pass (-Xcheck:jni and strict/ASan/UBSan)",
+    "evidence": "validation/jni-boundary-host-results.json"
+  },
+  "archive_sanitizers": {
+    "random_inputs": 30000,
+    "seeded_mutations": 30000,
+    "result": "pass (ASan/UBSan)",
+    "evidence": "validation/sanitizer-results.json"
+  },
+  "resources": {
+    "keys": 1013,
+    "result": "pass",
+    "evidence": "validation/ui-resources.json"
+  },
+  "source_audit": {
+    "result": "pass",
+    "evidence": "validation/project-audit.json"
+  },
+  "swift_tests": "not run: swift unavailable",
+  "ios_build_and_device": "not run: macOS/Xcode unavailable",
+  "live_extension_execution": "not verified",
+  "full_tachimanga_ipa": "not available; only public backend JARs inspected with REA",
+  "temporary_dispatch_limit_bytes": 16384,
+  "native_symbol_resolution": "not verified; host invokes exported JNI entrypoints directly"
+}
