@@ -57,29 +57,55 @@ struct LibraryPreferencesView: View {
 }
 struct ReaderPreferencesView: View {
     @Environment(\.locale) private var interfaceLocale
-    var body: some View { TachiSettingsPage(title: L10n.string("Reader")) { ReaderSettingsRows() } }
+    var titleKey: String? = nil
+    var body: some View { TachiSettingsPage(title: L10n.string("Reader")) { ReaderSettingsRows(titleKey: titleKey) } }
 }
 struct ReaderSettingsRows: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @AppStorage("reader.dim") private var dim = 0.0
     @AppStorage("reader.spacing") private var spacing = 0.0
+    var titleKey: String? = nil
+    private var settings: ReaderSettings { model.state.readerSettings(for: titleKey) }
+    private var hasOverride: Bool { titleKey.map { model.state.readerOverrides[$0] != nil } ?? false }
     private func setting<T>(_ path: WritableKeyPath<ReaderSettings, T>) -> Binding<T> {
-        Binding(get: { model.state.settings[keyPath: path] }, set: { value in
-            var changed = model.state.settings; changed[keyPath: path] = value
-            Task { await model.perform { try await $0.saveSettings(changed) } }
+        Binding(get: { settings[keyPath: path] }, set: { value in
+            var changed = settings; changed[keyPath: path] = value
+            let key = titleKey
+            Task { await model.perform { store in
+                if let key { try await store.saveReaderSettings(changed, for: key) }
+                else { try await store.saveSettings(changed) }
+            } }
         })
     }
     var body: some View {
         VStack(spacing: 0) {
-            TachiSectionTitle(L10n.string("Reading mode"))
-            TachiChoiceRow(title: L10n.string("Reading mode"), symbol: "book.closed.fill", selection: setting(\.mode),
-                           choices: [(ReaderMode.paged, L10n.string("Pages")), (.webtoon, L10n.string("Webtoon"))])
-            TachiChoiceRow(title: L10n.string("Page direction"), symbol: "arrow.left.arrow.right", selection: setting(\.direction),
-                           choices: [(ReadingDirection.rightToLeft, L10n.string("Right to left")), (.leftToRight, L10n.string("Left to right"))])
-            TachiSectionTitle(L10n.string("Display"))
-            TachiToggleRow(title: L10n.string("Show page number"), symbol: "number", isOn: setting(\.showPageNumber))
-            TachiToggleRow(title: L10n.string("Keep screen awake"), symbol: "sun.max", isOn: setting(\.keepScreenAwake))
+            if let titleKey {
+                TachiToggleRow(title: L10n.string("Use settings for this title"),
+                               subtitle: L10n.string("Turn off to follow the default reader settings."), symbol: "book.closed",
+                               isOn: Binding(get: { hasOverride }, set: { enabled in
+                    let value: ReaderSettings? = enabled ? settings : nil
+                    Task { await model.perform { try await $0.saveReaderSettings(value, for: titleKey) } }
+                }))
+            }
+            VStack(spacing: 0) {
+                TachiSectionTitle(L10n.string("Reading mode"))
+                TachiChoiceRow(title: L10n.string("Reading mode"), symbol: "book.closed.fill", selection: setting(\.mode),
+                               choices: [(ReaderMode.paged, L10n.string("Pages")), (.webtoon, L10n.string("Webtoon"))])
+                TachiChoiceRow(title: L10n.string("Page direction"), symbol: "arrow.left.arrow.right", selection: setting(\.direction),
+                               choices: [(ReadingDirection.rightToLeft, L10n.string("Right to left")), (.leftToRight, L10n.string("Left to right"))])
+                TachiSectionTitle(L10n.string("Display"))
+                TachiChoiceRow(title: L10n.string("Page scale"), symbol: "arrow.up.left.and.arrow.down.right", selection: setting(\.pageScale),
+                               choices: [(PageScale.fitPage, L10n.string("Fit page")), (.fitWidth, L10n.string("Fit width"))])
+                    .disabled(settings.mode == .webtoon)
+                TachiToggleRow(title: L10n.string("Show page number"), symbol: "number", isOn: setting(\.showPageNumber))
+                TachiToggleRow(title: L10n.string("Keep screen awake"), symbol: "sun.max", isOn: setting(\.keepScreenAwake))
+                TachiToggleRow(title: L10n.string("Tap to turn pages"),
+                               subtitle: L10n.string("Tap the outer edges to turn pages and the center to show controls."),
+                               symbol: "hand.tap", isOn: setting(\.tapNavigation))
+                    .disabled(settings.mode == .webtoon)
+            }.disabled(titleKey != nil && !hasOverride)
+            TachiSectionTitle(L10n.string("Default reader settings"))
             VStack(spacing: 4) {
                 TachiRowLabel(title: L10n.string("Page dimming"), subtitle: Int(dim * 100).formatted() + "%", symbol: "brightness")
                 Slider(value: $dim, in: 0...0.75).accessibilityLabel(L10n.string("Page dimming"))

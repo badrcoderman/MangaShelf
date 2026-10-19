@@ -84,7 +84,8 @@ struct ReaderView: View {
     @State private var previousIdleSetting = false
     @State private var zoomed = false
     @State private var displayedPages = Set<Int>()
-    private var settings: ReaderSettings { model.state.settings }
+    private var titleKey: String { "local:" + bookID.uuidString }
+    private var settings: ReaderSettings { model.state.readerSettings(for: titleKey) }
     private var bookmark: Bool { model.book(bookID)?.bookmarks.contains(page) ?? false }
 
     var body: some View {
@@ -92,19 +93,25 @@ struct ReaderView: View {
             Color.black.ignoresSafeArea()
             if let failure {
                 ContentUnavailableView(L10n.string("Could not display the page"), systemImage: "exclamationmark.triangle", description: Text(failure)).foregroundStyle(.white)
+                    .onTapGesture { controls.toggle() }
             } else if let session, pageCount > 0 {
                 if settings.mode == .webtoon {
                     webtoon(session)
                 } else if let image {
-                    ZoomableImage(image: image, zoomed: $zoomed)
-                        .onTapGesture { controls.toggle() }
+                    ZoomableImage(image: image, zoomed: $zoomed, scale: settings.pageScale) { fraction in
+                        let step = zoomed ? 0 : settings.pageStep(forTapFraction: fraction)
+                        if step == 0 { controls.toggle() } else { advance(step) }
+                    }
                         .simultaneousGesture(DragGesture(minimumDistance: 50).onEnded { value in
                             guard !zoomed, abs(value.translation.width) > abs(value.translation.height) * 1.4 else { return }
                             let next = settings.direction == .rightToLeft ? value.translation.width > 0 : value.translation.width < 0
                             advance(next ? 1 : -1)
                         })
-                        .ignoresSafeArea(edges: controls ? [] : [.top, .bottom])
-                } else { ProgressView().tint(.white) }
+                        .ignoresSafeArea(edges: [.top, .bottom])
+                } else {
+                    Color.clear.contentShape(Rectangle()).overlay { ProgressView().tint(.white) }
+                        .onTapGesture { controls.toggle() }
+                }
             } else { ProgressView(L10n.string("Opening book…")).tint(.white).foregroundStyle(.white) }
 
             Color.black.opacity(min(0.75, max(0, dim))).allowsHitTesting(false).ignoresSafeArea()
@@ -146,7 +153,7 @@ struct ReaderView: View {
         .preferredColorScheme(.dark)
         .statusBarHidden(!controls)
         .sheet(isPresented: $settingsOpen) {
-            NavigationStack { ReaderPreferencesView() }.tachiSheet()
+            NavigationStack { ReaderPreferencesView(titleKey: titleKey) }.tachiSheet()
         }
         .task {
             previousIdleSetting = UIApplication.shared.isIdleTimerDisabled
@@ -160,7 +167,7 @@ struct ReaderView: View {
                 pageCount = pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount-1)
                 session = opened
                 if settings.mode == .paged { await loadPage() }
-            } catch { failure = AppError.describe(error) }
+            } catch is CancellationError { } catch { failure = AppError.describe(error) }
         }
         .task(id: page) {
             guard session != nil else { return }
@@ -241,7 +248,13 @@ private struct WebtoonPage: View {
             } else if let error { Text(L10n.format("Page %@: %@", String(describing: index + 1), String(describing: error))).foregroundStyle(.white).padding().frame(minHeight: 180) }
             else { ProgressView().tint(.white).frame(maxWidth: .infinity, minHeight: 300) }
         }
-        .task { do { image = try await session.image(at: index); onReady() } catch { self.error = AppError.describe(error) } }
+        .task {
+            do {
+                let result = try await session.image(at: index)
+                try Task.checkCancellation()
+                image = result; onReady()
+            } catch is CancellationError { } catch { self.error = AppError.describe(error) }
+        }
         .onDisappear { image = nil }
     }
 }
@@ -249,31 +262,84 @@ private struct WebtoonPage: View {
 struct ZoomableImage: UIViewRepresentable {
     let image: UIImage
     @Binding var zoomed: Bool
+    var scale: PageScale = .fitPage
+    var onTap: ((Double) -> Void)? = nil
     func makeUIView(context: Context) -> ZoomScrollView {
         let view = ZoomScrollView(); view.delegate = context.coordinator
         view.minimumZoomScale = 1; view.maximumZoomScale = 4
         view.bouncesZoom = true; view.showsHorizontalScrollIndicator = false; view.showsVerticalScrollIndicator = false
         view.imageView.contentMode = .scaleAspectFit; view.addSubview(view.imageView)
+        let single = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.singleTap(_:)))
+        let double = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.doubleTap(_:)))
+        double.numberOfTapsRequired = 2
+        single.require(toFail: double)
+        view.addGestureRecognizer(single); view.addGestureRecognizer(double)
         return view
     }
     func updateUIView(_ view: ZoomScrollView, context: Context) {
-        if view.imageView.image !== image { view.setZoomScale(1, animated: false); view.imageView.image = image; view.setNeedsLayout() }
+        context.coordinator.zoomed = $zoomed
+        context.coordinator.onTap = onTap
+        if view.imageView.image !== image || view.pageScale != scale {
+            view.setZoomScale(1, animated: false)
+            view.contentOffset = .zero
+            view.imageView.image = image; view.pageScale = scale; view.setNeedsLayout()
+        }
     }
     func makeCoordinator() -> Coordinator { Coordinator(zoomed: $zoomed) }
     final class Coordinator: NSObject, UIScrollViewDelegate {
-        let zoomed: Binding<Bool>
+        var zoomed: Binding<Bool>
+        var onTap: ((Double) -> Void)?
         init(zoomed: Binding<Bool>) { self.zoomed = zoomed }
         func viewForZooming(in scrollView: UIScrollView) -> UIView? { (scrollView as? ZoomScrollView)?.imageView }
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
+            (scrollView as? ZoomScrollView)?.centerImage()
             let value = scrollView.zoomScale > 1.01
             DispatchQueue.main.async { if self.zoomed.wrappedValue != value { self.zoomed.wrappedValue = value } }
+        }
+        @objc func singleTap(_ gesture: UITapGestureRecognizer) {
+            guard let view = gesture.view, view.bounds.width > 0 else { return }
+            let x = gesture.location(in: view).x - view.bounds.minX
+            onTap?(Double(x / view.bounds.width))
+        }
+        @objc func doubleTap(_ gesture: UITapGestureRecognizer) {
+            guard let view = gesture.view as? ZoomScrollView else { return }
+            if view.zoomScale > 1.01 { view.setZoomScale(1, animated: true) }
+            else {
+                let point = gesture.location(in: view.imageView)
+                let size = CGSize(width: view.bounds.width / 2.5, height: view.bounds.height / 2.5)
+                view.zoom(to: CGRect(x: point.x - size.width / 2, y: point.y - size.height / 2,
+                                     width: size.width, height: size.height), animated: true)
+            }
         }
     }
 }
 final class ZoomScrollView: UIScrollView {
     let imageView = UIImageView()
+    var pageScale: PageScale = .fitPage
+    private var previousSize = CGSize.zero
     override func layoutSubviews() {
         super.layoutSubviews()
-        if zoomScale == 1 { imageView.frame = bounds; contentSize = bounds.size }
+        if previousSize != bounds.size {
+            previousSize = bounds.size
+            setZoomScale(1, animated: false)
+        }
+        if zoomScale == 1, let image = imageView.image, image.size.width > 0, image.size.height > 0 {
+            let fit = min(bounds.width / image.size.width, bounds.height / image.size.height)
+            let factor = pageScale == .fitWidth ? bounds.width / image.size.width : fit
+            let size = CGSize(width: image.size.width * factor, height: image.size.height * factor)
+            imageView.frame = CGRect(origin: .zero, size: size)
+            if contentSize != size { contentSize = size }
+        }
+        centerImage()
+    }
+    func centerImage() {
+        let vertical = max(0, (bounds.height - contentSize.height) / 2)
+        let horizontal = max(0, (bounds.width - contentSize.width) / 2)
+        let inset = UIEdgeInsets(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
+        if contentInset != inset { contentInset = inset }
+        if zoomScale == 1 {
+            let offset = CGPoint(x: -horizontal, y: min(max(-vertical, contentOffset.y), max(-vertical, contentSize.height - bounds.height)))
+            if contentOffset != offset { contentOffset = offset }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import CryptoKit
 
 public actor OnlineStore {
     public let root: URL
@@ -134,12 +135,28 @@ public actor OnlineStore {
         candidate.series[i].progress[chapterID] = p; try commit(candidate)
     }
     private func directory(_ id: String) throws -> URL {
+        let pagesRoot = root.appendingPathComponent("Pages", isDirectory: true)
         if let uuid = UUID(uuidString: id) {
-            return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(uuid.uuidString, isDirectory: true)
+            return pagesRoot.appendingPathComponent(uuid.uuidString, isDirectory: true)
         }
-        let safe = id.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
-        guard !safe.isEmpty, safe.count <= 128 else { throw ReaderFailure(ReaderText.string("Invalid storage identifier.")) }
-        return root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(safe, isDirectory: true)
+        guard !id.isEmpty, id.count <= 256 else { throw ReaderFailure(ReaderText.string("Invalid storage identifier.")) }
+        let hash = SHA256.hash(data: Data(id.utf8)).map { String(format: "%02x", $0) }.joined()
+        let destination = pagesRoot.appendingPathComponent("sha256-" + hash, isDirectory: true)
+        guard !FileManager.default.fileExists(atPath: destination.path) else { return destination }
+
+        // Older versions discarded punctuation, allowing a/b and ab to share a folder.
+        // Migrate only when the metadata proves ownership; leave ambiguous data intact.
+        let legacyName = id.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+        guard !legacyName.isEmpty, legacyName.count <= 128, legacyName.utf8.count <= 255 else { return destination }
+        let legacy = pagesRoot.appendingPathComponent(legacyName, isDirectory: true)
+        let metadata = legacy.appendingPathComponent("pages.json")
+        guard FileManager.default.fileExists(atPath: metadata.path),
+              let bytes = try? LibraryStore.readBounded(metadata, maximum: 4 * 1024 * 1024),
+              let value = try? JSONDecoder().decode(ChapterPages.self, from: bytes),
+              value.chapterID == id,
+              (try? ChapterPages(chapterID: id, urls: value.urls)) != nil else { return destination }
+        try FileManager.default.moveItem(at: legacy, to: destination)
+        return destination
     }
     public func cachedPages(chapterID: String) throws -> ChapterPages? {
         let url = try directory(chapterID).appendingPathComponent("pages.json")

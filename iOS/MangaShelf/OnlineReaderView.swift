@@ -29,7 +29,8 @@ struct OnlineReaderView: View {
     @AppStorage("reader.dim") private var dim = 0.0
     @AppStorage("reader.spacing") private var spacing = 0.0
     init(chapter: MangaChapter) { _chapter = State(initialValue: chapter) }
-    private var settings: ReaderSettings { local.state.settings }
+    private var titleKey: String { "online:" + (saved?.series.sourceID ?? "unknown") + ":" + chapter.seriesID }
+    private var settings: ReaderSettings { local.state.readerSettings(for: titleKey) }
     private var saved: SavedSeries? { online.saved(chapter.seriesID) }
     private var bookmark: Bool { saved?.progress[chapter.id]?.bookmarks.contains(page) ?? false }
     private var siblings: [MangaChapter] { (saved?.chapters ?? []).filter { $0.language == chapter.language } }
@@ -48,7 +49,11 @@ struct OnlineReaderView: View {
             } else if let pages {
                 if settings.mode == .webtoon { webtoon(pages) }
                 else {
-                    OnlinePage(chapter: chapter, pages: pages, index: page, paged: true, zoomed: $zoomed) { index in
+                    OnlinePage(chapter: chapter, pages: pages, index: page, paged: true, zoomed: $zoomed,
+                               scale: settings.pageScale, onTap: { fraction in
+                        let step = zoomed ? 0 : settings.pageStep(forTapFraction: fraction)
+                        if step == 0 { controls.toggle() } else { move(step) }
+                    }, onRevealControls: { controls.toggle() }) { index in
                         loaded.insert(index)
                         if index == page { saveProgress(index, count: pages.urls.count) }
                     }.id(chapter.id + String(page))
@@ -57,7 +62,6 @@ struct OnlineReaderView: View {
                             let forward = settings.direction == .rightToLeft ? value.translation.width > 0 : value.translation.width < 0
                             move(forward ? 1 : -1)
                         })
-                        .onTapGesture { controls.toggle() }
                 }
             } else { ProgressView(L10n.string("Loading chapter pages…")).foregroundStyle(.white).tint(.white) }
             Color.black.opacity(min(0.75, max(0, dim))).allowsHitTesting(false).ignoresSafeArea()
@@ -120,7 +124,7 @@ struct OnlineReaderView: View {
                 } catch is CancellationError { } catch { failure = AppError.describe(error) }
             }
             .sheet(isPresented: $settingsOpen) {
-                NavigationStack { ReaderPreferencesView() }.tachiSheet()
+                NavigationStack { ReaderPreferencesView(titleKey: titleKey) }.tachiSheet()
             }
             .sheet(isPresented: $textOpen) {
                 NavigationStack {
@@ -184,6 +188,9 @@ private struct OnlinePage: View {
     let index: Int
     let paged: Bool
     @Binding var zoomed: Bool
+    var scale: PageScale = .fitPage
+    var onTap: ((Double) -> Void)? = nil
+    var onRevealControls: (() -> Void)? = nil
     let onReady: (Int) -> Void
     @State private var image: UIImage?
     @State private var failure: String?
@@ -191,14 +198,20 @@ private struct OnlinePage: View {
     var body: some View {
         Group {
             if let image {
-                if paged { ZoomableImage(image: image, zoomed: $zoomed) }
+                if paged { ZoomableImage(image: image, zoomed: $zoomed, scale: scale, onTap: onTap) }
                 else { Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity) }
             } else if let failure {
                 VStack(spacing: 12) {
                     Text(L10n.format("Page %@", String(describing: index + 1))).font(.headline); Text(failure).font(.caption).multilineTextAlignment(.center)
                     Button(L10n.string("Retry")) { retry += 1 }
                 }.foregroundStyle(.white).padding().frame(maxWidth: .infinity, minHeight: 300)
-            } else { ProgressView().tint(.white).frame(maxWidth: .infinity, minHeight: paged ? 0 : 500) }
+                    .contentShape(Rectangle()).onTapGesture { onRevealControls?() }
+            } else {
+                Color.clear.contentShape(Rectangle())
+                    .frame(maxWidth: .infinity, minHeight: paged ? 0 : 500)
+                    .overlay { ProgressView().tint(.white) }
+                    .onTapGesture { onRevealControls?() }
+            }
         }.task(id: retry) {
             failure = nil
             do {

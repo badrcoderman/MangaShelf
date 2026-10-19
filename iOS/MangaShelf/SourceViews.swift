@@ -114,6 +114,16 @@ struct SeriesDetailView: View {
         }
         return stored
     }
+    private var sourceName: String {
+        if item.sourceID == "mangadex" { return "MangaDex" }
+        for repository in local.state.repositories {
+            for entry in repository.index.extensions {
+                if let source = entry.sources.first(where: { $0.id == item.sourceID }) { return source.name }
+                if entry.packageName == item.sourceID { return entry.name }
+            }
+        }
+        return item.sourceID
+    }
     private var chapters: [MangaChapter] {
         let entries = (saved?.chapters ?? []).filter {
             (language.isEmpty || $0.language == language) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&
@@ -134,7 +144,7 @@ struct SeriesDetailView: View {
             VStack(spacing: 22) {
                 ShelfDetailHero(title: item.title,
                     author: item.authors.isEmpty ? L10n.string("Unknown author") : item.authors.joined(separator: L10n.string(", ")),
-                    source: "MangaDex", status: statusLabel) { RemoteCover(url: item.coverURL) }
+                    source: sourceName, status: statusLabel) { RemoteCover(url: item.coverURL) }
                 HStack {
                     Button { Task { await online.save(item, favorite: !(saved?.inLibrary ?? false)) } } label: {
                         TachiLabel(saved?.inLibrary == true ? L10n.string("In library") : L10n.string("Add to library"),

@@ -3,13 +3,37 @@ import Foundation
 public enum ReaderMode: String, Codable, CaseIterable, Sendable { case paged, webtoon }
 public enum ReadingDirection: String, Codable, CaseIterable, Sendable { case rightToLeft, leftToRight }
 public enum AppAppearance: String, Codable, CaseIterable, Sendable { case system, light, dark }
-public struct ReaderSettings: Codable, Sendable {
+public enum PageScale: String, Codable, CaseIterable, Sendable { case fitPage, fitWidth }
+public struct ReaderSettings: Codable, Equatable, Sendable {
     public var mode: ReaderMode = .paged
     public var direction: ReadingDirection = .rightToLeft
     public var appearance: AppAppearance = .system
     public var showPageNumber = true
     public var keepScreenAwake = true
+    public var pageScale: PageScale = .fitPage
+    public var tapNavigation = false
     public init() {}
+
+    private enum CodingKeys: String, CodingKey {
+        case mode, direction, appearance, showPageNumber, keepScreenAwake, pageScale, tapNavigation
+    }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        mode = try c.decodeIfPresent(ReaderMode.self, forKey: .mode) ?? .paged
+        direction = try c.decodeIfPresent(ReadingDirection.self, forKey: .direction) ?? .rightToLeft
+        appearance = try c.decodeIfPresent(AppAppearance.self, forKey: .appearance) ?? .system
+        showPageNumber = try c.decodeIfPresent(Bool.self, forKey: .showPageNumber) ?? true
+        keepScreenAwake = try c.decodeIfPresent(Bool.self, forKey: .keepScreenAwake) ?? true
+        pageScale = try c.decodeIfPresent(PageScale.self, forKey: .pageScale) ?? .fitPage
+        tapNavigation = try c.decodeIfPresent(Bool.self, forKey: .tapNavigation) ?? false
+    }
+
+    /// Physical screen coordinates; interface locale never changes page direction.
+    public func pageStep(forTapFraction fraction: Double) -> Int {
+        guard mode == .paged, tapNavigation, fraction.isFinite, (0...1).contains(fraction) else { return 0 }
+        let physicalStep = fraction < 0.3 ? -1 : fraction > 0.7 ? 1 : 0
+        return direction == .rightToLeft ? -physicalStep : physicalStep
+    }
 }
 public enum LibrarySortOption: String, Codable, CaseIterable, Sendable {
     case added, title, recent, pages, unread
@@ -116,11 +140,12 @@ public struct LibraryState: Codable, Sendable {
     public var categories: [LibraryCategory] = []
     public var repositories: [SavedRepository] = []
     public var settings = ReaderSettings()
+    public var readerOverrides: [String: ReaderSettings] = [:]
     public var categoryPreferences: [UUID: CategoryDisplayOptions] = [:]
     public var defaultDisplayOptions = CategoryDisplayOptions()
 
     enum CodingKeys: String, CodingKey {
-        case schemaVersion, books, categories, repositories, settings, categoryPreferences, defaultDisplayOptions
+        case schemaVersion, books, categories, repositories, settings, readerOverrides, categoryPreferences, defaultDisplayOptions
     }
 
     public init() {}
@@ -132,6 +157,7 @@ public struct LibraryState: Codable, Sendable {
         categories = try c.decodeIfPresent([LibraryCategory].self, forKey: .categories) ?? []
         repositories = try c.decodeIfPresent([SavedRepository].self, forKey: .repositories) ?? []
         settings = try c.decodeIfPresent(ReaderSettings.self, forKey: .settings) ?? ReaderSettings()
+        readerOverrides = try c.decodeIfPresent([String: ReaderSettings].self, forKey: .readerOverrides) ?? [:]
         categoryPreferences = try c.decodeIfPresent([UUID: CategoryDisplayOptions].self, forKey: .categoryPreferences) ?? [:]
         defaultDisplayOptions = try c.decodeIfPresent(CategoryDisplayOptions.self, forKey: .defaultDisplayOptions) ?? CategoryDisplayOptions()
     }
@@ -143,11 +169,22 @@ public struct LibraryState: Codable, Sendable {
         try c.encode(categories, forKey: .categories)
         try c.encode(repositories, forKey: .repositories)
         try c.encode(settings, forKey: .settings)
+        try c.encode(readerOverrides, forKey: .readerOverrides)
         try c.encode(categoryPreferences, forKey: .categoryPreferences)
         try c.encode(defaultDisplayOptions, forKey: .defaultDisplayOptions)
     }
 
+    public func readerSettings(for titleKey: String?) -> ReaderSettings {
+        guard let titleKey, var result = readerOverrides[titleKey] else { return settings }
+        result.appearance = settings.appearance
+        return result
+    }
+
     public func validate() throws {
+        guard readerOverrides.count <= 20_000,
+              readerOverrides.keys.allSatisfy({ !$0.isEmpty && $0.utf8.count <= 1024 }) else {
+            throw ReaderFailure(ReaderText.string("Invalid reader settings."))
+        }
         guard schemaVersion == 1, books.count <= 20_000, categories.count <= 500, repositories.count <= 50, categoryPreferences.count <= 500 else {
             throw ReaderFailure(ReaderText.string("Unsupported data version or exceeded limits."))
         }
@@ -382,6 +419,7 @@ public actor LibraryStore {
             if manager.fileExists(atPath: b.path) { try? manager.removeItem(at: b) }
         }
         candidate.books.removeAll { set.contains($0.id) }
+        for id in set { candidate.readerOverrides.removeValue(forKey: "local:" + id.uuidString) }
         try commit(candidate)
     }
 
@@ -477,6 +515,12 @@ public actor LibraryStore {
     public func saveSettings(_ settings: ReaderSettings) throws {
         var candidate = state; candidate.settings = settings; try commit(candidate)
     }
+    /// nil removes the override and resumes following the global reader defaults.
+    public func saveReaderSettings(_ settings: ReaderSettings?, for titleKey: String) throws {
+        var candidate = state
+        candidate.readerOverrides[titleKey] = settings
+        try commit(candidate)
+    }
     public func clearReadingHistory(bookID: UUID? = nil) throws {
         var candidate = state
         for index in candidate.books.indices where bookID == nil || candidate.books[index].id == bookID {
@@ -531,6 +575,13 @@ public actor LibraryStore {
             guard let index = candidate.books.firstIndex(where: { $0.id == book.id }),
                   candidate.books[index].pageCount == book.pageCount else { continue }
             candidate.books[index] = book; restored += 1
+            let key = "local:" + book.id.uuidString
+            if let override = imported.readerOverrides[key] { candidate.readerOverrides[key] = override }
+        }
+        // Reader preferences contain no URLs, credentials, or executable content.
+        // Retain source-title scopes even when the separate source backup is restored later.
+        for (key, value) in imported.readerOverrides where key.hasPrefix("online:") {
+            candidate.readerOverrides[key] = value
         }
         // Remote endpoints are not silently imported from a backup.
         try commit(candidate)

@@ -74,6 +74,7 @@ struct BackupPreferencesView: View {
                 TachiButton(L10n.string("Merge progress from a backup"), systemImage: "square.and.arrow.down") { importing = true }
             } footer: {
                 Text(L10n.string("Includes reading progress, bookmarks, and library metadata. Book files are not included. Merging restores progress for existing books with the same identifier. Tachimanga and Mihon backups are not supported in this version."))
+                Text(L10n.string("Includes saved reader preferences for local and source titles. Source library metadata has a separate backup."))
             }
         }.disabled(model.busy).tachiPage(L10n.string("Backup"))
             .fileExporter(isPresented: $exporting, document: backup, contentType: .json, defaultFilename: "MangaShelf-metadata-backup") { result in
@@ -111,13 +112,20 @@ struct AboutView: View {
             }
             Section {
                 DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
-                    DisclosureGroup(L10n.string("JVM extension execution engine")) {
+                    DisclosureGroup(L10n.string("Reader preferences and source corrections")) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L10n.string("October 20, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("Save reading mode, direction, page scale, and tap navigation separately for each title."))
+                            Text(L10n.string("Fit pages to the screen or its width, and double-tap to zoom."))
+                            Text(L10n.string("Turn pages by tapping the edges in your selected reading direction."))
+                            Text(L10n.string("Source queries preserve original title and chapter URLs and show extension runtime failures."))
+                        }.font(.footnote).padding(.vertical, 8)
+                    }
+                    DisclosureGroup(L10n.string("Experimental extension bridge")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("September 22, 2026")).font(.caption).foregroundStyle(.secondary)
-                            Text(L10n.string("Full JVM extension execution engine with dynamic classloading and JNI bridge."))
-                            Text(L10n.string("Execute search, popular titles, details, chapters, and pages from extension sources."))
-                            Text(L10n.string("Integrated active extension sources directly into Browse and Source Catalog views."))
-                            Text(L10n.string("High-performance NativeNet and NativeChannel transport with full memory safety."))
+                            Text(L10n.string("Experimental native bridge tested on the development host. iPhone runtime validation remains pending."))
+                            Text(L10n.string("Added source catalog integration and bounded native network callbacks."))
                         }.font(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Phase three — library and organization")) {
@@ -135,7 +143,7 @@ struct AboutView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport."))
-                            Text(L10n.string("Extension staging with explicit trust, active toggles, and corruption rollback."))
+                            Text(L10n.string("Staged packages with explicit trust controls and integrity checks."))
                             Text(L10n.string("RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls."))
                         }.font(.footnote).padding(.vertical, 8)
                     }
