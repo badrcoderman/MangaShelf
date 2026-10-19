@@ -1,0 +1,67 @@
+{
+  "recorded_at": "2026-10-19T23:03:58.157210+00:00",
+  "branch": "improve/tachimanga-5.1-reader",
+  "rea": {
+    "repository": "https://github.com/morluto/rea",
+    "cli_package_version": "6.7.0",
+    "entrypoint_sha256": "ed06cee49505b95a3cc5fceb1b4b279167e26df86227c644bb366ffffdbaf738",
+    "mode": "CLI; no client configuration changed"
+  },
+  "specimen": {
+    "path": "/home/user/Downloads/12696-Tachimanga v5.1 Premium Unlocked blatant Patched.ipa",
+    "bytes": 133786072,
+    "sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863"
+  },
+  "checks": {
+    "native-test-results.json": {
+      "sha256": "8666ef443c6b6ea7c974fb04be4de6a9afb5ab0843876a9fb518b86915fc3350",
+      "scope": null,
+      "status": "passed; see exact scope in report"
+    },
+    "packaging-test-results.json": {
+      "sha256": "75c9688146a8d6db6fbe5069d8207b80abf90b50e1d47f1ae4bc01ea513d8866",
+      "scope": "in-memory Mach-O headers and packaging rejection paths only",
+      "status": "passed; see exact scope in report"
+    },
+    "sanitizer-results.json": {
+      "sha256": "11efb486b8493cb6e19c430d81acb334ed605694d3600c59446b15a5ec17ce50",
+      "scope": "C ZIP/GZIP/Protobuf only; not Swift, image codecs or JVM",
+      "status": "passed; see exact scope in report"
+    },
+    "bridge-test-results.json": {
+      "sha256": "ecd0a1c58d9644326ea8eb1fbd3b3bee2458e269a0fd7dac618db99e2d993d1a",
+      "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build",
+      "status": "passed; see exact scope in report"
+    },
+    "ui-resources.json": {
+      "sha256": "e19315d7bec85819230e80b82b32dbb45a6c2d25d8cefb168222830b43091dcc",
+      "scope": "Resource integrity and format checks; not Swift compilation or visual verification",
+      "status": "passed; see exact scope in report"
+    },
+    "extension-runner-host-results.json": {
+      "sha256": "e59960443a862823ad446b3247004f29de2597c8a90d2aeccfbc48e375d48de3",
+      "scope": "Host Java runner, synthetic project fixtures only; no specimen execution or iOS compatibility claim.",
+      "passed": true,
+      "tests": 105
+    }
+  },
+  "swift_tests": {
+    "status": "not run; Swift/Xcode unavailable",
+    "new_suites": [
+      "ReaderPreferencesTests.swift",
+      "ChapterCacheIdentityTests.swift"
+    ],
+    "new_cases": 9
+  },
+  "ios_build": {
+    "status": "prerequisite gate stopped before compilation",
+    "command": "bash scripts/build-ios.sh unsigned",
+    "exit_code": 2,
+    "ipa_created": false
+  },
+  "native_decompilation": {
+    "first_attempt": "provider_timeout at 330000 ms",
+    "second_attempt": "running; poll unified exec session 74752; no completed finding yet",
+    "raw_output_directory": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1"
+  }
+}

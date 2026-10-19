@@ -1,0 +1,849 @@
+{
+  "recorded_at": "2026-10-19T23:03:02.272057+00:00",
+  "input": {
+    "path": "/home/user/Downloads/12696-Tachimanga v5.1 Premium Unlocked blatant Patched.ipa",
+    "bytes": 133786072,
+    "sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863"
+  },
+  "scope": "static data only; no specimen execution",
+  "limitations": [
+    "A patched, user-supplied IPA does not establish official-distribution provenance.",
+    "Strings, symbols and class signatures establish presence, not runtime behavior.",
+    "No Flutter widget tree, original source project, or physical-device verification recovered."
+  ],
+  "bundle": {
+    "CFBundleIdentifier": "com.mangacrush.ios",
+    "CFBundleExecutable": "Tachimanga",
+    "CFBundleShortVersionString": "5.1",
+    "CFBundleVersion": "520",
+    "MinimumOSVersion": "15.0",
+    "DTSDKName": "iphoneos26.0"
+  },
+  "inventory": {
+    "entries": 566,
+    "expanded_bytes": 230174680
+  },
+  "native": {
+    "Tachimanga": {
+      "bytes": 10485760,
+      "sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "architecture": "arm64",
+      "file_type": 2,
+      "flags": "0x4a10085",
+      "cryptid": 0,
+      "loads": [
+        "/usr/lib/libc++.1.dylib",
+        "/usr/lib/libiconv.2.dylib",
+        "/usr/lib/libsqlite3.dylib",
+        "/usr/lib/libz.1.dylib",
+        "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+        "/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox",
+        "/System/Library/Frameworks/CFNetwork.framework/CFNetwork",
+        "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+        "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+        "/System/Library/Frameworks/CoreMedia.framework/CoreMedia",
+        "/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony",
+        "/System/Library/Frameworks/CoreVideo.framework/CoreVideo",
+        "@rpath/DWAlertController.framework/DWAlertController",
+        "@rpath/FBLPromises.framework/FBLPromises",
+        "@rpath/FMDB.framework/FMDB",
+        "@rpath/FileMD5Hash.framework/FileMD5Hash",
+        "@rpath/FirebaseABTesting.framework/FirebaseABTesting",
+        "@rpath/FirebaseCore.framework/FirebaseCore",
+        "@rpath/FirebaseCoreExtension.framework/FirebaseCoreExtension",
+        "@rpath/FirebaseCoreInternal.framework/FirebaseCoreInternal",
+        "@rpath/FirebaseCrashlytics.framework/FirebaseCrashlytics",
+        "@rpath/FirebaseInstallations.framework/FirebaseInstallations",
+        "@rpath/FirebaseRemoteConfig.framework/FirebaseRemoteConfig",
+        "@rpath/FirebaseRemoteConfigInterop.framework/FirebaseRemoteConfigInterop",
+        "@rpath/FirebaseSessions.framework/FirebaseSessions",
+        "@rpath/FirebaseSharedSwift.framework/FirebaseSharedSwift",
+        "/System/Library/Frameworks/Foundation.framework/Foundation",
+        "@rpath/GoogleDataTransport.framework/GoogleDataTransport",
+        "@rpath/GoogleUtilities.framework/GoogleUtilities",
+        "@rpath/HCSStarRatingView.framework/HCSStarRatingView",
+        "/System/Library/Frameworks/ImageIO.framework/ImageIO",
+        "/System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore",
+        "@rpath/Mantle.framework/Mantle",
+        "@rpath/Masonry.framework/Masonry",
+        "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+        "/System/Library/Frameworks/MessageUI.framework/MessageUI",
+        "/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices",
+        "@rpath/NSFWDetector.framework/NSFWDetector",
+        "/System/Library/Frameworks/Network.framework/Network",
+        "@rpath/Promises.framework/Promises",
+        "/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+        "@rpath/SAMKeychain.framework/SAMKeychain",
+        "@rpath/SDWebImage.framework/SDWebImage",
+        "@rpath/SSZipArchive.framework/SSZipArchive",
+        "/System/Library/Frameworks/Security.framework/Security",
+        "/System/Library/Frameworks/StoreKit.framework/StoreKit",
+        "/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration",
+        "/System/Library/Frameworks/UIKit.framework/UIKit",
+        "/System/Library/Frameworks/WebKit.framework/WebKit",
+        "@rpath/apple_pencil_double_tap.framework/apple_pencil_double_tap",
+        "@rpath/connectivity_plus.framework/connectivity_plus",
+        "@rpath/cupertino_http.framework/cupertino_http",
+        "@rpath/cupertino_native.framework/cupertino_native",
+        "@rpath/device_info_plus.framework/device_info_plus",
+        "@rpath/file_picker.framework/file_picker",
+        "@rpath/flutter_nsfw.framework/flutter_nsfw",
+        "@rpath/flutter_path_provider_plus.framework/flutter_path_provider_plus",
+        "@rpath/flutter_web_auth_2.framework/flutter_web_auth_2",
+        "@rpath/fluttertoast.framework/fluttertoast",
+        "@rpath/image_picker_ios.framework/image_picker_ios",
+        "@rpath/in_app_purchase_storekit.framework/in_app_purchase_storekit",
+        "@rpath/in_app_review.framework/in_app_review",
+        "@rpath/libzstd.framework/libzstd",
+        "@rpath/local_auth_darwin.framework/local_auth_darwin",
+        "@rpath/nanopb.framework/nanopb",
+        "@rpath/package_info_plus.framework/package_info_plus",
+        "@rpath/path_provider_foundation.framework/path_provider_foundation",
+        "@rpath/shared_preferences_foundation.framework/shared_preferences_foundation",
+        "@rpath/sign_in_with_apple.framework/sign_in_with_apple",
+        "@rpath/sqflite_darwin.framework/sqflite_darwin",
+        "@rpath/system_proxy.framework/system_proxy",
+        "@rpath/url_launcher_ios.framework/url_launcher_ios",
+        "@rpath/webview_flutter_wkwebview.framework/webview_flutter_wkwebview",
+        "/System/Library/Frameworks/AdSupport.framework/AdSupport",
+        "/System/Library/Frameworks/SafariServices.framework/SafariServices",
+        "/usr/lib/libobjc.A.dylib",
+        "/usr/lib/libSystem.B.dylib",
+        "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+        "/System/Library/Frameworks/AppTrackingTransparency.framework/AppTrackingTransparency",
+        "/System/Library/Frameworks/BackgroundTasks.framework/BackgroundTasks",
+        "/System/Library/Frameworks/CoreMotion.framework/CoreMotion",
+        "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+        "/System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication",
+        "/System/Library/Frameworks/MarketplaceKit.framework/MarketplaceKit",
+        "/System/Library/Frameworks/Photos.framework/Photos",
+        "/System/Library/Frameworks/UserNotifications.framework/UserNotifications",
+        "/System/Library/Frameworks/VisionKit.framework/VisionKit",
+        "/usr/lib/swift/libswiftAVFoundation.dylib",
+        "/usr/lib/swift/libswiftAccelerate.dylib",
+        "/usr/lib/swift/libswiftCore.dylib",
+        "/usr/lib/swift/libswiftCoreAudio.dylib",
+        "/usr/lib/swift/libswiftCoreFoundation.dylib",
+        "/usr/lib/swift/libswiftCoreImage.dylib",
+        "/usr/lib/swift/libswiftCoreMIDI.dylib",
+        "/usr/lib/swift/libswiftCoreMedia.dylib",
+        "/usr/lib/swift/libswiftDarwin.dylib",
+        "/usr/lib/swift/libswiftDataDetection.dylib",
+        "/usr/lib/swift/libswiftDispatch.dylib",
+        "/usr/lib/swift/libswiftMetal.dylib",
+        "/usr/lib/swift/libswiftOSLog.dylib",
+        "/usr/lib/swift/libswiftObjectiveC.dylib",
+        "/usr/lib/swift/libswiftQuartzCore.dylib",
+        "/usr/lib/swift/libswiftSpatial.dylib",
+        "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+        "/usr/lib/swift/libswiftXPC.dylib",
+        "/usr/lib/swift/libswift_Concurrency.dylib",
+        "/usr/lib/swift/libswiftos.dylib",
+        "/usr/lib/swift/libswiftsimd.dylib",
+        "@rpath/Flutter.framework/Flutter",
+        "/usr/lib/swift/libswiftFoundation.dylib",
+        "/usr/lib/swift/libswiftUIKit.dylib",
+        "/usr/lib/swift/libswiftFileProvider.dylib",
+        "/usr/lib/swift/libswiftCoreGraphics.dylib",
+        "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+        "@rpath/Tachimanga.dylib",
+        "@rpath/blatantsPatch.dylib"
+      ],
+      "segments": [
+        {
+          "name": "__PAGEZERO",
+          "vm_address": "0x0",
+          "vm_size": 4294967296,
+          "file_offset": 0,
+          "file_size": 0
+        },
+        {
+          "name": "__TEXT",
+          "vm_address": "0x100000000",
+          "vm_size": 9093120,
+          "file_offset": 0,
+          "file_size": 9093120
+        },
+        {
+          "name": "__DATA_CONST",
+          "vm_address": "0x1008ac000",
+          "vm_size": 409600,
+          "file_offset": 9093120,
+          "file_size": 409600
+        },
+        {
+          "name": "__DATA",
+          "vm_address": "0x100910000",
+          "vm_size": 540672,
+          "file_offset": 9502720,
+          "file_size": 507904
+        },
+        {
+          "name": "__LINKEDIT",
+          "vm_address": "0x100994000",
+          "vm_size": 475136,
+          "file_offset": 10010624,
+          "file_size": 475136
+        }
+      ],
+      "selected_symbols": [
+        {
+          "name": "_J9_CreateJavaVM",
+          "address": "0x1002b1654"
+        },
+        {
+          "name": "_Java_org_tachiyomi_NativeChannel_call_1utf8",
+          "address": "0x100008d44"
+        },
+        {
+          "name": "_Java_org_tachiyomi_NativeNet_call_1utf8",
+          "address": "0x10004f1c8"
+        },
+        {
+          "name": "_Java_org_tachiyomi_NativeString_indexOf",
+          "address": "0x1000282c0"
+        }
+      ]
+    },
+    "Frameworks/App.framework/App": {
+      "bytes": 20271568,
+      "sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+      "cpu_type": "0x100000c",
+      "cpu_subtype": 0,
+      "architecture": "arm64",
+      "file_type": 6,
+      "flags": "0x2100085",
+      "cryptid": 0,
+      "loads": [
+        "/usr/lib/libSystem.B.dylib"
+      ],
+      "segments": [
+        {
+          "name": "__TEXT",
+          "vm_address": "0x0",
+          "vm_size": 20037632,
+          "file_offset": 0,
+          "file_size": 20037632
+        },
+        {
+          "name": "__DATA",
+          "vm_address": "0x131c000",
+          "vm_size": 16384,
+          "file_offset": 0,
+          "file_size": 0
+        },
+        {
+          "name": "__LINKEDIT",
+          "vm_address": "0x1320000",
+          "vm_size": 245760,
+          "file_offset": 20037632,
+          "file_size": 233936
+        }
+      ],
+      "selected_symbols": []
+    }
+  },
+  "reader_markers": [
+    {
+      "file_offset": 13609120,
+      "text": "DoublePageReaderModeV2"
+    },
+    {
+      "file_offset": 13620144,
+      "text": "MangaChapterSortDirectionWithMangaIdProvider"
+    },
+    {
+      "file_offset": 13645216,
+      "text": "ReaderOrientationWithMangaIdProvider."
+    },
+    {
+      "file_offset": 13671136,
+      "text": "init:autoScrollIntervalPrefProvider"
+    },
+    {
+      "file_offset": 13677968,
+      "text": "ReaderPaddingWithMangaId"
+    },
+    {
+      "file_offset": 13702432,
+      "text": "_$ReaderPaddingPhoneWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 13778384,
+      "text": "CropBorderWithMangaIdFamily"
+    },
+    {
+      "file_offset": 13814064,
+      "text": "CropBorderWithMangaId"
+    },
+    {
+      "file_offset": 13837424,
+      "text": "ReaderPageLayoutSkipFirstWithMangaIdProvider"
+    },
+    {
+      "file_offset": 13900288,
+      "text": "MangaChapterFilterDownloadedWithMangaIdProvider"
+    },
+    {
+      "file_offset": 13902624,
+      "text": "_MangaChapterFilterBookmarkedWithMangaIdProviderElement@1715098031"
+    },
+    {
+      "file_offset": 13925632,
+      "text": "ReaderPageLayoutSkipFirstWithMangaIdFamily"
+    },
+    {
+      "file_offset": 13966832,
+      "text": "__InvertDoublePagesWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&InvertDoublePagesWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 13989680,
+      "text": "ReaderPaddingPhoneLandscapeWithMangaIdRef"
+    },
+    {
+      "file_offset": 14003360,
+      "text": "tapZones"
+    },
+    {
+      "file_offset": 14052208,
+      "text": "ReaderPageLayoutSkipFirstWithMangaIdRef"
+    },
+    {
+      "file_offset": 14077840,
+      "text": "__ReaderBackgroundColorWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderBackgroundColorWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14098240,
+      "text": "_ReaderPaddingPhoneWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 14129040,
+      "text": "ReaderPaddingWithMangaIdRef"
+    },
+    {
+      "file_offset": 14160352,
+      "text": "MangaChapterSortWithMangaIdRef"
+    },
+    {
+      "file_offset": 14165888,
+      "text": "ReaderBackgroundColorWithMangaIdRef"
+    },
+    {
+      "file_offset": 14224048,
+      "text": "__ReaderBackgroundColorDemoWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderBackgroundColorDemoWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14337344,
+      "text": "mangaChapterFilterDownloadedWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14444560,
+      "text": "_MangaChapterSortWithMangaIdProviderElement@1715098031"
+    },
+    {
+      "file_offset": 14464912,
+      "text": "ReaderPaddingLandscapeWithMangaIdFamily"
+    },
+    {
+      "file_offset": 14468080,
+      "text": "MangaChapterSortDirectionWithMangaIdRef"
+    },
+    {
+      "file_offset": 14479072,
+      "text": "_$InvertDoublePagesWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 14512464,
+      "text": "_$ReaderPaddingWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 14516832,
+      "text": "_$MangaChapterFilterDownloadedWithMangaId@1715098031"
+    },
+    {
+      "file_offset": 14547360,
+      "text": "__ReaderPaddingPhoneWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderPaddingPhoneWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14549280,
+      "text": "__ReaderOrientationWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderOrientationWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14552096,
+      "text": "ReaderBackgroundColorWithMangaId2"
+    },
+    {
+      "file_offset": 14561456,
+      "text": "ReaderBackgroundColorDemoWithMangaIdProvider."
+    },
+    {
+      "file_offset": 14581168,
+      "text": "ReaderPageLayoutWithMangaIdRef"
+    },
+    {
+      "file_offset": 14583888,
+      "text": "mangaChapterSortWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14588272,
+      "text": "Crop page borders"
+    },
+    {
+      "file_offset": 14625440,
+      "text": "_$MangaChapterFilterBookmarkedWithMangaId@1715098031"
+    },
+    {
+      "file_offset": 14630352,
+      "text": "__ReaderPaddingPhoneLandscapeWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderPaddingPhoneLandscapeWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14648448,
+      "text": "_MangaChapterSortDirectionWithMangaIdProviderElement@1715098031"
+    },
+    {
+      "file_offset": 14653744,
+      "text": "ReaderPaddingPhoneWithMangaIdProvider."
+    },
+    {
+      "file_offset": 14683664,
+      "text": "readerPaddingWithMangaIdProvider2"
+    },
+    {
+      "file_offset": 14683856,
+      "text": "_$ReaderPaddingPhoneLandscapeWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 14705168,
+      "text": "_$ReaderPageLayoutWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 14751008,
+      "text": "_$ReaderPageLayoutSkipFirstWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 14751312,
+      "text": "__CropBorderWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&CropBorderWithMangaIdRef@1796464351"
+    },
+    {
+      "file_offset": 14764272,
+      "text": "readerPaddingPhoneWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14783024,
+      "text": "_ReaderPageLayoutWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 14807216,
+      "text": "MangaChapterSortDirectionWithMangaId"
+    },
+    {
+      "file_offset": 14810016,
+      "text": "AutoScrollIntervalPref."
+    },
+    {
+      "file_offset": 14812496,
+      "text": "MangaChapterSortWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14814624,
+      "text": "_ReaderPaddingLandscapeWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 14846608,
+      "text": "ReaderPageLayoutWithMangaIdFamily"
+    },
+    {
+      "file_offset": 14851376,
+      "text": "ReaderPaddingLandscapeWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14892368,
+      "text": "ReaderOrientationWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14906256,
+      "text": "InvertDoublePagesWithMangaIdProvider"
+    },
+    {
+      "file_offset": 14907280,
+      "text": "ReaderPaddingPhoneWithMangaIdRef2"
+    },
+    {
+      "file_offset": 14929248,
+      "text": "autoScrollInterval"
+    },
+    {
+      "file_offset": 14948704,
+      "text": "__ReaderPaddingLandscapeWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderPaddingLandscapeWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 14955744,
+      "text": "_$MangaChapterSortWithMangaId@1715098031"
+    },
+    {
+      "file_offset": 15007808,
+      "text": "readerPaddingPhoneLandscapeWithMangaIdProvider"
+    },
+    {
+      "file_offset": 15038496,
+      "text": "CropBorderWithMangaIdProvider."
+    },
+    {
+      "file_offset": 15083104,
+      "text": "[Reader2] DoublePageReaderMode update currChapter to:"
+    },
+    {
+      "file_offset": 15136384,
+      "text": "ReaderPaddingPhoneWithMangaId"
+    },
+    {
+      "file_offset": 15144304,
+      "text": "_ReaderPageLayoutSkipFirstWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 15172128,
+      "text": "__MangaChapterSortWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&MangaChapterSortWithMangaIdRef@1715098031"
+    },
+    {
+      "file_offset": 15173456,
+      "text": "MangaChapterFilterDownloadedWithMangaIdProvider.2"
+    },
+    {
+      "file_offset": 15234560,
+      "text": "MangaChapterFilterBookmarkedWithMangaIdRef"
+    },
+    {
+      "file_offset": 15290336,
+      "text": "[Reader2] DoublePageReaderModeV2 dispose"
+    },
+    {
+      "file_offset": 15316848,
+      "text": "_$ReaderPaddingLandscapeWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 15500208,
+      "text": "ReaderTapZonesSettingsScreen"
+    },
+    {
+      "file_offset": 15668656,
+      "text": "_InvertDoublePagesWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 15675376,
+      "text": "CropBorderWithMangaIdRef"
+    },
+    {
+      "file_offset": 15700032,
+      "text": "_CropBorderWithMangaIdProviderElement@17964643512"
+    },
+    {
+      "file_offset": 15715056,
+      "text": "invertDoublePagesWithMangaIdProvider"
+    },
+    {
+      "file_offset": 15773072,
+      "text": "ReaderPageLayoutSkipFirstWithMangaIdProvider."
+    },
+    {
+      "file_offset": 15824480,
+      "text": "__MangaChapterFilterBookmarkedWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&MangaChapterFilterBookmarkedWithMangaIdRef@1715098031"
+    },
+    {
+      "file_offset": 15836336,
+      "text": "mangaChapterFilterUnreadWithMangaIdProvider"
+    },
+    {
+      "file_offset": 15867840,
+      "text": "ReaderPageLayoutSkipFirstWithMangaId"
+    },
+    {
+      "file_offset": 15906496,
+      "text": "MangaChapterFilterBookmarkedWithMangaId"
+    },
+    {
+      "file_offset": 15911072,
+      "text": "MangaChapterFilterBookmarkedWithMangaIdFamily"
+    },
+    {
+      "file_offset": 15950064,
+      "text": "CropBorderWithMangaIdProvider"
+    },
+    {
+      "file_offset": 15952304,
+      "text": "MangaChapterFilterUnreadWithMangaIdProvider."
+    },
+    {
+      "file_offset": 15975280,
+      "text": "readerBackgroundColorDemoWithMangaIdProvider"
+    },
+    {
+      "file_offset": 15988384,
+      "text": "ReaderShowTapZonesPref."
+    },
+    {
+      "file_offset": 15999152,
+      "text": "MangaChapterFilterUnreadWithMangaIdProvider"
+    },
+    {
+      "file_offset": 16009936,
+      "text": "_$ReaderBackgroundColorDemoWithMangaId@1755397752"
+    },
+    {
+      "file_offset": 16036416,
+      "text": "ReaderOrientationWithMangaIdRef"
+    },
+    {
+      "file_offset": 16045152,
+      "text": "MangaChapterFilterBookmarkedWithMangaIdProvider.2"
+    },
+    {
+      "file_offset": 16047456,
+      "text": "ReaderPaddingLandscapeWithMangaIdProvider."
+    },
+    {
+      "file_offset": 16052112,
+      "text": "readerPaddingLandscapeWithMangaIdProvider"
+    },
+    {
+      "file_offset": 16062736,
+      "text": "mangaChapterFilterBookmarkedWithMangaIdProvider"
+    },
+    {
+      "file_offset": 16068176,
+      "text": "_MangaChapterFilterDownloadedWithMangaIdProviderElement@1715098031"
+    },
+    {
+      "file_offset": 16195584,
+      "text": "ReaderShowTapZonesPref"
+    },
+    {
+      "file_offset": 16240832,
+      "text": "__ReaderPaddingWithMangaIdProviderElement&AutoDisposeNotifierProviderElement&ReaderPaddingWithMangaIdRef@1755397752"
+    },
+    {
+      "file_offset": 16299936,
+      "text": "_ReaderBackgroundColorDemoWithMangaIdProviderElement@1755397752"
+    },
+    {
+      "file_offset": 16305072,
+      "text": "_$MangaChapterFilterUnreadWithMangaId@17150980312"
+    },
+    {
+      "file_offset": 16310864,
+      "text": "MangaChapterFilterDownloadedWithMangaIdFamily"
+    },
+    {
+      "file_offset": 16326720,
+      "text": "ReaderPaddingLandscapeWithMangaId"
+    },
+    {
+      "file_offset": 16328880,
+      "text": "ReaderPaddingPhoneWithMangaIdFamily"
+    },
+    {
+      "file_offset": 16387264,
+      "text": "mangaChapterSortDirectionWithMangaIdProvider"
+    }
+  ],
+  "reader_marker_coverage": {
+    "ascii_matches": 162,
+    "retained": 100,
+    "omitted": 62,
+    "scope": "selected ASCII names only; not complete Flutter strings or feature coverage"
+  },
+  "java_archive": {
+    "sha256": "db4443eadbeece65c628734d82826c91d1beb4e3d6efd3b5ef721342755b0aa6",
+    "entries": 33213,
+    "class_entries": 27688,
+    "selected_contracts": {
+      "org/tachiyomi/NativeNet.class": {
+        "sha256": "2aecffe9f0c3fce416ea3c6cadc9ba1bfe9bab7922edcbb86cf361d58dbbd5e4",
+        "class_version": [
+          61,
+          0
+        ],
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "native": false
+          },
+          {
+            "name": "call",
+            "descriptor": "(Lorg/tachiyomi/NativeNet$Req;Lokio/Buffer;Lio/javalin/plugin/json/JsonMapper;)Lorg/tachiyomi/NativeNet$Resp;",
+            "native": false
+          },
+          {
+            "name": "call_utf8",
+            "descriptor": "([BLokio/Buffer;)[[B",
+            "native": true
+          },
+          {
+            "name": "stringToUtf8ByteArray",
+            "descriptor": "(Ljava/lang/String;)[B",
+            "native": false
+          },
+          {
+            "name": "utf8ByteBufferToString",
+            "descriptor": "([B)Ljava/lang/String;",
+            "native": false
+          }
+        ]
+      },
+      "org/tachiyomi/NativeChannel.class": {
+        "sha256": "274a7760f679c17f254cb2df11de3b46378fac9fdbb0c7ffb78aed23a0532d81",
+        "class_version": [
+          61,
+          0
+        ],
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "native": false
+          },
+          {
+            "name": "call",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)V",
+            "native": false
+          },
+          {
+            "name": "call_utf8",
+            "descriptor": "([B[B)V",
+            "native": true
+          },
+          {
+            "name": "stringToUtf8ByteArray",
+            "descriptor": "(Ljava/lang/String;)[B",
+            "native": false
+          }
+        ]
+      },
+      "suwayomi/tachidesk/manga/impl/util/PackageTools.class": {
+        "sha256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+        "class_version": [
+          61,
+          0
+        ],
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "native": false
+          },
+          {
+            "name": "getApplicationDirs",
+            "descriptor": "()Lsuwayomi/tachidesk/server/ApplicationDirs;",
+            "native": false
+          },
+          {
+            "name": "dex2jar",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            "native": false
+          },
+          {
+            "name": "getPackageInfo",
+            "descriptor": "(Ljava/lang/String;)Landroid/content/pm/PackageInfo;",
+            "native": false
+          },
+          {
+            "name": "getPackageInfoFromJar",
+            "descriptor": "(Ljava/lang/String;)Landroid/content/pm/PackageInfo;",
+            "native": false
+          },
+          {
+            "name": "parseManifestXml",
+            "descriptor": "(Ljava/lang/String;)Lorg/w3c/dom/Document;",
+            "native": false
+          },
+          {
+            "name": "getApplicationMetaData",
+            "descriptor": "(Lorg/w3c/dom/Document;)Landroid/os/Bundle;",
+            "native": false
+          },
+          {
+            "name": "getAndroidAttribute",
+            "descriptor": "(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;",
+            "native": false
+          },
+          {
+            "name": "getSignatureHash",
+            "descriptor": "(Landroid/content/pm/PackageInfo;)Ljava/lang/String;",
+            "native": false
+          },
+          {
+            "name": "getJarLoaderMap",
+            "descriptor": "()Ljava/util/Map;",
+            "native": false
+          },
+          {
+            "name": "loadExtensionSources",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+            "native": false
+          },
+          {
+            "name": "loadExtensionSources$default",
+            "descriptor": "(Lsuwayomi/tachidesk/manga/impl/util/PackageTools;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/Object;",
+            "native": false
+          },
+          {
+            "name": "loadExtensionSources0",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+            "native": false
+          },
+          {
+            "name": "logger$lambda$0",
+            "descriptor": "()Lkotlin/Unit;",
+            "native": false
+          },
+          {
+            "name": "getPackageInfo$lambda$0$0$1$0",
+            "descriptor": "(Lorg/w3c/dom/Node;)Z",
+            "native": false
+          },
+          {
+            "name": "getPackageInfo$lambda$0$0$1$1",
+            "descriptor": "(Lorg/w3c/dom/Node;)Lorg/w3c/dom/Element;",
+            "native": false
+          },
+          {
+            "name": "getPackageInfo$lambda$0$0$1$2",
+            "descriptor": "(Lorg/w3c/dom/Element;)Z",
+            "native": false
+          },
+          {
+            "name": "getApplicationMetaData$lambda$0$0",
+            "descriptor": "(Lorg/w3c/dom/Node;)Z",
+            "native": false
+          },
+          {
+            "name": "getApplicationMetaData$lambda$0$1",
+            "descriptor": "(Lorg/w3c/dom/Node;)Lorg/w3c/dom/Element;",
+            "native": false
+          },
+          {
+            "name": "getApplicationMetaData$lambda$0$2",
+            "descriptor": "(Lorg/w3c/dom/Element;)Z",
+            "native": false
+          },
+          {
+            "name": "loadExtensionSources0$lambda$0",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+            "native": false
+          },
+          {
+            "name": "<clinit>",
+            "descriptor": "()V",
+            "native": false
+          }
+        ]
+      }
+    }
+  },
+  "java_runtime_configuration": {
+    "jre/lib/jvm.cfg": "-server KNOWN\n-client IGNORE\n",
+    "jre/lib/options.default": "\"-Xlockword:mode=default,noLockword=java/lang/String,noLockword=java/util/MapEntry,noLockword=java/util/HashMap$Entry,noLockword=org/apache/harmony/luni/util/ModifiedMap$Entry,noLockword=java/util/Hashtable$Entry,noLockword=java/lang/invoke/MethodType,noLockword=java/lang/invoke/MethodHandle,noLockword=java/lang/invoke/CollectHandle,noLockword=java/lang/invoke/ConstructorHandle,noLockword=java/lang/invoke/ConvertHandle,noLockword=java/lang/invoke/ArgumentConversionHandle,noLockword=java/lang/invoke/AsTypeHandle,noLockword=java/lang/invoke/ExplicitCastHandle,noLockword=java/lang/invoke/FilterReturnHandle,noLockword=java/lang/invoke/DirectHandle,noLockword=java/lang/invoke/ReceiverBoundHandle,noLockword=java/lang/invoke/DynamicInvokerHandle,noLockword=java/lang/invoke/FieldHandle,noLockword=java/lang/invoke/FieldGetterHandle,noLockword=java/lang/invoke/FieldSetterHandle,noLockword=java/lang/invoke/StaticFieldGetterHandle,noLockword=java/lang/invoke/StaticFieldSetterHandle,noLockword=java/lang/invoke/IndirectHandle,noLockword=java/lang/invoke/InterfaceHandle,noLockword=java/lang/invoke/VirtualHandle,noLockword=java/lang/invoke/PrimitiveHandle,noLockword=java/lang/invoke/InvokeExactHandle,noLockword=java/lang/invoke/InvokeGenericHandle,noLockword=java/lang/invoke/VarargsCollectorHandle,noLockword=java/lang/invoke/ThunkTuple\"\n\"-XX:+EnsureHashed:java/lang/Class,java/lang/Thread\""
+  }
+}

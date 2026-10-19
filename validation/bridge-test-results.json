@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-19T21:05:01.801658+00:00",
+  "recorded_at": "2026-10-19T22:47:25.982397+00:00",
   "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build",
   "tests_per_run": 9,
   "runs": [
@@ -17,11 +17,11 @@
           "-pthread",
           "-O2",
           "-I",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/Sources/CSafeArchive/include",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/Sources/CSafeArchive/MSJNIBridge.c",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/scripts/bridge_regression.c",
+          "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/include",
+          "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/MSJNIBridge.c",
+          "/home/user/Documents/Managa-app/MangaShilf/scripts/bridge_regression.c",
           "-o",
-          "/tmp/mangashelf-bridge-oqzgoitd/strict"
+          "/tmp/mangashelf-bridge-z_uixf77/strict"
         ],
         "exit_code": 0,
         "stdout": "",
@@ -29,7 +29,7 @@
       },
       "execute": {
         "command": [
-          "/tmp/mangashelf-bridge-oqzgoitd/strict"
+          "/tmp/mangashelf-bridge-z_uixf77/strict"
         ],
         "exit_code": 0,
         "stdout": "PASS: 9 native bridge regression tests\n",
@@ -54,11 +54,11 @@
           "-fsanitize=address,undefined",
           "-fno-omit-frame-pointer",
           "-I",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/Sources/CSafeArchive/include",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/Sources/CSafeArchive/MSJNIBridge.c",
-          "/workspace/scratch/e0ae53a3cbb5/MangaShelf/scripts/bridge_regression.c",
+          "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/include",
+          "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/MSJNIBridge.c",
+          "/home/user/Documents/Managa-app/MangaShilf/scripts/bridge_regression.c",
           "-o",
-          "/tmp/mangashelf-bridge-oqzgoitd/asan-ubsan"
+          "/tmp/mangashelf-bridge-z_uixf77/asan-ubsan"
         ],
         "exit_code": 0,
         "stdout": "",
@@ -66,7 +66,7 @@
       },
       "execute": {
         "command": [
-          "/tmp/mangashelf-bridge-oqzgoitd/asan-ubsan"
+          "/tmp/mangashelf-bridge-z_uixf77/asan-ubsan"
         ],
         "exit_code": 0,
         "stdout": "PASS: 9 native bridge regression tests\n",

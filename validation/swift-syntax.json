@@ -23,5 +23,7 @@
       ]
     }
   ],
-  "swift_typechecking": "NOT RUN"
+  "swift_typechecking": "NOT RUN",
+  "status": "HISTORICAL: predates current reader/cache changes",
+  "current_worktree_syntax_parsing": "NOT RUN: Swift and a Swift parser are unavailable"
 }
