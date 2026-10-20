@@ -127,7 +127,7 @@ python3 scripts/check_ui_resources.py
 python3 scripts/generate_xcode_project.py --ui-tests
 xcodebuild -project iOS/MangaShelfUI.xcodeproj -scheme MangaShelfUI \
   -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_udid" \
-  -derivedDataPath build/UISnapshotDerivedData CODE_SIGNING_ALLOWED=NO build-for-testing \
+  -derivedDataPath build/UISnapshotDerivedData CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES build-for-testing \
   2>&1 | tee "$artifact_dir/build.log"
 app_path="$project_root/build/UISnapshotDerivedData/Build/Products/Debug-iphonesimulator/MangaShelf.app"
 python3 - "$app_path" "$artifact_dir" <<'PY'
@@ -149,5 +149,5 @@ xcodebuild -project iOS/MangaShelfUI.xcodeproj -scheme MangaShelfUI \
   -configuration Debug -destination "platform=iOS Simulator,id=$simulator_udid" \
   -derivedDataPath build/UISnapshotDerivedData -resultBundlePath "$result_bundle" \
   -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 \
-  -only-testing:MangaShelfUISnapshots/TabSnapshots CODE_SIGNING_ALLOWED=NO test-without-building \
+  -only-testing:MangaShelfUISnapshots/TabSnapshots CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES test-without-building \
   2>&1 | tee "$artifact_dir/test.log"
