@@ -1,0 +1,10 @@
+{
+  "path": "/home/user/Documents/Managa-app/Tachimanga-5.1-analysis-complete.zip",
+  "bytes": 106718003,
+  "sha256": "0183cdeafcc4bc53609c871213508bac88fbd783a566e9290bc6308730f7909d",
+  "members": 4598,
+  "crc_and_manifest_members_verified": 4597,
+  "target_executed": false,
+  "original_executable_carriers_included": false,
+  "scope": "Consolidated static investigation with full successful Flutter export and scoped Java/native follow-ups; not runtime or visual parity proof."
+}

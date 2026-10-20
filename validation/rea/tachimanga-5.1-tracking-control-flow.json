@@ -1,0 +1,1799 @@
+{
+  "schema": 1,
+  "sample_version": "5.1",
+  "sample_build": "520",
+  "ipa_sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863",
+  "target_executed": false,
+  "method_count": 38,
+  "instruction_count": 3897,
+  "code_bytes": 8712,
+  "basic_block_count": 417,
+  "exception_handler_entries": 28,
+  "graph_sha256": "83aaa0623a9ad2553bc32067cf2ad7448925a9cdfaad73ad23db785dcd8ed204",
+  "anchor_count": 69,
+  "anchors": [
+    {
+      "label": "refresh tracker lookup",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 170,
+      "opcode": "invokevirtual",
+      "operands": "#155                // Method suwayomi/tachidesk/manga/impl/track/tracker/TrackerManager.getTracker:(J)Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;"
+    },
+    {
+      "label": "refresh requires logged in",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 204,
+      "opcode": "invokevirtual",
+      "operands": "#66                 // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.isLoggedIn:()Z"
+    },
+    {
+      "label": "local highest read chapter",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 234,
+      "opcode": "invokespecial",
+      "operands": "#548                // Method queryMaxReadChapter:(I)Lorg/jetbrains/exposed/sql/ResultRow;"
+    },
+    {
+      "label": "remote refresh",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 371,
+      "opcode": "invokevirtual",
+      "operands": "#852                // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.refresh:(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "enhanced sync",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 570,
+      "opcode": "invokevirtual",
+      "operands": "#871                // Method suwayomi/tachidesk/manga/impl/track/enhanced/SyncChapterProgressWithTrack.await:(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "enhanced error result check",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 673,
+      "opcode": "ifnonnull",
+      "operands": "682"
+    },
+    {
+      "label": "generic local greater test",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 726,
+      "opcode": "ifle",
+      "operands": "939"
+    },
+    {
+      "label": "generic push progress",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 815,
+      "opcode": "invokevirtual",
+      "operands": "#885                // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.update:(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "generic push upsert",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 908,
+      "opcode": "invokevirtual",
+      "operands": "#587                // Method upsertTrackRecord:(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;)I"
+    },
+    {
+      "label": "remote ahead unread query",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 966,
+      "opcode": "invokespecial",
+      "operands": "#889                // Method hasUnreadChapterToApply:(ID)Z"
+    },
+    {
+      "label": "generic failure message",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 1087,
+      "opcode": "invokevirtual",
+      "operands": "#877                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;"
+    },
+    {
+      "label": "highest read descending sort",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "queryMaxReadChapter$lambda$0",
+      "descriptor": "(ILorg/jetbrains/exposed/sql/Transaction;)Lorg/jetbrains/exposed/sql/ResultRow;",
+      "offset": 94,
+      "opcode": "getstatic",
+      "operands": "#1236               // Field org/jetbrains/exposed/sql/SortOrder.DESC:Lorg/jetbrains/exposed/sql/SortOrder;"
+    },
+    {
+      "label": "unread lower bound",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "hasUnreadChapterToApply$lambda$0",
+      "descriptor": "(IDLorg/jetbrains/exposed/sql/Transaction;)Z",
+      "offset": 72,
+      "opcode": "invokevirtual",
+      "operands": "#1245               // Method org/jetbrains/exposed/sql/SqlExpressionBuilder.greaterEq:(Lorg/jetbrains/exposed/sql/ExpressionWithColumnType;Ljava/lang/Comparable;)Lorg/jetbrains/exposed/sql/GreaterEqOp;"
+    },
+    {
+      "label": "unread upper bound",
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "method": "hasUnreadChapterToApply$lambda$0",
+      "descriptor": "(IDLorg/jetbrains/exposed/sql/Transaction;)Z",
+      "offset": 103,
+      "opcode": "invokevirtual",
+      "operands": "#1249               // Method org/jetbrains/exposed/sql/SqlExpressionBuilder.lessEq:(Lorg/jetbrains/exposed/sql/ExpressionWithColumnType;Ljava/lang/Comparable;)Lorg/jetbrains/exposed/sql/LessEqOp;"
+    },
+    {
+      "label": "bind source ID acceptance",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 186,
+      "opcode": "invokevirtual",
+      "operands": "#243                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/EnhancedTrackerSourceResolver.accepts:(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;J)Z"
+    },
+    {
+      "label": "bind source class acceptance",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 252,
+      "opcode": "invokeinterface",
+      "operands": "#260,  2          // InterfaceMethod suwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker.accept:(Leu/kanade/tachiyomi/source/Source;)Z"
+    },
+    {
+      "label": "bind lock allocated once per key",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 339,
+      "opcode": "invokeinterface",
+      "operands": "#291,  3          // InterfaceMethod java/util/concurrent/ConcurrentMap.putIfAbsent:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+    },
+    {
+      "label": "bind mutex lock",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 445,
+      "opcode": "invokeinterface",
+      "operands": "#309,  3          // InterfaceMethod kotlinx/coroutines/sync/Mutex.lock:(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "bind existing active record checked under lock",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 559,
+      "opcode": "invokespecial",
+      "operands": "#313                // Method hasActiveRecord:(IJ)Z"
+    },
+    {
+      "label": "bind inner operation",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 676,
+      "opcode": "invokevirtual",
+      "operands": "#330                // Method suwayomi/tachidesk/manga/impl/track/enhanced/AddTracks.bindEnhancedTracker:(Lsuwayomi/tachidesk/manga/model/dataclass/MangaDataClass;Leu/kanade/tachiyomi/source/Source;Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "bind BOUND result",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 796,
+      "opcode": "getstatic",
+      "operands": "#338                // Field suwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState.BOUND:Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState;"
+    },
+    {
+      "label": "bind NO_MATCH result",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 819,
+      "opcode": "getstatic",
+      "operands": "#341                // Field suwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState.NO_MATCH:Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState;"
+    },
+    {
+      "label": "bind ERROR result",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 864,
+      "opcode": "getstatic",
+      "operands": "#371                // Field suwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState.ERROR:Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BindState;"
+    },
+    {
+      "label": "bind unlock normal",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 886,
+      "opcode": "invokeinterface",
+      "operands": "#380,  2          // InterfaceMethod kotlinx/coroutines/sync/Mutex.unlock:(Ljava/lang/Object;)V"
+    },
+    {
+      "label": "bind unlock exceptional",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 900,
+      "opcode": "invokeinterface",
+      "operands": "#380,  2          // InterfaceMethod kotlinx/coroutines/sync/Mutex.unlock:(Ljava/lang/Object;)V"
+    },
+    {
+      "label": "binding non cancellable wrapper",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks",
+      "method": "bindEnhancedTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/MangaDataClass;Leu/kanade/tachiyomi/source/Source;Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 17,
+      "opcode": "invokestatic",
+      "operands": "#77                 // Method tachiyomi/core/util/lang/CoroutinesExtensionsKt.withNonCancellableContext:(Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "match remote item",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 66,
+      "opcode": "invokeinterface",
+      "operands": "#89,  4           // InterfaceMethod suwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker.match:(Lsuwayomi/tachidesk/manga/model/dataclass/MangaDataClass;Leu/kanade/tachiyomi/source/Source;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "bind matched item",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 185,
+      "opcode": "invokestatic",
+      "operands": "#125                // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.bind$default:(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;"
+    },
+    {
+      "label": "save matched record before chapter sync",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 251,
+      "opcode": "invokevirtual",
+      "operands": "#137                // Method suwayomi/tachidesk/manga/impl/track/Track.upsertTrackRecord:(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;)I"
+    },
+    {
+      "label": "sync matched item",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 307,
+      "opcode": "invokevirtual",
+      "operands": "#152                // Method suwayomi/tachidesk/manga/impl/track/enhanced/SyncChapterProgressWithTrack.await:(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "discard returned sync error object",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 346,
+      "opcode": "pop",
+      "operands": ""
+    },
+    {
+      "label": "return match success after discarded result",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 347,
+      "opcode": "iconst_1",
+      "operands": ""
+    },
+    {
+      "label": "continuous local chapter calculation",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 568,
+      "opcode": "invokevirtual",
+      "operands": "#171                // Method calculateContinuousLastRead$suwayomi_server:(Ljava/util/List;)F"
+    },
+    {
+      "label": "do not lower remote progress",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 581,
+      "opcode": "invokestatic",
+      "operands": "#177                // Method java/lang/Math.max:(FF)F"
+    },
+    {
+      "label": "push before applying local chapter updates",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 659,
+      "opcode": "invokestatic",
+      "operands": "#215                // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.update$default:(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;"
+    },
+    {
+      "label": "apply selected chapter updates",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 744,
+      "opcode": "invokespecial",
+      "operands": "#219                // Method updateChapters:(ILjava/util/List;)V"
+    },
+    {
+      "label": "upsert after updates",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 751,
+      "opcode": "invokevirtual",
+      "operands": "#228                // Method suwayomi/tachidesk/manga/impl/track/Track.upsertTrackRecord:(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;)I"
+    },
+    {
+      "label": "group numbers sorted ascending",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "calculateContinuousLastRead$suwayomi_server",
+      "descriptor": "(Ljava/util/List;)F",
+      "offset": 282,
+      "opcode": "invokestatic",
+      "operands": "#369                // Method kotlin/collections/MapsKt.toSortedMap:(Ljava/util/Map;)Ljava/util/SortedMap;"
+    },
+    {
+      "label": "stop first unread group",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "calculateContinuousLastRead$suwayomi_server",
+      "descriptor": "(Ljava/util/List;)F",
+      "offset": 469,
+      "opcode": "goto",
+      "operands": "483"
+    },
+    {
+      "label": "last continuous group or none",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "calculateContinuousLastRead$suwayomi_server",
+      "descriptor": "(Ljava/util/List;)F",
+      "offset": 488,
+      "opcode": "invokestatic",
+      "operands": "#402                // Method kotlin/collections/CollectionsKt.lastOrNull:(Ljava/util/List;)Ljava/lang/Object;"
+    },
+    {
+      "label": "mark manga dirty after chapter transaction",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "updateChapters",
+      "descriptor": "(ILjava/util/List;)V",
+      "offset": 32,
+      "opcode": "invokevirtual",
+      "operands": "#315                // Method suwayomi/tachidesk/manga/impl/Manga.markDirtyIfCommitIdZero:(I)V"
+    },
+    {
+      "label": "notify cloud sync after local update",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "updateChapters",
+      "descriptor": "(ILjava/util/List;)V",
+      "offset": 41,
+      "opcode": "invokestatic",
+      "operands": "#324                // Method suwayomi/tachidesk/cloud/impl/Sync.setNeedsSync$default:(Lsuwayomi/tachidesk/cloud/impl/Sync;ZILjava/lang/Object;)V"
+    },
+    {
+      "label": "apply chapters by selected IDs",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "updateChapters$lambda$0$0",
+      "descriptor": "(Ljava/util/List;Lorg/jetbrains/exposed/sql/SqlExpressionBuilder;)Lorg/jetbrains/exposed/sql/Op;",
+      "offset": 18,
+      "opcode": "invokevirtual",
+      "operands": "#548                // Method org/jetbrains/exposed/sql/SqlExpressionBuilder.inListIds:(Lorg/jetbrains/exposed/sql/Column;Ljava/lang/Iterable;)Lorg/jetbrains/exposed/sql/ops/InListOrNotInListBaseOp;"
+    },
+    {
+      "label": "reset selected chapter last page to zero",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "method": "updateChapters$lambda$0$1",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/model/table/ChapterTable;Lorg/jetbrains/exposed/sql/statements/UpdateStatement;)Lkotlin/Unit;",
+      "offset": 55,
+      "opcode": "iconst_0",
+      "operands": ""
+    },
+    {
+      "label": "tracker update default Boolean is false",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.Tracker",
+      "method": "update$default",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;",
+      "offset": 22,
+      "opcode": "iconst_0",
+      "operands": ""
+    },
+    {
+      "label": "backfill queue deduplication",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "startBackfill",
+      "descriptor": "(J)V",
+      "offset": 54,
+      "opcode": "invokevirtual",
+      "operands": "#435                // Method java/util/concurrent/ConcurrentHashMap$KeySetView.add:(Ljava/lang/Object;)Z"
+    },
+    {
+      "label": "backfill launch",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "method": "startBackfill",
+      "descriptor": "(J)V",
+      "offset": 81,
+      "opcode": "invokestatic",
+      "operands": "#452                // Method kotlinx/coroutines/BuildersKt.launch$default:(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/CoroutineContext;Lkotlinx/coroutines/CoroutineStart;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkotlinx/coroutines/Job;"
+    },
+    {
+      "label": "backfill resolve accepted source IDs",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 170,
+      "opcode": "invokevirtual",
+      "operands": "#131                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/EnhancedTrackerSourceResolver.getSourceIds:(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;)Ljava/util/Set;"
+    },
+    {
+      "label": "backfill restrict to library",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend$lambda$0$0",
+      "descriptor": "(Ljava/util/Set;Lorg/jetbrains/exposed/sql/Transaction;)Ljava/util/List;",
+      "offset": 38,
+      "opcode": "invokevirtual",
+      "operands": "#333                // Method suwayomi/tachidesk/manga/model/table/MangaTable.getInLibrary:()Lorg/jetbrains/exposed/sql/Column;"
+    },
+    {
+      "label": "backfill restrict source IDs",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend$lambda$0$0",
+      "descriptor": "(Ljava/util/Set;Lorg/jetbrains/exposed/sql/Transaction;)Ljava/util/List;",
+      "offset": 69,
+      "opcode": "invokevirtual",
+      "operands": "#352                // Method org/jetbrains/exposed/sql/SqlExpressionBuilder.inList:(Lorg/jetbrains/exposed/sql/ExpressionWithColumnType;Ljava/lang/Iterable;)Lorg/jetbrains/exposed/sql/ops/InListOrNotInListBaseOp;"
+    },
+    {
+      "label": "backfill rechecks login each item",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 288,
+      "opcode": "invokevirtual",
+      "operands": "#121                // Method suwayomi/tachidesk/manga/impl/track/tracker/Tracker.isLoggedIn:()Z"
+    },
+    {
+      "label": "backfill bind each item",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 445,
+      "opcode": "invokestatic",
+      "operands": "#231                // Method suwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking.access$bindTracker:(Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking;Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "backfill BOUND counter",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 604,
+      "opcode": "iinc",
+      "operands": "12, 1"
+    },
+    {
+      "label": "backfill ERROR counter",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 610,
+      "opcode": "iinc",
+      "operands": "14, 1"
+    },
+    {
+      "label": "backfill skipped counter",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 616,
+      "opcode": "iinc",
+      "operands": "13, 1"
+    },
+    {
+      "label": "backfill normal running false copy",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 676,
+      "opcode": "invokestatic",
+      "operands": "#258                // Method suwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BackfillStatus.copy$default:(Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BackfillStatus;ZLjava/lang/Long;IIIIIILjava/lang/Object;)Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BackfillStatus;"
+    },
+    {
+      "label": "backfill exceptional unlock",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 702,
+      "opcode": "invokeinterface",
+      "operands": "#266,  2          // InterfaceMethod kotlinx/coroutines/sync/Mutex.unlock:(Ljava/lang/Object;)V"
+    },
+    {
+      "label": "backfill normal queue removal",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 721,
+      "opcode": "invokevirtual",
+      "operands": "#276                // Method java/util/concurrent/ConcurrentHashMap$KeySetView.remove:(Ljava/lang/Object;)Z"
+    },
+    {
+      "label": "backfill exceptional queue removal",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 739,
+      "opcode": "invokevirtual",
+      "operands": "#276                // Method java/util/concurrent/ConcurrentHashMap$KeySetView.remove:(Ljava/lang/Object;)Z"
+    },
+    {
+      "label": "backfill rethrows cleanup exception",
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 744,
+      "opcode": "athrow",
+      "operands": ""
+    },
+    {
+      "label": "Komga read list DTO",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 211,
+      "opcode": "invokevirtual",
+      "operands": "#142                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadListDto$Companion.serializer:()Lkotlinx/serialization/KSerializer;"
+    },
+    {
+      "label": "Komga series DTO",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 352,
+      "opcode": "invokevirtual",
+      "operands": "#160                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/SeriesDto$Companion.serializer:()Lkotlinx/serialization/KSerializer;"
+    },
+    {
+      "label": "Komga progress request",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 438,
+      "opcode": "invokestatic",
+      "operands": "#126                // Method eu/kanade/tachiyomi/network/OkHttpExtensionsKt.awaitSuccess:(Lokhttp3/Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    },
+    {
+      "label": "Komga progress v2 DTO",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 533,
+      "opcode": "invokevirtual",
+      "operands": "#195                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadProgressV2Dto$Companion.serializer:()Lkotlinx/serialization/KSerializer;"
+    },
+    {
+      "label": "Komga legacy progress converted",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 580,
+      "opcode": "invokevirtual",
+      "operands": "#207                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadProgressDto.toV2:()Lsuwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadProgressV2Dto;"
+    },
+    {
+      "label": "Komga total sort number",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 626,
+      "opcode": "invokevirtual",
+      "operands": "#221                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadProgressV2Dto.getMaxNumberSort:()F"
+    },
+    {
+      "label": "Komga continuous remote number",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "offset": 674,
+      "opcode": "invokevirtual",
+      "operands": "#242                // Method suwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadProgressV2Dto.getLastReadContinuousNumberSort:()D"
+    },
+    {
+      "label": "Komga PUT progress",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "method": "updateProgress",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 275,
+      "opcode": "invokevirtual",
+      "operands": "#253                // Method okhttp3/Request$Builder.put:(Lokhttp3/RequestBody;)Lokhttp3/Request$Builder;"
+    },
+    {
+      "label": "Komga refresh after PUT",
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "method": "updateProgress",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "offset": 378,
+      "opcode": "invokevirtual",
+      "operands": "#285                // Method getTrackSearch:(Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+    }
+  ],
+  "methods": [
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "refresh",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/Track$RefreshInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "9ab1e8f6e6e9e17a91eb6cbbc6cb4954a048288933f2a4c7e2770c54cf137dd6",
+      "code_bytes": 1112,
+      "instruction_count": 500,
+      "exception_handlers": [
+        {
+          "start": 312,
+          "end": 374,
+          "handler": 1052,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 435,
+          "end": 573,
+          "handler": 1052,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 651,
+          "end": 818,
+          "handler": 1052,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 896,
+          "end": 1049,
+          "handler": 1052,
+          "type": "java/lang/Throwable"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 162,
+          "kind": "athrow"
+        },
+        {
+          "offset": 199,
+          "kind": "areturn"
+        },
+        {
+          "offset": 231,
+          "kind": "areturn"
+        },
+        {
+          "offset": 382,
+          "kind": "areturn"
+        },
+        {
+          "offset": 581,
+          "kind": "areturn"
+        },
+        {
+          "offset": 826,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1100,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1111,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 59,
+      "normal_edge_count": 516
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "trackChapter",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "126eee45951ce8bb3ef887f1e9ced8a54d788ca0895305548f26497170b102eb",
+      "code_bytes": 105,
+      "instruction_count": 50,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 100,
+          "kind": "areturn"
+        },
+        {
+          "offset": 104,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 10,
+      "normal_edge_count": 52
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "queryMaxReadChapter",
+      "descriptor": "(I)Lorg/jetbrains/exposed/sql/ResultRow;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "14d724991e57f7870a85027b4b8bda58dc81131ab53afeef97f96b7ce5443100",
+      "code_bytes": 16,
+      "instruction_count": 8,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 15,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 7
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "hasUnreadChapterToApply",
+      "descriptor": "(ID)Z",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "b9646ec0feacd7e6b410d5d091e6b20549055a4b6224490f34eae9f2f22fde6d",
+      "code_bytes": 20,
+      "instruction_count": 10,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 19,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 9
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "trackChapter",
+      "descriptor": "(IDLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "8ac284ad5d130f02012e6f6f78ea3c193962b6b463276ae27a03c9bf1439928d",
+      "code_bytes": 590,
+      "instruction_count": 248,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 114,
+          "kind": "areturn"
+        },
+        {
+          "offset": 453,
+          "kind": "areturn"
+        },
+        {
+          "offset": 578,
+          "kind": "areturn"
+        },
+        {
+          "offset": 589,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 29,
+      "normal_edge_count": 257
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "upsertTrackRecord",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;)I",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "97893a51d680d687471c597cbec09627249ab0f8d98944e00b962779db45d64c",
+      "code_bytes": 72,
+      "instruction_count": 33,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 71,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 3,
+      "normal_edge_count": 33
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "refresh$lambda$0",
+      "descriptor": "(IJLorg/jetbrains/exposed/sql/Transaction;)Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "27271c40dc06f00a8256e3b2354efd0ec00050bc60080dcaeae7c9d7dd2e46bb",
+      "code_bytes": 136,
+      "instruction_count": 57,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 135,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 4,
+      "normal_edge_count": 57
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "refresh$lambda$4",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;I)Ljava/lang/Object;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "13d9b555985e1bc43c62ca356a8dd7d561f070c6ec079f31a68346a2af9ca72c",
+      "code_bytes": 11,
+      "instruction_count": 5,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 10,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 4
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "queryMaxReadChapter$lambda$0",
+      "descriptor": "(ILorg/jetbrains/exposed/sql/Transaction;)Lorg/jetbrains/exposed/sql/ResultRow;",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "ede411be8222bcda9273af71adfb2e602bb39e66e9072d88e8d54bdfcb495cb6",
+      "code_bytes": 125,
+      "instruction_count": 57,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 124,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 56
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.Track",
+      "name": "hasUnreadChapterToApply$lambda$0",
+      "descriptor": "(IDLorg/jetbrains/exposed/sql/Transaction;)Z",
+      "class_sha256": "12ee12a9ff233eb9d37f38888101f399db6796f4fe62750495a8845bcc160565",
+      "javap_sha256": "fe4d91c2e6b86ca3449c593ef8853e4d8cedd28fd05f197891fe04e0081c7111",
+      "bytecode_sha256": "6abb3342d40bcac12b272791e886e5daf4b42a60d51c8aa98352ea49095b323d",
+      "code_bytes": 163,
+      "instruction_count": 68,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 162,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 67
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "bindEligibleTrackers",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "8739589f9729be2230343711b29b16ade8f6828870d1de840313ca23f6c7290e",
+      "code_bytes": 487,
+      "instruction_count": 208,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 366,
+          "kind": "areturn"
+        },
+        {
+          "offset": 476,
+          "kind": "areturn"
+        },
+        {
+          "offset": 486,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 17,
+      "normal_edge_count": 213
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "bindTracker",
+      "descriptor": "(JILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "505b22d6d74cbe83d231539b156d5bb6e1634eb1adfff74122a7acb576520a45",
+      "code_bytes": 61,
+      "instruction_count": 32,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 48,
+          "kind": "areturn"
+        },
+        {
+          "offset": 60,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 6,
+      "normal_edge_count": 32
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "bindTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "4724d890789ccd5b7e4c7d2e714c22a965f57e809ec86fffc8a596b9b4a801ee",
+      "code_bytes": 922,
+      "instruction_count": 414,
+      "exception_handlers": [
+        {
+          "start": 549,
+          "end": 679,
+          "handler": 834,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 769,
+          "end": 831,
+          "handler": 834,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 545,
+          "end": 679,
+          "handler": 894,
+          "type": null
+        },
+        {
+          "start": 769,
+          "end": 882,
+          "handler": 894,
+          "type": null
+        },
+        {
+          "start": 894,
+          "end": 896,
+          "handler": 894,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 137,
+          "kind": "areturn"
+        },
+        {
+          "offset": 167,
+          "kind": "areturn"
+        },
+        {
+          "offset": 212,
+          "kind": "areturn"
+        },
+        {
+          "offset": 243,
+          "kind": "areturn"
+        },
+        {
+          "offset": 280,
+          "kind": "areturn"
+        },
+        {
+          "offset": 458,
+          "kind": "areturn"
+        },
+        {
+          "offset": 687,
+          "kind": "areturn"
+        },
+        {
+          "offset": 907,
+          "kind": "athrow"
+        },
+        {
+          "offset": 911,
+          "kind": "areturn"
+        },
+        {
+          "offset": 921,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 44,
+      "normal_edge_count": 420
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "setEnabled",
+      "descriptor": "(JZ)V",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "ad27df9885d7e019d127f35437f43341dd5b55be4b788bb0abb901637c967304",
+      "code_bytes": 71,
+      "instruction_count": 31,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 45,
+          "kind": "athrow"
+        },
+        {
+          "offset": 70,
+          "kind": "return"
+        }
+      ],
+      "basic_block_count": 9,
+      "normal_edge_count": 32
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "startBackfill",
+      "descriptor": "(J)V",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "7e203303708950398cedee2cafce2b631637b0bef7530dd36344ce4fb4ef2965",
+      "code_bytes": 86,
+      "instruction_count": 43,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 45,
+          "kind": "athrow"
+        },
+        {
+          "offset": 60,
+          "kind": "return"
+        },
+        {
+          "offset": 85,
+          "kind": "return"
+        }
+      ],
+      "basic_block_count": 8,
+      "normal_edge_count": 43
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "getBackfillStatus",
+      "descriptor": "()Lsuwayomi/tachidesk/manga/impl/track/enhanced/EnhancedTracking$BackfillStatus;",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "c52938aea261af90afa5cf961c1446a712a10d076025d42fc9ed71cb4c8359b2",
+      "code_bytes": 4,
+      "instruction_count": 2,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 3,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 1
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "hasActiveRecord",
+      "descriptor": "(IJ)Z",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "a0257c6d9f6b4317e6d124d696cbc9abd84ca41459307dba4a33e860b8287fe4",
+      "code_bytes": 20,
+      "instruction_count": 10,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 19,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 9
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking",
+      "name": "hasActiveRecord$lambda$0",
+      "descriptor": "(IJLorg/jetbrains/exposed/sql/Transaction;)Z",
+      "class_sha256": "fdf6d62065f8ee72fb2a46e02f9e4f11aae21c671ab15333aed045d257afbffd",
+      "javap_sha256": "d3d837c2fb7322a12f063b18d53d10fb1ffacd843530695f937400241f7ab898",
+      "bytecode_sha256": "00bf2d18037f10cc87d300a88f79019f82cc30267c9c102abf78057320381e02",
+      "code_bytes": 117,
+      "instruction_count": 49,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 116,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 48
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "name": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "a77df235c5331821ed95c15f2f9b70be6521f7050f308c90f40b7080b17a9c8f",
+      "javap_sha256": "8b6c186cf2ca5e0bdf8d2c89ca8cbe3600c655a1cb8f67871fbe45a9747c5bb2",
+      "bytecode_sha256": "0d251d38e23d7c16d6fd321e7ab8a2889f1a3330cc1202cb012a5707d89295ce",
+      "code_bytes": 760,
+      "instruction_count": 345,
+      "exception_handlers": [
+        {
+          "start": 139,
+          "end": 448,
+          "handler": 698,
+          "type": null
+        },
+        {
+          "start": 560,
+          "end": 688,
+          "handler": 698,
+          "type": null
+        },
+        {
+          "start": 698,
+          "end": 700,
+          "handler": 698,
+          "type": null
+        },
+        {
+          "start": 40,
+          "end": 95,
+          "handler": 728,
+          "type": null
+        },
+        {
+          "start": 132,
+          "end": 448,
+          "handler": 728,
+          "type": null
+        },
+        {
+          "start": 560,
+          "end": 711,
+          "handler": 728,
+          "type": null
+        },
+        {
+          "start": 728,
+          "end": 729,
+          "handler": 728,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 103,
+          "kind": "areturn"
+        },
+        {
+          "offset": 456,
+          "kind": "areturn"
+        },
+        {
+          "offset": 709,
+          "kind": "athrow"
+        },
+        {
+          "offset": 744,
+          "kind": "athrow"
+        },
+        {
+          "offset": 748,
+          "kind": "areturn"
+        },
+        {
+          "offset": 759,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 34,
+      "normal_edge_count": 349
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1",
+      "name": "invokeSuspend$lambda$0$0",
+      "descriptor": "(Ljava/util/Set;Lorg/jetbrains/exposed/sql/Transaction;)Ljava/util/List;",
+      "class_sha256": "a77df235c5331821ed95c15f2f9b70be6521f7050f308c90f40b7080b17a9c8f",
+      "javap_sha256": "8b6c186cf2ca5e0bdf8d2c89ca8cbe3600c655a1cb8f67871fbe45a9747c5bb2",
+      "bytecode_sha256": "84cc8ef71984ddc7bb987b297c2865de75706d2fa78197821483f75a1a8febf1",
+      "code_bytes": 206,
+      "instruction_count": 89,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 205,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 4,
+      "normal_edge_count": 89
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.EnhancedTracking$startBackfill$1$WhenMappings",
+      "name": "<clinit>",
+      "descriptor": "()V",
+      "class_sha256": "94f358552f70c8b3e3b31703eb14257f4ef1605815667a080006c55f53337a2c",
+      "javap_sha256": "eee91c93cd3b9d85d2eca0aa27ad318c722c51811b42636a5608b7f8b9e93d3d",
+      "bytecode_sha256": "661a2eeef2a9849e40061ba4824b3c0ab91c8b5527395ce676556d9229b4eade",
+      "code_bytes": 40,
+      "instruction_count": 23,
+      "exception_handlers": [
+        {
+          "start": 7,
+          "end": 17,
+          "handler": 20,
+          "type": "java/lang/NoSuchFieldError"
+        },
+        {
+          "start": 21,
+          "end": 31,
+          "handler": 34,
+          "type": "java/lang/NoSuchFieldError"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 39,
+          "kind": "return"
+        }
+      ],
+      "basic_block_count": 8,
+      "normal_edge_count": 22
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks",
+      "name": "bindEnhancedTracker",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/MangaDataClass;Leu/kanade/tachiyomi/source/Source;Lsuwayomi/tachidesk/manga/impl/track/tracker/EnhancedTracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "44b8c2d23ff6b204208cea33373a57ef5bc0a5fd3f3303cebf646912841c7be3",
+      "javap_sha256": "063f5a1cc4e21d25ba1ae5f1a1c0064a9ff0c230c350a4d444c2de0238d3ac0a",
+      "bytecode_sha256": "796748ade935a1dd592aef700ede37b458f4d740426f1249d113239030f3c0f2",
+      "code_bytes": 21,
+      "instruction_count": 12,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 20,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 11
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2",
+      "name": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "49f19f322b6e9b24053b708fadd5452db087f80c792c1e3647b35627602b1634",
+      "javap_sha256": "4b3aaede531770edb234c1c0aa39be340c8a41b3ba524b6eec790b8ed9f2c706",
+      "bytecode_sha256": "6c7c3aa133743b268aff42d10ed08dabb716cd8594e1c55304e3e0f8485b4cc6",
+      "code_bytes": 98,
+      "instruction_count": 40,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 81,
+          "kind": "areturn"
+        },
+        {
+          "offset": 87,
+          "kind": "areturn"
+        },
+        {
+          "offset": 97,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 6,
+      "normal_edge_count": 40
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.AddTracks$bindEnhancedTracker$2$1",
+      "name": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "89063b156d51aa537d32397e8d7eccfd68564588daa0622924a8414747a93249",
+      "javap_sha256": "da20d17b1a1c99c77cddaf05dd6afefda1ba9326044aa5b56c9ab0857adde702",
+      "bytecode_sha256": "0735954ca6a4bd58524ea9f93b5484baf7cfb0726e3d4cdffd98251f9f2d4a22",
+      "code_bytes": 413,
+      "instruction_count": 193,
+      "exception_handlers": [
+        {
+          "start": 44,
+          "end": 71,
+          "handler": 358,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 80,
+          "end": 188,
+          "handler": 358,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 236,
+          "end": 310,
+          "handler": 358,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 340,
+          "end": 355,
+          "handler": 358,
+          "type": "java/lang/Exception"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 79,
+          "kind": "areturn"
+        },
+        {
+          "offset": 196,
+          "kind": "areturn"
+        },
+        {
+          "offset": 318,
+          "kind": "areturn"
+        },
+        {
+          "offset": 389,
+          "kind": "athrow"
+        },
+        {
+          "offset": 402,
+          "kind": "areturn"
+        },
+        {
+          "offset": 412,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 27,
+      "normal_edge_count": 196
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "await",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "6e058c12f23b9a0ba63993a34550e794dd3b8e11db9c31b7aefa6745862fa239",
+      "code_bytes": 790,
+      "instruction_count": 341,
+      "exception_handlers": [
+        {
+          "start": 594,
+          "end": 662,
+          "handler": 757,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 730,
+          "end": 757,
+          "handler": 757,
+          "type": "java/lang/Throwable"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 106,
+          "kind": "areturn"
+        },
+        {
+          "offset": 670,
+          "kind": "areturn"
+        },
+        {
+          "offset": 756,
+          "kind": "areturn"
+        },
+        {
+          "offset": 779,
+          "kind": "areturn"
+        },
+        {
+          "offset": 789,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 37,
+      "normal_edge_count": 351
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "updateChapters",
+      "descriptor": "(ILjava/util/List;)V",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "e7c34a9bf3cebefaf1cdc94748e163b7ca2b78f41ed58716c12bcfeb3b11c224",
+      "code_bytes": 45,
+      "instruction_count": 23,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 9,
+          "kind": "return"
+        },
+        {
+          "offset": 44,
+          "kind": "return"
+        }
+      ],
+      "basic_block_count": 3,
+      "normal_edge_count": 22
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "calculateContinuousLastRead$suwayomi_server",
+      "descriptor": "(Ljava/util/List;)F",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "c03f5ba6cbd9b1d64df94a929250f9288d23e2b6e25fd1c3aa541db2e2b9b92f",
+      "code_bytes": 522,
+      "instruction_count": 220,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 521,
+          "kind": "freturn"
+        }
+      ],
+      "basic_block_count": 31,
+      "normal_edge_count": 232
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "await$lambda$0",
+      "descriptor": "(JLorg/jetbrains/exposed/sql/Transaction;)Ljava/util/List;",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "431fb4f3666d3050b9edd653714bbeaa215944a38db971614e147f5e6e4fc04f",
+      "code_bytes": 247,
+      "instruction_count": 107,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 246,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 4,
+      "normal_edge_count": 107
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "updateChapters$lambda$0$0",
+      "descriptor": "(Ljava/util/List;Lorg/jetbrains/exposed/sql/SqlExpressionBuilder;)Lorg/jetbrains/exposed/sql/Op;",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "737b7fb8222048c2d5bea13b9c3244d9eebd8ea0fd407d987724a78cf1e955d7",
+      "code_bytes": 25,
+      "instruction_count": 11,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 24,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 10
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "updateChapters$lambda$0$1",
+      "descriptor": "(JLsuwayomi/tachidesk/manga/model/table/ChapterTable;Lorg/jetbrains/exposed/sql/statements/UpdateStatement;)Lkotlin/Unit;",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "024ef097d124cefa8062cb042e140e61fc4fe8a80c03174e31e898ab71f02fdd",
+      "code_bytes": 78,
+      "instruction_count": 38,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 77,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 37
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.enhanced.SyncChapterProgressWithTrack",
+      "name": "updateChapters$lambda$0",
+      "descriptor": "(Ljava/util/List;JLorg/jetbrains/exposed/sql/Transaction;)I",
+      "class_sha256": "3508c35184694334bcec62dc4dcc8dd174158049e79bcecbd579d44fb80c6da5",
+      "javap_sha256": "7bf060fbca7526c6c3c3f6d3dd3d0eae7371b1f468845e65dcfbda9f2e476dfb",
+      "bytecode_sha256": "8c44d9d8fad2bffa89ead80846bc57ad181b9517ab3c05e7d004eb0ff95b5002",
+      "code_bytes": 32,
+      "instruction_count": 14,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 31,
+          "kind": "ireturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 13
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "name": "getTrackSearch",
+      "descriptor": "(Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "30d51e83d035509b4d1e2feb3dc80525f03e5619c3f77d825a73ccb60ee52e7c",
+      "javap_sha256": "e40759098955ebf4e24d3ef50c4ffcb0588c72fcad92c6d4c71d565e15e618a6",
+      "bytecode_sha256": "0305df462af9433157216bdd229191d42536a282a3c9f7c817120afb572a0f1e",
+      "code_bytes": 18,
+      "instruction_count": 10,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 17,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 9
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "name": "updateProgress",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "30d51e83d035509b4d1e2feb3dc80525f03e5619c3f77d825a73ccb60ee52e7c",
+      "javap_sha256": "e40759098955ebf4e24d3ef50c4ffcb0588c72fcad92c6d4c71d565e15e618a6",
+      "bytecode_sha256": "88e74c4ae955c6488d725e030951f34f863707389ff03db620eacb4668c0c47b",
+      "code_bytes": 427,
+      "instruction_count": 182,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 318,
+          "kind": "areturn"
+        },
+        {
+          "offset": 389,
+          "kind": "areturn"
+        },
+        {
+          "offset": 415,
+          "kind": "areturn"
+        },
+        {
+          "offset": 426,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 16,
+      "normal_edge_count": 186
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "name": "toTrack",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/SeriesDto;)Lsuwayomi/tachidesk/manga/impl/track/tracker/model/TrackSearch;",
+      "class_sha256": "30d51e83d035509b4d1e2feb3dc80525f03e5619c3f77d825a73ccb60ee52e7c",
+      "javap_sha256": "e40759098955ebf4e24d3ef50c4ffcb0588c72fcad92c6d4c71d565e15e618a6",
+      "bytecode_sha256": "c99835216c1dd99496f2c57cdaaed5cd92c26fe58b3f1cc36ad85751cd1cc8ca",
+      "code_bytes": 52,
+      "instruction_count": 27,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 51,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 26
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi",
+      "name": "toTrack",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/enhanced/komga/ReadListDto;)Lsuwayomi/tachidesk/manga/impl/track/tracker/model/TrackSearch;",
+      "class_sha256": "30d51e83d035509b4d1e2feb3dc80525f03e5619c3f77d825a73ccb60ee52e7c",
+      "javap_sha256": "e40759098955ebf4e24d3ef50c4ffcb0588c72fcad92c6d4c71d565e15e618a6",
+      "bytecode_sha256": "591836a3db08067b9eac44211cf0b9909f57f01e7eb91c6805860c040f445b2e",
+      "code_bytes": 27,
+      "instruction_count": 16,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 26,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 1,
+      "normal_edge_count": 15
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.enhanced.komga.KomgaApi$getTrackSearch$2",
+      "name": "invokeSuspend",
+      "descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "a8a3973ff9e86043f072507d9838765a7df8969f86cb4f6b10d661cf7f648363",
+      "javap_sha256": "752c5d781d9fef95ed008b18eb43c456172971e48f4cecee7c6a82a2f34340e9",
+      "bytecode_sha256": "7c10b79c6cd932126b784c85e1494812fca767583e116659dac181062584fddf",
+      "code_bytes": 729,
+      "instruction_count": 343,
+      "exception_handlers": [
+        {
+          "start": 44,
+          "end": 149,
+          "handler": 688,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 188,
+          "end": 290,
+          "handler": 688,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 329,
+          "end": 441,
+          "handler": 688,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 458,
+          "end": 685,
+          "handler": 688,
+          "type": "java/lang/Exception"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 157,
+          "kind": "areturn"
+        },
+        {
+          "offset": 298,
+          "kind": "areturn"
+        },
+        {
+          "offset": 449,
+          "kind": "areturn"
+        },
+        {
+          "offset": 715,
+          "kind": "athrow"
+        },
+        {
+          "offset": 717,
+          "kind": "areturn"
+        },
+        {
+          "offset": 728,
+          "kind": "athrow"
+        }
+      ],
+      "basic_block_count": 33,
+      "normal_edge_count": 348
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.Tracker",
+      "name": "update$default",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "7210a87e93e4357a86f3491959c9ef135d05024be87a38eeef8fbb068962a776",
+      "javap_sha256": "27b184c239e7b047283757c7375ae66d7fa0f53a90f22f07511c07f6d99c644f",
+      "bytecode_sha256": "12f117e3216b2638b7d62b79ee99bf9f3ca8fddf595f449b981c4ad6d36cf1a7",
+      "code_bytes": 32,
+      "instruction_count": 19,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 14,
+          "kind": "athrow"
+        },
+        {
+          "offset": 31,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 5,
+      "normal_edge_count": 19
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.track.tracker.Tracker",
+      "name": "bind$default",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/track/tracker/Tracker;Lsuwayomi/tachidesk/manga/impl/track/tracker/model/Track;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;",
+      "class_sha256": "7210a87e93e4357a86f3491959c9ef135d05024be87a38eeef8fbb068962a776",
+      "javap_sha256": "27b184c239e7b047283757c7375ae66d7fa0f53a90f22f07511c07f6d99c644f",
+      "bytecode_sha256": "44b5422ad995b252f1ee3acb4fd41563e9b2af40ea82c5171f5552e8e002647e",
+      "code_bytes": 32,
+      "instruction_count": 19,
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 14,
+          "kind": "athrow"
+        },
+        {
+          "offset": 31,
+          "kind": "areturn"
+        }
+      ],
+      "basic_block_count": 5,
+      "normal_edge_count": 19
+    }
+  ],
+  "selected_cfr_failed_methods": [
+    {
+      "owner": "ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "followup": "repository-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "ExtensionStoreService",
+      "method": "getExtensions-0E7RQCE",
+      "followup": "repository-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "Downloader",
+      "method": "run",
+      "followup": "repository-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "Track",
+      "method": "refresh",
+      "followup": "tracking-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "EnhancedTracking$startBackfill$1",
+      "method": "invokeSuspend",
+      "followup": "tracking-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "AddTracks$bindEnhancedTracker$2$1",
+      "method": "invokeSuspend",
+      "followup": "tracking-control-flow",
+      "core_contract_reviewed": true
+    },
+    {
+      "owner": "KomgaApi$getTrackSearch$2",
+      "method": "invokeSuspend",
+      "followup": "tracking-control-flow",
+      "core_contract_reviewed": true
+    }
+  ],
+  "limits": [
+    "All counts are scoped to explicitly selected methods and include synthetic helpers.",
+    "Instruction totals were cross-checked with an independent class parser; all normal branch destinations checked.",
+    "Anchors check instruction identity, not all semantic claims or runtime behavior.",
+    "Original CFR failures and Vineflower warnings remain; no compilable original Kotlin was recovered.",
+    "No account login, network request, database mutation, coroutine cancellation or iPhone test was performed."
+  ]
+}
