@@ -75,6 +75,65 @@ final class ReaderCoreTests: XCTestCase {
         XCTAssertEqual(repository.index.name, "JSON repository")
         XCTAssertEqual(repository.index.extensions.first?.packageName, "fallback.extension")
     }
+    func testRelativeRepositoryArtifactsNeedTheirDocumentContext() throws {
+        let data = Data(#"[{"name":"Relative","pkg":"relative.source","jar":"../jar/source.jar","icon":"icons/source.png"}]"#.utf8)
+        XCTAssertThrowsError(try RepositoryDecoder.decode(data))
+        let index = try RepositoryDecoder.decode(data, relativeTo: URL(string: "https://example.invalid/repo/lists/index.json")!)
+        XCTAssertEqual(index.extensions.first?.jarURL, "https://example.invalid/repo/jar/source.jar")
+        XCTAssertEqual(index.extensions.first?.iconURL, "https://example.invalid/repo/lists/icons/source.png")
+    }
+    func testExternalListArtifactsResolveAgainstTheListDocument() async throws {
+        let metadata = "https://example.invalid/repo/index.pb"
+        let list = "https://example.invalid/repo/lists/entries.json"
+        let transport = RecordingRepositoryTransport(responses: [
+            metadata: Data(#"{"name":"Separated","extensionListUrl":"lists/entries.json"}"#.utf8),
+            list: Data(#"[{"name":"Source","pkg":"separated.source","jar":"../jar/source.jar","icon":"icons/source.png"}]"#.utf8)
+        ])
+        let repository = try await RepositoryClient(transport: transport).fetch(url: metadata)
+        XCTAssertEqual(repository.index.extensionListURL, list)
+        XCTAssertEqual(repository.index.extensions.first?.jarURL, "https://example.invalid/repo/jar/source.jar")
+        XCTAssertEqual(repository.index.extensions.first?.iconURL, "https://example.invalid/repo/lists/icons/source.png")
+        let requests = await transport.requestedURLs()
+        XCTAssertEqual(requests, [metadata, list])
+    }
+    func testRelativeResolutionDoesNotAcceptInsecureArtifacts() throws {
+        let base = URL(string: "https://example.invalid/repo/index.json")!
+        for link in ["http://example.invalid/source.jar", "https://user:pass@example.invalid/source.jar",
+                     "https://example.invalid:4567/source.jar", "file:///source.jar"] {
+            let data = try JSONSerialization.data(withJSONObject: [["name": "Bad", "pkg": "bad.source", "jar": link]])
+            XCTAssertThrowsError(try RepositoryDecoder.decode(data, relativeTo: base), link)
+        }
+        let data = Data(#"[{"name":"Bad base","pkg":"bad.base","jar":"source.jar"}]"#.utf8)
+        XCTAssertThrowsError(try RepositoryDecoder.decode(data, relativeTo: URL(string: "file:///repo/index.json")!))
+    }
+    func testEmptyEmbeddedJSONListDoesNotFetchExternalList() async throws {
+        let url = "https://example.invalid/repo/index.json"
+        let transport = RecordingRepositoryTransport(responses: [
+            url: Data(#"{"name":"Empty","extensions":[],"extensionListURL":"https://example.invalid/unnecessary.json"}"#.utf8)
+        ])
+        let repository = try await RepositoryClient(transport: transport).fetch(url: url)
+        XCTAssertTrue(repository.index.hasEmbeddedList)
+        XCTAssertTrue(repository.index.extensions.isEmpty)
+        let requests = await transport.requestedURLs()
+        XCTAssertEqual(requests, [url])
+    }
+    func testFallbackStopsOnBothCancellationKinds() async throws {
+        let primary = "https://example.invalid/repo/index.pb"
+        let fallback = "https://example.invalid/repo/index.min.json"
+        for urlCancellation in [false, true] {
+            let transport = RecordingRepositoryTransport(responses: [primary: Data("not an index".utf8)],
+                                                         cancellationURL: fallback, urlCancellation: urlCancellation)
+            do {
+                _ = try await RepositoryClient(transport: transport).fetch(url: primary)
+                XCTFail("Cancellation must be propagated")
+            } catch {
+                if urlCancellation { XCTAssertEqual((error as? URLError)?.code, .cancelled) }
+                else { XCTAssertTrue(error is CancellationError) }
+            }
+            let requests = await transport.requestedURLs()
+            XCTAssertEqual(requests, [primary, fallback], "Cancellation must not request repo.json")
+        }
+    }
     func testLibraryRejectsOutOfRangeProgress() throws {
         var state = LibraryState(); var book = LibraryBook(title: "Local", pageCount: 3); book.currentPage = 3
         state.books = [book]; XCTAssertThrowsError(try state.validate())
@@ -191,4 +250,26 @@ private final class MapTransport: SourceTransport, @unchecked Sendable {
         guard let data = responses[url.absoluteString] else { throw URLError(.fileDoesNotExist) }
         return data
     }
+}
+
+private actor RecordingRepositoryTransport: SourceTransport {
+    private let responses: [String: Data]
+    private let cancellationURL: String?
+    private let urlCancellation: Bool
+    private var requests: [String] = []
+    init(responses: [String: Data], cancellationURL: String? = nil, urlCancellation: Bool = false) {
+        self.responses = responses
+        self.cancellationURL = cancellationURL
+        self.urlCancellation = urlCancellation
+    }
+    func get(_ url: URL) async throws -> Data {
+        requests.append(url.absoluteString)
+        if url.absoluteString == cancellationURL {
+            if urlCancellation { throw URLError(.cancelled) }
+            throw CancellationError()
+        }
+        guard let data = responses[url.absoluteString] else { throw URLError(.fileDoesNotExist) }
+        return data
+    }
+    func requestedURLs() -> [String] { requests }
 }

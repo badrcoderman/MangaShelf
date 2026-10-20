@@ -100,15 +100,15 @@ private struct PBMessage {
 }
 
 public enum RepositoryDecoder {
-    public static func decode(_ input: Data) throws -> RepositoryIndex {
+    public static func decode(_ input: Data, relativeTo documentURL: URL? = nil) throws -> RepositoryIndex {
         let data = try BoundedGzip.decodeIfNeeded(input)
         guard !data.isEmpty else { throw ReaderFailure(ReaderText.string("The index is empty.")) }
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         // A protobuf tag 0x0a resembles JSON whitespace; the next byte may be
         // '[' or '{' as a string length. Do not classify binary data by that alone.
-        if first == 91, let legacy = try? legacyJSON(data) { return legacy }
+        if first == 91, let legacy = try? legacyJSON(data, relativeTo: documentURL) { return legacy }
         if first == 123 {
-            if let legacy = try? legacyJSON(data) { return legacy }
+            if let legacy = try? legacyJSON(data, relativeTo: documentURL) { return legacy }
             if (try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])) != nil {
                 throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
             }
@@ -120,16 +120,43 @@ public enum RepositoryDecoder {
         guard list != nil || listURL != nil else { throw ReaderFailure(ReaderText.string("No extension list or link was found in the index.")) }
         let result = RepositoryIndex(name: name, signingKey: try root.string(3), extensionListURL: listURL,
                                      extensions: try list.map(decodeList) ?? [], hasEmbeddedList: list != nil)
-        try result.validate()
-        return result
+        return try validated(result, relativeTo: documentURL)
     }
-    public static func decodeExternalList(_ input: Data) throws -> [ExtensionRecord] {
+    public static func decodeExternalList(_ input: Data, relativeTo documentURL: URL? = nil) throws -> [ExtensionRecord] {
         let data = try BoundedGzip.decodeIfNeeded(input)
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         if first == 91 || first == 123 {
-            if let index = try? legacyJSON(data) { return index.extensions }
+            if let index = try? legacyJSON(data, relativeTo: documentURL) { return index.extensions }
         }
-        return try decodeList(data)
+        let index = RepositoryIndex(name: "", signingKey: nil, extensionListURL: nil,
+                                    extensions: try decodeList(data), hasEmbeddedList: true)
+        return try validated(index, relativeTo: documentURL).extensions
+    }
+
+    /// Resolve only repository-owned artifact links. Source website URLs remain
+    /// independently validated; they are not paths beneath a repository server.
+    private static func validated(_ input: RepositoryIndex, relativeTo documentURL: URL?) throws -> RepositoryIndex {
+        var index = input
+        if let documentURL {
+            guard HTTPSPolicy.accepts(documentURL.absoluteString) else {
+                throw ReaderFailure(ReaderText.string("The extension list URL is not secure."))
+            }
+            func resolve(_ text: String?) throws -> String? {
+                guard let text else { return nil }
+                guard !text.isEmpty, let url = URL(string: text, relativeTo: documentURL)?.absoluteURL,
+                      HTTPSPolicy.accepts(url.absoluteString) else {
+                    throw ReaderFailure(ReaderText.string("Invalid extension data."))
+                }
+                return url.absoluteString
+            }
+            index.extensionListURL = try resolve(index.extensionListURL)
+            for i in index.extensions.indices {
+                index.extensions[i].jarURL = try resolve(index.extensions[i].jarURL)
+                index.extensions[i].iconURL = try resolve(index.extensions[i].iconURL)
+            }
+        }
+        try index.validate()
+        return index
     }
     private static func decodeList(_ data: Data) throws -> [ExtensionRecord] {
         let blobs = try PBMessage(data).blobs(1)
@@ -217,21 +244,24 @@ public enum RepositoryDecoder {
             else { id = String(try c.decode(UInt64.self, forKey: .id)) }
         }
     }
-    private static func legacyJSON(_ data: Data) throws -> RepositoryIndex {
+    private static func legacyJSON(_ data: Data, relativeTo documentURL: URL?) throws -> RepositoryIndex {
         let decoder = JSONDecoder()
         let items: [Legacy]
         var name = ReaderText.string("JSON repository")
         var signingKey: String?
         var listURL: String?
+        let hasEmbeddedList: Bool
         if let array = try? decoder.decode([Legacy].self, from: data) {
             items = array
+            hasEmbeddedList = true
         } else {
             let envelope = try decoder.decode(LegacyEnvelope.self, from: data)
             name = envelope.name ?? name
             signingKey = envelope.signingKey
             listURL = envelope.extensionListURL
             items = envelope.extensions ?? envelope.data ?? envelope.items ?? []
-            guard !items.isEmpty || listURL != nil else {
+            hasEmbeddedList = envelope.extensions != nil || envelope.data != nil || envelope.items != nil
+            guard hasEmbeddedList || listURL != nil else {
                 throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
             }
         }
@@ -244,9 +274,8 @@ public enum RepositoryDecoder {
                                    sources: (item.sources ?? []).map { SourceRecord(id: $0.id, name: $0.name ?? "", language: $0.lang ?? "", homeURL: $0.baseUrl) })
         }
         let result = RepositoryIndex(name: name, signingKey: signingKey, extensionListURL: listURL,
-                                     extensions: entries, hasEmbeddedList: !entries.isEmpty)
-        try result.validate()
-        return result
+                                     extensions: entries, hasEmbeddedList: hasEmbeddedList)
+        return try validated(result, relativeTo: documentURL)
     }
 
     /// `index.min.json` is commonly an array, while some mirrors wrap the

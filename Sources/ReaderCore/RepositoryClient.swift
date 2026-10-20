@@ -13,34 +13,23 @@ public struct RepositoryClient: Sendable {
 
     public func fetch(url text: String) async throws -> SavedRepository {
         let base = try Self.validatedURL(text)
-        let (index, _) = try await fetchIndex(base)
+        try Task.checkCancellation()
+        let (index, documentURL) = try await fetchIndex(base)
         var resolved = index
         if !resolved.hasEmbeddedList, let listText = resolved.extensionListURL {
-            guard let listURL = URL(string: listText, relativeTo: base)?.absoluteURL,
+            guard let listURL = URL(string: listText, relativeTo: documentURL)?.absoluteURL,
                   HTTPSPolicy.accepts(listURL.absoluteString) else {
                 throw ReaderFailure(ReaderText.string("The extension list URL is not secure."))
             }
             let listData = try await transport.get(listURL)
+            try Task.checkCancellation()
             resolved.extensions = try await Task.detached(priority: .userInitiated) {
-                try RepositoryDecoder.decodeExternalList(listData)
+                try RepositoryDecoder.decodeExternalList(listData, relativeTo: listURL)
             }.value
+            try Task.checkCancellation()
             resolved.hasEmbeddedList = true
         }
-        let baseDir = base.deletingLastPathComponent()
-        for i in resolved.extensions.indices {
-            if let rawJar = resolved.extensions[i].jarURL, !rawJar.isEmpty, !rawJar.lowercased().hasPrefix("https://") {
-                if let fullJar = URL(string: rawJar, relativeTo: baseDir)?.absoluteString,
-                   HTTPSPolicy.accepts(fullJar) {
-                    resolved.extensions[i].jarURL = fullJar
-                }
-            }
-            if let rawIcon = resolved.extensions[i].iconURL, !rawIcon.isEmpty, !rawIcon.lowercased().hasPrefix("https://") {
-                if let fullIcon = URL(string: rawIcon, relativeTo: baseDir)?.absoluteString,
-                   HTTPSPolicy.accepts(fullIcon) {
-                    resolved.extensions[i].iconURL = fullIcon
-                }
-            }
-        }
+        try Task.checkCancellation()
         try resolved.validate()
         return SavedRepository(url: text, index: resolved)
     }
@@ -67,20 +56,29 @@ public struct RepositoryClient: Sendable {
 
     private func fetchIndex(_ base: URL) async throws -> (RepositoryIndex, URL) {
         let primaryData = try await transport.get(base)
+        try Task.checkCancellation()
         do {
-            let index = try await Self.decodeIndex(primaryData)
+            let index = try await Self.decodeIndex(primaryData, relativeTo: base)
+            try Task.checkCancellation()
             return (index, base)
         } catch let primaryError {
+            if Self.isCancellation(primaryError) { throw primaryError }
+            try Task.checkCancellation()
             // Mirrors frequently publish the same data as index.pb,
             // index.min.json, or repo.json.  Fallback is limited to those
             // sibling names and only occurs after a successful primary HTTP
             // response; network failures are not hidden by extra requests.
             for candidate in Self.fallbackURLs(for: base) {
                 do {
+                    try Task.checkCancellation()
                     let data = try await transport.get(candidate)
-                    let index = try await Self.decodeIndex(data)
+                    try Task.checkCancellation()
+                    let index = try await Self.decodeIndex(data, relativeTo: candidate)
+                    try Task.checkCancellation()
                     return (index, candidate)
                 } catch {
+                    if Self.isCancellation(error) { throw error }
+                    try Task.checkCancellation()
                     continue
                 }
             }
@@ -88,10 +86,14 @@ public struct RepositoryClient: Sendable {
         }
     }
 
-    private static func decodeIndex(_ data: Data) async throws -> RepositoryIndex {
+    private static func decodeIndex(_ data: Data, relativeTo documentURL: URL) async throws -> RepositoryIndex {
         try await Task.detached(priority: .userInitiated) {
-            try RepositoryDecoder.decode(data)
+            try RepositoryDecoder.decode(data, relativeTo: documentURL)
         }.value
+    }
+
+    private static func isCancellation(_ error: any Error) -> Bool {
+        error is CancellationError || (error as? URLError)?.code == .cancelled
     }
 
     private static func fallbackURLs(for base: URL) -> [URL] {
