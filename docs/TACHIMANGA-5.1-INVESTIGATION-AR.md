@@ -49,6 +49,7 @@ flowchart TD
 | [المضيف وJNI](TACHIMANGA-5.1-NATIVE-AR.md) | حل J9، خيارات JVM، MainKt، NativeNet/NativeChannel وGhidra وhooks |
 | [ذاكرة JNI والمهلة](TACHIMANGA-5.1-JNI-AR.md) | ملكية buffers، قفل done والـcallback، timeout الفعلي، JavaChannel وتصحيح اتفاقية C في Ghidra |
 | [Flutter والقارئ](TACHIMANGA-5.1-FLUTTER-AR.md) | snapshot والتفكيك، المستودعات، القنوات، حالة القارئ والمكتبة وفروع iOS 26 |
+| [اقتران الصفحات والتقدم](TACHIMANGA-5.1-READER-PAIRING-AR.md) | فروع فصل الصفحة الأولى والصفحات المنفردة وحدود الفصول وتحديث الأبعاد والتحويل بين فهرس الزوج والصفحة |
 | [خدمات المنصة وTMB](TACHIMANGA-5.1-PLATFORM-AR.md) | MAGIC_PIPE، بنية النسخ والاستعادة، مهام الخلفية، iCloud وWebView |
 | [مراجعة MSL](TACHIMANGA-5.1-REVIEW-AR.md) | حالة مشروعنا وما تغير وما بقي في التنفيذ |
 | [TODO](../TODO.md) و[Changelog](../CHANGELOG.md) | أفعال التنفيذ والتحقق، دون اعتبار التحليل نجاحًا للمحرك |
@@ -86,7 +87,7 @@ flowchart TD
 | كيف تمثل فهارس المستودعات؟ | محسوم للحقول | protobuf الموثق، ومنه resources.jar حقل 501؛ وجود signingKey لا يثبت تحقق توقيع |
 | كيف يصل HTTP إلى iOS؟ | محسوم للمسار الأساسي | OkHttp interceptor → NativeNet → URLSession؛ نسخ buffers والقفل والمهلة موثقة، وتبقى exceptions/OOM وعمر VM حالات تشغيل غير مختبرة |
 | هل فُك Flutter AOT فعليًا؟ | محسوم كتصدير | نعم، assembly وpseudocode وكائنات وقنوات؛ لا مشروع أصلي قابل للبناء |
-| كيف تدير الواجهة القارئ والمكتبة؟ | جزئي | مستودعات/providers/actions والتقدم والقص والعرض المزدوج موثقة؛ كل إيماءة وحدود اقتران الصفحات تحتاج تحققًا |
+| كيف تدير الواجهة القارئ والمكتبة؟ | جزئي | حُسمت فروع الاقتران المحددة والتقدم وفصل الصفحة الأولى من 13 طريقة؛ تبقى الإيماءات والقص وكل فروع RTL والتحميل والمقارنة البصرية |
 | هل `.tmb` هي `.tachibk`؟ | محسوم ساكنًا | لا؛ TMB ZIP متداخل وDB/JAR/prefs، والآخر GZIP/protobuf |
 | كيف تستمر التنزيلات بالخلفية؟ | جزئي | طابور Java + NativeChannel + BGContinuedProcessingTask؛ قبول النظام والاستئناف بعد الإنهاء غير مُشاهد |
 | كيف يربط التتبع ويحل تقدم القراءة؟ | محسوم للفروع المفحوصة | refresh العادي مقابل المحسّن؛ remote/local وWAITING_APPLY؛ التجميع والكسور والنسخ؛ backfill وKomga؛ BOUND لا يضمن نجاح مزامنة الفصول |

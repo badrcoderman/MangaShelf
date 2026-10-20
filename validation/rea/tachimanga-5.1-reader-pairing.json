@@ -1,0 +1,951 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_controller_reader_controller_v2.dart": "5dda26b754c51a90bd7b7716d45d1d714b9a29c5264405e05504f17aef6a5beb",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_mode_double_page_reader_mode_v2.dart": "0ab54e0f2f7d09ee20b987fcab32afc6718eec92171ffbd517a97d8a086aa010",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_controller_reader_setting_controller.dart": "3cd0aec428aa8949aa7abb666320fffda9800087f3d932ba38aa9455686c0bc8",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x13e8": "#",
+    "0x18e18": "/manga",
+    "0x1a880": "/chapter/",
+    "0x260f8": "/page/",
+    "0x32bd0": "[Reader2] skipFirstPage:",
+    "0x32bd8": ", singlePageSet:"
+  },
+  "scope": "Static reader pairing and progress contracts; no reference code executed",
+  "methods": [
+    {
+      "address": "0x4d8eac",
+      "name": "ReaderSinglePageSetWithMangeId_build",
+      "purpose": "single-page set initialization",
+      "bytes": 152,
+      "instructions": 38,
+      "code_sha256": "9bbbe5c94386fc965cad39b5d4e5694c87132f99c90728a1e76cf64ddecdfbc3",
+      "internal_branches": 4,
+      "direct_calls": [
+        {
+          "at": "0x4d8edc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x4d8ee8",
+          "target": "0x4d428"
+        },
+        {
+          "at": "0x4d8f18",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x4d8f3c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x501f9c",
+      "name": "ReaderListData_doublePageIndexToIndex",
+      "purpose": "chapter/page to spread index",
+      "bytes": 160,
+      "instructions": 40,
+      "code_sha256": "01e96eb0116505169b585ac3c5360c3f2c12cde05aad4c58eee54f8c42e1f69b",
+      "internal_branches": 4,
+      "direct_calls": [
+        {
+          "at": "0x501fc8",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x501fd8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x501ff4",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x502014",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x502024",
+          "target": "0x16e704"
+        },
+        {
+          "at": "0x502034",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x50203c",
+      "name": "ReaderListData_anon_closure_2",
+      "purpose": "spread identity predicate",
+      "bytes": 364,
+      "instructions": 91,
+      "code_sha256": "2528e5755b223dbd9b9500461659d6b9bff39fcdd5d796dbe45c7130fc1dadaa",
+      "internal_branches": 24,
+      "direct_calls": [
+        {
+          "at": "0x5020bc",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x502124",
+          "target": "0x87f98c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x502648",
+      "name": "DoublePageReaderModeV2_buildDoublePageWidget",
+      "purpose": "single or paired page presentation",
+      "bytes": 1200,
+      "instructions": 300,
+      "code_sha256": "8ca54573de052949e0f2ffcc4280198a186a38790e7365ae2f0e151a9d9f37f2",
+      "internal_branches": 19,
+      "direct_calls": [
+        {
+          "at": "0x5026c8",
+          "target": "0x502af8"
+        },
+        {
+          "at": "0x5026e4",
+          "target": "0x7c938"
+        },
+        {
+          "at": "0x502734",
+          "target": "0x4ff43c"
+        },
+        {
+          "at": "0x5027f8",
+          "target": "0x502af8"
+        },
+        {
+          "at": "0x50285c",
+          "target": "0x502af8"
+        },
+        {
+          "at": "0x502880",
+          "target": "0x7c938"
+        },
+        {
+          "at": "0x5028ec",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x50291c",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x50294c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x50296c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5029ac",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x5029dc",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x502a0c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x502a2c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x502a5c",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x502ab8",
+          "target": "0x4ff43c"
+        },
+        {
+          "at": "0x502af0",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 2
+    },
+    {
+      "address": "0x504500",
+      "name": "ReaderListData_resolvePageListIndexForDoublePage",
+      "purpose": "spread to flat-page progress index",
+      "bytes": 312,
+      "instructions": 78,
+      "code_sha256": "63ac4d54732e646d8039af7914987c888137da90173dc60dea043c68b827a406",
+      "internal_branches": 18,
+      "direct_calls": [
+        {
+          "at": "0x504628",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x504630",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5046b8",
+      "name": "DoublePageReaderModeV2_anon_closure_22",
+      "purpose": "image-size callback arguments",
+      "bytes": 84,
+      "instructions": 21,
+      "code_sha256": "ff7c04cba71818d0321407fcb916e91acd7e2e0b48d5455c589b6be5bbe876be",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x5046f0",
+          "target": "0x50470c"
+        },
+        {
+          "at": "0x504704",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x50470c",
+      "name": "DoublePageReaderModeV2_onImageSizeChange",
+      "purpose": "landscape or square image detection",
+      "bytes": 1072,
+      "instructions": 268,
+      "code_sha256": "e9327e38c8e4d31ab60eaf2680bdfa51ff4433250841da6b463d3d0612712308",
+      "internal_branches": 26,
+      "direct_calls": [
+        {
+          "at": "0x504740",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5047d4",
+          "target": "0x1528c"
+        },
+        {
+          "at": "0x5047e4",
+          "target": "0x4ed820"
+        },
+        {
+          "at": "0x504800",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x50488c",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x504930",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x504970",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5049bc",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x5049e0",
+          "target": "0x1e218"
+        },
+        {
+          "at": "0x504a74",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x504a88",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x504ab0",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x504ac0",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x504ae0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x504aec",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x504af8",
+          "target": "0x1e93b0"
+        },
+        {
+          "at": "0x504b10",
+          "target": "0x16794"
+        },
+        {
+          "at": "0x504b24",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x504b2c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x504b34",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 4
+    },
+    {
+      "address": "0x504b3c",
+      "name": "DoublePageReaderModeV2_anon_closure_23",
+      "purpose": "deferred single-page set update",
+      "bytes": 144,
+      "instructions": 36,
+      "code_sha256": "08f9fc99c28dfd19c7877a34dc3ad9bfd89b4572b18d6c5a3946b9154bdf59da",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x504b84",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x504ba0",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x504bb0",
+          "target": "0x504bcc"
+        },
+        {
+          "at": "0x504bc4",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x504bcc",
+      "name": "ReaderSinglePageSetWithMangeId_add",
+      "purpose": "copy and publish single-page set",
+      "bytes": 148,
+      "instructions": 37,
+      "code_sha256": "712779a2e29d8fb387c28b04dce032f8029318b5fe31b759f32ddebd74a65c5a",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x504c00",
+          "target": "0x1215ac"
+        },
+        {
+          "at": "0x504c0c",
+          "target": "0x11aab8"
+        },
+        {
+          "at": "0x504c18",
+          "target": "0x6d520"
+        },
+        {
+          "at": "0x504c28",
+          "target": "0x8785e8"
+        },
+        {
+          "at": "0x504c38",
+          "target": "0x124764"
+        },
+        {
+          "at": "0x504c4c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x504c5c",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x8617e8",
+      "name": "ReaderListStateWithMangeId_build",
+      "purpose": "reader list dependencies",
+      "bytes": 492,
+      "instructions": 123,
+      "code_sha256": "1e519bdf0c57c5207a983290410866a5a731705721093bc4dfb82c599ed76759",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x861818",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x861834",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x86183c",
+          "target": "0x12c154"
+        },
+        {
+          "at": "0x861864",
+          "target": "0x50d76c"
+        },
+        {
+          "at": "0x861880",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x8618a4",
+          "target": "0x4f1df8"
+        },
+        {
+          "at": "0x8618c0",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x8618e4",
+          "target": "0x50810c"
+        },
+        {
+          "at": "0x8618fc",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x861920",
+          "target": "0x4d3e4c"
+        },
+        {
+          "at": "0x86193c",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x86194c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x861990",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x861998",
+          "target": "0x12c154"
+        },
+        {
+          "at": "0x8619b0",
+          "target": "0x8619d4"
+        },
+        {
+          "at": "0x8619c0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8619d0",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x8619d4",
+      "name": "ReaderListStateWithMangeId_buildListData",
+      "purpose": "chapter-scoped page pairing",
+      "bytes": 2860,
+      "instructions": 715,
+      "code_sha256": "ef3469ea77176ba173ea5b6e8fc6b9ca415ae7c4d213650dfa65547e419356ba",
+      "internal_branches": 85,
+      "direct_calls": [
+        {
+          "at": "0x861a30",
+          "target": "0x664ac"
+        },
+        {
+          "at": "0x861a54",
+          "target": "0x1eeb14"
+        },
+        {
+          "at": "0x861a60",
+          "target": "0x4d4580"
+        },
+        {
+          "at": "0x861a70",
+          "target": "0x16a774"
+        },
+        {
+          "at": "0x861a80",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x861bd0",
+          "target": "0x39f900"
+        },
+        {
+          "at": "0x861c00",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x861c5c",
+          "target": "0x862518"
+        },
+        {
+          "at": "0x861cb0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x861cf8",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x861d4c",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x861e90",
+          "target": "0x39f900"
+        },
+        {
+          "at": "0x861ec0",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x861f1c",
+          "target": "0x862518"
+        },
+        {
+          "at": "0x861f9c",
+          "target": "0x39f900"
+        },
+        {
+          "at": "0x861fcc",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x862014",
+          "target": "0x862518"
+        },
+        {
+          "at": "0x86206c",
+          "target": "0x86250c"
+        },
+        {
+          "at": "0x8620ac",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x8620f0",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x862128",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x86214c",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x86215c",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x862198",
+          "target": "0x86250c"
+        },
+        {
+          "at": "0x8621dc",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x862220",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x862258",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x86227c",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x86228c",
+          "target": "0x14d2c"
+        },
+        {
+          "at": "0x8622c8",
+          "target": "0x86250c"
+        },
+        {
+          "at": "0x86230c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x862350",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x862370",
+          "target": "0x86250c"
+        },
+        {
+          "at": "0x8623bc",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x862400",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x862450",
+          "target": "0x862500"
+        },
+        {
+          "at": "0x862494",
+          "target": "0x16794"
+        },
+        {
+          "at": "0x8624a8",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x8624b4",
+          "target": "0x16794"
+        },
+        {
+          "at": "0x8624c8",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x8624d0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8624d8",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8624e0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8624e8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x8624ec",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8624f4",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8624fc",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 8
+    },
+    {
+      "address": "0x8634f8",
+      "name": "ReaderPageLayoutSkipFirstWithMangaId_build",
+      "purpose": "skip-first preference precedence",
+      "bytes": 308,
+      "instructions": 77,
+      "code_sha256": "07d79a3b758e632bfaeb95c187ac3301609f6c865ee99364b4f488dc722999ea",
+      "internal_branches": 12,
+      "direct_calls": [
+        {
+          "at": "0x863534",
+          "target": "0x3fd58c"
+        },
+        {
+          "at": "0x863550",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x863564",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x863598",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x8635b4",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x863618",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x863628",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x8636b0",
+      "name": "InvertDoublePagesWithMangaId_build",
+      "purpose": "invert-pair preference precedence",
+      "bytes": 308,
+      "instructions": 77,
+      "code_sha256": "d24a6fd3c5056e31fb418294717ae98d050611d42615960b074e75b471322ef9",
+      "internal_branches": 12,
+      "direct_calls": [
+        {
+          "at": "0x8636ec",
+          "target": "0x3fd58c"
+        },
+        {
+          "at": "0x863708",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x86371c",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x863750",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x86376c",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x8637d0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x8637e0",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x8618a4",
+      "meaning": "single-page-set provider",
+      "verified": true
+    },
+    {
+      "at": "0x8618e4",
+      "meaning": "skip-first provider",
+      "verified": true
+    },
+    {
+      "at": "0x8619b0",
+      "meaning": "pairing inputs",
+      "verified": true
+    },
+    {
+      "at": "0x861a70",
+      "meaning": "sort chapters before flattening",
+      "verified": true
+    },
+    {
+      "at": "0x861f58",
+      "meaning": "no second page past chapter end",
+      "verified": true
+    },
+    {
+      "at": "0x862058",
+      "meaning": "first-page-only condition",
+      "verified": true
+    },
+    {
+      "at": "0x862060",
+      "meaning": "skip-first boolean",
+      "verified": true
+    },
+    {
+      "at": "0x862188",
+      "meaning": "current page membership",
+      "verified": true
+    },
+    {
+      "at": "0x86218c",
+      "meaning": "current not forced single",
+      "verified": true
+    },
+    {
+      "at": "0x862240",
+      "meaning": "missing second page",
+      "verified": true
+    },
+    {
+      "at": "0x8622b8",
+      "meaning": "next page membership",
+      "verified": true
+    },
+    {
+      "at": "0x8622bc",
+      "meaning": "next not forced single",
+      "verified": true
+    },
+    {
+      "at": "0x862404",
+      "meaning": "pair consumes next page",
+      "verified": true
+    },
+    {
+      "at": "0x862408",
+      "meaning": "advance chapter page cursor",
+      "verified": true
+    },
+    {
+      "at": "0x502024",
+      "meaning": "indexWhere over spreads",
+      "verified": true
+    },
+    {
+      "at": "0x50206c",
+      "meaning": "compare first page chapter",
+      "verified": true
+    },
+    {
+      "at": "0x5020cc",
+      "meaning": "compare second page chapter",
+      "verified": true
+    },
+    {
+      "at": "0x504568",
+      "meaning": "one or two pages per spread",
+      "verified": true
+    },
+    {
+      "at": "0x504588",
+      "meaning": "preserve old page within same spread",
+      "verified": true
+    },
+    {
+      "at": "0x504618",
+      "meaning": "last flat page within chosen spread",
+      "verified": true
+    },
+    {
+      "at": "0x50268c",
+      "meaning": "full-width single versus two slots",
+      "verified": true
+    },
+    {
+      "at": "0x50277c",
+      "meaning": "swap pair presentation",
+      "verified": true
+    },
+    {
+      "at": "0x5027ac",
+      "meaning": "empty first slot",
+      "verified": true
+    },
+    {
+      "at": "0x502810",
+      "meaning": "empty second slot",
+      "verified": true
+    },
+    {
+      "at": "0x504770",
+      "meaning": "image dimension ratio",
+      "verified": true
+    },
+    {
+      "at": "0x504774",
+      "meaning": "ratio threshold one",
+      "verified": true
+    },
+    {
+      "at": "0x504784",
+      "meaning": "ratio greater than or equal",
+      "verified": true
+    },
+    {
+      "at": "0x504788",
+      "meaning": "landscape or square continues",
+      "verified": true
+    },
+    {
+      "at": "0x5047a8",
+      "meaning": "reader data availability",
+      "verified": true
+    },
+    {
+      "at": "0x5049e0",
+      "meaning": "match generated page URL suffix",
+      "verified": true
+    },
+    {
+      "at": "0x504ac0",
+      "meaning": "chapter hash page key",
+      "verified": true
+    },
+    {
+      "at": "0x504af8",
+      "meaning": "schedule microtask",
+      "verified": true
+    },
+    {
+      "at": "0x504bb0",
+      "meaning": "publish detected single page",
+      "verified": true
+    },
+    {
+      "at": "0x504c18",
+      "meaning": "copy set",
+      "verified": true
+    },
+    {
+      "at": "0x504c28",
+      "meaning": "add key",
+      "verified": true
+    },
+    {
+      "at": "0x504c38",
+      "meaning": "publish state",
+      "verified": true
+    },
+    {
+      "at": "0x8635fc",
+      "meaning": "title skip-first overrides global",
+      "verified": true
+    },
+    {
+      "at": "0x8637b4",
+      "meaning": "title inversion overrides global",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 13,
+    "instructions": 1901,
+    "code_bytes": 7604,
+    "anchors": 38
+  },
+  "limits": [
+    "No runtime or UI equivalence test",
+    "Not original source recovery",
+    "No proof for all gestures or all indirect-call targets",
+    "No production reader changes in this analysis step"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "path": "/home/user/Documents/Managa-app/Tachimanga-5.1-analysis-complete-v2.zip",
+  "bytes": 106735393,
+  "sha256": "efc797de6b6eb73a22df2c3c21b23ce8ba1e764ee3ad783970875e080c982718",
+  "members": 4602,
+  "crc_and_manifest_members_verified": 4601,
+  "target_executed": false,
+  "original_executable_carriers_included": false,
+  "scope": "Static investigation with scoped reader follow-up; not runtime or visual parity proof"
+}

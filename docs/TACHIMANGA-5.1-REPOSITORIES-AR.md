@@ -70,6 +70,35 @@ attribute بقارئ class مستقل، وتُحقق من أن كل هدف فر�
 1203..1207، وبقية Exception تُحوّل إلى Result.failure عند 1208..1225.
 الترتيب مهم: وجود embedded list يجعل طلب ملف list منفصل غير لازم.
 
+### أشكال JSON وهوية المستودع
+
+قورنت نماذج NetworkExtensionStore وNetworkLegacyExtensionRepo وExtensionList
+ومحوّلاتها إلى نموذج المجال. الحقول الأساسية ذات الصلة بتنفيذ MSL:
+
+| الشكل | metadata | القائمة والموارد |
+|---|---|---|
+| حديث | name وbadgeLabel وsigningKey وcontact | extensionList ككائن يحوي extensions، أو extensionListUrl منفصل |
+| عنصر حديث | name وpackageName وversionCode وversionName وextensionLib | resources.jarUrl وresources.iconUrl وresources.apkUrl؛ sources تحوي id/name/language/homeUrl |
+| metadata قديمة | meta.name وmeta.shortName وmeta.website وmeta.signingKeyFingerprint | index_v2 اختياري؛ القائمة القديمة index.min.json بجوار repo.json |
+| قائمة قديمة | مصفوفة عناصر legacy، ويمكن حفظها أثناء جلب metadata | تعاد للاستعمال في getExtensions دون تنزيل المصفوفة ثانية |
+
+يمرر المحوّل signingKey الحديث وmeta.signingKeyFingerprint القديم إلى حقل
+هوية المجال نفسه. هذه قيمة metadata معتمة في نموذج MSL الحالي؛ لا يثبت
+تشابه الحقل أن البصمة مفتاح تحقق تشفيري. استمرارية القيمة بين طلبين لا تعوض
+التحقق من الناشر أو توقيع الحزمة.
+
+معرف Source هو Long ذو إشارة في نموذج المرجع، ويجب أن تتطابق هويته بين
+JSON وprotobuf؛ العدد ذو البتات الأربعة والستين كلها 1 يمثّل -1 عند تفسيره
+كـLong. لا يُحوّل sourceId إلى packageName، ولا يُختزل versionCode إلى عدد
+صحيح من 32 بت في قارئ MSL.
+
+نُفذ جزء جلب metadata في MSL عند `4ebb7e2`؛ اجتازت الحالات الأربع عشرة
+الجديدة ضمن **86 اختبار Swift** في
+[Actions 39490806730](https://github.com/badrcoderman/MangaShelf/actions/runs/39490806730)،
+مع بناء IPA ARM64. تشمل الحالات التحويل مرة واحدة و404 المخصص وإعادة استعمال
+القائمة والروابط النسبية بعد HTTP redirect وتغيّر هوية metadata. هذه حالات
+مصطنعة لعقد القراءة، ولا تثبت سياسات CDN أو نجاح إضافة فعلية على iPhone.
+
 ## GitHub وjsDelivr: نوع آخر من fallback
 
 `JsDelivrFallback.run` يملك Key من owner وScene، ومجموعة fallbackKeys في الذاكرة.

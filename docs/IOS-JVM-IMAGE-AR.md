@@ -69,6 +69,15 @@ JdkNativeCompilation.gmk أنه اختار GNU origin لـiOS. أضيفت معا
 الفرع، وفحص منفصل لاستبعاد خيار noexecstack الخاص بـELF. يبقى نجاح الصورة
 مرهونًا بالمحاولة التالية.
 
+انتهت المحاولة
+[39486371640](https://github.com/badrcoderman/MangaShelf/actions/runs/39486371640)
+عند `44856f4` بالفشل كذلك. تجاوز الربط أخطاء soname وorigin السابقة، ثم
+فشل libjava.dylib عند رموز CoreFoundation المستعملة في
+HostLocaleProviderAdapter_md، ومنها CFArrayGetCount ورموز تنسيق الأرقام.
+هذه مشكلة ربط جديدة تحتاج مراجعة إعداد java.base على iOS؛ لم تُبن صورة
+Java كاملة أو IPA فحص المحرك من هذا التشغيل، ولا يُستعمل artifact الفشل
+كإثبات تنفيذ.
+
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.
 2. إنتاج IPA منفصلة غير موقعة لتجربة VM وJAR مؤلف في المشروع، وفحص محتوياتها.

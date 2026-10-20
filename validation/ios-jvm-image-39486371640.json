@@ -1,0 +1,21 @@
+{
+  "run_id": 39486371640,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39486371640",
+  "source_commit": "44856f436d5473ffb3eab33d36c1e822078fd25d",
+  "conclusion": "failure",
+  "host_jdk_image_built": true,
+  "ios_static_libraries_built": true,
+  "ios_complete_java_image_built": false,
+  "failing_target": "legacy-jre-image / java.base libjava.dylib",
+  "cause": "Unresolved CoreFoundation symbols in HostLocaleProviderAdapter_md",
+  "examples": [
+    "CFArrayGetCount",
+    "kCFNumberFormatterPercentSymbol"
+  ],
+  "target_vm_executed": false,
+  "iphone_probe_ipa_built": false,
+  "failed_artifact_used_for_device": false,
+  "log_file": "build/ios-jvm-failed-39486371640.log",
+  "log_sha256": "8a683c62c519926c652aa3785a00c746fc6a56ebecde43c5e1bf9c1e8ab57f86",
+  "scope": "Terminal CI evidence. Static libraries and host tools are separate from complete Java image or iPhone execution proof."
+}
