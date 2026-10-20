@@ -58,5 +58,6 @@ jobs:
             build/ios-jvm/
             runtime-src/mobile/build/*/configure.log
             runtime-src/mobile/build/*/make-support/failure-summary
+            runtime-src/mobile/build/*/make-support/failure-logs/
           if-no-files-found: warn
           retention-days: 14

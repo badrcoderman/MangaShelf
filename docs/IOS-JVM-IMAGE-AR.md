@@ -18,12 +18,14 @@ ld: unknown options: -soname=libjvm.so
 
 ## التصحيح
 
-1. `prepare-ios-jvm-source.py` يتحقق من SHA-256 لأربعة ملفات من مراجعة
+1. `prepare-ios-jvm-source.py` يتحقق حاليًا من SHA-256 لستة ملفات من مراجعة
    OpenJDK Mobile المثبتة **قبل أي كتابة**، ثم يطبق تعريفات Zero السابقة
    وإصلاحات Apple التالية:
    - امتداد المكتبة الديناميكية `.dylib` بدل اختيار `.so` الافتراضي لـiOS.
    - خيارات clang من نوع `-dynamiclib`.
    - اسم المكتبة عبر `-install_name,@rpath/...` بدل `-soname`.
+   - قواعد origin للمكتبات والبرامج عبر `@loader_path` بدل GNU/ELF، واستبعاد
+     خيارات ELF مثل `-z,noexecstack` من مسار Apple.
 2. يُبنى JDK أدوات المضيف **من المصدر المثبت نفسه** بإعداد macOS مستقل، ثم
    يمرر إلى configure الخاص بـiOS عبر `--with-build-jdk`. هذا يمنع الاعتماد
    على buildjdk-spec الذي يرث بعض قيم منصة الهدف في هذه المراجعة.
@@ -40,13 +42,14 @@ ld: unknown options: -soname=libjvm.so
 
 ## التحقق الذي نُفّذ
 
-- نُزّلت الملفات الأربعة كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
+- نُزّلت الملفات الستة كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
   سكربت التحضير. لم نطبق الإصلاح على النسخة المحلية المعدلة سابقًا.
 - في مجلد مؤقت: رفض مصدر معدل قبل تغيير بقية الملفات، ثم تطبيق الإصلاح على
   المدخلات الأصلية، ورفض تكرار التطبيق.
 - `verify-ios-jvm-source.py` قيّم فروع shell وMake الفعلية لاختيار الامتداد
   وخيارات المكتبة واسمها على iOS وmacOS وLinux؛ حالات Apple تختار install_name
-  وdynamiclib، وLinux يحتفظ بخيار soname.
+  وdynamiclib وloader_path دون خيارات ELF، وLinux يحتفظ بخيارات soname/origin
+  وnoexecstack. فُحص noexecstack مع تفعيل نتيجة probe حتى لا تخفيه قيمة فارغة.
 - اجتاز سكربت البناء `bash -n`.
 
 النتيجة المحدودة: [ios-jvm-source-fixes.json](../validation/ios-jvm-source-fixes.json).
@@ -58,6 +61,13 @@ ld: unknown options: -soname=libjvm.so
 اجتازت تطبيق الإصلاح وفحص خيارات الربط، ثم رفض configure خيار headless-only
 للمضيف macOS قبل بدء تجميع JDK المضيف. أزيل الخيار من إعداد المضيف؛ لا تُسجل
 المحاولة نجاحًا لبناء الصورة.
+
+في [39480348541](https://github.com/badrcoderman/MangaShelf/actions/runs/39480348541)
+نجح بناء أدوات المضيف من المصدر نفسه، وبدأ بناء مكتبات وصورة iOS، ثم توقف
+ربط libjava/libverify عند `ld: unknown options: -z`. سبب الفرع المفحوص في
+JdkNativeCompilation.gmk أنه اختار GNU origin لـiOS. أضيفت معالجة Apple لهذا
+الفرع، وفحص منفصل لاستبعاد خيار noexecstack الخاص بـELF. يبقى نجاح الصورة
+مرهونًا بالمحاولة التالية.
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

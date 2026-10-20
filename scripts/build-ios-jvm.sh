@@ -16,6 +16,7 @@ python3 scripts/prepare-ios-jvm-source.py "$mobile"
 python3 scripts/verify-ios-jvm-source.py "$mobile" > "$out/logs/source-link-flags.json"
 git -C "$mobile" diff -- src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp \
   make/autoconf/toolchain.m4 make/autoconf/flags-cflags.m4 make/common/native/Link.gmk \
+  make/common/JdkNativeCompilation.gmk make/autoconf/flags-ldflags.m4 \
   > "$out/logs/source-patch.diff"
 cp runtime-native/ios_jvm_compat.cpp "$out/logs/ios_jvm_compat.cpp"
 sdk="$(xcrun --sdk iphoneos --show-sdk-path)"
@@ -101,6 +102,7 @@ manifest = {
     'compiler': subprocess.check_output(['xcrun', '--sdk', 'iphoneos', 'clang', '--version'], text=True).strip(),
     'zero_wx_source_fix': True, 'java_modules_present': True, 'execution_proven': False,
     'darwin_dynamic_library_fix': True, 'build_jdk': 'same-source native macOS host tools',
+    'darwin_origin_fix': True,
     'sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
 }
 (root / 'build-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')

@@ -9,6 +9,8 @@ PINNED_FILES = {
     "make/autoconf/toolchain.m4": "699cc380f9d7a4ba5706f5110873be142fb0832a06f7343549f3b1dead05288a",
     "make/autoconf/flags-cflags.m4": "1411da4d9dc6def3d2e9e97ff28a3aaa0e4d4b0915b0d3315a2a8afc5dd38cbc",
     "make/common/native/Link.gmk": "0c6a92cf88b5d951435775faf360b66e94722bb79433bbcc3ed6df31cfe07896",
+    "make/common/JdkNativeCompilation.gmk": "6d85c79bb814444d2a032a14aacab63081685390bf104e87090d64230bf1a164",
+    "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
 }
 
 def prepare(source_root, project_root):
@@ -43,6 +45,14 @@ def prepare(source_root, project_root):
         "make/common/native/Link.gmk": (
             b'ifeq ($(call isTargetOs, macosx), true)\n    SetSharedLibraryName',
             b'ifeq ($(call isTargetOs, macosx ios), true)\n    SetSharedLibraryName',
+        ),
+        "make/common/JdkNativeCompilation.gmk": (
+            b'ifeq ($(call isTargetOs, macosx), true)\n    SetExecutableOrigin',
+            b'ifeq ($(call isTargetOs, macosx ios), true)\n    SetExecutableOrigin',
+        ),
+        "make/autoconf/flags-ldflags.m4": (
+            b'&& test "x$OPENJDK_TARGET_OS" != xaix; then\n    if test -n "$HAS_NOEXECSTACK"; then',
+            b'&& test "x$OPENJDK_TARGET_OS" != xaix \\\n      && test "x$OPENJDK_TARGET_OS" != xmacosx \\\n      && test "x$OPENJDK_TARGET_OS" != xios; then\n    if test -n "$HAS_NOEXECSTACK"; then',
         ),
     }
     for name, (before, after) in replacements.items():
