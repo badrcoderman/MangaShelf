@@ -307,7 +307,7 @@ final class ExtensionEngineTests: XCTestCase {
             if actionStr == "ping" {
                 let response = "{\"status\":\"custom-pong\"}"
                 if response.utf8.count < capacity {
-                    response.withCString { ptr in
+                    _ = response.withCString { ptr in
                         strcpy(output, ptr)
                     }
                     needed?.pointee = response.utf8.count

@@ -9,11 +9,12 @@ public actor OnlineStore {
         self.root = root; metadata = root.appendingPathComponent("online.json")
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         if FileManager.default.fileExists(atPath: metadata.path) {
-            state = try JSONDecoder().decode(OnlineState.self, from: LibraryStore.readBounded(metadata, maximum: 64 * 1024 * 1024))
-            try state.validate()
-            for index in state.downloads.indices where state.downloads[index].phase == .downloading || state.downloads[index].phase == .queued {
-                state.downloads[index].phase = .paused
+            var restored = try JSONDecoder().decode(OnlineState.self, from: LibraryStore.readBounded(metadata, maximum: 64 * 1024 * 1024))
+            try restored.validate()
+            for index in restored.downloads.indices where restored.downloads[index].phase == .downloading || restored.downloads[index].phase == .queued {
+                restored.downloads[index].phase = .paused
             }
+            state = restored
         } else { state = OnlineState() }
     }
     public func snapshot() -> OnlineState { state }

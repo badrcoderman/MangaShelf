@@ -162,7 +162,7 @@ struct ReaderView: View {
             do {
                 let url = try await model.url(for: book)
                 let opened = try await Task.detached(priority: .userInitiated) { try ComicSession(url: url) }.value
-                let pages = await opened.pages
+                let pages = opened.pages
                 guard pages.count == book.pageCount else { throw ReaderFailure(L10n.string("The book file has changed; old progress cannot be applied.")) }
                 pageCount = pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount-1)
                 session = opened
