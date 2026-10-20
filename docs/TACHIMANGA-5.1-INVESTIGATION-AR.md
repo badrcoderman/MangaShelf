@@ -46,6 +46,7 @@ flowchart TD
 | [Java والإضافات](TACHIMANGA-5.1-JAVA-AR.md) | الإقلاع والخادم والـAPI، SourceFactory، تركيب JAR، protobuf وDB والتنزيل والنسخ |
 | [متابعة المستودعات](TACHIMANGA-5.1-REPOSITORIES-AR.md) | فروع coroutine من bytecode، الضغط والتحويل والـfallback، حدود إثبات التوقيع وحلقة التنزيل |
 | [المضيف وJNI](TACHIMANGA-5.1-NATIVE-AR.md) | حل J9، خيارات JVM، MainKt، NativeNet/NativeChannel وGhidra وhooks |
+| [ذاكرة JNI والمهلة](TACHIMANGA-5.1-JNI-AR.md) | ملكية buffers، قفل done والـcallback، timeout الفعلي، JavaChannel وتصحيح اتفاقية C في Ghidra |
 | [Flutter والقارئ](TACHIMANGA-5.1-FLUTTER-AR.md) | snapshot والتفكيك، المستودعات، القنوات، حالة القارئ والمكتبة وفروع iOS 26 |
 | [خدمات المنصة وTMB](TACHIMANGA-5.1-PLATFORM-AR.md) | MAGIC_PIPE، بنية النسخ والاستعادة، مهام الخلفية، iCloud وWebView |
 | [مراجعة MSL](TACHIMANGA-5.1-REVIEW-AR.md) | حالة مشروعنا وما تغير وما بقي في التنفيذ |

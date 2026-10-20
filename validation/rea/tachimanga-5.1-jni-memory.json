@@ -1,0 +1,694 @@
+{
+  "target_executed": false,
+  "input_sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08",
+  "reference": {
+    "url": "https://raw.githubusercontent.com/openjdk/jdk17u/jdk-17.0.15%2B6/src/java.base/share/native/include/jni.h",
+    "header_sha256": "1266aea5b9f5d5db1cb6f8e5c6c43cfa7f80bc4f72d7fe42c6131bb939dc70f4",
+    "slots": 234,
+    "pointer_bytes": 8,
+    "local_header_sha256": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
+    "shared_slot_names_equal": true
+  },
+  "functions": [
+    {
+      "entry": "0x100008de8",
+      "end_exclusive": "0x100008e9c",
+      "label": "ByteArrayToUTF8",
+      "calls": [
+        {
+          "site": "0x100008e10",
+          "slot_load": "0x100008e08",
+          "byte_offset": 1368,
+          "slot_index": 171,
+          "name": "GetArrayLength",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x100008e48",
+          "slot_load": "0x100008e30",
+          "byte_offset": 1600,
+          "slot_index": 200,
+          "name": "GetByteArrayRegion",
+          "env_argument_confirmed_by_linear_aliases": true
+        }
+      ],
+      "assembly_sha256": "ac2965a476450236d30365b5b40385b650a7dfd54ed0fdebc8db42d9fa8a0056"
+    },
+    {
+      "entry": "0x10004e80c",
+      "end_exclusive": "0x10004eca0",
+      "label": "ParseNetRequest",
+      "calls": [
+        {
+          "site": "0x10004e854",
+          "slot_load": "0x10004e850",
+          "byte_offset": 1368,
+          "slot_index": 171,
+          "name": "GetArrayLength",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004e88c",
+          "slot_load": "0x10004e874",
+          "byte_offset": 1600,
+          "slot_index": 200,
+          "name": "GetByteArrayRegion",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004eaac",
+          "slot_load": "0x10004eaa0",
+          "byte_offset": 248,
+          "slot_index": 31,
+          "name": "GetObjectClass",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004ead0",
+          "slot_load": "0x10004eab8",
+          "byte_offset": 264,
+          "slot_index": 33,
+          "name": "GetMethodID",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004eae8",
+          "slot_load": "0x10004eadc",
+          "byte_offset": 272,
+          "slot_index": 34,
+          "name": "CallObjectMethod",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004eb00",
+          "slot_load": "0x10004eaf4",
+          "byte_offset": 1368,
+          "slot_index": 171,
+          "name": "GetArrayLength",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004eb1c",
+          "slot_load": "0x10004eb0c",
+          "byte_offset": 1472,
+          "slot_index": 184,
+          "name": "GetByteArrayElements",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004eb98",
+          "slot_load": "0x10004eb84",
+          "byte_offset": 1536,
+          "slot_index": 192,
+          "name": "ReleaseByteArrayElements",
+          "env_argument_confirmed_by_linear_aliases": true
+        }
+      ],
+      "assembly_sha256": "3a7e4e9089922dbe23b3bc8cf5ed8485d6fdebb8fdac1538bf63987252f6d786"
+    },
+    {
+      "entry": "0x10004eca0",
+      "end_exclusive": "0x10004f1c8",
+      "label": "BuildNetResponse",
+      "calls": [
+        {
+          "site": "0x10004ed1c",
+          "slot_load": "0x10004ed0c",
+          "byte_offset": 48,
+          "slot_index": 6,
+          "name": "FindClass",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004ed38",
+          "slot_load": "0x10004ed28",
+          "byte_offset": 1376,
+          "slot_index": 172,
+          "name": "NewObjectArray",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f084",
+          "slot_load": "0x10004f074",
+          "byte_offset": 1408,
+          "slot_index": 176,
+          "name": "NewByteArray",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f0c4",
+          "slot_load": "0x10004f094",
+          "byte_offset": 1664,
+          "slot_index": 208,
+          "name": "SetByteArrayRegion",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f0e4",
+          "slot_load": "0x10004f0d0",
+          "byte_offset": 1392,
+          "slot_index": 174,
+          "name": "SetObjectArrayElement",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f104",
+          "slot_load": "0x10004f0f0",
+          "byte_offset": 1408,
+          "slot_index": 176,
+          "name": "NewByteArray",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f144",
+          "slot_load": "0x10004f114",
+          "byte_offset": 1664,
+          "slot_index": 208,
+          "name": "SetByteArrayRegion",
+          "env_argument_confirmed_by_linear_aliases": true
+        },
+        {
+          "site": "0x10004f164",
+          "slot_load": "0x10004f150",
+          "byte_offset": 1392,
+          "slot_index": 174,
+          "name": "SetObjectArrayElement",
+          "env_argument_confirmed_by_linear_aliases": true
+        }
+      ],
+      "assembly_sha256": "95981151cfcc7e8925dc09d39a66249b3689a3665cb9419827c0620deede6337"
+    }
+  ],
+  "limitations": [
+    "Slot names resolved by a bounded linear register-alias pass, not CFG joins or a global interprocedural proof.",
+    "Manual assembly review establishes data/ownership flows described in the report.",
+    "Header structure and matching ABI names do not prove a successful target call or absence of memory/thread errors."
+  ],
+  "validated_instruction_anchors": [
+    {
+      "function": "0x100008de8",
+      "site": "0x100008e48",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x100008de8",
+      "site": "0x100008e70",
+      "expected_instruction_fragment": "_free",
+      "passed": true
+    },
+    {
+      "function": "0x10004e80c",
+      "site": "0x10004e8b4",
+      "expected_instruction_fragment": "_free",
+      "passed": true
+    },
+    {
+      "function": "0x10004e80c",
+      "site": "0x10004eb64",
+      "expected_instruction_fragment": "dataWithBytes:length:",
+      "passed": true
+    },
+    {
+      "function": "0x10004e80c",
+      "site": "0x10004eb7c",
+      "expected_instruction_fragment": "setHTTPBody:",
+      "passed": true
+    },
+    {
+      "function": "0x10004e80c",
+      "site": "0x10004eb94",
+      "expected_instruction_fragment": "#2",
+      "passed": true
+    },
+    {
+      "function": "0x10004e80c",
+      "site": "0x10004eb98",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10004eca0",
+      "site": "0x10004ed30",
+      "expected_instruction_fragment": "#2",
+      "passed": true
+    },
+    {
+      "function": "0x10004eca0",
+      "site": "0x10004f0dc",
+      "expected_instruction_fragment": "#0",
+      "passed": true
+    },
+    {
+      "function": "0x10004eca0",
+      "site": "0x10004f15c",
+      "expected_instruction_fragment": "#1",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f440",
+      "expected_instruction_fragment": "#3",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f460",
+      "expected_instruction_fragment": "_dispatch_semaphore_wait",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f4e4",
+      "expected_instruction_fragment": "_objc_sync_enter",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f4ec",
+      "expected_instruction_fragment": "ldrb",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f538",
+      "expected_instruction_fragment": "_objc_storeStrong",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f54c",
+      "expected_instruction_fragment": "strb",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f5a8",
+      "expected_instruction_fragment": "'cancel'",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f5c4",
+      "expected_instruction_fragment": "_objc_sync_enter",
+      "passed": true
+    },
+    {
+      "function": "0x10004f1c8",
+      "site": "0x10004f604",
+      "expected_instruction_fragment": "_objc_sync_exit",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f908",
+      "expected_instruction_fragment": "_objc_sync_enter",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f914",
+      "expected_instruction_fragment": "ldrb",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f954",
+      "expected_instruction_fragment": "_objc_storeStrong",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f968",
+      "expected_instruction_fragment": "_objc_storeStrong",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f97c",
+      "expected_instruction_fragment": "_objc_storeStrong",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f998",
+      "expected_instruction_fragment": "strb",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f9a0",
+      "expected_instruction_fragment": "_objc_sync_exit",
+      "passed": true
+    },
+    {
+      "function": "0x10004f880",
+      "site": "0x10004f9b0",
+      "expected_instruction_fragment": "_dispatch_semaphore_signal",
+      "passed": true
+    },
+    {
+      "function": "0x10002e880",
+      "site": "0x10002e8ac",
+      "expected_instruction_fragment": "flutter.config.nativeReqTimeout",
+      "passed": true
+    },
+    {
+      "function": "0x10002e880",
+      "site": "0x10002e900",
+      "expected_instruction_fragment": "#0xb",
+      "passed": true
+    },
+    {
+      "function": "0x10002e880",
+      "site": "0x10002e914",
+      "expected_instruction_fragment": "str",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a5ac",
+      "expected_instruction_fragment": "_strdup",
+      "passed": true
+    },
+    {
+      "function": "0x10002a668",
+      "site": "0x10002a6bc",
+      "expected_instruction_fragment": "str",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a4b0",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a520",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a540",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a55c",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a580",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a5a0",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a5c8",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a5dc",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a5f0",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a604",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a614",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a450",
+      "site": "0x10002a640",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a668",
+      "site": "0x10002a69c",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a668",
+      "site": "0x10002a6b8",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    },
+    {
+      "function": "0x10002a668",
+      "site": "0x10002a6d0",
+      "expected_instruction_fragment": "blr",
+      "passed": true
+    }
+  ],
+  "timeout": {
+    "initial_int32": 15,
+    "address": "0x10096e560",
+    "file_offset": "0x96e560",
+    "configuration_key": "flutter.config.nativeReqTimeout",
+    "minimum_accepted_config_int": 11,
+    "initial_outer_semaphore_wait_seconds": 18,
+    "initializer": "0x10002e880",
+    "dispatch_once_block": "0x1008af628",
+    "note": "Static initial value and config branch; live value depends on settings before first dispatch_once."
+  },
+  "completion_block": {
+    "entry": "0x10004f880",
+    "capture_offsets": {
+      "0x20": "lock",
+      "0x28": "semaphore",
+      "0x30": "request",
+      "0x38": "done byref",
+      "0x40": "data byref",
+      "0x48": "response byref",
+      "0x50": "error byref",
+      "0x58": "net cost byref",
+      "0x60": "start time double"
+    },
+    "shared_decision": "pending -> callback result OR timeout under same lock; losing path does not overwrite winner",
+    "runtime_races_tested": false
+  },
+  "java_channel_reviewed_calls": [
+    {
+      "site": "0x10002a4b0",
+      "table": "JavaVM",
+      "offset": "0x20",
+      "name": "AttachCurrentThread",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a520",
+      "table": "JNIEnv",
+      "offset": "0x388",
+      "name": "GetStaticMethodID",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a540",
+      "table": "JNIEnv",
+      "offset": "0x538",
+      "name": "NewStringUTF",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a55c",
+      "table": "JNIEnv",
+      "offset": "0x538",
+      "name": "NewStringUTF",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a580",
+      "table": "JNIEnv",
+      "offset": "0x390",
+      "name": "CallStaticObjectMethod",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a5a0",
+      "table": "JNIEnv",
+      "offset": "0x548",
+      "name": "GetStringUTFChars",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a5c8",
+      "table": "JNIEnv",
+      "offset": "0x550",
+      "name": "ReleaseStringUTFChars",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a5dc",
+      "table": "JNIEnv",
+      "offset": "0xb8",
+      "name": "DeleteLocalRef",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a5f0",
+      "table": "JNIEnv",
+      "offset": "0xb8",
+      "name": "DeleteLocalRef",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a604",
+      "table": "JNIEnv",
+      "offset": "0xb8",
+      "name": "DeleteLocalRef",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a614",
+      "table": "JavaVM",
+      "offset": "0x28",
+      "name": "DetachCurrentThread",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a640",
+      "table": "JavaVM",
+      "offset": "0x28",
+      "name": "DetachCurrentThread",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a69c",
+      "table": "JNIEnv",
+      "offset": "0x30",
+      "name": "FindClass",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a6b8",
+      "table": "JNIEnv",
+      "offset": "0xa8",
+      "name": "NewGlobalRef",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    },
+    {
+      "site": "0x10002a6d0",
+      "table": "JNIEnv",
+      "offset": "0xb8",
+      "name": "DeleteLocalRef",
+      "evidence": "manual ARM64 table-load and call review; slot name from pinned header"
+    }
+  ],
+  "ghidra_corrected_pass": {
+    "compiler_spec": "AARCH64:LE:64:AppleSilicon:default",
+    "calling_convention": "__cdecl",
+    "read_only": true,
+    "automatic_analysis": false,
+    "selected_functions": 5,
+    "status": [
+      "100008de8\tByteArrayToUTF8\tSUCCESS",
+      "10004e80c\tParseNetRequest\tSUCCESS",
+      "10004eca0\tBuildNetResponse\tSUCCESS",
+      "10004f1c8\tNativeNet\tSUCCESS",
+      "10004f880\tNativeNetCompletion\tSUCCESS"
+    ],
+    "configured_import_and_selector_prototypes": 59,
+    "prototype_applied_count_instrumented": false,
+    "jni_function_pointer_prototypes": 12,
+    "types_source": "Analyst-supplied ABI models checked against ARM64 instructions and JNI reference; not recovered source debug types.",
+    "prior_issue": "Automatic Swift compiler spec distorted return values; preserved earlier output is superseded for these selected paths.",
+    "failed_c_profile": "A script compile failed before correction; Ghidra import still exited 0, so status files are the success gate.",
+    "outputs": {
+      "ghidra-jni/headless-c-compile-failure.log": {
+        "bytes": 16746,
+        "sha256": "4830812a399e91dcc5ec35d8aaba832106c2e0b8c58bcbae7f7536392e86ef29"
+      },
+      "ghidra-jni/headless.log": {
+        "bytes": 14888,
+        "sha256": "5962e150ef08f1e59e0b492ca0daefd472b67daddbad514af655a39c353221f1"
+      },
+      "ghidra-jni/imports.tsv": {
+        "bytes": 2365,
+        "sha256": "538b5e45eafbeb18fdcfb081f3f2bd1102599c79b19148d37bd8587e2d29e896"
+      },
+      "ghidra-jni/jni.tsv": {
+        "bytes": 325,
+        "sha256": "d7e286221b5c4041628e5831f4c60fdbb54aa3fc26d8b754d7e094cdf6418956"
+      },
+      "ghidra-jni/output/100008de8-ByteArrayToUTF8.c.txt": {
+        "bytes": 877,
+        "sha256": "d6c991b4350e2759a5531fb558c974bf95978ac2c457a9443aa9ae7e38d9acb7"
+      },
+      "ghidra-jni/output/10004e80c-ParseNetRequest.c.txt": {
+        "bytes": 5748,
+        "sha256": "5a705800c4b9d69073cb274f62a2d38c7c1dff877d81e71ebffeaf7194230e66"
+      },
+      "ghidra-jni/output/10004eca0-BuildNetResponse.c.txt": {
+        "bytes": 5869,
+        "sha256": "95c81b228d484ce812735df12618398514808e2d981b20d390975efc7f80cdb4"
+      },
+      "ghidra-jni/output/10004f1c8-NativeNet.c.txt": {
+        "bytes": 7559,
+        "sha256": "325569af2fa6c809239ac2732d6373929571ab060f7fc57638831425f5b6609e"
+      },
+      "ghidra-jni/output/10004f880-NativeNetCompletion.c.txt": {
+        "bytes": 2817,
+        "sha256": "e757f9ab0daeec76bbb7b2617fcd3abce4cbf64fcfc7c4cad522b83d591cb4c3"
+      },
+      "ghidra-jni/output/status.tsv": {
+        "bytes": 169,
+        "sha256": "2117bad33a073e3916ca8b15aeec9eaa81b25f59804894c3beebfd6483bc0da2"
+      },
+      "ghidra-jni/output/types.h.txt": {
+        "bytes": 1093,
+        "sha256": "ba9988a0b75db5463e2470186fdc51123fc238280aff94897ad8ae3e7c6ea40a"
+      },
+      "ghidra-jni/script-compile/result.txt": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "ghidra-jni/scripts/TypedJNI.java": {
+        "bytes": 4577,
+        "sha256": "b7772be16f066f3853dfbc2a4d7aeb788cc9e8dcd20a9e4a7e61ee84df9b9636"
+      },
+      "ghidra-jni/seeds.tsv": {
+        "bytes": 214,
+        "sha256": "3c802f558d76855c122cdacc4cb69c6cfa5409274b932179f6df9ec7a7a171e4"
+      }
+    }
+  },
+  "sources": {
+    "jni_header": "https://raw.githubusercontent.com/openjdk/jdk17u/jdk-17.0.15%2B6/src/java.base/share/native/include/jni.h",
+    "jni_functions": "https://docs.oracle.com/en/java/javase/17/docs/specs/jni/functions.html",
+    "jni_invocation": "https://docs.oracle.com/en/java/javase/17/docs/specs/jni/invocation.html",
+    "nsdata_copy": "https://developer.apple.com/documentation/foundation/nsdata/datawithbytes%3Alength%3A"
+  },
+  "limitations_extra": [
+    "No real target execution, OOM injection, ThreadSanitizer or JNI exception-path test.",
+    "NativeNet core and listed helpers only; not every URLSession, crypto, VM shutdown or hook path.",
+    "NativeChannel byte-array UTF-8 and JavaChannel modified UTF-8 are distinct; no observed specific Unicode failure is claimed."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "path": "/home/user/Documents/Managa-app/Tachimanga-5.1-jni-analysis.zip",
+  "bytes": 87508,
+  "sha256": "29d29ef491b0522bfdd589b11bc8bfc3e7671106229dbb4736a8f13b79c297d5",
+  "members": 44,
+  "crc_and_manifest_members_verified": 43,
+  "target_executed": false,
+  "original_executable_carriers_included": false,
+  "scope": "JNI memory and timeout static traces, C-ABI Ghidra annotations and selected decompilation; does not prove runtime equivalence"
+}
