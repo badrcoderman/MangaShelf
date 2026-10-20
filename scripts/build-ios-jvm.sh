@@ -39,7 +39,7 @@ host_sdk="$(xcrun --sdk macosx --show-sdk-path)"
   bash configure --with-conf-name=mangashelf-host-tools \
     --disable-warnings-as-errors --with-jvm-variants=server \
     --with-debug-level=release --with-native-debug-symbols=none \
-    --enable-headless-only --with-boot-jdk="$JAVA_HOME" \
+    --with-boot-jdk="$JAVA_HOME" \
     --with-sysroot="$host_sdk" --with-cups-include="$cups" --with-jobs=3
   make CONF=mangashelf-host-tools jdk-image
 ) 2>&1 | tee "$out/logs/host-tools.log"

@@ -54,6 +54,11 @@ ld: unknown options: -soname=libjvm.so
 
 ## البوابات التالية
 
+المحاولة [39455667631](https://github.com/badrcoderman/MangaShelf/actions/runs/39455667631)
+اجتازت تطبيق الإصلاح وفحص خيارات الربط، ثم رفض configure خيار headless-only
+للمضيف macOS قبل بدء تجميع JDK المضيف. أزيل الخيار من إعداد المضيف؛ لا تُسجل
+المحاولة نجاحًا لبناء الصورة.
+
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.
 2. إنتاج IPA منفصلة غير موقعة لتجربة VM وJAR مؤلف في المشروع، وفحص محتوياتها.
