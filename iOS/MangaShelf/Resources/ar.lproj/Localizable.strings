@@ -1052,3 +1052,13 @@
 "Added source catalog integration and bounded native network callbacks." = "إضافة ربط كتالوج المصادر واستدعاءات شبكة أصلية محدودة الحجم.";
 
 "Staged packages with explicit trust controls and integrity checks." = "حزم مجهّزة مع ضوابط ثقة واضحة وفحوص سلامة.";
+
+"Engine check" = "فحص المحرك";
+
+"Check the source engine on this iPhone. This checks Java startup and a MangaShelf test JAR. It does not enable extensions yet." = "افحص محرك المصادر على هذا الـ iPhone. يتحقق الفحص من بدء Java وتحميل ملف JAR تجريبي من MangaShelf. لا يفعّل الإضافات بعد.";
+
+"Run engine check" = "بدء فحص المحرك";
+
+"Restart this app to run the check again." = "أعد تشغيل هذا التطبيق لتكرار الفحص.";
+
+"Share engine report" = "مشاركة تقرير المحرك";

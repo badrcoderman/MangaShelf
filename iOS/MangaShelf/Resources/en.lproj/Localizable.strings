@@ -1052,3 +1052,13 @@
 "Added source catalog integration and bounded native network callbacks." = "Added source catalog integration and bounded native network callbacks.";
 
 "Staged packages with explicit trust controls and integrity checks." = "Staged packages with explicit trust controls and integrity checks.";
+
+"Engine check" = "Engine check";
+
+"Check the source engine on this iPhone. This checks Java startup and a MangaShelf test JAR. It does not enable extensions yet." = "Check the source engine on this iPhone. This checks Java startup and a MangaShelf test JAR. It does not enable extensions yet.";
+
+"Run engine check" = "Run engine check";
+
+"Restart this app to run the check again." = "Restart this app to run the check again.";
+
+"Share engine report" = "Share engine report";

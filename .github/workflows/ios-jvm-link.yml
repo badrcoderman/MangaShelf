@@ -6,13 +6,18 @@ on:
         description: Successful Build experimental iOS JVM run with a nonexpired ios-jvm-build artifact
         required: true
         type: string
+      device_ipa:
+        description: Build the separate unsigned iPhone VM and project-owned JAR check
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
   actions: read
 jobs:
   link:
     runs-on: macos-15
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -45,12 +50,33 @@ jobs:
           done
           exit 1
       - name: Link ARM64 iOS probe
+        if: inputs.device_ipa != true
         run: bash scripts/link-ios-jvm-probe.sh
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        if: inputs.device_ipa
+        with:
+          distribution: temurin
+          java-version: '26'
+      - name: Build separate unsigned iPhone harness
+        if: inputs.device_ipa
+        run: bash scripts/build-ios-jvm-device-probe.sh
+      - name: Upload unsigned iPhone harness
+        if: inputs.device_ipa
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: MangaShelfEngineCheck-unsigned
+          path: build/ios-jvm-device/MangaShelfEngineCheck-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
       - name: Preserve evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ios-jvm-link-evidence
-          path: build/ios-jvm-link/
+          path: |
+            build/ios-jvm-link/
+            build/ios-jvm-device/*.json
+            build/ios-jvm-device/*.log
+            build/ios-jvm-device/*.txt
           if-no-files-found: warn
           retention-days: 14

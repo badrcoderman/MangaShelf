@@ -43,6 +43,21 @@ public final class RuntimeProbe {
         finally { Files.deleteIfExists(test); }
         return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O";
     }
+
+    /** Device diagnostics survive the bridge clearing a Java exception. */
+    public static String runWithDiagnostics(String pluginPath, String writableDirectory) throws Exception {
+        try {
+            return run(pluginPath, writableDirectory);
+        } catch (Exception | LinkageError failure) {
+            failure.printStackTrace(System.err);
+            throw failure;
+        }
+    }
+
+    /** A native caller supplies both strings to verify JNI UTF-8 in both directions. */
+    public static String echo(String first, String second) {
+        return first + second;
+    }
     public static final class MockOkioBuffer {
         private final byte[] data;
 
