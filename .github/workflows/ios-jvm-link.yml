@@ -1,6 +1,11 @@
 name: Link experimental iOS JVM
 on:
   workflow_dispatch:
+    inputs:
+      runtime_run_id:
+        description: Successful Build experimental iOS JVM run with a nonexpired ios-jvm-build artifact
+        required: true
+        type: string
 permissions:
   contents: read
   actions: read
@@ -21,7 +26,13 @@ jobs:
       - name: Download source-built runtime evidence
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run download 34793104716 --repo "$GITHUB_REPOSITORY" --name ios-jvm-build --dir build/ios-jvm-evidence
+          RUNTIME_RUN_ID: ${{ inputs.runtime_run_id }}
+        run: >-
+          python3 scripts/download-ios-jvm-evidence.py
+          --repository "$GITHUB_REPOSITORY"
+          --run-id "$RUNTIME_RUN_ID"
+          --destination build/ios-jvm-evidence
+          --provenance build/ios-jvm-link
       - name: Select toolchain
         run: |
           for APP in /Applications/Xcode*.app; do

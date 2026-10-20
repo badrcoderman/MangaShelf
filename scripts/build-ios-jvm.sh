@@ -9,6 +9,11 @@ cups="$root/runtime-src/cups"
 out="$root/build/ios-jvm"
 mkdir -p "$out/logs" "$out/ffi"
 [ "$(git -C "$mobile" rev-parse HEAD)" = c1ed06aaef34c8dccf71e236d1ffa20918a77cfb ]
+[ "$(git -C "$ffi" rev-parse HEAD)" = 12ffd1f9dc56fcea79d2f742f424301ae668d663 ]
+[ "$(git -C "$cups" rev-parse HEAD)" = 2e5573560cfa2da65002f86b41bd1770c9853c4d ]
+python3 scripts/prepare-ios-jvm-source.py "$mobile"
+git -C "$mobile" diff -- src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp > "$out/logs/source-patch.diff"
+cp runtime-native/ios_jvm_compat.cpp "$out/logs/ios_jvm_compat.cpp"
 sdk="$(xcrun --sdk iphoneos --show-sdk-path)"
 clang="$(xcrun --sdk iphoneos --find clang)"
 (
@@ -39,3 +44,41 @@ xcrun nm -g "$archive" > "$out/logs/symbols.txt"
 # Keep source-built outputs separate from the application until execution is verified.
 cp -R "$mobile/build/mangashelf-ios-zero/images/static-libs" "$out/"
 cp "$mobile/LICENSE" "$mobile/ADDITIONAL_LICENSE_INFO" "$mobile/ASSEMBLY_EXCEPTION" "$out/"
+cp "$ffi/LICENSE" "$out/ffi/LICENSE"
+# Static libraries contain no Java classes or runtime configuration. Build the
+# matching source-derived image separately; never borrow modules from an IPA.
+(
+  cd "$mobile"
+  make CONF=mangashelf-ios-zero legacy-jre-image
+) 2>&1 | tee "$out/logs/java-image.log"
+image="$mobile/build/mangashelf-ios-zero/images/jre"
+for required in lib/modules lib/tzdb.dat conf/security/java.security release; do
+  test -s "$image/$required"
+done
+cp -R "$image" "$out/jre"
+python3 - "$out" "$sdk" <<'PY'
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+root = Path(sys.argv[1])
+files = sorted(p for p in root.rglob('*') if p.is_file() and p.suffix == '.a')
+files += [root / 'jre/lib/modules', root / 'jre/release', root / 'logs/ios_jvm_compat.cpp']
+manifest = {
+    'format': 1, 'target': 'arm64-apple-ios26.0', 'vm_variant': 'zero',
+    'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
+    'libffi_commit': '12ffd1f9dc56fcea79d2f742f424301ae668d663',
+    'cups_commit': '2e5573560cfa2da65002f86b41bd1770c9853c4d',
+    'repository': os.environ.get('GITHUB_REPOSITORY'),
+    'head_sha': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
+    'sdk_path': sys.argv[2],
+    'xcode': subprocess.check_output(['xcodebuild', '-version'], text=True).strip(),
+    'compiler': subprocess.check_output(['xcrun', '--sdk', 'iphoneos', 'clang', '--version'], text=True).strip(),
+    'zero_wx_source_fix': True, 'java_modules_present': True, 'execution_proven': False,
+    'sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
+}
+(root / 'build-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')
+PY
