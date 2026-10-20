@@ -1,0 +1,11 @@
+{
+  "path": "/home/user/Documents/Managa-app/Tachimanga-5.1-analysis-followup.zip",
+  "bytes": 586976,
+  "sha256": "4a61638dd3b024e6544e3628d585b668238aca09f7e29a8a53dcfb47dd064b14",
+  "members": 44,
+  "crc_and_manifest_members_verified": 43,
+  "vineflower_kt_files": 12,
+  "baseline_archive_sha256": "5a35427d90c14554efc439dfac6a7beb59dd1c9c24c16dc53f0ac36ce2a8b522",
+  "target_executed": false,
+  "new_scope": "Selected bytecode contracts and full saved Vineflower Kotlin output; supplements baseline study, does not establish runtime equivalence"
+}

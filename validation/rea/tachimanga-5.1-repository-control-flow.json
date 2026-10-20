@@ -1,0 +1,4552 @@
+{
+  "input_res_zip_sha256": "db4443eadbeece65c628734d82826c91d1beb4e3d6efd3b5ef721342755b0aa6",
+  "target_executed": false,
+  "method_count": 26,
+  "instruction_count": 4275,
+  "basic_block_count": 538,
+  "exception_handler_entries": 120,
+  "raw_external_graph_sha256": "0fae98a511b9353815d7721cd2029fcc54a16886484000980d6dfd322cde662c",
+  "parser_sha256": "38db901bfe236ada7ead6234745a3db9d3e6923f120fd1d246fb71d93dcb92e1",
+  "method_summaries": [
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "refreshStoreIfNeeded",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "030ac2596f79251c96d97ff8ea6d0690f8b96f613289bde3f96c504ec01dfc1a",
+      "code_bytes": 389,
+      "instruction_count": 175,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 24,
+          "last_instruction": 21
+        },
+        {
+          "start": 24,
+          "end_exclusive": 39,
+          "last_instruction": 36
+        },
+        {
+          "start": 39,
+          "end_exclusive": 50,
+          "last_instruction": 48
+        },
+        {
+          "start": 50,
+          "end_exclusive": 88,
+          "last_instruction": 67
+        },
+        {
+          "start": 88,
+          "end_exclusive": 121,
+          "last_instruction": 118
+        },
+        {
+          "start": 121,
+          "end_exclusive": 127,
+          "last_instruction": 124
+        },
+        {
+          "start": 127,
+          "end_exclusive": 129,
+          "last_instruction": 128
+        },
+        {
+          "start": 129,
+          "end_exclusive": 142,
+          "last_instruction": 139
+        },
+        {
+          "start": 142,
+          "end_exclusive": 183,
+          "last_instruction": 180
+        },
+        {
+          "start": 183,
+          "end_exclusive": 188,
+          "last_instruction": 185
+        },
+        {
+          "start": 188,
+          "end_exclusive": 236,
+          "last_instruction": 233
+        },
+        {
+          "start": 236,
+          "end_exclusive": 239,
+          "last_instruction": 238
+        },
+        {
+          "start": 239,
+          "end_exclusive": 274,
+          "last_instruction": 271
+        },
+        {
+          "start": 274,
+          "end_exclusive": 284,
+          "last_instruction": 281
+        },
+        {
+          "start": 284,
+          "end_exclusive": 288,
+          "last_instruction": 285
+        },
+        {
+          "start": 288,
+          "end_exclusive": 290,
+          "last_instruction": 288
+        },
+        {
+          "start": 290,
+          "end_exclusive": 297,
+          "last_instruction": 294
+        },
+        {
+          "start": 297,
+          "end_exclusive": 314,
+          "last_instruction": 313
+        },
+        {
+          "start": 314,
+          "end_exclusive": 324,
+          "last_instruction": 321
+        },
+        {
+          "start": 324,
+          "end_exclusive": 349,
+          "last_instruction": 346
+        },
+        {
+          "start": 349,
+          "end_exclusive": 351,
+          "last_instruction": 350
+        },
+        {
+          "start": 351,
+          "end_exclusive": 360,
+          "last_instruction": 357
+        },
+        {
+          "start": 360,
+          "end_exclusive": 378,
+          "last_instruction": 377
+        },
+        {
+          "start": 378,
+          "end_exclusive": 379,
+          "last_instruction": 378
+        },
+        {
+          "start": 379,
+          "end_exclusive": 389,
+          "last_instruction": 388
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 238,
+          "kind": "areturn"
+        },
+        {
+          "offset": 313,
+          "kind": "areturn"
+        },
+        {
+          "offset": 377,
+          "kind": "athrow"
+        },
+        {
+          "offset": 378,
+          "kind": "areturn"
+        },
+        {
+          "offset": 388,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 182,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "persistStore",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Lmihon/domain/extension/model/ExtensionStore;)V",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "60badfa1f8609cb3eb594f863d97544b2c9885878e28a7279362f2aa6c79ac13",
+      "code_bytes": 138,
+      "instruction_count": 62,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 21,
+          "last_instruction": 18
+        },
+        {
+          "start": 21,
+          "end_exclusive": 35,
+          "last_instruction": 32
+        },
+        {
+          "start": 35,
+          "end_exclusive": 49,
+          "last_instruction": 46
+        },
+        {
+          "start": 49,
+          "end_exclusive": 63,
+          "last_instruction": 60
+        },
+        {
+          "start": 63,
+          "end_exclusive": 77,
+          "last_instruction": 74
+        },
+        {
+          "start": 77,
+          "end_exclusive": 94,
+          "last_instruction": 91
+        },
+        {
+          "start": 94,
+          "end_exclusive": 111,
+          "last_instruction": 108
+        },
+        {
+          "start": 111,
+          "end_exclusive": 122,
+          "last_instruction": 119
+        },
+        {
+          "start": 122,
+          "end_exclusive": 123,
+          "last_instruction": 122
+        },
+        {
+          "start": 123,
+          "end_exclusive": 138,
+          "last_instruction": 137
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 122,
+          "kind": "return"
+        },
+        {
+          "offset": 137,
+          "kind": "return"
+        }
+      ],
+      "normal_edge_count": 69,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "downloadApk",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "aa265a65944516bbaf68824c9ad15b8e0cff8febcbd26f3b1ca4a976165e6b01",
+      "code_bytes": 356,
+      "instruction_count": 155,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 26,
+          "last_instruction": 23
+        },
+        {
+          "start": 26,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 53,
+          "last_instruction": 51
+        },
+        {
+          "start": 53,
+          "end_exclusive": 92,
+          "last_instruction": 70
+        },
+        {
+          "start": 92,
+          "end_exclusive": 97,
+          "last_instruction": 94
+        },
+        {
+          "start": 97,
+          "end_exclusive": 109,
+          "last_instruction": 106
+        },
+        {
+          "start": 109,
+          "end_exclusive": 113,
+          "last_instruction": 110
+        },
+        {
+          "start": 113,
+          "end_exclusive": 114,
+          "last_instruction": 113
+        },
+        {
+          "start": 114,
+          "end_exclusive": 163,
+          "last_instruction": 160
+        },
+        {
+          "start": 163,
+          "end_exclusive": 169,
+          "last_instruction": 166
+        },
+        {
+          "start": 169,
+          "end_exclusive": 172,
+          "last_instruction": 171
+        },
+        {
+          "start": 172,
+          "end_exclusive": 216,
+          "last_instruction": 215
+        },
+        {
+          "start": 216,
+          "end_exclusive": 224,
+          "last_instruction": 222
+        },
+        {
+          "start": 224,
+          "end_exclusive": 225,
+          "last_instruction": 224
+        },
+        {
+          "start": 225,
+          "end_exclusive": 230,
+          "last_instruction": 229
+        },
+        {
+          "start": 230,
+          "end_exclusive": 232,
+          "last_instruction": 230
+        },
+        {
+          "start": 232,
+          "end_exclusive": 256,
+          "last_instruction": 253
+        },
+        {
+          "start": 256,
+          "end_exclusive": 261,
+          "last_instruction": 258
+        },
+        {
+          "start": 261,
+          "end_exclusive": 262,
+          "last_instruction": 261
+        },
+        {
+          "start": 262,
+          "end_exclusive": 266,
+          "last_instruction": 263
+        },
+        {
+          "start": 266,
+          "end_exclusive": 270,
+          "last_instruction": 267
+        },
+        {
+          "start": 270,
+          "end_exclusive": 307,
+          "last_instruction": 304
+        },
+        {
+          "start": 307,
+          "end_exclusive": 311,
+          "last_instruction": 308
+        },
+        {
+          "start": 311,
+          "end_exclusive": 323,
+          "last_instruction": 320
+        },
+        {
+          "start": 323,
+          "end_exclusive": 326,
+          "last_instruction": 323
+        },
+        {
+          "start": 326,
+          "end_exclusive": 343,
+          "last_instruction": 338
+        },
+        {
+          "start": 343,
+          "end_exclusive": 346,
+          "last_instruction": 345
+        },
+        {
+          "start": 346,
+          "end_exclusive": 356,
+          "last_instruction": 355
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 97,
+          "end": 163,
+          "handler": 225,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 216,
+          "end": 225,
+          "handler": 225,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 232,
+          "end": 323,
+          "handler": 326,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 97,
+          "end": 163,
+          "handler": 230,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 216,
+          "end": 225,
+          "handler": 230,
+          "type": "java/lang/Exception"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 171,
+          "kind": "areturn"
+        },
+        {
+          "offset": 224,
+          "kind": "areturn"
+        },
+        {
+          "offset": 229,
+          "kind": "athrow"
+        },
+        {
+          "offset": 345,
+          "kind": "athrow"
+        },
+        {
+          "offset": 355,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 159,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "downloadExtension",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "c44d514db2781435d3596de5db5b4e5030235c5cbf033ead1755eeb617f6d052",
+      "code_bytes": 518,
+      "instruction_count": 219,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 26,
+          "last_instruction": 23
+        },
+        {
+          "start": 26,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 53,
+          "last_instruction": 51
+        },
+        {
+          "start": 53,
+          "end_exclusive": 96,
+          "last_instruction": 70
+        },
+        {
+          "start": 96,
+          "end_exclusive": 106,
+          "last_instruction": 103
+        },
+        {
+          "start": 106,
+          "end_exclusive": 163,
+          "last_instruction": 160
+        },
+        {
+          "start": 163,
+          "end_exclusive": 166,
+          "last_instruction": 165
+        },
+        {
+          "start": 166,
+          "end_exclusive": 217,
+          "last_instruction": 215
+        },
+        {
+          "start": 217,
+          "end_exclusive": 227,
+          "last_instruction": 224
+        },
+        {
+          "start": 227,
+          "end_exclusive": 230,
+          "last_instruction": 229
+        },
+        {
+          "start": 230,
+          "end_exclusive": 244,
+          "last_instruction": 239
+        },
+        {
+          "start": 244,
+          "end_exclusive": 249,
+          "last_instruction": 246
+        },
+        {
+          "start": 249,
+          "end_exclusive": 260,
+          "last_instruction": 255
+        },
+        {
+          "start": 260,
+          "end_exclusive": 420,
+          "last_instruction": 417
+        },
+        {
+          "start": 420,
+          "end_exclusive": 423,
+          "last_instruction": 422
+        },
+        {
+          "start": 423,
+          "end_exclusive": 504,
+          "last_instruction": 502
+        },
+        {
+          "start": 504,
+          "end_exclusive": 508,
+          "last_instruction": 507
+        },
+        {
+          "start": 508,
+          "end_exclusive": 518,
+          "last_instruction": 517
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 165,
+          "kind": "areturn"
+        },
+        {
+          "offset": 229,
+          "kind": "areturn"
+        },
+        {
+          "offset": 422,
+          "kind": "areturn"
+        },
+        {
+          "offset": 507,
+          "kind": "areturn"
+        },
+        {
+          "offset": 517,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 224,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "downloadJar",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "67c5ed7204e5820a3b956373af60fdd17e6055a6bdb9847378810a2eb86ca57f",
+      "code_bytes": 371,
+      "instruction_count": 153,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 26,
+          "last_instruction": 23
+        },
+        {
+          "start": 26,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 53,
+          "last_instruction": 51
+        },
+        {
+          "start": 53,
+          "end_exclusive": 92,
+          "last_instruction": 70
+        },
+        {
+          "start": 92,
+          "end_exclusive": 143,
+          "last_instruction": 140
+        },
+        {
+          "start": 143,
+          "end_exclusive": 155,
+          "last_instruction": 150
+        },
+        {
+          "start": 155,
+          "end_exclusive": 157,
+          "last_instruction": 155
+        },
+        {
+          "start": 157,
+          "end_exclusive": 265,
+          "last_instruction": 262
+        },
+        {
+          "start": 265,
+          "end_exclusive": 271,
+          "last_instruction": 268
+        },
+        {
+          "start": 271,
+          "end_exclusive": 274,
+          "last_instruction": 273
+        },
+        {
+          "start": 274,
+          "end_exclusive": 331,
+          "last_instruction": 330
+        },
+        {
+          "start": 331,
+          "end_exclusive": 339,
+          "last_instruction": 337
+        },
+        {
+          "start": 339,
+          "end_exclusive": 343,
+          "last_instruction": 342
+        },
+        {
+          "start": 343,
+          "end_exclusive": 356,
+          "last_instruction": 353
+        },
+        {
+          "start": 356,
+          "end_exclusive": 358,
+          "last_instruction": 357
+        },
+        {
+          "start": 358,
+          "end_exclusive": 361,
+          "last_instruction": 360
+        },
+        {
+          "start": 361,
+          "end_exclusive": 371,
+          "last_instruction": 370
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 157,
+          "end": 265,
+          "handler": 343,
+          "type": "eu/kanade/tachiyomi/network/HttpException"
+        },
+        {
+          "start": 331,
+          "end": 343,
+          "handler": 343,
+          "type": "eu/kanade/tachiyomi/network/HttpException"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 273,
+          "kind": "areturn"
+        },
+        {
+          "offset": 342,
+          "kind": "areturn"
+        },
+        {
+          "offset": 357,
+          "kind": "areturn"
+        },
+        {
+          "offset": 360,
+          "kind": "athrow"
+        },
+        {
+          "offset": 370,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 155,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "downloadAPKFile",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "f2c9d4ded3fc50ae8bbc993fa1c81fd9af77281cfadd52f30987c0ab4ea07933",
+      "code_bytes": 381,
+      "instruction_count": 168,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 24,
+          "last_instruction": 21
+        },
+        {
+          "start": 24,
+          "end_exclusive": 39,
+          "last_instruction": 36
+        },
+        {
+          "start": 39,
+          "end_exclusive": 50,
+          "last_instruction": 48
+        },
+        {
+          "start": 50,
+          "end_exclusive": 88,
+          "last_instruction": 67
+        },
+        {
+          "start": 88,
+          "end_exclusive": 163,
+          "last_instruction": 160
+        },
+        {
+          "start": 163,
+          "end_exclusive": 166,
+          "last_instruction": 165
+        },
+        {
+          "start": 166,
+          "end_exclusive": 201,
+          "last_instruction": 199
+        },
+        {
+          "start": 201,
+          "end_exclusive": 235,
+          "last_instruction": 233
+        },
+        {
+          "start": 235,
+          "end_exclusive": 262,
+          "last_instruction": 260
+        },
+        {
+          "start": 262,
+          "end_exclusive": 299,
+          "last_instruction": 297
+        },
+        {
+          "start": 299,
+          "end_exclusive": 309,
+          "last_instruction": 306
+        },
+        {
+          "start": 309,
+          "end_exclusive": 318,
+          "last_instruction": 317
+        },
+        {
+          "start": 318,
+          "end_exclusive": 320,
+          "last_instruction": 318
+        },
+        {
+          "start": 320,
+          "end_exclusive": 330,
+          "last_instruction": 329
+        },
+        {
+          "start": 330,
+          "end_exclusive": 336,
+          "last_instruction": 334
+        },
+        {
+          "start": 336,
+          "end_exclusive": 346,
+          "last_instruction": 343
+        },
+        {
+          "start": 346,
+          "end_exclusive": 355,
+          "last_instruction": 354
+        },
+        {
+          "start": 355,
+          "end_exclusive": 357,
+          "last_instruction": 355
+        },
+        {
+          "start": 357,
+          "end_exclusive": 367,
+          "last_instruction": 366
+        },
+        {
+          "start": 367,
+          "end_exclusive": 371,
+          "last_instruction": 370
+        },
+        {
+          "start": 371,
+          "end_exclusive": 381,
+          "last_instruction": 380
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 262,
+          "end": 299,
+          "handler": 309,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 262,
+          "end": 299,
+          "handler": 318,
+          "type": null
+        },
+        {
+          "start": 309,
+          "end": 318,
+          "handler": 318,
+          "type": null
+        },
+        {
+          "start": 318,
+          "end": 320,
+          "handler": 318,
+          "type": null
+        },
+        {
+          "start": 235,
+          "end": 336,
+          "handler": 346,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 235,
+          "end": 336,
+          "handler": 355,
+          "type": null
+        },
+        {
+          "start": 346,
+          "end": 355,
+          "handler": 355,
+          "type": null
+        },
+        {
+          "start": 355,
+          "end": 357,
+          "handler": 355,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 165,
+          "kind": "areturn"
+        },
+        {
+          "offset": 317,
+          "kind": "athrow"
+        },
+        {
+          "offset": 329,
+          "kind": "athrow"
+        },
+        {
+          "offset": 354,
+          "kind": "athrow"
+        },
+        {
+          "offset": 366,
+          "kind": "athrow"
+        },
+        {
+          "offset": 370,
+          "kind": "areturn"
+        },
+        {
+          "offset": 380,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 166,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "persistStore$lambda$0$1",
+      "descriptor": "(Lmihon/domain/extension/model/ExtensionStore;Lsuwayomi/tachidesk/manga/model/table/RepoTable;Lorg/jetbrains/exposed/sql/statements/UpdateStatement;)Lkotlin/Unit;",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "798b5541050da4073f01220d86ca5fe50bf6047649f75a5d3597a920ec71ef97",
+      "code_bytes": 139,
+      "instruction_count": 59,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 139,
+          "last_instruction": 138
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 138,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 58,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "name": "downloadJar$lambda$0",
+      "descriptor": "(Ljava/lang/Throwable;)Z",
+      "class_sha256": "d1bf5f5437978a3c2c0ca292339a6e187102d5d92e0bddd696363aff8193834d",
+      "javap_sha256": "acec32cb1aa25342ae214dd235e62d3b35b24d61719f2fe1edaea39c487d9d99",
+      "bytecode_sha256": "065c3d41f9ec759ebda3316740f549a5c52d95aa4c1f93677906bb9a4aff11a4",
+      "code_bytes": 33,
+      "instruction_count": 15,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 14,
+          "last_instruction": 11
+        },
+        {
+          "start": 14,
+          "end_exclusive": 27,
+          "last_instruction": 24
+        },
+        {
+          "start": 27,
+          "end_exclusive": 31,
+          "last_instruction": 28
+        },
+        {
+          "start": 31,
+          "end_exclusive": 32,
+          "last_instruction": 31
+        },
+        {
+          "start": 32,
+          "end_exclusive": 33,
+          "last_instruction": 32
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 32,
+          "kind": "ireturn"
+        }
+      ],
+      "normal_edge_count": 16,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.network.JsDelivrFallback",
+      "name": "run",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/impl/extension/network/JsDelivrFallback$Key;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "1108548ec2abc2ce2a51d21bf682ceb2571a4ec150e198ac8d9870334446d5b1",
+      "javap_sha256": "5f6a39640e023e6fa7b988a23993b7447144e0806f9267b314f324f4ac0e0986",
+      "bytecode_sha256": "1cc6d2378eff93d814f9fdfb44baa6736a47c4af986e1f22e047f7368ec4fcd1",
+      "code_bytes": 585,
+      "instruction_count": 249,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 26,
+          "last_instruction": 23
+        },
+        {
+          "start": 26,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 53,
+          "last_instruction": 51
+        },
+        {
+          "start": 53,
+          "end_exclusive": 100,
+          "last_instruction": 70
+        },
+        {
+          "start": 100,
+          "end_exclusive": 123,
+          "last_instruction": 120
+        },
+        {
+          "start": 123,
+          "end_exclusive": 132,
+          "last_instruction": 129
+        },
+        {
+          "start": 132,
+          "end_exclusive": 202,
+          "last_instruction": 199
+        },
+        {
+          "start": 202,
+          "end_exclusive": 205,
+          "last_instruction": 204
+        },
+        {
+          "start": 205,
+          "end_exclusive": 259,
+          "last_instruction": 257
+        },
+        {
+          "start": 259,
+          "end_exclusive": 260,
+          "last_instruction": 259
+        },
+        {
+          "start": 260,
+          "end_exclusive": 309,
+          "last_instruction": 304
+        },
+        {
+          "start": 309,
+          "end_exclusive": 315,
+          "last_instruction": 312
+        },
+        {
+          "start": 315,
+          "end_exclusive": 318,
+          "last_instruction": 317
+        },
+        {
+          "start": 318,
+          "end_exclusive": 365,
+          "last_instruction": 364
+        },
+        {
+          "start": 365,
+          "end_exclusive": 373,
+          "last_instruction": 371
+        },
+        {
+          "start": 373,
+          "end_exclusive": 375,
+          "last_instruction": 373
+        },
+        {
+          "start": 375,
+          "end_exclusive": 378,
+          "last_instruction": 375
+        },
+        {
+          "start": 378,
+          "end_exclusive": 383,
+          "last_instruction": 382
+        },
+        {
+          "start": 383,
+          "end_exclusive": 402,
+          "last_instruction": 399
+        },
+        {
+          "start": 402,
+          "end_exclusive": 411,
+          "last_instruction": 408
+        },
+        {
+          "start": 411,
+          "end_exclusive": 414,
+          "last_instruction": 413
+        },
+        {
+          "start": 414,
+          "end_exclusive": 503,
+          "last_instruction": 500
+        },
+        {
+          "start": 503,
+          "end_exclusive": 506,
+          "last_instruction": 505
+        },
+        {
+          "start": 506,
+          "end_exclusive": 570,
+          "last_instruction": 568
+        },
+        {
+          "start": 570,
+          "end_exclusive": 572,
+          "last_instruction": 570
+        },
+        {
+          "start": 572,
+          "end_exclusive": 575,
+          "last_instruction": 574
+        },
+        {
+          "start": 575,
+          "end_exclusive": 585,
+          "last_instruction": 584
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 260,
+          "end": 309,
+          "handler": 378,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 365,
+          "end": 375,
+          "handler": 378,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 260,
+          "end": 309,
+          "handler": 383,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 365,
+          "end": 375,
+          "handler": 383,
+          "type": "java/lang/Throwable"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 204,
+          "kind": "areturn"
+        },
+        {
+          "offset": 259,
+          "kind": "areturn"
+        },
+        {
+          "offset": 317,
+          "kind": "areturn"
+        },
+        {
+          "offset": 382,
+          "kind": "athrow"
+        },
+        {
+          "offset": 413,
+          "kind": "athrow"
+        },
+        {
+          "offset": 505,
+          "kind": "areturn"
+        },
+        {
+          "offset": 574,
+          "kind": "areturn"
+        },
+        {
+          "offset": 584,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 254,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.network.JsDelivrFallback",
+      "name": "toJsDelivrUrl",
+      "descriptor": "(Ljava/lang/String;)Ljava/lang/String;",
+      "class_sha256": "1108548ec2abc2ce2a51d21bf682ceb2571a4ec150e198ac8d9870334446d5b1",
+      "javap_sha256": "5f6a39640e023e6fa7b988a23993b7447144e0806f9267b314f324f4ac0e0986",
+      "bytecode_sha256": "8b609bf0a706036acc4371a1358248b6fe916d97bab866bb67f3a3027576e674",
+      "code_bytes": 142,
+      "instruction_count": 59,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 21,
+          "last_instruction": 18
+        },
+        {
+          "start": 21,
+          "end_exclusive": 37,
+          "last_instruction": 34
+        },
+        {
+          "start": 37,
+          "end_exclusive": 40,
+          "last_instruction": 39
+        },
+        {
+          "start": 40,
+          "end_exclusive": 142,
+          "last_instruction": 141
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 39,
+          "kind": "areturn"
+        },
+        {
+          "offset": 141,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 59,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.network.JsDelivrFallback",
+      "name": "toGitHubUrl",
+      "descriptor": "(Ljava/lang/String;)Ljava/lang/String;",
+      "class_sha256": "1108548ec2abc2ce2a51d21bf682ceb2571a4ec150e198ac8d9870334446d5b1",
+      "javap_sha256": "5f6a39640e023e6fa7b988a23993b7447144e0806f9267b314f324f4ac0e0986",
+      "bytecode_sha256": "fb8bd8c9887d9d38127dda1433ae979256941ae1894670b0b25d5f707ff2b3fa",
+      "code_bytes": 126,
+      "instruction_count": 51,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 21,
+          "last_instruction": 18
+        },
+        {
+          "start": 21,
+          "end_exclusive": 24,
+          "last_instruction": 23
+        },
+        {
+          "start": 24,
+          "end_exclusive": 126,
+          "last_instruction": 125
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 23,
+          "kind": "areturn"
+        },
+        {
+          "offset": 125,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 50,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.network.JsDelivrFallback",
+      "name": "toFallbackUrl",
+      "descriptor": "(Ljava/lang/String;)Ljava/lang/String;",
+      "class_sha256": "1108548ec2abc2ce2a51d21bf682ceb2571a4ec150e198ac8d9870334446d5b1",
+      "javap_sha256": "5f6a39640e023e6fa7b988a23993b7447144e0806f9267b314f324f4ac0e0986",
+      "bytecode_sha256": "12a07a747f4188180176893a30d8378b64a7cccdea37a7ca76fb240d71d89058",
+      "code_bytes": 61,
+      "instruction_count": 29,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 15,
+          "last_instruction": 12
+        },
+        {
+          "start": 15,
+          "end_exclusive": 29,
+          "last_instruction": 26
+        },
+        {
+          "start": 29,
+          "end_exclusive": 37,
+          "last_instruction": 34
+        },
+        {
+          "start": 37,
+          "end_exclusive": 51,
+          "last_instruction": 48
+        },
+        {
+          "start": 51,
+          "end_exclusive": 59,
+          "last_instruction": 56
+        },
+        {
+          "start": 59,
+          "end_exclusive": 60,
+          "last_instruction": 59
+        },
+        {
+          "start": 60,
+          "end_exclusive": 61,
+          "last_instruction": 60
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 60,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 31,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.network.JsDelivrFallback",
+      "name": "run$lambda$0",
+      "descriptor": "(Ljava/lang/Throwable;)Z",
+      "class_sha256": "1108548ec2abc2ce2a51d21bf682ceb2571a4ec150e198ac8d9870334446d5b1",
+      "javap_sha256": "5f6a39640e023e6fa7b988a23993b7447144e0806f9267b314f324f4ac0e0986",
+      "bytecode_sha256": "f7f08ae97c4f818bbc5ded6d925084203e170f506462c47837ebbd87dad31fb3",
+      "code_bytes": 8,
+      "instruction_count": 5,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 7
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 7,
+          "kind": "ireturn"
+        }
+      ],
+      "normal_edge_count": 4,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.Repo",
+      "name": "createRepo",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "53a80487a5d93cb6dad29f3df94b304f8b3ee4b4603483f86a5fd3ac6f8bc2c6",
+      "javap_sha256": "27955e8002f64f6ed82a1dadef28aedfac635dac919e3f652a512cb150bcdd3f",
+      "bytecode_sha256": "ca2b4572a10a2d7e27e93eecf86da276bf648fd484908bce045e0ff937c61193",
+      "code_bytes": 293,
+      "instruction_count": 127,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 24,
+          "last_instruction": 21
+        },
+        {
+          "start": 24,
+          "end_exclusive": 39,
+          "last_instruction": 36
+        },
+        {
+          "start": 39,
+          "end_exclusive": 50,
+          "last_instruction": 48
+        },
+        {
+          "start": 50,
+          "end_exclusive": 88,
+          "last_instruction": 67
+        },
+        {
+          "start": 88,
+          "end_exclusive": 148,
+          "last_instruction": 145
+        },
+        {
+          "start": 148,
+          "end_exclusive": 151,
+          "last_instruction": 150
+        },
+        {
+          "start": 151,
+          "end_exclusive": 186,
+          "last_instruction": 184
+        },
+        {
+          "start": 186,
+          "end_exclusive": 283,
+          "last_instruction": 282
+        },
+        {
+          "start": 283,
+          "end_exclusive": 293,
+          "last_instruction": 292
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 150,
+          "kind": "areturn"
+        },
+        {
+          "offset": 282,
+          "kind": "areturn"
+        },
+        {
+          "offset": 292,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 129,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "xyz.nulldev.androidcompat.pm.InstalledPackage",
+      "name": "verify",
+      "descriptor": "()Z",
+      "class_sha256": "0275f718cecc933e1041a8f683bcba717cbc937707a4a4f35d80bb3e330f80f8",
+      "javap_sha256": "ab054a95e33fefd367ab512701948a4c5bc6aa25eca1fdaa5fa6483be7edd76f",
+      "bytecode_sha256": "9052de1355ad1edda77cd78895a5c9a26d4e85e486b90d19b1c50040654dec02",
+      "code_bytes": 23,
+      "instruction_count": 11,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 23,
+          "last_instruction": 22
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 22,
+          "kind": "ireturn"
+        }
+      ],
+      "normal_edge_count": 10,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "name": "fetch-yxL6bBk",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Lsuwayomi/tachidesk/manga/impl/extension/network/JsDelivrFallback$Scene;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "94b51fe395f9b7681c9f5db3965851670311ddc148073e559da607c635c2ed7b",
+      "javap_sha256": "90a24aa774b7603a379eeccb9b54609f975ab43df47f8cf2a6bacdac4fa7441a",
+      "bytecode_sha256": "bcabc14d5fafe2f8ac26c3646dd07e72a4d6c1db0371201a6f2a0cdd75b986c4",
+      "code_bytes": 1600,
+      "instruction_count": 700,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 26,
+          "last_instruction": 23
+        },
+        {
+          "start": 26,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 53,
+          "last_instruction": 51
+        },
+        {
+          "start": 53,
+          "end_exclusive": 104,
+          "last_instruction": 70
+        },
+        {
+          "start": 104,
+          "end_exclusive": 133,
+          "last_instruction": 131
+        },
+        {
+          "start": 133,
+          "end_exclusive": 134,
+          "last_instruction": 133
+        },
+        {
+          "start": 134,
+          "end_exclusive": 199,
+          "last_instruction": 196
+        },
+        {
+          "start": 199,
+          "end_exclusive": 205,
+          "last_instruction": 202
+        },
+        {
+          "start": 205,
+          "end_exclusive": 208,
+          "last_instruction": 207
+        },
+        {
+          "start": 208,
+          "end_exclusive": 262,
+          "last_instruction": 261
+        },
+        {
+          "start": 262,
+          "end_exclusive": 270,
+          "last_instruction": 268
+        },
+        {
+          "start": 270,
+          "end_exclusive": 275,
+          "last_instruction": 273
+        },
+        {
+          "start": 275,
+          "end_exclusive": 278,
+          "last_instruction": 275
+        },
+        {
+          "start": 278,
+          "end_exclusive": 291,
+          "last_instruction": 288
+        },
+        {
+          "start": 291,
+          "end_exclusive": 310,
+          "last_instruction": 307
+        },
+        {
+          "start": 310,
+          "end_exclusive": 409,
+          "last_instruction": 406
+        },
+        {
+          "start": 409,
+          "end_exclusive": 415,
+          "last_instruction": 412
+        },
+        {
+          "start": 415,
+          "end_exclusive": 418,
+          "last_instruction": 417
+        },
+        {
+          "start": 418,
+          "end_exclusive": 482,
+          "last_instruction": 481
+        },
+        {
+          "start": 482,
+          "end_exclusive": 490,
+          "last_instruction": 488
+        },
+        {
+          "start": 490,
+          "end_exclusive": 496,
+          "last_instruction": 493
+        },
+        {
+          "start": 496,
+          "end_exclusive": 499,
+          "last_instruction": 498
+        },
+        {
+          "start": 499,
+          "end_exclusive": 501,
+          "last_instruction": 499
+        },
+        {
+          "start": 501,
+          "end_exclusive": 525,
+          "last_instruction": 523
+        },
+        {
+          "start": 525,
+          "end_exclusive": 557,
+          "last_instruction": 554
+        },
+        {
+          "start": 557,
+          "end_exclusive": 578,
+          "last_instruction": 575
+        },
+        {
+          "start": 578,
+          "end_exclusive": 588,
+          "last_instruction": 587
+        },
+        {
+          "start": 588,
+          "end_exclusive": 637,
+          "last_instruction": 634
+        },
+        {
+          "start": 637,
+          "end_exclusive": 640,
+          "last_instruction": 637
+        },
+        {
+          "start": 640,
+          "end_exclusive": 663,
+          "last_instruction": 658
+        },
+        {
+          "start": 663,
+          "end_exclusive": 784,
+          "last_instruction": 781
+        },
+        {
+          "start": 784,
+          "end_exclusive": 790,
+          "last_instruction": 787
+        },
+        {
+          "start": 790,
+          "end_exclusive": 793,
+          "last_instruction": 792
+        },
+        {
+          "start": 793,
+          "end_exclusive": 896,
+          "last_instruction": 895
+        },
+        {
+          "start": 896,
+          "end_exclusive": 904,
+          "last_instruction": 902
+        },
+        {
+          "start": 904,
+          "end_exclusive": 921,
+          "last_instruction": 919
+        },
+        {
+          "start": 921,
+          "end_exclusive": 974,
+          "last_instruction": 972
+        },
+        {
+          "start": 974,
+          "end_exclusive": 986,
+          "last_instruction": 983
+        },
+        {
+          "start": 986,
+          "end_exclusive": 995,
+          "last_instruction": 994
+        },
+        {
+          "start": 995,
+          "end_exclusive": 997,
+          "last_instruction": 995
+        },
+        {
+          "start": 997,
+          "end_exclusive": 1007,
+          "last_instruction": 1006
+        },
+        {
+          "start": 1007,
+          "end_exclusive": 1014,
+          "last_instruction": 1011
+        },
+        {
+          "start": 1014,
+          "end_exclusive": 1021,
+          "last_instruction": 1018
+        },
+        {
+          "start": 1021,
+          "end_exclusive": 1067,
+          "last_instruction": 1065
+        },
+        {
+          "start": 1067,
+          "end_exclusive": 1070,
+          "last_instruction": 1067
+        },
+        {
+          "start": 1070,
+          "end_exclusive": 1112,
+          "last_instruction": 1110
+        },
+        {
+          "start": 1112,
+          "end_exclusive": 1117,
+          "last_instruction": 1114
+        },
+        {
+          "start": 1117,
+          "end_exclusive": 1167,
+          "last_instruction": 1164
+        },
+        {
+          "start": 1167,
+          "end_exclusive": 1177,
+          "last_instruction": 1174
+        },
+        {
+          "start": 1177,
+          "end_exclusive": 1188,
+          "last_instruction": 1185
+        },
+        {
+          "start": 1188,
+          "end_exclusive": 1193,
+          "last_instruction": 1190
+        },
+        {
+          "start": 1193,
+          "end_exclusive": 1204,
+          "last_instruction": 1203
+        },
+        {
+          "start": 1204,
+          "end_exclusive": 1317,
+          "last_instruction": 1314
+        },
+        {
+          "start": 1317,
+          "end_exclusive": 1323,
+          "last_instruction": 1320
+        },
+        {
+          "start": 1323,
+          "end_exclusive": 1326,
+          "last_instruction": 1325
+        },
+        {
+          "start": 1326,
+          "end_exclusive": 1426,
+          "last_instruction": 1425
+        },
+        {
+          "start": 1426,
+          "end_exclusive": 1440,
+          "last_instruction": 1437
+        },
+        {
+          "start": 1440,
+          "end_exclusive": 1442,
+          "last_instruction": 1440
+        },
+        {
+          "start": 1442,
+          "end_exclusive": 1452,
+          "last_instruction": 1451
+        },
+        {
+          "start": 1452,
+          "end_exclusive": 1493,
+          "last_instruction": 1491
+        },
+        {
+          "start": 1493,
+          "end_exclusive": 1505,
+          "last_instruction": 1502
+        },
+        {
+          "start": 1505,
+          "end_exclusive": 1514,
+          "last_instruction": 1513
+        },
+        {
+          "start": 1514,
+          "end_exclusive": 1516,
+          "last_instruction": 1514
+        },
+        {
+          "start": 1516,
+          "end_exclusive": 1526,
+          "last_instruction": 1525
+        },
+        {
+          "start": 1526,
+          "end_exclusive": 1539,
+          "last_instruction": 1537
+        },
+        {
+          "start": 1539,
+          "end_exclusive": 1542,
+          "last_instruction": 1539
+        },
+        {
+          "start": 1542,
+          "end_exclusive": 1547,
+          "last_instruction": 1546
+        },
+        {
+          "start": 1547,
+          "end_exclusive": 1587,
+          "last_instruction": 1585
+        },
+        {
+          "start": 1587,
+          "end_exclusive": 1590,
+          "last_instruction": 1589
+        },
+        {
+          "start": 1590,
+          "end_exclusive": 1600,
+          "last_instruction": 1599
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 134,
+          "end": 199,
+          "handler": 278,
+          "type": "eu/kanade/tachiyomi/network/HttpException"
+        },
+        {
+          "start": 262,
+          "end": 275,
+          "handler": 278,
+          "type": "eu/kanade/tachiyomi/network/HttpException"
+        },
+        {
+          "start": 588,
+          "end": 637,
+          "handler": 640,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 921,
+          "end": 974,
+          "handler": 986,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 921,
+          "end": 974,
+          "handler": 995,
+          "type": null
+        },
+        {
+          "start": 986,
+          "end": 995,
+          "handler": 995,
+          "type": null
+        },
+        {
+          "start": 995,
+          "end": 997,
+          "handler": 995,
+          "type": null
+        },
+        {
+          "start": 1021,
+          "end": 1067,
+          "handler": 1070,
+          "type": "java/lang/IllegalArgumentException"
+        },
+        {
+          "start": 525,
+          "end": 784,
+          "handler": 1505,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 896,
+          "end": 1317,
+          "handler": 1505,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 1426,
+          "end": 1442,
+          "handler": 1505,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 1452,
+          "end": 1493,
+          "handler": 1505,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 525,
+          "end": 784,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 896,
+          "end": 1317,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 1426,
+          "end": 1442,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 1452,
+          "end": 1493,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 1505,
+          "end": 1514,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 1514,
+          "end": 1516,
+          "handler": 1514,
+          "type": null
+        },
+        {
+          "start": 133,
+          "end": 199,
+          "handler": 1542,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 262,
+          "end": 409,
+          "handler": 1542,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 482,
+          "end": 784,
+          "handler": 1542,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 896,
+          "end": 1317,
+          "handler": 1542,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 1426,
+          "end": 1539,
+          "handler": 1542,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 133,
+          "end": 199,
+          "handler": 1547,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 262,
+          "end": 409,
+          "handler": 1547,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 482,
+          "end": 784,
+          "handler": 1547,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 896,
+          "end": 1317,
+          "handler": 1547,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 1426,
+          "end": 1539,
+          "handler": 1547,
+          "type": "java/lang/Exception"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 207,
+          "kind": "areturn"
+        },
+        {
+          "offset": 417,
+          "kind": "areturn"
+        },
+        {
+          "offset": 498,
+          "kind": "athrow"
+        },
+        {
+          "offset": 587,
+          "kind": "athrow"
+        },
+        {
+          "offset": 792,
+          "kind": "areturn"
+        },
+        {
+          "offset": 994,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1006,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1203,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1325,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1451,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1513,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1525,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1546,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1589,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1599,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 704,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "name": "getExtensions-0E7RQCE",
+      "descriptor": "(Lmihon/domain/extension/model/ExtensionStore;Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "94b51fe395f9b7681c9f5db3965851670311ddc148073e559da607c635c2ed7b",
+      "javap_sha256": "90a24aa774b7603a379eeccb9b54609f975ab43df47f8cf2a6bacdac4fa7441a",
+      "bytecode_sha256": "d7f2c6fd62c846893cafa5b1b43eb5e07f6b4574d9b193b5693ac731634c274d",
+      "code_bytes": 1240,
+      "instruction_count": 540,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 24,
+          "last_instruction": 21
+        },
+        {
+          "start": 24,
+          "end_exclusive": 39,
+          "last_instruction": 36
+        },
+        {
+          "start": 39,
+          "end_exclusive": 50,
+          "last_instruction": 48
+        },
+        {
+          "start": 50,
+          "end_exclusive": 96,
+          "last_instruction": 67
+        },
+        {
+          "start": 96,
+          "end_exclusive": 108,
+          "last_instruction": 105
+        },
+        {
+          "start": 108,
+          "end_exclusive": 120,
+          "last_instruction": 117
+        },
+        {
+          "start": 120,
+          "end_exclusive": 129,
+          "last_instruction": 124
+        },
+        {
+          "start": 129,
+          "end_exclusive": 131,
+          "last_instruction": 129
+        },
+        {
+          "start": 131,
+          "end_exclusive": 139,
+          "last_instruction": 136
+        },
+        {
+          "start": 139,
+          "end_exclusive": 151,
+          "last_instruction": 148
+        },
+        {
+          "start": 151,
+          "end_exclusive": 158,
+          "last_instruction": 155
+        },
+        {
+          "start": 158,
+          "end_exclusive": 201,
+          "last_instruction": 198
+        },
+        {
+          "start": 201,
+          "end_exclusive": 207,
+          "last_instruction": 204
+        },
+        {
+          "start": 207,
+          "end_exclusive": 210,
+          "last_instruction": 209
+        },
+        {
+          "start": 210,
+          "end_exclusive": 238,
+          "last_instruction": 237
+        },
+        {
+          "start": 238,
+          "end_exclusive": 246,
+          "last_instruction": 244
+        },
+        {
+          "start": 246,
+          "end_exclusive": 271,
+          "last_instruction": 269
+        },
+        {
+          "start": 271,
+          "end_exclusive": 299,
+          "last_instruction": 296
+        },
+        {
+          "start": 299,
+          "end_exclusive": 340,
+          "last_instruction": 337
+        },
+        {
+          "start": 340,
+          "end_exclusive": 391,
+          "last_instruction": 388
+        },
+        {
+          "start": 391,
+          "end_exclusive": 398,
+          "last_instruction": 396
+        },
+        {
+          "start": 398,
+          "end_exclusive": 410,
+          "last_instruction": 407
+        },
+        {
+          "start": 410,
+          "end_exclusive": 419,
+          "last_instruction": 418
+        },
+        {
+          "start": 419,
+          "end_exclusive": 421,
+          "last_instruction": 419
+        },
+        {
+          "start": 421,
+          "end_exclusive": 431,
+          "last_instruction": 430
+        },
+        {
+          "start": 431,
+          "end_exclusive": 438,
+          "last_instruction": 435
+        },
+        {
+          "start": 438,
+          "end_exclusive": 481,
+          "last_instruction": 478
+        },
+        {
+          "start": 481,
+          "end_exclusive": 487,
+          "last_instruction": 484
+        },
+        {
+          "start": 487,
+          "end_exclusive": 490,
+          "last_instruction": 489
+        },
+        {
+          "start": 490,
+          "end_exclusive": 518,
+          "last_instruction": 517
+        },
+        {
+          "start": 518,
+          "end_exclusive": 526,
+          "last_instruction": 524
+        },
+        {
+          "start": 526,
+          "end_exclusive": 551,
+          "last_instruction": 549
+        },
+        {
+          "start": 551,
+          "end_exclusive": 579,
+          "last_instruction": 576
+        },
+        {
+          "start": 579,
+          "end_exclusive": 620,
+          "last_instruction": 617
+        },
+        {
+          "start": 620,
+          "end_exclusive": 670,
+          "last_instruction": 667
+        },
+        {
+          "start": 670,
+          "end_exclusive": 684,
+          "last_instruction": 682
+        },
+        {
+          "start": 684,
+          "end_exclusive": 696,
+          "last_instruction": 693
+        },
+        {
+          "start": 696,
+          "end_exclusive": 705,
+          "last_instruction": 704
+        },
+        {
+          "start": 705,
+          "end_exclusive": 707,
+          "last_instruction": 705
+        },
+        {
+          "start": 707,
+          "end_exclusive": 717,
+          "last_instruction": 716
+        },
+        {
+          "start": 717,
+          "end_exclusive": 724,
+          "last_instruction": 721
+        },
+        {
+          "start": 724,
+          "end_exclusive": 787,
+          "last_instruction": 785
+        },
+        {
+          "start": 787,
+          "end_exclusive": 797,
+          "last_instruction": 794
+        },
+        {
+          "start": 797,
+          "end_exclusive": 841,
+          "last_instruction": 838
+        },
+        {
+          "start": 841,
+          "end_exclusive": 850,
+          "last_instruction": 847
+        },
+        {
+          "start": 850,
+          "end_exclusive": 918,
+          "last_instruction": 915
+        },
+        {
+          "start": 918,
+          "end_exclusive": 924,
+          "last_instruction": 921
+        },
+        {
+          "start": 924,
+          "end_exclusive": 927,
+          "last_instruction": 926
+        },
+        {
+          "start": 927,
+          "end_exclusive": 965,
+          "last_instruction": 964
+        },
+        {
+          "start": 965,
+          "end_exclusive": 973,
+          "last_instruction": 971
+        },
+        {
+          "start": 973,
+          "end_exclusive": 994,
+          "last_instruction": 992
+        },
+        {
+          "start": 994,
+          "end_exclusive": 1091,
+          "last_instruction": 1089
+        },
+        {
+          "start": 1091,
+          "end_exclusive": 1101,
+          "last_instruction": 1098
+        },
+        {
+          "start": 1101,
+          "end_exclusive": 1145,
+          "last_instruction": 1142
+        },
+        {
+          "start": 1145,
+          "end_exclusive": 1154,
+          "last_instruction": 1152
+        },
+        {
+          "start": 1154,
+          "end_exclusive": 1166,
+          "last_instruction": 1163
+        },
+        {
+          "start": 1166,
+          "end_exclusive": 1175,
+          "last_instruction": 1174
+        },
+        {
+          "start": 1175,
+          "end_exclusive": 1177,
+          "last_instruction": 1175
+        },
+        {
+          "start": 1177,
+          "end_exclusive": 1187,
+          "last_instruction": 1186
+        },
+        {
+          "start": 1187,
+          "end_exclusive": 1200,
+          "last_instruction": 1198
+        },
+        {
+          "start": 1200,
+          "end_exclusive": 1203,
+          "last_instruction": 1200
+        },
+        {
+          "start": 1203,
+          "end_exclusive": 1208,
+          "last_instruction": 1207
+        },
+        {
+          "start": 1208,
+          "end_exclusive": 1227,
+          "last_instruction": 1225
+        },
+        {
+          "start": 1227,
+          "end_exclusive": 1230,
+          "last_instruction": 1229
+        },
+        {
+          "start": 1230,
+          "end_exclusive": 1240,
+          "last_instruction": 1239
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 271,
+          "end": 398,
+          "handler": 410,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 271,
+          "end": 398,
+          "handler": 419,
+          "type": null
+        },
+        {
+          "start": 410,
+          "end": 419,
+          "handler": 419,
+          "type": null
+        },
+        {
+          "start": 419,
+          "end": 421,
+          "handler": 419,
+          "type": null
+        },
+        {
+          "start": 551,
+          "end": 684,
+          "handler": 696,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 551,
+          "end": 684,
+          "handler": 705,
+          "type": null
+        },
+        {
+          "start": 696,
+          "end": 705,
+          "handler": 705,
+          "type": null
+        },
+        {
+          "start": 705,
+          "end": 707,
+          "handler": 705,
+          "type": null
+        },
+        {
+          "start": 994,
+          "end": 1154,
+          "handler": 1166,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 994,
+          "end": 1154,
+          "handler": 1175,
+          "type": null
+        },
+        {
+          "start": 1166,
+          "end": 1175,
+          "handler": 1175,
+          "type": null
+        },
+        {
+          "start": 1175,
+          "end": 1177,
+          "handler": 1175,
+          "type": null
+        },
+        {
+          "start": 131,
+          "end": 201,
+          "handler": 1203,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 238,
+          "end": 481,
+          "handler": 1203,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 518,
+          "end": 918,
+          "handler": 1203,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 965,
+          "end": 1200,
+          "handler": 1203,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 131,
+          "end": 201,
+          "handler": 1208,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 238,
+          "end": 481,
+          "handler": 1208,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 518,
+          "end": 918,
+          "handler": 1208,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 965,
+          "end": 1200,
+          "handler": 1208,
+          "type": "java/lang/Exception"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 209,
+          "kind": "areturn"
+        },
+        {
+          "offset": 418,
+          "kind": "athrow"
+        },
+        {
+          "offset": 430,
+          "kind": "athrow"
+        },
+        {
+          "offset": 489,
+          "kind": "areturn"
+        },
+        {
+          "offset": 704,
+          "kind": "athrow"
+        },
+        {
+          "offset": 716,
+          "kind": "athrow"
+        },
+        {
+          "offset": 926,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1174,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1186,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1207,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1229,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1239,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 546,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "name": "decompressIfGzipped",
+      "descriptor": "(Lokio/BufferedSource;)Lokio/BufferedSource;",
+      "class_sha256": "94b51fe395f9b7681c9f5db3965851670311ddc148073e559da607c635c2ed7b",
+      "javap_sha256": "90a24aa774b7603a379eeccb9b54609f975ab43df47f8cf2a6bacdac4fa7441a",
+      "bytecode_sha256": "4383f850a991f7bed966a59ff6ad21afa73e04cbb1914f786c46396c2dad5bc0",
+      "code_bytes": 120,
+      "instruction_count": 61,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 13,
+          "last_instruction": 11
+        },
+        {
+          "start": 13,
+          "end_exclusive": 23,
+          "last_instruction": 21
+        },
+        {
+          "start": 23,
+          "end_exclusive": 37,
+          "last_instruction": 34
+        },
+        {
+          "start": 37,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 42,
+          "last_instruction": 41
+        },
+        {
+          "start": 42,
+          "end_exclusive": 44,
+          "last_instruction": 42
+        },
+        {
+          "start": 44,
+          "end_exclusive": 47,
+          "last_instruction": 44
+        },
+        {
+          "start": 47,
+          "end_exclusive": 52,
+          "last_instruction": 50
+        },
+        {
+          "start": 52,
+          "end_exclusive": 57,
+          "last_instruction": 55
+        },
+        {
+          "start": 57,
+          "end_exclusive": 68,
+          "last_instruction": 65
+        },
+        {
+          "start": 68,
+          "end_exclusive": 77,
+          "last_instruction": 76
+        },
+        {
+          "start": 77,
+          "end_exclusive": 79,
+          "last_instruction": 77
+        },
+        {
+          "start": 79,
+          "end_exclusive": 88,
+          "last_instruction": 87
+        },
+        {
+          "start": 88,
+          "end_exclusive": 93,
+          "last_instruction": 90
+        },
+        {
+          "start": 93,
+          "end_exclusive": 118,
+          "last_instruction": 115
+        },
+        {
+          "start": 118,
+          "end_exclusive": 119,
+          "last_instruction": 118
+        },
+        {
+          "start": 119,
+          "end_exclusive": 120,
+          "last_instruction": 119
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 23,
+          "end": 44,
+          "handler": 47,
+          "type": "java/lang/Exception"
+        },
+        {
+          "start": 13,
+          "end": 57,
+          "handler": 68,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 13,
+          "end": 57,
+          "handler": 77,
+          "type": null
+        },
+        {
+          "start": 68,
+          "end": 77,
+          "handler": 77,
+          "type": null
+        },
+        {
+          "start": 77,
+          "end": 79,
+          "handler": 77,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 76,
+          "kind": "athrow"
+        },
+        {
+          "offset": 87,
+          "kind": "athrow"
+        },
+        {
+          "offset": 119,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 60,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "name": "run",
+      "descriptor": "(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "6f54e214faac0386b225e11bb9b2b56da2a798c37fbeb9d24e4d51541de6ac6b",
+      "javap_sha256": "655a0b2075a69f361c82d84302021c2e911d5b086c46bb85e94591a79fbe3050",
+      "bytecode_sha256": "d01e4618668317d6d87bbb777fef3b01989f521effa05c27e8c2c20009c9b0b0",
+      "code_bytes": 1297,
+      "instruction_count": 568,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 7,
+          "last_instruction": 4
+        },
+        {
+          "start": 7,
+          "end_exclusive": 25,
+          "last_instruction": 22
+        },
+        {
+          "start": 25,
+          "end_exclusive": 41,
+          "last_instruction": 38
+        },
+        {
+          "start": 41,
+          "end_exclusive": 52,
+          "last_instruction": 50
+        },
+        {
+          "start": 52,
+          "end_exclusive": 116,
+          "last_instruction": 69
+        },
+        {
+          "start": 116,
+          "end_exclusive": 121,
+          "last_instruction": 118
+        },
+        {
+          "start": 121,
+          "end_exclusive": 136,
+          "last_instruction": 133
+        },
+        {
+          "start": 136,
+          "end_exclusive": 140,
+          "last_instruction": 137
+        },
+        {
+          "start": 140,
+          "end_exclusive": 141,
+          "last_instruction": 140
+        },
+        {
+          "start": 141,
+          "end_exclusive": 144,
+          "last_instruction": 141
+        },
+        {
+          "start": 144,
+          "end_exclusive": 160,
+          "last_instruction": 157
+        },
+        {
+          "start": 160,
+          "end_exclusive": 167,
+          "last_instruction": 164
+        },
+        {
+          "start": 167,
+          "end_exclusive": 189,
+          "last_instruction": 187
+        },
+        {
+          "start": 189,
+          "end_exclusive": 199,
+          "last_instruction": 196
+        },
+        {
+          "start": 199,
+          "end_exclusive": 237,
+          "last_instruction": 234
+        },
+        {
+          "start": 237,
+          "end_exclusive": 248,
+          "last_instruction": 245
+        },
+        {
+          "start": 248,
+          "end_exclusive": 259,
+          "last_instruction": 256
+        },
+        {
+          "start": 259,
+          "end_exclusive": 268,
+          "last_instruction": 265
+        },
+        {
+          "start": 268,
+          "end_exclusive": 272,
+          "last_instruction": 269
+        },
+        {
+          "start": 272,
+          "end_exclusive": 273,
+          "last_instruction": 272
+        },
+        {
+          "start": 273,
+          "end_exclusive": 276,
+          "last_instruction": 273
+        },
+        {
+          "start": 276,
+          "end_exclusive": 281,
+          "last_instruction": 278
+        },
+        {
+          "start": 281,
+          "end_exclusive": 282,
+          "last_instruction": 281
+        },
+        {
+          "start": 282,
+          "end_exclusive": 289,
+          "last_instruction": 286
+        },
+        {
+          "start": 289,
+          "end_exclusive": 291,
+          "last_instruction": 290
+        },
+        {
+          "start": 291,
+          "end_exclusive": 301,
+          "last_instruction": 298
+        },
+        {
+          "start": 301,
+          "end_exclusive": 311,
+          "last_instruction": 310
+        },
+        {
+          "start": 311,
+          "end_exclusive": 321,
+          "last_instruction": 318
+        },
+        {
+          "start": 321,
+          "end_exclusive": 323,
+          "last_instruction": 321
+        },
+        {
+          "start": 323,
+          "end_exclusive": 333,
+          "last_instruction": 332
+        },
+        {
+          "start": 333,
+          "end_exclusive": 361,
+          "last_instruction": 358
+        },
+        {
+          "start": 361,
+          "end_exclusive": 397,
+          "last_instruction": 394
+        },
+        {
+          "start": 397,
+          "end_exclusive": 403,
+          "last_instruction": 400
+        },
+        {
+          "start": 403,
+          "end_exclusive": 406,
+          "last_instruction": 405
+        },
+        {
+          "start": 406,
+          "end_exclusive": 424,
+          "last_instruction": 423
+        },
+        {
+          "start": 424,
+          "end_exclusive": 432,
+          "last_instruction": 430
+        },
+        {
+          "start": 432,
+          "end_exclusive": 477,
+          "last_instruction": 474
+        },
+        {
+          "start": 477,
+          "end_exclusive": 483,
+          "last_instruction": 480
+        },
+        {
+          "start": 483,
+          "end_exclusive": 486,
+          "last_instruction": 485
+        },
+        {
+          "start": 486,
+          "end_exclusive": 514,
+          "last_instruction": 513
+        },
+        {
+          "start": 514,
+          "end_exclusive": 522,
+          "last_instruction": 520
+        },
+        {
+          "start": 522,
+          "end_exclusive": 566,
+          "last_instruction": 563
+        },
+        {
+          "start": 566,
+          "end_exclusive": 572,
+          "last_instruction": 569
+        },
+        {
+          "start": 572,
+          "end_exclusive": 575,
+          "last_instruction": 574
+        },
+        {
+          "start": 575,
+          "end_exclusive": 593,
+          "last_instruction": 592
+        },
+        {
+          "start": 593,
+          "end_exclusive": 601,
+          "last_instruction": 599
+        },
+        {
+          "start": 601,
+          "end_exclusive": 669,
+          "last_instruction": 666
+        },
+        {
+          "start": 669,
+          "end_exclusive": 675,
+          "last_instruction": 672
+        },
+        {
+          "start": 675,
+          "end_exclusive": 678,
+          "last_instruction": 677
+        },
+        {
+          "start": 678,
+          "end_exclusive": 696,
+          "last_instruction": 695
+        },
+        {
+          "start": 696,
+          "end_exclusive": 704,
+          "last_instruction": 702
+        },
+        {
+          "start": 704,
+          "end_exclusive": 754,
+          "last_instruction": 751
+        },
+        {
+          "start": 754,
+          "end_exclusive": 760,
+          "last_instruction": 757
+        },
+        {
+          "start": 760,
+          "end_exclusive": 763,
+          "last_instruction": 762
+        },
+        {
+          "start": 763,
+          "end_exclusive": 781,
+          "last_instruction": 780
+        },
+        {
+          "start": 781,
+          "end_exclusive": 789,
+          "last_instruction": 787
+        },
+        {
+          "start": 789,
+          "end_exclusive": 820,
+          "last_instruction": 817
+        },
+        {
+          "start": 820,
+          "end_exclusive": 826,
+          "last_instruction": 823
+        },
+        {
+          "start": 826,
+          "end_exclusive": 829,
+          "last_instruction": 828
+        },
+        {
+          "start": 829,
+          "end_exclusive": 847,
+          "last_instruction": 846
+        },
+        {
+          "start": 847,
+          "end_exclusive": 855,
+          "last_instruction": 853
+        },
+        {
+          "start": 855,
+          "end_exclusive": 915,
+          "last_instruction": 912
+        },
+        {
+          "start": 915,
+          "end_exclusive": 921,
+          "last_instruction": 918
+        },
+        {
+          "start": 921,
+          "end_exclusive": 924,
+          "last_instruction": 923
+        },
+        {
+          "start": 924,
+          "end_exclusive": 942,
+          "last_instruction": 941
+        },
+        {
+          "start": 942,
+          "end_exclusive": 950,
+          "last_instruction": 948
+        },
+        {
+          "start": 950,
+          "end_exclusive": 951,
+          "last_instruction": 950
+        },
+        {
+          "start": 951,
+          "end_exclusive": 968,
+          "last_instruction": 965
+        },
+        {
+          "start": 968,
+          "end_exclusive": 1021,
+          "last_instruction": 1019
+        },
+        {
+          "start": 1021,
+          "end_exclusive": 1031,
+          "last_instruction": 1028
+        },
+        {
+          "start": 1031,
+          "end_exclusive": 1061,
+          "last_instruction": 1058
+        },
+        {
+          "start": 1061,
+          "end_exclusive": 1065,
+          "last_instruction": 1062
+        },
+        {
+          "start": 1065,
+          "end_exclusive": 1066,
+          "last_instruction": 1065
+        },
+        {
+          "start": 1066,
+          "end_exclusive": 1069,
+          "last_instruction": 1066
+        },
+        {
+          "start": 1069,
+          "end_exclusive": 1082,
+          "last_instruction": 1079
+        },
+        {
+          "start": 1082,
+          "end_exclusive": 1106,
+          "last_instruction": 1104
+        },
+        {
+          "start": 1106,
+          "end_exclusive": 1116,
+          "last_instruction": 1113
+        },
+        {
+          "start": 1116,
+          "end_exclusive": 1146,
+          "last_instruction": 1143
+        },
+        {
+          "start": 1146,
+          "end_exclusive": 1147,
+          "last_instruction": 1146
+        },
+        {
+          "start": 1147,
+          "end_exclusive": 1164,
+          "last_instruction": 1161
+        },
+        {
+          "start": 1164,
+          "end_exclusive": 1184,
+          "last_instruction": 1181
+        },
+        {
+          "start": 1184,
+          "end_exclusive": 1201,
+          "last_instruction": 1198
+        },
+        {
+          "start": 1201,
+          "end_exclusive": 1246,
+          "last_instruction": 1243
+        },
+        {
+          "start": 1246,
+          "end_exclusive": 1263,
+          "last_instruction": 1260
+        },
+        {
+          "start": 1263,
+          "end_exclusive": 1265,
+          "last_instruction": 1263
+        },
+        {
+          "start": 1265,
+          "end_exclusive": 1282,
+          "last_instruction": 1281
+        },
+        {
+          "start": 1282,
+          "end_exclusive": 1286,
+          "last_instruction": 1285
+        },
+        {
+          "start": 1286,
+          "end_exclusive": 1297,
+          "last_instruction": 1296
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 167,
+          "end": 291,
+          "handler": 321,
+          "type": null
+        },
+        {
+          "start": 301,
+          "end": 311,
+          "handler": 321,
+          "type": null
+        },
+        {
+          "start": 321,
+          "end": 323,
+          "handler": 321,
+          "type": null
+        },
+        {
+          "start": 361,
+          "end": 397,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 424,
+          "end": 477,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 514,
+          "end": 566,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 593,
+          "end": 669,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 696,
+          "end": 754,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 781,
+          "end": 820,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 847,
+          "end": 915,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 942,
+          "end": 951,
+          "handler": 968,
+          "type": "java/util/concurrent/CancellationException"
+        },
+        {
+          "start": 361,
+          "end": 397,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 424,
+          "end": 477,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 514,
+          "end": 566,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 593,
+          "end": 669,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 696,
+          "end": 754,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 781,
+          "end": 820,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 847,
+          "end": 915,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 942,
+          "end": 951,
+          "handler": 1164,
+          "type": "suwayomi/tachidesk/manga/impl/download/Downloader$PauseDownloadException"
+        },
+        {
+          "start": 361,
+          "end": 397,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 424,
+          "end": 477,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 514,
+          "end": 566,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 593,
+          "end": 669,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 696,
+          "end": 754,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 781,
+          "end": 820,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 847,
+          "end": 915,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 942,
+          "end": 951,
+          "handler": 1201,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 361,
+          "end": 397,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 424,
+          "end": 477,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 514,
+          "end": 566,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 593,
+          "end": 669,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 696,
+          "end": 754,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 781,
+          "end": 820,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 847,
+          "end": 915,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 942,
+          "end": 951,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 968,
+          "end": 1147,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 1164,
+          "end": 1184,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 1201,
+          "end": 1246,
+          "handler": 1263,
+          "type": null
+        },
+        {
+          "start": 1263,
+          "end": 1265,
+          "handler": 1263,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 332,
+          "kind": "athrow"
+        },
+        {
+          "offset": 405,
+          "kind": "areturn"
+        },
+        {
+          "offset": 485,
+          "kind": "areturn"
+        },
+        {
+          "offset": 574,
+          "kind": "areturn"
+        },
+        {
+          "offset": 677,
+          "kind": "areturn"
+        },
+        {
+          "offset": 762,
+          "kind": "areturn"
+        },
+        {
+          "offset": 828,
+          "kind": "areturn"
+        },
+        {
+          "offset": 923,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1281,
+          "kind": "athrow"
+        },
+        {
+          "offset": 1285,
+          "kind": "areturn"
+        },
+        {
+          "offset": 1296,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 588,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "installAPK",
+      "descriptor": "(Ljava/lang/Integer;ZLjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "e784f85a44d548020a8735db26b56780b3372974bb554b8b2e60bed51575236b",
+      "code_bytes": 452,
+      "instruction_count": 187,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 8,
+          "last_instruction": 5
+        },
+        {
+          "start": 8,
+          "end_exclusive": 27,
+          "last_instruction": 24
+        },
+        {
+          "start": 27,
+          "end_exclusive": 43,
+          "last_instruction": 40
+        },
+        {
+          "start": 43,
+          "end_exclusive": 55,
+          "last_instruction": 53
+        },
+        {
+          "start": 55,
+          "end_exclusive": 96,
+          "last_instruction": 72
+        },
+        {
+          "start": 96,
+          "end_exclusive": 150,
+          "last_instruction": 147
+        },
+        {
+          "start": 150,
+          "end_exclusive": 153,
+          "last_instruction": 152
+        },
+        {
+          "start": 153,
+          "end_exclusive": 194,
+          "last_instruction": 192
+        },
+        {
+          "start": 194,
+          "end_exclusive": 241,
+          "last_instruction": 238
+        },
+        {
+          "start": 241,
+          "end_exclusive": 250,
+          "last_instruction": 247
+        },
+        {
+          "start": 250,
+          "end_exclusive": 261,
+          "last_instruction": 258
+        },
+        {
+          "start": 261,
+          "end_exclusive": 270,
+          "last_instruction": 267
+        },
+        {
+          "start": 270,
+          "end_exclusive": 288,
+          "last_instruction": 287
+        },
+        {
+          "start": 288,
+          "end_exclusive": 295,
+          "last_instruction": 292
+        },
+        {
+          "start": 295,
+          "end_exclusive": 315,
+          "last_instruction": 312
+        },
+        {
+          "start": 315,
+          "end_exclusive": 317,
+          "last_instruction": 316
+        },
+        {
+          "start": 317,
+          "end_exclusive": 378,
+          "last_instruction": 375
+        },
+        {
+          "start": 378,
+          "end_exclusive": 397,
+          "last_instruction": 394
+        },
+        {
+          "start": 397,
+          "end_exclusive": 408,
+          "last_instruction": 405
+        },
+        {
+          "start": 408,
+          "end_exclusive": 419,
+          "last_instruction": 416
+        },
+        {
+          "start": 419,
+          "end_exclusive": 425,
+          "last_instruction": 422
+        },
+        {
+          "start": 425,
+          "end_exclusive": 429,
+          "last_instruction": 426
+        },
+        {
+          "start": 429,
+          "end_exclusive": 430,
+          "last_instruction": 429
+        },
+        {
+          "start": 430,
+          "end_exclusive": 441,
+          "last_instruction": 440
+        },
+        {
+          "start": 441,
+          "end_exclusive": 452,
+          "last_instruction": 451
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 152,
+          "kind": "areturn"
+        },
+        {
+          "offset": 287,
+          "kind": "athrow"
+        },
+        {
+          "offset": 440,
+          "kind": "areturn"
+        },
+        {
+          "offset": 451,
+          "kind": "athrow"
+        }
+      ],
+      "normal_edge_count": 194,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "validateExtensionPackage",
+      "descriptor": "(Landroid/content/pm/PackageInfo;)V",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "c76bd18ad8cee980d26c3d34ddbac1466f2bd09d3de8c5943ea83d576831f429",
+      "code_bytes": 210,
+      "instruction_count": 104,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 12,
+          "last_instruction": 9
+        },
+        {
+          "start": 12,
+          "end_exclusive": 17,
+          "last_instruction": 14
+        },
+        {
+          "start": 17,
+          "end_exclusive": 27,
+          "last_instruction": 25
+        },
+        {
+          "start": 27,
+          "end_exclusive": 34,
+          "last_instruction": 31
+        },
+        {
+          "start": 34,
+          "end_exclusive": 61,
+          "last_instruction": 58
+        },
+        {
+          "start": 61,
+          "end_exclusive": 65,
+          "last_instruction": 62
+        },
+        {
+          "start": 65,
+          "end_exclusive": 71,
+          "last_instruction": 68
+        },
+        {
+          "start": 71,
+          "end_exclusive": 72,
+          "last_instruction": 71
+        },
+        {
+          "start": 72,
+          "end_exclusive": 75,
+          "last_instruction": 72
+        },
+        {
+          "start": 75,
+          "end_exclusive": 86,
+          "last_instruction": 85
+        },
+        {
+          "start": 86,
+          "end_exclusive": 119,
+          "last_instruction": 116
+        },
+        {
+          "start": 119,
+          "end_exclusive": 124,
+          "last_instruction": 121
+        },
+        {
+          "start": 124,
+          "end_exclusive": 125,
+          "last_instruction": 124
+        },
+        {
+          "start": 125,
+          "end_exclusive": 130,
+          "last_instruction": 127
+        },
+        {
+          "start": 130,
+          "end_exclusive": 141,
+          "last_instruction": 138
+        },
+        {
+          "start": 141,
+          "end_exclusive": 146,
+          "last_instruction": 143
+        },
+        {
+          "start": 146,
+          "end_exclusive": 168,
+          "last_instruction": 165
+        },
+        {
+          "start": 168,
+          "end_exclusive": 173,
+          "last_instruction": 170
+        },
+        {
+          "start": 173,
+          "end_exclusive": 184,
+          "last_instruction": 181
+        },
+        {
+          "start": 184,
+          "end_exclusive": 195,
+          "last_instruction": 192
+        },
+        {
+          "start": 195,
+          "end_exclusive": 209,
+          "last_instruction": 208
+        },
+        {
+          "start": 209,
+          "end_exclusive": 210,
+          "last_instruction": 209
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 85,
+          "kind": "athrow"
+        },
+        {
+          "offset": 208,
+          "kind": "athrow"
+        },
+        {
+          "offset": 209,
+          "kind": "return"
+        }
+      ],
+      "normal_edge_count": 111,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "prepareJarExtension",
+      "descriptor": "(Ljava/lang/String;)Lsuwayomi/tachidesk/manga/impl/extension/Extension$PreparedExtensionFile;",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "1dab8ec2d2747a42e0452d7d70f5a9efda92280cc7f03423c6193e7faa1620d7",
+      "code_bytes": 80,
+      "instruction_count": 36,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 80,
+          "last_instruction": 79
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 79,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 35,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "finalizeJarExtension",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;)V",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "4a4790e5095405ef668f0a359fb161de11237378b2d18d1c08e8133b82d1563c",
+      "code_bytes": 124,
+      "instruction_count": 56,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 34,
+          "last_instruction": 31
+        },
+        {
+          "start": 34,
+          "end_exclusive": 42,
+          "last_instruction": 39
+        },
+        {
+          "start": 42,
+          "end_exclusive": 48,
+          "last_instruction": 47
+        },
+        {
+          "start": 48,
+          "end_exclusive": 57,
+          "last_instruction": 54
+        },
+        {
+          "start": 57,
+          "end_exclusive": 82,
+          "last_instruction": 81
+        },
+        {
+          "start": 82,
+          "end_exclusive": 124,
+          "last_instruction": 123
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 81,
+          "kind": "athrow"
+        },
+        {
+          "offset": 123,
+          "kind": "return"
+        }
+      ],
+      "normal_edge_count": 57,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "installPreparedExtension",
+      "descriptor": "(Ljava/lang/Integer;ZLsuwayomi/tachidesk/manga/impl/extension/Extension$PreparedExtensionFile;Ljava/lang/String;)I",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "440250a99021f0a1137fab4e4012a94f0b28c46c71eac74117301e1fbb6f6344",
+      "code_bytes": 791,
+      "instruction_count": 325,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 105,
+          "last_instruction": 102
+        },
+        {
+          "start": 105,
+          "end_exclusive": 120,
+          "last_instruction": 117
+        },
+        {
+          "start": 120,
+          "end_exclusive": 122,
+          "last_instruction": 120
+        },
+        {
+          "start": 122,
+          "end_exclusive": 185,
+          "last_instruction": 182
+        },
+        {
+          "start": 185,
+          "end_exclusive": 193,
+          "last_instruction": 190
+        },
+        {
+          "start": 193,
+          "end_exclusive": 201,
+          "last_instruction": 198
+        },
+        {
+          "start": 201,
+          "end_exclusive": 214,
+          "last_instruction": 212
+        },
+        {
+          "start": 214,
+          "end_exclusive": 217,
+          "last_instruction": 214
+        },
+        {
+          "start": 217,
+          "end_exclusive": 316,
+          "last_instruction": 313
+        },
+        {
+          "start": 316,
+          "end_exclusive": 320,
+          "last_instruction": 317
+        },
+        {
+          "start": 320,
+          "end_exclusive": 335,
+          "last_instruction": 334
+        },
+        {
+          "start": 335,
+          "end_exclusive": 340,
+          "last_instruction": 337
+        },
+        {
+          "start": 340,
+          "end_exclusive": 358,
+          "last_instruction": 357
+        },
+        {
+          "start": 358,
+          "end_exclusive": 417,
+          "last_instruction": 415
+        },
+        {
+          "start": 417,
+          "end_exclusive": 427,
+          "last_instruction": 424
+        },
+        {
+          "start": 427,
+          "end_exclusive": 500,
+          "last_instruction": 497
+        },
+        {
+          "start": 500,
+          "end_exclusive": 550,
+          "last_instruction": 548
+        },
+        {
+          "start": 550,
+          "end_exclusive": 560,
+          "last_instruction": 557
+        },
+        {
+          "start": 560,
+          "end_exclusive": 602,
+          "last_instruction": 599
+        },
+        {
+          "start": 602,
+          "end_exclusive": 644,
+          "last_instruction": 623
+        },
+        {
+          "start": 644,
+          "end_exclusive": 650,
+          "last_instruction": 647
+        },
+        {
+          "start": 650,
+          "end_exclusive": 664,
+          "last_instruction": 661
+        },
+        {
+          "start": 664,
+          "end_exclusive": 667,
+          "last_instruction": 664
+        },
+        {
+          "start": 667,
+          "end_exclusive": 687,
+          "last_instruction": 684
+        },
+        {
+          "start": 687,
+          "end_exclusive": 708,
+          "last_instruction": 705
+        },
+        {
+          "start": 708,
+          "end_exclusive": 772,
+          "last_instruction": 769
+        },
+        {
+          "start": 772,
+          "end_exclusive": 781,
+          "last_instruction": 778
+        },
+        {
+          "start": 781,
+          "end_exclusive": 791,
+          "last_instruction": 790
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 201,
+          "end": 214,
+          "handler": 217,
+          "type": "java/lang/Throwable"
+        }
+      ],
+      "exits": [
+        {
+          "offset": 334,
+          "kind": "athrow"
+        },
+        {
+          "offset": 357,
+          "kind": "athrow"
+        },
+        {
+          "offset": 790,
+          "kind": "ireturn"
+        }
+      ],
+      "normal_edge_count": 332,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "name": "removeJarSignatures",
+      "descriptor": "(Ljava/lang/String;)V",
+      "class_sha256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "javap_sha256": "56172174281084892ca63010150662dec9817bdc64465c774a0c94774dac0610",
+      "bytecode_sha256": "35b81babcfc5d197b8b6b294ea8ecca24fbe8bb7386bf628ac9cf6e6b2d45ed9",
+      "code_bytes": 270,
+      "instruction_count": 130,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 56,
+          "last_instruction": 54
+        },
+        {
+          "start": 56,
+          "end_exclusive": 93,
+          "last_instruction": 91
+        },
+        {
+          "start": 93,
+          "end_exclusive": 111,
+          "last_instruction": 109
+        },
+        {
+          "start": 111,
+          "end_exclusive": 116,
+          "last_instruction": 113
+        },
+        {
+          "start": 116,
+          "end_exclusive": 140,
+          "last_instruction": 137
+        },
+        {
+          "start": 140,
+          "end_exclusive": 174,
+          "last_instruction": 173
+        },
+        {
+          "start": 174,
+          "end_exclusive": 184,
+          "last_instruction": 181
+        },
+        {
+          "start": 184,
+          "end_exclusive": 190,
+          "last_instruction": 188
+        },
+        {
+          "start": 190,
+          "end_exclusive": 200,
+          "last_instruction": 197
+        },
+        {
+          "start": 200,
+          "end_exclusive": 209,
+          "last_instruction": 208
+        },
+        {
+          "start": 209,
+          "end_exclusive": 211,
+          "last_instruction": 209
+        },
+        {
+          "start": 211,
+          "end_exclusive": 221,
+          "last_instruction": 220
+        },
+        {
+          "start": 221,
+          "end_exclusive": 227,
+          "last_instruction": 225
+        },
+        {
+          "start": 227,
+          "end_exclusive": 237,
+          "last_instruction": 234
+        },
+        {
+          "start": 237,
+          "end_exclusive": 246,
+          "last_instruction": 245
+        },
+        {
+          "start": 246,
+          "end_exclusive": 248,
+          "last_instruction": 246
+        },
+        {
+          "start": 248,
+          "end_exclusive": 258,
+          "last_instruction": 257
+        },
+        {
+          "start": 258,
+          "end_exclusive": 270,
+          "last_instruction": 269
+        }
+      ],
+      "exception_handlers": [
+        {
+          "start": 93,
+          "end": 190,
+          "handler": 200,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 93,
+          "end": 190,
+          "handler": 209,
+          "type": null
+        },
+        {
+          "start": 200,
+          "end": 209,
+          "handler": 209,
+          "type": null
+        },
+        {
+          "start": 209,
+          "end": 211,
+          "handler": 209,
+          "type": null
+        },
+        {
+          "start": 56,
+          "end": 227,
+          "handler": 237,
+          "type": "java/lang/Throwable"
+        },
+        {
+          "start": 56,
+          "end": 227,
+          "handler": 246,
+          "type": null
+        },
+        {
+          "start": 237,
+          "end": 246,
+          "handler": 246,
+          "type": null
+        },
+        {
+          "start": 246,
+          "end": 248,
+          "handler": 246,
+          "type": null
+        }
+      ],
+      "exits": [
+        {
+          "offset": 208,
+          "kind": "athrow"
+        },
+        {
+          "offset": 220,
+          "kind": "athrow"
+        },
+        {
+          "offset": 245,
+          "kind": "athrow"
+        },
+        {
+          "offset": 257,
+          "kind": "athrow"
+        },
+        {
+          "offset": 269,
+          "kind": "return"
+        }
+      ],
+      "normal_edge_count": 127,
+      "all_branch_destinations_at_instruction_starts": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.util.PackageTools",
+      "name": "getSignatureHash",
+      "descriptor": "(Landroid/content/pm/PackageInfo;)Ljava/lang/String;",
+      "class_sha256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "javap_sha256": "76e2dfb79461145c871cdf779fab4ec83fdbc0451a1f609fd94467685d8ad886",
+      "bytecode_sha256": "2923d4b858de83b96083cb2560fd7e80978141bfce0a05a2982d7b281b31219c",
+      "code_bytes": 65,
+      "instruction_count": 31,
+      "blocks": [
+        {
+          "start": 0,
+          "end_exclusive": 16,
+          "last_instruction": 13
+        },
+        {
+          "start": 16,
+          "end_exclusive": 21,
+          "last_instruction": 18
+        },
+        {
+          "start": 21,
+          "end_exclusive": 25,
+          "last_instruction": 22
+        },
+        {
+          "start": 25,
+          "end_exclusive": 26,
+          "last_instruction": 25
+        },
+        {
+          "start": 26,
+          "end_exclusive": 29,
+          "last_instruction": 26
+        },
+        {
+          "start": 29,
+          "end_exclusive": 33,
+          "last_instruction": 30
+        },
+        {
+          "start": 33,
+          "end_exclusive": 34,
+          "last_instruction": 33
+        },
+        {
+          "start": 34,
+          "end_exclusive": 37,
+          "last_instruction": 34
+        },
+        {
+          "start": 37,
+          "end_exclusive": 63,
+          "last_instruction": 60
+        },
+        {
+          "start": 63,
+          "end_exclusive": 64,
+          "last_instruction": 63
+        },
+        {
+          "start": 64,
+          "end_exclusive": 65,
+          "last_instruction": 64
+        }
+      ],
+      "exception_handlers": [],
+      "exits": [
+        {
+          "offset": 64,
+          "kind": "areturn"
+        }
+      ],
+      "normal_edge_count": 34,
+      "all_branch_destinations_at_instruction_starts": true
+    }
+  ],
+  "validated_anchors": [
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "bytecode_offset": 285,
+      "expected_reference_or_opcode": "404",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "bytecode_offset": 322,
+      "expected_reference_or_opcode": "/index.pb",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "bytecode_offset": 552,
+      "expected_reference_or_opcode": "91",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "bytecode_offset": 1016,
+      "expected_reference_or_opcode": "123",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "fetch-yxL6bBk",
+      "bytecode_offset": 1197,
+      "expected_reference_or_opcode": "only redirect once",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "getExtensions-0E7RQCE",
+      "bytecode_offset": 133,
+      "expected_reference_or_opcode": "getExtensionList",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "getExtensions-0E7RQCE",
+      "bytecode_offset": 152,
+      "expected_reference_or_opcode": "getExtensionListUrl",
+      "passed": true
+    },
+    {
+      "owner": "mihon.data.extension.service.ExtensionStoreService",
+      "method": "decompressIfGzipped",
+      "bytecode_offset": 31,
+      "expected_reference_or_opcode": "8075",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "method": "installAPK",
+      "bytecode_offset": 325,
+      "expected_reference_or_opcode": "validateExtensionPackage",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "method": "installAPK",
+      "bytecode_offset": 344,
+      "expected_reference_or_opcode": "uninstallExtension",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "method": "installAPK",
+      "bytecode_offset": 391,
+      "expected_reference_or_opcode": "finalizeApkExtension",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "method": "installAPK",
+      "bytecode_offset": 416,
+      "expected_reference_or_opcode": "finalizeJarExtension",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.Extension",
+      "method": "installAPK",
+      "bytecode_offset": 434,
+      "expected_reference_or_opcode": "installPreparedExtension",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 230,
+      "expected_reference_or_opcode": "sourceId:J",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 264,
+      "expected_reference_or_opcode": "iconst_3",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 666,
+      "expected_reference_or_opcode": "FolderProvider2.download",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 1137,
+      "expected_reference_or_opcode": "DownloadState.Queued",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 1227,
+      "expected_reference_or_opcode": "setTries",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.download.Downloader",
+      "method": "run",
+      "bytecode_offset": 1231,
+      "expected_reference_or_opcode": "DownloadState.Error",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "method": "downloadJar",
+      "bytecode_offset": 350,
+      "expected_reference_or_opcode": "404",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "method": "downloadJar",
+      "bytecode_offset": 356,
+      "expected_reference_or_opcode": "aconst_null",
+      "passed": true
+    },
+    {
+      "owner": "suwayomi.tachidesk.manga.impl.extension.github.ExtensionGithubApi",
+      "method": "downloadJar$lambda$0",
+      "bytecode_offset": 21,
+      "expected_reference_or_opcode": "404",
+      "passed": true
+    }
+  ],
+  "direct_call_search": {
+    "class_entries": 1610,
+    "scope": "selected-classes.jsonl.gz; direct Code-attribute references only, not reflection, JNI or bootstrap target inference",
+    "queries": [
+      {
+        "target_owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+        "target_method": "getSignatureHash",
+        "sites": []
+      },
+      {
+        "target_owner": "suwayomi/tachidesk/manga/impl/extension/Extension",
+        "target_method": "removeJarSignatures",
+        "sites": []
+      },
+      {
+        "target_owner": "xyz/nulldev/androidcompat/pm/InstalledPackage",
+        "target_method": "verify",
+        "sites": []
+      }
+    ]
+  },
+  "absent_from_res_zip_class_index": {
+    "com/android/apksig/ApkVerifier": true,
+    "com/android/apksig/ApkVerifier$Builder": true,
+    "com/android/apksig/ApkVerifier$Result": true
+  },
+  "trust_call_sites": [
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/github/ExtensionGithubApi",
+      "name": "persistStore",
+      "descriptor": "(Lsuwayomi/tachidesk/manga/model/dataclass/RepoDataClass;Lmihon/domain/extension/model/ExtensionStore;)V",
+      "hits": [
+        {
+          "offset": 68,
+          "owner": "mihon/domain/extension/model/ExtensionStore",
+          "name": "getSigningKey",
+          "descriptor": "()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/github/ExtensionGithubApi",
+      "name": "persistStore$lambda$0$1",
+      "descriptor": "(Lmihon/domain/extension/model/ExtensionStore;Lsuwayomi/tachidesk/manga/model/table/RepoTable;Lorg/jetbrains/exposed/sql/statements/UpdateStatement;)Lkotlin/Unit;",
+      "hits": [
+        {
+          "offset": 78,
+          "owner": "mihon/domain/extension/model/ExtensionStore",
+          "name": "getSigningKey",
+          "descriptor": "()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/Repo",
+      "name": "createRepo",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "hits": [
+        {
+          "offset": 219,
+          "owner": "mihon/domain/extension/model/ExtensionStore",
+          "name": "getSigningKey",
+          "descriptor": "()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "owner": "xyz/nulldev/androidcompat/pm/InstalledPackage",
+      "name": "verify",
+      "descriptor": "()Z",
+      "hits": [
+        {
+          "offset": 14,
+          "owner": "com/android/apksig/ApkVerifier",
+          "name": "verify",
+          "descriptor": "()Lcom/android/apksig/ApkVerifier$Result;"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No specimen code was executed; checked instruction destinations are not runtime verification or decompiler semantic equivalence.",
+    "Concrete protocol and state-flow findings are scoped in TACHIMANGA-5.1-REPOSITORIES-AR.md.",
+    "CFR/Vineflower failures are preserved; manual bytecode traces do not repair their original outputs.",
+    "No conclusion that all app paths lack signing verification; absence searches are explicitly bounded."
+  ]
+}
