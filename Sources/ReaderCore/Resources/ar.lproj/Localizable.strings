@@ -1062,3 +1062,9 @@
 "Restart this app to run the check again." = "أعد تشغيل هذا التطبيق لتكرار الفحص.";
 
 "Share engine report" = "مشاركة تقرير المحرك";
+
+"The repository index format is not supported." = "صيغة فهرس المستودع غير مدعومة.";
+
+"The repository redirected too many times." = "تجاوز المستودع الحد المسموح لتحويل الفهرس.";
+
+"The repository identity changed while its extension list was loading." = "تغيّرت هوية المستودع أثناء تحميل قائمة الإضافات.";

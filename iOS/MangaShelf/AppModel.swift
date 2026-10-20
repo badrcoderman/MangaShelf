@@ -207,6 +207,9 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
         completionHandler(request)
     }
     func get(_ text: String) async throws -> Data {
+        try await response(text).data
+    }
+    func response(_ text: String) async throws -> SourceHTTPResponse {
         guard HTTPSPolicy.accepts(text), let url = URL(string: text) else {
             throw ReaderFailure(L10n.string("A HTTPS URL without credentials or a custom port is required."))
         }
@@ -220,12 +223,15 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         defer { session.invalidateAndCancel() }
         var request = URLRequest(url: url)
-        request.setValue("MangaShelf/0.3", forHTTPHeaderField: "User-Agent")
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "development"
+        request.setValue("MangaShelf/" + version, forHTTPHeaderField: "User-Agent")
         let (bytes, response) = try await session.bytes(for: request)
         guard let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode) else {
             let code = (response as? HTTPURLResponse)?.statusCode ?? 0
-            if code == 429 { throw ReaderFailure(L10n.string("Too many requests to the source. Wait a moment and try again.")) }
-            throw ReaderFailure(L10n.format("Could not download from the service (HTTP %@).", String(describing: code)))
+            let message = code == 429
+                ? L10n.string("Too many requests to the source. Wait a moment and try again.")
+                : L10n.format("Could not download from the service (HTTP %@).", String(describing: code))
+            throw SourceHTTPFailure(statusCode: code, message: message)
         }
         let maximum = BoundedGzip.maximumBytes
         guard response.expectedContentLength <= Int64(maximum) else { throw ReaderFailure(L10n.string("The index exceeds the allowed limit.")) }
@@ -235,6 +241,9 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
             data.append(byte)
             if data.count % 65536 == 0 { try Task.checkCancellation() }
         }
-        return data
+        guard let finalURL = response.url, HTTPSPolicy.accepts(finalURL.absoluteString) else {
+            throw ReaderFailure(L10n.string("A HTTPS URL without credentials or a custom port is required."))
+        }
+        return SourceHTTPResponse(data: data, url: finalURL)
     }
 }

@@ -16,16 +16,27 @@ public struct RepositoryClient: Sendable {
         try Task.checkCancellation()
         let (index, documentURL) = try await fetchIndex(base)
         var resolved = index
-        if !resolved.hasEmbeddedList, let listText = resolved.extensionListURL {
-            guard let listURL = URL(string: listText, relativeTo: documentURL)?.absoluteURL,
-                  HTTPSPolicy.accepts(listURL.absoluteString) else {
-                throw ReaderFailure(ReaderText.string("The extension list URL is not secure."))
+        if !resolved.hasEmbeddedList {
+            if let listText = resolved.extensionListURL {
+                let listURL = try Self.resolvedURL(listText, relativeTo: documentURL)
+                let response = try await request(listURL, allowProtobuf404: false)
+                resolved.extensions = try await Task.detached(priority: .userInitiated) {
+                    try RepositoryDecoder.decodeExternalList(response.data, relativeTo: response.url)
+                }.value
+            } else {
+                // A modern metadata response may omit the list. Reload its
+                // index once, retaining the first response's publisher identity.
+                let response = try await request(documentURL, allowProtobuf404: false)
+                let reloaded = try await Self.decodeDocument(response.data, relativeTo: response.url)
+                guard reloaded.indexV2URL == nil, reloaded.index.hasEmbeddedList else {
+                    throw ReaderFailure(ReaderText.string("No extension list or link was found in the index."))
+                }
+                if let identity = resolved.signingKey, !identity.isEmpty,
+                   reloaded.index.signingKey != identity {
+                    throw ReaderFailure(ReaderText.string("The repository identity changed while its extension list was loading."))
+                }
+                resolved.extensions = reloaded.index.extensions
             }
-            let listData = try await transport.get(listURL)
-            try Task.checkCancellation()
-            resolved.extensions = try await Task.detached(priority: .userInitiated) {
-                try RepositoryDecoder.decodeExternalList(listData, relativeTo: listURL)
-            }.value
             try Task.checkCancellation()
             resolved.hasEmbeddedList = true
         }
@@ -54,41 +65,106 @@ public struct RepositoryClient: Sendable {
                                    url: url.absoluteString, data: bytes, digest: digest, inspection: inspection)
     }
 
-    private func fetchIndex(_ base: URL) async throws -> (RepositoryIndex, URL) {
-        let primaryData = try await transport.get(base)
-        try Task.checkCancellation()
+    private func fetchIndex(_ base: URL, allowIndexV2: Bool = true) async throws -> (RepositoryIndex, URL) {
+        let response = try await request(base, allowProtobuf404: true)
+        let document: RepositoryDocument
         do {
-            let index = try await Self.decodeIndex(primaryData, relativeTo: base)
+            document = try await Self.decodeDocument(response.data, relativeTo: response.url)
             try Task.checkCancellation()
-            return (index, base)
         } catch let primaryError {
             if Self.isCancellation(primaryError) { throw primaryError }
             try Task.checkCancellation()
             // Mirrors frequently publish the same data as index.pb,
             // index.min.json, or repo.json.  Fallback is limited to those
-            // sibling names and only occurs after a successful primary HTTP
-            // response; network failures are not hidden by extra requests.
-            for candidate in Self.fallbackURLs(for: base) {
+            // sibling names after a successful HTTP response with an invalid
+            // format. Routing failures below must not trigger sibling fallback.
+            for candidate in Self.fallbackURLs(for: response.url) {
+                if candidate == response.url { continue }
+                let fallback: SourceHTTPResponse
+                let decoded: RepositoryDocument
                 do {
+                    fallback = try await request(candidate, allowProtobuf404: true)
+                    decoded = try await Self.decodeDocument(fallback.data, relativeTo: fallback.url)
                     try Task.checkCancellation()
-                    let data = try await transport.get(candidate)
-                    try Task.checkCancellation()
-                    let index = try await Self.decodeIndex(data, relativeTo: candidate)
-                    try Task.checkCancellation()
-                    return (index, candidate)
                 } catch {
                     if Self.isCancellation(error) { throw error }
                     try Task.checkCancellation()
                     continue
                 }
+                return try await finish(decoded, at: fallback.url, allowIndexV2: allowIndexV2)
             }
             throw primaryError
         }
+        return try await finish(document, at: response.url, allowIndexV2: allowIndexV2)
     }
 
-    private static func decodeIndex(_ data: Data, relativeTo documentURL: URL) async throws -> RepositoryIndex {
+    private func finish(_ document: RepositoryDocument, at url: URL,
+                        allowIndexV2: Bool) async throws -> (RepositoryIndex, URL) {
+        if let redirect = document.indexV2URL {
+            return try await followIndexV2(redirect, from: url, allowed: allowIndexV2)
+        }
+        guard document.format == .legacyList, url.lastPathComponent == "index.min.json" else {
+            return (document.index, url)
+        }
+        let metadataURL = url.deletingLastPathComponent().appendingPathComponent("repo.json")
+        let response: SourceHTTPResponse
+        do {
+            response = try await request(metadataURL, allowProtobuf404: false)
+        } catch {
+            if Self.isCancellation(error) { throw error }
+            try Task.checkCancellation()
+            // Preserve support for standalone legacy indexes when no metadata
+            // exists. A malformed metadata response is not treated as absence.
+            if (error as? SourceHTTPFailure)?.statusCode == 404
+                || (error as? URLError)?.code == .fileDoesNotExist {
+                return (document.index, url)
+            }
+            throw error
+        }
+        let metadata = try await Self.decodeDocument(response.data, relativeTo: response.url)
+        try Task.checkCancellation()
+        if let redirect = metadata.indexV2URL {
+            return try await followIndexV2(redirect, from: response.url, allowed: allowIndexV2)
+        }
+        if metadata.format == .legacyMetadata {
+            var merged = metadata.index
+            merged.extensions = document.index.extensions
+            merged.hasEmbeddedList = true
+            return (merged, response.url)
+        }
+        return (metadata.index, response.url)
+    }
+
+    private func followIndexV2(_ text: String, from url: URL,
+                               allowed: Bool) async throws -> (RepositoryIndex, URL) {
+        guard allowed else {
+            throw ReaderFailure(ReaderText.string("The repository redirected too many times."))
+        }
+        return try await fetchIndex(Self.resolvedURL(text, relativeTo: url), allowIndexV2: false)
+    }
+
+    private func request(_ url: URL, allowProtobuf404: Bool) async throws -> SourceHTTPResponse {
+        try Task.checkCancellation()
+        _ = try Self.validatedURL(url.absoluteString)
+        let response: SourceHTTPResponse
+        do {
+            response = try await transport.response(url)
+        } catch {
+            if Self.isCancellation(error) { throw error }
+            try Task.checkCancellation()
+            guard allowProtobuf404, (error as? SourceHTTPFailure)?.statusCode == 404,
+                  url.lastPathComponent == "index.min.json" else { throw error }
+            let alternative = url.deletingLastPathComponent().appendingPathComponent("index.pb")
+            response = try await transport.response(alternative)
+        }
+        try Task.checkCancellation()
+        _ = try Self.validatedURL(response.url.absoluteString)
+        return response
+    }
+
+    private static func decodeDocument(_ data: Data, relativeTo documentURL: URL) async throws -> RepositoryDocument {
         try await Task.detached(priority: .userInitiated) {
-            try RepositoryDecoder.decode(data, relativeTo: documentURL)
+            try RepositoryDecoder.document(data, relativeTo: documentURL)
         }.value
     }
 
@@ -113,10 +189,18 @@ public struct RepositoryClient: Sendable {
     }
 
     private static func validatedURL(_ text: String) throws -> URL {
-        guard HTTPSPolicy.accepts(text), let url = URL(string: text) else {
+        guard text.utf8.count <= 8192, HTTPSPolicy.accepts(text), let url = URL(string: text) else {
             throw ReaderFailure(ReaderText.string("A HTTPS URL without credentials or a custom port is required."))
         }
         return url
+    }
+
+    private static func resolvedURL(_ text: String, relativeTo base: URL) throws -> URL {
+        guard !text.isEmpty, text.utf8.count <= 8192,
+              let url = URL(string: text, relativeTo: base)?.absoluteURL else {
+            throw ReaderFailure(ReaderText.string("A HTTPS URL without credentials or a custom port is required."))
+        }
+        return try validatedURL(url.absoluteString)
     }
 }
 

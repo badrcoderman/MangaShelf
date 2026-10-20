@@ -19,6 +19,8 @@ public struct ExtensionRecord: Codable, Identifiable, Hashable, Sendable {
 }
 public struct RepositoryIndex: Codable, Sendable {
     public var name: String
+    /// Opaque publisher identity from metadata, including legacy fingerprints.
+    /// This value alone is not a verification key or a signature check.
     public var signingKey: String?
     public var extensionListURL: String?
     public var extensions: [ExtensionRecord]
@@ -55,6 +57,13 @@ public struct RepositoryIndex: Codable, Sendable {
             }
         }
     }
+}
+
+enum RepositoryDocumentFormat: Equatable, Sendable { case index, legacyList, legacyMetadata }
+struct RepositoryDocument: Sendable {
+    let index: RepositoryIndex
+    let format: RepositoryDocumentFormat
+    let indexV2URL: String?
 }
 
 private struct PBField {
@@ -101,36 +110,112 @@ private struct PBMessage {
 
 public enum RepositoryDecoder {
     public static func decode(_ input: Data, relativeTo documentURL: URL? = nil) throws -> RepositoryIndex {
+        try document(input, relativeTo: documentURL).index
+    }
+
+    static func document(_ input: Data, relativeTo documentURL: URL? = nil) throws -> RepositoryDocument {
         let data = try BoundedGzip.decodeIfNeeded(input)
         guard !data.isEmpty else { throw ReaderFailure(ReaderText.string("The index is empty.")) }
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         // A protobuf tag 0x0a resembles JSON whitespace; the next byte may be
         // '[' or '{' as a string length. Do not classify binary data by that alone.
-        if first == 91, let legacy = try? legacyJSON(data, relativeTo: documentURL) { return legacy }
-        if first == 123 {
-            if let legacy = try? legacyJSON(data, relativeTo: documentURL) { return legacy }
-            if (try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])) != nil {
-                throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
+        if first == 91 || first == 123 {
+            do { return try jsonDocument(data, relativeTo: documentURL) }
+            catch {
+                if (try? JSONSerialization.jsonObject(with: data)) != nil {
+                    if error is ReaderFailure { throw error }
+                    throw ReaderFailure(ReaderText.string("The repository index format is not supported."))
+                }
             }
         }
         let root = try PBMessage(data)
         let name = try root.string(1) ?? ReaderText.string("Repository")
         let list = try root.blob(101)
         let listURL = try root.string(102)
-        guard list != nil || listURL != nil else { throw ReaderFailure(ReaderText.string("No extension list or link was found in the index.")) }
+        let completeHeader = try root.string(1) != nil && root.string(2) != nil
+            && root.string(3) != nil && root.blob(4) != nil
+        guard list != nil || listURL != nil || completeHeader else {
+            throw ReaderFailure(ReaderText.string("No extension list or link was found in the index."))
+        }
         let result = RepositoryIndex(name: name, signingKey: try root.string(3), extensionListURL: listURL,
                                      extensions: try list.map(decodeList) ?? [], hasEmbeddedList: list != nil)
-        return try validated(result, relativeTo: documentURL)
+        return RepositoryDocument(index: try validated(result, relativeTo: documentURL), format: .index, indexV2URL: nil)
     }
     public static func decodeExternalList(_ input: Data, relativeTo documentURL: URL? = nil) throws -> [ExtensionRecord] {
         let data = try BoundedGzip.decodeIfNeeded(input)
         let first = data.first(where: { ![9, 10, 12, 13, 32].contains($0) })
         if first == 91 || first == 123 {
-            if let index = try? legacyJSON(data, relativeTo: documentURL) { return index.extensions }
+            do {
+                let index = try jsonDocument(data, relativeTo: documentURL).index
+                guard index.hasEmbeddedList else {
+                    throw ReaderFailure(ReaderText.string("No extension list or link was found in the index."))
+                }
+                return index.extensions
+            } catch {
+                if (try? JSONSerialization.jsonObject(with: data)) != nil {
+                    if error is ReaderFailure { throw error }
+                    throw ReaderFailure(ReaderText.string("The repository index format is not supported."))
+                }
+            }
         }
         let index = RepositoryIndex(name: "", signingKey: nil, extensionListURL: nil,
                                     extensions: try decodeList(data), hasEmbeddedList: true)
         return try validated(index, relativeTo: documentURL).extensions
+    }
+
+    private struct JSONShape: Decodable {
+        let legacyMetadata: Bool
+        let modernStore: Bool
+        enum CodingKeys: String, CodingKey { case meta, extensionList, badgeLabel, contact }
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            if c.contains(.meta) { legacyMetadata = !(try c.decodeNil(forKey: .meta)) }
+            else { legacyMetadata = false }
+            modernStore = c.contains(.extensionList) || (c.contains(.badgeLabel) && c.contains(.contact))
+        }
+    }
+    private struct LegacyMetadata: Decodable {
+        struct Meta: Decodable {
+            let name: String
+            let signingKeyFingerprint: String
+        }
+        let meta: Meta
+        let indexV2: String?
+        enum CodingKeys: String, CodingKey { case meta; case indexV2 = "index_v2" }
+    }
+    private struct ModernStore: Decodable {
+        struct List: Decodable { let extensions: [Legacy] }
+        let name: String
+        let signingKey: String
+        let extensionList: List?
+        let extensionListUrl: String?
+    }
+
+    private static func jsonDocument(_ data: Data, relativeTo documentURL: URL?) throws -> RepositoryDocument {
+        let decoder = JSONDecoder()
+        if data.first(where: { ![9, 10, 12, 13, 32].contains($0) }) == 91 {
+            return RepositoryDocument(index: try legacyJSON(data, relativeTo: documentURL),
+                                      format: .legacyList, indexV2URL: nil)
+        }
+        let shape = try decoder.decode(JSONShape.self, from: data)
+        if shape.legacyMetadata {
+            let metadata = try decoder.decode(LegacyMetadata.self, from: data)
+            let index = RepositoryIndex(name: metadata.meta.name, signingKey: metadata.meta.signingKeyFingerprint,
+                                        extensionListURL: "index.min.json", extensions: [], hasEmbeddedList: false)
+            return RepositoryDocument(index: try validated(index, relativeTo: documentURL),
+                                      format: .legacyMetadata, indexV2URL: metadata.indexV2)
+        }
+        if shape.modernStore {
+            let store = try decoder.decode(ModernStore.self, from: data)
+            let entries = try records(store.extensionList?.extensions ?? [])
+            let index = RepositoryIndex(name: store.name, signingKey: store.signingKey,
+                                        extensionListURL: store.extensionListUrl, extensions: entries,
+                                        hasEmbeddedList: store.extensionList != nil)
+            return RepositoryDocument(index: try validated(index, relativeTo: documentURL),
+                                      format: .index, indexV2URL: nil)
+        }
+        return RepositoryDocument(index: try legacyJSON(data, relativeTo: documentURL),
+                                  format: .index, indexV2URL: nil)
     }
 
     /// Resolve only repository-owned artifact links. Source website URLs remain
@@ -143,7 +228,8 @@ public enum RepositoryDecoder {
             }
             func resolve(_ text: String?) throws -> String? {
                 guard let text else { return nil }
-                guard !text.isEmpty, let url = URL(string: text, relativeTo: documentURL)?.absoluteURL,
+                guard !text.isEmpty, text.utf8.count <= 8192,
+                      let url = URL(string: text, relativeTo: documentURL)?.absoluteURL,
                       HTTPSPolicy.accepts(url.absoluteString) else {
                     throw ReaderFailure(ReaderText.string("Invalid extension data."))
                 }
@@ -190,8 +276,9 @@ public enum RepositoryDecoder {
 
         enum CodingKeys: String, CodingKey {
             case name, pkg, packageName, version, versionName, code, versionCode
-            case jarUrl, jarURL, jar, iconUrl, iconURL, icon, sources
+            case jarUrl, jarURL, jar, iconUrl, iconURL, icon, sources, resources
         }
+        private struct Resources: Decodable { let jarUrl: String?; let iconUrl: String? }
 
         init(from decoder: Decoder) throws {
             let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -208,7 +295,8 @@ public enum RepositoryDecoder {
                     break
                 }
             }
-            jarUrl = resolvedJar
+            let resources = try c.decodeIfPresent(Resources.self, forKey: .resources)
+            jarUrl = resources?.jarUrl ?? resolvedJar
 
             var resolvedIcon: String? = nil
             let candidateIconKeys: [CodingKeys] = [.iconUrl, .iconURL, .icon]
@@ -218,7 +306,7 @@ public enum RepositoryDecoder {
                     break
                 }
             }
-            iconUrl = resolvedIcon
+            iconUrl = resources?.iconUrl ?? resolvedIcon
             sources = try c.decodeIfPresent([LegacySource].self, forKey: .sources)
         }
 
@@ -240,8 +328,12 @@ public enum RepositoryDecoder {
             name = try c.decodeIfPresent(String.self, forKey: .name)
             lang = try (c.decodeIfPresent(String.self, forKey: .lang) ?? c.decodeIfPresent(String.self, forKey: .language))
             baseUrl = try (c.decodeIfPresent(String.self, forKey: .baseUrl) ?? c.decodeIfPresent(String.self, forKey: .homeUrl))
-            if let value = try? c.decode(String.self, forKey: .id) { id = value }
-            else { id = String(try c.decode(UInt64.self, forKey: .id)) }
+            if let value = try? c.decode(String.self, forKey: .id) {
+                if let signed = Int64(value) { id = String(signed) }
+                else if let unsigned = UInt64(value) { id = String(Int64(bitPattern: unsigned)) }
+                else { id = value }
+            } else if let signed = try? c.decode(Int64.self, forKey: .id) { id = String(signed) }
+            else { id = String(Int64(bitPattern: try c.decode(UInt64.self, forKey: .id))) }
         }
     }
     private static func legacyJSON(_ data: Data, relativeTo documentURL: URL?) throws -> RepositoryIndex {
@@ -262,20 +354,24 @@ public enum RepositoryDecoder {
             items = envelope.extensions ?? envelope.data ?? envelope.items ?? []
             hasEmbeddedList = envelope.extensions != nil || envelope.data != nil || envelope.items != nil
             guard hasEmbeddedList || listURL != nil else {
-                throw ReaderFailure(ReaderText.string("Repository metadata JSON is not supported yet. Use index.pb or index.min.json."))
+                throw ReaderFailure(ReaderText.string("The repository index format is not supported."))
             }
         }
+        let entries = try records(items)
+        let result = RepositoryIndex(name: name, signingKey: signingKey, extensionListURL: listURL,
+                                     extensions: entries, hasEmbeddedList: hasEmbeddedList)
+        return try validated(result, relativeTo: documentURL)
+    }
+
+    private static func records(_ items: [Legacy]) throws -> [ExtensionRecord] {
         guard items.count <= 20_000 else { throw ReaderFailure(ReaderText.string("The extension list is too large.")) }
         var packages = Set<String>()
-        let entries = try items.map { item -> ExtensionRecord in
+        return try items.map { item -> ExtensionRecord in
             guard !item.pkg.isEmpty, packages.insert(item.pkg).inserted else { throw ReaderFailure(ReaderText.string("Duplicate extension or invalid identifier.")) }
             return ExtensionRecord(name: item.name, packageName: item.pkg, versionName: item.version ?? "",
                                    versionCode: item.code ?? 0, jarURL: item.jarUrl, iconURL: item.iconUrl,
                                    sources: (item.sources ?? []).map { SourceRecord(id: $0.id, name: $0.name ?? "", language: $0.lang ?? "", homeURL: $0.baseUrl) })
         }
-        let result = RepositoryIndex(name: name, signingKey: signingKey, extensionListURL: listURL,
-                                     extensions: entries, hasEmbeddedList: hasEmbeddedList)
-        return try validated(result, relativeTo: documentURL)
     }
 
     /// `index.min.json` is commonly an array, while some mirrors wrap the

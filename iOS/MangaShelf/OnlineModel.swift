@@ -3,6 +3,7 @@ import ReaderCore
 
 extension SecureHTTP: SourceTransport {
     func get(_ url: URL) async throws -> Data { try await get(url.absoluteString) }
+    func response(_ url: URL) async throws -> SourceHTTPResponse { try await response(url.absoluteString) }
 }
 
 @MainActor final class OnlineModel: ObservableObject {

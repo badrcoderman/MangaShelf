@@ -2,6 +2,29 @@ import Foundation
 
 public protocol SourceTransport: Sendable {
     func get(_ url: URL) async throws -> Data
+    func response(_ url: URL) async throws -> SourceHTTPResponse
+}
+
+public struct SourceHTTPResponse: Sendable {
+    public let data: Data
+    public let url: URL
+    public init(data: Data, url: URL) { self.data = data; self.url = url }
+}
+
+public extension SourceTransport {
+    func response(_ url: URL) async throws -> SourceHTTPResponse {
+        SourceHTTPResponse(data: try await get(url), url: url)
+    }
+}
+
+public struct SourceHTTPFailure: Error, LocalizedError, Sendable {
+    public let statusCode: Int
+    public let message: String
+    public init(statusCode: Int, message: String) {
+        self.statusCode = statusCode
+        self.message = message
+    }
+    public var errorDescription: String? { message }
 }
 
 /// Native source adapter. JAR extensions remain a separate runtime integration.
