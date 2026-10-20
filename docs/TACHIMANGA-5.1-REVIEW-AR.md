@@ -63,7 +63,9 @@ REA يعد 567 occurrence عند احتساب جذر الحاوية، بينما
 أظهرت محاولة Ghidra الأولى استيراد ARM64 وإصلاح chained pointers، ثم لم تُنتج
 نتيجة تحليل ناجحة ضمن المهلة. جرى التحقق من غياب العملية السابقة قبل محاولة
 مركزة على NativeChannel، مع تعطيل المحلل الذي أخفق وتوسيع المهلة إلى 900 ثانية.
-تظل نتيجة هذه المحاولة مطلوبة قبل اعتماد pseudocode أو call graph منها.
+توقفت المحاولة المركزة أيضًا عند مهلة 900 ثانية، مع خطأ VarnodeContext أثناء
+DecompilerSwitchAnalyzer. سجلها في `validation/rea/tachimanga-5.1-ghidra-focused-timeout.json`.
+لم تُستخرج نتيجة pseudocode ناجحة من المحاولتين؛ REV-05 يبقى مفتوحًا.
 
 ## ما كشفت المقارنة في MangaShelf
 

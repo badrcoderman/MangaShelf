@@ -61,7 +61,7 @@
   },
   "native_decompilation": {
     "first_attempt": "provider_timeout at 330000 ms",
-    "second_attempt": "running; poll unified exec session 74752; no completed finding yet",
+    "second_attempt": "provider_timeout at 900000 ms; no successful pseudocode; see focused-timeout report",
     "raw_output_directory": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1"
   }
 }
