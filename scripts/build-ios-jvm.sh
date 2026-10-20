@@ -10,7 +10,8 @@ out="$root/build/ios-jvm"
 mkdir -p "$out/logs" "$out/ffi"
 [ "$(git -C "$mobile" rev-parse HEAD)" = c1ed06aaef34c8dccf71e236d1ffa20918a77cfb ]
 [ "$(git -C "$ffi" rev-parse HEAD)" = 12ffd1f9dc56fcea79d2f742f424301ae668d663 ]
-[ "$(git -C "$cups" rev-parse HEAD)" = 2e5573560cfa2da65002f86b41bd1770c9853c4d ]
+# The pinned CUPS object is an annotated v2.4.11 tag; HEAD is its commit.
+[ "$(git -C "$cups" rev-parse HEAD)" = 7d535f73e407a72dfb5c5e83549a5ba27219dfcd ]
 python3 scripts/prepare-ios-jvm-source.py "$mobile"
 git -C "$mobile" diff -- src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp > "$out/logs/source-patch.diff"
 cp runtime-native/ios_jvm_compat.cpp "$out/logs/ios_jvm_compat.cpp"
@@ -71,7 +72,8 @@ manifest = {
     'format': 1, 'target': 'arm64-apple-ios26.0', 'vm_variant': 'zero',
     'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
     'libffi_commit': '12ffd1f9dc56fcea79d2f742f424301ae668d663',
-    'cups_commit': '2e5573560cfa2da65002f86b41bd1770c9853c4d',
+    'cups_ref': '2e5573560cfa2da65002f86b41bd1770c9853c4d',
+    'cups_commit': '7d535f73e407a72dfb5c5e83549a5ba27219dfcd',
     'repository': os.environ.get('GITHUB_REPOSITORY'),
     'head_sha': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
     'sdk_path': sys.argv[2],
