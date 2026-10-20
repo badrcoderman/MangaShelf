@@ -33,8 +33,8 @@ final class TabSnapshots: XCTestCase {
             XCTAssertEqual(button.label, labels[index], "The requested app language was not applied.")
             XCTAssertTrue(button.isHittable, "Tab \(index) is outside the tappable viewport.")
             button.tap()
-            let selected = expectation(for: NSPredicate { _, _ in button.isSelected }, evaluatedWith: button)
-            wait(for: [selected], timeout: 10)
+            XCTAssertTrue(button.wait(for: \.isSelected, toEqual: true, timeout: 10),
+                          "The requested tab did not become selected.")
             XCTAssertEqual(app.alerts.count, 0, "A blocking error alert cannot be used as a tab screenshot.")
 
             var tabState: [[String: Any]] = []

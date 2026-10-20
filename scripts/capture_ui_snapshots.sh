@@ -53,19 +53,25 @@ PY
 }
 trap finish EXIT
 
-selected=""
-for app in /Applications/Xcode*.app; do
-  developer_path="$app/Contents/Developer"
-  sdk_version=$(DEVELOPER_DIR="$developer_path" xcrun --sdk iphonesimulator --show-sdk-version 2>/dev/null) || continue
-  if [ "${sdk_version%%.*}" -eq 26 ]; then
-    selected="$developer_path"
-    break
-  fi
-done
-if [ -z "$selected" ]; then
-  echo "No installed Xcode has the iOS 26 simulator SDK." >&2
-  exit 2
-fi
+selected=$(python3 - <<'PY'
+import os
+from pathlib import Path
+import subprocess
+candidates = []
+for app in Path("/Applications").glob("Xcode*.app"):
+    developer = str(app / "Contents/Developer")
+    result = subprocess.run(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"],
+                            env={**os.environ, "DEVELOPER_DIR": developer}, capture_output=True, text=True)
+    if result.returncode != 0:
+        continue
+    version = tuple(int(part) for part in result.stdout.strip().split("."))
+    if version[0] == 26:
+        candidates.append((version, developer))
+if not candidates:
+    raise SystemExit("No installed Xcode has the iOS 26 simulator SDK.")
+print(max(candidates)[1])
+PY
+)
 export DEVELOPER_DIR="$selected"
 xcodebuild -version
 xcrun simctl list --json > "$artifact_dir/simulators-before.json"
@@ -79,8 +85,11 @@ import sys
 
 output = Path(sys.argv[1])
 available = json.loads((output / "simulators-before.json").read_text())
+sdk = subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], text=True).strip()
+sdk_version = tuple(int(part) for part in sdk.split("."))
 runtimes = [runtime for runtime in available["runtimes"]
-            if runtime.get("isAvailable") and runtime["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS-26-")]
+            if runtime.get("isAvailable") and runtime["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS-26-")
+            and tuple(int(part) for part in runtime["version"].split(".")[:2]) <= sdk_version[:2]]
 if not runtimes:
     raise SystemExit("No available iOS 26 simulator runtime is installed.")
 runtime = max(runtimes, key=lambda item: tuple(int(part) for part in item["version"].split(".")))
@@ -95,7 +104,7 @@ provenance = {
     "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
     "dirty_files": subprocess.check_output(["git", "status", "--porcelain"], text=True).splitlines(),
     "xcode": subprocess.check_output(["xcodebuild", "-version"], text=True).strip(),
-    "simulator_sdk": subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], text=True).strip(),
+    "simulator_sdk": sdk,
     "developer_directory": os.environ["DEVELOPER_DIR"],
     "simulator": {"udid": udid, "device_type": device_type, "runtime": runtime},
     "github_run_id": os.environ.get("GITHUB_RUN_ID"),
