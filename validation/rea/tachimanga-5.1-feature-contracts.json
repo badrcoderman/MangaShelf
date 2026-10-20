@@ -1,0 +1,1941 @@
+{
+  "target_ipa_sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863",
+  "target_executed": false,
+  "dart_pool_load_scope": {
+    "patterns": "adjacent ADD-to-PP then LDR, or direct LDR-from-PP; no control-flow or value-flow solver",
+    "total_resolved": 44733,
+    "libraries": 591,
+    "selected_strings": [
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x437328",
+        "address": "0x43734c",
+        "pool_offset": "0x1f488",
+        "value": "String: \"onlineFetch\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x437328",
+        "address": "0x4373ac",
+        "pool_offset": "0x1f488",
+        "value": "String: \"onlineFetch\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x437328",
+        "address": "0x4373f0",
+        "pool_offset": "0x1f4c0",
+        "value": "String: \"/extension/list\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x439064",
+        "address": "0x43915c",
+        "pool_offset": "0xea0",
+        "value": "String: \"file\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x439064",
+        "address": "0x4391dc",
+        "pool_offset": "0x1f720",
+        "value": "String: \"/extension/install\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x439064",
+        "address": "0x439284",
+        "pool_offset": "0x1f730",
+        "value": "String: \".apk/.jar\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "function": "0x438b38",
+        "address": "0x438b5c",
+        "pool_offset": "0x1f6f0",
+        "value": "String: \"extensionRepositoryProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x4436a0",
+        "address": "0x443720",
+        "pool_offset": "0x16bc8",
+        "value": "String: \"/source/list\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fba8",
+        "pool_offset": "0xe798",
+        "value": "String: \"cancelToken\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fbf4",
+        "pool_offset": "0x152a0",
+        "value": "String: \"filter\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fc48",
+        "pool_offset": "0xee0",
+        "value": "String: \"query\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fce0",
+        "pool_offset": "0xe7b8",
+        "value": "String: \"trace\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fcf4",
+        "pool_offset": "0x12260",
+        "value": "String: \"mangaList\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fdc0",
+        "pool_offset": "0x152d0",
+        "value": "String: \"pageNum\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fe04",
+        "pool_offset": "0x152d8",
+        "value": "String: \"searchTerm\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fe18",
+        "pool_offset": "0x130",
+        "value": "String: \"\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fe28",
+        "pool_offset": "0x152a0",
+        "value": "String: \"filter\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44feac",
+        "pool_offset": "0xe7b8",
+        "value": "String: \"trace\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x44fb64",
+        "address": "0x44fec0",
+        "pool_offset": "0x152e0",
+        "value": "String: \"mangaSearch\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x450e28",
+        "address": "0x450ea8",
+        "pool_offset": "0x1e6b0",
+        "value": "String: \"/source/listForSearch\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x4632c4",
+        "address": "0x463328",
+        "pool_offset": "0x15aa0",
+        "value": "String: \"reset\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x467208",
+        "address": "0x467254",
+        "pool_offset": "0x12478",
+        "value": "String: \"sourceId\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x467208",
+        "address": "0x467264",
+        "pool_offset": "0x2848",
+        "value": "String: \"key\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x467208",
+        "address": "0x467270",
+        "pool_offset": "0x32200",
+        "value": "String: \"filters\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x467208",
+        "address": "0x467278",
+        "pool_offset": "0x64d0",
+        "value": "String: \"value\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x467208",
+        "address": "0x4672b0",
+        "pool_offset": "0x32208",
+        "value": "String: \"/source/meta/update\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x47b9fc",
+        "address": "0x47ba64",
+        "pool_offset": "0x152d0",
+        "value": "String: \"pageNum\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x47b9fc",
+        "address": "0x47ba98",
+        "pool_offset": "0x152d8",
+        "value": "String: \"searchTerm\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x47b9fc",
+        "address": "0x47baac",
+        "pool_offset": "0x152a0",
+        "value": "String: \"filter\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x4cf3a8",
+        "address": "0x4cf3f0",
+        "pool_offset": "0x12748",
+        "value": "String: \"mangaId\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x4cf3a8",
+        "address": "0x4cf418",
+        "pool_offset": "0x26cf8",
+        "value": "String: \"/manga/removeLocal\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abc3c",
+        "pool_offset": "0x113d8",
+        "value": "String: \".zip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abc5c",
+        "pool_offset": "0x29068",
+        "value": "String: \".cbz\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abc84",
+        "pool_offset": "0x29070",
+        "value": "String: \".epub\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abcc4",
+        "pool_offset": "0xea0",
+        "value": "String: \"file\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abd44",
+        "pool_offset": "0x29078",
+        "value": "String: \"/manga/install\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x5abbac",
+        "address": "0x5abde8",
+        "pool_offset": "0x113d8",
+        "value": "String: \".zip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x85e20c",
+        "address": "0x85e25c",
+        "pool_offset": "0x12478",
+        "value": "String: \"sourceId\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x85e20c",
+        "address": "0x85e26c",
+        "pool_offset": "0x2848",
+        "value": "String: \"key\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x85e20c",
+        "address": "0x85e278",
+        "pool_offset": "0x32200",
+        "value": "String: \"filters\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x85e20c",
+        "address": "0x85e2c0",
+        "pool_offset": "0x32350",
+        "value": "String: \"/source/meta/query\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "function": "0x4438c0",
+        "address": "0x4438e4",
+        "pool_offset": "0x15380",
+        "value": "String: \"sourceRepositoryProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "function": "0x4a35a4",
+        "address": "0x4a3904",
+        "pool_offset": "0x1ab48",
+        "value": "String: \"library\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "function": "0x4a4950",
+        "address": "0x4a4a8c",
+        "pool_offset": "0x1ac78",
+        "value": "String: \"ASK_RATE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "function": "0x4a4950",
+        "address": "0x4a4ab8",
+        "pool_offset": "0x1ac78",
+        "value": "String: \"ASK_RATE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$widgets$library_manga_filter",
+        "function": "0x5bde04",
+        "address": "0x5bdea0",
+        "pool_offset": "0x130",
+        "value": "String: \"\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ea740",
+        "address": "0x4ea840",
+        "pool_offset": "0x18d98",
+        "value": "String: \"chapter-details\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb248",
+        "address": "0x4eb270",
+        "pool_offset": "0x18db8",
+        "value": "String: \"ReaderScreen did pop\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb38c",
+        "address": "0x4eb3c8",
+        "pool_offset": "0x18e28",
+        "value": "String: \"[Reader2] no next chapter\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb38c",
+        "address": "0x4eb3f0",
+        "pool_offset": "0x18e30",
+        "value": "String: \"READER:NO_CHAPTER_AD\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb38c",
+        "address": "0x4eb41c",
+        "pool_offset": "0x18e30",
+        "value": "String: \"READER:NO_CHAPTER_AD\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb444",
+        "address": "0x4eb4dc",
+        "pool_offset": "0x18e38",
+        "value": "String: \"[Reader2] onPageChanged currChapter:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb444",
+        "address": "0x4eb4f4",
+        "pool_offset": "0x18e40",
+        "value": "String: \", currentPage:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb444",
+        "address": "0x4eb520",
+        "pool_offset": "0x18e48",
+        "value": "String: \", flush:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb684",
+        "address": "0x4eb708",
+        "pool_offset": "0x18e70",
+        "value": "String: \"skip updateLastRead, app in bg:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb684",
+        "address": "0x4eb788",
+        "pool_offset": "0x18e78",
+        "value": "String: \"[Reader2] updateLastRead index:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb684",
+        "address": "0x4eb7ac",
+        "pool_offset": "0x18e80",
+        "value": "String: \" isFinalPage:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4eb684",
+        "address": "0x4eb7c0",
+        "pool_offset": "0x18e88",
+        "value": "String: \" currChapter.read:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecbe4",
+        "pool_offset": "0x13de0",
+        "value": "String: \"SCREEN_ON\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecbe8",
+        "pool_offset": "0x5c00",
+        "value": "String: \"0\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecc40",
+        "pool_offset": "0x19010",
+        "value": "String: \"reset rotate, appOrientation=\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecc5c",
+        "pool_offset": "0x19018",
+        "value": "String: \" mangaOrientation=\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecca0",
+        "pool_offset": "0x19020",
+        "value": "String: \"portraitApp\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ecb9c",
+        "address": "0x4ecd24",
+        "pool_offset": "0x19038",
+        "value": "String: \"landscapeApp\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ed0ac",
+        "address": "0x4ed0f8",
+        "pool_offset": "0x19038",
+        "value": "String: \"landscapeApp\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ed0ac",
+        "address": "0x4ed190",
+        "pool_offset": "0x19020",
+        "value": "String: \"portraitApp\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ed2e4",
+        "address": "0x4ed320",
+        "pool_offset": "0x13de0",
+        "value": "String: \"SCREEN_ON\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "function": "0x4ed2e4",
+        "address": "0x4ed328",
+        "pool_offset": "0x12f70",
+        "value": "String: \"1\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x500f60",
+        "address": "0x50119c",
+        "pool_offset": "0x2f618",
+        "value": "String: \"[Reader2] sharedPageIndex:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x500f60",
+        "address": "0x5011b4",
+        "pool_offset": "0x2f620",
+        "value": "String: \" -> currentIndex:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x500f60",
+        "address": "0x501628",
+        "pool_offset": "0x25f68",
+        "value": "String: \"pageImg\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x503bd0",
+        "address": "0x503be8",
+        "pool_offset": "0x2f6f0",
+        "value": "String: \"[Reader2] DoublePageReaderModeV2 dispose\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x503e70",
+        "address": "0x503f14",
+        "pool_offset": "0x2f720",
+        "value": "String: \"[Reader2] DoublePageReaderMode update currChapter to:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x5041b0",
+        "address": "0x5042d8",
+        "pool_offset": "0x2f740",
+        "value": "String: \"[Reader2] currentIndex:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x5041b0",
+        "address": "0x5042f0",
+        "pool_offset": "0x2f748",
+        "value": "String: \" -> sharedPageIndex:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x50470c",
+        "address": "0x504978",
+        "pool_offset": "0x18e18",
+        "value": "String: \"/manga\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x50470c",
+        "address": "0x504980",
+        "pool_offset": "0xe98",
+        "value": "String: \"/\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x50470c",
+        "address": "0x504994",
+        "pool_offset": "0x1a880",
+        "value": "String: \"/chapter/\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x50470c",
+        "address": "0x5049a8",
+        "pool_offset": "0x260f8",
+        "value": "String: \"/page/\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2",
+        "function": "0x50470c",
+        "address": "0x504a98",
+        "pool_offset": "0x13e8",
+        "value": "String: \"#\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$page_reader_mode",
+        "function": "0x504fc0",
+        "address": "0x5050b0",
+        "pool_offset": "0x25ea8",
+        "value": "String: \"[ReaderV2] PageReaderMode build effectPageLayout:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$page_reader_mode",
+        "function": "0x504fc0",
+        "address": "0x5050e4",
+        "pool_offset": "0x25eb0",
+        "value": "String: \"[ReaderV2] PageReaderMode build doublePage=\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$page_reader_mode",
+        "function": "0x504fc0",
+        "address": "0x5050f8",
+        "pool_offset": "0x25eb8",
+        "value": "String: \" (w:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$page_reader_mode",
+        "function": "0x504fc0",
+        "address": "0x505160",
+        "pool_offset": "0x25ec0",
+        "value": "String: \" h:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$page_reader_mode",
+        "function": "0x504fc0",
+        "address": "0x5051c4",
+        "pool_offset": "0x2748",
+        "value": "String: \")\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$single_page_reader_mode_v2",
+        "function": "0x505704",
+        "address": "0x505b88",
+        "pool_offset": "0x25f68",
+        "value": "String: \"pageImg\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$single_page_reader_mode_v2",
+        "function": "0x506818",
+        "address": "0x5068bc",
+        "pool_offset": "0x2f5b8",
+        "value": "String: \"[Reader2] SinglePageReaderMode update currChapter to:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "function": "0x3c6808",
+        "address": "0x3c6868",
+        "pool_offset": "0x17080",
+        "value": "String: \"/repo/list\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "function": "0x5382a8",
+        "address": "0x53832c",
+        "pool_offset": "0x250e8",
+        "value": "String: \"/repo/create\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "function": "0x5a2b08",
+        "address": "0x5a2b74",
+        "pool_offset": "0x1eb68",
+        "value": "String: \"/repo/updateByMetaUrl\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "function": "0x3c7460",
+        "address": "0x3c7484",
+        "pool_offset": "0x171b8",
+        "value": "String: \"repoRepositoryProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$auto_backup_controller",
+        "function": "0x397e30",
+        "address": "0x397e5c",
+        "pool_offset": "0x38b88",
+        "value": "String: \"autoBackupLimit\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$auto_backup_controller",
+        "function": "0x3c239c",
+        "address": "0x3c23d4",
+        "pool_offset": "0x38b60",
+        "value": "String: \"autoBackupFrequency\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$auto_backup_controller",
+        "function": "0x4b415c",
+        "address": "0x4b4188",
+        "pool_offset": "0x253e8",
+        "value": "String: \"autoBackupLimitProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$auto_backup_controller",
+        "function": "0x52fa04",
+        "address": "0x52fa30",
+        "pool_offset": "0x110f0",
+        "value": "String: \"autoBackupFrequencyProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x393df4",
+        "address": "0x393e20",
+        "pool_offset": "0x17638",
+        "value": "String: \"autoBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x393e68",
+        "address": "0x393e94",
+        "pool_offset": "0x3ab68",
+        "value": "String: \"backupToCloud\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x39e4a0",
+        "address": "0x39e4cc",
+        "pool_offset": "0x1b380",
+        "value": "String: \"backupToCloudPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x4831a8",
+        "address": "0x4831cc",
+        "pool_offset": "0x175c8",
+        "value": "String: \"backupActionProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c48c",
+        "address": "0x52c4b8",
+        "pool_offset": "0x17670",
+        "value": "String: \"autoBackupProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52e88c",
+        "address": "0x52e8b8",
+        "pool_offset": "0x179b8",
+        "value": "String: \"cloudBackupSocketProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52ea54",
+        "address": "0x52ea80",
+        "pool_offset": "0x179d0",
+        "value": "String: \"backupListProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52eac4",
+        "address": "0x52eb3c",
+        "pool_offset": "0x179d8",
+        "value": "String: \"BACKUP:LIST\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x530c88",
+        "address": "0x530cb4",
+        "pool_offset": "0x25268",
+        "value": "String: \"backupSocketProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d2e04",
+        "address": "0x5d2e34",
+        "pool_offset": "0x252b8",
+        "value": "String: \"canUseCloudProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482bdc",
+        "address": "0x482bfc",
+        "pool_offset": "0x4ad8",
+        "value": "String: \"type\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482bdc",
+        "address": "0x482c60",
+        "pool_offset": "0x4ad8",
+        "value": "String: \"type\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482bdc",
+        "address": "0x482ca4",
+        "pool_offset": "0x177f0",
+        "value": "String: \"BACKUP:CREATE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482de8",
+        "pool_offset": "0x17578",
+        "value": "String: \"BACKUP_DB_ERR\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482df4",
+        "pool_offset": "0x17408",
+        "value": "String: \"operationFailTip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e00",
+        "pool_offset": "0x17580",
+        "value": "String: \"BACKUP_DB_NOT_VALID\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e0c",
+        "pool_offset": "0x17408",
+        "value": "String: \"operationFailTip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e18",
+        "pool_offset": "0x17588",
+        "value": "String: \"BACKUP_CREATE_ZIP_FAIL\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e24",
+        "pool_offset": "0x17408",
+        "value": "String: \"operationFailTip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e30",
+        "pool_offset": "0x17590",
+        "value": "String: \"RESTORE_DB_NOT_VALID\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e3c",
+        "pool_offset": "0x17410",
+        "value": "String: \"invalidBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e48",
+        "pool_offset": "0x17598",
+        "value": "String: \"BACKUP_FILE_NOT_EXIST\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e54",
+        "pool_offset": "0x17410",
+        "value": "String: \"invalidBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e60",
+        "pool_offset": "0x175a0",
+        "value": "String: \"BACKUP_FILE_EXTRACT_FAIL\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e6c",
+        "pool_offset": "0x17410",
+        "value": "String: \"invalidBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e78",
+        "pool_offset": "0x175a8",
+        "value": "String: \"BACKUP_FILE_NOT_VALID\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e84",
+        "pool_offset": "0x17410",
+        "value": "String: \"invalidBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e90",
+        "pool_offset": "0x175b0",
+        "value": "String: \"BACKUP_RESTORE_VERSION_NOT_SUPPORT\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482e9c",
+        "pool_offset": "0x17418",
+        "value": "String: \"invalidBackupVersion\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482ea8",
+        "pool_offset": "0x175b8",
+        "value": "String: \"BACKUP_AUTO_BACKUP_FAIL\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482eb4",
+        "pool_offset": "0x17420",
+        "value": "String: \"autoBackupFailTip\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482f44",
+        "pool_offset": "0x7628",
+        "value": "String: \"(\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482f54",
+        "pool_offset": "0x2748",
+        "value": "String: \")\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x482db0",
+        "address": "0x482f7c",
+        "pool_offset": "0x130",
+        "value": "String: \"\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52b5f4",
+        "address": "0x52b654",
+        "pool_offset": "0x3740",
+        "value": "String: \"name\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52b5f4",
+        "address": "0x52b688",
+        "pool_offset": "0x17530",
+        "value": "String: \"BACKUP:EXPORT\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c330",
+        "pool_offset": "0x3740",
+        "value": "String: \"name\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c340",
+        "pool_offset": "0xec8",
+        "value": "String: \"path\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c354",
+        "pool_offset": "0x17638",
+        "value": "String: \"autoBackup\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c368",
+        "pool_offset": "0x12f70",
+        "value": "String: \"1\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c370",
+        "pool_offset": "0x5c00",
+        "value": "String: \"0\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x52c2d4",
+        "address": "0x52c3a0",
+        "pool_offset": "0x175d0",
+        "value": "String: \"BACKUP:RESTORE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d1fec",
+        "address": "0x5d204c",
+        "pool_offset": "0x12408",
+        "value": "String: \"id\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d1fec",
+        "address": "0x5d206c",
+        "pool_offset": "0x3740",
+        "value": "String: \"name\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d1fec",
+        "address": "0x5d20a0",
+        "pool_offset": "0x25300",
+        "value": "String: \"BACKUP:DELETE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d2380",
+        "address": "0x5d23e0",
+        "pool_offset": "0x3740",
+        "value": "String: \"name\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5d2380",
+        "address": "0x5d2414",
+        "pool_offset": "0x25340",
+        "value": "String: \"BACKUP:DOWNLOAD\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x5a3668",
+        "address": "0x5a368c",
+        "pool_offset": "0x1ec40",
+        "value": "String: \"[Cloud]cloud backup on notify\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$backup2$controller$backup_controller",
+        "function": "0x853fa4",
+        "address": "0x853fd8",
+        "pool_offset": "0x46790",
+        "value": "String: \"BACKUP:CLOUD:CANUSE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$reader_tap_zones_settings_screen",
+        "function": "0x69fc34",
+        "address": "0x69fc64",
+        "pool_offset": "0x24938",
+        "value": "String: \"_ReaderNavigationLayoutMode.\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x3943d8",
+        "address": "0x394404",
+        "pool_offset": "0x3a9e8",
+        "value": "String: \"longPressScroll\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x39444c",
+        "address": "0x394478",
+        "pool_offset": "0x3a9d8",
+        "value": "String: \"longPressScrollGestureGuideDismissed\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x3944c0",
+        "address": "0x3944ec",
+        "pool_offset": "0x3a9f0",
+        "value": "String: \"readerAllowPinchWhenLongPressScrolling\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x397f18",
+        "address": "0x397f44",
+        "pool_offset": "0x46760",
+        "value": "String: \"autoScrollInterval\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x397f8c",
+        "address": "0x397fb8",
+        "pool_offset": "0x3a9e0",
+        "value": "String: \"autoSmoothScrollInterval\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x4fb394",
+        "address": "0x4fb3c0",
+        "pool_offset": "0x39298",
+        "value": "String: \"autoScrollIntervalPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x4fb418",
+        "address": "0x4fb444",
+        "pool_offset": "0x25d78",
+        "value": "String: \"autoSmoothScrollIntervalPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x4fb49c",
+        "address": "0x4fb4c8",
+        "pool_offset": "0x25d90",
+        "value": "String: \"autoScrollingProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x4fb50c",
+        "address": "0x4fb538",
+        "pool_offset": "0x11030",
+        "value": "String: \"longPressScrollPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x56cb28",
+        "address": "0x56cb54",
+        "pool_offset": "0x15c48",
+        "value": "String: \"longPressScrollGestureGuideDismissedPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_controller",
+        "function": "0x5dc528",
+        "address": "0x5dc554",
+        "pool_offset": "0x15c30",
+        "value": "String: \"readerAllowPinchWhenLongPressScrollingPrefProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_tile",
+        "function": "0x56b86c",
+        "address": "0x56b8a0",
+        "pool_offset": "0x46320",
+        "value": "String: \"[AUTO] set interval to \""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_tile",
+        "function": "0x56bb80",
+        "address": "0x56bbb4",
+        "pool_offset": "0x46330",
+        "value": "String: \"[AUTO] set enable to \""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_tile",
+        "function": "0x56bb80",
+        "address": "0x56bc04",
+        "pool_offset": "0x46338",
+        "value": "String: \"READER:AUTO:SCROLL:ENABLE\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_auto_scroll_tile",
+        "function": "0x56bdfc",
+        "address": "0x56be24",
+        "pool_offset": "0x46360",
+        "value": "String: \"READER:AUTO:SCROLL:RESET\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_long_press_scroll_tile",
+        "function": "0x56c910",
+        "address": "0x56c950",
+        "pool_offset": "0x25d40",
+        "value": "String: \"READER:HOLD:SCROLL:ENABLE:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_auto_scroll_tile$reader_long_press_scroll_tile",
+        "function": "0x56c910",
+        "address": "0x56cab4",
+        "pool_offset": "0x25d50",
+        "value": "String: \"READER:HOLD:SCROLL:GATE:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x4f9e70",
+        "address": "0x4f9ee8",
+        "pool_offset": "0x261f8",
+        "value": "String: \"cropBorderWithMangaIdProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x4fac08",
+        "address": "0x4facd0",
+        "pool_offset": "0x119e0",
+        "value": "String: \"ipad\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x4fac08",
+        "address": "0x4facec",
+        "pool_offset": "0x12a08",
+        "value": "String: \"flutter_cropBorderPad\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x4fac08",
+        "address": "0x4facf8",
+        "pool_offset": "0x12a00",
+        "value": "String: \"flutter_cropBorder\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x864704",
+        "address": "0x8648a0",
+        "pool_offset": "0x119e0",
+        "value": "String: \"ipad\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x56d650",
+        "address": "0x56d690",
+        "pool_offset": "0x46438",
+        "value": "String: \"READER:CROP:BORDER:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile",
+        "function": "0x56d650",
+        "address": "0x56d738",
+        "pool_offset": "0x46440",
+        "value": "String: \"READER:CROP:BORDER:GATE:\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x435978",
+        "address": "0x43599c",
+        "pool_offset": "0xe798",
+        "value": "String: \"cancelToken\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x4359f4",
+        "address": "0x435a0c",
+        "pool_offset": "0xe798",
+        "value": "String: \"cancelToken\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x4359f4",
+        "address": "0x435a48",
+        "pool_offset": "0x18a70",
+        "value": "String: \"/sync/syncNow\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x5942d8",
+        "address": "0x5942fc",
+        "pool_offset": "0x24120",
+        "value": "String: \"/sync/enableSync\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x594964",
+        "address": "0x594988",
+        "pool_offset": "0x10f40",
+        "value": "String: \"/sync/disableSync\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x5a1030",
+        "address": "0x5a1054",
+        "pool_offset": "0x1e848",
+        "value": "String: \"/sync/syncNowIfEnable\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x85b2dc",
+        "address": "0x85b32c",
+        "pool_offset": "0x3b348",
+        "value": "String: \"/sync/ws\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$features$sync$data$sync_repository",
+        "function": "0x435a90",
+        "address": "0x435ab4",
+        "pool_offset": "0x10f78",
+        "value": "String: \"syncRepositoryProvider\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x59ea30",
+        "address": "0x59eab0",
+        "pool_offset": "0x130",
+        "value": "String: \"\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x59ea30",
+        "address": "0x59ec5c",
+        "pool_offset": "0x1a968",
+        "value": "String: \"back\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x59ea30",
+        "address": "0x59ee64",
+        "pool_offset": "0x2a9b0",
+        "value": "String: \"root-tab-\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459ce8",
+        "pool_offset": "0x18ab0",
+        "value": "String: \"backgroundStyle\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459d30",
+        "pool_offset": "0x6c30",
+        "value": "String: \"bottom\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459d88",
+        "pool_offset": "0x18ab8",
+        "value": "String: \"shareRootBar\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459e60",
+        "pool_offset": "0x18ac0",
+        "value": "String: \"closeSelection\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459f30",
+        "pool_offset": "0x18ad0",
+        "value": "String: \"selectAll\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x459fd4",
+        "pool_offset": "0x18ae0",
+        "value": "String: \"selectInvert\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x45a078",
+        "pool_offset": "0x18af8",
+        "value": "String: \"selectBetween\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x45a130",
+        "pool_offset": "0x18b10",
+        "value": "String: \"selectionOptions\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26",
+        "function": "0x459cb8",
+        "address": "0x45a140",
+        "pool_offset": "0x18b18",
+        "value": "String: \"Options\""
+      },
+      {
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_host_26",
+        "function": "0x5a0048",
+        "address": "0x5a0070",
+        "pool_offset": "0x130",
+        "value": "String: \"\""
+      }
+    ],
+    "full_external_index_sha256": "004b9f270d3862b297f46af12d1a2d8266ea5f65d801d71831a2d7c83bdc88e9"
+  },
+  "selected_direct_dart_edges": [
+    {
+      "from": "0x4359f4",
+      "from_name": "tachidesk_sorayomi$src$features$sync$data$sync_repository.SyncRepository.syncNow",
+      "to": "0x129778",
+      "to_name": "tachidesk_sorayomi$src$utils$storage$dio$dio_client.DioClient.get"
+    },
+    {
+      "from": "0x4a35a4",
+      "from_name": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen.LibraryScreen.build",
+      "to": "0x3fe29c",
+      "to_name": "tachidesk_sorayomi$src$utils$misc$toast$toast.ToastFamily.call"
+    },
+    {
+      "from": "0x4a35a4",
+      "from_name": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen.LibraryScreen.build",
+      "to": "0x4149f0",
+      "to_name": "tachidesk_sorayomi$src$features$settings$presentation$appearance$widgets$liquid_glass_tab_bar_padding.useNativeLiquidGlassActionToolbar"
+    },
+    {
+      "from": "0x4a35a4",
+      "from_name": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen.LibraryScreen.build",
+      "to": "0x43c314",
+      "to_name": "tachidesk_sorayomi$src$features$remote_notice$controller$remote_notice_provider.MatchedNoticeFamily.call"
+    },
+    {
+      "from": "0x4a35a4",
+      "from_name": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen.LibraryScreen.build",
+      "to": "0x443b1c",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.AsyncValueExtensions|showUiWhenData"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x3a640c",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$domain$manga$manga_model._$MangaImpl.get_genre"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x3e3a08",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.ContextExtensions|get_isDarkMode"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x3fe29c",
+      "to_name": "tachidesk_sorayomi$src$utils$misc$toast$toast.ToastFamily.call"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x443b1c",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.AsyncValueExtensions|showUiWhenData"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x46bc1c",
+      "to_name": "tachidesk_sorayomi$src$utils$route$route_aware.useRouteObserver"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4d427c",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$manga_details$controller$manga_details_controller.MangaWithChaptersWithIdFamily.call"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4e9aa4",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_appearance.ReaderAppearance.factory_ctor_resolve"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4e9ca4",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_background.ReaderBackground.factory_ctor_resolve"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4e9dc0",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$controller$reader_setting_controller.ReaderBackgroundColorDemoWithMangaIdFamily.call"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4e9ecc",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$controller$reader_setting_controller.ReaderBackgroundColorWithMangaIdFamily.call"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4e9fd8",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$controller$reader_setting_controller.ReaderOrientationWithMangaIdFamily.call"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4ea0e4",
+      "to_name": "tachidesk_sorayomi$src$constants$enum.ReaderMode.toTipText"
+    },
+    {
+      "from": "0x4e89c4",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.build",
+      "to": "0x4ea138",
+      "to_name": "tachidesk_sorayomi$src$utils$manga_type_util.MangaTypeUtil.isWebtoonMangaType"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x12c154",
+      "to_name": "tachidesk_sorayomi$src$utils$log.log"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x12c154",
+      "to_name": "tachidesk_sorayomi$src$utils$log.log"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x3f4e98",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.IntExtensions|ifNullOrNegative"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x4eba94",
+      "to_name": "tachidesk_sorayomi$src$utils$auto_delete.AutoDelete.addToDeleteList"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x4ebdec",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$updates$controller$update_controller.UpdatePageRefreshChapterSignal.update"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x4ebfb0",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$manga_details$controller$manga_details_controller.MangaWithChaptersWithId.refreshLocalChapterListSilently"
+    },
+    {
+      "from": "0x4eb684",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2.ReaderScreen2.updateLastRead",
+      "to": "0x4ec138",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$manga_details$controller$manga_details_controller.MangaWithChaptersWithId.refreshChaptersData"
+    },
+    {
+      "from": "0x500f60",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.build",
+      "to": "0x12c154",
+      "to_name": "tachidesk_sorayomi$src$utils$log.log"
+    },
+    {
+      "from": "0x500f60",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.build",
+      "to": "0x4ef780",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$manga_details$controller$manga_details_controller.GetPreviousAndNextChaptersFamily.call"
+    },
+    {
+      "from": "0x500f60",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.build",
+      "to": "0x4f1df8",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$controller$reader_controller_v2.ReaderSinglePageSetWithMangeIdFamily.call"
+    },
+    {
+      "from": "0x500f60",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.build",
+      "to": "0x4f9e70",
+      "to_name": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile.CropBorderWithMangaIdFamily.call"
+    },
+    {
+      "from": "0x500f60",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.build",
+      "to": "0x501c94",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$controller$reader_setting_controller.InvertDoublePagesWithMangaIdFamily.call"
+    },
+    {
+      "from": "0x502648",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildDoublePageWidget",
+      "to": "0x502af8",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildPageImageWidget"
+    },
+    {
+      "from": "0x502648",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildDoublePageWidget",
+      "to": "0x502af8",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildPageImageWidget"
+    },
+    {
+      "from": "0x502648",
+      "from_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildDoublePageWidget",
+      "to": "0x502af8",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$widgets$reader_mode$double_page_reader_mode_v2.DoublePageReaderModeV2.buildPageImageWidget"
+    },
+    {
+      "from": "0x59ea30",
+      "from_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26.NativeRootAppBar26.build",
+      "to": "0x3e3a08",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.ContextExtensions|get_isDarkMode"
+    },
+    {
+      "from": "0x59ea30",
+      "from_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26.NativeRootAppBar26.build",
+      "to": "0x408ab0",
+      "to_name": "tachidesk_sorayomi$src$utils$extensions$custom_extensions.ContextExtensions|get_isSmallTabletOrWider"
+    },
+    {
+      "from": "0x59ea30",
+      "from_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26.NativeRootAppBar26.build",
+      "to": "0x43b4d0",
+      "to_name": "tachidesk_sorayomi$src$widgets$shell$native_root_tabs_26.NativeRootTabs26.maybeOf"
+    },
+    {
+      "from": "0x59ea30",
+      "from_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26.NativeRootAppBar26.build",
+      "to": "0x59f488",
+      "to_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_host_26.NativeRootAppBarController26.publish"
+    },
+    {
+      "from": "0x59ea30",
+      "from_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_26.NativeRootAppBar26.build",
+      "to": "0x59f818",
+      "to_name": "tachidesk_sorayomi$src$widgets$shell$native_root_app_bar_host_26.NativeRootAppBarScope26.maybeOf"
+    },
+    {
+      "from": "0x5bdf4c",
+      "from_name": "tachidesk_sorayomi$src$features$library$presentation$library$widgets$library_manga_filter._LibraryTrackerFilters._anon_closure",
+      "to": "0x5be020",
+      "to_name": "tachidesk_sorayomi$src$features$library$presentation$library$controller$library_controller.LibraryMangaFilterTrackerList.updateTracker"
+    },
+    {
+      "from": "0x74c3b0",
+      "from_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil.detectCropInsets",
+      "to": "0x74c6d8",
+      "to_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil._detectEdge"
+    },
+    {
+      "from": "0x74c3b0",
+      "from_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil.detectCropInsets",
+      "to": "0x74c6d8",
+      "to_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil._detectEdge"
+    },
+    {
+      "from": "0x74c3b0",
+      "from_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil.detectCropInsets",
+      "to": "0x74c6d8",
+      "to_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil._detectEdge"
+    },
+    {
+      "from": "0x74c3b0",
+      "from_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil.detectCropInsets",
+      "to": "0x74c6d8",
+      "to_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil._detectEdge"
+    },
+    {
+      "from": "0x74c3b0",
+      "from_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil.detectCropInsets",
+      "to": "0x74d470",
+      "to_name": "tachidesk_sorayomi$src$utils$crop_border_util.CropBorderUtil._downscale"
+    },
+    {
+      "from": "0x864704",
+      "from_name": "tachidesk_sorayomi$src$features$settings$presentation$reader$widgets$reader_crop_border_tile$reader_crop_border_tile.CropBorderWithMangaId.build",
+      "to": "0x3fd58c",
+      "to_name": "tachidesk_sorayomi$src$features$manga_book$presentation$manga_details$controller$manga_details_controller.MangaWithIdFamily.call"
+    }
+  ],
+  "magic_pipe_handler": {
+    "entry": "0x10001ad34",
+    "assembly_sha256": "acff005b49bb91f18f404b0044e992581d8e929a43d3f663c0c907f6dcb4c745",
+    "literal_instruction_references": [
+      {
+        "site": "0x10001ade8",
+        "literal": "native_channel %@:%@"
+      },
+      {
+        "site": "0x10001ae18",
+        "literal": "LogEvent"
+      },
+      {
+        "site": "0x10001ae7c",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001aea8",
+        "literal": "LogEvent2"
+      },
+      {
+        "site": "0x10001aedc",
+        "literal": "eventName"
+      },
+      {
+        "site": "0x10001af10",
+        "literal": "parameters"
+      },
+      {
+        "site": "0x10001af7c",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001afb0",
+        "literal": "Analytics#logEvent"
+      },
+      {
+        "site": "0x10001afe0",
+        "literal": "eventName"
+      },
+      {
+        "site": "0x10001b014",
+        "literal": "parameters"
+      },
+      {
+        "site": "0x10001b09c",
+        "literal": "screen_name"
+      },
+      {
+        "site": "0x10001b0f8",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b1a4",
+        "literal": "EXPORT_LOG"
+      },
+      {
+        "site": "0x10001b1cc",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b1f0",
+        "literal": "HTTPDUMP:ENABLE"
+      },
+      {
+        "site": "0x10001b244",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b268",
+        "literal": "HTTPDUMP:STATUS"
+      },
+      {
+        "site": "0x10001b2dc",
+        "literal": "HTTPDUMP:CLEAR"
+      },
+      {
+        "site": "0x10001b34c",
+        "literal": "ClearCookies"
+      },
+      {
+        "site": "0x10001b460",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b48c",
+        "literal": "GetCookies"
+      },
+      {
+        "site": "0x10001b510",
+        "literal": "CleanCache"
+      },
+      {
+        "site": "0x10001b54c",
+        "literal": "SEND_MAIL"
+      },
+      {
+        "site": "0x10001b590",
+        "literal": "recipient"
+      },
+      {
+        "site": "0x10001b5bc",
+        "literal": "title"
+      },
+      {
+        "site": "0x10001b5e8",
+        "literal": "content"
+      },
+      {
+        "site": "0x10001b64c",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b670",
+        "literal": "READER_DEFER_EDGE_GESTURES"
+      },
+      {
+        "site": "0x10001b730",
+        "literal": "url"
+      },
+      {
+        "site": "0x10001b768",
+        "literal": "url"
+      },
+      {
+        "site": "0x10001b798",
+        "literal": "userAgent"
+      },
+      {
+        "site": "0x10001b7cc",
+        "literal": "userAgent"
+      },
+      {
+        "site": "0x10001b8c0",
+        "literal": "User-Agent"
+      },
+      {
+        "site": "0x10001b8e8",
+        "literal": "DEBUG:OPEN_CF_WEBVIEW"
+      },
+      {
+        "site": "0x10001b944",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001b964",
+        "literal": "invalid_url"
+      },
+      {
+        "site": "0x10001b96c",
+        "literal": "Enter a valid HTTP or HTTPS URL"
+      },
+      {
+        "site": "0x10001b9dc",
+        "literal": "SCREEN_ON"
+      },
+      {
+        "site": "0x10001ba0c",
+        "literal": "1"
+      },
+      {
+        "site": "0x10001ba48",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001ba74",
+        "literal": "REQUEST_AD"
+      },
+      {
+        "site": "0x10001bb14",
+        "literal": "MARK_AD_LOAD_SUCC"
+      },
+      {
+        "site": "0x10001bb5c",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bb80",
+        "literal": "MARK_AD_CLICK"
+      },
+      {
+        "site": "0x10001bbc8",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bbec",
+        "literal": "CLEAN_AD_MEM_FOR_DEBUG"
+      },
+      {
+        "site": "0x10001bc30",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bc54",
+        "literal": "REPORT_INFO"
+      },
+      {
+        "site": "0x10001bc98",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bcbc",
+        "literal": "SHOW_FLEX"
+      },
+      {
+        "site": "0x10001bcdc",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bd00",
+        "literal": "SHOW_SANDBOX"
+      },
+      {
+        "site": "0x10001bd48",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bd6c",
+        "literal": "BACKUP:"
+      },
+      {
+        "site": "0x10001bdcc",
+        "literal": "ASK_RATE"
+      },
+      {
+        "site": "0x10001be10",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001be34",
+        "literal": "TEST_RATE"
+      },
+      {
+        "site": "0x10001be7c",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001bea0",
+        "literal": "SHARE:"
+      },
+      {
+        "site": "0x10001bf00",
+        "literal": "AD:"
+      },
+      {
+        "site": "0x10001bf60",
+        "literal": "SECURITY:"
+      },
+      {
+        "site": "0x10001bfc0",
+        "literal": "STORAGE:"
+      },
+      {
+        "site": "0x10001c020",
+        "literal": "ICON:"
+      },
+      {
+        "site": "0x10001c080",
+        "literal": "SOCKET:"
+      },
+      {
+        "site": "0x10001c0e0",
+        "literal": "BACKEND:"
+      },
+      {
+        "site": "0x10001c140",
+        "literal": "DOWNLOAD:"
+      },
+      {
+        "site": "0x10001c1a0",
+        "literal": "FIREBASE:"
+      },
+      {
+        "site": "0x10001c200",
+        "literal": "USERAGENT:"
+      },
+      {
+        "site": "0x10001c260",
+        "literal": "CF:MUTE:"
+      },
+      {
+        "site": "0x10001c2c0",
+        "literal": "READER:NO_CHAPTER_AD"
+      },
+      {
+        "site": "0x10001c2f8",
+        "literal": "READER:IMAGE:PREVIEW"
+      },
+      {
+        "site": "0x10001c338",
+        "literal": "path"
+      },
+      {
+        "site": "0x10001c39c",
+        "literal": "READER:IMAGE:OCR"
+      },
+      {
+        "site": "0x10001c3f4",
+        "literal": "path"
+      },
+      {
+        "site": "0x10001c454",
+        "literal": "OK"
+      },
+      {
+        "site": "0x10001c478",
+        "literal": "APPEARANCE:SET:STYLE"
+      },
+      {
+        "site": "0x10001c4e0",
+        "literal": "FAIL"
+      },
+      {
+        "site": "0x10001c540",
+        "literal": "INVALID_ARGUMENT"
+      },
+      {
+        "site": "0x10001c548",
+        "literal": "Expected a boolean"
+      }
+    ],
+    "limits": "Literal sites include arguments, responses and command prefixes; not every literal represents a command or implemented feature."
+  },
+  "limitations": [
+    "Function names and candidate references do not establish all runtime branches.",
+    "No original Xcode/Flutter project, runtime equivalence, pixel geometry, account or extension success is established."
+  ]
+}

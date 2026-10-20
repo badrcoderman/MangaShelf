@@ -1,0 +1,102 @@
+{
+  "tool": "Ghidra12.1.2",
+  "strategy": "read-only Mach-O import; -noanalysis; explicit function seeds; 30s per function; 1200MiB Java heap",
+  "input_sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08",
+  "functions_requested": 14,
+  "functions_succeeded": 14,
+  "status": [
+    "100008d44\tNativeChannel\tSUCCESS",
+    "100008de8\tUTF8ArrayToString\tSUCCESS",
+    "1000208ac\tLaunchJVM\tSUCCESS",
+    "10002987c\tCreateVMWrapper\tSUCCESS",
+    "10002a450\tJavaChannelCall\tSUCCESS",
+    "10003cf1c\tBackendPluginHandle\tSUCCESS",
+    "10003cffc\tBackendLaunch\tSUCCESS",
+    "10004e80c\tParseNetRequest\tSUCCESS",
+    "10004eca0\tBuildNetResponse\tSUCCESS",
+    "10004f1c8\tNativeNet\tSUCCESS",
+    "10001ad34\tMagicPipeHandler\tSUCCESS",
+    "10000e1e0\tNativeChannelHandler\tSUCCESS",
+    "10000ac08\tContinuedDownloadHandler\tSUCCESS",
+    "10000ba40\tContinuedUpdateHandler\tSUCCESS"
+  ],
+  "target_executed": false,
+  "limitations": [
+    "Pseudocode success means code was emitted, not semantic equivalence or original source recovery.",
+    "No-analysis import lacks many Objective-C/JNI prototypes; some arguments/types/returns are incomplete or misleading.",
+    "Names-only annotations identify stubs/CFString from independent pointer maps; raw pseudocode is preserved.",
+    "Fourteen selected function entries; not all 29491 native functions."
+  ],
+  "outputs": [
+    {
+      "file": "100008d44-NativeChannel.c.txt",
+      "raw_sha256": "604393d1c22ae7596bc614defb4625d22ea05e8b6292feece28ab4ab0fcfdfb6",
+      "annotated_sha256": "4718a6889155027efb74157d85548739ab82b27e051e5335bb74c6f3edc0737a"
+    },
+    {
+      "file": "100008de8-UTF8ArrayToString.c.txt",
+      "raw_sha256": "8225fe532c54d1c22acfd2f746bca4a5367333a10ffabdffc21d447b2ee6d87e",
+      "annotated_sha256": "48151c8d8a3936493dc9ecf29c72c2b76ccb4c0437637ea8b5507e256792d51b"
+    },
+    {
+      "file": "10000ac08-ContinuedDownloadHandler.c.txt",
+      "raw_sha256": "04a32562c5c3970ec4bcc5d977f6654069a35690e9dbae57d70b3a02c425c973",
+      "annotated_sha256": "7fb11f950c2b7731fd7f6b327b631c0a30740456f1f1097949833f587bfdcbe2"
+    },
+    {
+      "file": "10000ba40-ContinuedUpdateHandler.c.txt",
+      "raw_sha256": "cef90630918428b9be8480408dbda4056638f3cef917372ad3fefa8e11643ca1",
+      "annotated_sha256": "af62120e7124baaab00f7c8f3cab648d248ff3e8c2b53cc7515392506424c015"
+    },
+    {
+      "file": "10000e1e0-NativeChannelHandler.c.txt",
+      "raw_sha256": "f58bb4ee04824e091b27a8cfd1b724465ead3c2e5a6870b400a39243fb1d31d9",
+      "annotated_sha256": "af7917da1ac69e88c108c177ed0c21f30bf9f61067245964df5155355516b35e"
+    },
+    {
+      "file": "10001ad34-MagicPipeHandler.c.txt",
+      "raw_sha256": "89b466627b70b0788042cb59caf61852793ac88a85da7541c60dd2dcbcb553f2",
+      "annotated_sha256": "88cdd515f996406f455a8e793d80e935066ed1c97a441d70e39da7dbe73c578b"
+    },
+    {
+      "file": "1000208ac-LaunchJVM.c.txt",
+      "raw_sha256": "ed0abbee73263ecf81d33aff1cd2180d16c4df4247f04f5aa6f4536d014d6375",
+      "annotated_sha256": "e4697c46818b7105c50fbc249835bafe7648a5baf70b196d312c37ce91b607f7"
+    },
+    {
+      "file": "10002987c-CreateVMWrapper.c.txt",
+      "raw_sha256": "db1c11604dff07432fbeb5af65862b3c135f168b98bbe0b02648b6cb871d919d",
+      "annotated_sha256": "c6a70012e00bdb6e5ae0cf67db37d6d4a2c5d95dcda6b72a35b31cdab86c4053"
+    },
+    {
+      "file": "10002a450-JavaChannelCall.c.txt",
+      "raw_sha256": "38e70aa1af85429dd6a1704d532bb2c5b10a08da24a9add6d7168fd65cb7110a",
+      "annotated_sha256": "14c2e136eba1832899b7d50d3dc602e3fa82892103bb7fdfaa6038e3afc165e6"
+    },
+    {
+      "file": "10003cf1c-BackendPluginHandle.c.txt",
+      "raw_sha256": "7f57b3320e4a8abde7bc7297450b4e39767dbcc931cbaf497c2fb216db25e6ac",
+      "annotated_sha256": "4a34fd0a945e7f169f1f32a365f2a396691d293b203ddcbba010e3d985bd91e8"
+    },
+    {
+      "file": "10003cffc-BackendLaunch.c.txt",
+      "raw_sha256": "3f0947bef1a5ce3800ecb6e374e4f296db80138345733ab3906d44b3ae7ec9db",
+      "annotated_sha256": "4c6f66f8aea1048d7eb60effe8afc1dfbb71a1b7c86dec22485e46b150c0ecac"
+    },
+    {
+      "file": "10004e80c-ParseNetRequest.c.txt",
+      "raw_sha256": "046a4b095fe4c2b38e17a8233835c5053c85f6ae0db6248b69adc28310dad4c8",
+      "annotated_sha256": "13042e8df19f2fcee7ca9660e17a8fbc4b42ef2ddd0104843930312de4658e2e"
+    },
+    {
+      "file": "10004eca0-BuildNetResponse.c.txt",
+      "raw_sha256": "9f0d9c19552e89bf15939df3d02459bf6ba039dca3529ab3cf41e18b3279967c",
+      "annotated_sha256": "3f821f13c9b949543661b38acf4ae09a20141da19579736594f293aeafadac2d"
+    },
+    {
+      "file": "10004f1c8-NativeNet.c.txt",
+      "raw_sha256": "cbe7bc0e2daa6741dae91356c930bc2b384ca78e6cd0eba4656ec5b1b8f3080d",
+      "annotated_sha256": "7dbe79cabce4cdb8706ec51699cbed30855c34d1343b883451581d62c344561d"
+    }
+  ]
+}

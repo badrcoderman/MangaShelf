@@ -1,0 +1,549 @@
+{
+  "input": {
+    "path": "/home/user/Downloads/12696-Tachimanga v5.1 Premium Unlocked blatant Patched.ipa",
+    "bytes": 133786072,
+    "sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863",
+    "user_supplied": true,
+    "patched_sample": true
+  },
+  "flutter_app": {
+    "member": "Payload/Tachimanga.app/Frameworks/App.framework/App",
+    "bytes": 20271568,
+    "sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469"
+  },
+  "snapshots": [
+    {
+      "name": "_kDartIsolateSnapshotData",
+      "address": 8982272,
+      "file_offset": 8982272,
+      "type": 15,
+      "section": 2,
+      "serialized_length_field": 3486022,
+      "kind": 3,
+      "version_hash": "f956f595844a2f845a55707faaaa51e4",
+      "features": "product no-code_comments no-dwarf_stack_traces_mode dedup_instructions no-tsan no-msan arm64 ios no-compressed-pointers",
+      "header_prefix_hex": "f5f5dcdc46313500000000000300000000000000663935366635393538343461326638343561353537303766616161613531653470726f64756374206e6f2d636f64655f636f6d6d656e7473206e6f2d64776172665f737461636b5f7472616365735f6d6f64652064656475705f696e737472756374696f6e73206e6f2d7473"
+    },
+    {
+      "name": "_kDartVmSnapshotData",
+      "address": 8945728,
+      "file_offset": 8945728,
+      "type": 15,
+      "section": 2,
+      "serialized_length_field": 3729,
+      "kind": 3,
+      "version_hash": "f956f595844a2f845a55707faaaa51e4",
+      "features": "product no-code_comments no-dwarf_stack_traces_mode dedup_instructions no-tsan no-msan arm64 ios no-compressed-pointers",
+      "header_prefix_hex": "f5f5dcdc910e0000000000000300000000000000663935366635393538343461326638343561353537303766616161613531653470726f64756374206e6f2d636f64655f636f6d6d656e7473206e6f2d64776172665f737461636b5f7472616365735f6d6f64652064656475705f696e737472756374696f6e73206e6f2d7473"
+    }
+  ],
+  "static_string_scan": {
+    "method": "aligned immutable Dart string-object scan plus entire-file ASCII fallback; no execution",
+    "scanned_file_range": [
+      8945728,
+      20036160
+    ],
+    "one_byte_cid": 94,
+    "two_byte_cid": 95,
+    "object_alignment": 16,
+    "length_smi_shift": 1,
+    "string_objects": 75266,
+    "latin1": 54040,
+    "utf16le": 21226,
+    "rejected": {},
+    "ascii_runs": 97309,
+    "marker_limit": null,
+    "object_limit": null,
+    "coverage_limit": "All matching aligned CID 94/95 objects in __TEXT.__const; not a full clustered snapshot/heap decoder or a proof every possible runtime string is represented"
+  },
+  "feature_source_paths": {
+    "_shared": 153,
+    "about": 15,
+    "account": 15,
+    "app_update": 6,
+    "browse_center": 114,
+    "bulk_migrate": 10,
+    "bulk_tracking": 14,
+    "custom": 29,
+    "help": 8,
+    "library": 29,
+    "manga_book": 167,
+    "remote_notice": 5,
+    "settings": 225,
+    "stats": 9,
+    "sync": 14,
+    "whats_new": 2
+  },
+  "app_source_path_objects": 815,
+  "assets": {
+    "ui_asset_members": 115,
+    "font_members": 3,
+    "generated_localization_libraries": 25,
+    "arabic_string_objects": 1431,
+    "screen_dialog_source_paths": 153
+  },
+  "tool": {
+    "tag": "v0.1.13",
+    "asset_name": "dae-Linux-x64",
+    "download_url": "https://github.com/ejfkdev/dae/releases/download/v0.1.13/dae-Linux-x64",
+    "bytes": 2571200,
+    "sha256": "37fb8ddea7fe0710d6994ac3f9c0484d9b1aa9b320cfae134fc76a78b9f5db7f",
+    "github_asset_digest": "sha256:37fb8ddea7fe0710d6994ac3f9c0484d9b1aa9b320cfae134fc76a78b9f5db7f",
+    "target_execution": false
+  },
+  "parser_info": {
+    "sdk": "Dart3.6.1",
+    "sdk_match": "snapshot version hash",
+    "instruction_table_entries": 59651,
+    "library_objects": 1775,
+    "class_objects": 5754,
+    "function_records": 55758,
+    "string_records": 75288,
+    "vm_objects": 1167,
+    "isolate_objects": 303825,
+    "warnings_reported": 0
+  },
+  "export": {
+    "result": {
+      "command": [
+        "prlimit",
+        "--as=3221225472",
+        "timeout",
+        "180",
+        "taskset",
+        "-c",
+        "0",
+        "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/flutter-full/tooling/dae-Linux-x64",
+        "export",
+        "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/FlutterApp",
+        "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/flutter-full/dae-export-single-cpu",
+        "--decompile"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 171.268,
+      "target_executed": false,
+      "profile": "single allowed CPU; 3 GiB address space; 180s wall limit",
+      "stdout_sha256": "4e42e46e92846d68a5f47c4163fc06f21ec1e9ae77c133dd8f27f78a6e2c19f2",
+      "stderr_sha256": "b45f04c73ad62abf6d192ccfeee543cb79a0b9f040a2c824e73263d14f197a84"
+    },
+    "library_groups": 1866,
+    "class_records": 8954,
+    "function_records": 55758,
+    "named_function_addresses": 54287,
+    "disassembled_functions": 49740,
+    "object_pool_entries": 71800,
+    "user_class_instances": 5860,
+    "string_records": 74393,
+    "arrays": 15924,
+    "maps": 268,
+    "named_fields": 1054,
+    "unreferenced_instruction_table_entries": 5364,
+    "direct_call_edges": 189587,
+    "indirect_call_sites": 22911,
+    "named_direct_call_edges": 154536,
+    "dart_pseudocode_blocks": 54287,
+    "structured_pseudocode_blocks": 52056,
+    "unstructured_pseudocode_blocks": 2231,
+    "unmapped_lines_reported": 1,
+    "pseudocode_statements": 2208121,
+    "pseudocode_basic_blocks": 378172,
+    "dart_files": 1775,
+    "app_function_records": 7182,
+    "app_function_libraries": 593,
+    "app_dart_files": 593,
+    "output_files": 3552,
+    "output_bytes": 357691806,
+    "output_manifest_sha256": "f749688bdce8be1a93a03effbf378e7ff63d5a33f25b181c88cb24728d439552"
+  },
+  "selected_function_index": {
+    "extension": [
+      {
+        "address": "0x437328",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "ExtensionRepository",
+        "method": "getExtensionList"
+      },
+      {
+        "address": "0x439064",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "ExtensionRepository",
+        "method": "installExtensionFile"
+      },
+      {
+        "address": "0x448314",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "ExtensionRepository",
+        "method": "updateExtension"
+      },
+      {
+        "address": "0x44a214",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "ExtensionRepository",
+        "method": "uninstallExtension"
+      },
+      {
+        "address": "0x44beec",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "ExtensionRepository",
+        "method": "installExtension"
+      },
+      {
+        "address": "0x438b38",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "",
+        "method": "extensionRepositoryProvider"
+      },
+      {
+        "address": "0x438b70",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "",
+        "method": "extensionRepository"
+      },
+      {
+        "address": "0x438ba0",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$extension_repository$extension_repository",
+        "class_name": "",
+        "method": "extensionRepository"
+      }
+    ],
+    "source": [
+      {
+        "address": "0x4436a0",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getSourceList"
+      },
+      {
+        "address": "0x44fb64",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getMangaList"
+      },
+      {
+        "address": "0x450e28",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getSourceListForSearch"
+      },
+      {
+        "address": "0x45f180",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getSource"
+      },
+      {
+        "address": "0x4632c4",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getFilterList"
+      },
+      {
+        "address": "0x467208",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "updateMeta"
+      },
+      {
+        "address": "0x4685dc",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "getPreferenceList"
+      },
+      {
+        "address": "0x46a94c",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "updatePreferenceList"
+      },
+      {
+        "address": "0x47b9fc",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "simpleSearch"
+      },
+      {
+        "address": "0x4cf3a8",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "removeLocalManga"
+      },
+      {
+        "address": "0x5abbac",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "installMangaFile"
+      },
+      {
+        "address": "0x85e20c",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "SourceRepository",
+        "method": "queryMeta"
+      },
+      {
+        "address": "0x4438c0",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "",
+        "method": "sourceRepositoryProvider"
+      },
+      {
+        "address": "0x4438f8",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "",
+        "method": "sourceRepository"
+      },
+      {
+        "address": "0x443928",
+        "library": "tachidesk_sorayomi$src$features$browse_center$data$source_repository$source_repository",
+        "class_name": "",
+        "method": "sourceRepository"
+      }
+    ],
+    "repository": [
+      {
+        "address": "0x3c6808",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "RepoRepository",
+        "method": "getRepoList"
+      },
+      {
+        "address": "0x5382a8",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "RepoRepository",
+        "method": "createRepo"
+      },
+      {
+        "address": "0x53a290",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "RepoRepository",
+        "method": "deleteRepo"
+      },
+      {
+        "address": "0x5a2b08",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "RepoRepository",
+        "method": "updateByMetaUrl"
+      },
+      {
+        "address": "0x3c7460",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "",
+        "method": "repoRepositoryProvider"
+      },
+      {
+        "address": "0x3c7498",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "",
+        "method": "repoRepository"
+      },
+      {
+        "address": "0x3c74c8",
+        "library": "tachidesk_sorayomi$src$features$settings$data$repo$repo_repository",
+        "class_name": "",
+        "method": "repoRepository"
+      }
+    ],
+    "backup": [
+      {
+        "address": "0x52d3f0",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "ProtoBackupRepository",
+        "method": "restoreBackup"
+      },
+      {
+        "address": "0x5cfb9c",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "ProtoBackupRepository",
+        "method": "createProtoBackup"
+      },
+      {
+        "address": "0x85abf0",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "ProtoBackupRepository",
+        "method": "socketUpdates"
+      },
+      {
+        "address": "0x52d8a4",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "",
+        "method": "backupRepositoryProvider"
+      },
+      {
+        "address": "0x52d8dc",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "",
+        "method": "backupRepository"
+      },
+      {
+        "address": "0x52d90c",
+        "library": "tachidesk_sorayomi$src$features$settings$data$backup$backup_repository",
+        "class_name": "",
+        "method": "backupRepository"
+      }
+    ],
+    "reader": [
+      {
+        "address": "0x4e89c4",
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "class_name": "ReaderScreen2",
+        "method": "build"
+      },
+      {
+        "address": "0x4eb684",
+        "library": "tachidesk_sorayomi$src$features$manga_book$presentation$reader$reader_screen_v2",
+        "class_name": "ReaderScreen2",
+        "method": "updateLastRead"
+      }
+    ],
+    "routing": [
+      {
+        "address": "0x3f22b4",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getManga"
+      },
+      {
+        "address": "0x3f53bc",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getReader"
+      },
+      {
+        "address": "0x44cb40",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getExtensionInfo"
+      },
+      {
+        "address": "0x4e65a4",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getSourceManga"
+      },
+      {
+        "address": "0x537630",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getRepoDetail"
+      },
+      {
+        "address": "0x57f128",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getMangaTrackSearch"
+      },
+      {
+        "address": "0x5a97f8",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getMigrateMangaList"
+      },
+      {
+        "address": "0x5ab3b8",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "Routes",
+        "method": "getSourcePref"
+      },
+      {
+        "address": "0x477754",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "routeObserver"
+      },
+      {
+        "address": "0x544c60",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "routerConfig"
+      },
+      {
+        "address": "0x563018",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "_shellNavigatorKey"
+      },
+      {
+        "address": "0x563040",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "_rootNavigatorKey"
+      },
+      {
+        "address": "0x5631ec",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "routerConfig"
+      },
+      {
+        "address": "0x59a8fc",
+        "library": "tachidesk_sorayomi$src$routes$router_config",
+        "class_name": "",
+        "method": "routerConfigProvider"
+      }
+    ],
+    "library": [
+      {
+        "address": "0x4a35a4",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "LibraryScreen",
+        "method": "build"
+      },
+      {
+        "address": "0x4a4564",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "LibraryScreen",
+        "method": "_reloadListAfterAction"
+      },
+      {
+        "address": "0x4a4388",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "",
+        "method": "_selectedCategoryIndex"
+      },
+      {
+        "address": "0x43d430",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "",
+        "method": "_libraryPageStorageBucket"
+      },
+      {
+        "address": "0x4a4e38",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "_LibraryTabState",
+        "method": "build"
+      },
+      {
+        "address": "0x4a5094",
+        "library": "tachidesk_sorayomi$src$features$library$presentation$library$library_screen",
+        "class_name": "_LibraryTabState",
+        "method": "saveSelectedCategory"
+      }
+    ],
+    "native_tabs": [
+      {
+        "address": "0x43b4d0",
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_tabs_26",
+        "class_name": "NativeRootTabs26",
+        "method": "maybeOf"
+      },
+      {
+        "address": "0x6dcf74",
+        "library": "tachidesk_sorayomi$src$widgets$shell$native_root_tabs_26",
+        "class_name": "NativeRootTabs26",
+        "method": "updateShouldNotify"
+      }
+    ]
+  },
+  "limits": [
+    "All parser and decompiler counts are tool observations with different record/group scopes; not every serialized class has a named function owner.",
+    "Pseudocode has machine-runtime placeholder operations; it is not recovered original Dart source or a runnable application.",
+    "2231 function blocks have unstructured control flow and one unmapped line was reported; indirect and dynamic dispatch coverage is incomplete.",
+    "No Dart analyze or runtime equivalence test was run on reconstructed files.",
+    "No target code executed; no full widget tree, pixel geometry or device behavior proved.",
+    "Original assets and raw reconstructed code are kept outside the production repository."
+  ],
+  "prior_attempt": {
+    "result": "incomplete export: thread spawning panic under 1.5GiB address-space limit",
+    "change": "successful rerun restricted to one CPU and 3GiB address space",
+    "logs": "flutter-full/dae-export.stderr"
+  }
+}

@@ -1,0 +1,5096 @@
+[
+  {
+    "path": "Payload/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/GoogleMobileAdsResources.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/GoogleMobileAdsResources.bundle/Info.plist",
+    "bytes": 798,
+    "compressed_bytes": 572,
+    "crc32": "ad642a30",
+    "sha256": "c3f08c2427dc848982221230e7605256917497c364cfc876a432956785e6f1be",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/GoogleMobileAdsResources.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 4491,
+    "compressed_bytes": 576,
+    "crc32": "e73fd702",
+    "sha256": "69fb112582fc23fc06c635c961d262a3f7b4b5654d284787491de3000dadf9d2",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/de.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/de.lproj/InfoPlist.strings",
+    "bytes": 711,
+    "compressed_bytes": 365,
+    "crc32": "0c725f89",
+    "sha256": "63315383cccd50f9878f14aba521467605706e95ece8adab377a3dc05d1694f1",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/de.lproj/Localizable.strings",
+    "bytes": 6927,
+    "compressed_bytes": 3259,
+    "crc32": "4cd72458",
+    "sha256": "2c567fea404e68904077bd25ecc40f37877eee883e35c0c0913d0428ab70f063",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/it.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/it.lproj/InfoPlist.strings",
+    "bytes": 445,
+    "compressed_bytes": 282,
+    "crc32": "08731a76",
+    "sha256": "3263b71df2d47d086414f8f74483e294b4494197a135cb9711e423008d4a0e5a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/it.lproj/Localizable.strings",
+    "bytes": 6106,
+    "compressed_bytes": 3004,
+    "crc32": "f2fdb6a7",
+    "sha256": "0e0dead837a6ccae9afef475c897dae7babcc1afe05419b83871e52627c45c8f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-BR.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-BR.lproj/InfoPlist.strings",
+    "bytes": 689,
+    "compressed_bytes": 347,
+    "crc32": "6de993c3",
+    "sha256": "1f4f0c764f82623ceae5a54363e1a6188254cddce7c5f358445c7b3225d95c23",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-BR.lproj/Localizable.strings",
+    "bytes": 6857,
+    "compressed_bytes": 3204,
+    "crc32": "d6214585",
+    "sha256": "919eef455ee940108354c06505f9f0ed8b224b4c93f9c53e0e608899b2ef2715",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/en.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/en.lproj/InfoPlist.strings",
+    "bytes": 399,
+    "compressed_bytes": 257,
+    "crc32": "6071b9da",
+    "sha256": "02a86eb2c7a2caedd4f69f99c43eabad976e7d1e3042c94e03143d190bce4e0f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/en.lproj/Localizable.strings",
+    "bytes": 3583,
+    "compressed_bytes": 1913,
+    "crc32": "4e0b0f03",
+    "sha256": "450156e3584d64cc2c8029cb0ca466ced96c5cb40c18279d410cd5f1b100e988",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/uk.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/uk.lproj/InfoPlist.strings",
+    "bytes": 637,
+    "compressed_bytes": 353,
+    "crc32": "3e1df539",
+    "sha256": "550d65d0e66aee047481070dc6e73359e0af27053a4da04cb4b966dbcab2004e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/uk.lproj/Localizable.strings",
+    "bytes": 7589,
+    "compressed_bytes": 3336,
+    "crc32": "73496ba2",
+    "sha256": "212b75e85ed081d8b1271334e5b32c17b51e055c540c51eaafcb976540dc701e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/vi.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/vi.lproj/InfoPlist.strings",
+    "bytes": 639,
+    "compressed_bytes": 367,
+    "crc32": "8397254b",
+    "sha256": "369102a8ccb777733da1cca9ba31ffabd746529117fe445b65efdbe38b081a8b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/vi.lproj/Localizable.strings",
+    "bytes": 7138,
+    "compressed_bytes": 3096,
+    "crc32": "a4ffb815",
+    "sha256": "8e5a10a6678b64914d1fd206f7fcad6737a52cf07b280fa426e305c402e568ba",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/tr.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/tr.lproj/InfoPlist.strings",
+    "bytes": 699,
+    "compressed_bytes": 360,
+    "crc32": "e11f6a23",
+    "sha256": "2c6b644e60e5561a42d24b8409f5e7230833378bdb6c9fd3e42cafbe09d176cc",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/tr.lproj/Localizable.strings",
+    "bytes": 7222,
+    "compressed_bytes": 3167,
+    "crc32": "c7e753c1",
+    "sha256": "7a7743620ac8a9b597affcb353ae8efbb1c7d9a0d05ff2076f671a9c7664c961",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/es.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/es.lproj/InfoPlist.strings",
+    "bytes": 491,
+    "compressed_bytes": 305,
+    "crc32": "6f69d448",
+    "sha256": "569f1fdfe5d16ab4434923a3b88aed950a389f3a79976ca79dcd848ea1cb8ef6",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/es.lproj/Localizable.strings",
+    "bytes": 7254,
+    "compressed_bytes": 3277,
+    "crc32": "b4d1352d",
+    "sha256": "0d70eb6732e0247abee499063e85c0f0e12737f8c993d642933d8205530e4b5b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/hu.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/hu.lproj/InfoPlist.strings",
+    "bytes": 675,
+    "compressed_bytes": 350,
+    "crc32": "f6eca62d",
+    "sha256": "a60031a5cf8f2535cbd904d17cb44f6587543e6d90d4755cc987bb344cba491f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/hu.lproj/Localizable.strings",
+    "bytes": 7315,
+    "compressed_bytes": 3257,
+    "crc32": "13128fe8",
+    "sha256": "12887d4498233a5de2d947b6472c75a7b53fe5086e45fc81ebb71918cf1ac122",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/GoogleService-Info.plist",
+    "bytes": 655,
+    "compressed_bytes": 470,
+    "crc32": "67c4b1c6",
+    "sha256": "db32fb5807ea9c40d64a258db22ff6a8c5b83e9ac0dafa090adf7df849dd308f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/id.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/id.lproj/InfoPlist.strings",
+    "bytes": 429,
+    "compressed_bytes": 262,
+    "crc32": "db2b8388",
+    "sha256": "d3d5347317cf79785877d65c265f8e3120a8f220858388139a8d79123d19a40a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/id.lproj/Localizable.strings",
+    "bytes": 5287,
+    "compressed_bytes": 2765,
+    "crc32": "58e0673c",
+    "sha256": "bead311fae7e190e734cdb389c62ca2756930ddcbf68affc7e2aa313b3c03a02",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Assets.car",
+    "bytes": 9066616,
+    "compressed_bytes": 8630290,
+    "crc32": "045cf1e1",
+    "sha256": "592e7a8377785a2c4e9b62036d83600cead2976f006228f7c7ab205eba47e83d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/LaunchScreen.storyboardc/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib",
+    "bytes": 924,
+    "compressed_bytes": 615,
+    "crc32": "3b660226",
+    "sha256": "54f3637f671feba5f19e82ec4f4a7fb448bb3cfc0fb180f089aa571fc8f053e2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib",
+    "bytes": 1225,
+    "compressed_bytes": 767,
+    "crc32": "6d22352b",
+    "sha256": "107980c54274d72fb604e1e82ef4f0820de45b9dd36cd5899c20f972f8ceb582",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/LaunchScreen.storyboardc/Info.plist",
+    "bytes": 258,
+    "compressed_bytes": 150,
+    "crc32": "3ed5e388",
+    "sha256": "1f255d5cc53b531e3f29a9406a8df49a958e2bf9443d3e20bd8374f707f7d5c8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/Main.storyboardc/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib",
+    "bytes": 944,
+    "compressed_bytes": 626,
+    "crc32": "9c825d2c",
+    "sha256": "97cf075eeacce839f6baa5c6745d24257ba923f55ca5df429cba4476d5da94ad",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib",
+    "bytes": 1225,
+    "compressed_bytes": 767,
+    "crc32": "6d22352b",
+    "sha256": "107980c54274d72fb604e1e82ef4f0820de45b9dd36cd5899c20f972f8ceb582",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Base.lproj/Main.storyboardc/Info.plist",
+    "bytes": 258,
+    "compressed_bytes": 150,
+    "crc32": "8a717f49",
+    "sha256": "3e9bdaa408d1eb6ae5e989b813a8644e0a4a981202c536905de52a7291e69aa4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/MCHome.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/MCHome.bundle/res.zip",
+    "bytes": 60954239,
+    "compressed_bytes": 60954239,
+    "crc32": "2cf7505d",
+    "sha256": "db4443eadbeece65c628734d82826c91d1beb4e3d6efd3b5ef721342755b0aa6",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ar.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ar.lproj/InfoPlist.strings",
+    "bytes": 547,
+    "compressed_bytes": 316,
+    "crc32": "a5a85c1c",
+    "sha256": "bbe0924674be1aab9d367e67530ef8e1b887c53bca69184755e33699411b90db",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ar.lproj/Localizable.strings",
+    "bytes": 6601,
+    "compressed_bytes": 3013,
+    "crc32": "8fe156ba",
+    "sha256": "78a57f743fa41531d9a7ad67e7370eb8530cf8cf9bc0d081e6776750cbbbeb46",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/fr.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/fr.lproj/InfoPlist.strings",
+    "bytes": 731,
+    "compressed_bytes": 354,
+    "crc32": "3ff67d34",
+    "sha256": "87322a77bbb7a3b83f94ec102a464780dd89a98d87964258544c1bf7bda59275",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/fr.lproj/Localizable.strings",
+    "bytes": 7866,
+    "compressed_bytes": 3289,
+    "crc32": "fc3e7c76",
+    "sha256": "9e1ff344d2a5fde6dbce3e155578626a136727e56061f58401d4f90c45a39c97",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/SAMKeychain",
+    "bytes": 81616,
+    "compressed_bytes": 10633,
+    "crc32": "9b495aed",
+    "sha256": "2627b8d84ebc6e85fea5ea45217ee24069fee19227702d28b9d3dec4d640600e",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/SAMKeychain.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/SAMKeychain.bundle/en.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/SAMKeychain.bundle/en.lproj/SAMKeychain.strings",
+    "bytes": 1580,
+    "compressed_bytes": 559,
+    "crc32": "bcb06c6b",
+    "sha256": "48edb7611db3a63c12bca06d64fe5bce4167a1d4bd8f9e8d56d9abb4bee2cb40",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/_CodeSignature/CodeResources",
+    "bytes": 3201,
+    "compressed_bytes": 830,
+    "crc32": "c03f3b9f",
+    "sha256": "62fae3c3bcb1de89f09345039a2f9afc26d20479d417b436af53f9d694344cb1",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SAMKeychain.framework/Info.plist",
+    "bytes": 793,
+    "compressed_bytes": 574,
+    "crc32": "e308a219",
+    "sha256": "aa7eb3598e11857e8dec9d4993c0a0fb782f30026458faaf7b42709013543b85",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SDWebImage.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SDWebImage.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SDWebImage.framework/_CodeSignature/CodeResources",
+    "bytes": 2734,
+    "compressed_bytes": 730,
+    "crc32": "77584851",
+    "sha256": "29ecc19e7d0868c2219f1698514bc9e9297b882922dc6d0d6671cf524150382a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SDWebImage.framework/SDWebImage",
+    "bytes": 762496,
+    "compressed_bytes": 231888,
+    "crc32": "a6da50aa",
+    "sha256": "cd3f4333a1791bee9d7701e4435718afd46a7841aa46336c542f5392a3a738ca",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SDWebImage.framework/Info.plist",
+    "bytes": 792,
+    "compressed_bytes": 571,
+    "crc32": "d464c326",
+    "sha256": "983b29d1831f660f242024cdce0dd5c842c94b06149dbc0a788499e826cb8b0d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting_Privacy.bundle/Info.plist",
+    "bytes": 799,
+    "compressed_bytes": 577,
+    "crc32": "19b4edb1",
+    "sha256": "0047b55b0aea2be1989d49a8492f8ca38d622ec28809fa56181502864993dc23",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 478,
+    "compressed_bytes": 233,
+    "crc32": "df2d1167",
+    "sha256": "1377eccedff8f8320f78040e9c9d3e17ecc0ea569594b56af0ef17be44197c7a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/_CodeSignature/CodeResources",
+    "bytes": 3486,
+    "compressed_bytes": 920,
+    "crc32": "80a82b22",
+    "sha256": "3f0e186a88bd21a63cadbe4ac06a4006422babb6282a46c2938151228c446ed3",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/Info.plist",
+    "bytes": 808,
+    "compressed_bytes": 580,
+    "crc32": "63b77269",
+    "sha256": "307e42333c1428ea7a09f1008232405d8d6286404a169d2452b68273bfc0d7de",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting",
+    "bytes": 111024,
+    "compressed_bytes": 21944,
+    "crc32": "3cd981d2",
+    "sha256": "13e5aa752d6ddd884755d5cb50009f0c1d108e0321646b53ffc78d0c874a4831",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSharedSwift.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSharedSwift.framework/FirebaseSharedSwift",
+    "bytes": 507552,
+    "compressed_bytes": 129729,
+    "crc32": "43475b6f",
+    "sha256": "72a606a2b247a66ce69ee5f66f2a23025a3c77698eba26370c056ad329e58dfc",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSharedSwift.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSharedSwift.framework/_CodeSignature/CodeResources",
+    "bytes": 2788,
+    "compressed_bytes": 736,
+    "crc32": "b086657e",
+    "sha256": "e92791b8e58752326462f781f6a6dfc2d281349ac0859873f61a7b1578dd1f77",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSharedSwift.framework/Info.plist",
+    "bytes": 812,
+    "compressed_bytes": 584,
+    "crc32": "73ac4b2a",
+    "sha256": "6bc3f0c0c9354a03d8ccb915cc2d8c4de57b3a3f5c44ea3d60e2a0ce521919b8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FileMD5Hash.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FileMD5Hash.framework/FileMD5Hash",
+    "bytes": 71008,
+    "compressed_bytes": 4166,
+    "crc32": "a7296f9d",
+    "sha256": "37fcdede3da9bbb708d73eb7f2d964b1a6a23ad26f74003d6a154a0dc0383cc2",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FileMD5Hash.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FileMD5Hash.framework/_CodeSignature/CodeResources",
+    "bytes": 2740,
+    "compressed_bytes": 729,
+    "crc32": "1f3daf05",
+    "sha256": "642426f3bf557d9d1fb409114e11bd93f147617a8621fea74deb6d34da135b11",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FileMD5Hash.framework/Info.plist",
+    "bytes": 793,
+    "compressed_bytes": 573,
+    "crc32": "e8df6c20",
+    "sha256": "69251b0b3145ba598bec73a21a0e9fdd9e72ad6476cfa635ed954570a05877b3",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Mantle.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Mantle.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Mantle.framework/_CodeSignature/CodeResources",
+    "bytes": 2710,
+    "compressed_bytes": 725,
+    "crc32": "e19fd50c",
+    "sha256": "410ed0dc5e78b993c8d8764de7191a9618dbef19e8872b722abffc90e3c8924a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Mantle.framework/Info.plist",
+    "bytes": 783,
+    "compressed_bytes": 570,
+    "crc32": "6bc2aa7d",
+    "sha256": "9a5ca1ae8c475feb0982f42931704eb452f719f4361453f452cd8f5c221d7fec",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Mantle.framework/Mantle",
+    "bytes": 171136,
+    "compressed_bytes": 42808,
+    "crc32": "c8709f1b",
+    "sha256": "ce5d5fffcc587177cb6776881bf10f5443bf69e14f2b8763e4843142bd2b32ac",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Flutter",
+    "bytes": 9854016,
+    "compressed_bytes": 4601615,
+    "crc32": "6b1fcb4c",
+    "sha256": "bbe7932ad56ab7d81544b35a2c763b58fe0533faf09568c4e8cea33cd93a6a4b",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Modules/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Modules/module.modulemap",
+    "bytes": 95,
+    "compressed_bytes": 76,
+    "crc32": "ba114610",
+    "sha256": "d158eb891a59ec065968fff498c00f3093e18ba2e8301e0c857ccbe63db8b46b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/_CodeSignature/CodeResources",
+    "bytes": 8926,
+    "compressed_bytes": 2439,
+    "crc32": "5f734c56",
+    "sha256": "e104bef8ec5b22c3759d151234dcdce3e9ee67a99d1dc8a6230cb32289e46a74",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Info.plist",
+    "bytes": 579,
+    "compressed_bytes": 429,
+    "crc32": "5e208908",
+    "sha256": "944ff2de976c373d1593018cf44f75d951b5f67224f8aecc8c46fa0000ad5dcd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/icudtl.dat",
+    "bytes": 778864,
+    "compressed_bytes": 478393,
+    "crc32": "303a094a",
+    "sha256": "c12537022ef818991a7bfed41a76d8d6ae962ffbc0e6511ac762a5d0845e7f7c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterPlugin.h",
+    "bytes": 16277,
+    "compressed_bytes": 4658,
+    "crc32": "7ea5c8ac",
+    "sha256": "1ea6ef087a8a593cece468cb030ba9a84218562f727f90ab31d31edf510ec140",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/Flutter.h",
+    "bytes": 854,
+    "compressed_bytes": 358,
+    "crc32": "e3545882",
+    "sha256": "6ae69fef03f1880482603d800b2d5d7db309be638dc05bd2cf505660042bad2c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterBinaryMessenger.h",
+    "bytes": 3761,
+    "compressed_bytes": 1336,
+    "crc32": "16bf7a40",
+    "sha256": "1170e4e2dfbba82a724246abfaaf561ea63d6dc2bc7b2a210b0195b41261332f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterEngine.h",
+    "bytes": 20724,
+    "compressed_bytes": 4946,
+    "crc32": "8c26697b",
+    "sha256": "440382ea70e165d8216c0cec2198157aaeaa3edf8c50d4df9bfbe452786664ee",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterMacros.h",
+    "bytes": 1823,
+    "compressed_bytes": 805,
+    "crc32": "27dfb0dc",
+    "sha256": "79b0551d265c52701b378851718ab7b6db7afbecf561b73c2954988554e80f99",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterEngineGroup.h",
+    "bytes": 4755,
+    "compressed_bytes": 1480,
+    "crc32": "fe0607f6",
+    "sha256": "4aacef231a815c427753d2c9df6842117b2b1f63f5ea0ba643e810c7a3dd95fe",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterChannels.h",
+    "bytes": 18414,
+    "compressed_bytes": 3456,
+    "crc32": "f6f7a0cc",
+    "sha256": "920d7de42def64b88e9fc29e150532ec3a15b80f55643a6aa012d59fae2e19a2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterCodecs.h",
+    "bytes": 15290,
+    "compressed_bytes": 4376,
+    "crc32": "19d0a60a",
+    "sha256": "672aa51d8b996e915ebd57a7cbd59d974ad51604bbb33232b2c4a20b269a7853",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterViewController.h",
+    "bytes": 10178,
+    "compressed_bytes": 3699,
+    "crc32": "2500ddf2",
+    "sha256": "6d9825ac02dfa4c9ee421c285c154325ec8e319330e4409f8f2e0b22fd4d5931",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterHeadlessDartRunner.h",
+    "bytes": 3927,
+    "compressed_bytes": 1146,
+    "crc32": "9775eca6",
+    "sha256": "9e6663669bc5097af281fe14f5a3e4362f15708edc2f902d03e098e6e51620bd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterHourFormat.h",
+    "bytes": 536,
+    "compressed_bytes": 298,
+    "crc32": "c968d50d",
+    "sha256": "43848b1528212ffe441493f22e0ecf362f49ff1a645557f3ae8d15422407b6b6",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterDartProject.h",
+    "bytes": 3914,
+    "compressed_bytes": 1396,
+    "crc32": "34dcb433",
+    "sha256": "53cabfd086edf6ae0ed8732c09d530213b49753c7c2e3865c7ed1a63cddf1fab",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterCallbackCache.h",
+    "bytes": 1724,
+    "compressed_bytes": 712,
+    "crc32": "c4347ddb",
+    "sha256": "d21f7ebcae4afabf26a13b221817ecebe4ccf50a20d3cf5a7c7032de06dcc035",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterPlatformViews.h",
+    "bytes": 1967,
+    "compressed_bytes": 881,
+    "crc32": "9cc4b673",
+    "sha256": "e2197e9115383cd34a7401ef62b96239b5f34a3473a30f59d7ca0e3116486b4a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterAppDelegate.h",
+    "bytes": 1271,
+    "compressed_bytes": 684,
+    "crc32": "9c09263b",
+    "sha256": "a348a2815b268309ad65f4afdd7ee145e0cd60fe6b5db96c9439eaab6b3a5107",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h",
+    "bytes": 5318,
+    "compressed_bytes": 1263,
+    "crc32": "af1b003c",
+    "sha256": "f8f327fb94838f655de9153c09022dfc9625dd3fbc0e1a7b1c89aa033a1ca0d9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/Headers/FlutterTexture.h",
+    "bytes": 2263,
+    "compressed_bytes": 1006,
+    "crc32": "087c408d",
+    "sha256": "25ca4de1af6cbfac729e50f7462eb5d4de72f87a2ea545a9da1cab21707f23c6",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Flutter.framework/PrivacyInfo.xcprivacy",
+    "bytes": 845,
+    "compressed_bytes": 334,
+    "crc32": "5190e4b8",
+    "sha256": "9f95d7e7862a4b56b66ed926bd6d622d2a6545a827d19847278b438d571d4212",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/Info.plist",
+    "bytes": 812,
+    "compressed_bytes": 583,
+    "crc32": "d0c14cba",
+    "sha256": "549c5381f60d1507492fed3b9c832386ecf85ea511a34ed64b337cc7571a1182",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/path_provider_foundation",
+    "bytes": 135104,
+    "compressed_bytes": 25054,
+    "crc32": "b51a3a38",
+    "sha256": "83f403c1a2791349164a8fc228648c687eba811896c4e880e122395593b00a58",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/_CodeSignature/CodeResources",
+    "bytes": 3556,
+    "compressed_bytes": 925,
+    "crc32": "5688003b",
+    "sha256": "057a9f5e9c86e590892e73c37e783e19e53ef0c65cb4abedc94a0f86d1644694",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/path_provider_foundation.framework/Info.plist",
+    "bytes": 821,
+    "compressed_bytes": 594,
+    "crc32": "ff8fa6a7",
+    "sha256": "2cff8904e1f84e339e30dcff5d07ecfa964943967e855cff0bb14b129272b0d3",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/metadata.json",
+    "bytes": 1876,
+    "compressed_bytes": 727,
+    "crc32": "f83cada7",
+    "sha256": "5da28ad9ce90eafb806b30dd6b81d16ecf122c17e40a266f37e3d145a0ed285e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/model1/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/model1/coremldata.bin",
+    "bytes": 16654,
+    "compressed_bytes": 15920,
+    "crc32": "9185bdcd",
+    "sha256": "59a93d0935bf0bd5bbda8f867dc20d7e37ecd38ea5bdf447ebde29be1f5b80bd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/analytics/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/analytics/coremldata.bin",
+    "bytes": 201,
+    "compressed_bytes": 132,
+    "crc32": "83a47896",
+    "sha256": "d4045c0118fe607aa1259a677f107962bc1fff944292e3ad2a8ada9b582ba375",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/model0/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/model0/coremldata.bin",
+    "bytes": 166,
+    "compressed_bytes": 95,
+    "crc32": "d781150b",
+    "sha256": "86b1e7340f21dcd7e623cf23840d028abf4da883eaf3b5559866db5146885399",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFW.mlmodelc/coremldata.bin",
+    "bytes": 430,
+    "compressed_bytes": 269,
+    "crc32": "3718c194",
+    "sha256": "69da1babb4e15f32f08d498e7ee75a63fae957d64381404d9494edcca5531d63",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/NSFWDetector",
+    "bytes": 137776,
+    "compressed_bytes": 27329,
+    "crc32": "3ecf065d",
+    "sha256": "245318cbc9517965a741f432c55c2d324e89422a1a2909117d17ffd0592cefa0",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/_CodeSignature/CodeResources",
+    "bytes": 4362,
+    "compressed_bytes": 1174,
+    "crc32": "cc1bd65a",
+    "sha256": "6e2422f8f53d3ed94b64c50a1f1bb311159244ce2e0ddf5b418f80df11760fb7",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/NSFWDetector.framework/Info.plist",
+    "bytes": 835,
+    "compressed_bytes": 605,
+    "crc32": "080ded3a",
+    "sha256": "5e50cac30b9fc357da9068088b470c80ed503086fde112482d73e9949f1193ec",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Masonry.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Masonry.framework/Masonry",
+    "bytes": 159040,
+    "compressed_bytes": 38163,
+    "crc32": "db0b19ab",
+    "sha256": "3b2ddca166e959f9545df54c77430f56faadfb780db82ab2f07d99c7068583f4",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Masonry.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Masonry.framework/_CodeSignature/CodeResources",
+    "bytes": 2716,
+    "compressed_bytes": 724,
+    "crc32": "62c7f9a7",
+    "sha256": "48d7e1a1a57fac3031acf1d4cce7ec87e2dd8ecbd16896a77c123912580a1223",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Masonry.framework/Info.plist",
+    "bytes": 785,
+    "compressed_bytes": 568,
+    "crc32": "c058c7f8",
+    "sha256": "0481ed7ebe9f6dcf5c2d6338e4cc0c67ccdb5c8ef2daff605b6c7cab5c8c9912",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_nsfw.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_nsfw.framework/flutter_nsfw",
+    "bytes": 130928,
+    "compressed_bytes": 24707,
+    "crc32": "83608996",
+    "sha256": "bdf36df18b246d03c5e22e5c61b23f9089278258431e3e6ff16764eaa8b724e8",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_nsfw.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_nsfw.framework/_CodeSignature/CodeResources",
+    "bytes": 2746,
+    "compressed_bytes": 731,
+    "crc32": "fb2f61e4",
+    "sha256": "19aeb9866acbc8946e63bc5b731de784db03a64dc1f919634e5feb7c96953d6b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_nsfw.framework/Info.plist",
+    "bytes": 795,
+    "compressed_bytes": 577,
+    "crc32": "3c2e9442",
+    "sha256": "6150b448d480b8116a9a2ce58a8ef4208b5de0808665c6c72e291391c997eabb",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/libzstd.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/libzstd.framework/libzstd",
+    "bytes": 576080,
+    "compressed_bytes": 213370,
+    "crc32": "37ffce8e",
+    "sha256": "852b44d3983e0b13f121e7650f810c7c85a457dd56aa9e9da97666a62a1ad1f2",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/libzstd.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/libzstd.framework/_CodeSignature/CodeResources",
+    "bytes": 2716,
+    "compressed_bytes": 728,
+    "crc32": "f4914335",
+    "sha256": "67d0ef2a8da55a6a35bc36b26ec58ea4df7198c99f61341af7297bfb892fa7fd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/libzstd.framework/Info.plist",
+    "bytes": 785,
+    "compressed_bytes": 569,
+    "crc32": "0cedabcc",
+    "sha256": "f3c11a9fb8d08411a68b6c3ea8ac8a7b2d5f7e7ab59dcb179937fd443dd6cc8e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/Promises",
+    "bytes": 202288,
+    "compressed_bytes": 51428,
+    "crc32": "0a4f09af",
+    "sha256": "0bd94ddc7e9f0e259ae20761c8a6dac2277a30799e1ff47532fa9b8f5f019864",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/Promises_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/Promises_Privacy.bundle/Info.plist",
+    "bytes": 780,
+    "compressed_bytes": 567,
+    "crc32": "3923b224",
+    "sha256": "af0e3255f3c994d341e52197a1438b09dd7cb73b0769fda78a7be1352ead8d34",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/Promises_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 226,
+    "crc32": "2a67f270",
+    "sha256": "74b0cd72fc23c1ef302f22ee2753f61817cdc5af0ff7a7f2d0632b524fb8acea",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/_CodeSignature/CodeResources",
+    "bytes": 3396,
+    "compressed_bytes": 910,
+    "crc32": "59be4b5a",
+    "sha256": "2dcf912af661a65e7f7f9a3969517b0652ff64db34e1376b7387870109664af9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Promises.framework/Info.plist",
+    "bytes": 787,
+    "compressed_bytes": 567,
+    "crc32": "5b3b5284",
+    "sha256": "ab628825d516fa0f3266eb6548cc8df0b046ca55dc101a3228f9ded5066f35ce",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics_Privacy.bundle/Info.plist",
+    "bytes": 803,
+    "compressed_bytes": 577,
+    "crc32": "726aee7e",
+    "sha256": "f18774bda362fb3e831143347b3a1a795cfe30edd1057e5cadc498fbd273346c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1383,
+    "compressed_bytes": 400,
+    "crc32": "62a17571",
+    "sha256": "e9bcc6e9c7382bf506cadabe74cfd4ed155686806ba81c195a634b86aa5fcce0",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics",
+    "bytes": 811280,
+    "compressed_bytes": 250549,
+    "crc32": "ce9879aa",
+    "sha256": "0f93ec367447d5c73e9deac0aca554fa19136f5bb40cb7684aeaacba97d2a4b6",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/_CodeSignature/CodeResources",
+    "bytes": 3506,
+    "compressed_bytes": 927,
+    "crc32": "bbb5a8b7",
+    "sha256": "08cf9dd568aeccee4bf51338da5ef307cc400865a7d15615b675dcc9d271eb6b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCrashlytics.framework/Info.plist",
+    "bytes": 812,
+    "compressed_bytes": 584,
+    "crc32": "ce58569b",
+    "sha256": "1dc9fd30c35cc855510b6aa22450c904d7f0512e7536f262271dcb14e5704935",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/apple_pencil_double_tap.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/apple_pencil_double_tap.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/apple_pencil_double_tap.framework/_CodeSignature/CodeResources",
+    "bytes": 2812,
+    "compressed_bytes": 738,
+    "crc32": "b530efd4",
+    "sha256": "2e4a14a85eabb93c6a626aac0ea09eb27b413be8d3841d3a26f228a06d86d1d5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/apple_pencil_double_tap.framework/apple_pencil_double_tap",
+    "bytes": 119840,
+    "compressed_bytes": 22793,
+    "crc32": "835f41d8",
+    "sha256": "6b9d0d46ccbff15ec062e4441044b721ea3703dbfe2525daa04d7f0a88fd1b80",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/apple_pencil_double_tap.framework/Info.plist",
+    "bytes": 819,
+    "compressed_bytes": 592,
+    "crc32": "ab58cde4",
+    "sha256": "e37b8205f8243001d308808ed2182fe46b9294411d144e7b9339207d9f4d563f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/fonts/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf",
+    "bytes": 1645184,
+    "compressed_bytes": 598400,
+    "crc32": "abeca4e5",
+    "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/fonts/icomoon.ttf",
+    "bytes": 6344,
+    "compressed_bytes": 3624,
+    "crc32": "25a152da",
+    "sha256": "17cf3d63edbe81d716f97b110f9659555f81ea6db8b05c02c68c610da0737f5f",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/data/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/data/icons.json",
+    "bytes": 3225,
+    "compressed_bytes": 552,
+    "crc32": "255a4b5a",
+    "sha256": "322205c78a74aaa730384f9b918ea07b0e97bde494d0009a4ea497a8cdfdab5a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png",
+    "bytes": 6856,
+    "compressed_bytes": 6815,
+    "crc32": "8081c261",
+    "sha256": "b71a9e962a59042693848ba1be50dda6ea5f5079d06b5bc181f999db0fbaa8b5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png",
+    "bytes": 21452,
+    "compressed_bytes": 21451,
+    "crc32": "2e39c69d",
+    "sha256": "e458eb4f0af97c38d8d9e2b847b7daf1a10921beaeb96cea70d62b26b4fd8345",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png",
+    "bytes": 32553,
+    "compressed_bytes": 32268,
+    "crc32": "6ffa6053",
+    "sha256": "fa8b11a84e0b5b172bde677fd0ea183b9e845ac163fb010011b0949409cfc3f0",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png",
+    "bytes": 7856,
+    "compressed_bytes": 7760,
+    "crc32": "a10bb51a",
+    "sha256": "c0b0eab4652656a086a0787c1197be8ad1ed4b57ffd1e326e6fa30501dc9ab32",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png",
+    "bytes": 20932,
+    "compressed_bytes": 20682,
+    "crc32": "c4aa1808",
+    "sha256": "0c632af9fe7025d0f17feb6b0755edcb2b3102df5b21275995a3c7254b2649f4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png",
+    "bytes": 7224,
+    "compressed_bytes": 7067,
+    "crc32": "0c1c60e8",
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png",
+    "bytes": 6331,
+    "compressed_bytes": 6314,
+    "crc32": "93a3e6b8",
+    "sha256": "938e57ee0ee7a81604a297a2b7603cf4c481449c1bd965b3aa1695ce400994ff",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png",
+    "bytes": 16850,
+    "compressed_bytes": 11802,
+    "crc32": "938e8070",
+    "sha256": "d33a24949f98d6496ff73d54b997064315fe456a9663a82f951109e7658955f2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png",
+    "bytes": 10678,
+    "compressed_bytes": 10445,
+    "crc32": "90a102b0",
+    "sha256": "e0c7d610dabe206452f6359c78b56d26364ad0b4701679f243573e0694a9b461",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png",
+    "bytes": 5473,
+    "compressed_bytes": 5437,
+    "crc32": "f637b24b",
+    "sha256": "5017e6327655fd2cc1625c0a8f3897fc74234df9306c67eed57b39d6d4c5b9de",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png",
+    "bytes": 25334,
+    "compressed_bytes": 25329,
+    "crc32": "0a996f7c",
+    "sha256": "4853aa17aa2cccc21507ad1abbb6fbdc17a1179ed3361b987a7bc77bc1876e70",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png",
+    "bytes": 34874,
+    "compressed_bytes": 34741,
+    "crc32": "06f54cf1",
+    "sha256": "554e86d851629bd51e46da0def1eedf4e977b41c985294271ed52b22fc64ca52",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png",
+    "bytes": 23082,
+    "compressed_bytes": 22940,
+    "crc32": "5c128901",
+    "sha256": "110490d955ff684ed0cfe224911beb245df480afb7007ef3b8d2009ffea3755c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png",
+    "bytes": 16938,
+    "compressed_bytes": 16795,
+    "crc32": "aaf2f51d",
+    "sha256": "99a13ee26c70c62bceadfe4bb17e7abea514a8d811bd0e4d10c14b10d5f8a743",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png",
+    "bytes": 6147,
+    "compressed_bytes": 6107,
+    "crc32": "2fea7ed4",
+    "sha256": "93a93527e35a852d7d1a8d1f5630f25526ebbed20d8067bce2eae4dbb2c9d5a2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png",
+    "bytes": 10591,
+    "compressed_bytes": 10428,
+    "crc32": "3778ce7d",
+    "sha256": "d0d3ab0d387e23899126722018061f40b0ea7c0362c836dc72ec8afc0878650d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png",
+    "bytes": 3350,
+    "compressed_bytes": 3173,
+    "crc32": "2a43506d",
+    "sha256": "440221c0f9639c63dd2da3cd3b11e07f4b2b89550600e53a74d9b97eb1d86297",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png",
+    "bytes": 10794,
+    "compressed_bytes": 10615,
+    "crc32": "0fadc7f2",
+    "sha256": "90a229c10af7186af07488cdfbfcde7972413416db50acca049aa8d1aadfde2a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png",
+    "bytes": 8060,
+    "compressed_bytes": 7787,
+    "crc32": "dcaecb9a",
+    "sha256": "8d1df7f03ea9dbc2b7ef00a992afafc97ab739926a62a6c9b3a561cc68265b8e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png",
+    "bytes": 24835,
+    "compressed_bytes": 24694,
+    "crc32": "9f24e995",
+    "sha256": "484be715616b6b9997f2406065fdc0b13b1a03a167de58bb27388d7b66a192bd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png",
+    "bytes": 5572,
+    "compressed_bytes": 5512,
+    "crc32": "9e24f088",
+    "sha256": "c95e2a42ef0d62b11e8538783a90db8f178eb274ca255801ffedcfd7504c5ea4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png",
+    "bytes": 2640,
+    "compressed_bytes": 2621,
+    "crc32": "dd23fbc2",
+    "sha256": "e895ad56da6485b2b3603c22773e6a8a72633b03255d4edf8abe31bbfb2080be",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png",
+    "bytes": 26691,
+    "compressed_bytes": 26691,
+    "crc32": "03a0e9b5",
+    "sha256": "cb511dcb57fc37a9def4a89701264db50fa2666e578883ef692cc04674d29c72",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png",
+    "bytes": 20183,
+    "compressed_bytes": 20147,
+    "crc32": "d00bddca",
+    "sha256": "34e5ce9c98dad4f8ad3bb2324dc15de76c5cccbb6d5bc1cea6b4b9dedd956efa",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png",
+    "bytes": 6884,
+    "compressed_bytes": 6675,
+    "crc32": "a5b3a341",
+    "sha256": "90707b5633aaf0ed8d5c99b06a94daccc389bc3b13a31771c174b634d9ece9a5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png",
+    "bytes": 24528,
+    "compressed_bytes": 24425,
+    "crc32": "a9c06738",
+    "sha256": "885b2be7cbb6db8208c4be52d9901079343fcf406a44d599ea28c206558d6842",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png",
+    "bytes": 19597,
+    "compressed_bytes": 19457,
+    "crc32": "337e2b2d",
+    "sha256": "81f2916fd2f5e016468aca859c06acb3cc294a57a549d2956f4ea621ab85c33b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png",
+    "bytes": 4936,
+    "compressed_bytes": 4730,
+    "crc32": "3044ef36",
+    "sha256": "c5cf080b3ff5e30402aca03bb4c9cfbd14addf7d801c9af65a3083c60cedb8a7",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png",
+    "bytes": 5229,
+    "compressed_bytes": 5178,
+    "crc32": "3d11212d",
+    "sha256": "04b7d1533adf2077e2780649e5f66ac8fb35a2ed8df1183a861fe3921d7276da",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png",
+    "bytes": 9494,
+    "compressed_bytes": 9494,
+    "crc32": "fa456cd4",
+    "sha256": "38512852c57239494e17ce95cb583472b6d586f472f0adfcd19e6a081f73aca5",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png",
+    "bytes": 25548,
+    "compressed_bytes": 25408,
+    "crc32": "4c3be129",
+    "sha256": "e089c6fd2829154cfddabe6466d49fddb3f38d7607a738d9fa1282805c0ee0c4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png",
+    "bytes": 7229,
+    "compressed_bytes": 7133,
+    "crc32": "cd402605",
+    "sha256": "26c6a7406e619632a826ba74385d9ec3495d6579368758faeb95d56550309b2e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png",
+    "bytes": 25599,
+    "compressed_bytes": 25463,
+    "crc32": "35176d9f",
+    "sha256": "fc0eeb673b1bae616bde16938770c8cf8dd386757a322479501dbdb3bd9c3193",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png",
+    "bytes": 7366,
+    "compressed_bytes": 7154,
+    "crc32": "570b5236",
+    "sha256": "99f319ddd24e588d6d69744923c5577014872f9b471ac63bc993e037322c2754",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png",
+    "bytes": 25977,
+    "compressed_bytes": 25838,
+    "crc32": "4a2ba32f",
+    "sha256": "c761871179e19405de41527da7bd62a48de5f8a1bf894bd53ddb181ad73ce6e4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png",
+    "bytes": 6921,
+    "compressed_bytes": 6917,
+    "crc32": "71183e44",
+    "sha256": "80ebdef093d0ed4ef8be3a72ea1d8c63d42f8124b1b40fc8f0fc8f8c8ae06257",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png",
+    "bytes": 7190,
+    "compressed_bytes": 7065,
+    "crc32": "c3ee58d4",
+    "sha256": "a1de8d8515df9bd1967d5335501615817823c0f3e221a070b6443f111cf1b3e9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png",
+    "bytes": 7224,
+    "compressed_bytes": 7067,
+    "crc32": "0c1c60e8",
+    "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png",
+    "bytes": 22427,
+    "compressed_bytes": 22427,
+    "crc32": "a0f8950d",
+    "sha256": "4d356185d8a1f2ced1bf2663a21e445126a71b410981c9dfbbaa6571a7ddaaff",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png",
+    "bytes": 16910,
+    "compressed_bytes": 11819,
+    "crc32": "ea3ee2c1",
+    "sha256": "46595653f3e4a466a8fed8f124d3577cc88f0445f496fc0691b04183fed15e31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png",
+    "bytes": 32855,
+    "compressed_bytes": 32565,
+    "crc32": "c99353c1",
+    "sha256": "951b5933e63d05968188c6540e13dcb69b7af9c202ce473252ca24539603698f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png",
+    "bytes": 9255,
+    "compressed_bytes": 9209,
+    "crc32": "3685fd07",
+    "sha256": "e75fb6f8ee15f1fcde394e6265a4f3835c91e0e881da280a14f9cafe31e9613b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/licenses/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/licenses/apache_2_0.txt",
+    "bytes": 11357,
+    "compressed_bytes": 4429,
+    "crc32": "55ec3bee",
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/licenses/MaterialIcons_LICENSE.txt",
+    "bytes": 18531,
+    "compressed_bytes": 6744,
+    "crc32": "d8629592",
+    "sha256": "be698262aecd042c0de6f886cc0af622f8def446462026992cc530275d8a9e74",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/assets/licenses/mpl_2_0.txt",
+    "bytes": 16726,
+    "compressed_bytes": 6122,
+    "crc32": "eaa2a441",
+    "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/AssetManifest.json",
+    "bytes": 3387,
+    "compressed_bytes": 545,
+    "crc32": "fcf90664",
+    "sha256": "6e39810f9bce675e55c0d28d93907f06e7c3a57dd964e4a9a618991d2f61f3ff",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/NOTICES.Z",
+    "bytes": 112416,
+    "compressed_bytes": 112416,
+    "crc32": "d0c71db8",
+    "sha256": "924d6ec3076adcb02fe2ee2ae23c9f4b7ab01a1d886792f16be6096de148782a",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/AssetManifest.bin",
+    "bytes": 3745,
+    "compressed_bytes": 645,
+    "crc32": "a5efab07",
+    "sha256": "133f55544703374d8d444469242ec91f9e1d28f217e3403a65db602ee65c0e26",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/shaders/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/shaders/ink_sparkle.frag",
+    "bytes": 12112,
+    "compressed_bytes": 3646,
+    "crc32": "a44242b2",
+    "sha256": "e0f0b5bce58a1e534e9d6e1d1b015f0f84cfc010a596788f0ac3b2efed57e5ca",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/fluttertoast/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/fluttertoast/assets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/fluttertoast/assets/toastify.js",
+    "bytes": 5285,
+    "compressed_bytes": 1976,
+    "crc32": "51032e98",
+    "sha256": "091c9a70994a2004ee02b04f111d40abe40c07b066856399f58c587042ec2990",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/fluttertoast/assets/toastify.css",
+    "bytes": 1337,
+    "compressed_bytes": 710,
+    "crc32": "57bcfd8e",
+    "sha256": "69baf44fea5b3efd3377babc154ef1b83bf8263b910202a8c7d6e745d751349f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/cupertino_icons/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf",
+    "bytes": 257628,
+    "compressed_bytes": 127556,
+    "crc32": "b8c1c067",
+    "sha256": "67c44fe9183b002e79dde7f6977e2988661c9a3e4a3c5fce968787efdbed823c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/flutter_assets/FontManifest.json",
+    "bytes": 269,
+    "compressed_bytes": 125,
+    "crc32": "df53c581",
+    "sha256": "5785cb97dff178c78576e8a2ffbc407a125038e763015fd7a200333455b99505",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/App",
+    "bytes": 20271568,
+    "compressed_bytes": 8943219,
+    "crc32": "2a981940",
+    "sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/_CodeSignature/CodeResources",
+    "bytes": 22106,
+    "compressed_bytes": 5300,
+    "crc32": "ffbc4360",
+    "sha256": "05679a7a566d4ac4a91d0aa89c80e7bf09290149180a6113f2c2657d54a5bf85",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/App.framework/Info.plist",
+    "bytes": 377,
+    "compressed_bytes": 277,
+    "crc32": "743e169c",
+    "sha256": "65bf5547969eb893279bf4605ccddcaf82d4362f54660c4a0fbc4082489dd0d2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/nanopb_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/nanopb_Privacy.bundle/Info.plist",
+    "bytes": 778,
+    "compressed_bytes": 569,
+    "crc32": "33bd858d",
+    "sha256": "6b62a79055c3acd51962c0321e945ec8da8afb5f8e411ba95bfdf95541c79b71",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/nanopb_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 374,
+    "compressed_bytes": 226,
+    "crc32": "62f8105d",
+    "sha256": "729ba3cbd0f458c78cd61edf17350edafe0e34ca86e314ec64c8cb22ccd21b54",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/nanopb",
+    "bytes": 77360,
+    "compressed_bytes": 12042,
+    "crc32": "3a87853a",
+    "sha256": "14c9986606f5a822f9f5806235c3214f0664685acf537f28113780a9bfbc534b",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/_CodeSignature/CodeResources",
+    "bytes": 3376,
+    "compressed_bytes": 907,
+    "crc32": "f309f1a4",
+    "sha256": "3847e0cb5e92071863aa26cbf3e5dbb7251e4a6129bdac619736562f3fb555be",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/nanopb.framework/Info.plist",
+    "bytes": 787,
+    "compressed_bytes": 572,
+    "crc32": "5ee2ecd5",
+    "sha256": "390f3bceff2f87644b8a9c3af05e484bc9c1ec2b517a754bcebb0f108989e662",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/image_picker_ios_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/image_picker_ios_privacy.bundle/Info.plist",
+    "bytes": 796,
+    "compressed_bytes": 580,
+    "crc32": "d44d809c",
+    "sha256": "b234096036534b60e4fab1576f45468486d5b444e789cce36ab2e63454483c4e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/image_picker_ios_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/image_picker_ios",
+    "bytes": 179488,
+    "compressed_bytes": 43373,
+    "crc32": "52bdb2ff",
+    "sha256": "d215b1ba843485011de7bd5e22037eb07b6bf6bf8682b2d9b02dd1d26a06dcc8",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/_CodeSignature/CodeResources",
+    "bytes": 3476,
+    "compressed_bytes": 924,
+    "crc32": "bdd369fc",
+    "sha256": "3087f3fc318b2ade98cca5ea4952d8e057716e3a39f75bc94e1d448fde8b83bc",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/image_picker_ios.framework/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 584,
+    "crc32": "621850a2",
+    "sha256": "444fca1ed84ab4eca5c5541865ea4dc644b69a64d01159a13c83e543505f85fb",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FMDB.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FMDB.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FMDB.framework/_CodeSignature/CodeResources",
+    "bytes": 2698,
+    "compressed_bytes": 722,
+    "crc32": "7dac8cc4",
+    "sha256": "59900635a2df8a72bb0eb6d83e8578f46bdf8e3f0957de8a34dd187aeeb2c454",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FMDB.framework/Info.plist",
+    "bytes": 779,
+    "compressed_bytes": 565,
+    "crc32": "c6b8e04e",
+    "sha256": "ce7d79d85d9607c74e78f7dd119de8e121383b79c53f91ebff7d6783de0ab3d9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FMDB.framework/FMDB",
+    "bytes": 178624,
+    "compressed_bytes": 44548,
+    "crc32": "a5dfd515",
+    "sha256": "03df018e39a875c55802ff13008569f94f132511081cab5dea81e2eff04bcdc3",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/sqflite_darwin_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/sqflite_darwin_privacy.bundle/Info.plist",
+    "bytes": 792,
+    "compressed_bytes": 573,
+    "crc32": "a20c827e",
+    "sha256": "f673f963aae05ba46a9b6b7767fe0058fc2b7ca51d07adb313b5311bbe41eb94",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/sqflite_darwin_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 372,
+    "compressed_bytes": 225,
+    "crc32": "92b22a9c",
+    "sha256": "47226a29608df206ad0a110e6afeb5a77ff575ac1df9c76bfdb2d6dfb3fafed1",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/sqflite_darwin",
+    "bytes": 250160,
+    "compressed_bytes": 68030,
+    "crc32": "66947f7c",
+    "sha256": "9d77b2150f82b355161d8fcf885efaf01419894c7ac863487d870e4ede84bddc",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/_CodeSignature/CodeResources",
+    "bytes": 3456,
+    "compressed_bytes": 923,
+    "crc32": "65ba4eb3",
+    "sha256": "b3ce4d6622f8dd35b1ed4cbee37f98b41a55bc3ab5d051d09e9045fe85ace43c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sqflite_darwin.framework/Info.plist",
+    "bytes": 799,
+    "compressed_bytes": 577,
+    "crc32": "6959861e",
+    "sha256": "483bb915c54da12ab04fa8f19b4a7aefce053f8fa5e5594b844c3efc1230be82",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/device_info_plus",
+    "bytes": 74944,
+    "compressed_bytes": 10792,
+    "crc32": "85b9fb8e",
+    "sha256": "db6d65617c3d9c8b86f1580c3b014e3dc19ac125afde95c572a91fc30d1bcf08",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/device_info_plus_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/device_info_plus_privacy.bundle/Info.plist",
+    "bytes": 796,
+    "compressed_bytes": 577,
+    "crc32": "d797aa18",
+    "sha256": "199e9e65e7f55b00191b0ce557eeea80f696890775a307d517becc03139fc368",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/device_info_plus_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/_CodeSignature/CodeResources",
+    "bytes": 3476,
+    "compressed_bytes": 929,
+    "crc32": "3ce2e81c",
+    "sha256": "33a935aed21063f9f927030cfbe98506a8d3d2d3b8c07222d3cfe4428e348efc",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/device_info_plus.framework/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 583,
+    "crc32": "133d5a4d",
+    "sha256": "f3f40db28743da063ee5286da9cc2eb30c8b3b19fbe079c29a50fd073f09fe4a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/local_auth_darwin",
+    "bytes": 123840,
+    "compressed_bytes": 26661,
+    "crc32": "1958df80",
+    "sha256": "5676e5c7487c5eadc4ec7c70812a416de4b96288939dde4b3dfa140350e93e7f",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/_CodeSignature/CodeResources",
+    "bytes": 3486,
+    "compressed_bytes": 919,
+    "crc32": "b7630d56",
+    "sha256": "4e0b0f5f077753ef2a6fd226987d31b26957189f004f3413e3fc5c660b5cd867",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/local_auth_darwin_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/local_auth_darwin_privacy.bundle/Info.plist",
+    "bytes": 798,
+    "compressed_bytes": 579,
+    "crc32": "02fe6598",
+    "sha256": "ff1c32ed1172461258af97bd26e7aeabfeb93441341de8039b3ffbd72266a4b7",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/local_auth_darwin_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/local_auth_darwin.framework/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 585,
+    "crc32": "7a5f280e",
+    "sha256": "33003d42d0340e92704e1437b0177b2af0b55129e889b868a5d58aba4d9f8dde",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport",
+    "bytes": 377040,
+    "compressed_bytes": 108531,
+    "crc32": "b3ec77c9",
+    "sha256": "e9a776732420d32c351a26cd97706c13819456b88a478ec4dc4f00ffa36057e4",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport_Privacy.bundle/Info.plist",
+    "bytes": 803,
+    "compressed_bytes": 575,
+    "crc32": "78218ee9",
+    "sha256": "8ded55527899672f2094b6721e3faf07a9cbc490ea5eb249617fa4e4f31f3838",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1105,
+    "compressed_bytes": 352,
+    "crc32": "e62c60ad",
+    "sha256": "cfbb3c4f76a66d53698bae91f7110c00f2148e6e6f13ad7d32592909bc010e51",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/_CodeSignature/CodeResources",
+    "bytes": 3506,
+    "compressed_bytes": 916,
+    "crc32": "a50b2e68",
+    "sha256": "1443d121611f6c49f37633802c9a841c951f78be565d94197d19600fea3e202c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleDataTransport.framework/Info.plist",
+    "bytes": 812,
+    "compressed_bytes": 582,
+    "crc32": "0d28c7f0",
+    "sha256": "0a79f756d5cc5ad3dadc248b57a6061956dd2a1567e45444422f2efba0e09dbd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/in_app_purchase_storekit_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/in_app_purchase_storekit_privacy.bundle/Info.plist",
+    "bytes": 812,
+    "compressed_bytes": 586,
+    "crc32": "f859b95d",
+    "sha256": "d961e8c52330091373253dd1758a7d68e21ca6a62fe4b777ee6cf36d74537f27",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/in_app_purchase_storekit_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/_CodeSignature/CodeResources",
+    "bytes": 3556,
+    "compressed_bytes": 926,
+    "crc32": "c1a8d2bb",
+    "sha256": "3788ad713d3f273ad1ad029d29ec4953864b6522860c88d4c39e915bef631ed9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/Info.plist",
+    "bytes": 821,
+    "compressed_bytes": 597,
+    "crc32": "b129bd04",
+    "sha256": "bef89aadb9c4bac76ac957ac951165159febeb4fd69705889df6bba7e71e86ca",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_purchase_storekit.framework/in_app_purchase_storekit",
+    "bytes": 669376,
+    "compressed_bytes": 197677,
+    "crc32": "03d3ef07",
+    "sha256": "6a813efa9384e5472bc0eeed6371de2b9cc293dd1f39821830899a2fb49619ad",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/Tachimanga.dylib",
+    "bytes": 5990608,
+    "compressed_bytes": 3944891,
+    "crc32": "69dcb619",
+    "sha256": "96a70d5117449bf38732b4d601d6ce00a6291314cb698841c731272a6d69359d",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/HCSStarRatingView.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/HCSStarRatingView.framework/HCSStarRatingView",
+    "bytes": 84512,
+    "compressed_bytes": 13517,
+    "crc32": "a7c07580",
+    "sha256": "ef4a73dd5f4f47117076548a6f970b9257669f641db314aed44157d8028dc5ed",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/HCSStarRatingView.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/HCSStarRatingView.framework/_CodeSignature/CodeResources",
+    "bytes": 2776,
+    "compressed_bytes": 732,
+    "crc32": "8f4dcaf8",
+    "sha256": "f7645e1fdc00b292dc3ab6a0d5a11e7a1ee0b2196157c99025a8766e0fd38a26",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/HCSStarRatingView.framework/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 582,
+    "crc32": "8b4ed76e",
+    "sha256": "4f1e34d5b81a393381f01ecf45367df1a502ea072f6bb418cb0e58e23ccc7821",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/FBLPromises_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/FBLPromises_Privacy.bundle/Info.plist",
+    "bytes": 786,
+    "compressed_bytes": 571,
+    "crc32": "88a663a7",
+    "sha256": "eb54f398e4f361be360fc62c8c96409ccb613269e51cf11e5f72425d61c0a1cf",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/FBLPromises_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 226,
+    "crc32": "2a67f270",
+    "sha256": "74b0cd72fc23c1ef302f22ee2753f61817cdc5af0ff7a7f2d0632b524fb8acea",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/FBLPromises",
+    "bytes": 171088,
+    "compressed_bytes": 36334,
+    "crc32": "de415b1e",
+    "sha256": "b601198d6df19dda97b67a52447aad67b71dea680064234c04fc5ba52b09c39e",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/_CodeSignature/CodeResources",
+    "bytes": 3426,
+    "compressed_bytes": 913,
+    "crc32": "7eff5015",
+    "sha256": "dccb9f4c66ed48cc356ea410f53f1c9d17d224e7b0d7d3135b7bc5bda7387acb",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FBLPromises.framework/Info.plist",
+    "bytes": 793,
+    "compressed_bytes": 573,
+    "crc32": "e88786a0",
+    "sha256": "93fce749e842f96091c7767a625894d2bc0f5dada1b860576b8337771263af63",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/Info.plist",
+    "bytes": 814,
+    "compressed_bytes": 584,
+    "crc32": "125802c4",
+    "sha256": "044ec310ae6b2fd33a1a910a8b722e63caf25e28587c44a6baf28df1b354c0ab",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/_CodeSignature/CodeResources",
+    "bytes": 3566,
+    "compressed_bytes": 927,
+    "crc32": "dff062b0",
+    "sha256": "1b23a418841575e846046c7467bf3c142c965c7b508112fc1e5551e6ee96f830",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview",
+    "bytes": 525664,
+    "compressed_bytes": 136694,
+    "crc32": "23e6c8e3",
+    "sha256": "53a836c45d0bbbecdeadbf5c8e070950250f1cebf409ed428fb928b22c9169a1",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/webview_flutter_wkwebview.framework/Info.plist",
+    "bytes": 823,
+    "compressed_bytes": 592,
+    "crc32": "85158fb9",
+    "sha256": "3134f793eec98b0af4f22fd0d49bb76fbe23a89700abf8d368a9309e6e24b416",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/FirebaseCore_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/FirebaseCore_Privacy.bundle/Info.plist",
+    "bytes": 789,
+    "compressed_bytes": 573,
+    "crc32": "0b49115f",
+    "sha256": "674b2f6534251de7728b2ca5ed5ee39037c40f813fe6c4926e1bba8d349e2052",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/FirebaseCore_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 855,
+    "compressed_bytes": 319,
+    "crc32": "0327772a",
+    "sha256": "11e31f5f6b60e80ebd5901549fce5043f9af3e683f874022945000b405306c3f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/FirebaseCore",
+    "bytes": 184096,
+    "compressed_bytes": 47829,
+    "crc32": "5f94ce7a",
+    "sha256": "22477f3d3fc7390deca862850285793191a94e5d9558c0961c6498d2d7b27617",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/_CodeSignature/CodeResources",
+    "bytes": 3436,
+    "compressed_bytes": 908,
+    "crc32": "e9e5d964",
+    "sha256": "e7dc0701aa88e95d199e30d723aab4e1a189a031fb885f7d2844160d85f3350a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCore.framework/Info.plist",
+    "bytes": 796,
+    "compressed_bytes": 573,
+    "crc32": "1cd95cdc",
+    "sha256": "df78ee8658b0ad53f9da2b37dbed20649774975a2e32cc89f1c4b9ca81240b10",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/fluttertoast",
+    "bytes": 117728,
+    "compressed_bytes": 25155,
+    "crc32": "3c538d13",
+    "sha256": "c46ed83814f42769cbea4ed6f85ec04ae30ed2c6be67c0b560cd1ba2e51859db",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/_CodeSignature/CodeResources",
+    "bytes": 3436,
+    "compressed_bytes": 920,
+    "crc32": "0d6ab0a7",
+    "sha256": "a8101a79885a803a11d9d3dab3423033ef4ce4bf830126f27ca80f39869d5057",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/Info.plist",
+    "bytes": 795,
+    "compressed_bytes": 573,
+    "crc32": "403c5972",
+    "sha256": "37633780a5a86c3986a3496a9625168584381d65a2dbdd94a9ff8384c8d5d392",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/fluttertoast_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/fluttertoast_privacy.bundle/Info.plist",
+    "bytes": 788,
+    "compressed_bytes": 573,
+    "crc32": "d59a7ef9",
+    "sha256": "e949fc4759ad686c7e2f8814fb38366011302de9da7deb214a47345021ac0804",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/fluttertoast.framework/fluttertoast_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/connectivity_plus",
+    "bytes": 135712,
+    "compressed_bytes": 26235,
+    "crc32": "0ccb1123",
+    "sha256": "4b407b0cb737ab2431a16574ecb2f296df2b320aa07e558d6132053d12400a01",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/connectivity_plus_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/connectivity_plus_privacy.bundle/Info.plist",
+    "bytes": 798,
+    "compressed_bytes": 574,
+    "crc32": "e1f3dcbb",
+    "sha256": "6dad30424db23b4f3c5252d9293e1d56f2ec4dc13967551811eac637941cb2c5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/connectivity_plus_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/_CodeSignature/CodeResources",
+    "bytes": 3486,
+    "compressed_bytes": 928,
+    "crc32": "0d8503eb",
+    "sha256": "fe3ecba05bbd6be52c7b0eb9e520769b3875795b2bc0608f02c0061c6c0d906a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/connectivity_plus.framework/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 584,
+    "crc32": "a76e00bc",
+    "sha256": "1681d9021003ddae76c845e88a969f123575d8c4e5f640728f06f0e9b15bd015",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/in_app_review_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/in_app_review_privacy.bundle/Info.plist",
+    "bytes": 790,
+    "compressed_bytes": 577,
+    "crc32": "11e22f74",
+    "sha256": "9b0d0282cfc0affa2bc5a5eed18f6564f20e63932fb3dd42c7745ea930ad424e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/in_app_review_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/in_app_review",
+    "bytes": 129056,
+    "compressed_bytes": 26027,
+    "crc32": "127e7ba2",
+    "sha256": "768812e3633e6aaff06ad5f98dc38ea7c8009b5965b1db90aa0018634d8f117c",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/_CodeSignature/CodeResources",
+    "bytes": 3446,
+    "compressed_bytes": 919,
+    "crc32": "2c7b1963",
+    "sha256": "d9ac406027cc3fec705e35258bd141552a9a59058e562835e79c489b67d4909e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/in_app_review.framework/Info.plist",
+    "bytes": 797,
+    "compressed_bytes": 576,
+    "crc32": "acc6eb39",
+    "sha256": "1c03bad775c05af2b54c2a3c24eb6fea496773b02cc2dcbea477176e72a65376",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSessions.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSessions.framework/FirebaseSessions",
+    "bytes": 333168,
+    "compressed_bytes": 97217,
+    "crc32": "0abd1677",
+    "sha256": "a1c0e6f9105591e8a3d46a316ef554bd6fcd0b887ae0b7358dbbcd4c35ec0d19",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSessions.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSessions.framework/_CodeSignature/CodeResources",
+    "bytes": 2770,
+    "compressed_bytes": 736,
+    "crc32": "315c13df",
+    "sha256": "e795da5e8becfb1702eeb728eef6a52c0d3311d64f900c1c63f3317e67b29f0d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseSessions.framework/Info.plist",
+    "bytes": 806,
+    "compressed_bytes": 579,
+    "crc32": "8c890945",
+    "sha256": "2449f9d79aeb333da20a4b7c3026f7c473ca2587a0c660004bd86ccee3d51501",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_path_provider_plus.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_path_provider_plus.framework/flutter_path_provider_plus",
+    "bytes": 95136,
+    "compressed_bytes": 16067,
+    "crc32": "0ae0a369",
+    "sha256": "8b2d1524d985afb204992874fec094e20ee1194f81558dca5d5610a74fd08203",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_path_provider_plus.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_path_provider_plus.framework/_CodeSignature/CodeResources",
+    "bytes": 2830,
+    "compressed_bytes": 741,
+    "crc32": "ecc02f6e",
+    "sha256": "e2e32e9df584eee586c950a2934b75f3f11ab7a5720d1e18113cea7a96f19f8a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_path_provider_plus.framework/Info.plist",
+    "bytes": 825,
+    "compressed_bytes": 597,
+    "crc32": "a1ea5264",
+    "sha256": "506a085f9f9da7492f07ab96b428fd16ba1e8797d23429403237c75b89e6e0b8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/system_proxy.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/system_proxy.framework/system_proxy",
+    "bytes": 96416,
+    "compressed_bytes": 16701,
+    "crc32": "fe1362ed",
+    "sha256": "c11522f4db090ad3a714abcca1b2ad1d0dd73a1d6aac9470216b7ac78be6039d",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/system_proxy.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/system_proxy.framework/_CodeSignature/CodeResources",
+    "bytes": 2746,
+    "compressed_bytes": 728,
+    "crc32": "010bf1c4",
+    "sha256": "2e92f9ae072bfd9afc9091760c817251a7119e2c81618ad41a63a9ba7bb5831e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/system_proxy.framework/Info.plist",
+    "bytes": 795,
+    "compressed_bytes": 576,
+    "crc32": "28a0f81f",
+    "sha256": "09cdbde78000aec18c7e997e64c947388c1b18e865cb1dc2e5eb93a1e9d80182",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/Info.plist",
+    "bytes": 796,
+    "compressed_bytes": 579,
+    "crc32": "38b26075",
+    "sha256": "261cb86f81909d5d4616ea53a42fa743c973fc7ba471dbd009d7308eba85b21e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/url_launcher_ios_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources",
+    "bytes": 3476,
+    "compressed_bytes": 922,
+    "crc32": "6003e577",
+    "sha256": "d9f4e8ce60a8a649aff3635c71b023821cc8f9f02a4b9671c2dcc732efcc3f2d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 584,
+    "crc32": "8391e45f",
+    "sha256": "3695c31218dcb18489d5db455cec6116bfa2a156150d3269608449b662e36fc6",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/url_launcher_ios.framework/url_launcher_ios",
+    "bytes": 178800,
+    "compressed_bytes": 40483,
+    "crc32": "6f349181",
+    "sha256": "e5e6a572b7287673a49b5462e9d359f9b099e205e9857057e6969428e538481d",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/Info.plist",
+    "bytes": 822,
+    "compressed_bytes": 591,
+    "crc32": "b53680a4",
+    "sha256": "977b6a5d7f7e3fc7a8ae18a22691164815d7463c9fb834d35574bb536a555048",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 598,
+    "compressed_bytes": 300,
+    "crc32": "2dce0dae",
+    "sha256": "056428b938bd57018a60019d15c3c1ee2fa727f23687598bbbd934848b180b1a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources",
+    "bytes": 3606,
+    "compressed_bytes": 938,
+    "crc32": "d8dcd1f4",
+    "sha256": "c3853998433155708b474aed2e0938cf497a5bab7587ed7e8cef214afbf7f006",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/Info.plist",
+    "bytes": 831,
+    "compressed_bytes": 598,
+    "crc32": "0c865953",
+    "sha256": "1a0f2717d49aca2a78a7180d61bc2989e23d2b53091f74858ad8e566533fdcbc",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation",
+    "bytes": 175664,
+    "compressed_bytes": 44293,
+    "crc32": "ba55850d",
+    "sha256": "efd5c381a70257ddc72da58e4daa59c232c66d48654d8102e6d8a10135a943df",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_web_auth_2.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_web_auth_2.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_web_auth_2.framework/_CodeSignature/CodeResources",
+    "bytes": 2782,
+    "compressed_bytes": 738,
+    "crc32": "444185b5",
+    "sha256": "6f652b425989a7feedfea15dfaf9e69d65cc92e2b381fed72e6b58fe9a257b3b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_web_auth_2.framework/Info.plist",
+    "bytes": 809,
+    "compressed_bytes": 585,
+    "crc32": "1aac81bf",
+    "sha256": "bdc20f9834a9a3fd80b35fa317eaca6786c6e51e644b0fc2af8cdcdfaf419629",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/flutter_web_auth_2.framework/flutter_web_auth_2",
+    "bytes": 148048,
+    "compressed_bytes": 31679,
+    "crc32": "31a55742",
+    "sha256": "fd762afb35a26ad275201a05a4ca557d55191b2a0f5b25ae664dfcdfc55d825f",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_http.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_http.framework/cupertino_http",
+    "bytes": 111168,
+    "compressed_bytes": 16655,
+    "crc32": "da21a318",
+    "sha256": "2714889188037101e00a297bac46f71a263b20535bf6ad1905f8c70296757543",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_http.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_http.framework/_CodeSignature/CodeResources",
+    "bytes": 2758,
+    "compressed_bytes": 729,
+    "crc32": "dab74a78",
+    "sha256": "92c1103adaf0c4b80a536122eb652b525a96c2b3250d3eed7ce8a4c36d12a708",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_http.framework/Info.plist",
+    "bytes": 799,
+    "compressed_bytes": 576,
+    "crc32": "faf56765",
+    "sha256": "ac0d8330607f914b12aef9b3d67f2b2a2757f2630f78bb29cb2d0dae6222d739",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations",
+    "bytes": 238528,
+    "compressed_bytes": 64159,
+    "crc32": "ac04d4b6",
+    "sha256": "c578b2051ad427c7d0a5c5b61fe1bfce7ef6b6b94c721aea2036cbabcd410189",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations_Privacy.bundle/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 577,
+    "crc32": "1e594841",
+    "sha256": "aa12fe993fcee3c9e3582a3463a92b053ebae0e24a499ed25e5dfa3509d3b84f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1105,
+    "compressed_bytes": 352,
+    "crc32": "e62c60ad",
+    "sha256": "cfbb3c4f76a66d53698bae91f7110c00f2148e6e6f13ad7d32592909bc010e51",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/_CodeSignature/CodeResources",
+    "bytes": 3526,
+    "compressed_bytes": 923,
+    "crc32": "e5cf6657",
+    "sha256": "3bd99090c08a0a1cfb4c253e73a4087f7b1b3e49a0ce6f091e1157385dfa4ec7",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseInstallations.framework/Info.plist",
+    "bytes": 816,
+    "compressed_bytes": 586,
+    "crc32": "670ba121",
+    "sha256": "2175c4446b5c427c195f99b0f7a8fd6a924007e24ffd86cb559d8cf2f30d3708",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sign_in_with_apple.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sign_in_with_apple.framework/sign_in_with_apple",
+    "bytes": 188848,
+    "compressed_bytes": 48349,
+    "crc32": "92bba518",
+    "sha256": "a796682d597a512e626665722aff47fe1f13ff5e0d290d073f0ff39cf5e2268e",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sign_in_with_apple.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sign_in_with_apple.framework/_CodeSignature/CodeResources",
+    "bytes": 2782,
+    "compressed_bytes": 735,
+    "crc32": "68c95edd",
+    "sha256": "4eddf9577a2533581365a37a674495d299ae83d4d8dc21f3bfed4f44e21f8f6f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/sign_in_with_apple.framework/Info.plist",
+    "bytes": 809,
+    "compressed_bytes": 584,
+    "crc32": "9548791c",
+    "sha256": "980ee698517335b0d290a08add602e5104b07d506188aad5633ae47db7a9b6fe",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/package_info_plus_privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/package_info_plus_privacy.bundle/Info.plist",
+    "bytes": 798,
+    "compressed_bytes": 574,
+    "crc32": "5af02192",
+    "sha256": "a245c03e593d404e0888628d132a8bc91c952bfd2e296ddb7321f236b764e1c4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/package_info_plus_privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 373,
+    "compressed_bytes": 225,
+    "crc32": "cbfc6bd6",
+    "sha256": "6d2da0d8d930227d428c1d9363b0ad6e3a12e2c9b68c5ce297158a7412fc8c31",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/package_info_plus",
+    "bytes": 73776,
+    "compressed_bytes": 7714,
+    "crc32": "cdcbd257",
+    "sha256": "524ad586465cc162825dbed90e54b7dcbe1325aa5c19d13f06f89e8ce3996e14",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/_CodeSignature/CodeResources",
+    "bytes": 3486,
+    "compressed_bytes": 923,
+    "crc32": "47c932a4",
+    "sha256": "cb9d07de331fe8a9f2595ef0df6d9547a7242c58a737fce25a19445fbee6a084",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/package_info_plus.framework/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 583,
+    "crc32": "81774000",
+    "sha256": "694b0f35ffe6f9b969e01767c699bc616c48f94ae6d8c8141ccd777fcef5c4d2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/file_picker.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/file_picker.framework/file_picker",
+    "bytes": 110144,
+    "compressed_bytes": 21812,
+    "crc32": "4c64e6b9",
+    "sha256": "67345e8e73e0e17705bd9d364c04db742493cd250d0f42ad29ba65941e7ebe7f",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/file_picker.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/file_picker.framework/_CodeSignature/CodeResources",
+    "bytes": 2740,
+    "compressed_bytes": 729,
+    "crc32": "d36b7523",
+    "sha256": "62316f0b0de2daae9c6e10e220a9f911a5ab742b32c36e74ef8aa5f122d150ce",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/file_picker.framework/Info.plist",
+    "bytes": 793,
+    "compressed_bytes": 575,
+    "crc32": "5f1f03a1",
+    "sha256": "89b4fb02d437bb28d4ba7a8993cdabdb9b69c5d84747e462f07e4771c9aa0d8c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/GoogleUtilities_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/GoogleUtilities_Privacy.bundle/Info.plist",
+    "bytes": 794,
+    "compressed_bytes": 571,
+    "crc32": "0d4c2e5e",
+    "sha256": "cb78f017c74b9be66e9d807f70d60fc7bbd3722cf78f164bf98aec9c66325e42",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/GoogleUtilities_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1233,
+    "compressed_bytes": 353,
+    "crc32": "82c8ab68",
+    "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/_CodeSignature/CodeResources",
+    "bytes": 3466,
+    "compressed_bytes": 924,
+    "crc32": "9cf78d5c",
+    "sha256": "93a282f1c86238e7c8647b52d97c805e08aba13fcbc35790c00962e23c927e6a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/Info.plist",
+    "bytes": 803,
+    "compressed_bytes": 576,
+    "crc32": "5cb0f36d",
+    "sha256": "2a9b24b61bdb78bb7580fc09729b87a77d18516a5dd2b97e9bd36c2343910d8d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/GoogleUtilities.framework/GoogleUtilities",
+    "bytes": 267056,
+    "compressed_bytes": 73236,
+    "crc32": "e48da7ae",
+    "sha256": "66589bdee490ab543e139ad250b440b17f4fde236a6c644023a7e5c90a2cc71a",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig",
+    "bytes": 457568,
+    "compressed_bytes": 142303,
+    "crc32": "864fdddb",
+    "sha256": "3f1e8c78b0f4e1bf3bf90f992b5c88e31244e943b2cc3a342deff16b0e1ef7d1",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig_Privacy.bundle/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 577,
+    "crc32": "c97b5379",
+    "sha256": "5dfbee690677ec50c77ea075a75dd89763088ae92bc7e52e66ca0c6e6aa6350b",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1482,
+    "compressed_bytes": 403,
+    "crc32": "ddedeecd",
+    "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/_CodeSignature/CodeResources",
+    "bytes": 3516,
+    "compressed_bytes": 923,
+    "crc32": "866581f0",
+    "sha256": "57c1f63fc3c43a426dbdb99e63f393500249389b24aca15f10edc58d769a4728",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfig.framework/Info.plist",
+    "bytes": 814,
+    "compressed_bytes": 585,
+    "crc32": "65cf2e84",
+    "sha256": "f608f453c63cac57e11e1273a893ca45780e082d9d965f197e154f231fb653e4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_native.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_native.framework/cupertino_native",
+    "bytes": 958288,
+    "compressed_bytes": 322043,
+    "crc32": "5d9bd2a6",
+    "sha256": "a12c3dc7cd02a04f9f8ca0f187e30cde3a7525d162f21ec1808e93eabc42d437",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_native.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_native.framework/_CodeSignature/CodeResources",
+    "bytes": 2770,
+    "compressed_bytes": 732,
+    "crc32": "f55ecf69",
+    "sha256": "2556a759b1c15acc6130d355911445a0a5f4211b54ac17b1b10cf461cff91712",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/cupertino_native.framework/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 582,
+    "crc32": "624e18e3",
+    "sha256": "f681be793080727869ed70de048f38b4e71e809447a7c877a344fd010c2533e2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal",
+    "bytes": 315312,
+    "compressed_bytes": 89137,
+    "crc32": "0ff1e80e",
+    "sha256": "a665f0bf8ae7afedcc53f3cf694727443c42853731b9d0b7da66ef310aa9d5fa",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal_Privacy.bundle/Info.plist",
+    "bytes": 805,
+    "compressed_bytes": 576,
+    "crc32": "e2d619ad",
+    "sha256": "61c1c58e61e3e04179d697c5c86a205200ab219e70245f4f9c78b2b6026ad291",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 855,
+    "compressed_bytes": 319,
+    "crc32": "10470de0",
+    "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/_CodeSignature/CodeResources",
+    "bytes": 3516,
+    "compressed_bytes": 924,
+    "crc32": "8388b3a7",
+    "sha256": "b5d8f258b9a2306adf998033907a6414cba7f302a93106c6b97f9038e7c927c8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreInternal.framework/Info.plist",
+    "bytes": 814,
+    "compressed_bytes": 584,
+    "crc32": "30566cff",
+    "sha256": "8216c2a9d8606db879e8d3bd4d35d20c252a9115dff949808f7b0546274cd16a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension_Privacy.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension_Privacy.bundle/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 578,
+    "crc32": "12117ebc",
+    "sha256": "67bfe26d856c7ad35968345f1556facfa00c2ac1936be7d05128dcbfc7c07ae8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension_Privacy.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 478,
+    "compressed_bytes": 233,
+    "crc32": "df2d1167",
+    "sha256": "1377eccedff8f8320f78040e9c9d3e17ecc0ea569594b56af0ef17be44197c7a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension",
+    "bytes": 68576,
+    "compressed_bytes": 2245,
+    "crc32": "4022f1bb",
+    "sha256": "080d8ea45754011a22e865d3208f93b2971a86d5b0766b553743ba7c90a7182b",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/_CodeSignature/CodeResources",
+    "bytes": 3526,
+    "compressed_bytes": 924,
+    "crc32": "6b547d9d",
+    "sha256": "a8b5a0c3be1f0dd77334e9f26d4598312f1574d5a25a3560c0a136ed40530c1c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseCoreExtension.framework/Info.plist",
+    "bytes": 816,
+    "compressed_bytes": 586,
+    "crc32": "f001e59f",
+    "sha256": "de8133435a3bde921748466f468592b2822b5996d7d5caf37e8a859a0981509e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfigInterop.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfigInterop.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfigInterop.framework/_CodeSignature/CodeResources",
+    "bytes": 2836,
+    "compressed_bytes": 742,
+    "crc32": "b4380d4c",
+    "sha256": "6c7a3bfd483ac3ad45ac7f2aab729c11dd585d2772b5be6bf801c8ae3ec90ab2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfigInterop.framework/Info.plist",
+    "bytes": 828,
+    "compressed_bytes": 594,
+    "crc32": "0b91f2a9",
+    "sha256": "1f73beb9fb31a09d489b8539e4bf1ff3fc81e955207be4a6ce39b39db902b610",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/FirebaseRemoteConfigInterop.framework/FirebaseRemoteConfigInterop",
+    "bytes": 111680,
+    "compressed_bytes": 20400,
+    "crc32": "310f2312",
+    "sha256": "e041fcfd46e9d50079242d5ba3bb4185f306aa481bee8a8cca5e077a96b6bc35",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SSZipArchive.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SSZipArchive.framework/SSZipArchive",
+    "bytes": 214368,
+    "compressed_bytes": 67346,
+    "crc32": "22ea9be6",
+    "sha256": "405471742ac7f90e520a4345f4d017cc1e5355722d277a27f6251f2105e78d32",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SSZipArchive.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SSZipArchive.framework/_CodeSignature/CodeResources",
+    "bytes": 2746,
+    "compressed_bytes": 732,
+    "crc32": "d14117a7",
+    "sha256": "3fd27cbb93777222d1387e444afc509c280603e42cea8d909d3d00107a174506",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/SSZipArchive.framework/Info.plist",
+    "bytes": 795,
+    "compressed_bytes": 574,
+    "crc32": "6d524c1a",
+    "sha256": "eb59448c1f34f0f0f398ee63c6f8700ffc1217b7870d983919b95c7699dc6a6d",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/DWAlertController.framework/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/DWAlertController.framework/DWAlertController",
+    "bytes": 190352,
+    "compressed_bytes": 49046,
+    "crc32": "8dedd052",
+    "sha256": "14692647230a084faf0599862aeb49e6db9acc1198e694ae7bb6b09574b43220",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/DWAlertController.framework/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/DWAlertController.framework/_CodeSignature/CodeResources",
+    "bytes": 2776,
+    "compressed_bytes": 735,
+    "crc32": "24d5bb4f",
+    "sha256": "3bbcb92b008247281798d421b9eefee9b04642beee726312f6bfec7f16e4bc48",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/DWAlertController.framework/Info.plist",
+    "bytes": 807,
+    "compressed_bytes": 581,
+    "crc32": "990bdcb6",
+    "sha256": "329fa3a19b212f11310053aec104583c8b874345b745ffffd9e9c3e800046342",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hans.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hans.lproj/InfoPlist.strings",
+    "bytes": 337,
+    "compressed_bytes": 259,
+    "crc32": "d53169e0",
+    "sha256": "3c9c2fd28bcb9cfda5a9ae984fe7cdf18faab6a00745478bb6ea4a5865ed7027",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hans.lproj/Localizable.strings",
+    "bytes": 4038,
+    "compressed_bytes": 2467,
+    "crc32": "18cf6f92",
+    "sha256": "35a06e67c3e5078e06b298cabe7c64b14ac6d25097cb7cf9902878769a31ab75",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/AppIcon76x76@2x~ipad.png",
+    "bytes": 7131,
+    "compressed_bytes": 7045,
+    "crc32": "d6a8cef8",
+    "sha256": "bf2b3759ca599021b67f5d93019668eface0798010a4afb815bc4edde91383ae",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-PT.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-PT.lproj/InfoPlist.strings",
+    "bytes": 703,
+    "compressed_bytes": 354,
+    "crc32": "12cc7f0b",
+    "sha256": "3f9392061024a91c1c5ee51bb4d3a33179c0a921610f0858583f0cb9b816254f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/pt-PT.lproj/Localizable.strings",
+    "bytes": 7192,
+    "compressed_bytes": 3247,
+    "crc32": "fff08e7b",
+    "sha256": "6822c7d112e4db1bd36bf72f0999b022f85d74da3fcaf4c8df13cf3ab0ddbfc0",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/VERSION",
+    "bytes": 11,
+    "compressed_bytes": 11,
+    "crc32": "7326e82e",
+    "sha256": "6b600e98fef8541a1a0d3fcad07fcf44067efbfc1ea58a2eae2fb02f62061cfd",
+    "zip_method": 0,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ms.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ms.lproj/InfoPlist.strings",
+    "bytes": 438,
+    "compressed_bytes": 258,
+    "crc32": "c16aa442",
+    "sha256": "eafb73e4f382e9dda3d30d7d3ce1aede39aba2ce1c8bc1a1fcab6e77d29ac046",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ms.lproj/Localizable.strings",
+    "bytes": 5387,
+    "compressed_bytes": 2781,
+    "crc32": "f7c6fc62",
+    "sha256": "e1c5f87ef18a6aa6418e6786c54b5b76bf0e8b298417c2adebda814bc6e7bfdc",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/error-black@2x.png",
+    "bytes": 2001,
+    "compressed_bytes": 1427,
+    "crc32": "f8035b50",
+    "sha256": "2f01868d885727239a1323d7011aabdde28fc18e30e340d258efed40580b45a5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/success-black.png",
+    "bytes": 1718,
+    "compressed_bytes": 1718,
+    "crc32": "62cc210e",
+    "sha256": "96c97b57ed7330f1ce22f87986978f2004b67bf9f3b80773a335d9c3e070d37b",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/success.png",
+    "bytes": 508,
+    "compressed_bytes": 508,
+    "crc32": "7f17ac7c",
+    "sha256": "ca73293df59e81d911b82401b7dc76d6e2ef0e39c09072551fb903398330002b",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/error.png",
+    "bytes": 371,
+    "compressed_bytes": 371,
+    "crc32": "1bf6a19b",
+    "sha256": "048c80a9a1e33522e56e0ee76ea8d5ed0b708b8795d79b472f4e14bf70cb9703",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/success@2x.png",
+    "bytes": 872,
+    "compressed_bytes": 872,
+    "crc32": "4c60aaf0",
+    "sha256": "340549b187011bf96504bad5dabde3699d2914549ff6064ff2e17ed5b870ce60",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/success-black@2x.png",
+    "bytes": 2193,
+    "compressed_bytes": 1625,
+    "crc32": "008b43f3",
+    "sha256": "b0fde46e2f336ee7e1bf041c2cbb9d4902fb74fc837fff299c18f8ac5460dc80",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/error-black.png",
+    "bytes": 1544,
+    "compressed_bytes": 1544,
+    "crc32": "6b250047",
+    "sha256": "df5d7223069042fa7fdca5c0a955941df198f97dd49e5891dac2e3cc4f129a44",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/SVProgressHUD.bundle/error@2x.png",
+    "bytes": 739,
+    "compressed_bytes": 739,
+    "crc32": "c2ad8554",
+    "sha256": "fd2cbc446f7a2fd89ce5816d5a8a6ffed3621aae562bf472cafa4b2926b23524",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hant.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hant.lproj/InfoPlist.strings",
+    "bytes": 337,
+    "compressed_bytes": 259,
+    "crc32": "434f4406",
+    "sha256": "1252b7112800a04c119fc999a822b8e90b3343fe8b916e75474c955b9dfb10cd",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/zh-Hant.lproj/Localizable.strings",
+    "bytes": 4056,
+    "compressed_bytes": 2466,
+    "crc32": "687cf431",
+    "sha256": "87ebd78fc35a43c4345c0b1ec9f169c382c85d217783847e1f29407e9d02c32c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/_CodeSignature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/_CodeSignature/CodeResources",
+    "bytes": 204726,
+    "compressed_bytes": 50522,
+    "crc32": "5a2230b4",
+    "sha256": "4d8b70d3a2a889511c4c15914d7268a10e85370ca586bc71fdf64f886e9e2ec8",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ru.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ru.lproj/InfoPlist.strings",
+    "bytes": 699,
+    "compressed_bytes": 368,
+    "crc32": "bb7b28c4",
+    "sha256": "a081e6a5ee593f7ae3591ca4215dfecac3769c5e289e99c28b4a28354987ef6f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/ru.lproj/Localizable.strings",
+    "bytes": 7614,
+    "compressed_bytes": 3357,
+    "crc32": "b899e731",
+    "sha256": "a36ffa440a156f43bbdbd3c89962077c7f0d24eb6ddf732f0450b9be591d906c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/google_mobile_ads.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/google_mobile_ads.bundle/GADTFullScreenTemplateView.nib",
+    "bytes": 6667,
+    "compressed_bytes": 3342,
+    "crc32": "abe61dae",
+    "sha256": "45c281f0746dd573281feb8ccbea528757d446a91501e0e11345dd429da861a2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/google_mobile_ads.bundle/GADTSmallTemplateView.nib",
+    "bytes": 6325,
+    "compressed_bytes": 3132,
+    "crc32": "422a53e3",
+    "sha256": "bc2ac3f73de2ecf42dbb395a026cc8cba71ab65c2da03ff386f7c40f6d0c7276",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/google_mobile_ads.bundle/Info.plist",
+    "bytes": 782,
+    "compressed_bytes": 568,
+    "crc32": "434b71a4",
+    "sha256": "812dc8fed9a51bc1c9497d50e8de6523042d8eb006adb5e050d78f59f3785f17",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/google_mobile_ads.bundle/GADTMediumTemplateView.nib",
+    "bytes": 8575,
+    "compressed_bytes": 3934,
+    "crc32": "7d3d58a4",
+    "sha256": "0b310ce873bb928d4d071c4be42d95b7930563f068026dfe1994248856997b03",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/th.lproj/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/th.lproj/InfoPlist.strings",
+    "bytes": 593,
+    "compressed_bytes": 350,
+    "crc32": "d95256f9",
+    "sha256": "2bf9b39fff5d656ae78567eac33ca0964c305c127aef9fc39d8a8bc76592fbdf",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/th.lproj/Localizable.strings",
+    "bytes": 6415,
+    "compressed_bytes": 2988,
+    "crc32": "4cc9db49",
+    "sha256": "815acee9df4672cb895ebe9c4945398d7b368260a105d56322e04da097d48f89",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/options.default",
+    "bytes": 1395,
+    "compressed_bytes": 352,
+    "crc32": "6cd1782d",
+    "sha256": "bccd68e10c9a58f37227ddc267912b5dd1fc32fc86f6643f399b486be3813dad",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/jrt-fs.jar",
+    "bytes": 110523,
+    "compressed_bytes": 102976,
+    "crc32": "7abfac03",
+    "sha256": "a693c9ee62b475d24eb3d6658df8d9ecf844792b1bebae2d55f5475be4ea16e4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/schema.xsd",
+    "bytes": 41462,
+    "compressed_bytes": 5228,
+    "crc32": "5d59862b",
+    "sha256": "14b8f7d77f3cc24054a29f8b547284924e0038a07983d873987dfcce17bc743a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/tzdb.dat",
+    "bytes": 101803,
+    "compressed_bytes": 43389,
+    "crc32": "2ecbea7d",
+    "sha256": "fd55364d6c1619040abd43ef6af9232e704dfb5d4f9c34feba58c35e2a08a4bf",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/jfr/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/jfr/default.jfc",
+    "bytes": 35912,
+    "compressed_bytes": 4304,
+    "crc32": "13ed3ab4",
+    "sha256": "361f53708abb16fad960cc1acdbf2e0c44d26bba19f25f0f701c7b956b8c207e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/jfr/profile.jfc",
+    "bytes": 35871,
+    "compressed_bytes": 4269,
+    "crc32": "b9f33260",
+    "sha256": "9da7ab71c763344677cabe8898496b0aad1fb42fe49363d5e1ae00df8a1baded",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/modules",
+    "bytes": 96649353,
+    "compressed_bytes": 36496733,
+    "crc32": "7c5273d5",
+    "sha256": "55ce9d6ed2172641616737b576eae6f5cb2457bf25182f7f3fbc19eb8cebedd2",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/java.properties",
+    "bytes": 145206,
+    "compressed_bytes": 47510,
+    "crc32": "39ccc325",
+    "sha256": "981b41916c4bd6332bf333b6a284709f00200cb46e1926ebec0dc635c29ef9a3",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/jvm.cfg",
+    "bytes": 29,
+    "compressed_bytes": 29,
+    "crc32": "64e11bf1",
+    "sha256": "aa9efb969444c1484e29adecab55a122458090616e766b2f1230ef05bc3867e0",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/security/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/security/cacerts",
+    "bytes": 126674,
+    "compressed_bytes": 88973,
+    "crc32": "c5831fc1",
+    "sha256": "8fe06f7f215933a643f348fda34a8e2835aadd6ea54356f1283448df5cd27c72",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/security/blocked.certs",
+    "bytes": 2488,
+    "compressed_bytes": 1438,
+    "crc32": "0982537c",
+    "sha256": "96572f243f31c2ef81a6e627542e596f6a9295cff3c7ae095c1b595cb1457ded",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/security/public_suffix_list.dat",
+    "bytes": 228507,
+    "compressed_bytes": 92004,
+    "crc32": "ed06f96c",
+    "sha256": "5a3a571cc2e016fee10c221036cf1d2b52ee8ba39288ef20abe2667828ca30b4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/lib/security/default.policy",
+    "bytes": 13553,
+    "compressed_bytes": 2461,
+    "crc32": "d9fe7c94",
+    "sha256": "de33c13b0cdf57d3a9cacc1d77dd9767fd57166375019d573f1e4b4160c6270e",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/management/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/management/jmxremote.password.template",
+    "bytes": 5690,
+    "compressed_bytes": 2396,
+    "crc32": "03ddda6f",
+    "sha256": "0273b6a6b9e20e6ce54c5aee70164028e0395063b2b7d39060a40b6495543dbf",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/management/management.properties",
+    "bytes": 14410,
+    "compressed_bytes": 4306,
+    "crc32": "30a72276",
+    "sha256": "f80096ec028dcb71625c398ec16d12023cafc6a1c055aceaed07d02e8d56f637",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/management/jmxremote.access",
+    "bytes": 3997,
+    "compressed_bytes": 1491,
+    "crc32": "f36a6dc3",
+    "sha256": "0c25d26ee212ca1e8c33f67c3c460d43fe849c3a1d23dbe341148517602b280c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/net.properties",
+    "bytes": 7441,
+    "compressed_bytes": 2853,
+    "crc32": "1aa1025a",
+    "sha256": "2e070ed1d97052f0ce8771ed2ef74a38d7c260a45fde7a3682c8844e5fdf58a4",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/logging.properties",
+    "bytes": 2732,
+    "compressed_bytes": 1008,
+    "crc32": "57902e37",
+    "sha256": "b62d2733ab99556b108a1951d894c5a8d76b1ac7a00c02c388f9eb9be046c56f",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/java.security",
+    "bytes": 58248,
+    "compressed_bytes": 20081,
+    "crc32": "6e3bd4d0",
+    "sha256": "f34b88393a291d253dc5092dba030ff462ff9cb588c065b84dfea20930f9e4ce",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/java.policy",
+    "bytes": 2293,
+    "compressed_bytes": 535,
+    "crc32": "a04e776f",
+    "sha256": "1224c11b69032c80e1493416641c82a37e558913a41f959f83ab2f96f097d6c0",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/unlimited/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/unlimited/default_local.policy",
+    "bytes": 193,
+    "compressed_bytes": 141,
+    "crc32": "7e3fc6ad",
+    "sha256": "8d8a318e6d90dfd7e26612d2b6385aa704f686ca6134c551f8928418d92b851a",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/unlimited/default_US_export.policy",
+    "bytes": 146,
+    "compressed_bytes": 119,
+    "crc32": "ededdfc4",
+    "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/README.txt",
+    "bytes": 2390,
+    "compressed_bytes": 1073,
+    "crc32": "7ce0f408",
+    "sha256": "6da0747334b0fea7592fd92614b2bbc8b126535e129b1fee483774d914e98eb5",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/limited/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/limited/default_local.policy",
+    "bytes": 647,
+    "compressed_bytes": 210,
+    "crc32": "663da83b",
+    "sha256": "2b2627548e61316150d47ffc3e6cad465ca05b3cccd4785eb7d21aa7baa0f441",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/limited/default_US_export.policy",
+    "bytes": 146,
+    "compressed_bytes": 119,
+    "crc32": "ededdfc4",
+    "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/jre/conf/security/policy/limited/exempt_local.policy",
+    "bytes": 566,
+    "compressed_bytes": 225,
+    "crc32": "24d96ccc",
+    "sha256": "8c3d7648abcd95a272ce12db870082937f4d7f6878d730d83cb7fbb31eb8b2c9",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Info.plist",
+    "bytes": 20291,
+    "compressed_bytes": 3302,
+    "crc32": "ec306ef8",
+    "sha256": "f1632016ef2c175415652ec776323867d7ee6028386d7a5745b3f19ac6e2c5db",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/PrivacyInfo.xcprivacy",
+    "bytes": 1717,
+    "compressed_bytes": 420,
+    "crc32": "0a362221",
+    "sha256": "2567d9503066969a356703d9eb3ec5594d40aed322ed0d64742ae6f340da844c",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/PkgInfo",
+    "bytes": 8,
+    "compressed_bytes": 8,
+    "crc32": "5b8a0449",
+    "sha256": "82502191c9484b04d685374f9879a0066069c49b8acae7a04b01d38d07e8eca0",
+    "zip_method": 0,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/AppIcon60x60@2x.png",
+    "bytes": 5442,
+    "compressed_bytes": 5391,
+    "crc32": "a970efc6",
+    "sha256": "ad29da84ba6dc3b24fff77763b153f4fa4955f9fec231f993e02bf1d76257005",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/cyan.entitlements",
+    "bytes": 872,
+    "compressed_bytes": 358,
+    "crc32": "22aecdec",
+    "sha256": "d30ff7019170793daa06e0a0f4b4efcae4b069734b5a109c377e65d937520d18",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/UserMessagingPlatformResources.bundle/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "crc32": "00000000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "zip_method": 0,
+    "unix_mode": "0o40755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/UserMessagingPlatformResources.bundle/Info.plist",
+    "bytes": 808,
+    "compressed_bytes": 575,
+    "crc32": "81491754",
+    "sha256": "1f070830f5e84ea0b1d01be4393764eb561401d278c5344703871483e9383d90",
+    "zip_method": 8,
+    "unix_mode": "0o100644"
+  },
+  {
+    "path": "Payload/Tachimanga.app/UserMessagingPlatformResources.bundle/PrivacyInfo.xcprivacy",
+    "bytes": 1677,
+    "compressed_bytes": 401,
+    "crc32": "48f5fa21",
+    "sha256": "45b7adb99fcd2d962a1c800fbfcc1325b57a7fa4165f416182323bb5ffe9c900",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Tachimanga",
+    "bytes": 10485760,
+    "compressed_bytes": 4183723,
+    "crc32": "6bab1993",
+    "sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  },
+  {
+    "path": "Payload/Tachimanga.app/Frameworks/blatantsPatch.dylib",
+    "bytes": 70848,
+    "compressed_bytes": 7133,
+    "crc32": "ccb83ece",
+    "sha256": "4fb1f1d688a795bd3fb63aec01cf238ed48834fb95733cdaa280ee0618401f5a",
+    "zip_method": 8,
+    "unix_mode": "0o100755"
+  }
+]

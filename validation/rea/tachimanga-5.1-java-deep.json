@@ -1,0 +1,2484 @@
+{
+  "schemaVersion": 1,
+  "analysisKind": "static_classfile_and_decompilation",
+  "sampleExecuted": false,
+  "input": {
+    "ipaSHA256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863",
+    "member": "Payload/Tachimanga.app/MCHome.bundle/res.zip",
+    "derivedPath": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/res.zip",
+    "bytes": 60954239,
+    "sha256": "db4443eadbeece65c628734d82826c91d1beb4e3d6efd3b5ef721342755b0aa6"
+  },
+  "inventory": {
+    "zipEntries": 33213,
+    "classEntries": 27688,
+    "parsedClasses": 27688,
+    "classBytes": 91623532,
+    "failures": [],
+    "versions": {
+      "61": 2336,
+      "52": 17985,
+      "53": 1066,
+      "50": 3902,
+      "51": 2167,
+      "49": 180,
+      "55": 32,
+      "59": 20
+    },
+    "methodCount": 213202,
+    "codeMethodCount": 201921,
+    "instructionCount": 5328908,
+    "directReferenceCount": 1396444,
+    "selectedClasses": 1610,
+    "selectedPrefixes": [
+      "org/tachiyomi/",
+      "suwayomi/",
+      "eu/kanade/tachiyomi/",
+      "mihon/",
+      "tachiyomi/",
+      "xyz/nulldev/",
+      "app/tachimanga/"
+    ]
+  },
+  "uniqueDeclaredClassNames": 26578,
+  "multiReleaseClassEntries": 1116,
+  "duplicateDeclaredNames": 1110,
+  "selectedClassCounts": {
+    "org/tachiyomi/": 10,
+    "suwayomi/": 1216,
+    "mihon/": 42,
+    "tachiyomi/": 7,
+    "eu/kanade/tachiyomi/": 194,
+    "app/tachimanga/": 41,
+    "xyz/nulldev/": 100
+  },
+  "androidStubLiteralEvidence": {
+    "classes": 2577,
+    "methods": 26862,
+    "interpretation": "Literal Stub! in parsed method bodies; not all Android classes are functional implementations."
+  },
+  "nativeMethodCounts": 1220,
+  "bridgeNativeMethods": [
+    {
+      "owner": "org/tachiyomi/NativeNet",
+      "name": "call_utf8",
+      "descriptor": "([BLokio/Buffer;)[[B"
+    },
+    {
+      "owner": "org/tachiyomi/NativeString",
+      "name": "indexOf",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;)I"
+    },
+    {
+      "owner": "org/tachiyomi/NativeChannel",
+      "name": "call_utf8",
+      "descriptor": "([B[B)V"
+    }
+  ],
+  "decompilers": {
+    "cfr": {
+      "version": "0.152",
+      "source": "https://repo.maven.apache.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar",
+      "sha256": "f686e8f3ded377d7bc87d216a90e9e9512df4156e75b06c655a16648ae8765b2",
+      "maxHeapMiB": 768,
+      "javaOutputFiles": 558,
+      "cannotStructureWarnings": 162,
+      "methodExceptions": 7,
+      "typeClashWarnings": 7
+    },
+    "vineflower": {
+      "version": "1.11.1",
+      "source": "https://repo.maven.apache.org/maven2/org/vineflower/vineflower/1.11.1/vineflower-1.11.1.jar",
+      "sha256": "a615d07ddbbcd489369674f40e42df639c32be95410890b38f173d5c1e2ea39c",
+      "maxHeapMiB": 768,
+      "scope": "79 class entries from six CFR exception outer classes; static second pass",
+      "failedMethodWarnings": 6,
+      "limitations": "Focused pass also has failures and missing metadata; not all errors resolved."
+    }
+  },
+  "directBytecodeChecks": [
+    {
+      "owner": "org/tachiyomi/NativeNet",
+      "method": "call",
+      "classSHA256": "2aecffe9f0c3fce416ea3c6cadc9ba1bfe9bab7922edcbb86cf361d58dbbd5e4",
+      "targetOwner": "org/tachiyomi/NativeNet",
+      "targetMethod": "call_utf8",
+      "matches": [
+        {
+          "methodDescriptor": "(Lorg/tachiyomi/NativeNet$Req;Lokio/Buffer;Lio/javalin/plugin/json/JsonMapper;)Lorg/tachiyomi/NativeNet$Resp;",
+          "offset": 25,
+          "opcode": 184,
+          "targetDescriptor": "([BLokio/Buffer;)[[B"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "org/tachiyomi/NativeNet",
+      "method": "call",
+      "classSHA256": "2aecffe9f0c3fce416ea3c6cadc9ba1bfe9bab7922edcbb86cf361d58dbbd5e4",
+      "targetOwner": "io/javalin/plugin/json/JsonMapper",
+      "targetMethod": "toJsonString",
+      "matches": [
+        {
+          "methodDescriptor": "(Lorg/tachiyomi/NativeNet$Req;Lokio/Buffer;Lio/javalin/plugin/json/JsonMapper;)Lorg/tachiyomi/NativeNet$Resp;",
+          "offset": 2,
+          "opcode": 185,
+          "targetDescriptor": "(Ljava/lang/Object;)Ljava/lang/String;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "org/tachiyomi/NativeNet",
+      "method": "call",
+      "classSHA256": "2aecffe9f0c3fce416ea3c6cadc9ba1bfe9bab7922edcbb86cf361d58dbbd5e4",
+      "targetOwner": "io/javalin/plugin/json/JsonMapper",
+      "targetMethod": "fromJsonString",
+      "matches": [
+        {
+          "methodDescriptor": "(Lorg/tachiyomi/NativeNet$Req;Lokio/Buffer;Lio/javalin/plugin/json/JsonMapper;)Lorg/tachiyomi/NativeNet$Resp;",
+          "offset": 91,
+          "opcode": 185,
+          "targetDescriptor": "(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "org/tachiyomi/NativeChannel",
+      "method": "call",
+      "classSHA256": "274a7760f679c17f254cb2df11de3b46378fac9fdbb0c7ffb78aed23a0532d81",
+      "targetOwner": "org/tachiyomi/NativeChannel",
+      "targetMethod": "call_utf8",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)V",
+          "offset": 21,
+          "opcode": 184,
+          "targetDescriptor": "([B[B)V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/MainKt",
+      "method": "main0",
+      "classSHA256": "9cca89ce9891dd7ffcc33a73122588f255d16b846f84092284a22c0608658ecf",
+      "targetOwner": "suwayomi/tachidesk/server/ServerSetupKt",
+      "targetMethod": "envSetup",
+      "matches": [
+        {
+          "methodDescriptor": "()V",
+          "offset": 4,
+          "opcode": 184,
+          "targetDescriptor": "()V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/MainKt",
+      "method": "main0",
+      "classSHA256": "9cca89ce9891dd7ffcc33a73122588f255d16b846f84092284a22c0608658ecf",
+      "targetOwner": "suwayomi/tachidesk/server/ServerSetupKt",
+      "targetMethod": "applicationSetup",
+      "matches": [
+        {
+          "methodDescriptor": "()V",
+          "offset": 7,
+          "opcode": 184,
+          "targetDescriptor": "()V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/MainKt",
+      "method": "main0",
+      "classSHA256": "9cca89ce9891dd7ffcc33a73122588f255d16b846f84092284a22c0608658ecf",
+      "targetOwner": "suwayomi/tachidesk/server/ServerSetupKt",
+      "targetMethod": "applicationSetupExtra",
+      "matches": [
+        {
+          "methodDescriptor": "()V",
+          "offset": 16,
+          "opcode": 184,
+          "targetDescriptor": "()V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/MainKt",
+      "method": "main0",
+      "classSHA256": "9cca89ce9891dd7ffcc33a73122588f255d16b846f84092284a22c0608658ecf",
+      "targetOwner": "suwayomi/tachidesk/server/JavalinSetup",
+      "targetMethod": "javalinSetup",
+      "matches": [
+        {
+          "methodDescriptor": "()V",
+          "offset": 13,
+          "opcode": 182,
+          "targetDescriptor": "()V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/MainKt",
+      "method": "javaChannel",
+      "classSHA256": "9cca89ce9891dd7ffcc33a73122588f255d16b846f84092284a22c0608658ecf",
+      "targetOwner": "suwayomi/tachidesk/manga/impl/JavaChannel",
+      "targetMethod": "call",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+          "offset": 17,
+          "opcode": 182,
+          "targetDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/server/JavalinSetup",
+      "method": "javalinSetup",
+      "classSHA256": "5ebce00d786e79eadfd9dd3f3fa498ba56342e5221a08de040c3fe5485f29703",
+      "targetOwner": "io/javalin/Javalin",
+      "targetMethod": "start",
+      "matches": [
+        {
+          "methodDescriptor": "()V",
+          "offset": 20,
+          "opcode": 182,
+          "targetDescriptor": "(Ljava/lang/String;I)Lio/javalin/Javalin;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "method": "loadExtensionSources0",
+      "classSHA256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "targetOwner": "java/lang/Class",
+      "targetMethod": "forName",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+          "offset": 190,
+          "opcode": 184,
+          "targetDescriptor": "(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "method": "loadExtensionSources0",
+      "classSHA256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "targetOwner": "java/lang/Class",
+      "targetMethod": "getDeclaredConstructor",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+          "offset": 213,
+          "opcode": 182,
+          "targetDescriptor": "([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "method": "loadExtensionSources0",
+      "classSHA256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "targetOwner": "java/lang/reflect/Constructor",
+      "targetMethod": "newInstance",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+          "offset": 220,
+          "opcode": 182,
+          "targetDescriptor": "([Ljava/lang/Object;)Ljava/lang/Object;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "method": "loadExtensionSources0",
+      "classSHA256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "targetOwner": "org/tachiyomi/ChildFirstClassLoader",
+      "targetMethod": "<init>",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+          "offset": 92,
+          "opcode": 183,
+          "targetDescriptor": "([Ljava/net/URL;)V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "method": "loadExtensionSources0",
+      "classSHA256": "4279a7414b2b61fd6a7f341a612b80490ddda3865dd2beb3835fd59f76ee48dd",
+      "targetOwner": "org/tachiyomi/ChildFirstClassLoader2",
+      "targetMethod": "<init>",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;",
+          "offset": 140,
+          "opcode": 183,
+          "targetDescriptor": "([Ljava/net/URL;)V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/Extension",
+      "method": "installPreparedExtension",
+      "classSHA256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "targetOwner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "targetMethod": "loadExtensionSources",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/Integer;ZLsuwayomi/tachidesk/manga/impl/extension/Extension$PreparedExtensionFile;Ljava/lang/String;)I",
+          "offset": 168,
+          "opcode": 182,
+          "targetDescriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/Extension",
+      "method": "installPreparedExtension",
+      "classSHA256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "targetOwner": "eu/kanade/tachiyomi/source/SourceFactory",
+      "targetMethod": "createSources",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/Integer;ZLsuwayomi/tachidesk/manga/impl/extension/Extension$PreparedExtensionFile;Ljava/lang/String;)I",
+          "offset": 207,
+          "opcode": 185,
+          "targetDescriptor": "()Ljava/util/List;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "eu/kanade/tachiyomi/source/CatalogueSource",
+      "method": "getPopularManga$suspendImpl",
+      "classSHA256": "7c63a5785ac3d990c9bc2e8f324ebbdf1df8d0f5e9bc4dee0b582a4add3e1e3e",
+      "targetOwner": "suwayomi/tachidesk/manga/impl/util/lang/RxCoroutineBridgeKt",
+      "targetMethod": "awaitSingle",
+      "matches": [
+        {
+          "methodDescriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+          "offset": 8,
+          "opcode": 184,
+          "targetDescriptor": "(Lrx/Observable;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "eu/kanade/tachiyomi/source/online/HttpSource",
+      "method": "fetchPopularManga",
+      "classSHA256": "262ad3bcf430928de96c227f67329895cc9a1dc9ff5bbb8cea77ea934a84aa02",
+      "targetOwner": "okhttp3/OkHttpClient",
+      "targetMethod": "newCall",
+      "matches": [
+        {
+          "methodDescriptor": "(I)Lrx/Observable;",
+          "offset": 9,
+          "opcode": 182,
+          "targetDescriptor": "(Lokhttp3/Request;)Lokhttp3/Call;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "eu/kanade/tachiyomi/network/interceptor/CallNativeNetInterceptor",
+      "method": "sendNativeRequest",
+      "classSHA256": "9e7624fe09f9dedbbf38d0d2247d58e3f1eb40d6f6fb04cba76eafe3981d75e9",
+      "targetOwner": "org/tachiyomi/NativeNet",
+      "targetMethod": "call",
+      "matches": [
+        {
+          "methodDescriptor": "(Lokhttp3/Request;Lokhttp3/Call;)Lokhttp3/Response;",
+          "offset": 32,
+          "opcode": 184,
+          "targetDescriptor": "(Lorg/tachiyomi/NativeNet$Req;Lokio/Buffer;Lio/javalin/plugin/json/JsonMapper;)Lorg/tachiyomi/NativeNet$Resp;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "eu/kanade/tachiyomi/network/interceptor/UncaughtExceptionInterceptor",
+      "method": "intercept",
+      "classSHA256": "64484b24343e81cf94ea2b3ab91841d72671e8395997013b4eb9d812f8501b3f",
+      "targetOwner": "eu/kanade/tachiyomi/network/interceptor/CallNativeNetInterceptor",
+      "targetMethod": "<init>",
+      "matches": [
+        {
+          "methodDescriptor": "(Lokhttp3/Interceptor$Chain;)Lokhttp3/Response;",
+          "offset": 110,
+          "opcode": 183,
+          "targetDescriptor": "()V"
+        },
+        {
+          "methodDescriptor": "(Lokhttp3/Interceptor$Chain;)Lokhttp3/Response;",
+          "offset": 291,
+          "opcode": 183,
+          "targetDescriptor": "()V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/Extension",
+      "method": "prepareJarExtension",
+      "classSHA256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "targetOwner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "targetMethod": "getPackageInfoFromJar",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;)Lsuwayomi/tachidesk/manga/impl/extension/Extension$PreparedExtensionFile;",
+          "offset": 58,
+          "opcode": 182,
+          "targetDescriptor": "(Ljava/lang/String;)Landroid/content/pm/PackageInfo;"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "suwayomi/tachidesk/manga/impl/extension/Extension",
+      "method": "finalizeApkExtension",
+      "classSHA256": "1bcaef78e00f93a5403e290abc9afa69d2c37d8a5af69d50e9d9f2ed77070ab6",
+      "targetOwner": "suwayomi/tachidesk/manga/impl/util/PackageTools",
+      "targetMethod": "dex2jar",
+      "matches": [
+        {
+          "methodDescriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+          "offset": 30,
+          "opcode": 182,
+          "targetDescriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "mihon/data/extension/service/ExtensionStoreService",
+      "method": "decompressIfGzipped",
+      "classSHA256": "94b51fe395f9b7681c9f5db3965851670311ddc148073e559da607c635c2ed7b",
+      "targetOwner": "okio/GzipSource",
+      "targetMethod": "<init>",
+      "matches": [
+        {
+          "methodDescriptor": "(Lokio/BufferedSource;)Lokio/BufferedSource;",
+          "offset": 106,
+          "opcode": 183,
+          "targetDescriptor": "(Lokio/Source;)V"
+        }
+      ],
+      "present": true
+    },
+    {
+      "owner": "eu/kanade/tachiyomi/data/backup/ProtoBackupExport",
+      "method": "createBackup",
+      "classSHA256": "f78620d40217c246b1053aee0d881f386bbe4ef072d0eec17338e6c0aeed792a",
+      "targetOwner": "kotlinx/serialization/protobuf/ProtoBuf$Default",
+      "targetMethod": "encodeToByteArray",
+      "matches": [
+        {
+          "methodDescriptor": "(Leu/kanade/tachiyomi/data/backup/BackupFlags;)Ljava/lang/String;",
+          "offset": 387,
+          "opcode": 182,
+          "targetDescriptor": "(Lkotlinx/serialization/SerializationStrategy;Ljava/lang/Object;)[B"
+        }
+      ],
+      "present": true
+    }
+  ],
+  "focusedClassCount": 44,
+  "protobufModels": [
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore",
+      "classSHA256": "5431e30c6a908bba2da4f7084ae855f9ccf689f777a81f8297098ebdcfe59ba7",
+      "fields": [
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getBadgeLabel$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getSigningKey$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getContact$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getExtensionList$annotations",
+          "number": 101
+        },
+        {
+          "annotationMethod": "getExtensionListUrl$annotations",
+          "number": 102
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$Contact",
+      "classSHA256": "e7f07f72426817091baa70ad6feea8bbbe4d49a01b39230e2d46d89e111fb3be",
+      "fields": [
+        {
+          "annotationMethod": "getWebsite$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getDiscord$annotations",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$ExtensionList",
+      "classSHA256": "913219222af641bdcf4d431eb5d805a26c558347fd4358c8baccb92680b7e907",
+      "fields": [
+        {
+          "annotationMethod": "getExtensions$annotations",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$Source",
+      "classSHA256": "14c95617f523b1b024f7e67e63105481b7b1e6a593cfb5de3fa9a0da4ac979ae",
+      "fields": [
+        {
+          "annotationMethod": "getId$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getLanguage$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getHomeUrl$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getMirrorUrls$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getMessage$annotations",
+          "number": 7
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$ContentWarning",
+      "classSHA256": "f4bcc2fb81cd86114833b7266cbd2694e28dd963c2b29ba0d0424e510a5370fd",
+      "fields": [
+        {
+          "field": "UNSPECIFIED",
+          "number": 0
+        },
+        {
+          "field": "SAFE",
+          "number": 1
+        },
+        {
+          "field": "MIXED",
+          "number": 2
+        },
+        {
+          "field": "NSFW",
+          "number": 3
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$Extension",
+      "classSHA256": "78fdbf756397c60708edc2460559f415922c3a1218fe6053b132d68f9f80911f",
+      "fields": [
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getPackageName$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getResources$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getExtensionLib$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getVersionCode$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getVersionName$annotations",
+          "number": 6
+        },
+        {
+          "annotationMethod": "getContentWarning$annotations",
+          "number": 7
+        },
+        {
+          "annotationMethod": "getSources$annotations",
+          "number": 8
+        }
+      ]
+    },
+    {
+      "class": "mihon/data/extension/model/NetworkExtensionStore$Resources",
+      "classSHA256": "4a26f99ecbb654ce41275bcf667a2fdec3a959bf955c17144baf7dfb98d6d995",
+      "fields": [
+        {
+          "annotationMethod": "getApkUrl$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getIconUrl$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getJarUrl$annotations",
+          "number": 501
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupCategory",
+      "classSHA256": "9a74b8aeb3859b2aee2638a4505aefef056610cb40794a94d156c8d1697a7226",
+      "fields": [
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getOrder$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getFlags$annotations",
+          "number": 100
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupExtensionRepos",
+      "classSHA256": "de7fedf60ee2a969d13b602468ce86b2b7a56941f201be77f151c8db73b7038c",
+      "fields": [
+        {
+          "annotationMethod": "getBaseUrl$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getShortName$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getWebsite$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getSigningKeyFingerprint$annotations",
+          "number": 5
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/Backup",
+      "classSHA256": "1501b1f79b8a69f766adaa79321504c333593f8dc0fa6055d885beabb357afab",
+      "fields": [
+        {
+          "annotationMethod": "getBackupManga$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getBackupCategories$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getBackupSources$annotations",
+          "number": 101
+        },
+        {
+          "annotationMethod": "getBackupExtensionStores$annotations",
+          "number": 106
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupSource",
+      "classSHA256": "9db14b7244cf5d2a40e1c6b27961449e1125cee33068893ee100acc49c8d253a",
+      "fields": [
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getSourceId$annotations",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupManga",
+      "classSHA256": "989030f07bddadc771bba2a0db0cb1cf1601667233d017f4e9bdd2806a67e915",
+      "fields": [
+        {
+          "annotationMethod": "getSource$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getUrl$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getTitle$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getArtist$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getAuthor$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getDescription$annotations",
+          "number": 6
+        },
+        {
+          "annotationMethod": "getGenre$annotations",
+          "number": 7
+        },
+        {
+          "annotationMethod": "getStatus$annotations",
+          "number": 8
+        },
+        {
+          "annotationMethod": "getThumbnailUrl$annotations",
+          "number": 9
+        },
+        {
+          "annotationMethod": "getDateAdded$annotations",
+          "number": 13
+        },
+        {
+          "annotationMethod": "getViewer$annotations",
+          "number": 14
+        },
+        {
+          "annotationMethod": "getChapters$annotations",
+          "number": 16
+        },
+        {
+          "annotationMethod": "getCategories$annotations",
+          "number": 17
+        },
+        {
+          "annotationMethod": "getTracking$annotations",
+          "number": 18
+        },
+        {
+          "annotationMethod": "getFavorite$annotations",
+          "number": 100
+        },
+        {
+          "annotationMethod": "getChapterFlags$annotations",
+          "number": 101
+        },
+        {
+          "annotationMethod": "getViewer_flags$annotations",
+          "number": 103
+        },
+        {
+          "annotationMethod": "getHistory$annotations",
+          "number": 104
+        },
+        {
+          "annotationMethod": "getUpdateStrategy$annotations",
+          "number": 105
+        },
+        {
+          "annotationMethod": "getLastModifiedAt$annotations",
+          "number": 106
+        },
+        {
+          "annotationMethod": "getFavoriteModifiedAt$annotations",
+          "number": 107
+        },
+        {
+          "annotationMethod": "getMemo$annotations",
+          "number": 112
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupChapter",
+      "classSHA256": "8f4a7ba51189d9895d1be4f9cfa42f72147f01d4e3217c10ed62c042cb903b5c",
+      "fields": [
+        {
+          "annotationMethod": "getUrl$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getScanlator$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getRead$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getBookmark$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getLastPageRead$annotations",
+          "number": 6
+        },
+        {
+          "annotationMethod": "getDateFetch$annotations",
+          "number": 7
+        },
+        {
+          "annotationMethod": "getDateUpload$annotations",
+          "number": 8
+        },
+        {
+          "annotationMethod": "getChapterNumber$annotations",
+          "number": 9
+        },
+        {
+          "annotationMethod": "getSourceOrder$annotations",
+          "number": 10
+        },
+        {
+          "annotationMethod": "getLastModifiedAt$annotations",
+          "number": 11
+        },
+        {
+          "annotationMethod": "getMemo$annotations",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupExtensionStore",
+      "classSHA256": "57f6e506925ed83fe7c8d0dafd751106d633837773be086ebf48712f113a4565",
+      "fields": [
+        {
+          "annotationMethod": "getIndexUrl$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getName$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getBadgeLabel$annotations",
+          "number": 3
+        },
+        {
+          "annotationMethod": "getSigningKey$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getContactWebsite$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getContactDiscord$annotations",
+          "number": 6
+        },
+        {
+          "annotationMethod": "isLegacy$annotations",
+          "number": 7
+        },
+        {
+          "annotationMethod": "getExtensionListUrl$annotations",
+          "number": 8
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupTracking",
+      "classSHA256": "72ebfc15e3bb0dddcac79b6444cd625b3e4ca98d765bffbb217c0b89fa1a1c27",
+      "fields": [
+        {
+          "annotationMethod": "getSyncId$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getLibraryId$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getTrackingUrl$annotations",
+          "number": 4
+        },
+        {
+          "annotationMethod": "getTitle$annotations",
+          "number": 5
+        },
+        {
+          "annotationMethod": "getLastChapterRead$annotations",
+          "number": 6
+        },
+        {
+          "annotationMethod": "getTotalChapters$annotations",
+          "number": 7
+        },
+        {
+          "annotationMethod": "getScore$annotations",
+          "number": 8
+        },
+        {
+          "annotationMethod": "getStatus$annotations",
+          "number": 9
+        },
+        {
+          "annotationMethod": "getStartedReadingDate$annotations",
+          "number": 10
+        },
+        {
+          "annotationMethod": "getFinishedReadingDate$annotations",
+          "number": 11
+        },
+        {
+          "annotationMethod": "getMediaId$annotations",
+          "number": 100
+        }
+      ]
+    },
+    {
+      "class": "eu/kanade/tachiyomi/data/backup/models/BackupHistory",
+      "classSHA256": "c60fb8ce72bf80991caa38bb59f3d9638639ce1c250dc081651c07003adeccda",
+      "fields": [
+        {
+          "annotationMethod": "getUrl$annotations",
+          "number": 1
+        },
+        {
+          "annotationMethod": "getLastRead$annotations",
+          "number": 2
+        },
+        {
+          "annotationMethod": "getReadDuration$annotations",
+          "number": 3
+        }
+      ]
+    }
+  ],
+  "apiRoutes": [
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "GET",
+      "path": "list",
+      "controller": "ExtensionController",
+      "handlerGetter": "getList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "GET",
+      "path": "install/{extensionId}",
+      "controller": "ExtensionController",
+      "handlerGetter": "getInstall"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "POST",
+      "path": "install",
+      "controller": "ExtensionController",
+      "handlerGetter": "getInstallFile"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "GET",
+      "path": "update/{extensionId}",
+      "controller": "ExtensionController",
+      "handlerGetter": "getUpdate"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "GET",
+      "path": "uninstall/{extensionId}",
+      "controller": "ExtensionController",
+      "handlerGetter": "getUninstall"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "extension",
+      "httpMethod": "GET",
+      "path": "icon/{apkName}",
+      "controller": "ExtensionController",
+      "handlerGetter": "getIcon"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "list",
+      "controller": "SourceController",
+      "handlerGetter": "getList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "listForSearch",
+      "controller": "SourceController",
+      "handlerGetter": "getListForSearch"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "{sourceId}",
+      "controller": "SourceController",
+      "handlerGetter": "getRetrieve"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "{sourceId}/popular/{pageNum}",
+      "controller": "SourceController",
+      "handlerGetter": "getPopular"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "{sourceId}/latest/{pageNum}",
+      "controller": "SourceController",
+      "handlerGetter": "getLatest"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "{sourceId}/preferences",
+      "controller": "SourceController",
+      "handlerGetter": "getGetPreferences"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "POST",
+      "path": "{sourceId}/preferences",
+      "controller": "SourceController",
+      "handlerGetter": "getSetPreference"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "GET",
+      "path": "{sourceId}/filters",
+      "controller": "SourceController",
+      "handlerGetter": "getGetFilters"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "POST",
+      "path": "{sourceId}/quick-search",
+      "controller": "SourceController",
+      "handlerGetter": "getQuickSearchSingle"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "POST",
+      "path": "{sourceId}/simple-search",
+      "controller": "SourceController",
+      "handlerGetter": "getSimpleSearchSingle"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "POST",
+      "path": "meta/query",
+      "controller": "SourceController",
+      "handlerGetter": "getQueryMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "source",
+      "httpMethod": "POST",
+      "path": "meta/update",
+      "controller": "SourceController",
+      "handlerGetter": "getUpdateMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/full",
+      "controller": "MangaController",
+      "handlerGetter": "getRetrieveFull"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/thumbnail",
+      "controller": "MangaController",
+      "handlerGetter": "getThumbnail"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/category",
+      "controller": "MangaController",
+      "handlerGetter": "getCategoryList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "{mangaId}/updateCategory",
+      "controller": "MangaController",
+      "handlerGetter": "getUpdateCategory"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/library",
+      "controller": "MangaController",
+      "handlerGetter": "getAddToLibrary"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "DELETE",
+      "path": "{mangaId}/library",
+      "controller": "MangaController",
+      "handlerGetter": "getRemoveFromLibrary"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "PATCH",
+      "path": "{mangaId}/meta",
+      "controller": "MangaController",
+      "handlerGetter": "getMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/mangaWithChapterList",
+      "controller": "MangaController",
+      "handlerGetter": "getMangaWithChapterList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/delchapters",
+      "controller": "MangaController",
+      "handlerGetter": "getDelchapterList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "{mangaId}/chapter/batch",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterBatch"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/chapter/{chapterIndex}",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterRetrieve"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "chapter/modify",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterModify2"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "DELETE",
+      "path": "{mangaId}/chapter/{chapterIndex}",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterDelete"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "PATCH",
+      "path": "{mangaId}/chapter/{chapterIndex}/meta",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "GET",
+      "path": "{mangaId}/chapter/{chapterIndex}/page/{index}",
+      "controller": "MangaController",
+      "handlerGetter": "getPageRetrieve"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "install",
+      "controller": "MangaController",
+      "handlerGetter": "getInstallFile"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "DELETE",
+      "path": "removeLocal",
+      "controller": "MangaController",
+      "handlerGetter": "getRemoveLocalManga"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "batchUpdate",
+      "controller": "MangaController",
+      "handlerGetter": "getBatchUpdate"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "batchQuery",
+      "controller": "MangaController",
+      "handlerGetter": "getBatchQuery"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "manga",
+      "httpMethod": "POST",
+      "path": "networkToLocalManga",
+      "controller": "MangaController",
+      "handlerGetter": "getNetworkToLocalManga"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$3",
+      "group": "history",
+      "httpMethod": "GET",
+      "path": "page",
+      "controller": "HistoryController",
+      "handlerGetter": "getPage"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$3",
+      "group": "history",
+      "httpMethod": "DELETE",
+      "path": "batch",
+      "controller": "HistoryController",
+      "handlerGetter": "getBatchDelete"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$3",
+      "group": "history",
+      "httpMethod": "DELETE",
+      "path": "clear",
+      "controller": "HistoryController",
+      "handlerGetter": "getClear"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$4",
+      "group": "chapter",
+      "httpMethod": "POST",
+      "path": "batch",
+      "controller": "MangaController",
+      "handlerGetter": "getAnyChapterBatch"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$4",
+      "group": "chapter",
+      "httpMethod": "POST",
+      "path": "batchQuery",
+      "controller": "MangaController",
+      "handlerGetter": "getChapterBatchQuery"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "GET",
+      "path": "",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "POST",
+      "path": "",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryCreate"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "PATCH",
+      "path": "reorder",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryReorder"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "GET",
+      "path": "{categoryId}",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryMangas"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "PATCH",
+      "path": "{categoryId}",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryModify"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "DELETE",
+      "path": "{categoryId}",
+      "controller": "CategoryController",
+      "handlerGetter": "getCategoryDelete"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$5",
+      "group": "category",
+      "httpMethod": "POST",
+      "path": "{categoryId}/meta",
+      "controller": "CategoryController",
+      "handlerGetter": "getMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$6",
+      "group": "downloads",
+      "httpMethod": "GET",
+      "path": "start",
+      "controller": "DownloadController",
+      "handlerGetter": "getStart"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$6",
+      "group": "downloads",
+      "httpMethod": "GET",
+      "path": "stop",
+      "controller": "DownloadController",
+      "handlerGetter": "getStop"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$6",
+      "group": "downloads",
+      "httpMethod": "GET",
+      "path": "clear",
+      "controller": "DownloadController",
+      "handlerGetter": "getClear"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$6",
+      "group": "downloads",
+      "httpMethod": "GET",
+      "path": "restart",
+      "controller": "DownloadController",
+      "handlerGetter": "getRestart"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$6",
+      "group": "downloads",
+      "httpMethod": "POST",
+      "path": "updateSetting",
+      "controller": "DownloadController",
+      "handlerGetter": "getUpdateSetting"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$7",
+      "group": "download",
+      "httpMethod": "GET",
+      "path": "{mangaId}/chapter/{chapterIndex}",
+      "controller": "DownloadController",
+      "handlerGetter": "getQueueChapter"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$7",
+      "group": "download",
+      "httpMethod": "DELETE",
+      "path": "{mangaId}/chapter/{chapterIndex}",
+      "controller": "DownloadController",
+      "handlerGetter": "getUnqueueChapter"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$7",
+      "group": "download",
+      "httpMethod": "PATCH",
+      "path": "{mangaId}/chapter/{chapterIndex}/reorder/{to}",
+      "controller": "DownloadController",
+      "handlerGetter": "getReorderChapter"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$7",
+      "group": "download",
+      "httpMethod": "POST",
+      "path": "batch",
+      "controller": "DownloadController",
+      "handlerGetter": "getQueueChapters"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$7",
+      "group": "download",
+      "httpMethod": "DELETE",
+      "path": "batch",
+      "controller": "DownloadController",
+      "handlerGetter": "getUnqueueChapters"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$8",
+      "group": "downloaded",
+      "httpMethod": "GET",
+      "path": "list",
+      "controller": "DownloadController",
+      "handlerGetter": "getGetDownloadedMangaList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$8",
+      "group": "downloaded",
+      "httpMethod": "DELETE",
+      "path": "batch",
+      "controller": "DownloadController",
+      "handlerGetter": "getDeleteDownloadedManga"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$8",
+      "group": "downloaded",
+      "httpMethod": "POST",
+      "path": "batchRemoveLegacyDownloads",
+      "controller": "DownloadController",
+      "handlerGetter": "getBatchRemoveLegacyDownloads"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$8",
+      "group": "downloaded",
+      "httpMethod": "GET",
+      "path": "batchQueryMangaInfo",
+      "controller": "DownloadController",
+      "handlerGetter": "getBatchQueryMangaInfo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "GET",
+      "path": "recentChapters/{pageNum}",
+      "controller": "UpdateController",
+      "handlerGetter": "getRecentChapters"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "POST",
+      "path": "fetch2",
+      "controller": "UpdateController",
+      "handlerGetter": "getCategoryUpdate2"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "POST",
+      "path": "refreshMangaMetadata",
+      "controller": "UpdateController",
+      "handlerGetter": "getRefreshMangaMetadata"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "POST",
+      "path": "retryByCodes",
+      "controller": "UpdateController",
+      "handlerGetter": "getRetryByCodes"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "POST",
+      "path": "retrySkipped",
+      "controller": "UpdateController",
+      "handlerGetter": "getRetrySkipped"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "POST",
+      "path": "reset",
+      "controller": "UpdateController",
+      "handlerGetter": "getReset"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "GET",
+      "path": "summary",
+      "controller": "UpdateController",
+      "handlerGetter": "getUpdateSummary"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$9",
+      "group": "update",
+      "httpMethod": "GET",
+      "path": "queryRecords",
+      "controller": "UpdateController",
+      "handlerGetter": "getQueryUpdateRecords"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "GET",
+      "path": "list",
+      "controller": "TrackController",
+      "handlerGetter": "getList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "login",
+      "controller": "TrackController",
+      "handlerGetter": "getLogin"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "logout",
+      "controller": "TrackController",
+      "handlerGetter": "getLogout"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "search",
+      "controller": "TrackController",
+      "handlerGetter": "getSearch"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "bind",
+      "controller": "TrackController",
+      "handlerGetter": "getBind"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "unbind",
+      "controller": "TrackController",
+      "handlerGetter": "getUnbind"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "boundMangaIds",
+      "controller": "TrackController",
+      "handlerGetter": "getBoundMangaIds"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "update",
+      "controller": "TrackController",
+      "handlerGetter": "getUpdate"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "refresh",
+      "controller": "TrackController",
+      "handlerGetter": "getRefresh"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "enhanced/enable",
+      "controller": "TrackController",
+      "handlerGetter": "getEnhancedSetEnabled"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "enhanced/bind",
+      "controller": "TrackController",
+      "handlerGetter": "getEnhancedBind"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "enhanced/bindEligible",
+      "controller": "TrackController",
+      "handlerGetter": "getEnhancedBindEligible"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "POST",
+      "path": "enhanced/backfill/start",
+      "controller": "TrackController",
+      "handlerGetter": "getEnhancedStartBackfill"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$10",
+      "group": "track",
+      "httpMethod": "GET",
+      "path": "enhanced/backfill/status",
+      "controller": "TrackController",
+      "handlerGetter": "getEnhancedBackfillStatus"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$11",
+      "group": "proto",
+      "httpMethod": "POST",
+      "path": "import",
+      "controller": "ProtoBackupController",
+      "handlerGetter": "getProtobufImportFile"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$11",
+      "group": "proto",
+      "httpMethod": "POST",
+      "path": "export",
+      "controller": "ProtoBackupController",
+      "handlerGetter": "getProtobufExport"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$12",
+      "group": "repo",
+      "httpMethod": "GET",
+      "path": "list",
+      "controller": "RepoController",
+      "handlerGetter": "getRepoList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$12",
+      "group": "repo",
+      "httpMethod": "POST",
+      "path": "create",
+      "controller": "RepoController",
+      "handlerGetter": "getCreateRepo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$12",
+      "group": "repo",
+      "httpMethod": "DELETE",
+      "path": "remove/{repoId}",
+      "controller": "RepoController",
+      "handlerGetter": "getRemoveRepo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$12",
+      "group": "repo",
+      "httpMethod": "POST",
+      "path": "updateByMetaUrl",
+      "controller": "RepoController",
+      "handlerGetter": "getUpdateByMetaUrl"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$13",
+      "group": "migrate",
+      "httpMethod": "GET",
+      "path": "info",
+      "controller": "MigrateController",
+      "handlerGetter": "getInfo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$13",
+      "group": "migrate",
+      "httpMethod": "GET",
+      "path": "sourceList",
+      "controller": "MigrateController",
+      "handlerGetter": "getSourceList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$13",
+      "group": "migrate",
+      "httpMethod": "GET",
+      "path": "mangaList",
+      "controller": "MigrateController",
+      "handlerGetter": "getMangaList"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$13",
+      "group": "migrate",
+      "httpMethod": "POST",
+      "path": "migrate",
+      "controller": "MigrateController",
+      "handlerGetter": "getMigrate"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$14",
+      "group": "browse",
+      "httpMethod": "POST",
+      "path": "fetchUrl",
+      "controller": "BrowseController",
+      "handlerGetter": "getFetchUrl"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$15",
+      "group": "pip",
+      "httpMethod": "GET",
+      "path": "ping",
+      "controller": "PipController",
+      "handlerGetter": "getPing"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/manga/MangaAPI",
+      "registrationMethod": "defineEndpoints$lambda$16",
+      "group": "stats",
+      "httpMethod": "GET",
+      "path": "readTime",
+      "controller": "StatsController",
+      "handlerGetter": "getReadTime"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "meta",
+      "httpMethod": "POST",
+      "path": "query",
+      "controller": "GlobalMetaController",
+      "handlerGetter": "getGetMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "meta",
+      "httpMethod": "POST",
+      "path": "update",
+      "controller": "GlobalMetaController",
+      "handlerGetter": "getModifyMeta"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "settings",
+      "httpMethod": "GET",
+      "path": "about",
+      "controller": "SettingsController",
+      "handlerGetter": "getAbout"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "settings",
+      "httpMethod": "POST",
+      "path": "uploadSettings",
+      "controller": "SettingsController",
+      "handlerGetter": "getUploadSettings"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "settings",
+      "httpMethod": "GET",
+      "path": "uploadUserAgent",
+      "controller": "SettingsController",
+      "handlerGetter": "getUploadUserAgent"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "settings",
+      "httpMethod": "GET",
+      "path": "detectDefaultUserAgent",
+      "controller": "SettingsController",
+      "handlerGetter": "getDetectDefaultUserAgent"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "settings",
+      "httpMethod": "GET",
+      "path": "systemInfo",
+      "controller": "SettingsController",
+      "handlerGetter": "getSystemInfo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "echo",
+      "httpMethod": "GET",
+      "path": "redirect",
+      "controller": "DebugController",
+      "handlerGetter": "getRedirect"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "echo",
+      "httpMethod": "GET",
+      "path": "redirect2",
+      "controller": "DebugController",
+      "handlerGetter": "getRedirect2"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "echo",
+      "httpMethod": "GET",
+      "path": "setCookie",
+      "controller": "DebugController",
+      "handlerGetter": "getSetCookie"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "echo",
+      "httpMethod": "GET",
+      "path": "setCookie2",
+      "controller": "DebugController",
+      "handlerGetter": "getSetCookie2"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/global/GlobalAPI",
+      "registrationMethod": "defineEndpoints$lambda$2",
+      "group": "echo",
+      "httpMethod": "GET",
+      "path": "sendGetRequest",
+      "controller": "DebugController",
+      "handlerGetter": "getSendGetRequest"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "sync",
+      "httpMethod": "GET",
+      "path": "enableSync",
+      "controller": "SyncController",
+      "handlerGetter": "getEnableSync"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "sync",
+      "httpMethod": "GET",
+      "path": "disableSync",
+      "controller": "SyncController",
+      "handlerGetter": "getDisableSync"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "sync",
+      "httpMethod": "GET",
+      "path": "syncNow",
+      "controller": "SyncController",
+      "handlerGetter": "getSyncNow"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$0",
+      "group": "sync",
+      "httpMethod": "GET",
+      "path": "syncNowIfEnable",
+      "controller": "SyncController",
+      "handlerGetter": "getSyncNowIfEnable"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "GET",
+      "path": "info",
+      "controller": "CloudUserController",
+      "handlerGetter": "getInfo"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "preRegister",
+      "controller": "CloudUserController",
+      "handlerGetter": "getPreRegister"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "register",
+      "controller": "CloudUserController",
+      "handlerGetter": "getRegister"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "login",
+      "controller": "CloudUserController",
+      "handlerGetter": "getLogin"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "changePassword",
+      "controller": "CloudUserController",
+      "handlerGetter": "getChangePassword"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "resetPassword",
+      "controller": "CloudUserController",
+      "handlerGetter": "getResetPassword"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "logout",
+      "controller": "CloudUserController",
+      "handlerGetter": "getLogout"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "delete",
+      "controller": "CloudUserController",
+      "handlerGetter": "getDelete"
+    },
+    {
+      "apiClass": "suwayomi/tachidesk/cloud/CloudAPI",
+      "registrationMethod": "defineEndpoints$lambda$1",
+      "group": "user",
+      "httpMethod": "POST",
+      "path": "third-login",
+      "controller": "CloudUserController",
+      "handlerGetter": "getThirdLogin"
+    }
+  ],
+  "sourceApiDescriptors": [
+    {
+      "name": "getId",
+      "descriptor": "()J",
+      "native": false
+    },
+    {
+      "name": "getName",
+      "descriptor": "()Ljava/lang/String;",
+      "native": false
+    },
+    {
+      "name": "getLang",
+      "descriptor": "()Ljava/lang/String;",
+      "native": false
+    },
+    {
+      "name": "getSupportsLatest",
+      "descriptor": "()Z",
+      "native": false
+    },
+    {
+      "name": "getFilterList",
+      "descriptor": "()Leu/kanade/tachiyomi/source/model/FilterList;",
+      "native": false
+    },
+    {
+      "name": "getPopularManga",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getLatestUpdates",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getSearchManga",
+      "descriptor": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getMangaUpdate",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List;ZZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List<+Leu/kanade/tachiyomi/source/model/SChapter;>;ZZLkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/SMangaUpdate;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getPageList",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation<-Ljava/util/List<+Leu/kanade/tachiyomi/source/model/Page;>;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "fetchMangaDetails",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable<Leu/kanade/tachiyomi/source/model/SManga;>;"
+    },
+    {
+      "name": "fetchChapterList",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable<Ljava/util/List<Leu/kanade/tachiyomi/source/model/SChapter;>;>;"
+    },
+    {
+      "name": "fetchPageList",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SChapter;)Lrx/Observable;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SChapter;)Lrx/Observable<Ljava/util/List<Leu/kanade/tachiyomi/source/model/Page;>;>;"
+    },
+    {
+      "name": "access$getLang$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/Source;)Ljava/lang/String;",
+      "native": false
+    },
+    {
+      "name": "access$getFilterList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/Source;)Leu/kanade/tachiyomi/source/model/FilterList;",
+      "native": false
+    },
+    {
+      "name": "access$fetchMangaDetails$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/Source;Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchChapterList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/Source;Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchPageList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/Source;Leu/kanade/tachiyomi/source/model/SChapter;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "getLang",
+      "descriptor": "()Ljava/lang/String;",
+      "native": false
+    },
+    {
+      "name": "getPopularManga",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getPopularManga$suspendImpl",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getSearchManga",
+      "descriptor": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getSearchManga$suspendImpl",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getLatestUpdates",
+      "descriptor": "(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getLatestUpdates$suspendImpl",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/MangasPage;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getMangaUpdate",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List;ZZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List<+Leu/kanade/tachiyomi/source/model/SChapter;>;ZZLkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/SMangaUpdate;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getMangaUpdate$suspendImpl",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List;ZZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List<+Leu/kanade/tachiyomi/source/model/SChapter;>;ZZLkotlin/coroutines/Continuation<-Leu/kanade/tachiyomi/source/model/SMangaUpdate;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getPageList",
+      "descriptor": "(Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation<-Ljava/util/List<+Leu/kanade/tachiyomi/source/model/Page;>;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "getPageList$suspendImpl",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false,
+      "signature": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation<-Ljava/util/List<+Leu/kanade/tachiyomi/source/model/Page;>;>;)Ljava/lang/Object;"
+    },
+    {
+      "name": "fetchPopularManga",
+      "descriptor": "(I)Lrx/Observable;",
+      "native": false,
+      "signature": "(I)Lrx/Observable<Leu/kanade/tachiyomi/source/model/MangasPage;>;"
+    },
+    {
+      "name": "fetchSearchManga",
+      "descriptor": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;)Lrx/Observable;",
+      "native": false,
+      "signature": "(ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;)Lrx/Observable<Leu/kanade/tachiyomi/source/model/MangasPage;>;"
+    },
+    {
+      "name": "fetchLatestUpdates",
+      "descriptor": "(I)Lrx/Observable;",
+      "native": false,
+      "signature": "(I)Lrx/Observable<Leu/kanade/tachiyomi/source/model/MangasPage;>;"
+    },
+    {
+      "name": "access$getPopularManga$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false
+    },
+    {
+      "name": "access$getSearchManga$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false
+    },
+    {
+      "name": "access$getLatestUpdates$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false
+    },
+    {
+      "name": "access$getMangaUpdate$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SManga;Ljava/util/List;ZZLkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false
+    },
+    {
+      "name": "access$getPageList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SChapter;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+      "native": false
+    },
+    {
+      "name": "access$fetchPopularManga$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;I)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchSearchManga$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;ILjava/lang/String;Leu/kanade/tachiyomi/source/model/FilterList;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchLatestUpdates$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;I)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$getFilterList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;)Leu/kanade/tachiyomi/source/model/FilterList;",
+      "native": false
+    },
+    {
+      "name": "access$fetchMangaDetails$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchChapterList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SManga;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "access$fetchPageList$jd",
+      "descriptor": "(Leu/kanade/tachiyomi/source/CatalogueSource;Leu/kanade/tachiyomi/source/model/SChapter;)Lrx/Observable;",
+      "native": false
+    },
+    {
+      "name": "createSources",
+      "descriptor": "()Ljava/util/List;",
+      "native": false,
+      "signature": "()Ljava/util/List<Leu/kanade/tachiyomi/source/Source;>;"
+    }
+  ],
+  "upstreamComparison": {
+    "path": "/home/user/Downloads/Compressed/mangashelf-handoff-stage/upstream/tachimanga-server",
+    "commit": "2e52214106ffab02d13ff61a620def78414a8a45",
+    "files": [
+      {
+        "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/extension/Extension.kt",
+        "sha256": "475c93359363bff3416285c21ba777e8a9ab0966d55b22bf7926bc8247b55487"
+      },
+      {
+        "path": "server/src/main/kotlin/suwayomi/tachidesk/manga/impl/util/PackageTools.kt",
+        "sha256": "4c22bd93e3aeddad4846f81299fbcc8a4c440d5e7b55fe62263c06507579c97a"
+      },
+      {
+        "path": "server/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
+        "sha256": "5aabc44326c52cb9f2c9ad7a69346b00743e0b2291c97698ae6234617265b4b4"
+      },
+      {
+        "path": "server/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
+        "sha256": "58c7befbdc97500987b4ab7d3be2c68bb02f90c9728efb1efc6245bb91de3596"
+      },
+      {
+        "path": "server/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt",
+        "sha256": "6aa6366e7c1a899a51736fc8116481628f27a83333f957a97e21ec59cc86eac1"
+      }
+    ],
+    "observedDifferences": [
+      "Shipped Extension has prepareJarExtension/finalizeJarExtension and PackageTools.getPackageInfoFromJar; pinned upstream Extension.kt does not.",
+      "Shipped database has M0031_Extension_InstallPathType and M0032_ExtensionStore classes; do not assume pinned upstream schema identical.",
+      "Shipped source interfaces retain Rx bridge and Kotlin suspend ABI; not JSON-string extension methods."
+    ],
+    "conclusion": "Pinned public source helps explain related code but is not an exact source reconstruction of this IPA."
+  },
+  "externalEvidence": [
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/inventory.py",
+      "bytes": 8920,
+      "sha256": "e5f430b7978319ed0d2459d45e2dec1b5bc409415501936a9fbd130e037d137f"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/all-classes.jsonl.gz",
+      "bytes": 27097731,
+      "sha256": "b7d0f60a3d9531264a49c8d4d6f1b0bda4b1692cda1efa9fdea445eb4e111117"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/selected-classes.jsonl.gz",
+      "bytes": 2236037,
+      "sha256": "3042cdeacee0d7114fec1f8819694fda7494ff5c17fc3c1bbc77719a8b13b0fd"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/class-index.tsv",
+      "bytes": 4080943,
+      "sha256": "ccc8d62ea37da88ecb0cc31ce1267884785dfbb76bef12a3a8a9401446fc8e8d"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/inventory-summary.json",
+      "bytes": 260042,
+      "sha256": "07000b3e16fd446d76765cf777feaacf184d1d5e4260b96721e8eaf91d4ee86e"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/focused-classes.json",
+      "bytes": 315550,
+      "sha256": "6f3f1cc4b400b2f9066ad1690dda7e650c39776a24ec059fa9405ac3aa6252ee"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/protobuf-fields.json",
+      "bytes": 12245,
+      "sha256": "9a2e57a6e250c4a8048a4552659bd4ce019ff04724a821face64b4fff7ab64c1"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/api-routes.json",
+      "bytes": 33600,
+      "sha256": "bd7722fb931a424c480bbdeeb6f01f34e807a7240032201cf92ddc60a2834c39"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/direct-call-checks.json",
+      "bytes": 13664,
+      "sha256": "1503bb682708d5b5cdbccc9a088524731015ad35724f63e3dd8d6760f4d7a011"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/decompiled/summary.txt",
+      "bytes": 31002,
+      "sha256": "6be53c5db27652e54b0ee1e7f8499f97830042b4f697a8a1fce59714de6b931a"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/cfr-backend.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/vineflower.log",
+      "bytes": 17548,
+      "sha256": "f960c569c605a532acf83a2b90c19aa844c1f0f1cecf2345a82c561798dbe5af"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/java-full/javap-results.json",
+      "bytes": 1620,
+      "sha256": "e906215f05332049c8097ec235a26a330b9f7d3022970b20b186da193a45c27e"
+    }
+  ],
+  "limitations": [
+    "Direct bytecode edges only; dynamic/reflection/native edges unresolved.",
+    "Modified UTF-8 is decoded with replacement and is not used to reconstruct execution.",
+    "Class references and symbols do not prove a method executes.",
+    "Kotlin metadata retained but source reconstruction is decompiler output.",
+    "No sample class or native code executed.",
+    "No live network/source/account/download/backup behavior observed.",
+    "CFR and Vineflower output are approximate and contain unresolved coroutine/control flow errors.",
+    "All class entries structurally indexed; dependencies are not all deeply decompiled or semantically audited.",
+    "Native and Flutter code are separate investigation scopes.",
+    "No production code or unlicensed specimen bytes imported."
+  ]
+}

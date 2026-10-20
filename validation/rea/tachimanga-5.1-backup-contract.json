@@ -1,0 +1,1234 @@
+{
+  "input_sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08",
+  "scope": "selected MCBackupPlugin function instruction references and NSConstantArray whitelist; static only",
+  "user_defaults_whitelist": {
+    "address": "0x10090dfc0",
+    "count": 62,
+    "items": [
+      {
+        "entry": "0x10090dc70",
+        "target": "0x1008dc310",
+        "value": "mc.app.init"
+      },
+      {
+        "entry": "0x10090dc78",
+        "target": "0x1008dc350",
+        "value": "mc.app.opencount"
+      },
+      {
+        "entry": "0x10090dc80",
+        "target": "0x1008dc390",
+        "value": "mc.app.hasShowRate"
+      },
+      {
+        "entry": "0x10090dc88",
+        "target": "0x1008dc330",
+        "value": "flutter.mc.app.init"
+      },
+      {
+        "entry": "0x10090dc90",
+        "target": "0x1008dc370",
+        "value": "flutter.mc.app.opencount"
+      },
+      {
+        "entry": "0x10090dc98",
+        "target": "0x1008dc3b0",
+        "value": "flutter.mc.app.hasShowRate"
+      },
+      {
+        "entry": "0x10090dca0",
+        "target": "0x1008d99b0",
+        "value": "flutter.themeMode"
+      },
+      {
+        "entry": "0x10090dca8",
+        "target": "0x1008dd5f0",
+        "value": "flutter.readerMode"
+      },
+      {
+        "entry": "0x10090dcb0",
+        "target": "0x1008dd610",
+        "value": "flutter.readerBackgroundColor"
+      },
+      {
+        "entry": "0x10090dcb8",
+        "target": "0x1008dd630",
+        "value": "flutter.libraryDisplayMode"
+      },
+      {
+        "entry": "0x10090dcc0",
+        "target": "0x1008dd650",
+        "value": "flutter.sourceDisplayMode"
+      },
+      {
+        "entry": "0x10090dcc8",
+        "target": "0x1008dd670",
+        "value": "flutter.invertTap"
+      },
+      {
+        "entry": "0x10090dcd0",
+        "target": "0x1008dd690",
+        "value": "flutter.readerNavigationLayout"
+      },
+      {
+        "entry": "0x10090dcd8",
+        "target": "0x1008dd6b0",
+        "value": "flutter.sourceLanguageFilter"
+      },
+      {
+        "entry": "0x10090dce0",
+        "target": "0x1008dd6d0",
+        "value": "flutter.extensionLanguageFilter"
+      },
+      {
+        "entry": "0x10090dce8",
+        "target": "0x1008dbfb0",
+        "value": "flutter.repoUrl"
+      },
+      {
+        "entry": "0x10090dcf0",
+        "target": "0x1008dd6f0",
+        "value": "flutter.l10n"
+      },
+      {
+        "entry": "0x10090dcf8",
+        "target": "0x1008dd710",
+        "value": "flutter.memA0"
+      },
+      {
+        "entry": "0x10090dd00",
+        "target": "0x1008dd730",
+        "value": "flutter.memA7"
+      },
+      {
+        "entry": "0x10090dd08",
+        "target": "0x1008dd750",
+        "value": "flutter.autoBackup"
+      },
+      {
+        "entry": "0x10090dd10",
+        "target": "0x1008dd770",
+        "value": "flutter.doubleTapZoomIn"
+      },
+      {
+        "entry": "0x10090dd18",
+        "target": "0x1008dd790",
+        "value": "flutter.pinSourceIdList"
+      },
+      {
+        "entry": "0x10090dd20",
+        "target": "0x1008dd7b0",
+        "value": "flutter.themeKey"
+      },
+      {
+        "entry": "0x10090dd28",
+        "target": "0x1008dd7d0",
+        "value": "flutter.themeBlendLevel"
+      },
+      {
+        "entry": "0x10090dd30",
+        "target": "0x1008dd7f0",
+        "value": "flutter.themePureBlackDarkMode"
+      },
+      {
+        "entry": "0x10090dd38",
+        "target": "0x1008dd810",
+        "value": "flutter.autoBackupFrequency"
+      },
+      {
+        "entry": "0x10090dd40",
+        "target": "0x1008dd830",
+        "value": "flutter.autoBackupLimit"
+      },
+      {
+        "entry": "0x10090dd48",
+        "target": "0x1008dd850",
+        "value": "flutter.showStatusBar"
+      },
+      {
+        "entry": "0x10090dd50",
+        "target": "0x1008dd870",
+        "value": "flutter.defaultTab"
+      },
+      {
+        "entry": "0x10090dd58",
+        "target": "0x1008dd890",
+        "value": "flutter.swipeRightToGoBackMode"
+      },
+      {
+        "entry": "0x10090dd60",
+        "target": "0x1008dd8b0",
+        "value": "flutter.dateFormat"
+      },
+      {
+        "entry": "0x10090dd68",
+        "target": "0x1008dd8d0",
+        "value": "flutter.libraryShowMangaCount"
+      },
+      {
+        "entry": "0x10090dd70",
+        "target": "0x1008dd8f0",
+        "value": "flutter.readerPageLayout"
+      },
+      {
+        "entry": "0x10090dd78",
+        "target": "0x1008dd910",
+        "value": "flutter.readerPageLayoutSkipFirstPage"
+      },
+      {
+        "entry": "0x10090dd80",
+        "target": "0x1008dd930",
+        "value": "flutter.readerPaddingLandscape"
+      },
+      {
+        "entry": "0x10090dd88",
+        "target": "0x1008dd950",
+        "value": "flutter.readerPaddingPaged"
+      },
+      {
+        "entry": "0x10090dd90",
+        "target": "0x1008dd970",
+        "value": "flutter.readerPaddingPagedLandscape"
+      },
+      {
+        "entry": "0x10090dd98",
+        "target": "0x1008dd990",
+        "value": "flutter.showTapZones"
+      },
+      {
+        "entry": "0x10090dda0",
+        "target": "0x1008dd9b0",
+        "value": "flutter.pinchToZoom"
+      },
+      {
+        "entry": "0x10090dda8",
+        "target": "0x1008dd9d0",
+        "value": "flutter.longPressActionMenu"
+      },
+      {
+        "entry": "0x10090ddb0",
+        "target": "0x1008dd9f0",
+        "value": "flutter.bgEnable"
+      },
+      {
+        "entry": "0x10090ddb8",
+        "target": "0x1008d7fd0",
+        "value": "flutter.downloadTaskInParallel"
+      },
+      {
+        "entry": "0x10090ddc0",
+        "target": "0x1008dda10",
+        "value": "flutter.deleteDownloadAfterRead"
+      },
+      {
+        "entry": "0x10090ddc8",
+        "target": "0x1008dda30",
+        "value": "flutter.autoRefreshTitle"
+      },
+      {
+        "entry": "0x10090ddd0",
+        "target": "0x1008dda50",
+        "value": "flutter.autoUpdateMetadata"
+      },
+      {
+        "entry": "0x10090ddd8",
+        "target": "0x1008d9f70",
+        "value": "flutter.config.mcdid"
+      },
+      {
+        "entry": "0x10090dde0",
+        "target": "0x1008dda70",
+        "value": "flutter.removeDownloadsIfMigrate"
+      },
+      {
+        "entry": "0x10090dde8",
+        "target": "0x1008dda90",
+        "value": "flutter.keepScreenOnWhileReading"
+      },
+      {
+        "entry": "0x10090ddf0",
+        "target": "0x1008ddab0",
+        "value": "flutter.applePencilDoubleTapAction"
+      },
+      {
+        "entry": "0x10090ddf8",
+        "target": "0x1008ddad0",
+        "value": "flutter.applePencilSqueezeAction"
+      },
+      {
+        "entry": "0x10090de00",
+        "target": "0x1008d7d50",
+        "value": "flutter.userAgentType"
+      },
+      {
+        "entry": "0x10090de08",
+        "target": "0x1008ddaf0",
+        "value": "flutter.longPressScroll"
+      },
+      {
+        "entry": "0x10090de10",
+        "target": "0x1008ddb10",
+        "value": "flutter.readerAllowPinchWhenLongPressScrolling"
+      },
+      {
+        "entry": "0x10090de18",
+        "target": "0x1008ddb30",
+        "value": "flutter.readerStrictScale"
+      },
+      {
+        "entry": "0x10090de20",
+        "target": "0x1008ddb50",
+        "value": "flutter.readerScrollIndicator"
+      },
+      {
+        "entry": "0x10090de28",
+        "target": "0x1008ddb70",
+        "value": "flutter.customTabs"
+      },
+      {
+        "entry": "0x10090de30",
+        "target": "0x1008ddb90",
+        "value": "flutter.tabBarShowLabel"
+      },
+      {
+        "entry": "0x10090de38",
+        "target": "0x1008ddbb0",
+        "value": "flutter.persistentTabs"
+      },
+      {
+        "entry": "0x10090de40",
+        "target": "0x1008ddbd0",
+        "value": "flutter.portraitRows"
+      },
+      {
+        "entry": "0x10090de48",
+        "target": "0x1008ddbf0",
+        "value": "flutter.landscapeRows"
+      },
+      {
+        "entry": "0x10090de50",
+        "target": "0x1008ddc10",
+        "value": "flutter.invertDoublePages"
+      },
+      {
+        "entry": "0x10090de58",
+        "target": "0x1008ddc30",
+        "value": "flutter.tagBasedReadModeTemp"
+      }
+    ]
+  },
+  "methods": {
+    "0x100046c78": {
+      "assembly_sha256": "09769246e6f07185914cdb027d4ea8f2a5301aa3c75a408b58049e09e3b6dc79",
+      "references": [
+        {
+          "address": "0x100046ce0",
+          "reference": "'BACKUP:LIST'"
+        },
+        {
+          "address": "0x100046d90",
+          "reference": "'BACKUP:CREATE'"
+        },
+        {
+          "address": "0x100046e2c",
+          "reference": "'BACKUP:DELETE'"
+        },
+        {
+          "address": "0x100046ec8",
+          "reference": "'BACKUP:RESTORE'"
+        },
+        {
+          "address": "0x100046f64",
+          "reference": "'BACKUP:EXPORT'"
+        },
+        {
+          "address": "0x100047000",
+          "reference": "'BACKUP:DOWNLOAD'"
+        },
+        {
+          "address": "0x100047094",
+          "reference": "'BACKUP:CLOUD:CANUSE'"
+        },
+        {
+          "address": "0x100047108",
+          "reference": "'BACKUP:CLOUD:START'"
+        },
+        {
+          "address": "0x100047180",
+          "reference": "'BACKUP:CLOUD:STOP'"
+        },
+        {
+          "address": "0x1000471f0",
+          "reference": "'BACKUP:RESTART'"
+        }
+      ]
+    },
+    "0x100047d9c": {
+      "assembly_sha256": "8aab1080de1b56263e8c4a3f65eacc772f46f654beb8ca7a81c0fb1637254c83",
+      "references": [
+        {
+          "address": "0x100047ddc",
+          "reference": "'setBackupType:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047de4",
+          "reference": "'isBackupToCloud'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047df0",
+          "reference": "'setBackupToCloud:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047dfc",
+          "reference": "'createBackupModel:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047e10",
+          "reference": "'createBackup_createTempDir:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047e2c",
+          "reference": "'[Backup]create dir err:%@'"
+        },
+        {
+          "address": "0x100047e40",
+          "reference": "'mtl_toJSON:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047e58",
+          "reference": "'[Backup]create dir succ. context=%@'"
+        },
+        {
+          "address": "0x100047e78",
+          "reference": "'createBackup_copyFile:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047e94",
+          "reference": "'[Backup]copy file err:%@'"
+        },
+        {
+          "address": "0x100047f3c",
+          "reference": "'checkDb:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047f60",
+          "reference": "'createBackup_createZipFile:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100047f80",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048004",
+          "reference": "'[Backup]db not valid'"
+        },
+        {
+          "address": "0x100048018",
+          "reference": "'BACKUP_DB_NOT_VALID'"
+        },
+        {
+          "address": "0x10004804c",
+          "reference": "'[Backup]copy zip err:%@'"
+        },
+        {
+          "address": "0x10004807c",
+          "reference": "'BACKUP_CREATE_ZIP_FAIL'"
+        }
+      ]
+    },
+    "0x100048128": {
+      "assembly_sha256": "7b35e6ba9a6d4bef39eec13a3cb1c67292789e64054b43b7a6fa7552f8545ff0",
+      "references": [
+        {
+          "address": "0x100048170",
+          "reference": "'setBackupModel:'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000481c8",
+          "reference": "'tmb'"
+        },
+        {
+          "address": "0x1000481d4",
+          "reference": "'Tachimanga_backup_%@.%@'"
+        },
+        {
+          "address": "0x100048228",
+          "reference": "'backupType'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048264",
+          "reference": "'CFBundleVersion'"
+        },
+        {
+          "address": "0x1000482a4",
+          "reference": "'backupToCloud'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000482bc",
+          "reference": "'setCloudBackup:'|_objc_msgSend"
+        }
+      ]
+    },
+    "0x100048360": {
+      "assembly_sha256": "0c2fe33f295ccf7a4978f917b7f242ee95cc5bf84fc398bacf0886ca73744cd2",
+      "references": [
+        {
+          "address": "0x100048388",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004842c",
+          "reference": "'[Backup]create temp dir error:%@'"
+        },
+        {
+          "address": "0x10004843c",
+          "reference": "'contents'"
+        },
+        {
+          "address": "0x10004845c",
+          "reference": "'setBackupDir:'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000484a0",
+          "reference": "'[Backup]create contents dir err:%@'"
+        },
+        {
+          "address": "0x1000484bc",
+          "reference": "'%@.zip'"
+        },
+        {
+          "address": "0x1000484f0",
+          "reference": "'setBackupZipPath:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048508",
+          "reference": "'contents.zip'"
+        },
+        {
+          "address": "0x100048528",
+          "reference": "'setContentsZipPath:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048538",
+          "reference": "'meta.json'"
+        }
+      ]
+    },
+    "0x100048598": {
+      "assembly_sha256": "7e28fb3e6061e2b925e44f26e9da6c71478b294315240b9bfe66b23323811300",
+      "references": [
+        {
+          "address": "0x1000485c8",
+          "reference": "'createBackup_copyFile_copyDb:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000485d8",
+          "reference": "'backupDir'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000485f4",
+          "reference": "'createBackup_copyFile_copyJar:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004860c",
+          "reference": "'backupDir'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048628",
+          "reference": "'createBackup_copyFile_copyPerf:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048640",
+          "reference": "'backupDir'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004865c",
+          "reference": "'createBackup_copyFile_copyUserDefaults:error:'|_objc_msgSend"
+        }
+      ]
+    },
+    "0x10004867c": {
+      "assembly_sha256": "790e7b6c90d887b6416c0d0521b2d5de1f2975e8799145a58cc88610c6601063",
+      "references": [
+        {
+          "address": "0x1000486a8",
+          "reference": "'backupDir'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000486f0",
+          "reference": "'Tachidesk/sqlite8.db'"
+        },
+        {
+          "address": "0x10004870c",
+          "reference": "'tachimanga.db'"
+        },
+        {
+          "address": "0x100048764",
+          "reference": "'[Backup]copy db error:%@'"
+        },
+        {
+          "address": "0x100048778",
+          "reference": "'[Backup]copy db succ, path=%@'"
+        },
+        {
+          "address": "0x100048788",
+          "reference": "'setDbPath:'|_objc_msgSend"
+        }
+      ]
+    },
+    "0x1000487cc": {
+      "assembly_sha256": "4fe9493092c533e2d548584121710e51554328a44e97c9a94211f87514b7aac4",
+      "references": [
+        {
+          "address": "0x100048844",
+          "reference": "'Tachidesk/extensions'"
+        },
+        {
+          "address": "0x1000488a8",
+          "reference": "'[Backup]list dir err:%@'"
+        },
+        {
+          "address": "0x1000488bc",
+          "reference": "'[Backup]list ext %@'"
+        },
+        {
+          "address": "0x1000488c8",
+          "reference": "'extensions'"
+        },
+        {
+          "address": "0x100048924",
+          "reference": "'[Backup]create ext dir err:%@'"
+        },
+        {
+          "address": "0x100048974",
+          "reference": "'.jar'"
+        },
+        {
+          "address": "0x100048a34",
+          "reference": "'[Backup]file not jar, file:%@'"
+        },
+        {
+          "address": "0x100048a70",
+          "reference": "'[Backup]copy jar succ'"
+        },
+        {
+          "address": "0x100048a84",
+          "reference": "'[Backup]copy jar:%@ err:%@'"
+        }
+      ]
+    },
+    "0x100048b10": {
+      "assembly_sha256": "36503360f6fac208a63636088270d9bfd39e23d044096c031e95a25c47ca0188",
+      "references": [
+        {
+          "address": "0x100048b80",
+          "reference": "'Preferences'"
+        },
+        {
+          "address": "0x100048bec",
+          "reference": "'[Backup]list perfFiles err:%@'"
+        },
+        {
+          "address": "0x100048c00",
+          "reference": "'[Backup]list perfFiles %@'"
+        },
+        {
+          "address": "0x100048c0c",
+          "reference": "'prefs'"
+        },
+        {
+          "address": "0x100048c64",
+          "reference": "'[Backup]create pref dir err:%@'"
+        },
+        {
+          "address": "0x100048cd8",
+          "reference": "'suwayomi.tachidesk.'"
+        },
+        {
+          "address": "0x100048cec",
+          "reference": "'com.apple.java.util.prefs'"
+        },
+        {
+          "address": "0x100048da4",
+          "reference": "'[Backup]copy perf succ'"
+        },
+        {
+          "address": "0x100048db8",
+          "reference": "'[Backup]copy perf:%@ err:%@'"
+        }
+      ]
+    },
+    "0x100048e38": {
+      "assembly_sha256": "fa05c67ea5867655388c9662162dc85817c1a29a678e22c908747a746a14bc08",
+      "references": []
+    },
+    "0x100048e44": {
+      "assembly_sha256": "c2509015386f8194ddb3cb591fda48d399bbfeb1956fe0af00a35e8c14576f8e",
+      "references": [
+        {
+          "address": "0x100048e90",
+          "reference": "'getUserDefaultsWhiteList'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048eb8",
+          "reference": "'standardUserDefaults'|_objc_msgSend"
+        },
+        {
+          "address": "0x100048fb8",
+          "reference": "'pref.json'"
+        },
+        {
+          "address": "0x100048fe8",
+          "reference": "'pref-all.json'"
+        },
+        {
+          "address": "0x100049010",
+          "reference": "'%@'"
+        }
+      ]
+    },
+    "0x1000490ac": {
+      "assembly_sha256": "569476076c5d23b779014318a8d1ef617b421f1fef868c8549f2daad24b9eb65",
+      "references": [
+        {
+          "address": "0x1000490f8",
+          "reference": "'contentsZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004910c",
+          "reference": "'backupDir'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049128",
+          "reference": "'createZipFileAtPath:withContentsOfDirectory:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049150",
+          "reference": "'createBackup_createMeta:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049164",
+          "reference": "'[Backup]copy meta err:%@'"
+        },
+        {
+          "address": "0x100049170",
+          "reference": "'[Backup]zip fail'"
+        },
+        {
+          "address": "0x1000491c8",
+          "reference": "'backupZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000491dc",
+          "reference": "'contentsZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049234",
+          "reference": "'createZipFileAtPath:withFilesAtPaths:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049298",
+          "reference": "'backups'"
+        },
+        {
+          "address": "0x1000492e4",
+          "reference": "'[Backup]Backup directory already exists.'"
+        },
+        {
+          "address": "0x1000492f0",
+          "reference": "'[Backup]zip all fail'"
+        },
+        {
+          "address": "0x100049318",
+          "reference": "'[Backup]Backup directory created successfully.'"
+        },
+        {
+          "address": "0x100049324",
+          "reference": "'backupToCloud'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049358",
+          "reference": "'Backups'"
+        },
+        {
+          "address": "0x1000493a4",
+          "reference": "'[Backup]create cloud backup dir error:%@'"
+        },
+        {
+          "address": "0x1000493b8",
+          "reference": "'[Backup]Failed to create backup directory. Error: %@'"
+        },
+        {
+          "address": "0x1000493c8",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049414",
+          "reference": "'backupZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004944c",
+          "reference": "'[Backup]File moved successfully.'"
+        },
+        {
+          "address": "0x100049464",
+          "reference": "'[Backup]Failed to move file. Error: %@'"
+        },
+        {
+          "address": "0x100049478",
+          "reference": "'backupZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000494a4",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049528",
+          "reference": "'[Backup]move to cloud error:%@'"
+        },
+        {
+          "address": "0x10004959c",
+          "reference": "'[Backup] del temp dir succ=%@'"
+        }
+      ]
+    },
+    "0x1000495d0": {
+      "assembly_sha256": "562a12e7102673f673d272ebb0eec413c1bdfd83667f1a2eda89de1313b9a061",
+      "references": [
+        {
+          "address": "0x10004961c",
+          "reference": "'contentsZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049668",
+          "reference": "'[Backup]get size err:%@'"
+        },
+        {
+          "address": "0x10004969c",
+          "reference": "'[Backup]File size: %@'"
+        },
+        {
+          "address": "0x1000496b4",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000496e0",
+          "reference": "'contentsZipPath'|_objc_msgSend"
+        },
+        {
+          "address": "0x1000496f8",
+          "reference": "'sha1HashOfFileAtPath:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049718",
+          "reference": "'[Backup]checksum: %@'"
+        },
+        {
+          "address": "0x100049724",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049750",
+          "reference": "'backupModel'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049768",
+          "reference": "'mtl_toJSONObject:'|_objc_msgSend"
+        }
+      ]
+    },
+    "0x1000497f0": {
+      "assembly_sha256": "31cbb67e2778294f21419e0f08363e919d4c7e559954b00a57386c53cca33d0e",
+      "references": [
+        {
+          "address": "0x10004982c",
+          "reference": "'[Backup]create.. file:%@, json:%@'"
+        },
+        {
+          "address": "0x100049870",
+          "reference": "'[Backup]create json file err:%@'"
+        },
+        {
+          "address": "0x10004989c",
+          "reference": "'[Backup]write json err:%@'"
+        },
+        {
+          "address": "0x1000498a8",
+          "reference": "'[Backup]create json file succ'"
+        }
+      ]
+    },
+    "0x1000498d0": {
+      "assembly_sha256": "301f6757a80b996a048cd801078df25d9ad7074e973bcf3d107296b447cf87f4",
+      "references": [
+        {
+          "address": "0x100049908",
+          "reference": "'select * from Extension where id = 1'"
+        },
+        {
+          "address": "0x100049954",
+          "reference": "'[Backup]Err %d: %@'"
+        },
+        {
+          "address": "0x100049970",
+          "reference": "'[Backup]db cannot open'"
+        },
+        {
+          "address": "0x100049990",
+          "reference": "'id'"
+        }
+      ]
+    },
+    "0x1000499dc": {
+      "assembly_sha256": "cdc905f922280a667372b64412d7f1950aa85bf22267e81755367d181fbabe22",
+      "references": [
+        {
+          "address": "0x100049a80",
+          "reference": "'setCloseDb:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049a8c",
+          "reference": "'restoreBackup_checkFile:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049a98",
+          "reference": "'[Backup]restoreBackup_checkFile succ'"
+        },
+        {
+          "address": "0x100049ab0",
+          "reference": "'restoreBackup_extract:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049acc",
+          "reference": "'[Backup]extract file err:%@'"
+        },
+        {
+          "address": "0x100049b3c",
+          "reference": "'BACKUP_FILE_NOT_EXIST'"
+        },
+        {
+          "address": "0x100049ba0",
+          "reference": "'[Backup]restoreBackup_extract succ'"
+        },
+        {
+          "address": "0x100049bac",
+          "reference": "'1'"
+        },
+        {
+          "address": "0x100049bc0",
+          "reference": "'[Backup]restore auto create...'"
+        },
+        {
+          "address": "0x100049c1c",
+          "reference": "'createBackup:complete:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049c3c",
+          "reference": "'restoreBackup_doRestore:complete:'|_objc_msgSend"
+        }
+      ]
+    },
+    "0x100049d10": {
+      "assembly_sha256": "443716859e67e1426f5c029a994fb232506cb053ce8412771c1e97630297116a",
+      "references": [
+        {
+          "address": "0x100049d7c",
+          "reference": "'restoreBackup_restore:error:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049da0",
+          "reference": "'[Backup]restore file err:%@'"
+        },
+        {
+          "address": "0x100049e00",
+          "reference": "'[Backup]restoreBackup_restore succ'"
+        }
+      ]
+    },
+    "0x100049e60": {
+      "assembly_sha256": "5284ddb6043c9fde8213267b498eb85fa1dbbcf2b401ffd3cadb7cfc158d9762",
+      "references": [
+        {
+          "address": "0x100049ec4",
+          "reference": "'buildFilePathByBackupName:'|_objc_msgSend"
+        },
+        {
+          "address": "0x100049f54",
+          "reference": "'[Backup] file not exist: %@'"
+        }
+      ]
+    },
+    "0x100049f8c": {
+      "assembly_sha256": "a9fd0267f9767ce94b87c57bc00ab4cdde2bcb9c3d0a0be152836c043635459b",
+      "references": [
+        {
+          "address": "0x10004a020",
+          "reference": "'Tachimanga_restore_%@'"
+        },
+        {
+          "address": "0x10004a0bc",
+          "reference": "'[Backup]create temp dir error:%@'"
+        },
+        {
+          "address": "0x10004a0f4",
+          "reference": "'unzipFileAtPath:toDestination:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a10c",
+          "reference": "'meta.json'"
+        },
+        {
+          "address": "0x10004a178",
+          "reference": "'[Backup]metaString: %@'"
+        },
+        {
+          "address": "0x10004a190",
+          "reference": "'[Backup]read meta error:%@'"
+        },
+        {
+          "address": "0x10004a1bc",
+          "reference": "'BACKUP_FILE_EXTRACT_FAIL'"
+        },
+        {
+          "address": "0x10004a1ec",
+          "reference": "''"
+        },
+        {
+          "address": "0x10004a230",
+          "reference": "'BACKUP_FILE_NOT_VALID'"
+        },
+        {
+          "address": "0x10004a260",
+          "reference": "''"
+        },
+        {
+          "address": "0x10004a2a0",
+          "reference": "'mtl_fromJSON:class:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a2b8",
+          "reference": "'setBackupModel:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a2cc",
+          "reference": "'contents.zip'"
+        },
+        {
+          "address": "0x10004a2f0",
+          "reference": "'sha1HashOfFileAtPath:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a308",
+          "reference": "'[Backup]checksum: %@'"
+        },
+        {
+          "address": "0x10004a370",
+          "reference": "'CFBundleVersion'"
+        },
+        {
+          "address": "0x10004a3f4",
+          "reference": "'[Backup]version check, curr:%@, backup.version:%@'"
+        },
+        {
+          "address": "0x10004a440",
+          "reference": "'BACKUP_RESTORE_VERSION_NOT_SUPPORT'"
+        },
+        {
+          "address": "0x10004a480",
+          "reference": "'BACKUP_FILE_NOT_VALID'"
+        },
+        {
+          "address": "0x10004a4b0",
+          "reference": "''"
+        },
+        {
+          "address": "0x10004a4f0",
+          "reference": "'BACKUP_FILE_NOT_VALID'"
+        },
+        {
+          "address": "0x10004a520",
+          "reference": "''"
+        },
+        {
+          "address": "0x10004a5d8",
+          "reference": "'contents'"
+        },
+        {
+          "address": "0x10004a62c",
+          "reference": "'unzipFileAtPath:toDestination:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a644",
+          "reference": "'[Backup]extract contents succ'"
+        },
+        {
+          "address": "0x10004a664",
+          "reference": "'tachimanga.db'"
+        },
+        {
+          "address": "0x10004a680",
+          "reference": "'setDbPath:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a6b0",
+          "reference": "'checkDb:'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a6c8",
+          "reference": "'[Backup]check restore db succ'"
+        },
+        {
+          "address": "0x10004a6f4",
+          "reference": "'BACKUP_FILE_EXTRACT_FAIL'"
+        },
+        {
+          "address": "0x10004a730",
+          "reference": "'RESTORE_DB_NOT_VALID'"
+        }
+      ]
+    },
+    "0x10004a750": {
+      "assembly_sha256": "6c4b226c41761fef68b63fa694be6a423fa7a6432329b3fec8898dd18b686fdd",
+      "references": [
+        {
+          "address": "0x10004a7a8",
+          "reference": "'extensions'"
+        },
+        {
+          "address": "0x10004a7fc",
+          "reference": "'Tachidesk/extensions'"
+        },
+        {
+          "address": "0x10004a838",
+          "reference": "'copy jar error:%@'"
+        },
+        {
+          "address": "0x10004a85c",
+          "reference": "'prefs'"
+        },
+        {
+          "address": "0x10004a8a8",
+          "reference": "'Preferences'"
+        },
+        {
+          "address": "0x10004a8f0",
+          "reference": "'copy prefs error:%@'"
+        },
+        {
+          "address": "0x10004a918",
+          "reference": "'pref.json'"
+        },
+        {
+          "address": "0x10004a960",
+          "reference": "'getUserDefaultsWhiteList'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004a980",
+          "reference": "'[Backup]read userDefaults error:%@'"
+        },
+        {
+          "address": "0x10004a9c4",
+          "reference": "'[Backup]jsonDictionary:%@'"
+        },
+        {
+          "address": "0x10004aa1c",
+          "reference": "'[Backup]key not valid:%@'"
+        },
+        {
+          "address": "0x10004aac8",
+          "reference": "'standardUserDefaults'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004ab1c",
+          "reference": "'[Backup]unsupport %@=%@'"
+        },
+        {
+          "address": "0x10004ab64",
+          "reference": "'closeDb'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004ab74",
+          "reference": "'[Backup]sleep..'"
+        },
+        {
+          "address": "0x10004ab90",
+          "reference": "'[Backup]sleep done'"
+        },
+        {
+          "address": "0x10004abb0",
+          "reference": "'tachimanga.db'"
+        },
+        {
+          "address": "0x10004abd0",
+          "reference": "'Tachidesk/sqlite8.db'"
+        },
+        {
+          "address": "0x10004ac1c",
+          "reference": "'closeDb'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004ac34",
+          "reference": "'[Backup]del exist db error:%@'"
+        },
+        {
+          "address": "0x10004ac68",
+          "reference": "'[Backup]copy db error:%@'"
+        },
+        {
+          "address": "0x10004acc8",
+          "reference": "'[Backup] del temp dir succ=%@'"
+        }
+      ]
+    },
+    "0x10004c44c": {
+      "assembly_sha256": "87ebd14813e3cd1ccb780b6aa0995cf07e3632bc667bd9ff682d5b54641af9de",
+      "references": [
+        {
+          "address": "0x10004c46c",
+          "reference": "'standardUserDefaults'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004c480",
+          "reference": "'flutter.autoBackupFrequency'"
+        },
+        {
+          "address": "0x10004c4e0",
+          "reference": "'[Backup]convertFrequencyEnumToInt %@->%@'"
+        },
+        {
+          "address": "0x10004c538",
+          "reference": "'SELECT * from Backup WHERE state = 1 and type = 2 ORDER BY id DESC LIMIT 300'"
+        },
+        {
+          "address": "0x10004c550",
+          "reference": "'[Backup]createAutoBackup, skip'"
+        }
+      ]
+    },
+    "0x10004ca20": {
+      "assembly_sha256": "924df47c758214f37d15f731e2c23cc5abaec728decaf3fca3cb4962f81c0262",
+      "references": []
+    },
+    "0x10004ca44": {
+      "assembly_sha256": "37676a5684e96e1a839aae410379a21e812e5e7ba032dd20676cb6c4d58a9925",
+      "references": [
+        {
+          "address": "0x10004ca88",
+          "reference": "'standardUserDefaults'|_objc_msgSend"
+        },
+        {
+          "address": "0x10004ca9c",
+          "reference": "'flutter.backupToCloud'"
+        },
+        {
+          "address": "0x10004caec",
+          "reference": "'isBackupToCloud canUseCloud:%@, backupToCloud:%@'"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Syntactic references are not independently a full branch/call proof; report traces selected relevant flows.",
+    "No real TMB archive or restore run; SQLite consistency and ZIP path validation not established."
+  ]
+}

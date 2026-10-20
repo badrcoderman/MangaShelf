@@ -1,0 +1,139 @@
+{
+  "scope": "Static analysis deliverable identity, emitted outputs and staged metadata checks; no app test",
+  "target_executed": false,
+  "checks": [
+    {
+      "check": "carrier hash Tachimanga",
+      "passed": true
+    },
+    {
+      "check": "carrier hash FlutterApp",
+      "passed": true
+    },
+    {
+      "check": "carrier hash res.zip",
+      "passed": true
+    },
+    {
+      "check": "14 selected Ghidra successes",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 100008d44-NativeChannel.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 100008de8-UTF8ArrayToString.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10000ac08-ContinuedDownloadHandler.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10000ba40-ContinuedUpdateHandler.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10000e1e0-NativeChannelHandler.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10001ad34-MagicPipeHandler.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 1000208ac-LaunchJVM.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10002987c-CreateVMWrapper.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10002a450-JavaChannelCall.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10003cf1c-BackendPluginHandle.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10003cffc-BackendLaunch.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10004e80c-ParseNetRequest.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10004eca0-BuildNetResponse.c.txt",
+      "passed": true
+    },
+    {
+      "check": "raw C hash 10004f1c8-NativeNet.c.txt",
+      "passed": true
+    },
+    {
+      "check": "complete successful dae run",
+      "passed": true
+    },
+    {
+      "check": "dae manifest identity",
+      "passed": true
+    },
+    {
+      "check": "62 decoded whitelist entries",
+      "passed": true
+    },
+    {
+      "check": "staged scope contains only reports/parsers/metadata",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-backup-contract.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-feature-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-flutter-deep.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-ghidra-seeded.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-java-deep.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-jimage.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-jre-version.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-native-deep.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-package-deep.json",
+      "passed": true
+    },
+    {
+      "check": "valid staged JSON validation/rea/tachimanga-5.1-package-inventory.json",
+      "passed": true
+    },
+    {
+      "check": "staged whitespace",
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

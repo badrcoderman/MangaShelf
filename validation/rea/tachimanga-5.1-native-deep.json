@@ -1,0 +1,418 @@
+{
+  "format": 1,
+  "analysis": "Tachimanga 5.1 build520 selected native startup/bridge investigation",
+  "date": "2026-10-20",
+  "static_only": true,
+  "specimen_executed": false,
+  "original_ipa_sha256": "e8e3ab5152a85f60d5d617bae825d39be7d55e3f048661f3042def0009a51863",
+  "subjects": [
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/Tachimanga",
+      "size": 10485760,
+      "sha256": "cd03850d680069f43dd58df4b3426ec37bc5f55f613854a8d665d0fccba60e08"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/package-full/native/Tachimanga.dylib",
+      "size": 5990608,
+      "sha256": "96a70d5117449bf38732b4d601d6ce00a6291314cb698841c731272a6d69359d"
+    }
+  ],
+  "tools": [
+    "LLVM nm/objdump",
+    "Capstone5.0.7",
+    "authored bounded Mach-O parser"
+  ],
+  "existing_rea_evidence": "ev_90cda182a3d199f3d4be1cc9d4324fbaf949c22ef4f01769e8a7c60e1e52f32a",
+  "method": "Reused REA artifact inventory and Ghidra failure records. Did not repeat failed full analysis. Independently decoded source-backed chained pointers and bounded disassembly.",
+  "inventory": {
+    "chained_fixups": 67428,
+    "imports": 1527,
+    "classes": 683,
+    "methods": 7880,
+    "function_starts": 29491,
+    "symbols": 1492,
+    "direct_calls_or_cross_function_tail_branches": 186542,
+    "address_references": 86250
+  },
+  "reference_scan": {
+    "start": 4294983680,
+    "end": 4302319460,
+    "section_end": 4302319460,
+    "instructions": 1833945,
+    "skipped_bytes": 352
+  },
+  "parser_errors": [],
+  "options": [
+    {
+      "value": "-Xms128M",
+      "site": "0x100020b24",
+      "override_key": "flutter.config.xms",
+      "validation": "hasPrefix:-Xms"
+    },
+    {
+      "value": "-Xmx256M",
+      "site": "0x100020ba8",
+      "override_key": "flutter.config.xmx",
+      "validation": "hasPrefix:-Xmx"
+    },
+    {
+      "value": "-Xint",
+      "site": "0x100020c44"
+    },
+    {
+      "value": "-Djava.compiler=NONE",
+      "site": "0x100020c54"
+    },
+    {
+      "value": "-Duser.timezone=%@",
+      "site": "0x100020ca0",
+      "condition": "flutter.config.set_timezone is not string 1"
+    },
+    {
+      "value": "-XX:-UseCompressedClassPointers",
+      "site": "0x100020cdc"
+    },
+    {
+      "value": "-Xshareclasses:none",
+      "site": "0x100020cec"
+    },
+    {
+      "value": "-XX:-OpenJ9CommandLineEnv",
+      "site": "0x100020cfc"
+    },
+    {
+      "value": "-Xdump:heap:none",
+      "site": "0x100020d0c"
+    },
+    {
+      "value": "-Xdump:snap:none",
+      "site": "0x100020d1c"
+    },
+    {
+      "value": "-Duser.dir=%@",
+      "site": "0x100020d34",
+      "source": "NSHomeDirectory"
+    },
+    {
+      "value": "-Djava.home=%@",
+      "site": "0x100020d6c",
+      "source": "bundlePath/jre"
+    },
+    {
+      "value": "-Duser.home=%@",
+      "site": "0x100020dac",
+      "source": "NSHomeDirectory"
+    },
+    {
+      "value": "-Dapp.tachimanga.skipInit=0|1",
+      "site": "0x100020df4"
+    },
+    {
+      "value": "-Dapp.tachimanga.cleanDb=0|1",
+      "site": "0x100020e1c"
+    },
+    {
+      "value": "-Dapp.tachimanga.vacuum=0|1",
+      "site": "0x100020e44"
+    },
+    {
+      "value": "-Dapp.tachimanga.childfirst=%@",
+      "site": "0x100020e70"
+    },
+    {
+      "value": "flutter.config.joptions",
+      "site": "0x100020ef4",
+      "parsing": "componentsSeparatedByString: space; skips empty parts"
+    }
+  ],
+  "findings": [
+    {
+      "id": "NATIVE-01",
+      "question": "Which function constructs the VM configuration?",
+      "status": "answered_static",
+      "confidence": "high",
+      "implementation": "0x1000208ac",
+      "name": "+[JavaLauncher launchJVM:]",
+      "observations": [
+        {
+          "site": "0x100020960",
+          "operation": "setenv",
+          "key": "OPENJ9_JAVA_OPTIONS",
+          "value": "-Dcom.ibm.tools.attach.enable=no"
+        },
+        {
+          "site": "0x100020978",
+          "operation": "setenv",
+          "key": "_JAVA_LAUNCHER_DEBUG",
+          "value": "1"
+        },
+        {
+          "site": "0x10002092c",
+          "operation": "path join",
+          "value": "NSBundle.mainBundle.bundlePath/jre"
+        },
+        {
+          "site": "0x1000209d8",
+          "operation": "branch",
+          "value": "nonempty input.jarPath or bundled MCHome.bundle/res.zip"
+        }
+      ]
+    },
+    {
+      "id": "NATIVE-02",
+      "question": "Does native startup reach a VM implementation rather than just export its name?",
+      "status": "answered_static",
+      "confidence": "high",
+      "edges": [
+        {
+          "site": "0x1000210f8",
+          "from": "0x1000208ac",
+          "to": "0x10002987c",
+          "kind": "direct_bl"
+        },
+        {
+          "site": "0x1000299e0",
+          "from": "0x10002987c",
+          "to": "0x1003b7bd8",
+          "kind": "direct_bl"
+        },
+        {
+          "site": "0x1003b8068",
+          "operation": "dlsym",
+          "symbol": "J9_CreateJavaVM",
+          "stored_at": "0x10098d2f0",
+          "matching_export": "0x1002b1654"
+        },
+        {
+          "site": "0x1003b8cec",
+          "operation": "load function pointer",
+          "address": "0x10098d2f0"
+        },
+        {
+          "site": "0x1003b8d00",
+          "operation": "blr x8",
+          "kind": "indirect target recovered from observed storage flow"
+        }
+      ],
+      "runtime_success_proven": false
+    },
+    {
+      "id": "NATIVE-03",
+      "question": "Which Java entry class and main method does the host request?",
+      "status": "answered_static",
+      "confidence": "high",
+      "class": "suwayomi/tachidesk/MainKt",
+      "method": "main",
+      "signature": "([Ljava/lang/String;)V",
+      "site": "0x100021184",
+      "native_helper": "0x100029bc8",
+      "wrapper_methods": {
+        "startServer": "0x1000213f4",
+        "stopServer": "0x100021438",
+        "startSocket": "0x10002147c",
+        "waitRequestDone": "0x1000214c0",
+        "stopSocket": "0x100021504"
+      }
+    },
+    {
+      "id": "NATIVE-04",
+      "question": "How does Java NativeChannel enter Objective-C?",
+      "status": "answered_static",
+      "confidence": "high",
+      "export": "0x100008d44",
+      "array_to_string_helper": "0x100008de8",
+      "conversion_calls": [
+        "0x100008d70",
+        "0x100008d88"
+      ],
+      "dispatch_site": "0x100008db8",
+      "receiver": "MCNativeChannelPlugin.instance",
+      "selector": "handle:content:",
+      "implementation": "0x10000e1e0",
+      "topic_dispatch": [
+        {
+          "topic": "LOG_EVENT",
+          "branch": "0x10000e22c",
+          "target": "logEvent:"
+        },
+        {
+          "topic": "USERAGENT:DEFAULT",
+          "branch": "0x10000e250",
+          "target": "MCUserAgentPlugin.updateDefaultUserAgent:"
+        },
+        {
+          "topic": "TOAST:JSON",
+          "branch": "0x10000e288",
+          "target": "MCToastModel -> main-queue toast callback"
+        },
+        {
+          "topics": [
+            "DOWNLOAD:START",
+            "UPDATE:STATUS"
+          ],
+          "branch": [
+            "0x10000e37c",
+            "0x10000e390"
+          ],
+          "target": "MCContinuedTaskPlugin.onNativeChannel:content:",
+          "callsite": "0x10000e3c0"
+        }
+      ]
+    },
+    {
+      "id": "NATIVE-05",
+      "question": "Which native path implements NativeNet?",
+      "status": "partially_answered_static",
+      "confidence": "high_for_selected_call_paths",
+      "export": "0x10004f1c8",
+      "request_helper": "0x10004e80c",
+      "request_helper_call": "0x10004f23c",
+      "response_helper": "0x10004eca0",
+      "response_helper_call": "0x10004f63c",
+      "session": "MCURLSession.instance",
+      "task_callsite": "0x10004f41c",
+      "selector": "dataTaskWithRequest:completionHandler:",
+      "resume": "0x10004f43c",
+      "semaphore_wait": "0x10004f460",
+      "request_keys": [
+        "url",
+        "followRedirects",
+        "noCookie",
+        "headers",
+        "method"
+      ],
+      "body_java_method": "readByteArray",
+      "body_java_signature": "()[B",
+      "response_keys": [
+        "code",
+        "message",
+        "headers",
+        "currentUrl",
+        "error"
+      ],
+      "unresolved": [
+        "Complete redirect/cookie semantics",
+        "All request/response JNI failure paths",
+        "Exact Cloudflare/special-source handling",
+        "Runtime ownership and cancellation across every path"
+      ]
+    },
+    {
+      "id": "NATIVE-06",
+      "question": "Which Flutter platform channels does the host register?",
+      "status": "partially_answered_static",
+      "confidence": "high_for_registration",
+      "implementation": "0x10001ab78",
+      "name": "-[ViewController initMethodChannel]",
+      "channels": [
+        {
+          "name": "MAGIC_PIPE",
+          "registration_site": "0x10001abcc",
+          "handler_registration_site": "0x10001ac48",
+          "handler_block": "0x10001ad34"
+        },
+        {
+          "name": "MC_NOTIFY",
+          "registration_site": "0x10001acd0",
+          "stored_on": "MCFlutterPlugin.notifyChannel"
+        }
+      ],
+      "unresolved": [
+        "Full handler method routing to all plugins",
+        "All Dart producer/consumer sites"
+      ]
+    },
+    {
+      "id": "NATIVE-07",
+      "question": "Is the added dylib inert metadata or does it contain method-replacement call sites?",
+      "status": "partially_answered_static",
+      "confidence": "high_for_import_call_sites_only",
+      "subject": {
+        "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/package-full/native/Tachimanga.dylib",
+        "size": 5990608,
+        "sha256": "96a70d5117449bf38732b4d601d6ce00a6291314cb698841c731272a6d69359d"
+      },
+      "counts": {
+        "chained_fixups": 2046,
+        "imports": 109,
+        "classes": 8,
+        "methods": 8,
+        "function_starts": 4680,
+        "symbols": 1,
+        "direct_calls_or_cross_function_tail_branches": 16216,
+        "address_references": 0
+      },
+      "hook_api_direct_call_candidates": {
+        "_objc_getClass": 743,
+        "_sel_registerName": 1345,
+        "_class_replaceMethod": 52,
+        "_method_getImplementation": 1,
+        "_class_addMethod": 1,
+        "_method_setImplementation": 4
+      },
+      "install_name": "/Library/MobileSubstrate/DynamicLibraries/Tachimanga.dylib",
+      "selector_literal": "updatePremiumhnhtv:",
+      "unresolved": [
+        "Actual receiver classes/selectors passed at every replacement call",
+        "Runtime-decoded/registered method bodies",
+        "Which observed app behaviors are modified by this sample"
+      ]
+    }
+  ],
+  "coverage": {
+    "classlist_methods": "683classes/7880class+meta implementations; categories/protocols excluded",
+    "direct_edges": "186542 syntactic BL or cross-function B candidates in entire __text; no complete indirect graph",
+    "reference_scan": "Entire __text scanned in bounded chunks;352 undecoded bytes skipped",
+    "deep_bodies": "Selected startup/NativeNet/NativeChannel/platform entry functions only",
+    "full_native_reconstruction": false,
+    "original_source_recovered": false,
+    "runtime_success_proven": false
+  },
+  "limitations": [
+    "Static-only; no specimen execution.",
+    "Direct BL and cross-function B only; indirect/Objective-C/JNI calls are not complete.",
+    "ADRP lookahead is bounded to ten instructions with register-clobber checks; it is not a full dataflow graph.",
+    "Classlist and class/meta method lists only; categories and protocol methods not inventoried.",
+    "Prior Ghidra attempts timed out with Objective-C type and DecompilerSwitchAnalyzer errors; no new successful Ghidra pseudocode claimed.",
+    "Patched sample identity differs from official distribution; patch behavior must remain separately attributed.",
+    "VM option presence and static call reachability do not prove a successful running VM or source."
+  ],
+  "external_working_directory": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full",
+  "external_artifacts": [
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/analyze_native.py",
+      "sha256": "cb5f7c9eb28a80ef6070484b01e4d9c4c1530a671e4bdd0b9b9acef649c37afc"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/focused_disassembly.py",
+      "sha256": "bce100d88cf3d156ab739b74d4b815bf957d445a7652bf4bdcecb035e0c6a481"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/inventory.json",
+      "sha256": "430c1ebcb6cb87504024107dc39e2cd1130c6cefb491c0e5bb8cb3158d964005"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/methods.json",
+      "sha256": "e2bdd074386f3959ecdf7c7a574003559727d4ae2957192e08a990909fc8212d"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/direct-calls.json",
+      "sha256": "cc152b7337d71c8b2faae64217c0a869dc06b58a35e96bb261f047c24d414bd5"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/address-references.json",
+      "sha256": "f2b1d748873341444abff4a67d81745d17d0f42011920bb61b7f7aebd48216a3"
+    },
+    {
+      "path": "/home/user/Documents/Managa-app/tachimanga-analysis-5.1/native-full/patch-analysis/hook-api-calls.json",
+      "sha256": "151b088f1f953d13ab623f41d9174a461cc2c49502515ec3c3447b698a65401f"
+    }
+  ],
+  "followup_analysis": {
+    "ghidra_seeded": "tachimanga-5.1-ghidra-seeded.json",
+    "backup_contract": "tachimanga-5.1-backup-contract.json",
+    "feature_contracts": "tachimanga-5.1-feature-contracts.json",
+    "focused_assembly_bodies_available": 214,
+    "target_executed": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "input_member": "Payload/Tachimanga.app/jre/lib/modules",
+  "jimage_sha256": "55ce9d6ed2172641616737b576eae6f5cb2457bf25182f7f3fbc19eb8cebedd2",
+  "resource": "/java.base/java/lang/VersionProps.class",
+  "file_offset": 2697834,
+  "bytes": 6322,
+  "class_sha256": "d3eef806c409e7ac38d05c6e24a259bef695e6fe1c2dd369889122daebc3ad71",
+  "constants": {
+    "launcher_name": "openjdk",
+    "java_version": "17.0.15-internal",
+    "java_version_date": "2025-04-15",
+    "java_runtime_name": "OpenJDK Runtime Environment",
+    "java_runtime_version": "17.0.15-internal+0-adhoc.mobile.openj9-openjdk-jdk17",
+    "VERSION_NUMBER": "17.0.15",
+    "VERSION_SPECIFICATION": "17",
+    "VERSION_BUILD": "0",
+    "VERSION_PRE": "internal",
+    "VERSION_OPT": "adhoc.mobile.openj9-openjdk-jdk17",
+    "CLASSFILE_MAJOR_MINOR": "61.0",
+    "VENDOR": "Eclipse OpenJ9",
+    "VENDOR_URL": "http://www.eclipse.org/openj9"
+  },
+  "method": "javap -p -constants reads the class as data; no class execution",
+  "live_vm_version": "NOT OBSERVED"
+}

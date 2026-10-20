@@ -1,5 +1,9 @@
 # مراجعة Tachimanga 5.1 وتطوير MangaShelf
 
+> تحديث الدراسة: [التحقيق الموسع](TACHIMANGA-5.1-INVESTIGATION-AR.md) يضيف
+> تفكيك Java وFlutter ومسارات المضيف والنسخ والمنصة. حالة التنفيذ أدناه تخص
+> MangaShelf، ولا تعني أن اكتمال الجرد أو خروج pseudocode أصلح محرك المصادر.
+
 المراجعة: 20 أكتوبر 2026. مشروع العمل:
 `/home/user/Documents/Managa-app/MangaShilf`، فرع `improve/tachimanga-5.1-reader`.
 نقطة البداية الأصلية `23f95fe`، مع إدخال الإصلاحات المحلية الموجودة في `c93cee3`
@@ -65,7 +69,10 @@ REA يعد 567 occurrence عند احتساب جذر الحاوية، بينما
 مركزة على NativeChannel، مع تعطيل المحلل الذي أخفق وتوسيع المهلة إلى 900 ثانية.
 توقفت المحاولة المركزة أيضًا عند مهلة 900 ثانية، مع خطأ VarnodeContext أثناء
 DecompilerSwitchAnalyzer. سجلها في `validation/rea/tachimanga-5.1-ghidra-focused-timeout.json`.
-لم تُستخرج نتيجة pseudocode ناجحة من المحاولتين؛ REV-05 يبقى مفتوحًا.
+لم تُستخرج نتيجة pseudocode ناجحة من هاتين المحاولتين. نجحت لاحقًا استراتيجية
+مختلفة دون auto-analysis وبـ14 بذرة دالة: 14/14 مخرج C، موثقة في
+`validation/rea/tachimanga-5.1-ghidra-seeded.json`. أُغلق REV-05 لنطاق الإقلاع
+والجسور المحدد فقط؛ الفروع غير المحسومة واختبار الجهاز ضمن REV-09 وENG-11.
 
 ## ما كشفت المقارنة في MangaShelf
 

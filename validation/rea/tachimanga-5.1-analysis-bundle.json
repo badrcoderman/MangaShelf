@@ -1,0 +1,18 @@
+{
+  "path": "/home/user/Documents/Managa-app/Tachimanga-5.1-static-analysis.zip",
+  "bytes": 106153733,
+  "sha256": "5a35427d90c14554efc439dfac6a7beb59dd1c9c24c16dc53f0ac36ce2a8b522",
+  "members": 4528,
+  "manifest_members_verified": 4527,
+  "uncompressed_payload_bytes": 569762485,
+  "target_executed": false,
+  "original_executable_carriers_included": false,
+  "production_code_changed": false,
+  "limitations": [
+    "Static results and selected semantic traces, not recovered original source or runtime equivalence.",
+    "Patched specimen; not authenticated official behavior.",
+    "Remaining questions are listed in docs/TACHIMANGA-5.1-INVESTIGATION-AR.md."
+  ],
+  "complete_dae_export_files": 3552,
+  "manifest_json_crc_checked": true
+}
