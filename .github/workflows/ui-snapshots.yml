@@ -1,6 +1,13 @@
 name: Capture native iPhone UI
 on:
   workflow_dispatch:
+  push:
+    branches: [improve/tachimanga-5.1-reader]
+    paths:
+      - .github/workflows/ui-snapshots.yml
+      - iOS/MangaShelfUISnapshots/**
+      - scripts/capture_ui_snapshots.sh
+      - scripts/collect_ui_snapshots.py
 permissions:
   contents: read
 concurrency:
