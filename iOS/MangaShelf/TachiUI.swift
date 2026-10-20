@@ -108,7 +108,19 @@ enum TachiCustomGlyph {
 
 struct ShelfBooksIcon: View {
     var body: some View {
-        TachiIcon(symbol: "books.vertical.fill", size: 27)
+        // Project-owned book spines, independent from the Material bookmark glyph.
+        HStack(alignment: .bottom, spacing: 2) {
+            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 23)
+            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 19)
+                .overlay(alignment: .top) {
+                    Rectangle().fill(ShelfStyle.background)
+                        .frame(width: 3, height: 1).padding(.top, 3)
+                }
+            RoundedRectangle(cornerRadius: 1).frame(width: 5, height: 27)
+            RoundedRectangle(cornerRadius: 1).frame(width: 4, height: 24)
+                .rotationEffect(.degrees(-7), anchor: .bottom)
+        }.frame(width: 27, height: 27)
+            .environment(\.layoutDirection, .leftToRight).accessibilityHidden(true)
     }
 }
 

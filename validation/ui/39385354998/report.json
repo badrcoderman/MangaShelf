@@ -1,0 +1,119 @@
+{
+  "run_id": 39385354998,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39385354998",
+  "artifact_id": 12246979653,
+  "source_commit": "9c763e66cce8a2e744b05aa6e92982446b3dbf69",
+  "xcode": "Xcode 26.3\nBuild version 17C529",
+  "simulator_sdk": "26.2",
+  "device_model": "iPhone 17 Pro",
+  "runtime_version": "26.2",
+  "built_app": {
+    "bundle_identifier": "app.mangashelf.reader",
+    "version": "0.5.0",
+    "build": "6",
+    "executable_sha256": "f9a66b4a0270859d7e5aa66281c1766d9b97027b2854be7c6a2f3f1ff1c712be"
+  },
+  "capture_gate": "passed",
+  "tests": {
+    "passed": 2,
+    "total": 2,
+    "failed": 0
+  },
+  "store": "new simulator; production empty store; no injected manga content",
+  "screenshots": [
+    {
+      "file": "msl-en-dark-01-library.png",
+      "test": "TabSnapshots/testEnglishDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 126881,
+      "sha256": "86baac641d0b44627dae6d9bb544a261d238b994579a235c5fe2af80c08109a1"
+    },
+    {
+      "file": "msl-en-dark-02-updates.png",
+      "test": "TabSnapshots/testEnglishDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 119550,
+      "sha256": "9366fa52d5b3a0040f4b5a2194eb27f6e89d945ae390f7de33980983bfbfcf91"
+    },
+    {
+      "file": "msl-en-dark-03-browse.png",
+      "test": "TabSnapshots/testEnglishDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 185641,
+      "sha256": "7492725915f6515eacaad57bf4e652758e862a3b242431e3a75197c68e5e37a0"
+    },
+    {
+      "file": "msl-en-dark-04-history.png",
+      "test": "TabSnapshots/testEnglishDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 114706,
+      "sha256": "e4dbefde8db6d19bea1f4837933671d0fdb6c96c5f5aac755be43555128843d7"
+    },
+    {
+      "file": "msl-en-dark-05-more.png",
+      "test": "TabSnapshots/testEnglishDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 178027,
+      "sha256": "1c40cb87b6570a64d9393a15ebcdce1928d432c41f3d56dd1db5b6d655f2a96d"
+    },
+    {
+      "file": "msl-ar-dark-01-library.png",
+      "test": "TabSnapshots/testArabicDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 126909,
+      "sha256": "3ab656bb1944f161d8fd4ac036fc47934a553b4946e38c39ded6e429639a6c01"
+    },
+    {
+      "file": "msl-ar-dark-02-updates.png",
+      "test": "TabSnapshots/testArabicDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 118985,
+      "sha256": "9700f5ab4d11cee9529e23911cc58d6540a3c19e68344d12078cfc0fc912b0ae"
+    },
+    {
+      "file": "msl-ar-dark-03-browse.png",
+      "test": "TabSnapshots/testArabicDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 172374,
+      "sha256": "b41822bd7d219ca970efdd72566e227fe33cc527066a084b4679cf4df9668baa"
+    },
+    {
+      "file": "msl-ar-dark-04-history.png",
+      "test": "TabSnapshots/testArabicDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 115830,
+      "sha256": "d50aaecbdca91d682c023e76cb71e7697ea70387962be6a46224b3a2dc0b8d9e"
+    },
+    {
+      "file": "msl-ar-dark-05-more.png",
+      "test": "TabSnapshots/testArabicDarkTabs()",
+      "width": 1206,
+      "height": 2622,
+      "bytes": 170078,
+      "sha256": "bd93b9e91673a1ab9fed7042449fcb957807a06ee9b0aaaef1cd8c30d3081841"
+    }
+  ],
+  "integrity": "All 10 PNG dimensions, sizes and SHA256 matched the original capture report.",
+  "visual_review_scope": [
+    "msl-en-dark-01-library.png",
+    "msl-en-dark-03-browse.png",
+    "msl-ar-dark-03-browse.png",
+    "msl-ar-dark-05-more.png"
+  ],
+  "visual_parity": "NOT PROVEN",
+  "remaining": [
+    "Reference device recordings and version identification",
+    "Light mode, settings, reader and populated content",
+    "Smaller phones, iPad and accessibility configurations",
+    "Real extension execution on physical iPhone"
+  ]
+}

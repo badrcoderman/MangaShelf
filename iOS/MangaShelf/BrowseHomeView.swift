@@ -3,19 +3,26 @@ import ReaderCore
 
 struct BrowseView: View {
     @Environment(\.locale) private var interfaceLocale
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var segment = 0
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 0) {
+            HStack(alignment: .bottom, spacing: 0) {
                 ForEach(Array([L10n.string("Sources"), L10n.string("Extensions"), L10n.string("Migrate")].enumerated()), id: \.offset) { index, title in
                     Button { segment = index } label: {
                         VStack(spacing: 14) {
                             Text(title).font(.subheadline)
+                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 1)
+                                .minimumScaleFactor(0.85)
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity).padding(.horizontal, 8)
                             UnevenRoundedRectangle(topLeadingRadius: 3, topTrailingRadius: 3)
                                 .fill(segment == index ? ShelfStyle.accent : .clear).frame(width: 34, height: 3)
                         }.foregroundStyle(segment == index ? ShelfStyle.accent : ShelfStyle.secondary)
-                            .frame(maxWidth: .infinity).padding(.top, 12).contentShape(Rectangle())
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 44)
+                            .padding(.top, 12).contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityAddTraits(segment == index ? .isSelected : [])
+                        .accessibilityIdentifier("browse.segment.\(index)")
                 }
             }.padding(.bottom, 12)
             if segment == 0 { AvailableSourcesView() }
