@@ -1,30 +1,67 @@
 #!/usr/bin/env python3
-"""Apply the reviewed Zero W^X fix to exactly the pinned OpenJDK source."""
+"""Apply reviewed Zero and Darwin link fixes to the pinned OpenJDK source."""
 import hashlib
 from pathlib import Path
 import sys
 
+PINNED_FILES = {
+    "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp": "8451f0f8bea69dbb16e6f26c1dbd4c7b3e96e39850206e5a0e91940bf030da08",
+    "make/autoconf/toolchain.m4": "699cc380f9d7a4ba5706f5110873be142fb0832a06f7343549f3b1dead05288a",
+    "make/autoconf/flags-cflags.m4": "1411da4d9dc6def3d2e9e97ff28a3aaa0e4d4b0915b0d3315a2a8afc5dd38cbc",
+    "make/common/native/Link.gmk": "0c6a92cf88b5d951435775faf360b66e94722bb79433bbcc3ed6df31cfe07896",
+}
 
-def main():
-    if len(sys.argv) != 2:
-        raise SystemExit("usage: prepare-ios-jvm-source.py OPENJDK_ROOT")
-    root = Path(__file__).resolve().parent.parent
-    source = Path(sys.argv[1]) / "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp"
-    original = source.read_bytes()
-    expected = "8451f0f8bea69dbb16e6f26c1dbd4c7b3e96e39850206e5a0e91940bf030da08"
-    if hashlib.sha256(original).hexdigest() != expected:
-        raise SystemExit("Refusing to patch a changed or already patched bsd_zero source")
-    compat = (root / "runtime-native/ios_jvm_compat.cpp").read_bytes()
-    (source.parent / "msl_ios_zero_compat.hpp").write_bytes(compat)
-    source.write_bytes(original + b"""
+def prepare(source_root, project_root):
+    # Validate every input before writing any file. A partially changed checkout
+    # must not receive just some of the fixes.
+    originals = {}
+    for name, expected in PINNED_FILES.items():
+        original = (source_root / name).read_bytes()
+        if hashlib.sha256(original).hexdigest() != expected:
+            raise ValueError(f"Refusing to patch changed or already patched source: {name}")
+        originals[name] = original
+    compat = (project_root / "runtime-native/ios_jvm_compat.cpp").read_bytes()
+    results = dict(originals)
+    zero = "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp"
+    results[zero] += b"""
 // MangaShelf: definitions absent from this pinned interpreter-only iOS port.
 #if defined(__IOS__) && defined(MACOS_AARCH64)
 #define MSL_OPENJDK_ZERO 1
 #define MSL_OPENJDK_ZERO_SOURCE 1
 #include "msl_ios_zero_compat.hpp"
 #endif
-""")
-    print("Applied source fix using the full upstream os.hpp declaration")
+"""
+    replacements = {
+        "make/autoconf/toolchain.m4": (
+            b'if test "x$OPENJDK_TARGET_OS" = xmacosx; then\n      SHARED_LIBRARY_SUFFIX',
+            b'if test "x$OPENJDK_TARGET_OS" = xmacosx || test "x$OPENJDK_TARGET_OS" = xios; then\n      SHARED_LIBRARY_SUFFIX',
+        ),
+        "make/autoconf/flags-cflags.m4": (
+            b'if test "x$OPENJDK_TARGET_OS" = xmacosx; then\n      # Linking is different on MacOSX',
+            b'if test "x$OPENJDK_TARGET_OS" = xmacosx || test "x$OPENJDK_TARGET_OS" = xios; then\n      # Apple platforms use Darwin dynamic-library flags.',
+        ),
+        "make/common/native/Link.gmk": (
+            b'ifeq ($(call isTargetOs, macosx), true)\n    SetSharedLibraryName',
+            b'ifeq ($(call isTargetOs, macosx ios), true)\n    SetSharedLibraryName',
+        ),
+    }
+    for name, (before, after) in replacements.items():
+        if results[name].count(before) != 1:
+            raise ValueError(f"Expected one reviewed replacement in {name}")
+        results[name] = results[name].replace(before, after)
+    for name, result in results.items():
+        (source_root / name).write_bytes(result)
+    (source_root / zero).with_name("msl_ios_zero_compat.hpp").write_bytes(compat)
+
+
+def main():
+    if len(sys.argv) != 2:
+        raise SystemExit("usage: prepare-ios-jvm-source.py OPENJDK_ROOT")
+    try:
+        prepare(Path(sys.argv[1]), Path(__file__).resolve().parent.parent)
+    except (ValueError, OSError) as error:
+        raise SystemExit(str(error)) from error
+    print("Applied pinned Zero definitions and Darwin library naming/link flags")
 
 
 if __name__ == "__main__":

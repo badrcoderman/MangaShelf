@@ -1,0 +1,27 @@
+{
+  "flag_branches_verified": true,
+  "vm_built": false,
+  "vm_executed": false,
+  "cases": [
+    {
+      "platform": "ios",
+      "shared_suffix": ".dylib",
+      "shared_flags": "-dynamiclib -compatibility_version 1.0.0 -current_version 1.0.0",
+      "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib"
+    },
+    {
+      "platform": "macosx",
+      "shared_suffix": ".dylib",
+      "shared_flags": "-dynamiclib -compatibility_version 1.0.0 -current_version 1.0.0",
+      "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib"
+    },
+    {
+      "platform": "linux",
+      "shared_suffix": ".so",
+      "shared_flags": "-shared",
+      "name_flags": "-Wl,-soname=libprobe.dylib"
+    }
+  ],
+  "changed_input_rejected_before_writes": true,
+  "repeat_patch_rejected": true
+}
