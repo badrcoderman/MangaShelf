@@ -1,0 +1,1427 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_navigation_layout_reader_navigation_layout.dart": "0834f2bcd2fbf83a1f5935f6fb2b4380e609e600aceaf9747c92207cfb3ac3d4",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_wrapper.dart": "21152c66f0cd7ef8f5d6ece1d35aec32fb144b7fa5a4c17a40397cf15b2f49b8",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_navigation_layout_layouts_edge_layout.dart": "9c722965b526fbb1e3246a14270b8e11326d8be8606127adff788a67518f95b9",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_navigation_layout_layouts_kindlish_layout.dart": "0c84e3aef4cf747ea76d09256edd33408e07d4d68da20bb0270c555df531c85f",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_navigation_layout_layouts_l_shaped_layout.dart": "48e987d386d5dbb2609297c65f0fe9e608ae00b4ac1b5a7a2e36a5180b54b047",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_navigation_layout_layouts_right_and_left_layout.dart": "64cfd9341038c130f4a39093a33abf1171a1b442893ace7abbdeedcd0c875975",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_widgets_reader_navigation_layout_tile_reader_navigation_layout_tile.dart": "690691a189f16cf8cee6234aba4077cf85680c424910ad4b82eddd1a7d852aed",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_widgets_reader_invert_tap_tile_reader_invert_tap_tile.dart": "f2de7e6ff2f42134184cc389a3564184a839768404fd130474e9fb515d24b5c1",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x38cf8": "readerNavigationLayout",
+    "0x38d20": "readerNavigationLayoutWebtoon",
+    "0x38de8": "invertTap",
+    "0x46410": "Tap zone temporarily disabled"
+  },
+  "scope": "Static tap layout and callback selection; no reference code executed",
+  "methods": [
+    {
+      "address": "0x394690",
+      "name": "InvertTap_build",
+      "purpose": "invertTap preference default",
+      "bytes": 84,
+      "instructions": 21,
+      "code_sha256": "e39ad8af10eb9d619a0255df4defe9bb81f6cf9b0cfa02fbb1e89bc40140ea7b",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3946c0",
+          "target": "0x391bb4"
+        },
+        {
+          "at": "0x3946d0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3946e0",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c40c8",
+      "name": "ReaderNavigationLayoutKey_build",
+      "purpose": "normal navigation preference default",
+      "bytes": 96,
+      "instructions": 24,
+      "code_sha256": "26d43d04af99581c13d4c55731f5d886ee1942cbc199b615aa2c0192d682f52c",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3c4104",
+          "target": "0x3c4178"
+        },
+        {
+          "at": "0x3c4114",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3c4124",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c4564",
+      "name": "ReaderNavigationLayoutWebtoonKey_build",
+      "purpose": "webtoon navigation preference fallback",
+      "bytes": 192,
+      "instructions": 48,
+      "code_sha256": "d6a4c6348cfcda8e1aba8aec255fc37812dfcdfe80ec55d3e80862edd9eda790",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x3c45b0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3c45cc",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3c4600",
+          "target": "0x3c4178"
+        },
+        {
+          "at": "0x3c4610",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3c4620",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3e1b0c",
+      "name": "ReaderView_build",
+      "purpose": "outer reader gesture and navigation overlay composition",
+      "bytes": 500,
+      "instructions": 125,
+      "code_sha256": "bfeadc7e6bd516edc8d980f1b749eaa2b4ea8299383f04356563da94dcb4a829",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3e1b40",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3e1b70",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3e1b98",
+          "target": "0x3e1d0c"
+        },
+        {
+          "at": "0x3e1bc8",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x3e1bd4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3e1bf4",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3e1c1c",
+          "target": "0x3e1d00"
+        },
+        {
+          "at": "0x3e1c7c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3e1c94",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3e1cb4",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x3e1cbc",
+          "target": "0x2e3a20"
+        },
+        {
+          "at": "0x3e1cf8",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3f81d8",
+      "name": "EdgeLayout_build",
+      "purpose": "Edge layout widget tree",
+      "bytes": 1088,
+      "instructions": 272,
+      "code_sha256": "08f5e1398212e65ffe6315e396b5798e899e853f3db3eb8331a158d5d4e5d159",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3f820c",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f822c",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f824c",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8250",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f827c",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8288",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f82bc",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f82dc",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x3f8308",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f834c",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f836c",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f838c",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8390",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f83bc",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f83c8",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f83f8",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8418",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f8434",
+          "target": "0x2e3a4c"
+        },
+        {
+          "at": "0x3f8498",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f84c0",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f84e0",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f8500",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8504",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8530",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f853c",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f856c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8594",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f85b0",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x3f8610",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3f8618",
+      "name": "KindlishLayout_build",
+      "purpose": "Kindlish layout widget tree",
+      "bytes": 916,
+      "instructions": 229,
+      "code_sha256": "b0ddfee831e8f9e33dd4d4ec524218d79073ad65e8703197af28077200dea619",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3f863c",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f865c",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x3f8688",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f86cc",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f86ec",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f870c",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8710",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f873c",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8748",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f878c",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f87ac",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f87cc",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f87d0",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f87fc",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8808",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8838",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8858",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f8874",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x3f88d8",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8908",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8928",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f8944",
+          "target": "0x2e3a4c"
+        },
+        {
+          "at": "0x3f89a4",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3f89ac",
+      "name": "LShapedLayout_build",
+      "purpose": "L-shaped layout widget tree",
+      "bytes": 1192,
+      "instructions": 298,
+      "code_sha256": "f1f83cf6585cff4de4b726b5f2ee354f94c4d56176d3af4e2156ab70970de432",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3f89d8",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f89f4",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f89f8",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8a24",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8a30",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8a64",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8a84",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f8aa4",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8aa8",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8ad4",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8ae0",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8b14",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8b34",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x3f8b60",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8ba4",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8bc4",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f8be4",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8be8",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8c14",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8c20",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8c50",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8c78",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f8c94",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x3f8cf8",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8d20",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f8d3c",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8d40",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8d6c",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8d78",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8da8",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f8dd0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f8dec",
+          "target": "0x2e3a4c"
+        },
+        {
+          "at": "0x3f8e4c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3f8e54",
+      "name": "RightAndLeftLayout_build",
+      "purpose": "RightAndLeft layout widget tree",
+      "bytes": 716,
+      "instructions": 179,
+      "code_sha256": "03b7f6570dba84ac0b655cea1387b987f6296af0df28682b489d826e9c2b65f7",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3f8e88",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8ea8",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f8ec8",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f8ecc",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f8ef8",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f8f04",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8f38",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8f58",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x3f8f84",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f8fc8",
+          "target": "0x2ef0dc"
+        },
+        {
+          "at": "0x3f8fe8",
+          "target": "0x305918"
+        },
+        {
+          "at": "0x3f9008",
+          "target": "0x30530c"
+        },
+        {
+          "at": "0x3f900c",
+          "target": "0x2e5094"
+        },
+        {
+          "at": "0x3f9038",
+          "target": "0x2e4650"
+        },
+        {
+          "at": "0x3f9044",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x3f9074",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x3f909c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x3f90b8",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x3f9118",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x506d7c",
+      "name": "ReaderNavigationLayoutWidget_build",
+      "purpose": "callback swapping, temporary suppression and layout selection",
+      "bytes": 2312,
+      "instructions": 578,
+      "code_sha256": "70ba32aa9308232081600603822f37d9c41cc7bc1f2e7374778e26d845d1834b",
+      "internal_branches": 34,
+      "direct_calls": [
+        {
+          "at": "0x506db4",
+          "target": "0x3e3a5c"
+        },
+        {
+          "at": "0x506dc0",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x506ddc",
+          "target": "0x4d68ec"
+        },
+        {
+          "at": "0x506dfc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x506e18",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x506e4c",
+          "target": "0x1ffe48"
+        },
+        {
+          "at": "0x506e64",
+          "target": "0x27e1d0"
+        },
+        {
+          "at": "0x506e70",
+          "target": "0x188624"
+        },
+        {
+          "at": "0x506e94",
+          "target": "0x1ffe48"
+        },
+        {
+          "at": "0x506eac",
+          "target": "0x27e1d0"
+        },
+        {
+          "at": "0x506eb8",
+          "target": "0x188624"
+        },
+        {
+          "at": "0x506ed8",
+          "target": "0x27e3e0"
+        },
+        {
+          "at": "0x506ef4",
+          "target": "0x27e1d0"
+        },
+        {
+          "at": "0x506f00",
+          "target": "0x188624"
+        },
+        {
+          "at": "0x506f18",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x506f24",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x506f44",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x506f60",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x506f94",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x506fd0",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x506fdc",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x506ff8",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x50709c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5070d8",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x5070e4",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x507100",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x507124",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x507160",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x50716c",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x507188",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x5071d4",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x507210",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x50721c",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x507238",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x50725c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x507298",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x5072a4",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5072c0",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x507324",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x50733c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x50734c",
+          "target": "0x12c154"
+        },
+        {
+          "at": "0x50739c",
+          "target": "0x5076a8"
+        },
+        {
+          "at": "0x507408",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x507444",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x507450",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x50746c",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x507490",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5074cc",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x5074d8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5074f4",
+          "target": "0x2f6c2c"
+        },
+        {
+          "at": "0x507514",
+          "target": "0x50769c"
+        },
+        {
+          "at": "0x507588",
+          "target": "0x507690"
+        },
+        {
+          "at": "0x507608",
+          "target": "0x507684"
+        },
+        {
+          "at": "0x507660",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x507668",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x50766c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x507670",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x507674",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x507678",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x50767c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x507680",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 7
+    },
+    {
+      "address": "0x56db98",
+      "name": "ReaderInvertTapTile_build",
+      "purpose": "invert tap settings and shared provider",
+      "bytes": 564,
+      "instructions": 141,
+      "code_sha256": "44a90ef0c516e644b5d3845bc5ba2234b2bc22821d7a3c290fd8ff488379e59e",
+      "internal_branches": 14,
+      "direct_calls": [
+        {
+          "at": "0x56dbc0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x56dbf8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x56dc2c",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x56dc6c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x56dc8c",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x56dca8",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x56dcb8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x56dce4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x56dd00",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x56dd34",
+          "target": "0x3f0404"
+        },
+        {
+          "at": "0x56ddc0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x56ddc8",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x3c4104",
+      "meaning": "normal preference initialized with disabled default",
+      "verified": true
+    },
+    {
+      "at": "0x3c45d4",
+      "meaning": "webtoon inherits available normal setting",
+      "verified": true
+    },
+    {
+      "at": "0x3c4600",
+      "meaning": "webtoon has separate persisted key",
+      "verified": true
+    },
+    {
+      "at": "0x3946c0",
+      "meaning": "invertTap boolean preference initialization",
+      "verified": true
+    },
+    {
+      "at": "0x3e1b70",
+      "meaning": "outer GestureDetector",
+      "verified": true
+    },
+    {
+      "at": "0x3e1b98",
+      "meaning": "navigation widget allocation",
+      "verified": true
+    },
+    {
+      "at": "0x50702c",
+      "meaning": "test continuousHorizontalRTL",
+      "verified": true
+    },
+    {
+      "at": "0x507074",
+      "meaning": "RightAndLeft chooses mode branch",
+      "verified": true
+    },
+    {
+      "at": "0x50707c",
+      "meaning": "other layouts use invertTap",
+      "verified": true
+    },
+    {
+      "at": "0x507080",
+      "meaning": "non RightAndLeft normal ordering",
+      "verified": true
+    },
+    {
+      "at": "0x507084",
+      "meaning": "RightAndLeft LTR normal ordering",
+      "verified": true
+    },
+    {
+      "at": "0x50733c",
+      "meaning": "watch temporary tap-zone suppression",
+      "verified": true
+    },
+    {
+      "at": "0x507340",
+      "meaning": "continue only while suppression is false",
+      "verified": true
+    },
+    {
+      "at": "0x50737c",
+      "meaning": "zero or negative index returns empty overlay",
+      "verified": true
+    },
+    {
+      "at": "0x50739c",
+      "meaning": "index one allocates LShapedLayout",
+      "verified": true
+    },
+    {
+      "at": "0x507514",
+      "meaning": "index two allocates RightAndLeftLayout",
+      "verified": true
+    },
+    {
+      "at": "0x507588",
+      "meaning": "index three allocates EdgeLayout",
+      "verified": true
+    },
+    {
+      "at": "0x507608",
+      "meaning": "index four allocates KindlishLayout",
+      "verified": true
+    },
+    {
+      "at": "0x3f827c",
+      "meaning": "Edge first outer callback zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f83bc",
+      "meaning": "Edge center lower callback zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8530",
+      "meaning": "Edge last outer callback zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f873c",
+      "meaning": "Kindlish lower first callback zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f87fc",
+      "meaning": "Kindlish lower second callback zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8a24",
+      "meaning": "LShaped upper zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8ad4",
+      "meaning": "LShaped middle first zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8c14",
+      "meaning": "LShaped middle last zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8d6c",
+      "meaning": "LShaped lower zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f8ef8",
+      "meaning": "RightAndLeft first zone",
+      "verified": true
+    },
+    {
+      "at": "0x3f9038",
+      "meaning": "RightAndLeft last zone",
+      "verified": true
+    },
+    {
+      "at": "0x3946b4",
+      "meaning": "invertTap defaults to Dart false",
+      "verified": true
+    },
+    {
+      "at": "0x3f81f4",
+      "meaning": "Edge outer callback B",
+      "verified": true
+    },
+    {
+      "at": "0x3f8310",
+      "meaning": "Edge center upper gap flex two",
+      "verified": true
+    },
+    {
+      "at": "0x3f8334",
+      "meaning": "Edge center lower callback A",
+      "verified": true
+    },
+    {
+      "at": "0x3f83d0",
+      "meaning": "Edge center lower flex one",
+      "verified": true
+    },
+    {
+      "at": "0x3f8634",
+      "meaning": "Kindlish upper gap label",
+      "verified": true
+    },
+    {
+      "at": "0x3f8690",
+      "meaning": "Kindlish upper gap flex one",
+      "verified": true
+    },
+    {
+      "at": "0x3f86b4",
+      "meaning": "Kindlish lower first callback A",
+      "verified": true
+    },
+    {
+      "at": "0x3f8774",
+      "meaning": "Kindlish lower second callback B",
+      "verified": true
+    },
+    {
+      "at": "0x3f8810",
+      "meaning": "Kindlish lower B width flex two",
+      "verified": true
+    },
+    {
+      "at": "0x3f88e0",
+      "meaning": "Kindlish lower row height flex two",
+      "verified": true
+    },
+    {
+      "at": "0x3f89c8",
+      "meaning": "LShaped upper callback A",
+      "verified": true
+    },
+    {
+      "at": "0x3f8a38",
+      "meaning": "LShaped upper height flex one",
+      "verified": true
+    },
+    {
+      "at": "0x3f8a5c",
+      "meaning": "LShaped middle first label A",
+      "verified": true
+    },
+    {
+      "at": "0x3f8b8c",
+      "meaning": "LShaped middle last callback B",
+      "verified": true
+    },
+    {
+      "at": "0x3f8d80",
+      "meaning": "LShaped lower height flex one",
+      "verified": true
+    },
+    {
+      "at": "0x3f8e70",
+      "meaning": "RightAndLeft first callback A",
+      "verified": true
+    },
+    {
+      "at": "0x3f8f8c",
+      "meaning": "RightAndLeft gap width flex one",
+      "verified": true
+    },
+    {
+      "at": "0x3f8fb0",
+      "meaning": "RightAndLeft last callback B",
+      "verified": true
+    },
+    {
+      "at": "0x506f28",
+      "meaning": "read shared static field table",
+      "verified": true
+    },
+    {
+      "at": "0x506f2c",
+      "meaning": "read invertTap shared provider",
+      "verified": true
+    },
+    {
+      "at": "0x56dccc",
+      "meaning": "settings read identical invertTap provider",
+      "verified": true
+    },
+    {
+      "at": "0x507088",
+      "meaning": "swapped first callback uses original second",
+      "verified": true
+    },
+    {
+      "at": "0x5071c0",
+      "meaning": "normal first callback uses original first",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 10,
+    "instructions": 1915,
+    "code_bytes": 7660,
+    "anchors": 53
+  },
+  "limits": [
+    "Not a runtime, gesture-arena or UI geometry test",
+    "Not original source recovery",
+    "Outer callback semantic names and inherited physical Directionality remain open",
+    "Does not trace all pointer, double-tap, long-press or zoom behavior",
+    "No production reader changes"
+  ],
+  "verified_enum_markers": {
+    "0x15cd0": {
+      "index": 2,
+      "name": "rightAndLeft"
+    },
+    "0x15cb8": {
+      "index": 5,
+      "name": "disabled"
+    },
+    "0x25c48": {
+      "index": 0,
+      "name": "defaultNavigation"
+    },
+    "0x18d18": {
+      "index": 3,
+      "name": "singleHorizontalRTL"
+    },
+    "0x18d28": {
+      "index": 5,
+      "name": "continuousHorizontalRTL"
+    },
+    "0xb580": {
+      "index": 2,
+      "name": "translucent"
+    }
+  },
+  "analyst_derived_layouts": {
+    "1_LShaped": [
+      [
+        "A",
+        "A",
+        "A"
+      ],
+      [
+        "A",
+        "G",
+        "B"
+      ],
+      [
+        "B",
+        "B",
+        "B"
+      ]
+    ],
+    "2_RightAndLeft": [
+      [
+        "A",
+        "G",
+        "B"
+      ],
+      [
+        "A",
+        "G",
+        "B"
+      ],
+      [
+        "A",
+        "G",
+        "B"
+      ]
+    ],
+    "3_Edge": [
+      [
+        "B",
+        "G",
+        "B"
+      ],
+      [
+        "B",
+        "G",
+        "B"
+      ],
+      [
+        "B",
+        "A",
+        "B"
+      ]
+    ],
+    "4_Kindlish": [
+      [
+        "G",
+        "G",
+        "G"
+      ],
+      [
+        "A",
+        "B",
+        "B"
+      ],
+      [
+        "A",
+        "B",
+        "B"
+      ]
+    ]
+  },
+  "grid_legend": {
+    "A": "first callback field after selection",
+    "B": "second callback field after selection",
+    "G": "gap without layout-specific GestureDetector; final parent tap action not established",
+    "columns": "Row child order, not verified physical left-to-right screen coordinates",
+    "rows": "Column child order; equal thirds shown where applicable"
+  },
+  "analyst_derived_swap_table": [
+    {
+      "layout_index": 1,
+      "rtl_mode": false,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 1,
+      "rtl_mode": false,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 1,
+      "rtl_mode": true,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 1,
+      "rtl_mode": true,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 2,
+      "rtl_mode": false,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 2,
+      "rtl_mode": false,
+      "invertTap": true,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 2,
+      "rtl_mode": true,
+      "invertTap": false,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 2,
+      "rtl_mode": true,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 3,
+      "rtl_mode": false,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 3,
+      "rtl_mode": false,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 3,
+      "rtl_mode": true,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 3,
+      "rtl_mode": true,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 4,
+      "rtl_mode": false,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 4,
+      "rtl_mode": false,
+      "invertTap": true,
+      "callbacks_swapped": true
+    },
+    {
+      "layout_index": 4,
+      "rtl_mode": true,
+      "invertTap": false,
+      "callbacks_swapped": false
+    },
+    {
+      "layout_index": 4,
+      "rtl_mode": true,
+      "invertTap": true,
+      "callbacks_swapped": true
+    }
+  ]
+}

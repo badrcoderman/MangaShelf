@@ -77,7 +77,10 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def inspect(root):
+def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_markers=None, operand_anchors=()):
+    methods = METHODS if methods is None else methods
+    selected_anchors = ANCHORS if selected_anchors is None else selected_anchors
+    filenames = filenames or ("reader_controller_v2.dart", "double_page_reader_mode_v2.dart", "reader_setting_controller.dart")
     app = (root / "FlutterApp").read_bytes()
     if sha(app) != APP_SHA256:
         raise ValueError("Wrong reference App image")
@@ -100,9 +103,7 @@ def inspect(root):
         raise ValueError(f"Unmapped code: {address:x}")
 
     directory = root / "flutter-full/dae-export-single-cpu/dart"
-    files = [next(directory.glob("*" + name)) for name in (
-        "reader_controller_v2.dart", "double_page_reader_mode_v2.dart", "reader_setting_controller.dart"
-    )]
+    files = [next(directory.glob("*" + name)) for name in filenames]
     sections, hashes = {}, {}
     for file in files:
         hashes[file.name] = sha(file.read_bytes())
@@ -110,14 +111,14 @@ def inspect(root):
         for match in re.finditer(r"^// ([A-Za-z_][A-Za-z_0-9]*)\n// raw disassembly:\n(.*?)(?=^dynamic |\Z)", file.read_text(), re.M | re.S):
             instructions = [(int(a, 16), m, o.strip()) for a, m, o in re.findall(
                 r"^//  (0x[0-9a-f]+): ([a-z0-9.]+)[ \t]*(.*?)$", match[2], re.M)]
-            if instructions and instructions[0][0] in METHODS:
+            if instructions and instructions[0][0] in methods:
                 sections[instructions[0][0]] = (match[1], instructions)
-    if set(sections) != set(METHODS):
+    if set(sections) != set(methods):
         raise ValueError("Missing selected disassembly")
     pool_file = root / "flutter-full/dae-export-single-cpu/text/pp.txt"
     pool = pool_file.read_text()
     hashes["../text/pp.txt"] = sha(pool_file.read_bytes())
-    pool_markers = {"0x13e8": "#", "0x18e18": "/manga", "0x1a880": "/chapter/",
+    pool_markers = pool_markers if pool_markers is not None else {"0x13e8": "#", "0x18e18": "/manga", "0x1a880": "/chapter/",
                     "0x260f8": "/page/", "0x32bd0": "[Reader2] skipFirstPage:",
                     "0x32bd8": ", singlePageSet:"}
     for offset, literal in pool_markers.items():
@@ -149,15 +150,20 @@ def inspect(root):
                     branches += 1
                     if machine_target not in addresses:
                         raise ValueError(f"Unreviewed branch outside function at {address:x}")
-        records.append({"address": hex(start), "name": name, "purpose": METHODS[start],
+        records.append({"address": hex(start), "name": name, "purpose": methods[start],
                         "bytes": size, "instructions": len(machine), "code_sha256": sha(code),
                         "internal_branches": branches, "direct_calls": direct_calls,
                         "indirect_calls": sum(i.mnemonic == "blr" for i in machine)})
     anchors = []
-    for address, mnemonic, target, meaning in ANCHORS:
+    for address, mnemonic, target, meaning in selected_anchors:
         ins = decoded[address]
         if ins.mnemonic != mnemonic or (target is not None and int(ins.op_str.rsplit("#", 1)[1], 0) != target):
             raise ValueError(f"Anchor mismatch at {address:x}")
+        anchors.append({"at": hex(address), "meaning": meaning, "verified": True})
+    for address, mnemonic, operands, meaning in operand_anchors:
+        ins = decoded[address]
+        if ins.mnemonic != mnemonic or ins.op_str != operands:
+            raise ValueError(f"Operand anchor mismatch at {address:x}")
         anchors.append({"at": hex(address), "meaning": meaning, "verified": True})
     return {"format": 1, "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
             "image_sha256": APP_SHA256, "export_files_sha256": hashes,
