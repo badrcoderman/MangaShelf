@@ -113,6 +113,12 @@ CoreFoundation ويستدعيها، بينما يحتوي استدعاء `BUILD_
 بـmacOS فقط رغم وجود تنفيذ Apple ذي فروع iOS ضمن المدخلات. وُسّع هذا الشرط
 إلى `macosx ios`. اجتاز فحص Make؛ إعادة البناء بـSDK Apple مطلوبة بعد هذا التعديل.
 
+بدأت المحاولة
+[39645343405](https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405)
+عند `9fa7b57` بعد تصحيح اختيار libjli. الحالة عند تسجيل المتابعة جارية؛
+[لقطة الرصد](../validation/ios-jvm-image-39645343405.json) تفصلها عن نجاح البناء
+أو تشغيل المحرك على iPhone.
+
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.
 2. إنتاج IPA منفصلة غير موقعة لتجربة VM وJAR مؤلف في المشروع، وفحص محتوياتها.

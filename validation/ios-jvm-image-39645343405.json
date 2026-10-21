@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-21T17:37:36.145421+00:00",
+  "run_id": 39645343405,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405",
+  "source_commit": "9fa7b573c6a055841edc3a93d718dfc63e8889f3",
+  "created_at": "2026-10-21T17:36:47Z",
+  "status": "in_progress",
+  "conclusion": null,
+  "active_steps": [
+    "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+  ],
+  "change": "Exclude generic Unix java_md.c from iOS libjli; retain CoreFoundation and Darwin fixes",
+  "local_source_checks": "validation/ios-jvm-source-fixes.json",
+  "complete_java_image_verified": false,
+  "target_vm_executed": false,
+  "real_extension_on_iphone_verified": false,
+  "scope": "Live CI snapshot only; no build or device success is asserted."
+}

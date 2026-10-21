@@ -57,8 +57,9 @@
 آخر متابعة للمحرك: انتهت [39641238252](https://github.com/badrcoderman/MangaShelf/actions/runs/39641238252)
 بالفشل عند libjli بسبب تكرار 10 رموز بين ملفي منصة Unix وApple، بعد نجاح
 المضيف والمكتبات الساكنة وغياب خطأ CoreFoundation السابق. صُحح استبعاد
-java_md.c العام على iOS؛ اجتاز فحص فروع Make وينتظر إعادة بناء SDK.
-لم يُثبت تشغيل VM أو إضافة على iPhone بعد.
+java_md.c العام على iOS؛ اجتاز فحص فروع Make وبدأت إعادة البناء
+في [39645343405](https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405)
+عند `9fa7b57` (جارٍ وقت التحديث). لم يُثبت تشغيل VM أو إضافة على iPhone بعد.
 
 - [ ] **ENG-01:** بناء JVM من مصدر مثبت ومراجعة رخصه وتبعياته لـARM64 iOS؛ إثبات بدء المحرك وإيقافه وتحميل fixture مستقل على iPhone.
 - [ ] **ENG-02:** ربط بدء `ms_java_*` مع dispatcher في `ms_bridge_*` في مسار إنتاج واحد، ثم اختباره من Swift حتى Java والعودة.
