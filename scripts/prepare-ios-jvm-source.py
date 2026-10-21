@@ -64,6 +64,14 @@ def prepare(source_root, project_root):
         if results[name].count(before) != 1:
             raise ValueError(f"Expected one reviewed replacement in {name}")
         results[name] = results[name].replace(before, after)
+    # Darwin's launcher implementation also has explicit __IOS__ branches.
+    # Compiling the generic Unix java_md.c beside it defines ten symbols twice.
+    core = "make/modules/java.base/lib/CoreLibraries.gmk"
+    before = b'ifeq ($(call isTargetOs, macosx), true)\n  LIBJLI_EXCLUDE_FILES += java_md.c\nendif'
+    after = b'ifeq ($(call isTargetOs, macosx ios), true)\n  LIBJLI_EXCLUDE_FILES += java_md.c\nendif'
+    if results[core].count(before) != 1:
+        raise ValueError("Expected one reviewed libjli platform exclusion")
+    results[core] = results[core].replace(before, after)
     for name, result in results.items():
         (source_root / name).write_bytes(result)
     (source_root / zero).with_name("msl_ios_zero_compat.hpp").write_bytes(compat)
@@ -76,7 +84,7 @@ def main():
         prepare(Path(sys.argv[1]), Path(__file__).resolve().parent.parent)
     except (ValueError, OSError) as error:
         raise SystemExit(str(error)) from error
-    print("Applied pinned Zero definitions, Darwin link flags and iOS libjava CoreFoundation")
+    print("Applied pinned Zero definitions, Darwin link flags, iOS libjava CoreFoundation and libjli selection")
 
 
 if __name__ == "__main__":

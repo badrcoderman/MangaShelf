@@ -30,6 +30,9 @@ def check(pristine):
         for os in ['ios', 'macosx', 'linux']
     }
     assert baseline['ios'] == '', baseline
+    baseline_jli = {os: verify.libjli_exclusions(originals[core].decode(), os)
+                    for os in ['ios', 'macosx', 'linux']}
+    assert baseline_jli == {'ios': [], 'macosx': ['java_md.c'], 'linux': []}
     with tempfile.TemporaryDirectory(prefix='msl-jvm-source-') as directory:
         root = Path(directory)
 
@@ -64,7 +67,12 @@ def check(pristine):
         addition = b'    LIBS_ios := -framework CoreFoundation, \\\n'
         patched_core = (root / core).read_bytes()
         assert patched_core.count(addition) == 1
-        assert patched_core.replace(addition, b'') == originals[core]
+        old_jli = b'ifeq ($(call isTargetOs, macosx), true)\n  LIBJLI_EXCLUDE_FILES += java_md.c'
+        new_jli = b'ifeq ($(call isTargetOs, macosx ios), true)\n  LIBJLI_EXCLUDE_FILES += java_md.c'
+        assert patched_core.count(new_jli) == 1
+        assert patched_core.replace(addition, b'').replace(new_jli, old_jli) == originals[core]
+        assert all(verify.libjli_exclusions(patched_core.decode(), os) == baseline_jli[os]
+                   for os in ['macosx', 'linux'])
         before = snapshot()
         try:
             prepare.prepare(root, project)
@@ -81,13 +89,23 @@ def check(pristine):
             assert error.args == (('ios', ''),), error.args
         else:
             raise AssertionError('Missing iOS CoreFoundation accepted')
+        (root / core).write_bytes(patched_core.replace(new_jli, old_jli))
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert error.args == (('ios', []),), error.args
+        else:
+            raise AssertionError('Duplicate-producing iOS libjli source selection accepted')
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
         'repeat_patch_rejected': True,
         'missing_ios_corefoundation_rejected': True,
         'libjava_non_ios_branches_unchanged': True,
+        'missing_ios_libjli_exclusion_rejected': True,
+        'libjli_non_ios_branches_unchanged': True,
         'baseline_libjava_platform_libraries': baseline,
+        'baseline_libjli_exclusions': baseline_jli,
         'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
         'input_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in originals.items()},
     })

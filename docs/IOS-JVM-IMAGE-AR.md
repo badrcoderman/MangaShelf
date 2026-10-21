@@ -28,6 +28,9 @@ ld: unknown options: -soname=libjvm.so
      خيارات ELF مثل `-z,noexecstack` من مسار Apple.
    - ربط `libjava` على iOS بـCoreFoundation التي يستخدمها كود اللغة والتنسيق؛
      لا يضيف أطر macOS الأخرى إلى iOS ولا يغيّر خيارات المنصات الأخرى.
+   - استبعاد `java_md.c` العام من `libjli` على iOS كما على macOS؛ الملف
+     `java_md_macosx.m` يوفّر بالفعل تنفيذ Apple وفروع `__IOS__`، وإدراج
+     الملفين يكرر رموز المشغّل.
 2. يُبنى JDK أدوات المضيف **من المصدر المثبت نفسه** بإعداد macOS مستقل، ثم
    يمرر إلى configure الخاص بـiOS عبر `--with-build-jdk`. هذا يمنع الاعتماد
    على buildjdk-spec الذي يرث بعض قيم منصة الهدف في هذه المراجعة.
@@ -61,6 +64,9 @@ ld: unknown options: -soname=libjvm.so
   الأصلي: كان فرع iOS بلا مكتبات منصة وأصبح `-framework CoreFoundation`؛
   ظلت قائمة macOS كما هي واحتفظ Linux بـ`-ldl`. حذف الإصلاح مع إبقاء
   إصلاحات Darwin السابقة يجعل الفحص يفشل؛ لا يُكتفى بالبحث عن نص التصحيح.
+- تقييم شرط `LIBJLI_EXCLUDE_FILES` الفعلي بـMake لكل منصة: يختار iOS وmacOS
+  استبعاد `java_md.c`، ولا يغيّر Linux. إعادة الشرط القديم الخاص بـmacOS فقط
+  تفشل فحص iOS مع إبقاء إصلاح CoreFoundation؛ فُحص التصحيحان كل على حدة.
 - اجتاز سكربت البناء `bash -n`.
 
 النتيجة المحدودة: [ios-jvm-source-fixes.json](../validation/ios-jvm-source-fixes.json).
@@ -92,12 +98,20 @@ CoreFoundation ويستدعيها، بينما يحتوي استدعاء `BUILD_
 التشغيل، ولا يُستعمل artifact الفشل كإثبات تنفيذ. نجاح ربط SDK الفعلي ينتظر
 إعادة البناء بعد التصحيح.
 
-بدأت إعادة البناء في
+انتهت إعادة البناء في
 [39641238252](https://github.com/badrcoderman/MangaShelf/actions/runs/39641238252)
-عند `858a94e59d5952e4ee768744254f94af8b007ffa`؛ الحالة عند تسجيل المتابعة
-`in_progress` في خطوة بناء Zero، بعد تجهيز SDK والأدوات. هذه حالة جارية
-وليست نجاحًا للبناء؛ [لقطة الحالة](../validation/ios-jvm-image-39641238252.json)
-تحفظ وقت الرصد والـcommit دون إثبات تنفيذ على الجهاز.
+عند `858a94e59d5952e4ee768744254f94af8b007ffa` بالفشل. نجحت أدوات المضيف
+والمكتبات الساكنة، ولم يظهر خطأ رموز CoreFoundation السابق. توقف الربط هذه
+المرة عند `libjli.dylib` بسبب 10 رموز مكررة بين `java_md.o` و
+`java_md_macosx.o`، ومنها `LoadJavaVM` و`JVMInit`.
+[دليل المحاولة](../validation/ios-jvm-image-39641238252.json) يحفظ السبب
+والسجل وبصمته؛ لا يُستخدم artifact الفشل للهاتف.
+
+قُرئ مصدر
+[java_md_macosx.m](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/java.base/macosx/native/libjli/java_md_macosx.m)
+وفرع `LIBJLI_EXCLUDE_FILES` في CoreLibraries: استبعاد الملف العام كان خاصًا
+بـmacOS فقط رغم وجود تنفيذ Apple ذي فروع iOS ضمن المدخلات. وُسّع هذا الشرط
+إلى `macosx ios`. اجتاز فحص Make؛ إعادة البناء بـSDK Apple مطلوبة بعد هذا التعديل.
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

@@ -11,7 +11,10 @@
       "library_origin": "-Wl,-rpath,@loader_path/.",
       "executable_origin": "-Wl,-rpath,@loader_path/.",
       "stack_flags_with_probe_enabled": "",
-      "libjava_platform_libraries": "-framework CoreFoundation"
+      "libjava_platform_libraries": "-framework CoreFoundation",
+      "libjli_excluded_files": [
+        "java_md.c"
+      ]
     },
     {
       "platform": "macosx",
@@ -21,7 +24,10 @@
       "library_origin": "-Wl,-rpath,@loader_path/.",
       "executable_origin": "-Wl,-rpath,@loader_path/.",
       "stack_flags_with_probe_enabled": "",
-      "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration"
+      "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
+      "libjli_excluded_files": [
+        "java_md.c"
+      ]
     },
     {
       "platform": "linux",
@@ -31,7 +37,8 @@
       "library_origin": "-Wl,-z,origin -Wl,-rpath,\\$ORIGIN",
       "executable_origin": "-Wl,-rpath,\\$ORIGIN -Wl,--disable-new-dtags",
       "stack_flags_with_probe_enabled": "-Wl,-z,noexecstack",
-      "libjava_platform_libraries": "-ldl"
+      "libjava_platform_libraries": "-ldl",
+      "libjli_excluded_files": []
     }
   ],
   "changed_input_rejected_before_writes": true,
@@ -47,10 +54,19 @@
   "repeat_patch_rejected": true,
   "missing_ios_corefoundation_rejected": true,
   "libjava_non_ios_branches_unchanged": true,
+  "missing_ios_libjli_exclusion_rejected": true,
+  "libjli_non_ios_branches_unchanged": true,
   "baseline_libjava_platform_libraries": {
     "ios": "",
     "macosx": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
     "linux": "-ldl"
+  },
+  "baseline_libjli_exclusions": {
+    "ios": [],
+    "macosx": [
+      "java_md.c"
+    ],
+    "linux": []
   },
   "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
   "input_sha256": {

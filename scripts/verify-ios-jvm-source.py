@@ -65,6 +65,17 @@ all:
         input=makefile, text=True).strip()
 
 
+def libjli_exclusions(source, platform):
+    assignment = source.index('  LIBJLI_EXCLUDE_FILES += java_md.c')
+    start = source.rindex('\nifeq (', 0, assignment) + 1
+    end = source.index('\nendif', assignment) + len('\nendif')
+    makefile = 'isTargetOs = $(if $(filter $1,$(PLATFORM)),true,false)\n'
+    makefile += source[start:end] + '\n$(info $(strip $(LIBJLI_EXCLUDE_FILES)))\nall:\n\t@:\n'
+    return subprocess.check_output(
+        ['make', '--no-print-directory', '-s', '-f', '-', f'PLATFORM={platform}'],
+        input=makefile, text=True).strip().split()
+
+
 def verify(root):
     toolchain = (root / "make/autoconf/toolchain.m4").read_text()
     flags = (root / "make/autoconf/flags-cflags.m4").read_text()
@@ -85,6 +96,7 @@ def verify(root):
         executable_origin = make_flag(native, platform, 'SetExecutableOrigin')
         stack = stack_flags(ldflags, platform)
         java_flags = libjava_link_flags(core, flag_source, platform)
+        jli_excluded = libjli_exclusions(core, platform)
         expected_java_flags = {
             'ios': '-framework CoreFoundation',
             'macosx': '-framework CoreFoundation -framework Foundation -framework SystemConfiguration',
@@ -92,6 +104,7 @@ def verify(root):
         }
         assert java_flags == expected_java_flags[platform], (platform, java_flags)
         apple = platform in ["ios", "macosx"]
+        assert jli_excluded == (['java_md.c'] if apple else []), (platform, jli_excluded)
         assert suffix == (".dylib" if apple else ".so"), (platform, suffix)
         assert ("-dynamiclib" in shared_flags) == apple, (platform, shared_flags)
         assert name_flags == ("-Wl,-install_name,@rpath/libprobe.dylib" if apple
@@ -106,7 +119,8 @@ def verify(root):
                         "shared_flags": shared_flags, "name_flags": name_flags,
                         "library_origin": library_origin, "executable_origin": executable_origin,
                         "stack_flags_with_probe_enabled": stack,
-                        "libjava_platform_libraries": java_flags})
+                        "libjava_platform_libraries": java_flags,
+                        "libjli_excluded_files": jli_excluded})
     return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}
 
 

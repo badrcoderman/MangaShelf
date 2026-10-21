@@ -105,6 +105,7 @@ manifest = {
     'darwin_dynamic_library_fix': True, 'build_jdk': 'same-source native macOS host tools',
     'darwin_origin_fix': True,
     'ios_libjava_corefoundation_fix': True,
+    'ios_libjli_platform_source_fix': True,
     'sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
 }
 (root / 'build-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')

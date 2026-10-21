@@ -1,18 +1,36 @@
 {
-  "observed_at": "2026-10-21T17:12:20.828121+00:00",
+  "observed_at": "2026-10-21T17:35:54.832761+00:00",
   "run_id": 39641238252,
   "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39641238252",
   "source_commit": "858a94e59d5952e4ee768744254f94af8b007ffa",
   "created_at": "2026-10-21T17:09:19Z",
-  "status": "in_progress",
-  "conclusion": null,
-  "active_steps": [
-    "Build iOS Zero runtime"
-  ],
+  "status": "completed",
+  "conclusion": "failure",
+  "active_steps": [],
   "change": "Link iOS libjava with CoreFoundation, pinned source patch and upstream Make branch verification",
   "local_source_checks": "validation/ios-jvm-source-fixes.json",
   "complete_java_image_verified": false,
   "target_vm_executed": false,
   "real_extension_on_iphone_verified": false,
-  "scope": "Live CI snapshot only; no build, device, or real-extension success is asserted."
+  "scope": "Terminal CI failure. Host tools and static libraries built; complete Java image, iPhone probe and real extensions remain unverified.",
+  "host_jdk_image_built": true,
+  "ios_static_libraries_built": true,
+  "failing_target": "legacy-jre-image / java.base libjli.dylib",
+  "cause": "Both generic Unix java_md.c and Darwin java_md_macosx.m were compiled for iOS, producing ten duplicate launcher symbols",
+  "duplicate_symbols": [
+    "ProcessPlatformOption",
+    "PostJVMInit",
+    "CreateExecutionEnvironment",
+    "CallJavaMainInNewThread",
+    "SplashProcAddress",
+    "JVMInit",
+    "RegisterThread",
+    "SetExecname",
+    "LoadJavaVM",
+    "GetExecName"
+  ],
+  "corefoundation_unresolved_error_observed": false,
+  "log_file": "build/ios-jvm-failed-39641238252.log",
+  "log_sha256": "864fe3e74c00b475e246b74eab35007010c8149fd1e868546cf14033315c9530",
+  "failed_artifact_used_for_device": false
 }
