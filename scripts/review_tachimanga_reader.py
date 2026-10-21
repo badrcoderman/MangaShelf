@@ -77,7 +77,8 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_markers=None, operand_anchors=()):
+def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_markers=None, operand_anchors=(),
+            allowed_external_branches=()):
     methods = METHODS if methods is None else methods
     selected_anchors = ANCHORS if selected_anchors is None else selected_anchors
     filenames = filenames or ("reader_controller_v2.dart", "double_page_reader_mode_v2.dart", "reader_setting_controller.dart")
@@ -108,7 +109,7 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
     for file in files:
         hashes[file.name] = sha(file.read_bytes())
         # Read only the disassembly comment sections, never execute pseudocode.
-        for match in re.finditer(r"^// ([A-Za-z_][A-Za-z_0-9]*)\n// raw disassembly:\n(.*?)(?=^dynamic |\Z)", file.read_text(), re.M | re.S):
+        for match in re.finditer(r"^// ([A-Za-z_$][A-Za-z_0-9$]*)\n// raw disassembly:\n(.*?)(?=^dynamic |\Z)", file.read_text(), re.M | re.S):
             instructions = [(int(a, 16), m, o.strip()) for a, m, o in re.findall(
                 r"^//  (0x[0-9a-f]+): ([a-z0-9.]+)[ \t]*(.*?)$", match[2], re.M)]
             if instructions and instructions[0][0] in methods:
@@ -126,7 +127,7 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
         if expected not in pool.splitlines():
             raise ValueError(f"Pool marker mismatch at {offset}")
     decoder = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
-    decoded, records = {}, []
+    decoded, records, external_branches = {}, [], []
     for start, (name, exported) in sorted(sections.items()):
         size = exported[-1][0] + 4 - start
         code = code_at(start, size)
@@ -147,9 +148,12 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
                 if mnemonic == "bl":
                     direct_calls.append({"at": hex(address), "target": hex(machine_target)})
                 else:
-                    branches += 1
                     if machine_target not in addresses:
-                        raise ValueError(f"Unreviewed branch outside function at {address:x}")
+                        if machine_target not in allowed_external_branches:
+                            raise ValueError(f"Unreviewed branch outside function at {address:x}")
+                        external_branches.append({"at": hex(address), "target": hex(machine_target)})
+                    else:
+                        branches += 1
         records.append({"address": hex(start), "name": name, "purpose": methods[start],
                         "bytes": size, "instructions": len(machine), "code_sha256": sha(code),
                         "internal_branches": branches, "direct_calls": direct_calls,
@@ -165,7 +169,7 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
         if ins.mnemonic != mnemonic or ins.op_str != operands:
             raise ValueError(f"Operand anchor mismatch at {address:x}")
         anchors.append({"at": hex(address), "meaning": meaning, "verified": True})
-    return {"format": 1, "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+    result = {"format": 1, "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
             "image_sha256": APP_SHA256, "export_files_sha256": hashes,
             "capstone_version": capstone_version, "verified_pool_markers": pool_markers,
             "scope": "Static reader pairing and progress contracts; no reference code executed",
@@ -175,6 +179,10 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
             "limits": ["No runtime or UI equivalence test", "Not original source recovery",
                        "No proof for all gestures or all indirect-call targets",
                        "No production reader changes in this analysis step"]}
+    if allowed_external_branches:
+        result["allowed_external_branch_targets"] = [hex(a) for a in allowed_external_branches]
+        result["external_branches"] = external_branches
+    return result
 
 
 if __name__ == "__main__":

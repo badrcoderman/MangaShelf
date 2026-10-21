@@ -1,0 +1,5447 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_settings_presentation_settings_settings_screen.dart": "677b206669e92b343b0467a2d93dac0deabe0280106b5720c7fa96d0f7faf044",
+    "tachidesk_sorayomi_src_features_settings_presentation_general_general_screen.dart": "c3eae17814b12b8b972d2805bf614c94fba5bed54bf9415355002785571b6d1b",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_appearance_screen.dart": "ff6b0b763ca3dd3eff63315dbf37efc41ef4f0f02ceb9374da91a10d22d9e10f",
+    "tachidesk_sorayomi_src_features_settings_presentation_library_library_settings_screen.dart": "854088db940d4d484037c3958309dfb20c6a23318d5d0667cc5ea9c045bc32a2",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_reader_settings_screen.dart": "6be268c6393ab3553f209edfb649e7c8bc4c1410a999f31dbb126277ef957b79",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_reader_tap_zones_settings_screen.dart": "2515b06d0acf9276c58477457c692a450d728f67e7653814c3a4765e23bb69a4",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_reader_toolbar_settings_screen.dart": "beb727016034ddc1d330475cdf61f0ff1a13d06710d20d1233bc6e1abb0fe0c7",
+    "tachidesk_sorayomi_src_features_settings_presentation_reader_widgets_reader_advanced_setting_reader_advanced_screen.dart": "5f66f4e01c92eeb650902cda135f46d7116bfde6753d80cc687983ca813a5290",
+    "tachidesk_sorayomi_src_features_settings_presentation_downloads_download_setting_screen.dart": "693cf942293d7c6612a4ab9a6e41ae08fa973ef1bed5d90382ac4936fa0ed9c2",
+    "tachidesk_sorayomi_src_features_settings_presentation_security_security_setting_screen.dart": "e4092177b904339a89bdcd8c0498622801ce86b6ee59f994b67e68238ad327c2",
+    "tachidesk_sorayomi_src_features_settings_presentation_browse_browse_settings_screen.dart": "b9324b23253ddbbbca9c9943cd7e7db3070841430f10b4d942b4ea6cda063202",
+    "tachidesk_sorayomi_src_features_settings_presentation_advanced_advanced_screen.dart": "8cac59d7bc98a7f20784d6d44c5397c4a6566a599b7f5c3fce619c5ba483a1b7",
+    "tachidesk_sorayomi_src_features_settings_presentation_storage_storage_screen.dart": "33d3df429b6a8266bc6e618d202931fba4a179e8f9ef95c32e086c77ddce3929",
+    "tachidesk_sorayomi_src_features_settings_presentation_tracking_tracker_settings_screen.dart": "addf80bce24cd582b0b239350937e4ac2e2660d99ea722cf3e42ff26833c50ee",
+    "tachidesk_sorayomi_src_features_settings_presentation_backup2_backup_screen_v2.dart": "e52fbd8de4e03ad95da110024fbc5c45c3595a730e2d0a091f74eac5f5fd04bf",
+    "tachidesk_sorayomi_src_features_settings_presentation_backup2_controller_backup_controller.dart": "2628af64b76cdc8b38b891e7ffe2a05538574f90d0c6bd08332353ca8e706b83",
+    "tachidesk_sorayomi_src_features_settings_presentation_backup2_controller_auto_backup_controller.dart": "a68598d8336c15be6c145cd8121153e5cb7f220bdad811430530a93887c1ac39",
+    "tachidesk_sorayomi_src_global_providers_global_providers.dart": "1d2ba1c1c3d2a9663a8f64278084c160dc52692db6e458d8743ec8c40b316ab1",
+    "tachidesk_sorayomi_src_features_settings_presentation_backup2_widgets_auto_backup_frequency_tile.dart": "0d5d6ba7b62bcd520f2d3596773a88fa33cb6acb25012e1837591a1516839eb5",
+    "tachidesk_sorayomi_src_features_settings_presentation_backup2_widgets_auto_backup_limit_tile.dart": "54fdb10fda431ecd7f3c47ee18781144d905cef968e99798fd1ce7b79b28d035",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9",
+    "../text/objs.txt": "193b8c8a53ce1c49a08f068a4f33167698aa8c9cb0298f6e867e34f5bf6a5d6e",
+    "app-pool-references.json": "004b9f270d3862b297f46af12d1a2d8266ea5f65d801d71831a2d7c83bdc88e9"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x38b88": "autoBackupLimit",
+    "0x38b60": "autoBackupFrequency",
+    "0x17638": "autoBackup",
+    "0x175d0": "BACKUP:RESTORE",
+    "0x113d8": ".zip",
+    "0x113e0": ".tmb",
+    "0x17698": "Tachimanga"
+  },
+  "scope": "Settings page constant-control inventory and selected backup UI/default contracts",
+  "methods": [
+    {
+      "address": "0x393df4",
+      "name": "AutoBackup_build",
+      "purpose": "autoBackup preference default, separate from frequency",
+      "bytes": 84,
+      "instructions": 21,
+      "code_sha256": "da807ebd40aebc73013e39b28a88217195856286899157744f80550f7c6c9677",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x393e24",
+          "target": "0x391bb4"
+        },
+        {
+          "at": "0x393e34",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x393e44",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3974f8",
+      "name": "InstallLocalCount_$InstallLocalCount_SharedPreferenceClientMixin_initialize",
+      "purpose": "shared integer preference initialization and fallback",
+      "bytes": 428,
+      "instructions": 107,
+      "code_sha256": "6b5d52eeff58005529d13e098978a75351fb85929e94b849b93a57a1f30040e4",
+      "internal_branches": 12,
+      "direct_calls": [
+        {
+          "at": "0x39753c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x397554",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x39757c",
+          "target": "0x3b1cc"
+        },
+        {
+          "at": "0x3975a0",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x3975c0",
+          "target": "0x3b1cc"
+        },
+        {
+          "at": "0x3975e4",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x397604",
+          "target": "0x3b1cc"
+        },
+        {
+          "at": "0x397630",
+          "target": "0x3b1cc"
+        },
+        {
+          "at": "0x397660",
+          "target": "0x3b1cc"
+        },
+        {
+          "at": "0x397670",
+          "target": "0x397880"
+        },
+        {
+          "at": "0x397678",
+          "target": "0x3976a4"
+        },
+        {
+          "at": "0x39769c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x397e30",
+      "name": "AutoBackupLimit_build",
+      "purpose": "retention default and persisted key",
+      "bytes": 84,
+      "instructions": 21,
+      "code_sha256": "cf49394ac8e828e878a560d57b536b033aae585c3db80ad412079dbae0fbb412",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x397e60",
+          "target": "0x3974f8"
+        },
+        {
+          "at": "0x397e70",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x397e80",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c239c",
+      "name": "AutoBackupFrequency_build",
+      "purpose": "frequency preference default and persisted key",
+      "bytes": 96,
+      "instructions": 24,
+      "code_sha256": "576f7090f8c21cb52fdbaceeba28f37638c0eee2b2da9d984a9cacbe0efc5d65",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3c23d8",
+          "target": "0x3c2470"
+        },
+        {
+          "at": "0x3c23e8",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3c23f8",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c2470",
+      "name": "AutoBackupFrequency_$AutoBackupFrequency_SharedPreferenceEnumClientMixin_initialize",
+      "purpose": "shared enum preference initialization",
+      "bytes": 248,
+      "instructions": 62,
+      "code_sha256": "45aeac13185c327384733d36cae74a9ccdb7c8a34f16908ec36c9e4bd8bc7f2d",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x3c24bc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3c24d4",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3c24f4",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x3c2514",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x3c2534",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x3c2548",
+          "target": "0x3c2668"
+        },
+        {
+          "at": "0x3c2550",
+          "target": "0x3c2568"
+        },
+        {
+          "at": "0x3c2560",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x4b3f18",
+      "name": "AutoBackupLimitTile_anon_closure",
+      "purpose": "retention selection options array",
+      "bytes": 316,
+      "instructions": 79,
+      "code_sha256": "2ee7586ec5cc49b7ad9e2c9f58243860f965e89f624caaff135f91a7d28b0cdc",
+      "internal_branches": 5,
+      "direct_calls": [
+        {
+          "at": "0x4b3f40",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x4b3f5c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x4b3fd4",
+          "target": "0x8870b8"
+        },
+        {
+          "at": "0x4b3fdc",
+          "target": "0x3f1328"
+        },
+        {
+          "at": "0x4b4010",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x4b402c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x4b4048",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x4b4050",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x523980",
+      "name": "AppearanceScreen_build",
+      "purpose": "inventory of AppearanceScreen",
+      "bytes": 2820,
+      "instructions": 705,
+      "code_sha256": "9d231f0231499cac043dabdbd46fe68bbab687480de944a9b31ddd07b0b408ab",
+      "internal_branches": 55,
+      "direct_calls": [
+        {
+          "at": "0x5239b0",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5239c0",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5239f0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523a0c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523a30",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x523a58",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523a70",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523aa0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523ab8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523ae8",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523b00",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523b30",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523b4c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523b7c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523b94",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523bc0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x523bd8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x523be4",
+          "target": "0x414b90"
+        },
+        {
+          "at": "0x523bf0",
+          "target": "0x49d380"
+        },
+        {
+          "at": "0x523ce8",
+          "target": "0x2033c4"
+        },
+        {
+          "at": "0x523d30",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x523d4c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x523d84",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x523d98",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x523db4",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x523dc4",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x523dd0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x523e08",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x523e24",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x523e54",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x523e84",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x523e9c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x523ebc",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x523ef0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x523f44",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x523f5c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x523f88",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x523fa0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x523fc0",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x523fcc",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x523ffc",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x524014",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x524034",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x524040",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x524078",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5240b4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x524100",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x524118",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x524158",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x524170",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x524190",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52419c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5241d4",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x524210",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52425c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x524274",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5242a8",
+          "target": "0x524490"
+        },
+        {
+          "at": "0x5242b4",
+          "target": "0x524484"
+        },
+        {
+          "at": "0x5242c0",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5242f4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52433c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x524350",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x524368",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x524388",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5243b4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5243ec",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x524400",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x524404",
+          "target": "0x432dcc"
+        },
+        {
+          "at": "0x524418",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x52444c",
+          "target": "0x35226c"
+        },
+        {
+          "at": "0x52446c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x524474",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x524478",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52447c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x524480",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 6
+    },
+    {
+      "address": "0x529644",
+      "name": "BackupScreenV2_build",
+      "purpose": "inventory of BackupScreenV2",
+      "bytes": 3048,
+      "instructions": 762,
+      "code_sha256": "f42b0e1962327cce996f48f6c217eeb2689d2d7aa6cf55a8c453a4ea46d7903c",
+      "internal_branches": 57,
+      "direct_calls": [
+        {
+          "at": "0x529674",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x529698",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5296bc",
+          "target": "0x3fe29c"
+        },
+        {
+          "at": "0x5296d8",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x5296f8",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x529720",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52973c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x529764",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x52978c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5297a8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5297cc",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5297f4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x529810",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x52983c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x529850",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x529878",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x529884",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5298a0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5298f8",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x529914",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52996c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x529988",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5299e0",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5299fc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x529a54",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x529a64",
+          "target": "0x1199c"
+        },
+        {
+          "at": "0x529a84",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x529a94",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529abc",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x529ac8",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x529ae0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x529b08",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529b14",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x529b40",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x529b5c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x529b88",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x529b94",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x529bac",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x529bd4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529be0",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x529bec",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x529c00",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529c0c",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x529c18",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x529c2c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529c38",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x529c44",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x529c58",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529c64",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x529c90",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x529cac",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x529cec",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x529d04",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x529d38",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x529d50",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x529dac",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x529dd0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529dec",
+          "target": "0x4dc260"
+        },
+        {
+          "at": "0x529e10",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x529e24",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x529e48",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x529e98",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x529ebc",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x529edc",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529f00",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x529f20",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x529f50",
+          "target": "0x3f7da0"
+        },
+        {
+          "at": "0x529f74",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x529fe0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52a024",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x52a034",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a06c",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a098",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52a0a0",
+          "target": "0x300314"
+        },
+        {
+          "at": "0x52a0dc",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52a0f4",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52a120",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x52a140",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x52a15c",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x52a170",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52a184",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52a1b0",
+          "target": "0x443b1c"
+        },
+        {
+          "at": "0x52a1b8",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x52a1ec",
+          "target": "0x35226c"
+        },
+        {
+          "at": "0x52a20c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x52a214",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52a218",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52a21c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52a220",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52a224",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52a228",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 6
+    },
+    {
+      "address": "0x52a480",
+      "name": "BackupScreenV2_anon_closure_2",
+      "purpose": "inventory of BackupScreenV2 content builder",
+      "bytes": 3416,
+      "instructions": 854,
+      "code_sha256": "63bfb59473d36f4dce5c04629dcb91141db08f0e478abaa6ab7570f41ebf5531",
+      "internal_branches": 49,
+      "direct_calls": [
+        {
+          "at": "0x52a4a8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x52a4cc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a504",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a520",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a560",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x52a58c",
+          "target": "0x2063c8"
+        },
+        {
+          "at": "0x52a5a4",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a5c0",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x52a61c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52a64c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a684",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a6a0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a6e0",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x52a70c",
+          "target": "0x2063c8"
+        },
+        {
+          "at": "0x52a728",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a744",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x52a7a0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52a7d0",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52a7f0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52a834",
+          "target": "0x52b1f0"
+        },
+        {
+          "at": "0x52a858",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52a878",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52a8bc",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52a8d4",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52a8f4",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52a900",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a934",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a950",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52a98c",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x52a9b8",
+          "target": "0x2063c8"
+        },
+        {
+          "at": "0x52a9d0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x52a9ec",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x52aa48",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52aa98",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52aadc",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x52aae4",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52ab10",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52ab44",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52ab7c",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x52abb8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52ac04",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x52ac1c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52ac60",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52ac78",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52aca8",
+          "target": "0x52b1e4"
+        },
+        {
+          "at": "0x52acc4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52acdc",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52acfc",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52ad08",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52ad24",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52ad3c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52ad5c",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52ad88",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52adbc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52adf4",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x52ae30",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52ae84",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x52aeb4",
+          "target": "0x52b1d8"
+        },
+        {
+          "at": "0x52aee8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52af30",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x52af48",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52af60",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52af80",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x52afac",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x52afd8",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x52b000",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x52b01c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52b054",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x52b0d0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52b0d8",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x52b104",
+          "target": "0x2f0a74"
+        },
+        {
+          "at": "0x52b110",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52b130",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x52b14c",
+          "target": "0x2e3a4c"
+        },
+        {
+          "at": "0x52b1ac",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x52b1b4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1b8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1bc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1c0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1c4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1c8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1cc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1d0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x52b1d4",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 10
+    },
+    {
+      "address": "0x52b890",
+      "name": "BackupScreenV2_showConfirmRestoreDialog",
+      "purpose": "restore confirmation and filename suffix guard",
+      "bytes": 544,
+      "instructions": 136,
+      "code_sha256": "de8a37fa6fff62912bcb68e765288c8332c46dc4c6c59bfd4331395704709f16",
+      "internal_branches": 12,
+      "direct_calls": [
+        {
+          "at": "0x52b940",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x52b9b4",
+          "target": "0x1e218"
+        },
+        {
+          "at": "0x52b9ec",
+          "target": "0x1e218"
+        },
+        {
+          "at": "0x52ba0c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x52ba50",
+          "target": "0x3fa18c"
+        },
+        {
+          "at": "0x52ba78",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52ba8c",
+          "target": "0x3e92d4"
+        },
+        {
+          "at": "0x52baa0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x52baa8",
+          "target": "0x87ff4c"
+        },
+        {
+          "at": "0x52baac",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x52be34",
+      "name": "BackupScreenV2_anon_closure_9",
+      "purpose": "confirm restore action and success dialog",
+      "bytes": 360,
+      "instructions": 90,
+      "code_sha256": "0a3b3f0aa793f3ecf1d7d5f5fa09705ddb4cb8244793ecedc7553bb0ec6984ff",
+      "internal_branches": 7,
+      "direct_calls": [
+        {
+          "at": "0x52be68",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52be9c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52beb8",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52bf14",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52bf30",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52bf5c",
+          "target": "0x52c2d4"
+        },
+        {
+          "at": "0x52bf68",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52bf88",
+          "target": "0x52bf9c"
+        },
+        {
+          "at": "0x52bf94",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x52c2d4",
+      "name": "BackupAction_restoreBackup",
+      "purpose": "serialize BACKUP:RESTORE request",
+      "bytes": 440,
+      "instructions": 110,
+      "code_sha256": "b07a60e2abc679730b53e72d58d4ab2b823cfe23cf6157abf505b2cfe91402e0",
+      "internal_branches": 7,
+      "direct_calls": [
+        {
+          "at": "0x52c314",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52c32c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x52c384",
+          "target": "0x1199c"
+        },
+        {
+          "at": "0x52c3c4",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52c400",
+          "target": "0x8867d8"
+        },
+        {
+          "at": "0x52c410",
+          "target": "0x44058"
+        },
+        {
+          "at": "0x52c430",
+          "target": "0x5f6bc"
+        },
+        {
+          "at": "0x52c438",
+          "target": "0x482f94"
+        },
+        {
+          "at": "0x52c460",
+          "target": "0x482db0"
+        },
+        {
+          "at": "0x52c468",
+          "target": "0x43810"
+        },
+        {
+          "at": "0x52c47c",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x52c484",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x52c5e4",
+      "name": "BackupScreenV2_importFilePicker",
+      "purpose": "file import routing between restore and proto import",
+      "bytes": 620,
+      "instructions": 155,
+      "code_sha256": "fa69b5f8e20a5fa940b63a7d2c2a9e939cce68c4e0f632b19b1c5b339b06a1fc",
+      "internal_branches": 19,
+      "direct_calls": [
+        {
+          "at": "0x52c630",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52c640",
+          "target": "0x3fe29c"
+        },
+        {
+          "at": "0x52c65c",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52c680",
+          "target": "0x87d818"
+        },
+        {
+          "at": "0x52c694",
+          "target": "0x436710"
+        },
+        {
+          "at": "0x52c6a0",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52c6cc",
+          "target": "0x41c7e8"
+        },
+        {
+          "at": "0x52c70c",
+          "target": "0x3d7b8"
+        },
+        {
+          "at": "0x52c73c",
+          "target": "0x1e0d4"
+        },
+        {
+          "at": "0x52c76c",
+          "target": "0x1e218"
+        },
+        {
+          "at": "0x52c798",
+          "target": "0x1e218"
+        },
+        {
+          "at": "0x52c7b8",
+          "target": "0x3d7b8"
+        },
+        {
+          "at": "0x52c7e8",
+          "target": "0x52b890"
+        },
+        {
+          "at": "0x52c814",
+          "target": "0x3d7b8"
+        },
+        {
+          "at": "0x52c83c",
+          "target": "0x52c850"
+        },
+        {
+          "at": "0x52c848",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x52d1a0",
+      "name": "BackupScreenV2_anon_closure_15",
+      "purpose": "pre-import backup and protobuf restore",
+      "bytes": 480,
+      "instructions": 120,
+      "code_sha256": "31386c38b2adeccbc9ec558630e27c8bd0585125ca2048278a1a8c5c409e9d00",
+      "internal_branches": 8,
+      "direct_calls": [
+        {
+          "at": "0x52d1d4",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52d208",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52d224",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52d25c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52d278",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52d298",
+          "target": "0x482bdc"
+        },
+        {
+          "at": "0x52d2a4",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52d2c8",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52d30c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52d328",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52d33c",
+          "target": "0x52d3f0"
+        },
+        {
+          "at": "0x52d348",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52d36c",
+          "target": "0x52d380"
+        },
+        {
+          "at": "0x52d378",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x52da60",
+      "name": "BackupScreenV2_backupFilePicker",
+      "purpose": "backup file picker to restore confirmation",
+      "bytes": 368,
+      "instructions": 92,
+      "code_sha256": "d07e8c4d6401abb30d9f71a8b29b614e7282a87b3db40f797ffc4164b224708d",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x52dab0",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52dac0",
+          "target": "0x3fe29c"
+        },
+        {
+          "at": "0x52dadc",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52db00",
+          "target": "0x87d818"
+        },
+        {
+          "at": "0x52db14",
+          "target": "0x436710"
+        },
+        {
+          "at": "0x52db20",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52db4c",
+          "target": "0x41c7e8"
+        },
+        {
+          "at": "0x52db8c",
+          "target": "0x3d7b8"
+        },
+        {
+          "at": "0x52dbbc",
+          "target": "0x52b890"
+        },
+        {
+          "at": "0x52dbc8",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x52dd00",
+      "name": "BackupScreenV2_anon_closure_19",
+      "purpose": "manual backup and created dialog",
+      "bytes": 344,
+      "instructions": 86,
+      "code_sha256": "d011394e42fb4f8ed6c3b0dc78c57093c4dfbc286bba870860ba2c907098d63e",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x52dd34",
+          "target": "0x2fde8"
+        },
+        {
+          "at": "0x52dd6c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52dd88",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x52dd9c",
+          "target": "0x482bdc"
+        },
+        {
+          "at": "0x52dda8",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52dddc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52ddfc",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x52de18",
+          "target": "0x428f88"
+        },
+        {
+          "at": "0x52de24",
+          "target": "0x2fba8"
+        },
+        {
+          "at": "0x52de44",
+          "target": "0x52de58"
+        },
+        {
+          "at": "0x52de50",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x530d1c",
+      "name": "BrowseSettingsScreen_build",
+      "purpose": "inventory of BrowseSettingsScreen",
+      "bytes": 1896,
+      "instructions": 474,
+      "code_sha256": "049d42b72be4b51ba2811f718c576e05818f80c7d6ed2f926d814c6ead5a259f",
+      "internal_branches": 27,
+      "direct_calls": [
+        {
+          "at": "0x530d48",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x530d64",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x530d94",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x530db0",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x530dd4",
+          "target": "0x3fe29c"
+        },
+        {
+          "at": "0x530df0",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x530e10",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x530e38",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x530e54",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x530e78",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x530ea0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x530eb8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x530ec8",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x530edc",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x530ee8",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x530f14",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x530f2c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x530f48",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x530f60",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x530f88",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x530f94",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x530fa4",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x530fc4",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x530ff4",
+          "target": "0x3f7da0"
+        },
+        {
+          "at": "0x531018",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x531084",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5310c8",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5310d8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x531110",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x53113c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x531144",
+          "target": "0x300314"
+        },
+        {
+          "at": "0x531180",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x531198",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5311c0",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5311e0",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5311fc",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x53120c",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x531250",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x531274",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x531294",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5312c4",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x531308",
+          "target": "0x3e39a0"
+        },
+        {
+          "at": "0x531334",
+          "target": "0x2063c8"
+        },
+        {
+          "at": "0x531344",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x531360",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5313ac",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5313d4",
+          "target": "0x531484"
+        },
+        {
+          "at": "0x5313f4",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x531414",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x531420",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x531434",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x531438",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x531470",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x531478",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x53147c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x531480",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 3
+    },
+    {
+      "address": "0x53a584",
+      "name": "DownloadSettingScreen_build",
+      "purpose": "inventory of DownloadSettingScreen",
+      "bytes": 1104,
+      "instructions": 276,
+      "code_sha256": "ef2da5f765db75c478f9f2f6ab7532d5f6ac344522006f7927035142ee393eb1",
+      "internal_branches": 17,
+      "direct_calls": [
+        {
+          "at": "0x53a5b4",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x53a5c4",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x53a5f4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x53a610",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x53a640",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x53a658",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x53a688",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x53a6a0",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x53a6cc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x53a6e4",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x53a6ec",
+          "target": "0x414b90"
+        },
+        {
+          "at": "0x53a71c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x53a734",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x53a77c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x53a798",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x53a7d0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x53a7e4",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x53a800",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x53a810",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x53a820",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x53a838",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x53a870",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x53a888",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x53a8a8",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x53a8d4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x53a914",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x53a92c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x53a94c",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x53a95c",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x53a970",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x53a974",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x53a9a8",
+          "target": "0x35226c"
+        },
+        {
+          "at": "0x53a9c8",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x53a9d0",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5641b0",
+      "name": "ReaderSettingsScreen_build",
+      "purpose": "inventory of ReaderSettingsScreen",
+      "bytes": 2240,
+      "instructions": 560,
+      "code_sha256": "94f473662894ba819bb5117c9ab94628b233c289259f72e0b94c5ca5daa7e8d5",
+      "internal_branches": 43,
+      "direct_calls": [
+        {
+          "at": "0x5641e0",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5641f0",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x564220",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564238",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564268",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564284",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5642b4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5642d0",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5642f4",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x56431c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564334",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564364",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x56437c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5643ac",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5643c8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564400",
+          "target": "0x796bec"
+        },
+        {
+          "at": "0x564430",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x564490",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5644a8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564510",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x56452c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x564564",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x564578",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x564594",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5645a4",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5645b4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5645d8",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x564608",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x564620",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x564640",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x56466c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5646b8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x564710",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x564764",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5647b8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x564808",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x564820",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x564840",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x564864",
+          "target": "0x564a70"
+        },
+        {
+          "at": "0x5648a4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5648ec",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x564900",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x564918",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x564938",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x564950",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x564968",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x564988",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5649b4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5649ec",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x564a00",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x564a04",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x564a38",
+          "target": "0x35226c"
+        },
+        {
+          "at": "0x564a58",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x564a60",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x564a64",
+          "target": "0x87fc54"
+        },
+        {
+          "at": "0x564a68",
+          "target": "0x87fc54"
+        },
+        {
+          "at": "0x564a6c",
+          "target": "0x87fc54"
+        }
+      ],
+      "indirect_calls": 3
+    },
+    {
+      "address": "0x564c18",
+      "name": "ReaderTapZonesSettingsScreen_build",
+      "purpose": "inventory of ReaderTapZonesSettingsScreen",
+      "bytes": 1776,
+      "instructions": 444,
+      "code_sha256": "6d3c0b7ee3f73cd2a281bba53bd8a8559b6f244b699ab78ee4cd1f37a24c4162",
+      "internal_branches": 23,
+      "direct_calls": [
+        {
+          "at": "0x564c48",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x564c58",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x564c78",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x564ca0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x564cc8",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564ce4",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564d24",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564d40",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564da4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x564dc0",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x564e3c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x564e74",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x564e88",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x564ea4",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x564eb4",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x564ec0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x564ef8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x564f14",
+          "target": "0x4e0a68"
+        },
+        {
+          "at": "0x564f40",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x564f78",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x564f94",
+          "target": "0x4e0a68"
+        },
+        {
+          "at": "0x564fc4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x564fe8",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x56501c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x56502c",
+          "target": "0x4d428"
+        },
+        {
+          "at": "0x56505c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x565080",
+          "target": "0x8785e8"
+        },
+        {
+          "at": "0x56508c",
+          "target": "0x4e0a5c"
+        },
+        {
+          "at": "0x5650b4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5650e0",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x565100",
+          "target": "0x2b47f0"
+        },
+        {
+          "at": "0x565120",
+          "target": "0x50a500"
+        },
+        {
+          "at": "0x565154",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x565164",
+          "target": "0x50a4e8"
+        },
+        {
+          "at": "0x56517c",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x565198",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5651f8",
+          "target": "0x50a4f4"
+        },
+        {
+          "at": "0x565218",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x56521c",
+          "target": "0x565308"
+        },
+        {
+          "at": "0x565234",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x565240",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x565284",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5652a0",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5652b4",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5652b8",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5652f0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5652f8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5652fc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x565300",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x565304",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 4
+    },
+    {
+      "address": "0x570dcc",
+      "name": "SecuritySettingScreen_build",
+      "purpose": "inventory of SecuritySettingScreen",
+      "bytes": 1988,
+      "instructions": 497,
+      "code_sha256": "83514f4a05c8660b4604f8e44312515ed45fa3e76856f3150376bde0e179d7f3",
+      "internal_branches": 44,
+      "direct_calls": [
+        {
+          "at": "0x570dfc",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x570e0c",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x570e3c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x570e58",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x570e7c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x570ea4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x570ebc",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x570eec",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x570f04",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x570f34",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x570f50",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x570fd8",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x570ff4",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57105c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x571078",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x571100",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57111c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x571154",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x571168",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x571184",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x571194",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5711a4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5711bc",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5711e8",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x571200",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x571220",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x571238",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x571250",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x571270",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x57129c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5712e0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x571320",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x571338",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x571358",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x571384",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5713c8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x571408",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x571420",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x571440",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x57144c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x571484",
+          "target": "0x447624"
+        },
+        {
+          "at": "0x5714c0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x571510",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x571514",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x571528",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x57152c",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x571560",
+          "target": "0x35226c"
+        },
+        {
+          "at": "0x571580",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x571588",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x57158c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 2
+    },
+    {
+      "address": "0x57b5e0",
+      "name": "TrackerSettingsScreen_build",
+      "purpose": "inventory of TrackerSettingsScreen",
+      "bytes": 1704,
+      "instructions": 426,
+      "code_sha256": "346cc587fef6dfd2781adffdcc921fea63bec584aaa2fac386711a37e55391fd",
+      "internal_branches": 27,
+      "direct_calls": [
+        {
+          "at": "0x57b60c",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x57b628",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x57b658",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x57b674",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57b6a0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x57b6b4",
+          "target": "0x3e3ff0"
+        },
+        {
+          "at": "0x57b6d8",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x57b708",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x57b724",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57b750",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x57b770",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x57b788",
+          "target": "0x3fe29c"
+        },
+        {
+          "at": "0x57b7a4",
+          "target": "0x1e99c0"
+        },
+        {
+          "at": "0x57b7c4",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x57b7ec",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x57b808",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57b838",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x57b850",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57b880",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x57b898",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x57b8c8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57b8f0",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x57b900",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57b920",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x57b92c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x57b944",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x57b96c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57b978",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x57b988",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x57b9a8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x57b9d8",
+          "target": "0x3f7da0"
+        },
+        {
+          "at": "0x57b9fc",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57ba68",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x57baac",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x57babc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x57baf4",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x57bb20",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57bb28",
+          "target": "0x300314"
+        },
+        {
+          "at": "0x57bb64",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x57bb7c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x57bba8",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x57bbc8",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x57bbe4",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x57bbf8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57bc0c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x57bc38",
+          "target": "0x443b1c"
+        },
+        {
+          "at": "0x57bc40",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x57bc78",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x57bc80",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x57bc84",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 2
+    },
+    {
+      "address": "0x5cbaf4",
+      "name": "AdvancedScreen_build",
+      "purpose": "inventory of AdvancedScreen",
+      "bytes": 2740,
+      "instructions": 685,
+      "code_sha256": "a93a0cf6d01271dec1613596b9bf0995184b697b6ad8aa0d3409377371a83206",
+      "internal_branches": 32,
+      "direct_calls": [
+        {
+          "at": "0x5cbb28",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5cbb44",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5cbb74",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5cbb90",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5cbbbc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5cbbd4",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5cbc04",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5cbc1c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5cbc28",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cbc60",
+          "target": "0x3f7da0"
+        },
+        {
+          "at": "0x5cbc84",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5cbcc4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cbce0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cbd00",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cbd38",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5cbd50",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cbd88",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5cbda8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5cbdb0",
+          "target": "0x30ffac"
+        },
+        {
+          "at": "0x5cbde4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cbdfc",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cbe18",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5cbe38",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5cbe54",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5cbe60",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cbe98",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cbeb0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cbee8",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cbf04",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cbf3c",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cbf70",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cbf94",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cbfb4",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5cbfd0",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cbff8",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cc014",
+          "target": "0x41c614"
+        },
+        {
+          "at": "0x5cc02c",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5cc038",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cc050",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cc070",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5cc09c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc0cc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cc104",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cc140",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc18c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5cc1a4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc1d4",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cc20c",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cc248",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc294",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5cc2ac",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc2dc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cc314",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cc350",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc39c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5cc3b4",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc3f8",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc43c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5cc470",
+          "target": "0x5cc5a8"
+        },
+        {
+          "at": "0x5cc47c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cc4b4",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5cc4c8",
+          "target": "0x41c608"
+        },
+        {
+          "at": "0x5cc4d4",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5cc4e0",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5cc500",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5cc520",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5cc52c",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5cc540",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5cc544",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5cc57c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5cc584",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc588",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc58c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc590",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc594",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc598",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc59c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc5a0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5cc5a4",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 9
+    },
+    {
+      "address": "0x5d00a8",
+      "name": "ConfirmRestoreContent_build",
+      "purpose": "restore confirmation content and autoBackup preference",
+      "bytes": 756,
+      "instructions": 189,
+      "code_sha256": "4d9e4991aa5f7077c6ba22778ea61c27f726cddc73ab7c1b842e4d6e1b34297c",
+      "internal_branches": 11,
+      "direct_calls": [
+        {
+          "at": "0x5d00d8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5d0108",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d0124",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d0144",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d0184",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d01c8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d0204",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d0244",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d0288",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d029c",
+          "target": "0x42ed28"
+        },
+        {
+          "at": "0x5d02c4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d02dc",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d0308",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d0324",
+          "target": "0x2e3a4c"
+        },
+        {
+          "at": "0x5d0384",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d038c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d0390",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d0394",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d0398",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 4
+    },
+    {
+      "address": "0x5d045c",
+      "name": "AutoBackupFrequencyTile_build",
+      "purpose": "frequency display and fallback",
+      "bytes": 560,
+      "instructions": 140,
+      "code_sha256": "feae45ac3b20b271aee76e54b55f6c0369cfe82c8dee0f9fe741a11f8114382a",
+      "internal_branches": 10,
+      "direct_calls": [
+        {
+          "at": "0x5d0488",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5d04bc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d04d8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d04fc",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5d051c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d0538",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d0578",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5d0580",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d05b8",
+          "target": "0x4aeb14"
+        },
+        {
+          "at": "0x5d05d4",
+          "target": "0x5d068c"
+        },
+        {
+          "at": "0x5d05dc",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d05f0",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5d064c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d0680",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d0688",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5d08d0",
+      "name": "AutoBackupFrequencyTile_anon_closure_2",
+      "purpose": "frequency selection options array",
+      "bytes": 268,
+      "instructions": 67,
+      "code_sha256": "202331e068f73ca79a0b654a971d37f270fe69aa379207604ff1c59e68aecf9d",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x5d08f8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5d0914",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d0964",
+          "target": "0x3f1328"
+        },
+        {
+          "at": "0x5d0998",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d09b4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d09d0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d09d8",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5d0dcc",
+      "name": "AutoBackupLimitTile_build",
+      "purpose": "retention display and fallback",
+      "bytes": 488,
+      "instructions": 122,
+      "code_sha256": "31544b98df96f9c9795e48a37c9946c08001ffe6d8285e0e622acf9cb52cad8d",
+      "internal_branches": 10,
+      "direct_calls": [
+        {
+          "at": "0x5d0df8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5d0e2c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d0e44",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d0e74",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x5d0ea0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5d0ea8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d0ee0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d0efc",
+          "target": "0x1528c"
+        },
+        {
+          "at": "0x5d0f04",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d0f18",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5d0f74",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d0fa8",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d0fb0",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5d5300",
+      "name": "GeneralScreen_build",
+      "purpose": "inventory of GeneralScreen",
+      "bytes": 1812,
+      "instructions": 453,
+      "code_sha256": "aaf58ec0038661ff9f82aea45b614c10345ddb60eb629a3129ddbaf610368360",
+      "internal_branches": 19,
+      "direct_calls": [
+        {
+          "at": "0x5d5330",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5d5354",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5d5364",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d53a0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d53dc",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5d5404",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d541c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d542c",
+          "target": "0x3f5224"
+        },
+        {
+          "at": "0x5d5440",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x5d545c",
+          "target": "0x1ef3ac"
+        },
+        {
+          "at": "0x5d547c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d548c",
+          "target": "0x25be48"
+        },
+        {
+          "at": "0x5d5498",
+          "target": "0x20ce8"
+        },
+        {
+          "at": "0x5d54bc",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x5d54e4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d54fc",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d550c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d5544",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d5558",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5d5574",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5d5584",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5d5594",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d55cc",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d55e8",
+          "target": "0x3f5224"
+        },
+        {
+          "at": "0x5d55f0",
+          "target": "0x5d5a14"
+        },
+        {
+          "at": "0x5d55f8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d560c",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5d5668",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d5698",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d56d0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d56ec",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d5724",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d5738",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5d5794",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d57c4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d5808",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d5834",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d586c",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d5888",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d58c0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d58d4",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5d5930",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d5960",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d5978",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d5998",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5d59a4",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5d59b8",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5d59bc",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5d59f4",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d59fc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d5a00",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d5a04",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d5a08",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d5a0c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d5a10",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 6
+    },
+    {
+      "address": "0x5d829c",
+      "name": "LibrarySettingsScreen_build",
+      "purpose": "inventory of LibrarySettingsScreen",
+      "bytes": 2032,
+      "instructions": 508,
+      "code_sha256": "3af0db5180cbda942711ba7b853a4e1070492006adacd61f464874afa2693d41",
+      "internal_branches": 32,
+      "direct_calls": [
+        {
+          "at": "0x5d82c4",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5d82e8",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d8304",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d8328",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d8344",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d8358",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x5d837c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5d83ac",
+          "target": "0x25bb34"
+        },
+        {
+          "at": "0x5d83ec",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d8404",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d8410",
+          "target": "0x414b90"
+        },
+        {
+          "at": "0x5d841c",
+          "target": "0x49d380"
+        },
+        {
+          "at": "0x5d8440",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5d845c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5d8468",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d84a0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5d84b4",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5d84d0",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5d84e0",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5d84ec",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d8524",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5d8540",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d8570",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d85a4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d85bc",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d85dc",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5d85e8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d8620",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5d865c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d86a8",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5d86c0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d8708",
+          "target": "0x524490"
+        },
+        {
+          "at": "0x5d8714",
+          "target": "0x524484"
+        },
+        {
+          "at": "0x5d8720",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5d8738",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d8750",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d8770",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5d879c",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d87cc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5d8804",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5d8840",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d8888",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5d88a4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d88c8",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d88f8",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5d8910",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5d8930",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5d893c",
+          "target": "0x1765fc"
+        },
+        {
+          "at": "0x5d8968",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d89ac",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d89f0",
+          "target": "0x1e45c"
+        },
+        {
+          "at": "0x5d8a24",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5d8a38",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5d8a3c",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5d8a74",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5d8a7c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d8a80",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d8a84",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5d8a88",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 5
+    },
+    {
+      "address": "0x5db2c4",
+      "name": "ReaderToolbarSettingsScreen_build",
+      "purpose": "inventory of ReaderToolbarSettingsScreen",
+      "bytes": 220,
+      "instructions": 55,
+      "code_sha256": "511d6e27a8301aac8e564cee8b53835e83ba6f9b941c52448cd43de9bf6eef53",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x5db2f8",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5db310",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5db31c",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5db338",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5db348",
+          "target": "0x2f0294"
+        },
+        {
+          "at": "0x5db35c",
+          "target": "0x2f3940"
+        },
+        {
+          "at": "0x5db398",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5db6b4",
+      "name": "ReaderAdvancedScreen_build",
+      "purpose": "inventory of ReaderAdvancedScreen",
+      "bytes": 1756,
+      "instructions": 439,
+      "code_sha256": "a40c41560d9cde9584350036e315e8f19353e5673f214b781708387008845b40",
+      "internal_branches": 34,
+      "direct_calls": [
+        {
+          "at": "0x5db6e8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5db704",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5db710",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5db748",
+          "target": "0x3f7da0"
+        },
+        {
+          "at": "0x5db76c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5db7ac",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5db7c8",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5db7e8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5db820",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5db838",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5db870",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5db890",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5db898",
+          "target": "0x30ffac"
+        },
+        {
+          "at": "0x5db8cc",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5db8e4",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5db900",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5db920",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5db93c",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5db948",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5db980",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5db99c",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5db9b0",
+          "target": "0x5dbe08"
+        },
+        {
+          "at": "0x5db9d8",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5db9dc",
+          "target": "0x5dbdfc"
+        },
+        {
+          "at": "0x5db9e8",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dba14",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dba18",
+          "target": "0x5dbdf0"
+        },
+        {
+          "at": "0x5dba30",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dba5c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dba60",
+          "target": "0x5dbde4"
+        },
+        {
+          "at": "0x5dba6c",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dba98",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dba9c",
+          "target": "0x5dbdd8"
+        },
+        {
+          "at": "0x5dbaa8",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dbad4",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbadc",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5dbb14",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5dbb4c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbb50",
+          "target": "0x5dbdcc"
+        },
+        {
+          "at": "0x5dbb78",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbb7c",
+          "target": "0x5dbdc0"
+        },
+        {
+          "at": "0x5dbb88",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dbbb4",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbbb8",
+          "target": "0x5dbdb4"
+        },
+        {
+          "at": "0x5dbbc4",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dbbf0",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbbf4",
+          "target": "0x5dbda8"
+        },
+        {
+          "at": "0x5dbc1c",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbc24",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5dbc5c",
+          "target": "0x52449c"
+        },
+        {
+          "at": "0x5dbc94",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbc98",
+          "target": "0x5dbd9c"
+        },
+        {
+          "at": "0x5dbca4",
+          "target": "0x867394"
+        },
+        {
+          "at": "0x5dbcd0",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbcd4",
+          "target": "0x5dbd90"
+        },
+        {
+          "at": "0x5dbcfc",
+          "target": "0x87d910"
+        },
+        {
+          "at": "0x5dbd04",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5dbd20",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5dbd34",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5dbd38",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5dbd70",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5dbd78",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5dbd7c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5dbd80",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5dbd84",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5dbd88",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5dbd8c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 6
+    },
+    {
+      "address": "0x5e2964",
+      "name": "SettingsScreen_build",
+      "purpose": "inventory of SettingsScreen",
+      "bytes": 1532,
+      "instructions": 383,
+      "code_sha256": "ba389c6e725d6536da67c64d4006dd62552d32a428ec72de12bd6307e1c2c576",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x5e2990",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5e29a8",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5e29b8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e29f0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2a04",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5e2a20",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5e2a30",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5e2a40",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2a78",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2a8c",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2ac8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2af8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2b30",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2b44",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2b80",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2bb0",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2be8",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2bfc",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2c38",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2c68",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2ca0",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2cb4",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2cf0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2d20",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2d58",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2d6c",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2da8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2dd8",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e2e10",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e2e24",
+          "target": "0x315a20"
+        },
+        {
+          "at": "0x5e2e60",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5e2e90",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5e2ed0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5e2eec",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5e2f00",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5e2f04",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5e2f3c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5e2f44",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f48",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f4c",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f50",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f54",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f58",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x5e2f5c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 7
+    },
+    {
+      "address": "0x5e4748",
+      "name": "StorageScreen_build",
+      "purpose": "inventory of StorageScreen",
+      "bytes": 752,
+      "instructions": 188,
+      "code_sha256": "fcbdba238c7a6d68a29de8a019755e814cff1dc38cd97a434a1f8f3af5962e4f",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x5e4778",
+          "target": "0x4149f0"
+        },
+        {
+          "at": "0x5e479c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5e47b8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5e47cc",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x5e47f0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5e480c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5e4820",
+          "target": "0x1263c4"
+        },
+        {
+          "at": "0x5e4840",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5e4858",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5e4860",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5e4898",
+          "target": "0x2854a0"
+        },
+        {
+          "at": "0x5e48ac",
+          "target": "0x2f2808"
+        },
+        {
+          "at": "0x5e48c8",
+          "target": "0x2f1f98"
+        },
+        {
+          "at": "0x5e48d8",
+          "target": "0x4147a4"
+        },
+        {
+          "at": "0x5e48f0",
+          "target": "0x5e56dc"
+        },
+        {
+          "at": "0x5e4904",
+          "target": "0x5e5624"
+        },
+        {
+          "at": "0x5e4918",
+          "target": "0x5e5310"
+        },
+        {
+          "at": "0x5e492c",
+          "target": "0x5e506c"
+        },
+        {
+          "at": "0x5e4940",
+          "target": "0x5e4dc8"
+        },
+        {
+          "at": "0x5e4954",
+          "target": "0x5e4b3c"
+        },
+        {
+          "at": "0x5e4968",
+          "target": "0x5e4a38"
+        },
+        {
+          "at": "0x5e4978",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x5e49c0",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x5e49dc",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x5e49f0",
+          "target": "0x2f1ac8"
+        },
+        {
+          "at": "0x5e49f4",
+          "target": "0x2f19b8"
+        },
+        {
+          "at": "0x5e4a2c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5e4a34",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x393e24",
+      "meaning": "boolean autoBackup preference initialization",
+      "verified": true
+    },
+    {
+      "at": "0x397e60",
+      "meaning": "retention uses shared integer preference initializer",
+      "verified": true
+    },
+    {
+      "at": "0x397680",
+      "meaning": "shared integer initializer returns saved value when available",
+      "verified": true
+    },
+    {
+      "at": "0x3c23d8",
+      "meaning": "frequency uses enum preference initializer",
+      "verified": true
+    },
+    {
+      "at": "0x5d0540",
+      "meaning": "frequency display uses saved value when available",
+      "verified": true
+    },
+    {
+      "at": "0x5d0e4c",
+      "meaning": "retention display uses saved value when available",
+      "verified": true
+    },
+    {
+      "at": "0x52b9b4",
+      "meaning": "test zip suffix on restore filename",
+      "verified": true
+    },
+    {
+      "at": "0x52b9ec",
+      "meaning": "test tmb suffix after zip did not match",
+      "verified": true
+    },
+    {
+      "at": "0x52ba50",
+      "meaning": "show error if filename matches neither accepted suffix",
+      "verified": true
+    },
+    {
+      "at": "0x52c76c",
+      "meaning": "import picker tests zip suffix",
+      "verified": true
+    },
+    {
+      "at": "0x52c798",
+      "meaning": "import picker tests tmb suffix",
+      "verified": true
+    },
+    {
+      "at": "0x52c7e8",
+      "meaning": "matching Tachimanga filename goes to restore confirmation",
+      "verified": true
+    },
+    {
+      "at": "0x52c83c",
+      "meaning": "other filename goes to import confirmation",
+      "verified": true
+    },
+    {
+      "at": "0x52dbbc",
+      "meaning": "backup picker goes to restore confirmation",
+      "verified": true
+    },
+    {
+      "at": "0x52bf5c",
+      "meaning": "confirmed restore sends restore action",
+      "verified": true
+    },
+    {
+      "at": "0x52bf88",
+      "meaning": "restore continuation opens restored dialog",
+      "verified": true
+    },
+    {
+      "at": "0x52d298",
+      "meaning": "import path requests pre-import backup",
+      "verified": true
+    },
+    {
+      "at": "0x52d33c",
+      "meaning": "import path calls ProtoBackupRepository.restoreBackup",
+      "verified": true
+    },
+    {
+      "at": "0x52dd9c",
+      "meaning": "manual create requests backup action",
+      "verified": true
+    },
+    {
+      "at": "0x52de44",
+      "meaning": "create continuation opens created dialog",
+      "verified": true
+    },
+    {
+      "at": "0x393e18",
+      "meaning": "autoBackup boolean default true",
+      "verified": true
+    },
+    {
+      "at": "0x397e54",
+      "meaning": "retention default tagged Smi two",
+      "verified": true
+    },
+    {
+      "at": "0x397688",
+      "meaning": "shared integer initializer fallback reads supplied default",
+      "verified": true
+    },
+    {
+      "at": "0x5d0e50",
+      "meaning": "retention display fallback integer two",
+      "verified": true
+    },
+    {
+      "at": "0x3c23cc",
+      "meaning": "frequency default is off enum constant",
+      "verified": true
+    },
+    {
+      "at": "0x5d097c",
+      "meaning": "frequency selection reads same enum array",
+      "verified": true
+    },
+    {
+      "at": "0x4b3ff4",
+      "meaning": "retention selection array constant",
+      "verified": true
+    },
+    {
+      "at": "0x52c354",
+      "meaning": "autoBackup request key",
+      "verified": true
+    },
+    {
+      "at": "0x52c3a0",
+      "meaning": "BACKUP:RESTORE command constant",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 33,
+    "instructions": 9330,
+    "code_bytes": 37320,
+    "anchors": 29
+  },
+  "limits": [
+    "Inventory lists constant object references, not every dynamic row or its visual order",
+    "Presence in a branch does not prove visibility, entitlement or runtime effect",
+    "Only selected backup preferences have reviewed defaults here",
+    "File extension/name routing is not content validation or proof that restore succeeds",
+    "External 0x2f984 branches are recorded async exits, not executed",
+    "No original source recovery, production changes, or iPhone UI equivalence test"
+  ],
+  "allowed_external_branch_targets": [
+    "0x2f984"
+  ],
+  "external_branches": [
+    {
+      "at": "0x52bf90",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52c450",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52c6d8",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52c6f0",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52c7f0",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52c844",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52d2e4",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52d364",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52d374",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52db58",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52db70",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52dbc4",
+      "target": "0x2f984"
+    },
+    {
+      "at": "0x52de4c",
+      "target": "0x2f984"
+    }
+  ],
+  "page_inventory": {
+    "0x5e2964": {
+      "page": "SettingsScreen",
+      "constant_control_references": []
+    },
+    "0x5d5300": {
+      "page": "GeneralScreen",
+      "constant_control_references": [
+        {
+          "at": "0x5d57dc",
+          "pool_offset": "0x16910",
+          "class": "CustomTabsTile",
+          "reference": "0x39524"
+        },
+        {
+          "at": "0x5d57e8",
+          "pool_offset": "0x16918",
+          "class": "DefaultTabTile",
+          "reference": "0x39523"
+        },
+        {
+          "at": "0x5d57f4",
+          "pool_offset": "0x16920",
+          "class": "StorageManagementTile",
+          "reference": "0x39500"
+        }
+      ]
+    },
+    "0x523980": {
+      "page": "AppearanceScreen",
+      "constant_control_references": [
+        {
+          "at": "0x523e3c",
+          "pool_offset": "0x17b30",
+          "class": "AppThemeTile",
+          "reference": "0x394fe"
+        },
+        {
+          "at": "0x523e48",
+          "pool_offset": "0x17b38",
+          "class": "ThemeSelector",
+          "reference": "0x3957c"
+        },
+        {
+          "at": "0x523e90",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x523f14",
+          "pool_offset": "0x17b40",
+          "class": "LiquidGlassSwitchTile",
+          "reference": "0x3956d"
+        },
+        {
+          "at": "0x523f50",
+          "pool_offset": "0x17b48",
+          "class": "PureBlackDarkModeTile",
+          "reference": "0x3957d"
+        },
+        {
+          "at": "0x523f94",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x524008",
+          "pool_offset": "0x17b50",
+          "class": "BlendLevelSlider",
+          "reference": "0x39531"
+        },
+        {
+          "at": "0x524140",
+          "pool_offset": "0x17b58",
+          "class": "AppIconSelectTile",
+          "reference": "0x3957f"
+        },
+        {
+          "at": "0x524164",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x52429c",
+          "pool_offset": "0x16910",
+          "class": "CustomTabsTile",
+          "reference": "0x39524"
+        },
+        {
+          "at": "0x52435c",
+          "pool_offset": "0x17b60",
+          "class": "AppRotationTile",
+          "reference": "0x39532"
+        },
+        {
+          "at": "0x5243e4",
+          "pool_offset": "0x17b68",
+          "class": "DateFormatSelectTile",
+          "reference": "0x3957e"
+        }
+      ]
+    },
+    "0x5d829c": {
+      "page": "LibrarySettingsScreen",
+      "constant_control_references": [
+        {
+          "at": "0x5d8558",
+          "pool_offset": "0x167d0",
+          "class": "EditCategoriesTile",
+          "reference": "0x3956b"
+        },
+        {
+          "at": "0x5d8564",
+          "pool_offset": "0x167d8",
+          "class": "DefaultCategoriesSelectTile",
+          "reference": "0x3951d"
+        },
+        {
+          "at": "0x5d85b0",
+          "pool_offset": "0x167e0",
+          "class": "CategoryNumberDisplaySettingTile",
+          "reference": "0x3951e"
+        },
+        {
+          "at": "0x5d86e8",
+          "pool_offset": "0x167e8",
+          "class": "LibraryDisplayModeSettingTile",
+          "reference": "0x3951b"
+        },
+        {
+          "at": "0x5d87c0",
+          "pool_offset": "0x167f8",
+          "class": "LibraryBadgeSettingTile",
+          "reference": "0x3951c"
+        },
+        {
+          "at": "0x5d88b0",
+          "pool_offset": "0x16800",
+          "class": "UpdateSkipTitlesSettingTile",
+          "reference": "0x39517"
+        },
+        {
+          "at": "0x5d88bc",
+          "pool_offset": "0x16808",
+          "class": "UpdateCategoriesSettingTile",
+          "reference": "0x39519"
+        },
+        {
+          "at": "0x5d8904",
+          "pool_offset": "0x16810",
+          "class": "UpdateContinuedTaskSettingEntryTile",
+          "reference": "0x39569"
+        },
+        {
+          "at": "0x5d8990",
+          "pool_offset": "0x16818",
+          "class": "MangaAutoRefreshSettingTile",
+          "reference": "0x3951a"
+        },
+        {
+          "at": "0x5d89d4",
+          "pool_offset": "0x16820",
+          "class": "UpdateMetadataSettingTile",
+          "reference": "0x39518"
+        },
+        {
+          "at": "0x5d8a1c",
+          "pool_offset": "0x16828",
+          "class": "RefreshLibraryCoversTile",
+          "reference": "0x3956a"
+        }
+      ]
+    },
+    "0x5641b0": {
+      "page": "ReaderSettingsScreen",
+      "constant_control_references": [
+        {
+          "at": "0x5645c0",
+          "pool_offset": "0x15d78",
+          "class": "ReaderModeTile",
+          "reference": "0x3950d"
+        },
+        {
+          "at": "0x5645cc",
+          "pool_offset": "0x15d80",
+          "class": "ReaderPageLayoutTile",
+          "reference": "0x39509"
+        },
+        {
+          "at": "0x564614",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x564698",
+          "pool_offset": "0x15d88",
+          "class": "ReaderNavigationLayoutTile",
+          "reference": "0x3950b"
+        },
+        {
+          "at": "0x5646dc",
+          "pool_offset": "0x15d90",
+          "class": "ReaderBottomBarStyleTile",
+          "reference": "0x3950e"
+        },
+        {
+          "at": "0x564748",
+          "pool_offset": "0x15d98",
+          "class": "ReaderBackgroundColorTile",
+          "reference": "0x3950f"
+        },
+        {
+          "at": "0x56479c",
+          "pool_offset": "0x15da0",
+          "class": "AutoWebtoonModeTile",
+          "reference": "0x3950c"
+        },
+        {
+          "at": "0x5647ec",
+          "pool_offset": "0x15da8",
+          "class": "ReaderPaddingSlider",
+          "reference": "0x3950a"
+        },
+        {
+          "at": "0x564858",
+          "pool_offset": "0x15db8",
+          "class": "WatermarkSwitchTile",
+          "reference": "0x39521"
+        },
+        {
+          "at": "0x56490c",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x56495c",
+          "pool_offset": "0x15dc0",
+          "class": "ReaderApplePencilSettingTile",
+          "reference": "0x39511"
+        },
+        {
+          "at": "0x5649e4",
+          "pool_offset": "0x15dc8",
+          "class": "ReaderAdvancedTile",
+          "reference": "0x39513"
+        }
+      ]
+    },
+    "0x564c18": {
+      "page": "ReaderTapZonesSettingsScreen",
+      "constant_control_references": []
+    },
+    "0x5db2c4": {
+      "page": "ReaderToolbarSettingsScreen",
+      "constant_control_references": []
+    },
+    "0x5db6b4": {
+      "page": "ReaderAdvancedScreen",
+      "constant_control_references": []
+    },
+    "0x53a584": {
+      "page": "DownloadSettingScreen",
+      "constant_control_references": [
+        {
+          "at": "0x53a82c",
+          "pool_offset": "0x16a30",
+          "class": "DownloadsParallelSettingTile",
+          "reference": "0x3953a"
+        },
+        {
+          "at": "0x53a87c",
+          "pool_offset": "0x16a38",
+          "class": "DownloadContinuedTaskSettingEntryTile",
+          "reference": "0x3958a"
+        },
+        {
+          "at": "0x53a8fc",
+          "pool_offset": "0x16a40",
+          "class": "DeleteDownloadAfterReadTile",
+          "reference": "0x39570"
+        },
+        {
+          "at": "0x53a920",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        }
+      ]
+    },
+    "0x570dcc": {
+      "page": "SecuritySettingScreen",
+      "constant_control_references": [
+        {
+          "at": "0x5711b0",
+          "pool_offset": "0x15a50",
+          "class": "LockSettingTile",
+          "reference": "0x39504"
+        },
+        {
+          "at": "0x5711f4",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x571244",
+          "pool_offset": "0x15a60",
+          "class": "LockIntervalTile",
+          "reference": "0x39505"
+        },
+        {
+          "at": "0x571308",
+          "pool_offset": "0x15a70",
+          "class": "IncognitoModeTile",
+          "reference": "0x39560"
+        },
+        {
+          "at": "0x57132c",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x5713f0",
+          "pool_offset": "0x15a78",
+          "class": "SecureScreenTile",
+          "reference": "0x39503"
+        },
+        {
+          "at": "0x571414",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        }
+      ]
+    },
+    "0x530d1c": {
+      "page": "BrowseSettingsScreen",
+      "constant_control_references": [
+        {
+          "at": "0x53125c",
+          "pool_offset": "0x173d8",
+          "class": "EditRepoTile",
+          "reference": "0x39527"
+        },
+        {
+          "at": "0x5313b8",
+          "pool_offset": "0x173e8",
+          "class": "ShowNSFWTile",
+          "reference": "0x39526"
+        }
+      ]
+    },
+    "0x5cbaf4": {
+      "page": "AdvancedScreen",
+      "constant_control_references": [
+        {
+          "at": "0x5cbf1c",
+          "pool_offset": "0x180d0",
+          "class": "ClearCacheTile",
+          "reference": "0x39536"
+        },
+        {
+          "at": "0x5cbf30",
+          "pool_offset": "0x180d8",
+          "class": "ClearCookiesTile",
+          "reference": "0x39534"
+        },
+        {
+          "at": "0x5cbf7c",
+          "pool_offset": "0x180e0",
+          "class": "ByPassTile",
+          "reference": "0x39529"
+        },
+        {
+          "at": "0x5cbf88",
+          "pool_offset": "0x180e8",
+          "class": "ByPassMuteRestTile",
+          "reference": "0x39528"
+        },
+        {
+          "at": "0x5cc0c0",
+          "pool_offset": "0x18108",
+          "class": "ReceiveTimeoutTile",
+          "reference": "0x39535"
+        },
+        {
+          "at": "0x5cc1c8",
+          "pool_offset": "0x18110",
+          "class": "PersistentTabsTile",
+          "reference": "0x39522"
+        },
+        {
+          "at": "0x5cc2d0",
+          "pool_offset": "0x18118",
+          "class": "RepairDatabaseTile",
+          "reference": "0x39533"
+        },
+        {
+          "at": "0x5cc3dc",
+          "pool_offset": "0x18120",
+          "class": "FileLogTile",
+          "reference": "0x395a6"
+        },
+        {
+          "at": "0x5cc460",
+          "pool_offset": "0x18130",
+          "class": "HttpDumpTile",
+          "reference": "0x39581"
+        }
+      ]
+    },
+    "0x5e4748": {
+      "page": "StorageScreen",
+      "constant_control_references": []
+    },
+    "0x57b5e0": {
+      "page": "TrackerSettingsScreen",
+      "constant_control_references": []
+    },
+    "0x529644": {
+      "page": "BackupScreenV2",
+      "constant_control_references": []
+    },
+    "0x52a480": {
+      "page": "BackupScreenV2 content builder",
+      "constant_control_references": [
+        {
+          "at": "0x52a8c8",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x52ac44",
+          "pool_offset": "0x174e8",
+          "class": "AutoBackupFrequencyTile",
+          "reference": "0x3952c"
+        },
+        {
+          "at": "0x52ac6c",
+          "pool_offset": "0x174f0",
+          "class": "AutoBackupLimitTile",
+          "reference": "0x3952b"
+        },
+        {
+          "at": "0x52ad30",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        },
+        {
+          "at": "0x52aea4",
+          "pool_offset": "0x174f8",
+          "class": "BackupToCloudTile",
+          "reference": "0x3952a"
+        },
+        {
+          "at": "0x52af54",
+          "pool_offset": "0x15a58",
+          "class": "PremiumRequiredTile",
+          "reference": "0x395b5"
+        }
+      ]
+    }
+  },
+  "backup_preferences": {
+    "frequency_key": "autoBackupFrequency",
+    "frequency_default": "off",
+    "frequency_options": [
+      {
+        "index": 0,
+        "enum_name": "off",
+        "reference": "0x39d51"
+      },
+      {
+        "index": 1,
+        "enum_name": "update_6hour",
+        "reference": "0x39d56"
+      },
+      {
+        "index": 2,
+        "enum_name": "update_12hour",
+        "reference": "0x39d55"
+      },
+      {
+        "index": 3,
+        "enum_name": "update_24hour",
+        "reference": "0x39d54"
+      },
+      {
+        "index": 4,
+        "enum_name": "update_48hour",
+        "reference": "0x39d53"
+      },
+      {
+        "index": 5,
+        "enum_name": "update_weekly",
+        "reference": "0x39d52"
+      }
+    ],
+    "retention_key": "autoBackupLimit",
+    "retention_default": 2,
+    "retention_options": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "pre_restore_backup_key": "autoBackup",
+    "pre_restore_backup_default": true
+  },
+  "pool_fields": {
+    "0x17618": "autoBackupProvider",
+    "0x149a0": "getMagicProvider",
+    "0xb840": "getMagicPipeProvider",
+    "0x173f8": "backupListProvider",
+    "0x17438": "cloudBackupSocketProvider",
+    "0x10d50": "autoBackupFrequencyProvider",
+    "0xe3e0": "purchaseGateProvider",
+    "0xe3e8": "testflightFlagProvider"
+  },
+  "pool_query_sha256": "30881cb62e0b684f3500f5f4eac97d770d4c7f16313c8ae3a85905301eff8c01",
+  "pool_tool_provenance": "tachimanga-5.1-pool-followup.json",
+  "query_offsets": [
+    "0x25408",
+    "0x10d60",
+    "0x174e8",
+    "0x174f0",
+    "0x174f8",
+    "0x17618",
+    "0x17688",
+    "0x17690",
+    "0x149a0",
+    "0xb840",
+    "0x173f8",
+    "0x17438",
+    "0x10d50",
+    "0xe3e0",
+    "0xe3e8",
+    "0x17b30",
+    "0x17b38",
+    "0x17b40",
+    "0x17b48",
+    "0x17b58",
+    "0x17b60",
+    "0x17b68",
+    "0x253b8"
+  ]
+}
