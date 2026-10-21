@@ -54,6 +54,7 @@ flowchart TD
 | [الضغط المطوّل والسرعة والإلغاء](TACHIMANGA-5.1-READER-GESTURES-AR.md) | دورة المؤشر وTimer و500ms، ثمانية معاملات وسبعة حدود وهامش 12، مع تدقيق أرقام pool وحدود callbacks |
 | [فجوات الإعدادات والنسخ والمظهر](TACHIMANGA-5.1-SETTINGS-BACKUP-GAPS-AR.md) | اختلاف JSON عن TMB، جرد الصفحات والخيارات المطلوب، وشروط قبول الألوان والخطوط والواجهات الداخلية |
 | [جرد الإعدادات وتدفق النسخ](TACHIMANGA-5.1-SETTINGS-INVENTORY-AR.md) | مراجع عناصر ثابتة في 15 صفحة، افتراضيات النسخ والاحتفاظ، وفصل توجيه الاستعادة عن استيراد protobuf |
+| [السمة والألوان والخطوط](TACHIMANGA-5.1-APPEARANCE-AR.md) | مفاتيح المظهر وافتراضياته، primary مقابل accent في MSL، الأسود الصافي وtoolbarHeight، وFontManifest وفرع Cupertino وحدود خط النص النهائي |
 | [خدمات المنصة وTMB](TACHIMANGA-5.1-PLATFORM-AR.md) | MAGIC_PIPE، بنية النسخ والاستعادة، مهام الخلفية، iCloud وWebView |
 | [مراجعة MSL](TACHIMANGA-5.1-REVIEW-AR.md) | حالة مشروعنا وما تغير وما بقي في التنفيذ |
 | [TODO](../TODO.md) و[Changelog](../CHANGELOG.md) | أفعال التنفيذ والتحقق، دون اعتبار التحليل نجاحًا للمحرك |

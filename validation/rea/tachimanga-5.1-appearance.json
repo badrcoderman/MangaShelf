@@ -1,0 +1,935 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_controller_theme_controller.dart": "4e4201d228209bfa54813d72fea7b1b887bd3a0781fbdaab1ae900498fe8106f",
+    "tachidesk_sorayomi_src_features_settings_widgets_theme_mode_tile_theme_mode_tile.dart": "5b60980f4c7e3215e9e83bd8ab890c94d1a34420ab82fc8c8ae91019659b3866",
+    "flex_color_scheme_src_flex_theme_data_extensions.dart": "375a0c27f123fb57cc413642194a9e19dc07aa477372c85b0445f49edf3fc1a3",
+    "flex_color_scheme_src_flex_scheme_color.dart": "6e215163526481af803e8958c2bb2f0f93b2c18f92880533b318d299abd7c4a6",
+    "flutter_src_material_app_bar_theme.dart": "9b35f103ec0073613776c92085b8dcf6458c765df8e49c7d9bd7edf9ae107b2e",
+    "flutter_src_material_typography.dart": "c5cbc1275f25fc9a050415afd22caa6366be15573d04e3f94eb72bdff1eab983",
+    "dart_ui.dart": "deff36a6068310bebb719378385853b416293af715fdcfe29890a2e06d4dc864",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_widgets_pure_black_dark_mode_tile.dart": "59d8e931c7ad7798a01415381ed6750f017cc77a9fe49855cd77b29877a64e84",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_widgets_theme_select_tile.dart": "890e686859bcc09a6e9a3193258d933c306b02879ada6ef7f574c583485ac562",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_widgets_blend_level_slider_tile.dart": "9ccd58be43db5d6e00705b381f3aed0cc66dafd52d31bc215bbd90c1053416ee",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9",
+    "../text/objs.txt": "193b8c8a53ce1c49a08f068a4f33167698aa8c9cb0298f6e867e34f5bf6a5d6e",
+    "FontManifest.json": "5785cb97dff178c78576e8a2ffbc407a125038e763015fd7a200333455b99505"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x3a110": "themeBlendLevel",
+    "0x3a118": "themePureBlackDarkMode",
+    "0x3a120": "themeKey",
+    "0x38c08": "themeMode",
+    "0x10d08": "default",
+    "0xc020": "primary"
+  },
+  "scope": "Static appearance defaults, seed colors, toolbar override and framework typography branch",
+  "methods": [
+    {
+      "address": "0x20bce4",
+      "name": "Typography_factory_ctor_withPlatform",
+      "purpose": "framework platform typography selection",
+      "bytes": 316,
+      "instructions": 79,
+      "code_sha256": "2aaaf5ad5263067b19def08dec21e58cd902e5b74eba68b854e563f9ac649f75",
+      "internal_branches": 13,
+      "direct_calls": [
+        {
+          "at": "0x20bde0",
+          "target": "0x20be20"
+        },
+        {
+          "at": "0x20be18",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20be1c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x393d80",
+      "name": "ThemePureBlack_build",
+      "purpose": "pure black preference default",
+      "bytes": 84,
+      "instructions": 21,
+      "code_sha256": "f42f3e1ddf92625ff7abba7fd232f5c1e9b823cade86c6283ac73a838e7f1c33",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x393db0",
+          "target": "0x391bb4"
+        },
+        {
+          "at": "0x393dc0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x393dd0",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x395a9c",
+      "name": "ThemeKey_build",
+      "purpose": "theme key default",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "e267bad31cda0f9d411ed97975ab9f6fa75b21cf9adbabe711865b57941358af",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x395ad0",
+          "target": "0x3950fc"
+        },
+        {
+          "at": "0x395ae0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x395af0",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3a4204",
+      "name": "ThemeBlendLevel_build",
+      "purpose": "blend level default",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "6dc3d1ac90c3899491ec52a9c0911686ff5e448f63a13d09075148515c05bf03",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3a4238",
+          "target": "0x3a3a68"
+        },
+        {
+          "at": "0x3a4248",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3a4258",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3ae004",
+      "name": "ThemeSchemeColor_build",
+      "purpose": "light/dark theme composition and app bar override",
+      "bytes": 944,
+      "instructions": 236,
+      "code_sha256": "e397a2d44159e92fc4b852970968b3592770e7e1c96ec8a67874c27446b23158",
+      "internal_branches": 21,
+      "direct_calls": [
+        {
+          "at": "0x3ae050",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae068",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae09c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae0b8",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae0fc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae118",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae140",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x3ae198",
+          "target": "0x87d27c"
+        },
+        {
+          "at": "0x3ae1b4",
+          "target": "0x3c1a3c"
+        },
+        {
+          "at": "0x3ae1e4",
+          "target": "0x87d27c"
+        },
+        {
+          "at": "0x3ae230",
+          "target": "0x3c1a28"
+        },
+        {
+          "at": "0x3ae2d4",
+          "target": "0x3aea08"
+        },
+        {
+          "at": "0x3ae300",
+          "target": "0x3ae400"
+        },
+        {
+          "at": "0x3ae314",
+          "target": "0x203864"
+        },
+        {
+          "at": "0x3ae340",
+          "target": "0x3ae400"
+        },
+        {
+          "at": "0x3ae354",
+          "target": "0x203864"
+        },
+        {
+          "at": "0x3ae35c",
+          "target": "0x3ae3f4"
+        },
+        {
+          "at": "0x3ae37c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3ae38c",
+          "target": "0x880024"
+        },
+        {
+          "at": "0x3ae39c",
+          "target": "0x87f664"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3ae400",
+      "name": "AppBarTheme_copyWith",
+      "purpose": "AppBarTheme copyWith argument handling",
+      "bytes": 1532,
+      "instructions": 383,
+      "code_sha256": "b5afb8fa175cbdcb260d1407d3c8926bf384a558063f6cb70be8fb4105389a25",
+      "internal_branches": 57,
+      "direct_calls": [
+        {
+          "at": "0x3ae4fc",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae52c",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae5ac",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae5e0",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae6d0",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae6dc",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x3ae728",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae770",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae798",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x3ae840",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae870",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae8d4",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae8fc",
+          "target": "0x87d694"
+        },
+        {
+          "at": "0x3ae968",
+          "target": "0x3ae9fc"
+        },
+        {
+          "at": "0x3ae9f4",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3aea08",
+      "name": "FlexThemeData_dark",
+      "purpose": "Flex dark theme wrapper",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "a0d2e87146dfdf06293c2ffd9cd3d8ff3a9c01833a85f1c7ebf096ae7b08ae78",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3aea40",
+          "target": "0x3bfd34"
+        },
+        {
+          "at": "0x3aea48",
+          "target": "0x3aea60"
+        },
+        {
+          "at": "0x3aea58",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c1648",
+      "name": "FlexSchemeColor_copyWith",
+      "purpose": "FlexSchemeColor primary field mapping",
+      "bytes": 992,
+      "instructions": 248,
+      "code_sha256": "e0e57c38e87d9ddad9ccd2868d18e1ff63145b1a483cfabf5013191fa324bbde",
+      "internal_branches": 32,
+      "direct_calls": [
+        {
+          "at": "0x3c19b0",
+          "target": "0x3bf5e4"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c1a3c",
+      "name": "FlexThemeData_light",
+      "purpose": "Flex light theme wrapper",
+      "bytes": 68,
+      "instructions": 17,
+      "code_sha256": "da36956bcb1e1629da75eae50855b43fac9f786748124194e4cbacb43e742263",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3c1a60",
+          "target": "0x3c1a80"
+        },
+        {
+          "at": "0x3c1a68",
+          "target": "0x3aea60"
+        },
+        {
+          "at": "0x3c1a78",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c5a34",
+      "name": "ThemeModeKey_build",
+      "purpose": "system/light/dark preference default",
+      "bytes": 96,
+      "instructions": 24,
+      "code_sha256": "14ffabccf4551dc402a920292ee0c1421148655a20df1fb618c9fa3ba2e12593",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x3c5a70",
+          "target": "0x3c5ae4"
+        },
+        {
+          "at": "0x3c5a80",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3c5a90",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x528554",
+      "name": "PureBlackDarkModeTile_build",
+      "purpose": "pure black settings control",
+      "bytes": 484,
+      "instructions": 121,
+      "code_sha256": "191e0aed6898dc10ca31eb615becfad47b3b350c63fa857693144d9f8bf8dfe1",
+      "internal_branches": 7,
+      "direct_calls": [
+        {
+          "at": "0x528580",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5285b0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5285cc",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5285f0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x528610",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x52862c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x52864c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x528684",
+          "target": "0x4aeb14"
+        },
+        {
+          "at": "0x528698",
+          "target": "0x3f0404"
+        },
+        {
+          "at": "0x5286b8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52872c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x528734",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x528864",
+      "name": "ThemeSelector_build",
+      "purpose": "theme selector control",
+      "bytes": 796,
+      "instructions": 199,
+      "code_sha256": "8a0bac5e22f1c66bfabf82f34368e6a0aafcce363493209376ccd837fd881312",
+      "internal_branches": 10,
+      "direct_calls": [
+        {
+          "at": "0x528890",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5288c0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5288d8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5288e4",
+          "target": "0x2033c4"
+        },
+        {
+          "at": "0x528904",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x52890c",
+          "target": "0x2033c4"
+        },
+        {
+          "at": "0x528938",
+          "target": "0x2033c4"
+        },
+        {
+          "at": "0x528960",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x52896c",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x528980",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x52899c",
+          "target": "0x3e3ef0"
+        },
+        {
+          "at": "0x5289c8",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x5289d8",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x528a0c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x528a48",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x528a50",
+          "target": "0x2f0eb4"
+        },
+        {
+          "at": "0x528a88",
+          "target": "0x2f0a74"
+        },
+        {
+          "at": "0x528a94",
+          "target": "0x2ffef4"
+        },
+        {
+          "at": "0x528ac4",
+          "target": "0x87f70c"
+        },
+        {
+          "at": "0x528adc",
+          "target": "0x87e648"
+        },
+        {
+          "at": "0x528af8",
+          "target": "0x2e3a58"
+        },
+        {
+          "at": "0x528b54",
+          "target": "0x2dae70"
+        },
+        {
+          "at": "0x528b78",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5cdb18",
+      "name": "BlendLevelSlider_build",
+      "purpose": "blend level control",
+      "bytes": 360,
+      "instructions": 90,
+      "code_sha256": "78934032f3b0c4268392113053067eb995c2d012ae20f9f279370c88fa366c01",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x5cdb44",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x5cdb5c",
+          "target": "0x398454"
+        },
+        {
+          "at": "0x5cdbb0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x5cdbcc",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x5cdbf0",
+          "target": "0x56e998"
+        },
+        {
+          "at": "0x5cdc2c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5cdc58",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x5cdc74",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x5cdc7c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x73bc10",
+      "name": "Color_get_b",
+      "purpose": "Color blue channel accessor",
+      "bytes": 8,
+      "instructions": 2,
+      "code_sha256": "551603c23a2018c85469e50f14b8875aaf66eaa6bd0d65ac88355ef2226c0bda",
+      "internal_branches": 0,
+      "direct_calls": [],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x73bd98",
+      "name": "Color_get_r",
+      "purpose": "Color red channel accessor",
+      "bytes": 8,
+      "instructions": 2,
+      "code_sha256": "83a5882660ca053bfc023b347def8ee6bdc9af90fda009c76b180d09cb032ff6",
+      "internal_branches": 0,
+      "direct_calls": [],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x73bda0",
+      "name": "Color_get_g",
+      "purpose": "Color green channel accessor",
+      "bytes": 8,
+      "instructions": 2,
+      "code_sha256": "3ee154e2efdd8452124af17c37a44bd654b627093beb058f57d18194db2a3b49",
+      "internal_branches": 0,
+      "direct_calls": [],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x773b00",
+      "name": "Color_get_a",
+      "purpose": "Color alpha channel accessor",
+      "bytes": 8,
+      "instructions": 2,
+      "code_sha256": "0c2b655ed3cd82538e9a1b02dedf0166685328f79f8dbd71edd18a7b60f8eb47",
+      "internal_branches": 0,
+      "direct_calls": [],
+      "indirect_calls": 0
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x393db0",
+      "meaning": "initialize saved pure-black boolean",
+      "verified": true
+    },
+    {
+      "at": "0x395ad0",
+      "meaning": "initialize saved theme key",
+      "verified": true
+    },
+    {
+      "at": "0x3a4238",
+      "meaning": "initialize saved blend number",
+      "verified": true
+    },
+    {
+      "at": "0x3c5a70",
+      "meaning": "initialize saved theme mode enum",
+      "verified": true
+    },
+    {
+      "at": "0x3ae0c0",
+      "meaning": "use saved blend when available",
+      "verified": true
+    },
+    {
+      "at": "0x3ae120",
+      "meaning": "use saved pure black when available",
+      "verified": true
+    },
+    {
+      "at": "0x3ae140",
+      "meaning": "lookup selected scheme in constant map",
+      "verified": true
+    },
+    {
+      "at": "0x3ae148",
+      "meaning": "fallback scheme if key missing",
+      "verified": true
+    },
+    {
+      "at": "0x3ae1b4",
+      "meaning": "compose light theme",
+      "verified": true
+    },
+    {
+      "at": "0x3ae1d0",
+      "meaning": "normal dark mode keeps requested blend",
+      "verified": true
+    },
+    {
+      "at": "0x3ae1fc",
+      "meaning": "pure black selects explicit scaffold color",
+      "verified": true
+    },
+    {
+      "at": "0x3ae2d4",
+      "meaning": "compose dark theme",
+      "verified": true
+    },
+    {
+      "at": "0x3ae300",
+      "meaning": "light theme app bar override",
+      "verified": true
+    },
+    {
+      "at": "0x3ae340",
+      "meaning": "dark theme app bar override",
+      "verified": true
+    },
+    {
+      "at": "0x3c1754",
+      "meaning": "recognize named primary parameter",
+      "verified": true
+    },
+    {
+      "at": "0x3c18cc",
+      "meaning": "missing primary override falls back to field",
+      "verified": true
+    },
+    {
+      "at": "0x20bd04",
+      "meaning": "non-iOS platform continues to other typography",
+      "verified": true
+    },
+    {
+      "at": "0x20bd18",
+      "meaning": "iOS selects Cupertino typography pair",
+      "verified": true
+    },
+    {
+      "at": "0x393da4",
+      "meaning": "pure black defaults to false",
+      "verified": true
+    },
+    {
+      "at": "0x3ae0c4",
+      "meaning": "blend fallback ten",
+      "verified": true
+    },
+    {
+      "at": "0x3ae124",
+      "meaning": "pure black fallback false",
+      "verified": true
+    },
+    {
+      "at": "0x3ae160",
+      "meaning": "light scheme group logical offset 0x18",
+      "verified": true
+    },
+    {
+      "at": "0x3ae1c4",
+      "meaning": "dark scheme group logical offset 0x20",
+      "verified": true
+    },
+    {
+      "at": "0x3ae1d4",
+      "meaning": "pure black sets dark blend to zero",
+      "verified": true
+    },
+    {
+      "at": "0x3c18d0",
+      "meaning": "primary is logical field offset eight",
+      "verified": true
+    },
+    {
+      "at": "0x73bd98",
+      "meaning": "red is logical offset 0x10",
+      "verified": true
+    },
+    {
+      "at": "0x73bda0",
+      "meaning": "green is logical offset 0x18",
+      "verified": true
+    },
+    {
+      "at": "0x73bc10",
+      "meaning": "blue is logical offset 0x20",
+      "verified": true
+    },
+    {
+      "at": "0x773b00",
+      "meaning": "alpha is logical offset eight",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 17,
+    "instructions": 1492,
+    "code_bytes": 5968,
+    "anchors": 29
+  },
+  "limits": [
+    "Seed colors are not measured final screen colors or every theme option",
+    "Cupertino typography is a framework fallback branch, not proof of every app label or Arabic fallback glyph",
+    "Final geometry can be changed by widgets, native iOS 26 shell, safe areas and text scaling",
+    "No proprietary font copied; no specimen code executed; no production app changes"
+  ],
+  "defaults": {
+    "themeMode": "system",
+    "themeKey": "default",
+    "themeBlendLevel": 10.0,
+    "themePureBlackDarkMode": false
+  },
+  "theme_mode_options": [
+    "system",
+    "light",
+    "dark"
+  ],
+  "dark_scaffold_policy": {
+    "pure_black": {
+      "blend_level": 0,
+      "color": "#000000"
+    },
+    "normal_base": "surfaceContainer"
+  },
+  "default_primary_palette": {
+    "light": {
+      "scheme_reference": "0x39440",
+      "primary_reference": "0x3985e",
+      "rgba": [
+        0.2,
+        0.3607843137254902,
+        0.6588235294117647,
+        1.0
+      ],
+      "rgb_hex": "#335CA8"
+    },
+    "dark": {
+      "scheme_reference": "0x3943f",
+      "primary_reference": "0x3985a",
+      "rgba": [
+        0.6823529411764706,
+        0.7764705882352941,
+        1.0,
+        1.0
+      ],
+      "rgb_hex": "#AEC6FF"
+    }
+  },
+  "verified_numeric_constants": {
+    "0xd938": {
+      "value": 10.0,
+      "bits": "0x4024000000000000",
+      "serialized_range": [
+        9333909,
+        9333919
+      ]
+    },
+    "0x27910": {
+      "value": 44.0,
+      "bits": "0x4046000000000000",
+      "serialized_range": [
+        9337219,
+        9337229
+      ]
+    }
+  },
+  "argument_descriptors": {
+    "0x1e9f8": [
+      0,
+      2,
+      1,
+      1,
+      "toolbarHeight",
+      1,
+      null
+    ],
+    "0x1ea00": [
+      0,
+      2,
+      1,
+      1,
+      "appBarTheme",
+      1,
+      null
+    ]
+  },
+  "framework_ios_typography": {
+    "0xc668": [
+      "CupertinoSystemDisplay",
+      "CupertinoSystemText"
+    ],
+    "0xc670": [
+      "CupertinoSystemDisplay",
+      "CupertinoSystemText"
+    ]
+  },
+  "packaged_font_manifest": [
+    {
+      "family": "MaterialIcons",
+      "fonts": [
+        {
+          "asset": "fonts/MaterialIcons-Regular.otf"
+        }
+      ]
+    },
+    {
+      "family": "icomoon",
+      "fonts": [
+        {
+          "asset": "fonts/icomoon.ttf"
+        }
+      ]
+    },
+    {
+      "family": "packages/cupertino_icons/CupertinoIcons",
+      "fonts": [
+        {
+          "asset": "packages/cupertino_icons/assets/CupertinoIcons.ttf"
+        }
+      ]
+    }
+  ],
+  "query_sha256": "63abc4890590f5deb3a502f2d4b7311919e451e24f15c0814d541b45b94c49c4",
+  "query_offsets": [
+    "0xd938",
+    "0x10d08",
+    "0x10d00",
+    "0x25628",
+    "0x10d20",
+    "0x254e8",
+    "0x254f0",
+    "0xc0a8",
+    "0x39a98",
+    "0x27910",
+    "0x1e9f8",
+    "0x1ea00",
+    "0x25880",
+    "0xb890",
+    "0xc370",
+    "0xc668",
+    "0xc670",
+    "0x39af0",
+    "0xb858",
+    "0xb850",
+    "0xb860"
+  ]
+}
