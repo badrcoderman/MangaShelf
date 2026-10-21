@@ -82,6 +82,11 @@ public actor StagedExtensionStore {
             }
         }
         let inspection = try JARInspection.inspect(data)
+        if let manifest = inspection.extensionManifest {
+            guard manifest.packageName == packageName, manifest.versionCode == versionCode else {
+                throw StagedExtensionError.invalidIdentity
+            }
+        }
         let record = StagedExtension(packageName: packageName, versionCode: versionCode,
                                      digest: digest, stagedAt: Date(), inspection: inspection,
                                      isTrusted: false, isActive: false)
@@ -128,6 +133,19 @@ public actor StagedExtensionStore {
         guard digest == record.digest else { throw StagedExtensionError.digestMismatch }
         return data
     }
+    /// Read the current record, trust intent, bytes and manifest in one actor
+    /// operation. Persisted inspection data is never the authority for loading.
+    func verifiedLoadCandidate(packageName: String) throws -> (url: URL, manifest: ExtensionPackageManifest) {
+        guard let record = records.first(where: { $0.id == packageName }) else { throw StagedExtensionError.notFound }
+        guard record.isTrusted else { throw StagedExtensionError.untrustedActivation }
+        guard record.isActive else { throw StagedExtensionError.inactive }
+        let bytes = try verifiedPackage(packageName: packageName)
+        let inspection = try JARInspection.inspect(bytes)
+        guard let manifest = inspection.extensionManifest,
+              manifest.packageName == record.packageName,
+              manifest.versionCode == record.versionCode else { throw StagedExtensionError.invalidIdentity }
+        return (blob(record.digest), manifest)
+    }
     /// Verifies package on disk and rolls back if file has been corrupted.
     public func verifiedPackageWithRollback(packageName: String) throws -> Data {
         do {
@@ -151,5 +169,5 @@ public actor StagedExtensionStore {
 }
 
 public enum StagedExtensionError: Error, Equatable {
-    case invalidIndex, invalidIdentity, digestMismatch, downgrade, versionConflict, notFound, untrustedActivation
+    case invalidIndex, invalidIdentity, digestMismatch, downgrade, versionConflict, notFound, untrustedActivation, inactive
 }

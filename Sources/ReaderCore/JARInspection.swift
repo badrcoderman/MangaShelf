@@ -6,6 +6,16 @@ public struct JARInspection: Codable, Sendable {
     public let classes: [String]
     public let maximumClassVersion: UInt16
     public let manifest: String?
+    public let extensionManifest: ExtensionPackageManifest?
+
+    public init(entries: Int, classes: [String], maximumClassVersion: UInt16,
+                manifest: String?, extensionManifest: ExtensionPackageManifest? = nil) {
+        self.entries = entries
+        self.classes = classes
+        self.maximumClassVersion = maximumClassVersion
+        self.manifest = manifest
+        self.extensionManifest = extensionManifest
+    }
 
     /// Integrity and compatibility screening only; does not authenticate or execute code.
     public static func inspect(_ data: Data) throws -> Self {
@@ -19,6 +29,7 @@ public struct JARInspection: Codable, Sendable {
             var entry = ms_zip_entry(), count = 0
             var maximum: UInt16 = 0
             var manifest: String?
+            var extensionManifest: ExtensionPackageManifest?
             while true {
                 let status = ms_zip_next(&archive, &entry)
                 if status == MS_DONE { break }
@@ -42,6 +53,9 @@ public struct JARInspection: Codable, Sendable {
                     }
                     manifest = text
                 }
+                if name == "AndroidManifest.xml" {
+                    extensionManifest = try ExtensionPackageManifest.parse(bytes)
+                }
                 if name.hasSuffix(".class") {
                     guard bytes.count >= 10, Array(bytes.prefix(4)) == [0xCA, 0xFE, 0xBA, 0xBE] else {
                         throw JARInspectionError.invalidClass
@@ -58,7 +72,12 @@ public struct JARInspection: Codable, Sendable {
                 }
             }
             guard !classes.isEmpty else { throw JARInspectionError.noClasses }
-            return Self(entries: count, classes: classes.sorted(), maximumClassVersion: maximum, manifest: manifest)
+            if let extensionManifest {
+                let entry = extensionManifest.mainClass.replacingOccurrences(of: ".", with: "/") + ".class"
+                guard classes.contains(entry) else { throw JARInspectionError.invalidManifest }
+            }
+            return Self(entries: count, classes: classes.sorted(), maximumClassVersion: maximum,
+                        manifest: manifest, extensionManifest: extensionManifest)
         }
     }
     private static func check(_ status: ms_status) throws {

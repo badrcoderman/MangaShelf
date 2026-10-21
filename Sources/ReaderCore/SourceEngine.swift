@@ -59,8 +59,8 @@ public protocol SourceEngineProtocol: Sendable {
     func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem]
 }
 
-/// Unified source execution coordinator. In Phase 2, this delegates to active vetted
-/// extensions via the JNI bridge, with offline safe fallbacks for validation.
+/// Source execution coordinator. The native runtime remains unavailable until
+/// device proof; project test fixtures use an injected dispatcher.
 public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sendable {
     public static let shared = SourceEngineCoordinator()
     private let stagedStore: StagedExtensionStore?
@@ -72,13 +72,10 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
     }
 
     public func ensureExtensionLoaded(packageName: String) async throws {
-        guard let store = stagedStore else { return }
-        let snapshot = await store.snapshot()
-        guard let item = snapshot.first(where: { $0.packageName == packageName && $0.isActive && $0.isTrusted }) else {
-            return
-        }
-        let jarURL = await store.blobURL(for: item.digest)
-        _ = try await runtime.loadExtension(package: packageName, path: jarURL.path)
+        guard let store = stagedStore else { throw StagedExtensionError.notFound }
+        let candidate = try await store.verifiedLoadCandidate(packageName: packageName)
+        _ = try await runtime.loadExtension(package: packageName, path: candidate.url.path,
+                                             mainClass: candidate.manifest.mainClass)
     }
 
     public func search(sourceId: String, query: String, page: Int) async throws -> [SourceMangaItem] {
