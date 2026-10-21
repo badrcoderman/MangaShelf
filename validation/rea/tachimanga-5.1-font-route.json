@@ -1,0 +1,1624 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_sorayomi.dart": "a04bcbc4aed4dd119320caaf4283f71352886e9580a51134ce7f8fc830e1d358",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_controller_theme_controller.dart": "4e4201d228209bfa54813d72fea7b1b887bd3a0781fbdaab1ae900498fe8106f",
+    "flex_color_scheme_src_flex_theme_data_extensions.dart": "375a0c27f123fb57cc413642194a9e19dc07aa477372c85b0445f49edf3fc1a3",
+    "flex_color_scheme_src_flex_color_scheme.dart": "13a24dfb4001d006aa40839999ec2fb3cf4fd2f413f9961b6493ff84633b25f5",
+    "flutter_src_material_typography.dart": "c5cbc1275f25fc9a050415afd22caa6366be15573d04e3f94eb72bdff1eab983",
+    "flutter_src_material_theme_data.dart": "38040b5803319e93eca09144057d4b582214449bb478ce5d66a3b0c572c0a1aa",
+    "flutter_src_material_text_theme.dart": "ec9c4219b995706485907c15ad149b50895aad9eb264c5288f447f55de42093c",
+    "flutter_src_material_app.dart": "bee14b6b0456d18726d2b654bbdd3fc3c4e73a33de233f74a58ec42ffe973fe6",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x5f48": "fontFamily",
+    "0x5eb8": "fontFamilyFallback"
+  },
+  "scope": "Root theme wiring and global font arguments; not per-widget or Arabic glyph validation",
+  "methods": [
+    {
+      "address": "0x205b78",
+      "name": "TextTheme_merge",
+      "purpose": "TextTheme merge null fast return",
+      "bytes": 1168,
+      "instructions": 292,
+      "code_sha256": "af8514737237ec607f97354422225a8c81c5d3ae0efa52aef3286bf546de3c02",
+      "internal_branches": 62,
+      "direct_calls": [
+        {
+          "at": "0x205bd0",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205c14",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205c58",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205c9c",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205ce0",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205d24",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205d68",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205dac",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205df0",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205e34",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205e78",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205ebc",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205f00",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205f44",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205f88",
+          "target": "0x20624c"
+        },
+        {
+          "at": "0x205ff0",
+          "target": "0x206008"
+        },
+        {
+          "at": "0x206000",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x207078",
+      "name": "ThemeData_factory_ctor",
+      "purpose": "ThemeData font and platform arguments",
+      "bytes": 14960,
+      "instructions": 3740,
+      "code_sha256": "7849c456af87a8085d381477e51ac4daf04b718fbed9b90fe930da25627a5e38",
+      "internal_branches": 458,
+      "direct_calls": [
+        {
+          "at": "0x208e34",
+          "target": "0x20c2e8"
+        },
+        {
+          "at": "0x208e84",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x208eb0",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x208fac",
+          "target": "0x20c268"
+        },
+        {
+          "at": "0x2090e8",
+          "target": "0x20c374"
+        },
+        {
+          "at": "0x2091e8",
+          "target": "0x2059e8"
+        },
+        {
+          "at": "0x2093a8",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x2093dc",
+          "target": "0x20c1f8"
+        },
+        {
+          "at": "0x209414",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x20942c",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x20947c",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x2094e8",
+          "target": "0x77b324"
+        },
+        {
+          "at": "0x209500",
+          "target": "0x77b324"
+        },
+        {
+          "at": "0x20953c",
+          "target": "0x77b324"
+        },
+        {
+          "at": "0x209554",
+          "target": "0x77b324"
+        },
+        {
+          "at": "0x2095b4",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x2095d0",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x209634",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x2096c4",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x2096e0",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x209710",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x20972c",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x209750",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x209784",
+          "target": "0x20bfa4"
+        },
+        {
+          "at": "0x209804",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x20981c",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x209864",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x209934",
+          "target": "0x77b324"
+        },
+        {
+          "at": "0x20996c",
+          "target": "0x20c180"
+        },
+        {
+          "at": "0x20998c",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x2099c8",
+          "target": "0x20bf98"
+        },
+        {
+          "at": "0x209b4c",
+          "target": "0x20be2c"
+        },
+        {
+          "at": "0x209b60",
+          "target": "0x20bc8c"
+        },
+        {
+          "at": "0x209bcc",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209bec",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209c20",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209c3c",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209c70",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209c90",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x209cb4",
+          "target": "0x205b78"
+        },
+        {
+          "at": "0x209cc8",
+          "target": "0x205b78"
+        },
+        {
+          "at": "0x209d08",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x209d10",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x209d44",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x209d4c",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x20a434",
+          "target": "0x20ae60"
+        },
+        {
+          "at": "0x20a5e0",
+          "target": "0x20acd4"
+        },
+        {
+          "at": "0x20a5ec",
+          "target": "0x20ab68"
+        },
+        {
+          "at": "0x20a5f8",
+          "target": "0x2044a0"
+        },
+        {
+          "at": "0x20aa20",
+          "target": "0x12c74"
+        },
+        {
+          "at": "0x20aa40",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x20aa4c",
+          "target": "0x12c74"
+        },
+        {
+          "at": "0x20aa6c",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x20aa78",
+          "target": "0x12c74"
+        },
+        {
+          "at": "0x20aa98",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x20aaa0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x20aaa8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aaac",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aab0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aab4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aab8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aabc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aac0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aac4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aac8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aacc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aad0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aad4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aad8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aadc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aae0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20aae4",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x20bce4",
+      "name": "Typography_factory_ctor_withPlatform",
+      "purpose": "platform typography branch",
+      "bytes": 316,
+      "instructions": 79,
+      "code_sha256": "2aaaf5ad5263067b19def08dec21e58cd902e5b74eba68b854e563f9ac649f75",
+      "internal_branches": 13,
+      "direct_calls": [
+        {
+          "at": "0x20bde0",
+          "target": "0x20be20"
+        },
+        {
+          "at": "0x20be18",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x20be1c",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x20be2c",
+      "name": "Typography_factory_ctor_material2021",
+      "purpose": "Material 2021 typography delegation",
+      "bytes": 264,
+      "instructions": 66,
+      "code_sha256": "c4a0bafafc763a6f4fbb4310f58ad3017b3115a11cffd8131f89858bb415f809",
+      "internal_branches": 6,
+      "direct_calls": [
+        {
+          "at": "0x20be78",
+          "target": "0x20bce4"
+        },
+        {
+          "at": "0x20bedc",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x20bf0c",
+          "target": "0x20af28"
+        },
+        {
+          "at": "0x20bf1c",
+          "target": "0x20bf34"
+        },
+        {
+          "at": "0x20bf2c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x2f45a8",
+      "name": "MaterialAppState_themeBuilder",
+      "purpose": "MaterialApp theme-mode resolution",
+      "bytes": 324,
+      "instructions": 81,
+      "code_sha256": "e09b398dd3e6d1ce2f5516bc7de50d2f4b96b990ca6e4d8a081773254c00727e",
+      "internal_branches": 20,
+      "direct_calls": [
+        {
+          "at": "0x2f45e8",
+          "target": "0x2ef080"
+        },
+        {
+          "at": "0x2f4640",
+          "target": "0x2f46ec"
+        },
+        {
+          "at": "0x2f46d0",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x2f46d8",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x2f46dc",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x2f46e0",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x2f46e4",
+          "target": "0x87fd9c"
+        },
+        {
+          "at": "0x2f46e8",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3ae004",
+      "name": "ThemeSchemeColor_build",
+      "purpose": "theme provider light/dark pair",
+      "bytes": 944,
+      "instructions": 236,
+      "code_sha256": "e397a2d44159e92fc4b852970968b3592770e7e1c96ec8a67874c27446b23158",
+      "internal_branches": 21,
+      "direct_calls": [
+        {
+          "at": "0x3ae050",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae068",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae09c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae0b8",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae0fc",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x3ae118",
+          "target": "0x11a678"
+        },
+        {
+          "at": "0x3ae140",
+          "target": "0x7855bc"
+        },
+        {
+          "at": "0x3ae198",
+          "target": "0x87d27c"
+        },
+        {
+          "at": "0x3ae1b4",
+          "target": "0x3c1a3c"
+        },
+        {
+          "at": "0x3ae1e4",
+          "target": "0x87d27c"
+        },
+        {
+          "at": "0x3ae230",
+          "target": "0x3c1a28"
+        },
+        {
+          "at": "0x3ae2d4",
+          "target": "0x3aea08"
+        },
+        {
+          "at": "0x3ae300",
+          "target": "0x3ae400"
+        },
+        {
+          "at": "0x3ae314",
+          "target": "0x203864"
+        },
+        {
+          "at": "0x3ae340",
+          "target": "0x3ae400"
+        },
+        {
+          "at": "0x3ae354",
+          "target": "0x203864"
+        },
+        {
+          "at": "0x3ae35c",
+          "target": "0x3ae3f4"
+        },
+        {
+          "at": "0x3ae37c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3ae38c",
+          "target": "0x880024"
+        },
+        {
+          "at": "0x3ae39c",
+          "target": "0x87f664"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3aea08",
+      "name": "FlexThemeData_dark",
+      "purpose": "dark wrapper calls toTheme",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "a0d2e87146dfdf06293c2ffd9cd3d8ff3a9c01833a85f1c7ebf096ae7b08ae78",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3aea40",
+          "target": "0x3bfd34"
+        },
+        {
+          "at": "0x3aea48",
+          "target": "0x3aea60"
+        },
+        {
+          "at": "0x3aea58",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3aea60",
+      "name": "FlexColorScheme_get_toTheme",
+      "purpose": "toTheme typography and ThemeData argument construction",
+      "bytes": 4088,
+      "instructions": 1022,
+      "code_sha256": "bd9651acb379864fb4cddcf9883ddfa01597f7bcf1f134c6215e6715d93e58d7",
+      "internal_branches": 71,
+      "direct_calls": [
+        {
+          "at": "0x3aea80",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x3aeaa0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3aeacc",
+          "target": "0x3bdb48"
+        },
+        {
+          "at": "0x3aeaf4",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x3aeb5c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3aeba8",
+          "target": "0x20c1f8"
+        },
+        {
+          "at": "0x3aebe4",
+          "target": "0x205b78"
+        },
+        {
+          "at": "0x3aebf4",
+          "target": "0x205b78"
+        },
+        {
+          "at": "0x3aec18",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aec34",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aec58",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aec74",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aec98",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aecb4",
+          "target": "0x3bda68"
+        },
+        {
+          "at": "0x3aed3c",
+          "target": "0x87df1c"
+        },
+        {
+          "at": "0x3aed44",
+          "target": "0x20c1f8"
+        },
+        {
+          "at": "0x3aed6c",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x3aed98",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3aef70",
+          "target": "0x2f6c20"
+        },
+        {
+          "at": "0x3aefec",
+          "target": "0x87df1c"
+        },
+        {
+          "at": "0x3aeffc",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3af024",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x3af038",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3af058",
+          "target": "0x254f90"
+        },
+        {
+          "at": "0x3af068",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x3af07c",
+          "target": "0x3bd4f8"
+        },
+        {
+          "at": "0x3af0a8",
+          "target": "0x20c1f8"
+        },
+        {
+          "at": "0x3af0c4",
+          "target": "0x2059a8"
+        },
+        {
+          "at": "0x3af114",
+          "target": "0x3bb5b4"
+        },
+        {
+          "at": "0x3af220",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x3af234",
+          "target": "0x20aef4"
+        },
+        {
+          "at": "0x3af260",
+          "target": "0x3bb534"
+        },
+        {
+          "at": "0x3af278",
+          "target": "0x3bb49c"
+        },
+        {
+          "at": "0x3af29c",
+          "target": "0x3bb080"
+        },
+        {
+          "at": "0x3af2c4",
+          "target": "0x3baf0c"
+        },
+        {
+          "at": "0x3af2d0",
+          "target": "0x3bad04"
+        },
+        {
+          "at": "0x3af2e0",
+          "target": "0x3bac54"
+        },
+        {
+          "at": "0x3af308",
+          "target": "0x3b984c"
+        },
+        {
+          "at": "0x3af330",
+          "target": "0x3b8efc"
+        },
+        {
+          "at": "0x3af354",
+          "target": "0x3b8658"
+        },
+        {
+          "at": "0x3af370",
+          "target": "0x3b8580"
+        },
+        {
+          "at": "0x3af394",
+          "target": "0x3b8574"
+        },
+        {
+          "at": "0x3af3d8",
+          "target": "0x3b83dc"
+        },
+        {
+          "at": "0x3af404",
+          "target": "0x3b8338"
+        },
+        {
+          "at": "0x3af41c",
+          "target": "0x3b70fc"
+        },
+        {
+          "at": "0x3af434",
+          "target": "0x3b6f84"
+        },
+        {
+          "at": "0x3af448",
+          "target": "0x3b6f1c"
+        },
+        {
+          "at": "0x3af458",
+          "target": "0x3b6e9c"
+        },
+        {
+          "at": "0x3af460",
+          "target": "0x3b6e50"
+        },
+        {
+          "at": "0x3af474",
+          "target": "0x3b6dac"
+        },
+        {
+          "at": "0x3af484",
+          "target": "0x3b6398"
+        },
+        {
+          "at": "0x3af494",
+          "target": "0x3b6310"
+        },
+        {
+          "at": "0x3af4c4",
+          "target": "0x3b5ec8"
+        },
+        {
+          "at": "0x3af4ec",
+          "target": "0x3b5ba0"
+        },
+        {
+          "at": "0x3af504",
+          "target": "0x3b5908"
+        },
+        {
+          "at": "0x3af51c",
+          "target": "0x3b53e4"
+        },
+        {
+          "at": "0x3af538",
+          "target": "0x3b5364"
+        },
+        {
+          "at": "0x3af550",
+          "target": "0x3b4978"
+        },
+        {
+          "at": "0x3af560",
+          "target": "0x3b4614"
+        },
+        {
+          "at": "0x3af570",
+          "target": "0x3b45bc"
+        },
+        {
+          "at": "0x3af588",
+          "target": "0x3b38f8"
+        },
+        {
+          "at": "0x3af59c",
+          "target": "0x3b3424"
+        },
+        {
+          "at": "0x3af5c8",
+          "target": "0x3b333c"
+        },
+        {
+          "at": "0x3af604",
+          "target": "0x3b333c"
+        },
+        {
+          "at": "0x3af638",
+          "target": "0x3b3154"
+        },
+        {
+          "at": "0x3af650",
+          "target": "0x3b19ec"
+        },
+        {
+          "at": "0x3af6e4",
+          "target": "0x3b150c"
+        },
+        {
+          "at": "0x3af6f8",
+          "target": "0x3b13b0"
+        },
+        {
+          "at": "0x3af720",
+          "target": "0x3b12a4"
+        },
+        {
+          "at": "0x3af73c",
+          "target": "0x3b019c"
+        },
+        {
+          "at": "0x3af754",
+          "target": "0x3afb64"
+        },
+        {
+          "at": "0x3af7c8",
+          "target": "0x2063c8"
+        },
+        {
+          "at": "0x3af7e0",
+          "target": "0x3afa58"
+        },
+        {
+          "at": "0x3afa3c",
+          "target": "0x207078"
+        },
+        {
+          "at": "0x3afa4c",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x3afa54",
+          "target": "0x87fd9c"
+        }
+      ],
+      "indirect_calls": 18
+    },
+    {
+      "address": "0x3bfc10",
+      "name": "FlexColorScheme_defaultTypography",
+      "purpose": "default typography callback",
+      "bytes": 124,
+      "instructions": 31,
+      "code_sha256": "edcac418434b6805c34352259766b62cba1068e055610417763af603b2b3eab3",
+      "internal_branches": 5,
+      "direct_calls": [
+        {
+          "at": "0x3bfc50",
+          "target": "0x20be2c"
+        },
+        {
+          "at": "0x3bfc68",
+          "target": "0x3bfc8c"
+        },
+        {
+          "at": "0x3bfc7c",
+          "target": "0x87d8ec"
+        },
+        {
+          "at": "0x3bfc84",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3bfc8c",
+      "name": "Typography_factory_ctor_material2018",
+      "purpose": "Material 2018 typography with iOS platform",
+      "bytes": 96,
+      "instructions": 24,
+      "code_sha256": "d61cfd73f99471f06a57e6627f5a0608b8f1899de3e97f89284bbd305e82d4af",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3bfcd4",
+          "target": "0x20bce4"
+        },
+        {
+          "at": "0x3bfce4",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x3c1a3c",
+      "name": "FlexThemeData_light",
+      "purpose": "light wrapper calls toTheme",
+      "bytes": 68,
+      "instructions": 17,
+      "code_sha256": "da36956bcb1e1629da75eae50855b43fac9f786748124194e4cbacb43e742263",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x3c1a60",
+          "target": "0x3c1a80"
+        },
+        {
+          "at": "0x3c1a68",
+          "target": "0x3aea60"
+        },
+        {
+          "at": "0x3c1a78",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x595aa0",
+      "name": "Sorayomi_build",
+      "purpose": "Sorayomi root theme provider and MaterialApp fields",
+      "bytes": 1468,
+      "instructions": 367,
+      "code_sha256": "248a4ab009bf627a8a31ca63d2291077e128c05700886e68ee5d2de2471587c6",
+      "internal_branches": 21,
+      "direct_calls": [
+        {
+          "at": "0x595ac8",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x595af4",
+          "target": "0x12c154"
+        },
+        {
+          "at": "0x595b20",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595b3c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595b64",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x595b8c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595ba8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595bc0",
+          "target": "0x597b74"
+        },
+        {
+          "at": "0x595be8",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x595c10",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595c2c",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595c58",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595c70",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595c7c",
+          "target": "0x49d380"
+        },
+        {
+          "at": "0x595c88",
+          "target": "0x597b1c"
+        },
+        {
+          "at": "0x595c94",
+          "target": "0x414b90"
+        },
+        {
+          "at": "0x595cc4",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595ce0",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595cfc",
+          "target": "0x596a9c"
+        },
+        {
+          "at": "0x595d28",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595d40",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595d6c",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595d84",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595db0",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x595dc8",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x595dd8",
+          "target": "0x596980"
+        },
+        {
+          "at": "0x595de8",
+          "target": "0x5968f8"
+        },
+        {
+          "at": "0x595df8",
+          "target": "0x5966cc"
+        },
+        {
+          "at": "0x595e04",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x595e18",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x595e24",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x595e30",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x595e44",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x595e50",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x595e5c",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x595e70",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x595e7c",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x595e88",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x595e9c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x595ea8",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x595ebc",
+          "target": "0x59607c"
+        },
+        {
+          "at": "0x595ee4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x595f70",
+          "target": "0x596068"
+        },
+        {
+          "at": "0x595fa8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x596014",
+          "target": "0x59605c"
+        },
+        {
+          "at": "0x596030",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x596040",
+          "target": "0x880024"
+        },
+        {
+          "at": "0x59604c",
+          "target": "0x880024"
+        },
+        {
+          "at": "0x596058",
+          "target": "0x880024"
+        }
+      ],
+      "indirect_calls": 0
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x595c2c",
+      "meaning": "root watches theme scheme provider",
+      "verified": true
+    },
+    {
+      "at": "0x3c1a68",
+      "meaning": "light wrapper produces ThemeData",
+      "verified": true
+    },
+    {
+      "at": "0x3aea48",
+      "meaning": "dark wrapper produces ThemeData",
+      "verified": true
+    },
+    {
+      "at": "0x3bfc50",
+      "meaning": "default Material 2021 typography path",
+      "verified": true
+    },
+    {
+      "at": "0x3bfc68",
+      "meaning": "default Material 2018 typography path",
+      "verified": true
+    },
+    {
+      "at": "0x3bfcd4",
+      "meaning": "Material 2018 platform selector",
+      "verified": true
+    },
+    {
+      "at": "0x20be78",
+      "meaning": "Material 2021 platform selector",
+      "verified": true
+    },
+    {
+      "at": "0x3aebe4",
+      "meaning": "main text theme merges null override",
+      "verified": true
+    },
+    {
+      "at": "0x3aebf4",
+      "meaning": "primary text theme merges null override",
+      "verified": true
+    },
+    {
+      "at": "0x205ba4",
+      "meaning": "null merge returns receiver unchanged",
+      "verified": true
+    },
+    {
+      "at": "0x3afa3c",
+      "meaning": "construct ThemeData using reviewed descriptor",
+      "verified": true
+    },
+    {
+      "at": "0x207c14",
+      "meaning": "ThemeData recognizes fontFamily named argument",
+      "verified": true
+    },
+    {
+      "at": "0x209bbc",
+      "meaning": "null fontFamily skips family replacement",
+      "verified": true
+    },
+    {
+      "at": "0x595bf8",
+      "meaning": "root reads theme scheme static field",
+      "verified": true
+    },
+    {
+      "at": "0x595c0c",
+      "meaning": "theme scheme provider initializer field",
+      "verified": true
+    },
+    {
+      "at": "0x595f00",
+      "meaning": "root takes light ThemeData from pair",
+      "verified": true
+    },
+    {
+      "at": "0x595f08",
+      "meaning": "root takes dark ThemeData from pair",
+      "verified": true
+    },
+    {
+      "at": "0x595fbc",
+      "meaning": "MaterialApp light theme field",
+      "verified": true
+    },
+    {
+      "at": "0x595fc4",
+      "meaning": "MaterialApp dark theme field",
+      "verified": true
+    },
+    {
+      "at": "0x2f4680",
+      "meaning": "framework reads dark theme field",
+      "verified": true
+    },
+    {
+      "at": "0x2f46b4",
+      "meaning": "framework light theme fallback field",
+      "verified": true
+    },
+    {
+      "at": "0x3aeb24",
+      "meaning": "typography callback context receives iOS platform",
+      "verified": true
+    },
+    {
+      "at": "0x3aeb20",
+      "meaning": "typography context uses the reviewed iOS enum constant",
+      "verified": true
+    },
+    {
+      "at": "0x3af804",
+      "meaning": "ThemeData platform argument uses the same iOS constant",
+      "verified": true
+    },
+    {
+      "at": "0x3af808",
+      "meaning": "platform call argument stack offset",
+      "verified": true
+    },
+    {
+      "at": "0x3af80c",
+      "meaning": "platform slot is relative to Dart SP x15",
+      "verified": true
+    },
+    {
+      "at": "0x3af810",
+      "meaning": "iOS platform and adjacent null argument",
+      "verified": true
+    },
+    {
+      "at": "0x3af898",
+      "meaning": "fontFamily call argument is Dart null",
+      "verified": true
+    },
+    {
+      "at": "0x3af89c",
+      "meaning": "package and fontFamilyFallback are null",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 12,
+    "instructions": 5977,
+    "code_bytes": 23908,
+    "anchors": 29
+  },
+  "limits": [
+    "Null global fontFamily is not proof of every descendant TextStyle",
+    "62 lookup keys are not a claim that every theme option is visible or entitled",
+    "No native-shell font, Arabic fallback glyph, Dynamic Type or screenshot proof",
+    "No sample code executed or production app changes"
+  ],
+  "verified_instruction_aliases": [
+    {
+      "at": "0x208a80",
+      "exported": "orr",
+      "decoded": "mov",
+      "equivalence": "same 64-bit immediate and destination; ORR source is xzr"
+    },
+    {
+      "at": "0x20a3fc",
+      "exported": "orr",
+      "decoded": "mov",
+      "equivalence": "same 64-bit immediate and destination; ORR source is xzr"
+    }
+  ],
+  "theme_data_argument_descriptor": {
+    "total_arguments": 78,
+    "named_arguments": 77,
+    "positions": {
+      "appBarTheme": 34,
+      "applyElevationOverlayColor": 1,
+      "badgeTheme": 35,
+      "bannerTheme": 36,
+      "bottomAppBarTheme": 37,
+      "bottomNavigationBarTheme": 38,
+      "bottomSheetTheme": 39,
+      "brightness": 11,
+      "buttonTheme": 40,
+      "canvasColor": 13,
+      "cardColor": 14,
+      "cardTheme": 41,
+      "checkboxTheme": 42,
+      "chipTheme": 43,
+      "colorScheme": 12,
+      "cupertinoOverrideTheme": 2,
+      "dataTableTheme": 44,
+      "datePickerTheme": 45,
+      "dialogBackgroundColor": 15,
+      "dialogTheme": 46,
+      "disabledColor": 16,
+      "dividerColor": 17,
+      "dividerTheme": 47,
+      "drawerTheme": 48,
+      "dropdownMenuTheme": 49,
+      "elevatedButtonTheme": 50,
+      "expansionTileTheme": 51,
+      "extensions": 3,
+      "filledButtonTheme": 52,
+      "floatingActionButtonTheme": 53,
+      "focusColor": 18,
+      "fontFamily": 28,
+      "fontFamilyFallback": 29,
+      "highlightColor": 19,
+      "hoverColor": 20,
+      "iconButtonTheme": 54,
+      "indicatorColor": 22,
+      "inputDecorationTheme": 10,
+      "listTileTheme": 55,
+      "materialTapTargetSize": 4,
+      "menuBarTheme": 56,
+      "menuButtonTheme": 57,
+      "menuTheme": 58,
+      "navigationBarTheme": 59,
+      "navigationDrawerTheme": 60,
+      "navigationRailTheme": 61,
+      "outlinedButtonTheme": 62,
+      "package": 30,
+      "pageTransitionsTheme": 5,
+      "platform": 6,
+      "popupMenuTheme": 63,
+      "primaryColor": 23,
+      "primaryColorDark": 24,
+      "primaryColorLight": 25,
+      "primaryTextTheme": 31,
+      "progressIndicatorTheme": 64,
+      "radioTheme": 65,
+      "scaffoldBackgroundColor": 26,
+      "searchBarTheme": 66,
+      "searchViewTheme": 67,
+      "secondaryHeaderColor": 27,
+      "segmentedButtonTheme": 68,
+      "sliderTheme": 69,
+      "snackBarTheme": 70,
+      "splashColor": 21,
+      "splashFactory": 9,
+      "switchTheme": 71,
+      "tabBarTheme": 72,
+      "textButtonTheme": 73,
+      "textSelectionTheme": 74,
+      "textTheme": 32,
+      "timePickerTheme": 75,
+      "toggleButtonsTheme": 76,
+      "tooltipTheme": 77,
+      "typography": 33,
+      "useMaterial3": 7,
+      "visualDensity": 8
+    }
+  },
+  "argument_stack_base_register": "x15 (Dart SP)",
+  "font_argument_stack_slots": {
+    "fontFamily": {
+      "position": 28,
+      "offset": "0x188",
+      "last_store": {
+        "at": "0x3af898",
+        "register": "x22"
+      }
+    },
+    "fontFamilyFallback": {
+      "position": 29,
+      "offset": "0x180",
+      "last_store": {
+        "at": "0x3af89c",
+        "register": "x22"
+      }
+    },
+    "package": {
+      "position": 30,
+      "offset": "0x178",
+      "last_store": {
+        "at": "0x3af89c",
+        "register": "x22"
+      }
+    }
+  },
+  "root_theme_provider": {
+    "pool_offset": "0xb830",
+    "static_table_offset": "0x33f8",
+    "name": "themeSchemeColorProvider"
+  },
+  "scheme_lookup_keys": [
+    "default",
+    "greenapple",
+    "lavender",
+    "midnightdusk",
+    "strawberry",
+    "tako",
+    "tealturqoise",
+    "tidalwave",
+    "yinyang",
+    "yotsuba",
+    "material",
+    "materialHc",
+    "blue",
+    "indigo",
+    "hippieBlue",
+    "aquaBlue",
+    "brandBlue",
+    "deepBlue",
+    "sakura",
+    "mandyRed",
+    "red",
+    "redWine",
+    "purpleBrown",
+    "green",
+    "money",
+    "jungle",
+    "greyLaw",
+    "wasabi",
+    "gold",
+    "mango",
+    "amber",
+    "vesuviusBurn",
+    "deepPurple",
+    "ebonyClay",
+    "barossa",
+    "shark",
+    "bigStone",
+    "damask",
+    "bahamaBlue",
+    "mallardGreen",
+    "espresso",
+    "outerSpace",
+    "blueWhale",
+    "sanJuanBlue",
+    "rosewood",
+    "blumineBlue",
+    "flutterDash",
+    "materialBaseline",
+    "verdunHemlock",
+    "dellGenoa",
+    "redM3",
+    "pinkM3",
+    "purpleM3",
+    "indigoM3",
+    "blueM3",
+    "cyanM3",
+    "tealM3",
+    "greenM3",
+    "limeM3",
+    "yellowM3",
+    "orangeM3",
+    "deepOrangeM3"
+  ],
+  "framework_typography_evidence": {
+    "file": "tachimanga-5.1-appearance.json",
+    "sha256": "fecd64e8f544b55969b9d63272f0163bf4f67b00c607306e7c4d1268bc4072a4",
+    "families": {
+      "0xc668": [
+        "CupertinoSystemDisplay",
+        "CupertinoSystemText"
+      ],
+      "0xc670": [
+        "CupertinoSystemDisplay",
+        "CupertinoSystemText"
+      ]
+    }
+  },
+  "queries_sha256": {
+    "objects.json": "e13379e2e070e8aef00f799f21e5c8fbb2bf457339f7e63ec4f706a33aaa8b8c",
+    "callbacks.json": "859d9f22773ad1b6c22ea0aad7d5307fe3ae1f5fffbab60f5f8e3a6252a98b64"
+  },
+  "object_tool_provenance": {
+    "upstream_commit": "9f65eeaef92b9709b169c2a9a503a89bbdd14b72",
+    "sdk_and_library_inputs": {
+      "Cargo.lock": "f67bec445c426236bf9cbba7c1be407e56254b5c1231764b4e7ec700d56082d0",
+      "src/engine/snapshot.rs": "ec06001ec9d66006aaacaccfd98df640c412ceb0ca9e2b91a6e23663e1824c88",
+      "src/engine/fill.rs": "4e61e3032cda9e45c3d51bfb30c486ca376f2f5923ab9c6ab77ca7533a4fa940",
+      "src/bin/pool_audit.rs": "52b5e2fd11f76c0cefd020afc85c724f7685c86105722096085e8ea39343b85f",
+      "profiles/sdk/dart-3.6.1-w64-no-compressed.json": "850dcc323c1ef5975010c1831e92459e5de0706d2b663a7d3305acab36300dc9",
+      "profiles/platform/macho-arm64.json": "474f82c245bc36163f8027d7a5d735d162fb963a8f2de398921ac1a4c516fa48"
+    },
+    "helper_sha256": "5da4592d123d4a6a8031326563ac994e62f446663f0c6c9ab61edd066b6384f2",
+    "binary_sha256": "66e41003a484955e3fdb2bb2c1b015b173eff41865e955598ab3d7bb18cb6d59",
+    "build_log_sha256": "87272a2a190fedc598fb0ee7569ddbe2687271d58457a137e55921e54bb356d6",
+    "cargo_arguments": [
+      "build",
+      "--release",
+      "--locked",
+      "--no-default-features",
+      "--bin",
+      "object_details"
+    ],
+    "query_offsets": [
+      "0x39af0",
+      "0xb830",
+      "0xb820",
+      "0xb810",
+      "0xb8b8",
+      "0xb8c0",
+      "0xb8c8",
+      "0x254e8"
+    ],
+    "limits": {
+      "address_space_bytes": 3221225472,
+      "cpu_seconds": 60,
+      "wall_seconds": 90,
+      "cpus": 1
+    }
+  }
+}

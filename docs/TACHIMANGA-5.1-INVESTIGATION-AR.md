@@ -55,6 +55,7 @@ flowchart TD
 | [فجوات الإعدادات والنسخ والمظهر](TACHIMANGA-5.1-SETTINGS-BACKUP-GAPS-AR.md) | اختلاف JSON عن TMB، جرد الصفحات والخيارات المطلوب، وشروط قبول الألوان والخطوط والواجهات الداخلية |
 | [جرد الإعدادات وتدفق النسخ](TACHIMANGA-5.1-SETTINGS-INVENTORY-AR.md) | مراجع عناصر ثابتة في 15 صفحة، افتراضيات النسخ والاحتفاظ، وفصل توجيه الاستعادة عن استيراد protobuf |
 | [السمة والألوان والخطوط](TACHIMANGA-5.1-APPEARANCE-AR.md) | مفاتيح المظهر وافتراضياته، primary مقابل accent في MSL، الأسود الصافي وtoolbarHeight، وFontManifest وفرع Cupertino وحدود خط النص النهائي |
+| [السمة العامة وخط النص](TACHIMANGA-5.1-FONT-ROUTE-AR.md) | ربط provider إلى MaterialApp، معاملات الخط null على مكدس Dart ومنصة iOS، و62 مفتاح lookup للسمة وحدود TextStyle المحلية |
 | [خدمات المنصة وTMB](TACHIMANGA-5.1-PLATFORM-AR.md) | MAGIC_PIPE، بنية النسخ والاستعادة، مهام الخلفية، iCloud وWebView |
 | [مراجعة MSL](TACHIMANGA-5.1-REVIEW-AR.md) | حالة مشروعنا وما تغير وما بقي في التنفيذ |
 | [TODO](../TODO.md) و[Changelog](../CHANGELOG.md) | أفعال التنفيذ والتحقق، دون اعتبار التحليل نجاحًا للمحرك |

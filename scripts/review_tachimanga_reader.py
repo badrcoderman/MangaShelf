@@ -127,7 +127,7 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
         if expected not in pool.splitlines():
             raise ValueError(f"Pool marker mismatch at {offset}")
     decoder = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
-    decoded, records, external_branches = {}, [], []
+    decoded, records, external_branches, aliases = {}, [], [], []
     for start, (name, exported) in sorted(sections.items()):
         size = exported[-1][0] + 4 - start
         code = code_at(start, size)
@@ -138,7 +138,16 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
         addresses = {i.address for i in machine}
         for ins, (address, mnemonic, operands) in zip(machine, exported):
             if ins.mnemonic != mnemonic:
-                raise ValueError(f"Instruction mnemonic mismatch at {address:x}")
+                # A MOV-immediate can be an alias of ORR with the zero register.
+                # Accept only identical 64-bit destinations/immediates, never a
+                # mnemonic-only exception or an arbitrary mismatch allowlist.
+                original = re.fullmatch(r'(x\d+), xzr, #(0x[0-9a-f]+)', operands) if mnemonic == "orr" else None
+                canonical = re.fullmatch(r'(x\d+), #(-?(?:0x[0-9a-f]+|\d+))', ins.op_str) if ins.mnemonic == "mov" else None
+                if (not original or not canonical or original[1] != canonical[1]
+                        or int(original[2], 0) != (int(canonical[2], 0) & ((1 << 64) - 1))):
+                    raise ValueError(f"Instruction mnemonic mismatch at {address:x}")
+                aliases.append({"at": hex(address), "exported": "orr", "decoded": "mov",
+                                "equivalence": "same 64-bit immediate and destination; ORR source is xzr"})
             decoded[address] = ins
             if mnemonic in ("b", "bl", "cbz", "cbnz", "tbz", "tbnz") or mnemonic.startswith("b."):
                 machine_target = int(ins.op_str.rsplit("#", 1)[1], 0)
@@ -182,6 +191,8 @@ def inspect(root, *, methods=None, selected_anchors=None, filenames=None, pool_m
     if allowed_external_branches:
         result["allowed_external_branch_targets"] = [hex(a) for a in allowed_external_branches]
         result["external_branches"] = external_branches
+    if aliases:
+        result["verified_instruction_aliases"] = aliases
     return result
 
 

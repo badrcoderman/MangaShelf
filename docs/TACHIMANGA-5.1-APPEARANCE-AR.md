@@ -9,6 +9,10 @@
 مع **29 موضع تحقق** للنداءات والفروع وoperands الأساسية. يشمل ذلك تفضيلات
 المظهر، وبناء السمة، وربط primary ومكونات Color، وفرع Typography الخاص بـiOS.
 
+المتابعة اللاحقة [السمة العامة وخط النص](TACHIMANGA-5.1-FONT-ROUTE-AR.md)
+تحسم ربط هذه السمة بـMaterialApp، ومنصة iOS ومعاملات الخط العامة null،
+وتجرد 62 مفتاح lookup. تبقى TextStyle المحلية والعربية والمقارنة على الجهاز مفتوحة.
+
 ```bash
 python3 scripts/review_tachimanga_appearance.py /path/to/tachimanga-analysis-5.1 /tmp/appearance.json
 ```
