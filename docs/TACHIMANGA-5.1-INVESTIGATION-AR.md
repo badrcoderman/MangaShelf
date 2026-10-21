@@ -51,6 +51,8 @@ flowchart TD
 | [Flutter والقارئ](TACHIMANGA-5.1-FLUTTER-AR.md) | snapshot والتفكيك، المستودعات، القنوات، حالة القارئ والمكتبة وفروع iOS 26 |
 | [اقتران الصفحات والتقدم](TACHIMANGA-5.1-READER-PAIRING-AR.md) | فروع فصل الصفحة الأولى والصفحات المنفردة وحدود الفصول وتحديث الأبعاد والتحويل بين فهرس الزوج والصفحة |
 | [مناطق اللمس والاتجاه](TACHIMANGA-5.1-READER-NAVIGATION-AR.md) | أشكال التخطيطات الأربعة، نسب 1:2، وفصل قرار RTL عن invertTap والتعطيل المؤقت وفجوة MSL |
+| [الضغط المطوّل والسرعة والإلغاء](TACHIMANGA-5.1-READER-GESTURES-AR.md) | دورة المؤشر وTimer و500ms، ثمانية معاملات وسبعة حدود وهامش 12، مع تدقيق أرقام pool وحدود callbacks |
+| [فجوات الإعدادات والنسخ والمظهر](TACHIMANGA-5.1-SETTINGS-BACKUP-GAPS-AR.md) | اختلاف JSON عن TMB، جرد الصفحات والخيارات المطلوب، وشروط قبول الألوان والخطوط والواجهات الداخلية |
 | [خدمات المنصة وTMB](TACHIMANGA-5.1-PLATFORM-AR.md) | MAGIC_PIPE، بنية النسخ والاستعادة، مهام الخلفية، iCloud وWebView |
 | [مراجعة MSL](TACHIMANGA-5.1-REVIEW-AR.md) | حالة مشروعنا وما تغير وما بقي في التنفيذ |
 | [TODO](../TODO.md) و[Changelog](../CHANGELOG.md) | أفعال التنفيذ والتحقق، دون اعتبار التحليل نجاحًا للمحرك |

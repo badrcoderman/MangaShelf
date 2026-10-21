@@ -1,0 +1,828 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_reader_wrapper.dart": "21152c66f0cd7ef8f5d6ece1d35aec32fb144b7fa5a4c17a40397cf15b2f49b8",
+    "tachidesk_sorayomi_src_features_manga_book_presentation_reader_widgets_long_press_scroll_speed.dart": "f0832a403621d5219f5110db2c5ca211cdfbcc490bc4499681f065bc3259cb2d",
+    "flutter_src_widgets_basic.dart": "bec7524aea88ddecd782f6f0a7bcfd2c40371db8bff4aab58baf91cb724819f7",
+    "flutter_src_rendering_proxy_box.dart": "c29b419da10bdbe56a8684604a584b6b93a5ca01c2f36dcf5813f51e1f91e4ba",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9",
+    "../text/classes.txt": "86d041091943498f6c1f938443a3af942ee4bcc8f5407d1119fac3fc7324298a"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {
+    "0x38fa8": "pointerEvent"
+  },
+  "scope": "Static pointer/timer lifecycle and speed evidence; no specimen code executed",
+  "methods": [
+    {
+      "address": "0x26fb0c",
+      "name": "Listener_updateRenderObject",
+      "purpose": "Listener callback transfer to render object",
+      "bytes": 344,
+      "instructions": 86,
+      "code_sha256": "84293f7a9f30e341627806440962c21f686533f550405e262b5778cc1be8a685",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x26fb5c",
+          "target": "0x87d52c"
+        },
+        {
+          "at": "0x26fb84",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fba4",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fbc4",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fbe8",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fc08",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fc30",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x26fc50",
+          "target": "0x87de7c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x38375c",
+      "name": "RenderPointerListener_handleEvent",
+      "purpose": "render pointer event dispatch",
+      "bytes": 1064,
+      "instructions": 266,
+      "code_sha256": "d540027463ab61c032bc1215f46d297eaec67384b2e682601e026a443d65409d",
+      "internal_branches": 77,
+      "direct_calls": [
+        {
+          "at": "0x3837b8",
+          "target": "0x6b464"
+        },
+        {
+          "at": "0x383a40",
+          "target": "0x352448"
+        },
+        {
+          "at": "0x383b7c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 5
+    },
+    {
+      "address": "0x510b10",
+      "name": "FocusWrapper_build",
+      "purpose": "FocusWrapper pointer state and Listener setup",
+      "bytes": 1084,
+      "instructions": 271,
+      "code_sha256": "06ad2ce6112a244e530f754a779052292b729d021f3b18b63b9d919bcbd01d94",
+      "internal_branches": 18,
+      "direct_calls": [
+        {
+          "at": "0x510b34",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x510b60",
+          "target": "0x2f3f78"
+        },
+        {
+          "at": "0x510b8c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510bc8",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510be8",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510bfc",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510c1c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510c2c",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510c4c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510c5c",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510c7c",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510c8c",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510cac",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510cc0",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510ce0",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510cf4",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510d14",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510d28",
+          "target": "0x3e3e3c"
+        },
+        {
+          "at": "0x510d48",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x510d68",
+          "target": "0x87d7b4"
+        },
+        {
+          "at": "0x510d80",
+          "target": "0x1e9d44"
+        },
+        {
+          "at": "0x510da0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510dc0",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x510dd0",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510df0",
+          "target": "0x87de9c"
+        },
+        {
+          "at": "0x510dfc",
+          "target": "0x167a0"
+        },
+        {
+          "at": "0x510e10",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510e1c",
+          "target": "0x3e2364"
+        },
+        {
+          "at": "0x510e3c",
+          "target": "0x2eaed8"
+        },
+        {
+          "at": "0x510e50",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510e6c",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510e88",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510ea4",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510edc",
+          "target": "0x2eaed8"
+        },
+        {
+          "at": "0x510efc",
+          "target": "0x2f3f78"
+        },
+        {
+          "at": "0x510f28",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x510f44",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x51111c",
+      "name": "FocusWrapper_anon_closure_2",
+      "purpose": "pointer up/cancel adapter",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "8c2cfd6138f198bc1cc9e0843c56803f1608df0046cd7bdf88bb60a3a46702e6",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x51116c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x511174",
+      "name": "FocusWrapper_onPointerMove",
+      "purpose": "tracked pointer movement and speed update",
+      "bytes": 676,
+      "instructions": 169,
+      "code_sha256": "e539228aaf110732fba624b02762d063ead5eb8ca29b1e387bfb356fd6b6261b",
+      "internal_branches": 15,
+      "direct_calls": [
+        {
+          "at": "0x5111cc",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x5111d8",
+          "target": "0x796850"
+        },
+        {
+          "at": "0x511278",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x511300",
+          "target": "0x511418"
+        },
+        {
+          "at": "0x51131c",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x51132c",
+          "target": "0x796850"
+        },
+        {
+          "at": "0x5113a0",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x5113cc",
+          "target": "0x2ca4d0"
+        },
+        {
+          "at": "0x511408",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x511410",
+          "target": "0x87fc54"
+        },
+        {
+          "at": "0x511414",
+          "target": "0x87ff4c"
+        }
+      ],
+      "indirect_calls": 6
+    },
+    {
+      "address": "0x511418",
+      "name": "resolveLongPressScrollSpeedLevel",
+      "purpose": "speed level with hysteresis",
+      "bytes": 264,
+      "instructions": 66,
+      "code_sha256": "c80c18066a2638c2de0603865ae940c88b25085f9781a1e236e0697f17df4405",
+      "internal_branches": 15,
+      "direct_calls": [
+        {
+          "at": "0x51143c",
+          "target": "0x7d134"
+        },
+        {
+          "at": "0x511500",
+          "target": "0x87f88c"
+        },
+        {
+          "at": "0x511508",
+          "target": "0x87f88c"
+        },
+        {
+          "at": "0x511510",
+          "target": "0x87fcd8"
+        },
+        {
+          "at": "0x511514",
+          "target": "0x87f88c"
+        },
+        {
+          "at": "0x51151c",
+          "target": "0x87fcd8"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x511520",
+      "name": "FocusWrapper_anon_closure_3",
+      "purpose": "pointer down adapter",
+      "bytes": 88,
+      "instructions": 22,
+      "code_sha256": "ecf42547d389e0895dfbdb665b48c4ab22375e3945eecf62646b084ca6c9cd63",
+      "internal_branches": 2,
+      "direct_calls": [
+        {
+          "at": "0x511570",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x511578",
+      "name": "FocusWrapper_anon_closure_4",
+      "purpose": "effect returning timer cleanup",
+      "bytes": 40,
+      "instructions": 10,
+      "code_sha256": "da48d5a327d9db99922eb233d83daf81dcb715f9aa0528566f81fd359ddf5ea0",
+      "internal_branches": 0,
+      "direct_calls": [
+        {
+          "at": "0x511590",
+          "target": "0x87ea40"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5115a0",
+      "name": "FocusWrapper_anon_closure_5",
+      "purpose": "timer cancellation on effect cleanup",
+      "bytes": 72,
+      "instructions": 18,
+      "code_sha256": "196f40c062ca3b2916546db9cae9ae87413f0172751f9b218a5cd12266a71bb5",
+      "internal_branches": 3,
+      "direct_calls": [
+        {
+          "at": "0x5115cc",
+          "target": "0x148fc"
+        },
+        {
+          "at": "0x5115e0",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5115e8",
+      "name": "FocusWrapper_onPointerUp",
+      "purpose": "pointer release and selective state cleanup",
+      "bytes": 1152,
+      "instructions": 288,
+      "code_sha256": "2cde92df203b5481cdb49d1655c85d9bccdd3c90cad0ef72a44199c6b91b1f20",
+      "internal_branches": 38,
+      "direct_calls": [
+        {
+          "at": "0x511748",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x511788",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x511794",
+          "target": "0x796850"
+        },
+        {
+          "at": "0x511830",
+          "target": "0x148fc"
+        },
+        {
+          "at": "0x511a58",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x511a60",
+          "target": "0x87ff4c"
+        },
+        {
+          "at": "0x511a64",
+          "target": "0x87ff4c"
+        }
+      ],
+      "indirect_calls": 12
+    },
+    {
+      "address": "0x511a68",
+      "name": "FocusWrapper_onPointerDown",
+      "purpose": "pointer count, waiting timer and second-pointer cancellation",
+      "bytes": 1308,
+      "instructions": 327,
+      "code_sha256": "85ea8eee0f4acc9b0f3cbde92dc9ae54d229350139bd1baf6303bbdc64782403",
+      "internal_branches": 39,
+      "direct_calls": [
+        {
+          "at": "0x511adc",
+          "target": "0x87e684"
+        },
+        {
+          "at": "0x511b88",
+          "target": "0x87de7c"
+        },
+        {
+          "at": "0x511bdc",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x511c38",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x511cc0",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x511d34",
+          "target": "0x2d808"
+        },
+        {
+          "at": "0x511d74",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x511dcc",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x511de8",
+          "target": "0x87ea40"
+        },
+        {
+          "at": "0x511df8",
+          "target": "0x1022c"
+        },
+        {
+          "at": "0x511e54",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x511ea4",
+          "target": "0x2d808"
+        },
+        {
+          "at": "0x511ee4",
+          "target": "0x87f98c"
+        },
+        {
+          "at": "0x511ef0",
+          "target": "0x87a2a0"
+        },
+        {
+          "at": "0x511f20",
+          "target": "0x148fc"
+        },
+        {
+          "at": "0x511f7c",
+          "target": "0x87f80c"
+        }
+      ],
+      "indirect_calls": 11
+    },
+    {
+      "address": "0x511f84",
+      "name": "FocusWrapper_anon_closure_6",
+      "purpose": "timer firing, long press origin and initial level",
+      "bytes": 392,
+      "instructions": 98,
+      "code_sha256": "912c22e34e14fc0f6a702bd64cb00b70663ba993ab0200df2cdcb829f15657f1",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x512064",
+          "target": "0x87de5c"
+        },
+        {
+          "at": "0x5120bc",
+          "target": "0x2ecc88"
+        },
+        {
+          "at": "0x512100",
+          "target": "0x87f80c"
+        },
+        {
+          "at": "0x512108",
+          "target": "0x87ff4c"
+        }
+      ],
+      "indirect_calls": 4
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x5111d8",
+      "meaning": "compare event pointer id with tracked id",
+      "verified": true
+    },
+    {
+      "at": "0x5111dc",
+      "meaning": "only matching pointer reaches movement update",
+      "verified": true
+    },
+    {
+      "at": "0x5112a0",
+      "meaning": "non-longPressing movement returns",
+      "verified": true
+    },
+    {
+      "at": "0x511300",
+      "meaning": "derive new speed level from delta and old level",
+      "verified": true
+    },
+    {
+      "at": "0x51132c",
+      "meaning": "compare new level with old level",
+      "verified": true
+    },
+    {
+      "at": "0x511330",
+      "meaning": "only changed level reaches speed callback",
+      "verified": true
+    },
+    {
+      "at": "0x5113cc",
+      "meaning": "selection haptic when speed level changes",
+      "verified": true
+    },
+    {
+      "at": "0x51143c",
+      "meaning": "clamp old speed level",
+      "verified": true
+    },
+    {
+      "at": "0x51149c",
+      "meaning": "leave decrement loop above lower hysteresis boundary",
+      "verified": true
+    },
+    {
+      "at": "0x5114a4",
+      "meaning": "repeat decrement for multiple crossed levels",
+      "verified": true
+    },
+    {
+      "at": "0x5114e0",
+      "meaning": "leave increment loop below upper hysteresis boundary",
+      "verified": true
+    },
+    {
+      "at": "0x5114ec",
+      "meaning": "repeat increment for multiple crossed levels",
+      "verified": true
+    },
+    {
+      "at": "0x5115cc",
+      "meaning": "effect cleanup cancels existing timer",
+      "verified": true
+    },
+    {
+      "at": "0x511794",
+      "meaning": "release matches tracked pointer id",
+      "verified": true
+    },
+    {
+      "at": "0x5117c4",
+      "meaning": "release distinguishes waiting from active long press",
+      "verified": true
+    },
+    {
+      "at": "0x511830",
+      "meaning": "release while waiting cancels timer",
+      "verified": true
+    },
+    {
+      "at": "0x511898",
+      "meaning": "waiting release invokes short action",
+      "verified": true
+    },
+    {
+      "at": "0x5118c0",
+      "meaning": "matching pointer ends active long press",
+      "verified": true
+    },
+    {
+      "at": "0x5118cc",
+      "meaning": "unmatched release ends only at zero pointer count",
+      "verified": true
+    },
+    {
+      "at": "0x511938",
+      "meaning": "active release invokes end action",
+      "verified": true
+    },
+    {
+      "at": "0x511940",
+      "meaning": "unmatched release skips tracked-position cleanup",
+      "verified": true
+    },
+    {
+      "at": "0x511bac",
+      "meaning": "already tracked pointer is not replaced",
+      "verified": true
+    },
+    {
+      "at": "0x511ce0",
+      "meaning": "only init state creates a new timer",
+      "verified": true
+    },
+    {
+      "at": "0x511d34",
+      "meaning": "record down timestamp from current micros",
+      "verified": true
+    },
+    {
+      "at": "0x511df8",
+      "meaning": "create one-shot 500ms timer",
+      "verified": true
+    },
+    {
+      "at": "0x511ea0",
+      "meaning": "second-pointer path requires count greater than one",
+      "verified": true
+    },
+    {
+      "at": "0x511f04",
+      "meaning": "second-pointer cancellation only before 500ms",
+      "verified": true
+    },
+    {
+      "at": "0x511f20",
+      "meaning": "second-pointer path cancels timer",
+      "verified": true
+    },
+    {
+      "at": "0x5120b8",
+      "meaning": "medium haptic only with absent pointerEvent",
+      "verified": true
+    },
+    {
+      "at": "0x5120bc",
+      "meaning": "medium-impact haptic on non-pointer path",
+      "verified": true
+    },
+    {
+      "at": "0x5120ec",
+      "meaning": "timer invokes long-press start callback",
+      "verified": true
+    },
+    {
+      "at": "0x26fbcc",
+      "meaning": "Listener fourth callback source",
+      "verified": true
+    },
+    {
+      "at": "0x26fbd0",
+      "meaning": "fourth callback stored in render object",
+      "verified": true
+    },
+    {
+      "at": "0x38398c",
+      "meaning": "PointerCancelEvent class-id check",
+      "verified": true
+    },
+    {
+      "at": "0x3839b4",
+      "meaning": "cancel dispatch selects same callback slot",
+      "verified": true
+    },
+    {
+      "at": "0x5112e8",
+      "meaning": "vertical displacement relative to long-press origin",
+      "verified": true
+    },
+    {
+      "at": "0x5113a8",
+      "meaning": "speed array has eight indexed slots",
+      "verified": true
+    },
+    {
+      "at": "0x5113d8",
+      "meaning": "speed-factor callback slot",
+      "verified": true
+    },
+    {
+      "at": "0x511438",
+      "meaning": "upper clamp is tagged Smi seven",
+      "verified": true
+    },
+    {
+      "at": "0x51145c",
+      "meaning": "hysteresis margin is twelve logical units",
+      "verified": true
+    },
+    {
+      "at": "0x511494",
+      "meaning": "lower boundary is threshold minus hysteresis",
+      "verified": true
+    },
+    {
+      "at": "0x5114d8",
+      "meaning": "upper boundary is threshold plus hysteresis",
+      "verified": true
+    },
+    {
+      "at": "0x51186c",
+      "meaning": "waiting-release timer reference cleared",
+      "verified": true
+    },
+    {
+      "at": "0x511918",
+      "meaning": "end callback slot",
+      "verified": true
+    },
+    {
+      "at": "0x511980",
+      "meaning": "matched release clears tracked pointer id",
+      "verified": true
+    },
+    {
+      "at": "0x5119c0",
+      "meaning": "matched release clears latest position",
+      "verified": true
+    },
+    {
+      "at": "0x511a00",
+      "meaning": "matched release clears long-press origin",
+      "verified": true
+    },
+    {
+      "at": "0x511a40",
+      "meaning": "matched release restores tagged Smi level four",
+      "verified": true
+    },
+    {
+      "at": "0x511f00",
+      "meaning": "second-pointer elapsed threshold is 500 milliseconds",
+      "verified": true
+    },
+    {
+      "at": "0x5120a4",
+      "meaning": "timer sets tagged Smi initial level four",
+      "verified": true
+    },
+    {
+      "at": "0x5120cc",
+      "meaning": "long-press start callback slot",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 12,
+    "instructions": 1643,
+    "code_bytes": 6572,
+    "anchors": 51
+  },
+  "limits": [
+    "No iPhone timing, gesture-arena or UI test",
+    "Keyboard dispatch and all caller callback effects are outside this method set",
+    "Array factors and callback identities require the separate snapshot pool review",
+    "No production gesture changes"
+  ],
+  "verified_constants": {
+    "wait_milliseconds": 500,
+    "initial_speed_level": 4,
+    "minimum_level": 0,
+    "maximum_level": 7,
+    "hysteresis": 12.0
+  }
+}

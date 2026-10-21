@@ -1,0 +1,410 @@
+{
+  "format": 1,
+  "target_executed": false,
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "scope": "Read-only parsed pool metadata with independent numeric-byte check",
+  "query_sha256": "46452b26619c7d713bb306cea427ced619cf3a9c06d6f2c5f59d9558ca2b2ea7",
+  "query_counts": {
+    "iso_function_count": 58419,
+    "pool_entries": 71800,
+    "double_values_captured": 490
+  },
+  "query_offsets": [
+    "0x38f88",
+    "0x38f98",
+    "0x39088",
+    "0x38f28",
+    "0x38fa0",
+    "0x38f30",
+    "0x38f38",
+    "0x38f40",
+    "0x38f48",
+    "0x2f870",
+    "0x2f878",
+    "0x2f860",
+    "0x2f868",
+    "0x160a8",
+    "0x26f98",
+    "0x390e8",
+    "0x138a0",
+    "0x15cc8",
+    "0x25d98",
+    "0x38f58",
+    "0x38e70"
+  ],
+  "query_limits": {
+    "address_space_bytes": 3221225472,
+    "cpu_seconds": 60,
+    "wall_seconds": 90,
+    "cpus": 1
+  },
+  "speed_factors": [
+    3.0,
+    2.0,
+    1.5,
+    1.25,
+    1.0,
+    0.75,
+    0.5,
+    0.25
+  ],
+  "vertical_thresholds": [
+    -180.0,
+    -120.0,
+    -60.0,
+    -30.0,
+    60.0,
+    120.0,
+    180.0
+  ],
+  "verified_doubles": {
+    "0x16987": {
+      "bits": "0x4008000000000000",
+      "value": 3.0,
+      "serialized_range": [
+        9337279,
+        9337289
+      ]
+    },
+    "0x16993": {
+      "bits": "0x4000000000000000",
+      "value": 2.0,
+      "serialized_range": [
+        9337397,
+        9337407
+      ]
+    },
+    "0x16844": {
+      "bits": "0x3ff8000000000000",
+      "value": 1.5,
+      "serialized_range": [
+        9334131,
+        9334140
+      ]
+    },
+    "0x16851": {
+      "bits": "0x3ff4000000000000",
+      "value": 1.25,
+      "serialized_range": [
+        9334251,
+        9334260
+      ]
+    },
+    "0x1682e": {
+      "bits": "0x3ff0000000000000",
+      "value": 1.0,
+      "serialized_range": [
+        9333919,
+        9333928
+      ]
+    },
+    "0x16837": {
+      "bits": "0x3fe8000000000000",
+      "value": 0.75,
+      "serialized_range": [
+        9334002,
+        9334011
+      ]
+    },
+    "0x16831": {
+      "bits": "0x3fe0000000000000",
+      "value": 0.5,
+      "serialized_range": [
+        9333945,
+        9333954
+      ]
+    },
+    "0x1684c": {
+      "bits": "0x3fd0000000000000",
+      "value": 0.25,
+      "serialized_range": [
+        9334205,
+        9334214
+      ]
+    },
+    "0x169da": {
+      "bits": "0xc066800000000000",
+      "value": -180.0,
+      "serialized_range": [
+        9338069,
+        9338078
+      ]
+    },
+    "0x169d9": {
+      "bits": "0xc05e000000000000",
+      "value": -120.0,
+      "serialized_range": [
+        9338060,
+        9338069
+      ]
+    },
+    "0x169d8": {
+      "bits": "0xc04e000000000000",
+      "value": -60.0,
+      "serialized_range": [
+        9338051,
+        9338060
+      ]
+    },
+    "0x169d7": {
+      "bits": "0xc03e000000000000",
+      "value": -30.0,
+      "serialized_range": [
+        9338042,
+        9338051
+      ]
+    },
+    "0x169a8": {
+      "bits": "0x404e000000000000",
+      "value": 60.0,
+      "serialized_range": [
+        9337592,
+        9337602
+      ]
+    },
+    "0x169d1": {
+      "bits": "0x405e000000000000",
+      "value": 120.0,
+      "serialized_range": [
+        9337984,
+        9337994
+      ]
+    },
+    "0x169d6": {
+      "bits": "0x4066800000000000",
+      "value": 180.0,
+      "serialized_range": [
+        9338032,
+        9338042
+      ]
+    },
+    "0x16832": {
+      "bits": "0x7ff0000000000000",
+      "value": "inf",
+      "serialized_range": [
+        9333954,
+        9333964
+      ]
+    }
+  },
+  "functions": {
+    "0x39088": {
+      "reference": "0x33e30",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x511f84"
+    },
+    "0x38f28": {
+      "reference": "0x33e2c",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x511578"
+    },
+    "0x38fa0": {
+      "reference": "0x33e2d",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x5115a0"
+    },
+    "0x38f30": {
+      "reference": "0x33e2b",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x511520"
+    },
+    "0x38f38": {
+      "reference": "0x33e29",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "onPointerMove",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x511174"
+    },
+    "0x38f40": {
+      "reference": "0x33e28",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x51111c"
+    },
+    "0x38f48": {
+      "reference": "0x33e27",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "FocusWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x51111c"
+    },
+    "0x2f870": {
+      "reference": "0x33dc1",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "ReaderWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x50ca70"
+    },
+    "0x2f878": {
+      "reference": "0x33dc0",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "ReaderWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x50c950"
+    },
+    "0x2f860": {
+      "reference": "0x33dc3",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "ReaderWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x50cd88"
+    },
+    "0x2f868": {
+      "reference": "0x33dc2",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "ReaderWrapper",
+      "library": "package:tachidesk_sorayomi/src/features/manga_book/presentation/reader/widgets/reader_wrapper.dart",
+      "entry": "0x50cb90"
+    },
+    "0x38e70": {
+      "reference": "0x3608f",
+      "cid": 7,
+      "kind": "Function",
+      "function_name": "<anonymous closure>",
+      "owner_class": "ReaderPageBackgroundCache",
+      "library": "package:tachidesk_sorayomi/src/utils/reader_page_background_cache.dart",
+      "entry": "0x3f7f50"
+    }
+  },
+  "fields": {
+    "0x15cc8": {
+      "reference": "0x3f0d4",
+      "cid": 11,
+      "kind": "Field",
+      "field_name": "invertTapProvider",
+      "field_kind_bits": 17454,
+      "offset_or_id_reference": "0x15489"
+    },
+    "0x25d98": {
+      "reference": "0x3f0d5",
+      "cid": 11,
+      "kind": "Field",
+      "field_name": "readerShowTapZonesPrefProvider",
+      "field_kind_bits": 17454,
+      "offset_or_id_reference": "0x1548d"
+    }
+  },
+  "argument_descriptors": {
+    "0x160a8": [
+      0,
+      4,
+      3,
+      1,
+      "behavior",
+      1,
+      "child",
+      3,
+      "onTap",
+      2,
+      null
+    ],
+    "0x26f98": [
+      0,
+      3,
+      2,
+      1,
+      "child",
+      2,
+      "color",
+      1,
+      null
+    ],
+    "0x390e8": [
+      0,
+      5,
+      4,
+      1,
+      "behavior",
+      3,
+      "child",
+      4,
+      "onTap",
+      1,
+      "onTapDown",
+      2,
+      null
+    ],
+    "0x38f58": [
+      0,
+      3,
+      3,
+      2,
+      "pointerEvent",
+      2,
+      null
+    ]
+  },
+  "provenance": {
+    "upstream": "https://github.com/ejfkdev/dae",
+    "tag": "v0.1.13",
+    "commit": "9f65eeaef92b9709b169c2a9a503a89bbdd14b72",
+    "license": "MIT",
+    "build_profile": "release",
+    "rust_version": "1.90.0 (1159e78c4 2025-09-14)",
+    "cargo_arguments": [
+      "build",
+      "--release",
+      "--locked",
+      "--no-default-features",
+      "--bin",
+      "pool_audit"
+    ],
+    "upstream_original_sha256": {
+      "src/engine/snapshot.rs": "ebe1625eb890fe511ce4ac551b2cc90938791da331ad3a536f67dd2be97b87d0",
+      "src/engine/fill.rs": "4b762d15170a0f787af6513750cef496d5a59c99c2598f69cc36d32169bdb40a"
+    },
+    "build_inputs_sha256": {
+      "Cargo.lock": "f67bec445c426236bf9cbba7c1be407e56254b5c1231764b4e7ec700d56082d0",
+      "src/engine/snapshot.rs": "ec06001ec9d66006aaacaccfd98df640c412ceb0ca9e2b91a6e23663e1824c88",
+      "src/engine/fill.rs": "4e61e3032cda9e45c3d51bfb30c486ca376f2f5923ab9c6ab77ca7533a4fa940",
+      "src/bin/pool_audit.rs": "52b5e2fd11f76c0cefd020afc85c724f7685c86105722096085e8ea39343b85f",
+      "profiles/sdk/dart-3.6.1-w64-no-compressed.json": "850dcc323c1ef5975010c1831e92459e5de0706d2b663a7d3305acab36300dc9",
+      "profiles/platform/macho-arm64.json": "474f82c245bc36163f8027d7a5d735d162fb963a8f2de398921ac1a4c516fa48"
+    },
+    "binary_sha256": "0aa3150a1264b48d1737c5e7c5f9a5c11ad0f7794e8dac027991bb4309386d58",
+    "build_log_sha256": "f65736dd11b7956fdde753dac3c943da2e66a5a0ee1c152856818cd1b29d777d",
+    "rust_components_sha256": "dee912183039486aa956f6b24d491cf3e800a002ba71585d1f25a66953780a06",
+    "own_scripts_sha256": {
+      "prepare_tachimanga_pool_tool.py": "be824b3aa21666405a2da2d18e1416685c9e07b95619741ac7fa45162b36168e",
+      "tachimanga_pool_audit.rs": "52b5e2fd11f76c0cefd020afc85c724f7685c86105722096085e8ea39343b85f",
+      "review_tachimanga_pool.py": "20705d41d946b924d945ce01d8397161d8c1292593a8fee21f8ba2747f898f1f"
+    }
+  },
+  "limits": [
+    "Array membership and function metadata come from the reviewed parser",
+    "Only numeric byte decoding is independently implemented here",
+    "Stock debug build panicked in upstream instance bitmap shift; release query succeeded",
+    "No runtime, original-source recovery or physical iPhone equivalence claim"
+  ]
+}
