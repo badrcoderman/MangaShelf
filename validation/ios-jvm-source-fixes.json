@@ -10,7 +10,8 @@
       "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib",
       "library_origin": "-Wl,-rpath,@loader_path/.",
       "executable_origin": "-Wl,-rpath,@loader_path/.",
-      "stack_flags_with_probe_enabled": ""
+      "stack_flags_with_probe_enabled": "",
+      "libjava_platform_libraries": "-framework CoreFoundation"
     },
     {
       "platform": "macosx",
@@ -19,7 +20,8 @@
       "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib",
       "library_origin": "-Wl,-rpath,@loader_path/.",
       "executable_origin": "-Wl,-rpath,@loader_path/.",
-      "stack_flags_with_probe_enabled": ""
+      "stack_flags_with_probe_enabled": "",
+      "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration"
     },
     {
       "platform": "linux",
@@ -28,11 +30,28 @@
       "name_flags": "-Wl,-soname=libprobe.dylib",
       "library_origin": "-Wl,-z,origin -Wl,-rpath,\\$ORIGIN",
       "executable_origin": "-Wl,-rpath,\\$ORIGIN -Wl,--disable-new-dtags",
-      "stack_flags_with_probe_enabled": "-Wl,-z,noexecstack"
+      "stack_flags_with_probe_enabled": "-Wl,-z,noexecstack",
+      "libjava_platform_libraries": "-ldl"
     }
   ],
   "changed_input_rejected_before_writes": true,
+  "rejected_changed_inputs": [
+    "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp",
+    "make/autoconf/toolchain.m4",
+    "make/autoconf/flags-cflags.m4",
+    "make/common/native/Link.gmk",
+    "make/common/JdkNativeCompilation.gmk",
+    "make/autoconf/flags-ldflags.m4",
+    "make/modules/java.base/lib/CoreLibraries.gmk"
+  ],
   "repeat_patch_rejected": true,
+  "missing_ios_corefoundation_rejected": true,
+  "libjava_non_ios_branches_unchanged": true,
+  "baseline_libjava_platform_libraries": {
+    "ios": "",
+    "macosx": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
+    "linux": "-ldl"
+  },
   "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
   "input_sha256": {
     "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp": "8451f0f8bea69dbb16e6f26c1dbd4c7b3e96e39850206e5a0e91940bf030da08",
@@ -40,6 +59,8 @@
     "make/autoconf/flags-cflags.m4": "1411da4d9dc6def3d2e9e97ff28a3aaa0e4d4b0915b0d3315a2a8afc5dd38cbc",
     "make/common/native/Link.gmk": "0c6a92cf88b5d951435775faf360b66e94722bb79433bbcc3ed6df31cfe07896",
     "make/common/JdkNativeCompilation.gmk": "6d85c79bb814444d2a032a14aacab63081685390bf104e87090d64230bf1a164",
-    "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc"
+    "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
+    "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
+    "make/common/native/Flags.gmk": "29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33"
   }
 }

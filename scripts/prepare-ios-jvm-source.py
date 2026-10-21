@@ -11,6 +11,7 @@ PINNED_FILES = {
     "make/common/native/Link.gmk": "0c6a92cf88b5d951435775faf360b66e94722bb79433bbcc3ed6df31cfe07896",
     "make/common/JdkNativeCompilation.gmk": "6d85c79bb814444d2a032a14aacab63081685390bf104e87090d64230bf1a164",
     "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
+    "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
 }
 
 def prepare(source_root, project_root):
@@ -54,6 +55,10 @@ def prepare(source_root, project_root):
             b'&& test "x$OPENJDK_TARGET_OS" != xaix; then\n    if test -n "$HAS_NOEXECSTACK"; then',
             b'&& test "x$OPENJDK_TARGET_OS" != xaix \\\n      && test "x$OPENJDK_TARGET_OS" != xmacosx \\\n      && test "x$OPENJDK_TARGET_OS" != xios; then\n    if test -n "$HAS_NOEXECSTACK"; then',
         ),
+        "make/modules/java.base/lib/CoreLibraries.gmk": (
+            b'    LIBS_aix := $(LIBDL) $(LIBM), \\\n    LIBS_macosx :=',
+            b'    LIBS_aix := $(LIBDL) $(LIBM), \\\n    LIBS_ios := -framework CoreFoundation, \\\n    LIBS_macosx :=',
+        ),
     }
     for name, (before, after) in replacements.items():
         if results[name].count(before) != 1:
@@ -71,7 +76,7 @@ def main():
         prepare(Path(sys.argv[1]), Path(__file__).resolve().parent.parent)
     except (ValueError, OSError) as error:
         raise SystemExit(str(error)) from error
-    print("Applied pinned Zero definitions and Darwin library naming/link flags")
+    print("Applied pinned Zero definitions, Darwin link flags and iOS libjava CoreFoundation")
 
 
 if __name__ == "__main__":
