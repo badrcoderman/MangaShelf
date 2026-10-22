@@ -12,6 +12,7 @@ PINNED_FILES = {
     "make/common/JdkNativeCompilation.gmk": "6d85c79bb814444d2a032a14aacab63081685390bf104e87090d64230bf1a164",
     "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
     "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
+    "make/modules/java.base/Lib.gmk": "f85b5faeecf778c704c8fa5ea5371494622a2e9167e94cf36986ad70ed0cf48c",
 }
 
 def prepare(source_root, project_root):
@@ -59,6 +60,10 @@ def prepare(source_root, project_root):
             b'    LIBS_aix := $(LIBDL) $(LIBM), \\\n    LIBS_macosx :=',
             b'    LIBS_aix := $(LIBDL) $(LIBM), \\\n    LIBS_ios := -framework CoreFoundation, \\\n    LIBS_macosx :=',
         ),
+        "make/modules/java.base/Lib.gmk": (
+            b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_macosx :=',
+            b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_ios := -framework CoreFoundation, \\\n    LIBS_macosx :=',
+        ),
     }
     for name, (before, after) in replacements.items():
         if results[name].count(before) != 1:
@@ -84,7 +89,7 @@ def main():
         prepare(Path(sys.argv[1]), Path(__file__).resolve().parent.parent)
     except (ValueError, OSError) as error:
         raise SystemExit(str(error)) from error
-    print("Applied pinned Zero definitions, Darwin link flags, iOS libjava CoreFoundation and libjli selection")
+    print("Applied pinned Zero definitions, Darwin flags, iOS libjava/libnio CoreFoundation and libjli selection")
 
 
 if __name__ == "__main__":

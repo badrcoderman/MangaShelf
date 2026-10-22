@@ -1,18 +1,27 @@
 {
-  "observed_at": "2026-10-21T17:37:36.145421+00:00",
+  "observed_at": "2026-10-22T10:00:22.899953+00:00",
   "run_id": 39645343405,
   "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405",
   "source_commit": "9fa7b573c6a055841edc3a93d718dfc63e8889f3",
   "created_at": "2026-10-21T17:36:47Z",
-  "status": "in_progress",
-  "conclusion": null,
-  "active_steps": [
-    "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
-  ],
+  "status": "completed",
+  "conclusion": "failure",
+  "active_steps": [],
   "change": "Exclude generic Unix java_md.c from iOS libjli; retain CoreFoundation and Darwin fixes",
   "local_source_checks": "validation/ios-jvm-source-fixes.json",
   "complete_java_image_verified": false,
   "target_vm_executed": false,
   "real_extension_on_iphone_verified": false,
-  "scope": "Live CI snapshot only; no build or device success is asserted."
+  "scope": "Terminal CI failure. Host tools and static libraries built; complete Java image and device execution remain unverified.",
+  "host_jdk_image_built": true,
+  "ios_static_libraries_built": true,
+  "failing_target": "legacy-jre-image / java.base libnio.dylib",
+  "cause": "Missing CoreFoundation link dependency for UTIFileTypeDetector on iOS",
+  "unresolved_symbols": [
+    "CFStringCreateWithCharacters"
+  ],
+  "libjli_duplicate_error_observed": false,
+  "log_file": "build/ios-jvm-failed-39645343405.log",
+  "log_sha256": "67a99d872cac587c665edb525a5f0a394cb3ad948b8698fd79d0cf720f62ca2c",
+  "failed_artifact_used_for_device": false
 }

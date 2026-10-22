@@ -18,7 +18,7 @@ ld: unknown options: -soname=libjvm.so
 
 ## التصحيح
 
-1. `prepare-ios-jvm-source.py` يتحقق حاليًا من SHA-256 لسبعة ملفات من مراجعة
+1. `prepare-ios-jvm-source.py` يتحقق حاليًا من SHA-256 لثمانية ملفات من مراجعة
    OpenJDK Mobile المثبتة **قبل أي كتابة**، ثم يطبق تعريفات Zero السابقة
    وإصلاحات Apple التالية:
    - امتداد المكتبة الديناميكية `.dylib` بدل اختيار `.so` الافتراضي لـiOS.
@@ -31,6 +31,8 @@ ld: unknown options: -soname=libjvm.so
    - استبعاد `java_md.c` العام من `libjli` على iOS كما على macOS؛ الملف
      `java_md_macosx.m` يوفّر بالفعل تنفيذ Apple وفروع `__IOS__`، وإدراج
      الملفين يكرر رموز المشغّل.
+   - ربط `libnio` على iOS بـCoreFoundation التي يستدعيها UTIFileTypeDetector؛
+     تبقى خيارات libnet كما هي، وقائمة macOS وLinux في libnio مستقلة.
 2. يُبنى JDK أدوات المضيف **من المصدر المثبت نفسه** بإعداد macOS مستقل، ثم
    يمرر إلى configure الخاص بـiOS عبر `--with-build-jdk`. هذا يمنع الاعتماد
    على buildjdk-spec الذي يرث بعض قيم منصة الهدف في هذه المراجعة.
@@ -46,15 +48,17 @@ ld: unknown options: -soname=libjvm.so
 [buildjdk-spec](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/make/autoconf/buildjdk-spec.gmk.template)،
 [CoreLibraries.gmk](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/make/modules/java.base/lib/CoreLibraries.gmk)،
 [HostLocaleProviderAdapter_md.c](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/java.base/macosx/native/libjava/HostLocaleProviderAdapter_md.c)،
-[native/Flags.gmk](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/make/common/native/Flags.gmk).
+[native/Flags.gmk](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/make/common/native/Flags.gmk)،
+[java.base/Lib.gmk](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/make/modules/java.base/Lib.gmk)،
+[UTIFileTypeDetector.c](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c).
 
 ## التحقق الذي نُفّذ
 
-- نُزّلت الملفات السبعة كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
+- نُزّلت الملفات الثمانية كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
   سكربت التحضير. قُرئ كذلك كود HostLocale وملف اختيار خيارات الربط الأصلي؛
   تثبت أداة التحقق بصمة `native/Flags.gmk` قبل تقييمه.
 - `test_ios_jvm_source.py PRISTINE_PINNED_OPENJDK_ROOT` نفّذ فحصًا قابلًا
-  للتكرار في مجلد مؤقت: رفض تعديل كل من الملفات السبعة قبل أي كتابة، ثم
+  للتكرار في مجلد مؤقت: رفض تعديل كل من الملفات الثمانية قبل أي كتابة، ثم
   طبق الإصلاح على المدخلات الأصلية ورفض تكرار التطبيق.
 - `verify-ios-jvm-source.py` قيّم فروع shell وMake الفعلية لاختيار الامتداد
   وخيارات المكتبة واسمها على iOS وmacOS وLinux؛ حالات Apple تختار install_name
@@ -67,6 +71,10 @@ ld: unknown options: -soname=libjvm.so
 - تقييم شرط `LIBJLI_EXCLUDE_FILES` الفعلي بـMake لكل منصة: يختار iOS وmacOS
   استبعاد `java_md.c`، ولا يغيّر Linux. إعادة الشرط القديم الخاص بـmacOS فقط
   تفشل فحص iOS مع إبقاء إصلاح CoreFoundation؛ فُحص التصحيحان كل على حدة.
+- تقييم استدعاء `BUILD_LIBNIO` واختيار `LIBS_ios` عبر معالج الربط الأصلي؛
+  يختار iOS CoreFoundation، وتبقى فروع macOS وLinux مطابقة للأصل. فُحص أيضًا
+  `BUILD_LIBNET` على المنصات الثلاث للتأكد من عدم تغيير المكتبة المجاورة.
+  إزالة إصلاح NIO وحده تفشل الفحص حتى مع بقاء إصلاحات Java وJLI.
 - اجتاز سكربت البناء `bash -n`.
 
 النتيجة المحدودة: [ios-jvm-source-fixes.json](../validation/ios-jvm-source-fixes.json).
@@ -113,11 +121,19 @@ CoreFoundation ويستدعيها، بينما يحتوي استدعاء `BUILD_
 بـmacOS فقط رغم وجود تنفيذ Apple ذي فروع iOS ضمن المدخلات. وُسّع هذا الشرط
 إلى `macosx ios`. اجتاز فحص Make؛ إعادة البناء بـSDK Apple مطلوبة بعد هذا التعديل.
 
-بدأت المحاولة
+انتهت المحاولة
 [39645343405](https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405)
-عند `9fa7b57` بعد تصحيح اختيار libjli. الحالة عند تسجيل المتابعة جارية؛
-[لقطة الرصد](../validation/ios-jvm-image-39645343405.json) تفصلها عن نجاح البناء
-أو تشغيل المحرك على iPhone.
+عند `9fa7b57` بالفشل بعد تصحيح اختيار libjli؛ لم يظهر تكرار رموزه السابق،
+واستخدم البناء تسعة ملفات بدل عشرة لـJLI. توقف `libnio.dylib` عند
+`CFStringCreateWithCharacters` من UTIFileTypeDetector. المصدر يكوّن CFString
+قبل شرط `__IOS__`، بينما يعرف `BUILD_LIBNIO` مكتبات macOS فقط. أضيفت
+CoreFoundation إلى `LIBS_ios` لهذا الاستدعاء وفُحصت فروع المنصات؛ نجاح SDK
+ينتظر إعادة البناء. [دليل المحاولة](../validation/ios-jvm-image-39645343405.json)
+يحفظ الفشل والسجل ولا يجيز استعمال artifact كتجربة هاتف.
+
+المراجعة كشفت أيضًا أن شرط iOS في UTIFileTypeDetector يحجب تحويل MIME
+وCFRelease بعد إنشاء CFString. معالجة هذا المسار وإثبات تحرير المورد تبقى
+مطلوبة ضمن ENG-15 قبل المحرك الإنتاجي؛ تصحيح خيار الربط لا يحسم سلوكه.
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

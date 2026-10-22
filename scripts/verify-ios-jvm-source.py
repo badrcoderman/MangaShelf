@@ -40,16 +40,17 @@ def stack_flags(source, platform):
     return subprocess.check_output(['bash', '-eu', '-c', script, 'stack-flag-check', platform], text=True).strip()
 
 
-def libjava_link_flags(source, flag_source, platform):
-    # Evaluate the actual libjava call with a named-argument capture stub, then
+def library_link_flags(source, flag_source, platform, library):
+    # Evaluate the actual library call with a named-argument capture stub, then
     # the pinned upstream SetupLinkerFlags body. No compile/link targets run.
-    start = source.index('$(eval $(call SetupJdkLibrary, BUILD_LIBJAVA,')
+    start = source.index(f'$(eval $(call SetupJdkLibrary, {library},')
     end = source.index('\n))', start) + len('\n))')
     selector = flag_source.split('define SetupLinkerFlags\n', 1)[1].split('\nendef', 1)[0]
     makefile = """OPENJDK_TARGET_OS_TYPE := unix
 TOOLCHAIN_TYPE := clang
 LIBDL := -ldl
 LIBM := -lm
+LIBPTHREAD := -lpthread
 isTargetOs = $(if $(filter $1,$(OPENJDK_TARGET_OS)),true,false)
 PARAM_NUMBERS := """ + ' '.join(str(n) for n in range(2, 33)) + """
 SetupJdkLibrary = $(foreach arg,$(PARAM_NUMBERS),$(if $(strip $($(arg))),$(eval $(strip $1)_$(strip $($(arg))))))
@@ -60,6 +61,7 @@ $(info $(strip $(BUILD_LIBJAVA_LIBS) $(BUILD_LIBJAVA_EXTRA_LIBS)))
 all:
 	@:
 """
+    makefile = makefile.replace('BUILD_LIBJAVA', library)
     return subprocess.check_output(
         ['make', '--no-print-directory', '-s', '-f', '-', f'OPENJDK_TARGET_OS={platform}'],
         input=makefile, text=True).strip()
@@ -83,6 +85,7 @@ def verify(root):
     native = (root / "make/common/JdkNativeCompilation.gmk").read_text()
     ldflags = (root / "make/autoconf/flags-ldflags.m4").read_text()
     core = (root / 'make/modules/java.base/lib/CoreLibraries.gmk').read_text()
+    base = (root / 'make/modules/java.base/Lib.gmk').read_text()
     flag_bytes = (root / 'make/common/native/Flags.gmk').read_bytes()
     if hashlib.sha256(flag_bytes).hexdigest() != '29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33':
         raise ValueError('Unexpected upstream native/Flags.gmk; refusing Make evaluation')
@@ -95,7 +98,9 @@ def verify(root):
         library_origin = make_flag(native, platform, 'SetSharedLibraryOrigin')
         executable_origin = make_flag(native, platform, 'SetExecutableOrigin')
         stack = stack_flags(ldflags, platform)
-        java_flags = libjava_link_flags(core, flag_source, platform)
+        java_flags = library_link_flags(core, flag_source, platform, 'BUILD_LIBJAVA')
+        nio_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO')
+        net_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNET')
         jli_excluded = libjli_exclusions(core, platform)
         expected_java_flags = {
             'ios': '-framework CoreFoundation',
@@ -103,6 +108,12 @@ def verify(root):
             'linux': '-ldl',
         }
         assert java_flags == expected_java_flags[platform], (platform, java_flags)
+        expected_nio_flags = {
+            'ios': '-framework CoreFoundation',
+            'macosx': '-framework CoreFoundation -framework CoreServices',
+            'linux': '-ldl -lpthread',
+        }
+        assert nio_flags == expected_nio_flags[platform], (platform, nio_flags)
         apple = platform in ["ios", "macosx"]
         assert jli_excluded == (['java_md.c'] if apple else []), (platform, jli_excluded)
         assert suffix == (".dylib" if apple else ".so"), (platform, suffix)
@@ -120,6 +131,8 @@ def verify(root):
                         "library_origin": library_origin, "executable_origin": executable_origin,
                         "stack_flags_with_probe_enabled": stack,
                         "libjava_platform_libraries": java_flags,
+                        "libnio_platform_libraries": nio_flags,
+                        "libnet_platform_libraries": net_flags,
                         "libjli_excluded_files": jli_excluded})
     return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}
 

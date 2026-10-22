@@ -24,15 +24,25 @@ def check(pristine):
         if hashlib.sha256(originals[name]).hexdigest() != expected:
             raise ValueError(f'Not pristine pinned source: {name}')
     core = 'make/modules/java.base/lib/CoreLibraries.gmk'
+    base = 'make/modules/java.base/Lib.gmk'
     native_flags = 'make/common/native/Flags.gmk'
     baseline = {
-        os: verify.libjava_link_flags(originals[core].decode(), originals[native_flags].decode(), os)
+        os: verify.library_link_flags(originals[core].decode(), originals[native_flags].decode(), os, 'BUILD_LIBJAVA')
         for os in ['ios', 'macosx', 'linux']
     }
     assert baseline['ios'] == '', baseline
     baseline_jli = {os: verify.libjli_exclusions(originals[core].decode(), os)
                     for os in ['ios', 'macosx', 'linux']}
     assert baseline_jli == {'ios': [], 'macosx': ['java_md.c'], 'linux': []}
+    baseline_nio = {
+        os: verify.library_link_flags(originals[base].decode(), originals[native_flags].decode(), os, 'BUILD_LIBNIO')
+        for os in ['ios', 'macosx', 'linux']
+    }
+    baseline_net = {
+        os: verify.library_link_flags(originals[base].decode(), originals[native_flags].decode(), os, 'BUILD_LIBNET')
+        for os in ['ios', 'macosx', 'linux']
+    }
+    assert baseline_nio['ios'] == ''
     with tempfile.TemporaryDirectory(prefix='msl-jvm-source-') as directory:
         root = Path(directory)
 
@@ -64,6 +74,9 @@ def check(pristine):
         by_os = {case['platform']: case['libjava_platform_libraries'] for case in result['cases']}
         assert by_os['ios'] == '-framework CoreFoundation'
         assert all(by_os[os] == baseline[os] for os in ['macosx', 'linux'])
+        assert all(case['libnet_platform_libraries'] == baseline_net[case['platform']] for case in result['cases'])
+        assert all(case['libnio_platform_libraries'] == baseline_nio[case['platform']]
+                   for case in result['cases'] if case['platform'] != 'ios')
         addition = b'    LIBS_ios := -framework CoreFoundation, \\\n'
         patched_core = (root / core).read_bytes()
         assert patched_core.count(addition) == 1
@@ -71,6 +84,9 @@ def check(pristine):
         new_jli = b'ifeq ($(call isTargetOs, macosx ios), true)\n  LIBJLI_EXCLUDE_FILES += java_md.c'
         assert patched_core.count(new_jli) == 1
         assert patched_core.replace(addition, b'').replace(new_jli, old_jli) == originals[core]
+        patched_base = (root / base).read_bytes()
+        assert patched_base.count(addition) == 1
+        assert patched_base.replace(addition, b'') == originals[base]
         assert all(verify.libjli_exclusions(patched_core.decode(), os) == baseline_jli[os]
                    for os in ['macosx', 'linux'])
         before = snapshot()
@@ -96,6 +112,14 @@ def check(pristine):
             assert error.args == (('ios', []),), error.args
         else:
             raise AssertionError('Duplicate-producing iOS libjli source selection accepted')
+        (root / core).write_bytes(patched_core)
+        (root / base).write_bytes(originals[base])
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert error.args == (('ios', ''),), error.args
+        else:
+            raise AssertionError('Missing iOS libnio CoreFoundation accepted')
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
@@ -104,8 +128,13 @@ def check(pristine):
         'libjava_non_ios_branches_unchanged': True,
         'missing_ios_libjli_exclusion_rejected': True,
         'libjli_non_ios_branches_unchanged': True,
+        'missing_ios_libnio_corefoundation_rejected': True,
+        'libnio_non_ios_branches_unchanged': True,
+        'libnet_platform_branches_unchanged': True,
         'baseline_libjava_platform_libraries': baseline,
         'baseline_libjli_exclusions': baseline_jli,
+        'baseline_libnio_platform_libraries': baseline_nio,
+        'baseline_libnet_platform_libraries': baseline_net,
         'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
         'input_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in originals.items()},
     })
