@@ -14,6 +14,9 @@ from pathlib import Path
 selection = json.loads(Path('build/ios-jvm-link/runtime-selection.json').read_text())
 if not selection.get('build_manifest_verified'):
     raise SystemExit('A verified source build manifest is required for the device harness')
+manifest = json.loads(Path('build/ios-jvm-evidence/build/ios-jvm/build-provenance.json').read_text())
+if manifest.get('ios_filetype_source_fix') is not True:
+    raise SystemExit('The current device fixture requires the source-built iOS file type implementation')
 PY
 test ! -e "$app"
 mkdir -p "$app/probe" "$out/java/main" "$out/java/plugin"

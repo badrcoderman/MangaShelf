@@ -46,7 +46,9 @@ with tempfile.TemporaryDirectory(prefix='msl-device-fixture-') as temporary:
                           'DeviceFixtureCheck', str(plugin), str(work)],
                          capture_output=True, text=True, encoding='utf-8', timeout=60)
     logged = 'Probe JAR missing' in run.stderr
-    result = {'exit_code': run.returncode, 'host_fixture_passed': run.returncode == 0 and logged,
+    mime_checked = 'file MIME types' in run.stdout
+    result = {'exit_code': run.returncode, 'host_fixture_passed': run.returncode == 0 and logged and mime_checked,
+              'host_file_mime_probes_passed': mime_checked,
               'expected_java_failure_logged': logged, 'stdout': run.stdout,
               'source_sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
               'java_version': subprocess.run(['java', '-version'], capture_output=True, text=True, check=True).stderr.strip(),

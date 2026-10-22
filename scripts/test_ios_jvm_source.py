@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import subprocess
 
 
 def load(name):
@@ -71,6 +72,27 @@ def check(pristine):
         restore()
         prepare.prepare(root, project)
         result = verify.verify(root)
+        uti = 'src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c'
+        helper = root / Path(uti).with_name('msl_ios_filetype.m')
+        assert helper.read_bytes() == (project / 'runtime-native/ios_filetype.m').read_bytes()
+        assert not subprocess.check_output(['cc', '-E', '-P', '-x', 'c', str(helper)], text=True, timeout=15).strip()
+        # Preprocess the actual pinned C source with empty framework headers:
+        # this checks branch selection only, not Apple types or execution.
+        includes = root / 'probe-includes'
+        for name in ['jni.h', 'jni_util.h', 'CoreFoundation/CoreFoundation.h', 'CoreServices/CoreServices.h']:
+            header = includes / name
+            header.parent.mkdir(parents=True, exist_ok=True)
+            header.write_text('')
+        selected_bodies = {}
+        for os, defines in [('ios', ['-D__IOS__']), ('macosx', [])]:
+            output = subprocess.check_output(['cc', '-E', '-P', '-x', 'c', *defines,
+                                             '-I', str(includes), str(root / uti)], text=True, timeout=15)
+            selected_bodies[os] = output[output.index('Java_sun_nio_fs_UTIFileTypeDetector_probe0('):]
+        assert 'return msl_ios_filetype_probe(env, ext);' in selected_bodies['ios']
+        assert 'toCFString(' not in selected_bodies['ios']
+        assert 'toCFString(env, ext)' in selected_bodies['macosx']
+        assert 'CFRelease(extension)' in selected_bodies['macosx']
+        assert 'msl_ios_filetype_probe' not in selected_bodies['macosx']
         by_os = {case['platform']: case['libjava_platform_libraries'] for case in result['cases']}
         assert by_os['ios'] == '-framework CoreFoundation'
         assert all(by_os[os] == baseline[os] for os in ['macosx', 'linux'])
@@ -85,8 +107,10 @@ def check(pristine):
         assert patched_core.count(new_jli) == 1
         assert patched_core.replace(addition, b'').replace(new_jli, old_jli) == originals[core]
         patched_base = (root / base).read_bytes()
-        assert patched_base.count(addition) == 1
-        assert patched_base.replace(addition, b'') == originals[base]
+        nio_addition = b'    LIBS_ios := -lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers, \\\n'
+        arc_addition = b'    msl_ios_filetype.m_CFLAGS := -fobjc-arc -fobjc-arc-exceptions, \\\n'
+        assert patched_base.count(nio_addition) == patched_base.count(arc_addition) == 1
+        assert patched_base.replace(nio_addition, b'').replace(arc_addition, b'') == originals[base]
         assert all(verify.libjli_exclusions(patched_core.decode(), os) == baseline_jli[os]
                    for os in ['macosx', 'linux'])
         before = snapshot()
@@ -120,6 +144,13 @@ def check(pristine):
             assert error.args == (('ios', ''),), error.args
         else:
             raise AssertionError('Missing iOS libnio CoreFoundation accepted')
+        (root / base).write_bytes(patched_base.replace(arc_addition, b''))
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert error.args == (('ios', ''),), error.args
+        else:
+            raise AssertionError('Missing file type ARC setting accepted')
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
@@ -131,6 +162,12 @@ def check(pristine):
         'missing_ios_libnio_corefoundation_rejected': True,
         'libnio_non_ios_branches_unchanged': True,
         'libnet_platform_branches_unchanged': True,
+        'filetype_ios_bridge_selected': True,
+        'filetype_macos_legacy_branch_preserved': True,
+        'filetype_helper_copy_verified': True,
+        'filetype_non_ios_helper_empty': True,
+        'missing_filetype_arc_setting_rejected': True,
+        'filetype_helper_sha256': hashlib.sha256((project / 'runtime-native/ios_filetype.m').read_bytes()).hexdigest(),
         'baseline_libjava_platform_libraries': baseline,
         'baseline_libjli_exclusions': baseline_jli,
         'baseline_libnio_platform_libraries': baseline_nio,

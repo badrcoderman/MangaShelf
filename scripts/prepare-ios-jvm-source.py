@@ -13,6 +13,7 @@ PINNED_FILES = {
     "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
     "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
     "make/modules/java.base/Lib.gmk": "f85b5faeecf778c704c8fa5ea5371494622a2e9167e94cf36986ad70ed0cf48c",
+    "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": "7706136f78495d9c33ac4e153a44089b871a7e02d6c926152f1c689e492b3b62",
 }
 
 def prepare(source_root, project_root):
@@ -25,6 +26,7 @@ def prepare(source_root, project_root):
             raise ValueError(f"Refusing to patch changed or already patched source: {name}")
         originals[name] = original
     compat = (project_root / "runtime-native/ios_jvm_compat.cpp").read_bytes()
+    filetype = (project_root / "runtime-native/ios_filetype.m").read_bytes()
     results = dict(originals)
     zero = "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp"
     results[zero] += b"""
@@ -62,7 +64,11 @@ def prepare(source_root, project_root):
         ),
         "make/modules/java.base/Lib.gmk": (
             b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_macosx :=',
-            b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_ios := -framework CoreFoundation, \\\n    LIBS_macosx :=',
+            b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_ios := -lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers, \\\n    LIBS_macosx :=',
+        ),
+        "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": (
+            b'    jstring result = NULL;\n\n    CFStringRef extension = toCFString(env, ext);',
+            b'#ifdef __IOS__\n    extern jstring msl_ios_filetype_probe(JNIEnv *, jstring);\n    return msl_ios_filetype_probe(env, ext);\n#else\n    jstring result = NULL;\n\n    CFStringRef extension = toCFString(env, ext);',
         ),
     }
     for name, (before, after) in replacements.items():
@@ -77,9 +83,21 @@ def prepare(source_root, project_root):
     if results[core].count(before) != 1:
         raise ValueError("Expected one reviewed libjli platform exclusion")
     results[core] = results[core].replace(before, after)
+    base = "make/modules/java.base/Lib.gmk"
+    before = b'    NAME := nio, \\\n    OPTIMIZATION := HIGH,'
+    after = b'    NAME := nio, \\\n    msl_ios_filetype.m_CFLAGS := -fobjc-arc -fobjc-arc-exceptions, \\\n    OPTIMIZATION := HIGH,'
+    if results[base].count(before) != 1:
+        raise ValueError("Expected one reviewed libnio ARC setting")
+    results[base] = results[base].replace(before, after)
+    uti = "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c"
+    before = b'    return result;\n}\n'
+    if results[uti].count(before) != 1:
+        raise ValueError("Expected one reviewed UTI probe return")
+    results[uti] = results[uti].replace(before, b'    return result;\n#endif\n}\n')
     for name, result in results.items():
         (source_root / name).write_bytes(result)
     (source_root / zero).with_name("msl_ios_zero_compat.hpp").write_bytes(compat)
+    (source_root / uti).with_name("msl_ios_filetype.m").write_bytes(filetype)
 
 
 def main():
@@ -89,7 +107,7 @@ def main():
         prepare(Path(sys.argv[1]), Path(__file__).resolve().parent.parent)
     except (ValueError, OSError) as error:
         raise SystemExit(str(error)) from error
-    print("Applied pinned Zero definitions, Darwin flags, iOS libjava/libnio CoreFoundation and libjli selection")
+    print("Applied pinned Zero/Darwin fixes, iOS NIO file types and libjli selection")
 
 
 if __name__ == "__main__":

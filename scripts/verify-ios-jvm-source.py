@@ -40,7 +40,7 @@ def stack_flags(source, platform):
     return subprocess.check_output(['bash', '-eu', '-c', script, 'stack-flag-check', platform], text=True).strip()
 
 
-def library_link_flags(source, flag_source, platform, library):
+def library_link_flags(source, flag_source, platform, library, parameter=None):
     # Evaluate the actual library call with a named-argument capture stub, then
     # the pinned upstream SetupLinkerFlags body. No compile/link targets run.
     start = source.index(f'$(eval $(call SetupJdkLibrary, {library},')
@@ -61,6 +61,8 @@ $(info $(strip $(BUILD_LIBJAVA_LIBS) $(BUILD_LIBJAVA_EXTRA_LIBS)))
 all:
 	@:
 """
+    if parameter is not None:
+        makefile = makefile.replace('$(BUILD_LIBJAVA_LIBS) $(BUILD_LIBJAVA_EXTRA_LIBS)', f'$(BUILD_LIBJAVA_{parameter})')
     makefile = makefile.replace('BUILD_LIBJAVA', library)
     return subprocess.check_output(
         ['make', '--no-print-directory', '-s', '-f', '-', f'OPENJDK_TARGET_OS={platform}'],
@@ -101,6 +103,7 @@ def verify(root):
         java_flags = library_link_flags(core, flag_source, platform, 'BUILD_LIBJAVA')
         nio_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO')
         net_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNET')
+        filetype_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO', 'msl_ios_filetype.m_CFLAGS')
         jli_excluded = libjli_exclusions(core, platform)
         expected_java_flags = {
             'ios': '-framework CoreFoundation',
@@ -109,11 +112,12 @@ def verify(root):
         }
         assert java_flags == expected_java_flags[platform], (platform, java_flags)
         expected_nio_flags = {
-            'ios': '-framework CoreFoundation',
+            'ios': '-lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers',
             'macosx': '-framework CoreFoundation -framework CoreServices',
             'linux': '-ldl -lpthread',
         }
         assert nio_flags == expected_nio_flags[platform], (platform, nio_flags)
+        assert filetype_flags == '-fobjc-arc -fobjc-arc-exceptions', (platform, filetype_flags)
         apple = platform in ["ios", "macosx"]
         assert jli_excluded == (['java_md.c'] if apple else []), (platform, jli_excluded)
         assert suffix == (".dylib" if apple else ".so"), (platform, suffix)
@@ -133,6 +137,7 @@ def verify(root):
                         "libjava_platform_libraries": java_flags,
                         "libnio_platform_libraries": nio_flags,
                         "libnet_platform_libraries": net_flags,
+                        "filetype_source_flags": filetype_flags,
                         "libjli_excluded_files": jli_excluded})
     return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}
 

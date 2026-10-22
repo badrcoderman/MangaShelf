@@ -12,8 +12,9 @@
       "executable_origin": "-Wl,-rpath,@loader_path/.",
       "stack_flags_with_probe_enabled": "",
       "libjava_platform_libraries": "-framework CoreFoundation",
-      "libnio_platform_libraries": "-framework CoreFoundation",
+      "libnio_platform_libraries": "-lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers",
       "libnet_platform_libraries": "",
+      "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": [
         "java_md.c"
       ]
@@ -29,6 +30,7 @@
       "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
       "libnio_platform_libraries": "-framework CoreFoundation -framework CoreServices",
       "libnet_platform_libraries": "-framework CoreFoundation -framework CoreServices",
+      "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": [
         "java_md.c"
       ]
@@ -44,6 +46,7 @@
       "libjava_platform_libraries": "-ldl",
       "libnio_platform_libraries": "-ldl -lpthread",
       "libnet_platform_libraries": "-ldl",
+      "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": []
     }
   ],
@@ -56,7 +59,8 @@
     "make/common/JdkNativeCompilation.gmk",
     "make/autoconf/flags-ldflags.m4",
     "make/modules/java.base/lib/CoreLibraries.gmk",
-    "make/modules/java.base/Lib.gmk"
+    "make/modules/java.base/Lib.gmk",
+    "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c"
   ],
   "repeat_patch_rejected": true,
   "missing_ios_corefoundation_rejected": true,
@@ -66,6 +70,12 @@
   "missing_ios_libnio_corefoundation_rejected": true,
   "libnio_non_ios_branches_unchanged": true,
   "libnet_platform_branches_unchanged": true,
+  "filetype_ios_bridge_selected": true,
+  "filetype_macos_legacy_branch_preserved": true,
+  "filetype_helper_copy_verified": true,
+  "filetype_non_ios_helper_empty": true,
+  "missing_filetype_arc_setting_rejected": true,
+  "filetype_helper_sha256": "1189b849b1e973b6b07486cd6ee336e596ffcbb6a010e792a117b74896aac3e7",
   "baseline_libjava_platform_libraries": {
     "ios": "",
     "macosx": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
@@ -98,6 +108,7 @@
     "make/autoconf/flags-ldflags.m4": "42d0721eeeee7c303e85599c44fa0ab6c702e26196c4ea2309b4d2a10904c0dc",
     "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
     "make/modules/java.base/Lib.gmk": "f85b5faeecf778c704c8fa5ea5371494622a2e9167e94cf36986ad70ed0cf48c",
+    "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": "7706136f78495d9c33ac4e153a44089b871a7e02d6c926152f1c689e492b3b62",
     "make/common/native/Flags.gmk": "29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33"
   }
 }

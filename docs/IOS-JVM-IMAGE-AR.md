@@ -18,7 +18,7 @@ ld: unknown options: -soname=libjvm.so
 
 ## التصحيح
 
-1. `prepare-ios-jvm-source.py` يتحقق حاليًا من SHA-256 لثمانية ملفات من مراجعة
+1. `prepare-ios-jvm-source.py` يتحقق حاليًا من SHA-256 لتسعة ملفات من مراجعة
    OpenJDK Mobile المثبتة **قبل أي كتابة**، ثم يطبق تعريفات Zero السابقة
    وإصلاحات Apple التالية:
    - امتداد المكتبة الديناميكية `.dylib` بدل اختيار `.so` الافتراضي لـiOS.
@@ -33,6 +33,9 @@ ld: unknown options: -soname=libjvm.so
      الملفين يكرر رموز المشغّل.
    - ربط `libnio` على iOS بـCoreFoundation التي يستدعيها UTIFileTypeDetector؛
      تبقى خيارات libnet كما هي، وقائمة macOS وLinux في libnio مستقلة.
+   - تحويل نقطة نوع الملف على iOS إلى مساعدة مؤلفة للمشروع تستخدم UTType،
+     مع ARC وتنظيف الاستثناءات وأطر Foundation/UniformTypeIdentifiers؛
+     [التنفيذ والحدود](IOS-FILETYPE-AR.md).
 2. يُبنى JDK أدوات المضيف **من المصدر المثبت نفسه** بإعداد macOS مستقل، ثم
    يمرر إلى configure الخاص بـiOS عبر `--with-build-jdk`. هذا يمنع الاعتماد
    على buildjdk-spec الذي يرث بعض قيم منصة الهدف في هذه المراجعة.
@@ -54,11 +57,11 @@ ld: unknown options: -soname=libjvm.so
 
 ## التحقق الذي نُفّذ
 
-- نُزّلت الملفات الثمانية كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
+- نُزّلت الملفات التسعة كنص من GitHub عند commit المحدد؛ بصماتها مثبتة في
   سكربت التحضير. قُرئ كذلك كود HostLocale وملف اختيار خيارات الربط الأصلي؛
   تثبت أداة التحقق بصمة `native/Flags.gmk` قبل تقييمه.
 - `test_ios_jvm_source.py PRISTINE_PINNED_OPENJDK_ROOT` نفّذ فحصًا قابلًا
-  للتكرار في مجلد مؤقت: رفض تعديل كل من الملفات الثمانية قبل أي كتابة، ثم
+  للتكرار في مجلد مؤقت: رفض تعديل كل من الملفات التسعة قبل أي كتابة، ثم
   طبق الإصلاح على المدخلات الأصلية ورفض تكرار التطبيق.
 - `verify-ios-jvm-source.py` قيّم فروع shell وMake الفعلية لاختيار الامتداد
   وخيارات المكتبة واسمها على iOS وmacOS وLinux؛ حالات Apple تختار install_name
@@ -72,9 +75,11 @@ ld: unknown options: -soname=libjvm.so
   استبعاد `java_md.c`، ولا يغيّر Linux. إعادة الشرط القديم الخاص بـmacOS فقط
   تفشل فحص iOS مع إبقاء إصلاح CoreFoundation؛ فُحص التصحيحان كل على حدة.
 - تقييم استدعاء `BUILD_LIBNIO` واختيار `LIBS_ios` عبر معالج الربط الأصلي؛
-  يختار iOS CoreFoundation، وتبقى فروع macOS وLinux مطابقة للأصل. فُحص أيضًا
+  يختار iOS أطر المساعدة الأصلية، وتبقى فروع macOS وLinux مطابقة للأصل. فُحص أيضًا
   `BUILD_LIBNET` على المنصات الثلاث للتأكد من عدم تغيير المكتبة المجاورة.
   إزالة إصلاح NIO وحده تفشل الفحص حتى مع بقاء إصلاحات Java وJLI.
+- فُحصت فروع نقطة UTI بالـpreprocessor ونسخة المساعدة وإعداد ARC؛ نقل فحص
+  ترجمتها بـSDK Apple إلى ما قبل بناء المضيف الطويل لا يثبت تشغيلها على جهاز.
 - اجتاز سكربت البناء `bash -n`.
 
 النتيجة المحدودة: [ios-jvm-source-fixes.json](../validation/ios-jvm-source-fixes.json).
@@ -132,8 +137,9 @@ CoreFoundation إلى `LIBS_ios` لهذا الاستدعاء وفُحصت فرو
 يحفظ الفشل والسجل ولا يجيز استعمال artifact كتجربة هاتف.
 
 المراجعة كشفت أيضًا أن شرط iOS في UTIFileTypeDetector يحجب تحويل MIME
-وCFRelease بعد إنشاء CFString. معالجة هذا المسار وإثبات تحرير المورد تبقى
-مطلوبة ضمن ENG-15 قبل المحرك الإنتاجي؛ تصحيح خيار الربط لا يحسم سلوكه.
+وCFRelease بعد إنشاء CFString. عولج المسار في المصدر بمساعدة UTType ذات
+ARC؛ يبقى نجاح ترجمتها وإثبات السلوك والموارد على iPhone ضمن ENG-15 قبل
+المحرك الإنتاجي.
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

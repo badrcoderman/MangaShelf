@@ -19,10 +19,20 @@ git -C "$mobile" diff -- src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp \
   make/common/JdkNativeCompilation.gmk make/autoconf/flags-ldflags.m4 \
   make/modules/java.base/lib/CoreLibraries.gmk \
   make/modules/java.base/Lib.gmk \
+  src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c \
   > "$out/logs/source-patch.diff"
 cp runtime-native/ios_jvm_compat.cpp "$out/logs/ios_jvm_compat.cpp"
+cp runtime-native/ios_filetype.m "$out/logs/ios_filetype.m"
 sdk="$(xcrun --sdk iphoneos --show-sdk-path)"
 clang="$(xcrun --sdk iphoneos --find clang)"
+# Check the new iOS API and JNI boundary before the longer host/target builds.
+headers="$mobile/src/java.base"
+"$clang" -target arm64-apple-ios26.0 -isysroot "$sdk" -D__IOS__ -fobjc-arc -fobjc-arc-exceptions \
+  -Wall -Wextra -Werror -I"$headers/share/native/include" \
+  -I"$headers/unix/native/include" -I"$headers/share/native/libjava" \
+  -I"$headers/macosx/native/libjava" -I"$headers/unix/native/libjava" \
+  -c runtime-native/ios_filetype.m -o "$out/logs/ios-filetype-sdk-check.o" \
+  2>&1 | tee "$out/logs/ios-filetype-sdk-check.log"
 (
   cd "$ffi"
   ./autogen.sh
@@ -91,6 +101,8 @@ root = Path(sys.argv[1])
 files = sorted(p for p in root.rglob('*') if p.is_file() and p.suffix == '.a')
 files += [root / 'jre/lib/modules', root / 'jre/release', root / 'logs/ios_jvm_compat.cpp']
 files += [root / 'logs/source-patch.diff', root / 'logs/source-link-flags.json', root / 'logs/host-java-version.txt']
+files += [root / 'logs/ios_filetype.m']
+files += [root / 'logs/ios-filetype-sdk-check.o', root / 'logs/ios-filetype-sdk-check.log']
 manifest = {
     'format': 1, 'target': 'arm64-apple-ios26.0', 'vm_variant': 'zero',
     'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
@@ -108,6 +120,8 @@ manifest = {
     'ios_libjava_corefoundation_fix': True,
     'ios_libjli_platform_source_fix': True,
     'ios_libnio_corefoundation_fix': True,
+    'ios_filetype_source_fix': True,
+    'ios_filetype_sdk_compiled': True,
     'sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
 }
 (root / 'build-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')

@@ -41,7 +41,19 @@ public final class RuntimeProbe {
         Path test = Files.createTempFile(root, "mangashelf-probe-", ".tmp");
         try { Files.write(test, plain); require(java.util.Arrays.equals(plain, Files.readAllBytes(test)), "File I/O failed"); }
         finally { Files.deleteIfExists(test); }
-        return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O";
+        Path textFile = Files.createTempFile(root, "مانغا-probe-", ".txt");
+        Path imageFile = null;
+        try {
+            imageFile = Files.createTempFile(root, "mangashelf-probe-", ".png");
+            Files.write(textFile, plain);
+            Files.write(imageFile, new byte[]{(byte)137, 80, 78, 71, 13, 10, 26, 10});
+            require("text/plain".equals(Files.probeContentType(textFile)), "Text MIME probe failed");
+            require("image/png".equals(Files.probeContentType(imageFile)), "PNG MIME probe failed");
+        } finally {
+            try { Files.deleteIfExists(textFile); }
+            finally { if (imageFile != null) Files.deleteIfExists(imageFile); }
+        }
+        return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types";
     }
 
     /** Device diagnostics survive the bridge clearing a Java exception. */

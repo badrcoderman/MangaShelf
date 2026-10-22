@@ -1,10 +1,11 @@
 {
   "exit_code": 0,
   "host_fixture_passed": true,
+  "host_file_mime_probes_passed": true,
   "expected_java_failure_logged": true,
-  "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O\nPASS: Unicode echo and expected failure propagation\n",
+  "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types\nPASS: Unicode echo and expected failure propagation\n",
   "source_sha256": {
-    "runtime-probe/src/mangashelf/probe/RuntimeProbe.java": "73b8a2161f3a40982341f71075725a00b2e0a55d6903964a83037b35c56e7805",
+    "runtime-probe/src/mangashelf/probe/RuntimeProbe.java": "87345f5b54610e3f1db98b9f1e57ba6606c3d19413d61872c62d10ea63887128",
     "runtime-probe/plugin/probe/SourceProbe.java": "8c483b5bbf236b79bf25e2bf1e17ce9c922b5dee3425a7dd207ab640c21e86c4"
   },
   "java_version": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)",

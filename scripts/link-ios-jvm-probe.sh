@@ -58,7 +58,7 @@ data = {
     'target': 'arm64-apple-ios26.0', 'sdk_path': sys.argv[3], 'compat_mode': sys.argv[4],
     'vm_objects': [str(out / name) for name in ['MSJavaRuntime.o', 'ios_jvm_compat.o']],
     'library_paths': list(map(str, archives)),
-    'system_link_flags': ['-lz', '-liconv', '-framework', 'Foundation', '-framework', 'Security',
+    'system_link_flags': ['-lz', '-liconv', '-lobjc', '-framework', 'UniformTypeIdentifiers', '-framework', 'Foundation', '-framework', 'Security',
                           '-framework', 'SystemConfiguration', '-framework', 'CoreFoundation'],
     'archive_sha256': {str(p.relative_to(evidence)): hashlib.sha256(p.read_bytes()).hexdigest() for p in archives},
     'java_modules_present': (evidence / 'jre/lib/modules').is_file(), 'execution_proven': False,
@@ -66,7 +66,7 @@ data = {
 (out / 'link-inputs.json').write_text(json.dumps(data, indent=2) + '\n')
 PY
 xcrun --sdk iphoneos clang++ "${common[@]}" "$out/MSJavaRuntime.o" "$out/host_probe.o" "$out/ios_jvm_compat.o" \
-  "${libraries[@]}" -lz -liconv -framework Foundation -framework Security \
+  "${libraries[@]}" -lz -liconv -lobjc -framework UniformTypeIdentifiers -framework Foundation -framework Security \
   -framework SystemConfiguration -framework CoreFoundation \
   -o "$out/MangaShelfRuntimeLinkProbe" 2>&1 | tee "$out/link.log"
 xcrun --sdk iphoneos otool -l "$out/MangaShelfRuntimeLinkProbe" > "$out/load-commands.txt"
