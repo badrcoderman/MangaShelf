@@ -1,0 +1,55 @@
+# فشل أسماء الملفات العربية في فحص iPhone
+
+وصل تقرير المستخدم من iOS 26.2 لنسخة الفحص عند `2075088` والمحرك المبني في
+`39769103017`: نجح بدء VM (`start_code=0`)، ثم فشل استدعاء Java
+(`call_code=5`) عند `Files.createTempFile` للاسم العربي، مع
+`java.nio.file.InvalidPathException` داخل `UnixPath.encode`.
+[التقرير المنقول وحدوده](../validation/ios-jvm-device-39806485937-iphone-report.json).
+تكرار نص التقرير لا يعد محاولات مستقلة. لم يكتمل فحص MIME أو JNI echo أو
+تنفيذ إضافة حقيقية.
+
+## السبب والتصحيح
+
+في مصدر OpenJDK Mobile المثبت عند `c1ed06aaef34c8dccf71e236d1ffa20918a77cfb`،
+يفرض
+[java_props_md.c](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/java.base/unix/native/libjava/java_props_md.c#L448)
+UTF-8 لمسارات MACOSX فقط. يأخذ فرع iOS ترميز اللغة المحلية؛ في `C` يمكن
+أن يكون ASCII، فيرفض UnixPath المحارف العربية قبل إنشاء الملف.
+اختلاف file.encoding الافتراضي إلى UTF-8 لا يغير codec مسارات النظام.
+
+تستبدل
+[SystemProps](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/java.base/share/classes/jdk/internal/util/SystemProps.java#L77)
+قيم sun.jnu.encoding وnative.encoding أثناء البدء، لذلك لا يصلح تمرير
+`-Dsun.jnu.encoding=UTF-8` كتصحيح لهذا المسار.
+
+أضيف فرع iOS صريح يختار UTF-8 لكل من native encoding وfilesystem encoding،
+مع إبقاء استخراج لغة/بلد المستخدم وسلوك المنصات الأخرى. تحتاج المكتبة
+الأصلية libjava إلى إعادة البناء؛ لا تُعدل خصائص NIO بعد تهيئتها ولا يحذف
+الاختبار العربي.
+
+## التحقق المنفذ
+
+- يثبت التحضير SHA-256 لملف java_props_md.c ضمن 13 مدخلًا قبل أي كتابة.
+- يجمع `verify-ios-jvm-encoding.py` ملف الخصائص الأصلي والمعدل كاملًا على
+  Linux، مع رؤوس أصلية مثبتة وstubs محددة لـJNI وخدمات macOS. أظهر فرع
+  iOS في `C` الانتقال من ASCII إلى UTF-8 مع بقاء اللغة en؛ بقيت نتائج
+  macOS وLinux وBSD كما كانت.
+- على macOS يستعمل الفاحص فرع اختيار الترميز الأصلي المقتطع ويجمعه كـC،
+  مع تسجيل نطاقه الأضيق صراحة؛ ترجمة الملف الكامل لـiOS تتحقق في بناء JVM.
+- يرفض فحص المصدر غياب إصلاح الترميز وتغير المدخلات وتكرار التصحيح.
+  [نتيجة المصدر](../validation/ios-jvm-source-fixes.json) لا تثبت تشغيل جهاز.
+- بقي اسم ملف MIME العربي الأصلي. أضيف اختبار قراءة/كتابة/تعداد مسار عربي
+  وemoji والتحقق من UTF-8 URI والتنظيف. نجح على Java 27 في المضيف، مع
+  تسجيل خصائص الترميز قبل الاستثناء المتوقع؛
+  [نتيجة fixture](../validation/ios-device-fixture-host.json).
+
+## نسخة الهاتف التالية
+
+نسخة MSL Engine Check التالية 0.1.1، البناء 2. تحفظ JVM/file diagnostics
+في report.json قبل بدء فحوص الملفات، وتشترط runtime يحمل إصلاح UTF-8
+في manifest لتمنع إعادة استعمال الصورة السابقة بالخطأ. يبقى الحد الأدنى
+iOS 26.0، وتبقى المحاولة واحدة داخل العملية.
+
+بناء صورة المحرك الجديدة وIPA وإعادة الفحص على الهاتف ما زالت مطلوبة.
+نجاح بدء VM السابق خطوة مثبتة من تقرير المستخدم، ولا يغلق ENG-01 أو
+إثبات تشغيل المصادر الحقيقية.

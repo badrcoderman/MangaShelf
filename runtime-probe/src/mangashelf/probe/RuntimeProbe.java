@@ -10,12 +10,82 @@ import java.util.zip.GZIPOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 
 /** Runs only project-owned test code, callable from a future iOS JNI harness. */
 public final class RuntimeProbe {
     private static void require(boolean ok, String detail) {
         if (!ok) throw new IllegalStateException(detail);
     }
+
+    /** ASCII-only values keep diagnostics readable even when native output encoding is broken. */
+    private static String diagnosticValue(String value) {
+        if (value == null) return "<unset>";
+        StringBuilder result = new StringBuilder();
+        for (int index = 0; index < value.length(); index++) {
+            char character = value.charAt(index);
+            String encoded;
+            if (character >= 32 && character <= 126 && character != '\\') {
+                encoded = String.valueOf(character);
+            } else {
+                encoded = "\\u" + String.format(java.util.Locale.ROOT, "%04X", (int) character);
+            }
+            if (result.length() + encoded.length() > 160) {
+                result.append("<truncated>");
+                break;
+            }
+            result.append(encoded);
+        }
+        return result.toString();
+    }
+
+    /** Uses the bridge's existing (String, String) signature; never includes paths or environment. */
+    public static String diagnostics(String unusedFirst, String unusedSecond) {
+        StringBuilder result = new StringBuilder("JVM/file diagnostics\n");
+        for (String key : new String[]{"sun.jnu.encoding", "native.encoding", "file.encoding",
+                "stdout.encoding", "stderr.encoding", "java.version", "java.runtime.version",
+                "java.vm.name", "java.vm.version", "os.name", "os.arch", "os.version"}) {
+            String value;
+            try { value = System.getProperty(key); }
+            catch (SecurityException unavailable) { value = "<unavailable>"; }
+            result.append(key).append('=').append(diagnosticValue(value)).append('\n');
+        }
+        result.append("Charset.defaultCharset=").append(diagnosticValue(Charset.defaultCharset().name())).append('\n');
+        return result.toString();
+    }
+
+    private static void checkUnicodeFilesystem(Path root, byte[] plain) throws Exception {
+        String prefix = "مانغا-📚-";
+        String childName = "فصل-📖.txt";
+        Path directory = Files.createTempDirectory(root, prefix);
+        Path child = null;
+        try {
+            String directoryName = directory.getFileName().toString();
+            require(directoryName.startsWith(prefix), "Unicode directory name changed");
+            child = directory.resolve(childName);
+            Files.write(child, plain);
+            require(java.util.Arrays.equals(plain, Files.readAllBytes(child)), "Unicode path file I/O failed");
+            String expectedSuffix = new java.net.URI(null, null, "/" + directoryName + "/" + childName, null).toASCIIString();
+            require(child.toUri().toASCIIString().endsWith(expectedSuffix), "Unicode path bytes are not UTF-8");
+            try (var directories = Files.list(root)) {
+                require(directories.anyMatch(path -> directoryName.equals(path.getFileName().toString())),
+                        "Unicode directory listing changed name");
+            }
+            try (var entries = Files.list(directory)) {
+                var listed = entries.toList();
+                require(listed.size() == 1, "Unicode directory has unexpected entries");
+                Path entry = listed.get(0);
+                require(childName.equals(entry.getFileName().toString()), "Unicode file listing changed name");
+                require(entry.toUri().toASCIIString().endsWith(expectedSuffix), "Listed Unicode path bytes are not UTF-8");
+                require(java.util.Arrays.equals(plain, Files.readAllBytes(entry)), "Listed Unicode file read failed");
+            }
+        } finally {
+            try { if (child != null) Files.deleteIfExists(child); }
+            finally { Files.deleteIfExists(directory); }
+        }
+        require(!Files.exists(directory), "Unicode directory cleanup failed");
+    }
+
     public static String run(String pluginPath, String writableDirectory) throws Exception {
         require(Runtime.version().feature() >= 17, "Java 17 or later required");
         Path plugin = Path.of(pluginPath);
@@ -53,11 +123,14 @@ public final class RuntimeProbe {
             try { Files.deleteIfExists(textFile); }
             finally { if (imageFile != null) Files.deleteIfExists(imageFile); }
         }
-        return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types";
+        checkUnicodeFilesystem(root, plain);
+        return "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem";
     }
 
     /** Device diagnostics survive the bridge clearing a Java exception. */
     public static String runWithDiagnostics(String pluginPath, String writableDirectory) throws Exception {
+        System.err.print(diagnostics(null, null));
+        System.err.flush();
         try {
             return run(pluginPath, writableDirectory);
         } catch (Exception | LinkageError failure) {

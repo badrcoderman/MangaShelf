@@ -17,6 +17,7 @@ PINNED_FILES = {
     "make/modules/java.prefs/Lib.gmk": "b69c8f19d49de73318e3032f2855e054b513788094271b1d4776d73b6c716dad",
     "make/modules/java.instrument/Lib.gmk": "a8665634a69b13563f95b406d333da504efe927465c97773aa187d1d8771b57c",
     "make/autoconf/libraries.m4": "bf75cabbaccfa7650e878c7ada059dcd9f0823d434e55c0feae167365eb27383",
+    "src/java.base/unix/native/libjava/java_props_md.c": "1c1a28595b3d4f49aec19c8c3eb145abb6592e3170cff6bbce48a3a134fe83a8",
 }
 
 def prepare(source_root, project_root):
@@ -72,6 +73,10 @@ def prepare(source_root, project_root):
         "make/autoconf/libraries.m4": (
             b'if test "x$OPENJDK_TARGET_OS" == "xaix" || test "x$OPENJDK_TARGET_OS" == "xmacosx"; then\n    ICONV_CFLAGS=',
             b'if test "x$OPENJDK_TARGET_OS" == "xaix" || test "x$OPENJDK_TARGET_OS" == "xmacosx" \\\n      || test "x$OPENJDK_TARGET_OS" == "xios"; then\n    ICONV_CFLAGS=',
+        ),
+        "src/java.base/unix/native/libjava/java_props_md.c": (
+            b'#ifdef MACOSX\n    sprops.sun_jnu_encoding = "UTF-8";',
+            b'#if defined(__IOS__)\n    /* MangaShelf: iOS paths and application log streams use UTF-8, even in the C locale. */\n    sprops.encoding = "UTF-8";\n    sprops.sun_jnu_encoding = "UTF-8";\n#elif defined(MACOSX)\n    sprops.sun_jnu_encoding = "UTF-8";',
         ),
         "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": (
             b'    jstring result = NULL;\n\n    CFStringRef extension = toCFString(env, ext);',

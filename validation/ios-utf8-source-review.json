@@ -1,0 +1,72 @@
+{
+  "repository": "openjdk/mobile",
+  "commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+  "files": [
+    {
+      "path": "src/java.base/unix/native/libjava/java_props_md.c",
+      "bytes": 17486,
+      "sha256": "1c1a28595b3d4f49aec19c8c3eb145abb6592e3170cff6bbce48a3a134fe83a8"
+    },
+    {
+      "path": "src/java.base/share/classes/jdk/internal/util/SystemProps.java",
+      "bytes": 16424,
+      "sha256": "1d0598a4aa66a671f8dfae67d2977dcbb4664f2e44b3eff4ac65b03318655f72"
+    },
+    {
+      "path": "src/java.base/share/classes/jdk/internal/util/StaticProperty.java",
+      "bytes": 10004,
+      "sha256": "145a185d9287326867aff0587d13b3dc65d76d762d9fcd485ef3243d44c76882"
+    },
+    {
+      "path": "src/java.base/unix/classes/sun/nio/fs/UnixPath.java",
+      "bytes": 33789,
+      "sha256": "878a3f1a3878adc7fccf1eb6b72bafaa9117d68c472ad4801538a0e4ac005882"
+    },
+    {
+      "path": "src/java.base/macosx/classes/sun/nio/fs/MacOSXFileSystem.java",
+      "bytes": 1692,
+      "sha256": "3504d077f1a68af9ccbb0bf6ee685e9f7f56d99ad11673e55f25b34de7264c0e"
+    },
+    {
+      "path": "src/java.base/share/classes/java/lang/System.java",
+      "bytes": 101191,
+      "sha256": "52333dd960493002c1d7bf0dd190369cfd0cf76fbac2d59edbde8130be02e736"
+    },
+    {
+      "path": "src/java.base/share/native/libjava/java_props.h",
+      "bytes": 3248,
+      "sha256": "99c135542d20fdbdf2fc201102976127ba468497a805bfc2c513dddf246be71a"
+    },
+    {
+      "path": "src/java.base/share/classes/sun/nio/fs/Util.java",
+      "bytes": 4108,
+      "sha256": "b13252ff416dcfae4443963cfc0660e636de81bf553fdbb004027114d876e67d"
+    },
+    {
+      "path": "src/java.base/share/native/libjava/System.c",
+      "bytes": 11791,
+      "sha256": "9e1508f2c2448b725ff59721abc6ac928d9c819389369fdffbfe65870dd61ba4"
+    },
+    {
+      "path": "src/java.base/share/native/libjava/jni_util.c",
+      "bytes": 36367,
+      "sha256": "2cd6419a624db43f62bf2d8aa39cc15a7aff16b3f7947e7573ffe1026a8ea8cc"
+    },
+    {
+      "path": "make/autoconf/flags-cflags.m4",
+      "bytes": 37776,
+      "sha256": "1411da4d9dc6def3d2e9e97ff28a3aaa0e4d4b0915b0d3315a2a8afc5dd38cbc"
+    },
+    {
+      "path": "src/java.base/unix/native/libjava/locale_str.h",
+      "bytes": 5680,
+      "sha256": "9e86ec793b83ed0910bb5b6f83f070a771d8ab0f046f96ec57ae62ad701d4168"
+    }
+  ],
+  "scope": "Public native/Java source review for iOS path encoding; no specimen or upstream class execution",
+  "cause": "MACOSX-only UTF-8 JNU default leaves iOS on C locale encoding",
+  "command_line_override_rejected_by": "jdk/internal/util/SystemProps.initProperties",
+  "patched_java_props_md_sha256": "dcd072f3c2f8e75327bee027a4b509842a6dd156f586712ed65ff7a0c9129c92",
+  "host_native_test": "validation/ios-jvm-source-fixes.json",
+  "phone_fix_verified": false
+}

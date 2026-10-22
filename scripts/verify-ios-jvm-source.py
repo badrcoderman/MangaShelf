@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Evaluate the reviewed OpenJDK library flag branches; does not build/run a VM."""
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -178,7 +179,13 @@ def verify(root):
                         "iconv_configure_flags": iconv,
                         "filetype_source_flags": filetype_flags,
                         "libjli_excluded_files": jli_excluded})
-    return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}
+    encoding_spec = importlib.util.spec_from_file_location(
+        'ios_jvm_encoding', Path(__file__).with_name('verify-ios-jvm-encoding.py'))
+    encoding_module = importlib.util.module_from_spec(encoding_spec)
+    encoding_spec.loader.exec_module(encoding_module)
+    encoding_result = encoding_module.verify_encoding(root)
+    return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False,
+            "cases": results, "native_encoding": encoding_result}
 
 
 if __name__ == "__main__":

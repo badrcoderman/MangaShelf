@@ -74,6 +74,73 @@
       "libjli_excluded_files": []
     }
   ],
+  "native_encoding": {
+    "scope": "Whole host native C with authored JNI/macOS platform stubs; no VM, iOS ABI, physical device, or extension execution proof",
+    "source_sha256": "dcd072f3c2f8e75327bee027a4b509842a6dd156f586712ed65ff7a0c9129c92",
+    "full_native_properties_checked": true,
+    "header_sha256": {
+      "src/java.base/share/native/libjava/java_props.h": "99c135542d20fdbdf2fc201102976127ba468497a805bfc2c513dddf246be71a",
+      "src/java.base/unix/native/libjava/locale_str.h": "9e86ec793b83ed0910bb5b6f83f070a771d8ab0f046f96ec57ae62ad701d4168"
+    },
+    "cases": [
+      {
+        "platform_macro_case": "ios",
+        "locale": "C",
+        "pristine": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "ANSI_X3.4-1968",
+          "language": "en"
+        },
+        "patched": {
+          "native": "UTF-8",
+          "jnu": "UTF-8",
+          "language": "en"
+        }
+      },
+      {
+        "platform_macro_case": "macosx",
+        "locale": "C",
+        "pristine": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "UTF-8",
+          "language": "en"
+        },
+        "patched": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "UTF-8",
+          "language": "en"
+        }
+      },
+      {
+        "platform_macro_case": "linux",
+        "locale": "C",
+        "pristine": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "ANSI_X3.4-1968",
+          "language": "en"
+        },
+        "patched": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "ANSI_X3.4-1968",
+          "language": "en"
+        }
+      },
+      {
+        "platform_macro_case": "bsd",
+        "locale": "C",
+        "pristine": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "ANSI_X3.4-1968",
+          "language": "en"
+        },
+        "patched": {
+          "native": "ANSI_X3.4-1968",
+          "jnu": "ANSI_X3.4-1968",
+          "language": "en"
+        }
+      }
+    ]
+  },
   "changed_input_rejected_before_writes": true,
   "rejected_changed_inputs": [
     "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp",
@@ -87,7 +154,8 @@
     "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c",
     "make/modules/java.prefs/Lib.gmk",
     "make/modules/java.instrument/Lib.gmk",
-    "make/autoconf/libraries.m4"
+    "make/autoconf/libraries.m4",
+    "src/java.base/unix/native/libjava/java_props_md.c"
   ],
   "repeat_patch_rejected": true,
   "missing_ios_corefoundation_rejected": true,
@@ -169,6 +237,8 @@
   },
   "libprefs_non_ios_branches_unchanged": true,
   "libinstrument_non_ios_branches_unchanged": true,
+  "missing_ios_utf8_encoding_fix_rejected": true,
+  "native_encoding_non_ios_branches_unchanged": true,
   "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
   "input_sha256": {
     "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp": "8451f0f8bea69dbb16e6f26c1dbd4c7b3e96e39850206e5a0e91940bf030da08",
@@ -183,7 +253,10 @@
     "make/modules/java.prefs/Lib.gmk": "b69c8f19d49de73318e3032f2855e054b513788094271b1d4776d73b6c716dad",
     "make/modules/java.instrument/Lib.gmk": "a8665634a69b13563f95b406d333da504efe927465c97773aa187d1d8771b57c",
     "make/autoconf/libraries.m4": "bf75cabbaccfa7650e878c7ada059dcd9f0823d434e55c0feae167365eb27383",
+    "src/java.base/unix/native/libjava/java_props_md.c": "1c1a28595b3d4f49aec19c8c3eb145abb6592e3170cff6bbce48a3a134fe83a8",
     "make/common/native/Flags.gmk": "29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33",
-    "make/modules/jdk.jdwp.agent/Lib.gmk": "0305d605b180dccd0dd8239ca9c402c6f6bea325661ecc0f8ea281c208fde7a7"
+    "make/modules/jdk.jdwp.agent/Lib.gmk": "0305d605b180dccd0dd8239ca9c402c6f6bea325661ecc0f8ea281c208fde7a7",
+    "src/java.base/share/native/libjava/java_props.h": "99c135542d20fdbdf2fc201102976127ba468497a805bfc2c513dddf246be71a",
+    "src/java.base/unix/native/libjava/locale_str.h": "9e86ec793b83ed0910bb5b6f83f070a771d8ab0f046f96ec57ae62ad701d4168"
   }
 }

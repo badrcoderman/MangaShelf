@@ -2,10 +2,15 @@
   "exit_code": 0,
   "host_fixture_passed": true,
   "host_file_mime_probes_passed": true,
+  "host_unicode_path_roundtrip_passed": true,
+  "host_encoding_diagnostics_passed": true,
+  "host_fixture_cleanup_passed": true,
+  "diagnostics_before_expected_java_failure": true,
   "expected_java_failure_logged": true,
-  "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types\nPASS: Unicode echo and expected failure propagation\n",
+  "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem\nPASS: Unicode echo and expected failure propagation\nPASS: bounded ASCII diagnostics and Unicode filesystem cleanup\n",
+  "stderr": "JVM/file diagnostics\nsun.jnu.encoding=UTF-8\nnative.encoding=UTF-8\nfile.encoding=UTF-8\nstdout.encoding=UTF-8\nstderr.encoding=UTF-8\njava.version=27\njava.runtime.version=27\njava.vm.name=OpenJDK 64-Bit Server VM\njava.vm.version=27\nos.name=Linux\nos.arch=amd64\nos.version=7.0.0-Strawberry-FullLTO-\nCharset.defaultCharset=UTF-8\nEXPECTED_FAILURE_BEGIN\nJVM/file diagnostics\nsun.jnu.encoding=UTF-8\nnative.encoding=UTF-8\nfile.encoding=UTF-8\nstdout.encoding=UTF-8\nstderr.encoding=UTF-8\njava.version=27\njava.runtime.version=27\njava.vm.name=OpenJDK 64-Bit Server VM\njava.vm.version=27\nos.name=Linux\nos.arch=amd64\nos.version=7.0.0-Strawberry-FullLTO-\nCharset.defaultCharset=UTF-8\njava.lang.IllegalStateException: Probe JAR missing\n\tat mangashelf.probe.RuntimeProbe.require(RuntimeProbe.java:18)\n\tat mangashelf.probe.RuntimeProbe.run(RuntimeProbe.java:92)\n\tat mangashelf.probe.RuntimeProbe.runWithDiagnostics(RuntimeProbe.java:135)\n\tat DeviceFixtureCheck.main(DeviceFixtureCheck.java:45)\nEXPECTED_FAILURE_END\n",
   "source_sha256": {
-    "runtime-probe/src/mangashelf/probe/RuntimeProbe.java": "87345f5b54610e3f1db98b9f1e57ba6606c3d19413d61872c62d10ea63887128",
+    "runtime-probe/src/mangashelf/probe/RuntimeProbe.java": "d2e19da9077f7c39c505c13005ad7153c1c4798d9d6f20f8b56a3947c319e17a",
     "runtime-probe/plugin/probe/SourceProbe.java": "8c483b5bbf236b79bf25e2bf1e17ce9c922b5dee3425a7dd207ab640c21e86c4"
   },
   "java_version": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)",

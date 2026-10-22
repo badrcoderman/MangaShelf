@@ -145,6 +145,7 @@ static NSString *Text(NSString *key) {
         @"ios": UIDevice.currentDevice.systemVersion,
         @"build": [NSBundle.mainBundle objectForInfoDictionaryKey:@"MSBuildCommit"] ?: @"unknown",
         @"runtime_run_id": [NSBundle.mainBundle objectForInfoDictionaryKey:@"MSRuntimeRunID"] ?: @"unknown",
+        @"probe_version": [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"unknown",
     }];
     if (![self saveReport]) return;
     NSThread *worker = [[NSThread alloc] initWithBlock:^{
@@ -187,12 +188,21 @@ static NSString *Text(NSString *key) {
     NSMutableDictionary *result = [@{@"start_code": @(start)} mutableCopy];
     if (start == MS_JAVA_OK) {
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self.report[@"stage"] = @"loading_project_jar";
+            self.report[@"stage"] = @"reading_java_properties";
             self.report[@"start_code"] = @(start);
             [self saveReport];
         });
-        char output[4096];
+        char output[8192];
         size_t needed = 0;
+        int diagnostics = ms_java_call_string2("mangashelf/probe/RuntimeProbe", "diagnostics", "", "",
+                                               output, sizeof(output), &needed);
+        NSString *properties = diagnostics == MS_JAVA_OK ? [NSString stringWithUTF8String:output] : nil;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.report[@"java_diagnostics_code"] = @(diagnostics);
+            if (properties) self.report[@"java_diagnostics"] = properties;
+            self.report[@"stage"] = @"loading_project_jar";
+            [self saveReport];
+        });
         int call = ms_java_call_string2("mangashelf/probe/RuntimeProbe", "runWithDiagnostics", plugin.fileSystemRepresentation,
                                        self.directory.path.fileSystemRepresentation, output, sizeof(output), &needed);
         result[@"call_code"] = @(call);

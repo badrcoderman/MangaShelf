@@ -1,0 +1,22 @@
+User-pasted iPhone report; repeated copies omitted.
+
+{
+  "build": "2075088a71636a3d5f127534cbb916b1ed2e3905",
+  "call_code": 5,
+  "ios": "26.2",
+  "runtime_run_id": "39769103017",
+  "scope": "VM and project-owned JAR check; does not test a real extension",
+  "stage": "java_check_failed",
+  "start_code": 0
+}
+
+java.nio.file.InvalidPathException: Malformed input or input contains unmappable characters: ?????-probe-9242011327640399479.txt
+	at java.base/sun.nio.fs.UnixPath.encode(Unknown Source)
+	at java.base/sun.nio.fs.UnixPath.<init>(Unknown Source)
+	at java.base/sun.nio.fs.UnixFileSystem.getPath(Unknown Source)
+	at java.base/java.nio.file.TempFileHelper.generatePath(Unknown Source)
+	at java.base/java.nio.file.TempFileHelper.create(Unknown Source)
+	at java.base/java.nio.file.TempFileHelper.createTempFile(Unknown Source)
+	at java.base/java.nio.file.Files.createTempFile(Unknown Source)
+	at mangashelf.probe.RuntimeProbe.run(RuntimeProbe.java:44)
+	at mangashelf.probe.RuntimeProbe.runWithDiagnostics(RuntimeProbe.java:62)

@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-22T16:55:32.274892+00:00",
+  "origin": "User-pasted report and runtime.log from physical iPhone; not an automated capture",
+  "report": {
+    "build": "2075088a71636a3d5f127534cbb916b1ed2e3905",
+    "call_code": 5,
+    "ios": "26.2",
+    "runtime_run_id": "39769103017",
+    "scope": "VM and project-owned JAR check; does not test a real extension",
+    "stage": "java_check_failed",
+    "start_code": 0
+  },
+  "artifact_proof": "validation/ios-jvm-device-39806485937.json",
+  "raw_excerpt": "validation/iphone-enginecheck-2075088-user-report.txt",
+  "raw_excerpt_sha256": "d543df280805d2971e5feb0b5c6d8c388f922305f36dc95c773d1315eacf1ea3",
+  "reported_vm_start_success": true,
+  "reported_project_java_invocation": true,
+  "fixture_passed": false,
+  "failed_check": "Arabic filename creation before file MIME checks",
+  "reported_exception": "java.nio.file.InvalidPathException",
+  "inferred_from_fixture_control_flow": [
+    "separate project JAR load and reflection",
+    "Java Unicode value",
+    "Java thread",
+    "GZIP",
+    "ASCII-path file I/O"
+  ],
+  "native_unicode_echo_executed": false,
+  "file_mime_checks_completed": false,
+  "real_extension_executed": false,
+  "finding": "Pinned iOS native properties can select ASCII in C locale; source fix/rebuild and repeat physical check required"
+}

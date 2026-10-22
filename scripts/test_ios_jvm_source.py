@@ -19,7 +19,9 @@ def load(name):
 def check(pristine):
     prepare = load('prepare-ios-jvm-source')
     verify = load('verify-ios-jvm-source')
-    names = list(prepare.PINNED_FILES) + ['make/common/native/Flags.gmk', 'make/modules/jdk.jdwp.agent/Lib.gmk']
+    encoding = load('verify-ios-jvm-encoding')
+    names = list(prepare.PINNED_FILES) + ['make/common/native/Flags.gmk', 'make/modules/jdk.jdwp.agent/Lib.gmk',
+                                       *encoding.HEADER_PINS]
     originals = {name: (pristine / name).read_bytes() for name in names}
     for name, expected in prepare.PINNED_FILES.items():
         if hashlib.sha256(originals[name]).hexdigest() != expected:
@@ -212,6 +214,18 @@ def check(pristine):
             assert error.args == (('ios', '-liconv -liconv'),), error.args
         else:
             raise AssertionError('Duplicate per-library iconv fix accepted')
+        (root / path).write_bytes(extra_patched[path])
+        encoding_path = encoding.SOURCE_PATH
+        patched_encoding = (root / encoding_path).read_bytes()
+        assert hashlib.sha256(patched_encoding).hexdigest() == encoding.PATCHED_SHA256
+        (root / encoding_path).write_bytes(originals[encoding_path])
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert 'encoding patch is missing' in str(error), error.args
+        else:
+            raise AssertionError('Missing iOS UTF-8 path/native encoding fix accepted')
+        (root / encoding_path).write_bytes(patched_encoding)
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
@@ -243,6 +257,8 @@ def check(pristine):
         'baseline_iconv_configure_flags': baseline_iconv,
         'libprefs_non_ios_branches_unchanged': True,
         'libinstrument_non_ios_branches_unchanged': True,
+        'missing_ios_utf8_encoding_fix_rejected': True,
+        'native_encoding_non_ios_branches_unchanged': True,
         'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
         'input_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in originals.items()},
     })

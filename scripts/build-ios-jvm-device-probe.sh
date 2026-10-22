@@ -17,6 +17,8 @@ if not selection.get('build_manifest_verified'):
 manifest = json.loads(Path('build/ios-jvm-evidence/build/ios-jvm/build-provenance.json').read_text())
 if manifest.get('ios_filetype_source_fix') is not True:
     raise SystemExit('The current device fixture requires the source-built iOS file type implementation')
+if manifest.get('ios_utf8_encoding_fix') is not True:
+    raise SystemExit('The current device fixture requires the iOS UTF-8 filesystem and native encoding fix')
 PY
 test ! -e "$app"
 mkdir -p "$app/probe" "$out/java/main" "$out/java/plugin"
@@ -103,7 +105,7 @@ commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(
 info = {
     'CFBundleIdentifier': 'app.mangashelf.enginecheck', 'CFBundleDisplayName': 'MSL Engine Check',
     'CFBundleExecutable': 'MangaShelfEngineCheck', 'CFBundleName': 'MangaShelfEngineCheck',
-    'CFBundlePackageType': 'APPL', 'CFBundleShortVersionString': '0.1.0', 'CFBundleVersion': '1',
+    'CFBundlePackageType': 'APPL', 'CFBundleShortVersionString': '0.1.1', 'CFBundleVersion': '2',
     'CFBundleSupportedPlatforms': ['iPhoneOS'], 'CFBundleDevelopmentRegion': 'en',
     'CFBundleLocalizations': ['en', 'ar'], 'MinimumOSVersion': '26.0', 'LSRequiresIPhoneOS': True,
     'UIDeviceFamily': [1, 2], 'UILaunchScreen': {},
