@@ -44,6 +44,18 @@ def check(pristine):
         for os in ['ios', 'macosx', 'linux']
     }
     assert baseline_nio['ios'] == ''
+    extra_libraries = {
+        'libprefs': ('make/modules/java.prefs/Lib.gmk', 'BUILD_LIBPREFS',
+                     b'    LIBS_ios := -framework CoreFoundation -framework Foundation, \\\n'),
+        'libinstrument': ('make/modules/java.instrument/Lib.gmk', 'BUILD_LIBINSTRUMENT',
+                          b'    LIBS_ios := -liconv, \\\n'),
+    }
+    extra_baseline = {
+        label: {os: verify.library_link_flags(originals[path].decode(), originals[native_flags].decode(), os, library)
+                for os in ['ios', 'macosx', 'linux']}
+        for label, (path, library, _) in extra_libraries.items()
+    }
+    assert all(flags['ios'] == '' for flags in extra_baseline.values())
     with tempfile.TemporaryDirectory(prefix='msl-jvm-source-') as directory:
         root = Path(directory)
 
@@ -99,6 +111,14 @@ def check(pristine):
         assert all(case['libnet_platform_libraries'] == baseline_net[case['platform']] for case in result['cases'])
         assert all(case['libnio_platform_libraries'] == baseline_nio[case['platform']]
                    for case in result['cases'] if case['platform'] != 'ios')
+        extra_patched = {}
+        for label, (path, _, addition) in extra_libraries.items():
+            patched = (root / path).read_bytes()
+            assert patched.count(addition) == 1
+            assert patched.replace(addition, b'') == originals[path]
+            extra_patched[path] = patched
+            assert all(case[label + '_platform_libraries'] == extra_baseline[label][case['platform']]
+                       for case in result['cases'] if case['platform'] != 'ios')
         addition = b'    LIBS_ios := -framework CoreFoundation, \\\n'
         patched_core = (root / core).read_bytes()
         assert patched_core.count(addition) == 1
@@ -151,6 +171,16 @@ def check(pristine):
             assert error.args == (('ios', ''),), error.args
         else:
             raise AssertionError('Missing file type ARC setting accepted')
+        (root / base).write_bytes(patched_base)
+        for label, (path, _, addition) in extra_libraries.items():
+            (root / path).write_bytes(extra_patched[path].replace(addition, b''))
+            try:
+                verify.verify(root)
+            except AssertionError as error:
+                assert error.args == (('ios', ''),), error.args
+            else:
+                raise AssertionError(f'Missing iOS {label} libraries accepted')
+            (root / path).write_bytes(extra_patched[path])
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
@@ -172,6 +202,12 @@ def check(pristine):
         'baseline_libjli_exclusions': baseline_jli,
         'baseline_libnio_platform_libraries': baseline_nio,
         'baseline_libnet_platform_libraries': baseline_net,
+        'baseline_libprefs_platform_libraries': extra_baseline['libprefs'],
+        'baseline_libinstrument_platform_libraries': extra_baseline['libinstrument'],
+        'missing_ios_libprefs_frameworks_rejected': True,
+        'missing_ios_libinstrument_iconv_rejected': True,
+        'libprefs_non_ios_branches_unchanged': True,
+        'libinstrument_non_ios_branches_unchanged': True,
         'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',
         'input_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in originals.items()},
     })

@@ -1,19 +1,37 @@
 {
-  "observed_at": "2026-10-22T10:23:29.795843+00:00",
+  "observed_at": "2026-10-22T10:45:08.510535+00:00",
   "run_id": 39762272353,
   "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39762272353",
   "source_commit": "8f7872a5c178d83a3c70b3b1a9091626dc2f7850",
   "created_at": "2026-10-22T10:19:47Z",
-  "status": "in_progress",
-  "conclusion": null,
-  "active_steps": [
-    "Build iOS Zero runtime"
-  ],
+  "status": "completed",
+  "conclusion": "failure",
+  "active_steps": [],
   "change": "iOS libnio linking and UTType MIME probe with ARC exception cleanup; SDK compile preflight then full Java image build",
   "local_source_checks": "validation/ios-jvm-source-fixes.json",
   "host_fixture_checks": "validation/ios-device-fixture-host.json",
   "complete_java_image_verified": false,
   "target_vm_executed": false,
   "real_extension_on_iphone_verified": false,
-  "scope": "Live CI snapshot only; no target SDK or device success is asserted."
+  "scope": "Terminal CI failure: the iOS MIME SDK preflight, host tools and target static libs completed, but the Java image failed linking prefs and instrument. Failed artifact is not used for the phone harness.",
+  "completed_at": "2026-10-22T10:41:48Z",
+  "host_jdk_built": true,
+  "ios_static_libraries_built": true,
+  "ios_filetype_sdk_compile_preflight_passed": true,
+  "failure_targets": [
+    "java.prefs/libprefs.dylib",
+    "java.instrument/libinstrument.dylib"
+  ],
+  "failure_symbols": {
+    "libprefs": [
+      "CoreFoundation CFBoolean/CFDictionary/CFPreferences/CFString symbols"
+    ],
+    "libinstrument": [
+      "_iconv",
+      "_iconv_open"
+    ]
+  },
+  "previous_libnio_error_observed": false,
+  "ci_log_file": "build/ios-jvm-failed-39762272353.log",
+  "ci_log_sha256": "7859bc298d728ea17811c59016a0a6bcff1bbbd5f9fb1eb58c041770b232f587"
 }

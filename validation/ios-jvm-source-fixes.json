@@ -14,6 +14,8 @@
       "libjava_platform_libraries": "-framework CoreFoundation",
       "libnio_platform_libraries": "-lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers",
       "libnet_platform_libraries": "",
+      "libprefs_platform_libraries": "-framework CoreFoundation -framework Foundation",
+      "libinstrument_platform_libraries": "-liconv",
       "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": [
         "java_md.c"
@@ -30,6 +32,8 @@
       "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
       "libnio_platform_libraries": "-framework CoreFoundation -framework CoreServices",
       "libnet_platform_libraries": "-framework CoreFoundation -framework CoreServices",
+      "libprefs_platform_libraries": "-framework CoreFoundation -framework Foundation",
+      "libinstrument_platform_libraries": "-framework ApplicationServices -framework Cocoa -framework Security",
       "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": [
         "java_md.c"
@@ -46,6 +50,8 @@
       "libjava_platform_libraries": "-ldl",
       "libnio_platform_libraries": "-ldl -lpthread",
       "libnet_platform_libraries": "-ldl",
+      "libprefs_platform_libraries": "",
+      "libinstrument_platform_libraries": "",
       "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
       "libjli_excluded_files": []
     }
@@ -60,7 +66,9 @@
     "make/autoconf/flags-ldflags.m4",
     "make/modules/java.base/lib/CoreLibraries.gmk",
     "make/modules/java.base/Lib.gmk",
-    "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c"
+    "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c",
+    "make/modules/java.prefs/Lib.gmk",
+    "make/modules/java.instrument/Lib.gmk"
   ],
   "repeat_patch_rejected": true,
   "missing_ios_corefoundation_rejected": true,
@@ -98,6 +106,20 @@
     "macosx": "-framework CoreFoundation -framework CoreServices",
     "linux": "-ldl"
   },
+  "baseline_libprefs_platform_libraries": {
+    "ios": "",
+    "macosx": "-framework CoreFoundation -framework Foundation",
+    "linux": ""
+  },
+  "baseline_libinstrument_platform_libraries": {
+    "ios": "",
+    "macosx": "-framework ApplicationServices -framework Cocoa -framework Security",
+    "linux": ""
+  },
+  "missing_ios_libprefs_frameworks_rejected": true,
+  "missing_ios_libinstrument_iconv_rejected": true,
+  "libprefs_non_ios_branches_unchanged": true,
+  "libinstrument_non_ios_branches_unchanged": true,
   "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
   "input_sha256": {
     "src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp": "8451f0f8bea69dbb16e6f26c1dbd4c7b3e96e39850206e5a0e91940bf030da08",
@@ -109,6 +131,8 @@
     "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
     "make/modules/java.base/Lib.gmk": "f85b5faeecf778c704c8fa5ea5371494622a2e9167e94cf36986ad70ed0cf48c",
     "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": "7706136f78495d9c33ac4e153a44089b871a7e02d6c926152f1c689e492b3b62",
+    "make/modules/java.prefs/Lib.gmk": "b69c8f19d49de73318e3032f2855e054b513788094271b1d4776d73b6c716dad",
+    "make/modules/java.instrument/Lib.gmk": "a8665634a69b13563f95b406d333da504efe927465c97773aa187d1d8771b57c",
     "make/common/native/Flags.gmk": "29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33"
   }
 }

@@ -14,6 +14,8 @@ PINNED_FILES = {
     "make/modules/java.base/lib/CoreLibraries.gmk": "be4e69e243695695dfbaef04620a51ebf25e5c1e06989e84e9c74bc34264b7fe",
     "make/modules/java.base/Lib.gmk": "f85b5faeecf778c704c8fa5ea5371494622a2e9167e94cf36986ad70ed0cf48c",
     "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": "7706136f78495d9c33ac4e153a44089b871a7e02d6c926152f1c689e492b3b62",
+    "make/modules/java.prefs/Lib.gmk": "b69c8f19d49de73318e3032f2855e054b513788094271b1d4776d73b6c716dad",
+    "make/modules/java.instrument/Lib.gmk": "a8665634a69b13563f95b406d333da504efe927465c97773aa187d1d8771b57c",
 }
 
 def prepare(source_root, project_root):
@@ -75,6 +77,14 @@ def prepare(source_root, project_root):
         if results[name].count(before) != 1:
             raise ValueError(f"Expected one reviewed replacement in {name}")
         results[name] = results[name].replace(before, after)
+    for name, libraries in [
+        ("make/modules/java.prefs/Lib.gmk", b'-framework CoreFoundation -framework Foundation'),
+        ("make/modules/java.instrument/Lib.gmk", b'-liconv'),
+    ]:
+        before = b'    LIBS_macosx := \\\n'
+        if results[name].count(before) != 1:
+            raise ValueError(f"Expected one reviewed Apple library setting in {name}")
+        results[name] = results[name].replace(before, b'    LIBS_ios := ' + libraries + b', \\\n' + before)
     # Darwin's launcher implementation also has explicit __IOS__ branches.
     # Compiling the generic Unix java_md.c beside it defines ten symbols twice.
     core = "make/modules/java.base/lib/CoreLibraries.gmk"

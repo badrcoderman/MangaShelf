@@ -141,11 +141,19 @@ CoreFoundation إلى `LIBS_ios` لهذا الاستدعاء وفُحصت فرو
 ARC؛ يبقى نجاح ترجمتها وإثبات السلوك والموارد على iPhone ضمن ENG-15 قبل
 المحرك الإنتاجي.
 
-بدأت إعادة البناء
+انتهت المحاولة
 [39762272353](https://github.com/badrcoderman/MangaShelf/actions/runs/39762272353)
-عند `8f7872a` في 22 أكتوبر، وتشمل ترجمة مساعدة MIME بـSDK ثم بناء الصورة
-الكاملة. كانت جارية عند تسجيل [الحالة](../validation/ios-jvm-image-39762272353.json)؛
-لا تُسجل ترجمة SDK أو تشغيل iPhone كنجاح من حالة job الجارية وحدها.
+عند `8f7872a` في 22 أكتوبر بالفشل. اجتازت ترجمة مساعدة MIME بـSDK iOS 26
+واكتملت أدوات المضيف والمكتبات الساكنة؛ لم يظهر خطأ libnio السابق. توقف
+legacy-jre-image عند رموز CoreFoundation في libprefs ورمزي iconv/iconv_open
+في libinstrument. [الدليل النهائي](../validation/ios-jvm-image-39762272353.json)
+يحفظ السجل وبصمته؛ لا يُستخدم artifact الفاشل لتطبيق الهاتف.
+
+أضيف LIBS_ios إلى استدعائي المكتبتين: CoreFoundation وFoundation إلى
+libprefs، و-liconv إلى libinstrument. قُرئت ملفات Make من المراجعة المثبتة
+وحُفظت بصمتاهما؛ يتحقق التحضير الآن من 11 ملفًا قبل أي كتابة. اجتاز فحص
+استدعاءات Make الفعلية مع ثبات macOS/Linux، ورفض غياب أي من الإضافتين
+أو تغير أي مدخل أو إعادة تطبيق التعديل. إثبات الربط بـSDK يتطلب إعادة البناء.
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

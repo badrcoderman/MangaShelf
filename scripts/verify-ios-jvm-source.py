@@ -88,6 +88,8 @@ def verify(root):
     ldflags = (root / "make/autoconf/flags-ldflags.m4").read_text()
     core = (root / 'make/modules/java.base/lib/CoreLibraries.gmk').read_text()
     base = (root / 'make/modules/java.base/Lib.gmk').read_text()
+    prefs = (root / 'make/modules/java.prefs/Lib.gmk').read_text()
+    instrument = (root / 'make/modules/java.instrument/Lib.gmk').read_text()
     flag_bytes = (root / 'make/common/native/Flags.gmk').read_bytes()
     if hashlib.sha256(flag_bytes).hexdigest() != '29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33':
         raise ValueError('Unexpected upstream native/Flags.gmk; refusing Make evaluation')
@@ -103,6 +105,8 @@ def verify(root):
         java_flags = library_link_flags(core, flag_source, platform, 'BUILD_LIBJAVA')
         nio_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO')
         net_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNET')
+        prefs_flags = library_link_flags(prefs, flag_source, platform, 'BUILD_LIBPREFS')
+        instrument_flags = library_link_flags(instrument, flag_source, platform, 'BUILD_LIBINSTRUMENT')
         filetype_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO', 'msl_ios_filetype.m_CFLAGS')
         jli_excluded = libjli_exclusions(core, platform)
         expected_java_flags = {
@@ -118,6 +122,18 @@ def verify(root):
         }
         assert nio_flags == expected_nio_flags[platform], (platform, nio_flags)
         assert filetype_flags == '-fobjc-arc -fobjc-arc-exceptions', (platform, filetype_flags)
+        expected_prefs_flags = {
+            'ios': '-framework CoreFoundation -framework Foundation',
+            'macosx': '-framework CoreFoundation -framework Foundation',
+            'linux': '',
+        }
+        expected_instrument_flags = {
+            'ios': '-liconv',
+            'macosx': '-framework ApplicationServices -framework Cocoa -framework Security',
+            'linux': '',
+        }
+        assert prefs_flags == expected_prefs_flags[platform], (platform, prefs_flags)
+        assert instrument_flags == expected_instrument_flags[platform], (platform, instrument_flags)
         apple = platform in ["ios", "macosx"]
         assert jli_excluded == (['java_md.c'] if apple else []), (platform, jli_excluded)
         assert suffix == (".dylib" if apple else ".so"), (platform, suffix)
@@ -137,6 +153,8 @@ def verify(root):
                         "libjava_platform_libraries": java_flags,
                         "libnio_platform_libraries": nio_flags,
                         "libnet_platform_libraries": net_flags,
+                        "libprefs_platform_libraries": prefs_flags,
+                        "libinstrument_platform_libraries": instrument_flags,
                         "filetype_source_flags": filetype_flags,
                         "libjli_excluded_files": jli_excluded})
     return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}
