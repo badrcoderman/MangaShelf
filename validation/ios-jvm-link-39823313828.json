@@ -1,0 +1,190 @@
+{
+  "run_id": 39823313828,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39823313828",
+  "source_commit": "0e6a3eb93a5f3a0c85f369dfda8db824df553e3c",
+  "conclusion": "success",
+  "evidence_artifact": {
+    "id": 12446666372,
+    "node_id": "MDg6QXJ0aWZhY3QxMjQ0NjY2NjM3Mg==",
+    "name": "ios-jvm-link-evidence",
+    "size_in_bytes": 3958685,
+    "url": "https://api.github.com/repos/badrcoderman/MangaShelf/actions/artifacts/12446666372",
+    "archive_download_url": "https://api.github.com/repos/badrcoderman/MangaShelf/actions/artifacts/12446666372/zip",
+    "expired": false,
+    "digest": "sha256:6a3d420a9be02d9c6d6b87e554f2276d31e5249a13ead3c09c8d39326eb25caf",
+    "created_at": "2026-10-22T17:42:29Z",
+    "updated_at": "2026-10-22T17:42:29Z",
+    "expires_at": "2026-11-05T17:42:27Z",
+    "workflow_run": {
+      "id": 39823313828,
+      "repository_id": 1364769980,
+      "head_repository_id": 1364769980,
+      "head_branch": "improve/ios-engine-image",
+      "head_sha": "0e6a3eb93a5f3a0c85f369dfda8db824df553e3c"
+    }
+  },
+  "evidence_artifact_sha256_verified": true,
+  "runtime": {
+    "repository": "badrcoderman/MangaShelf",
+    "run_id": 39818913578,
+    "head_sha": "0e792191ce5b85c66384682f20af37e8e89f16d5",
+    "workflow": ".github/workflows/ios-jvm.yml",
+    "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39818913578",
+    "conclusion": "success",
+    "artifact_id": 12445356524,
+    "artifact_sha256": "15230e0d9a6c8e38cf2c90442a74ae529135e836a06295f32d7bb1e8eb9d346e",
+    "java_modules_present": true,
+    "build_manifest_verified": true,
+    "execution_proven": false
+  },
+  "link_result": {
+    "link_succeeded": true,
+    "target": "arm64-apple-ios26.0",
+    "executable_sha256": "bbaf52f83cb903a2201d2a38ee5177b735b6b69545cd7505919fa707df73afad",
+    "execution_proven": false
+  },
+  "ci_ipa_result": {
+    "file": "MangaShelfEngineCheck-unsigned.ipa",
+    "bytes": 36486123,
+    "sha256": "eb22bdf73f4a5d6bb02929789e82a365a91cc9092ffab1b31abc0c5e14c6f161",
+    "unsigned": true,
+    "minimum_ios": "26.0",
+    "device_execution": "pending"
+  },
+  "evidence_file_count": 26,
+  "files": [
+    {
+      "path": "ios-jvm-device/device-build.json",
+      "bytes": 34720,
+      "sha256": "a5631836367a9f5e211dcb2c02fd4150dd8647128b5426966b00785d4409a6e3"
+    },
+    {
+      "path": "ios-jvm-device/device-dynamic-imports.txt",
+      "bytes": 7550,
+      "sha256": "0566adaff78c386f23209e8dfd8397506368f30379af7f58ba02bdd1faa7f276"
+    },
+    {
+      "path": "ios-jvm-device/device-link.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ios-jvm-device/device-load-commands.txt",
+      "bytes": 13034,
+      "sha256": "00b80aea98df4679c7ff9980181332f644ef8fffc4201dfbf15d5d7f0f587763"
+    },
+    {
+      "path": "ios-jvm-device/ipa-result.json",
+      "bytes": 230,
+      "sha256": "12f07e83b0be5aafbf4a28f0c809bb5ff9801b091619a723b6eda1aafd9a21cb"
+    },
+    {
+      "path": "ios-jvm-link/MSJavaRuntime.o",
+      "bytes": 10328,
+      "sha256": "d9104fc0017d3c3359065a64b356fb1cbcd3d5ee03497a66570a1297dfaa0707"
+    },
+    {
+      "path": "ios-jvm-link/MangaShelfRuntimeLinkProbe",
+      "bytes": 10471088,
+      "sha256": "bbaf52f83cb903a2201d2a38ee5177b735b6b69545cd7505919fa707df73afad"
+    },
+    {
+      "path": "ios-jvm-link/dynamic-imports.txt",
+      "bytes": 6154,
+      "sha256": "4b239dfae896e35abf9f35eb74b4b1584ee4f8675b61a20b95f1f4e3ef6610a1"
+    },
+    {
+      "path": "ios-jvm-link/host_probe.o",
+      "bytes": 14752,
+      "sha256": "6db5b239981043f2f226a0ffabc58c141a8ca6692b0a54bc9ff7aec3a8d1e7c5"
+    },
+    {
+      "path": "ios-jvm-link/ios_jvm_compat.o",
+      "bytes": 336,
+      "sha256": "842f8d05caa811e250caeb77e95e6ffb7b6e5ced2e14c18039a62e320f57ce79"
+    },
+    {
+      "path": "ios-jvm-link/java-platform.json",
+      "bytes": 145,
+      "sha256": "e3303857949df5bb14d170c59ca7a0584a6ce6b19ba0b642179454ad080363f7"
+    },
+    {
+      "path": "ios-jvm-link/jimage-platform.json",
+      "bytes": 144,
+      "sha256": "d00413cb830dfaa21cf0a879b08e3fa73781b6adf5a4fa065b05d00f4530870b"
+    },
+    {
+      "path": "ios-jvm-link/jvm-defined-symbols.txt",
+      "bytes": 4828843,
+      "sha256": "2b4be4c9ce8642f8a61eb34d8860244b3edb227cb510c0b6ab7773b13b724177"
+    },
+    {
+      "path": "ios-jvm-link/libffi.a-platform.json",
+      "bytes": 144,
+      "sha256": "538ad445942837d422136b9708b501382a6c7ae7bd5101681a22a9984dc00a12"
+    },
+    {
+      "path": "ios-jvm-link/libjvm.a-platform.json",
+      "bytes": 146,
+      "sha256": "e0ab240cd353d0e10a180d15e12eba2691941cc394f61663cff2d2bd5a42f0d8"
+    },
+    {
+      "path": "ios-jvm-link/link-inputs.json",
+      "bytes": 2453,
+      "sha256": "4770b43e6e69147414d4e38a9dedfc85afede2cf7a8234752c35f71fb85dde46"
+    },
+    {
+      "path": "ios-jvm-link/link-result.json",
+      "bytes": 184,
+      "sha256": "10d009c17b74aa82f84ef3012432134dadc41ccc512d034d8e55789fa517a3c9"
+    },
+    {
+      "path": "ios-jvm-link/link.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ios-jvm-link/load-commands.txt",
+      "bytes": 9815,
+      "sha256": "c2fd4cf843d211fb7e488eef1ab7459ad7b2c3ee18bc7bf7ec67a636b200df3c"
+    },
+    {
+      "path": "ios-jvm-link/net-platform.json",
+      "bytes": 145,
+      "sha256": "5c0a03c0dfd9005773baa05c3602db8de50f8e75916f1265e59335882ce2fbf6"
+    },
+    {
+      "path": "ios-jvm-link/nio-platform.json",
+      "bytes": 145,
+      "sha256": "46baeb35ca102f4b6aae7a04e755b9dc06e4936d4ec7708ad2f268d6158abd4c"
+    },
+    {
+      "path": "ios-jvm-link/runtime-artifact.json",
+      "bytes": 792,
+      "sha256": "b545054db3c994f521f6ccdac5815353e1c305d80e6610d8f538eabc4730e0ca"
+    },
+    {
+      "path": "ios-jvm-link/runtime-run.json",
+      "bytes": 14080,
+      "sha256": "f3733065ef89f34e1028021f4e0d0755f6d44a7815ad47c88162faee568dcf07"
+    },
+    {
+      "path": "ios-jvm-link/runtime-selection.json",
+      "bytes": 502,
+      "sha256": "753e535bf2263fd3b04344784c9fd48a96b362ea5708fb1a3258df73090c91a0"
+    },
+    {
+      "path": "ios-jvm-link/verify-platform.json",
+      "bytes": 144,
+      "sha256": "06ef330d785d0cc48e2848facd3ee182922b633f3ddf2d6c10256c1f3589eec7"
+    },
+    {
+      "path": "ios-jvm-link/zip-platform.json",
+      "bytes": 144,
+      "sha256": "f3b7f52a29ec1b791b88f6f3e207d50dbf75cd2bceffb0ea4a6ac1cbfdcf7785"
+    }
+  ],
+  "device_execution": false,
+  "real_extension_execution": false,
+  "scope": "Source-built runtime selected and linked into separate unsigned iPhone harness; artifact digests verified. No physical execution of this new build."
+}

@@ -1,0 +1,266 @@
+{
+  "run_id": 39818913578,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39818913578",
+  "status": "completed",
+  "conclusion": "success",
+  "source_commit": "0e792191ce5b85c66384682f20af37e8e89f16d5",
+  "created_at": "2026-10-22T17:00:47Z",
+  "updated_at": "2026-10-22T17:25:41Z",
+  "artifact_id": 12445356524,
+  "artifact_bytes": 46133756,
+  "artifact_sha256": "sha256:15230e0d9a6c8e38cf2c90442a74ae529135e836a06295f32d7bb1e8eb9d346e",
+  "artifact_sha256_verified": true,
+  "build_manifest_verified": true,
+  "manifest_output_hashes_verified": 35,
+  "manifest": {
+    "format": 1,
+    "target": "arm64-apple-ios26.0",
+    "vm_variant": "zero",
+    "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+    "libffi_commit": "12ffd1f9dc56fcea79d2f742f424301ae668d663",
+    "cups_ref": "2e5573560cfa2da65002f86b41bd1770c9853c4d",
+    "cups_commit": "7d535f73e407a72dfb5c5e83549a5ba27219dfcd",
+    "repository": "badrcoderman/MangaShelf",
+    "head_sha": "0e792191ce5b85c66384682f20af37e8e89f16d5",
+    "run_id": "39818913578",
+    "sdk_path": "/Applications/Xcode_26.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk",
+    "xcode": "Xcode 26.0.1\nBuild version 17A400",
+    "compiler": "Apple clang version 17.0.0 (clang-1700.3.19.1)\nTarget: arm64-apple-darwin24.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode_26.0.1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "zero_wx_source_fix": true,
+    "java_modules_present": true,
+    "execution_proven": false,
+    "darwin_dynamic_library_fix": true,
+    "build_jdk": "same-source native macOS host tools",
+    "darwin_origin_fix": true,
+    "ios_libjava_corefoundation_fix": true,
+    "ios_libjli_platform_source_fix": true,
+    "ios_libnio_corefoundation_fix": true,
+    "ios_filetype_source_fix": true,
+    "ios_filetype_sdk_compiled": true,
+    "ios_libprefs_framework_fix": true,
+    "ios_iconv_configure_fix": true,
+    "ios_utf8_encoding_fix": true,
+    "sha256": {
+      "ffi/lib/libffi.a": "0b050b388f14e8ec4cd0685585a2cd942359d45ef21272f835445e789a20c995",
+      "static-libs/lib/libattach.a": "342b9c92e725d44f047e1f79c18f363d279ce8552c171a1c1844ed12ad8b6a89",
+      "static-libs/lib/libdt_socket.a": "df831b02e018a5c66baa6de5444bb0b415e8f211999bce54e33e815c11bd1a87",
+      "static-libs/lib/libextnet.a": "ebb4a4ff456cd5b30820fca45560bbe5a9b8b1239acd4a32ff8c3d3f4867c327",
+      "static-libs/lib/libfallbackLinker.a": "038266cf679a28b403c977a4139f5d8e133bd096f3009352f5de2f6b84a42279",
+      "static-libs/lib/libinstrument.a": "d5a6f96fc759abc7bb4b1d9c77681e55562bf1b52f7e2bf41b0927faca288182",
+      "static-libs/lib/libj2gss.a": "92b49ba2fc5a2fb5ce6f63db3e131df260f0ecb1542b4887d5aca4aff61c2b55",
+      "static-libs/lib/libj2pcsc.a": "2b6aa5584191d8c7b0112001bdb6f2308e52a7b87655d7ccad83e29e72ca5279",
+      "static-libs/lib/libj2pkcs11.a": "1f69e63f08f6889d3daa4182781cde624fff7e4e1c3a756133646d16b1718f9f",
+      "static-libs/lib/libjava.a": "b30fbec807fe569ac58e5b17481dabb0a27e4f7dc26193740b370c888ae3d959",
+      "static-libs/lib/libjdwp.a": "4f662029273590016686faf3cd68852e75c1b978ee787120f3ec69913d734dba",
+      "static-libs/lib/libjimage.a": "30232c4b9bf303973c93695065a7af44cc817aee8413a8a6762c98cef8b7bf90",
+      "static-libs/lib/libjli.a": "341b7a9d5bddf7b203caa3cd9a576ad52dece6af7268c0a1e4406324cba2babc",
+      "static-libs/lib/libjsig.a": "89c9214e6938103bdc1557997a937f2352c1c4bfc03cad7b8b28ef5a8005f207",
+      "static-libs/lib/libmanagement.a": "4e0dbaaf481201d11fc715c32f75dcbac39d30afde953ab8f2de343cd717b84a",
+      "static-libs/lib/libmanagement_agent.a": "7c0dcacce574b1de6dfd2290404e248debec7cedf9c9498d91ccaf31be382155",
+      "static-libs/lib/libmanagement_ext.a": "8b3916dafa6a1c20acea37707fc8403500b9eb3623d5ca97c3d7d19341f140a3",
+      "static-libs/lib/libnet.a": "8191caae7b61238c71698b5f985d9baad41ffb9456349286103d753401ac9d0c",
+      "static-libs/lib/libnio.a": "abebd6fb97fe5f7a3b303d75fb9e8385bdd58f7c691fce00c14cc26a6951cf44",
+      "static-libs/lib/libprefs.a": "33717cbd7be51d62ba859b8d50cd5c616621bb7566692e564bbc152dd2afd653",
+      "static-libs/lib/librmi.a": "80e6f9cefcb38961a895ada65de4e62f54771cf1cb4f4d81b67b11638a57fa07",
+      "static-libs/lib/libsyslookup.a": "af3e600fecbb534b6ad4f181463b3085427ad9523285fcc57c1c8e8c536b6ed2",
+      "static-libs/lib/libverify.a": "1cda750ef23e75657c1c2f69879941d45d234a85df1047613c4c92ef5da38ae7",
+      "static-libs/lib/libzip.a": "509fae1f1ea9a0800ff2a50711f18521a1e5053dc75cb17eddb03e5dc2cfdd86",
+      "static-libs/lib/zero/libjvm.a": "e09bcc79de74fc9cf5c79e70e5480e2bbbec76a67211090adc113e92967c568d",
+      "jre/lib/modules": "4cec7504a28e2918fadb7b739dd4de76227d409392646f8a17753c4974e04807",
+      "jre/release": "a5b625dea532bb2f356be62a289577e49f115fd6d71966ddf9b347ccf596f6e4",
+      "logs/ios_jvm_compat.cpp": "f16ec4936bbdb72538e684d487e367f6b6fa2c2d9039ef80054051c501dbe443",
+      "logs/source-patch.diff": "e97228b065f22e88b0bc12a22c15b1802b366cdeffe4fcb4932a62e9196762b0",
+      "logs/source-link-flags.json": "978e5f286dd0bde381d5beaa4ebbf41502aa80a4db868f94144d15eee822893b",
+      "logs/host-java-version.txt": "3e550ba34ebfaa718eeccad124b7c424724b2670c8cb061ee1daa3dd3fe005d4",
+      "logs/ios_filetype.m": "1189b849b1e973b6b07486cd6ee336e596ffcbb6a010e792a117b74896aac3e7",
+      "logs/java_props_md.c": "dcd072f3c2f8e75327bee027a4b509842a6dd156f586712ed65ff7a0c9129c92",
+      "logs/ios-filetype-sdk-check.o": "6ae185aae4e9d0ab5bce4a2f8df28add6d6dc03d56894cc7f54561301f032101",
+      "logs/ios-filetype-sdk-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "required_files": {
+    "jre/lib/modules": {
+      "bytes": 100176282,
+      "sha256": "4cec7504a28e2918fadb7b739dd4de76227d409392646f8a17753c4974e04807"
+    },
+    "jre/lib/tzdb.dat": {
+      "bytes": 102956,
+      "sha256": "5906b44e25a8a730131d7ba1beb5d15af27043f6536f1a169ca8a5d8b8bed8f8"
+    },
+    "jre/conf/security/java.security": {
+      "bytes": 78548,
+      "sha256": "d3b821fee6c8e69dee5e23253eedab349a70347e68a52acdc722c9048634fd1b"
+    },
+    "jre/release": {
+      "bytes": 849,
+      "sha256": "a5b625dea532bb2f356be62a289577e49f115fd6d71966ddf9b347ccf596f6e4"
+    },
+    "LICENSE": {
+      "bytes": 19274,
+      "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+    },
+    "ADDITIONAL_LICENSE_INFO": {
+      "bytes": 2114,
+      "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+    },
+    "ASSEMBLY_EXCEPTION": {
+      "bytes": 1514,
+      "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+    },
+    "logs/java_props_md.c": {
+      "bytes": 17678,
+      "sha256": "dcd072f3c2f8e75327bee027a4b509842a6dd156f586712ed65ff7a0c9129c92"
+    }
+  },
+  "source_link_flags": {
+    "flag_branches_verified": true,
+    "vm_built": false,
+    "vm_executed": false,
+    "cases": [
+      {
+        "platform": "ios",
+        "shared_suffix": ".dylib",
+        "shared_flags": "-dynamiclib -compatibility_version 1.0.0 -current_version 1.0.0",
+        "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib",
+        "library_origin": "-Wl,-rpath,@loader_path/.",
+        "executable_origin": "-Wl,-rpath,@loader_path/.",
+        "stack_flags_with_probe_enabled": "",
+        "libjava_platform_libraries": "-framework CoreFoundation",
+        "libnio_platform_libraries": "-lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers",
+        "libnet_platform_libraries": "",
+        "libprefs_platform_libraries": "-framework CoreFoundation -framework Foundation",
+        "libinstrument_platform_libraries": "-liconv",
+        "libjdwp_platform_libraries": "-liconv",
+        "iconv_configure_flags": {
+          "cflags": "",
+          "ldflags": "",
+          "libs": "-liconv"
+        },
+        "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
+        "libjli_excluded_files": [
+          "java_md.c"
+        ]
+      },
+      {
+        "platform": "macosx",
+        "shared_suffix": ".dylib",
+        "shared_flags": "-dynamiclib -compatibility_version 1.0.0 -current_version 1.0.0",
+        "name_flags": "-Wl,-install_name,@rpath/libprobe.dylib",
+        "library_origin": "-Wl,-rpath,@loader_path/.",
+        "executable_origin": "-Wl,-rpath,@loader_path/.",
+        "stack_flags_with_probe_enabled": "",
+        "libjava_platform_libraries": "-framework CoreFoundation -framework Foundation -framework SystemConfiguration",
+        "libnio_platform_libraries": "-framework CoreFoundation -framework CoreServices",
+        "libnet_platform_libraries": "-framework CoreFoundation -framework CoreServices",
+        "libprefs_platform_libraries": "-framework CoreFoundation -framework Foundation",
+        "libinstrument_platform_libraries": "-liconv -framework ApplicationServices -framework Cocoa -framework Security",
+        "libjdwp_platform_libraries": "-liconv",
+        "iconv_configure_flags": {
+          "cflags": "",
+          "ldflags": "",
+          "libs": "-liconv"
+        },
+        "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
+        "libjli_excluded_files": [
+          "java_md.c"
+        ]
+      },
+      {
+        "platform": "linux",
+        "shared_suffix": ".so",
+        "shared_flags": "-shared",
+        "name_flags": "-Wl,-soname=libprobe.dylib",
+        "library_origin": "-Wl,-z,origin -Wl,-rpath,\\$ORIGIN",
+        "executable_origin": "-Wl,-rpath,\\$ORIGIN -Wl,--disable-new-dtags",
+        "stack_flags_with_probe_enabled": "-Wl,-z,noexecstack",
+        "libjava_platform_libraries": "-ldl",
+        "libnio_platform_libraries": "-ldl -lpthread",
+        "libnet_platform_libraries": "-ldl",
+        "libprefs_platform_libraries": "",
+        "libinstrument_platform_libraries": "",
+        "libjdwp_platform_libraries": "-ldl",
+        "iconv_configure_flags": {
+          "cflags": "",
+          "ldflags": "",
+          "libs": ""
+        },
+        "filetype_source_flags": "-fobjc-arc -fobjc-arc-exceptions",
+        "libjli_excluded_files": []
+      }
+    ],
+    "native_encoding": {
+      "scope": "Actual pinned codec branch compiled as host C with seeded C-locale encoding/language; full native properties not compiled on this host; no VM, iOS ABI, physical device, or extension execution proof",
+      "source_sha256": "dcd072f3c2f8e75327bee027a4b509842a6dd156f586712ed65ff7a0c9129c92",
+      "full_native_properties_checked": false,
+      "header_sha256": {
+        "src/java.base/share/native/libjava/java_props.h": "99c135542d20fdbdf2fc201102976127ba468497a805bfc2c513dddf246be71a",
+        "src/java.base/unix/native/libjava/locale_str.h": "9e86ec793b83ed0910bb5b6f83f070a771d8ab0f046f96ec57ae62ad701d4168"
+      },
+      "cases": [
+        {
+          "platform_macro_case": "ios",
+          "locale": "C",
+          "pristine": {
+            "native": "US-ASCII",
+            "jnu": "US-ASCII",
+            "language": "en"
+          },
+          "patched": {
+            "native": "UTF-8",
+            "jnu": "UTF-8",
+            "language": "en"
+          }
+        },
+        {
+          "platform_macro_case": "macosx",
+          "locale": "C",
+          "pristine": {
+            "native": "US-ASCII",
+            "jnu": "UTF-8",
+            "language": "en"
+          },
+          "patched": {
+            "native": "US-ASCII",
+            "jnu": "UTF-8",
+            "language": "en"
+          }
+        },
+        {
+          "platform_macro_case": "linux",
+          "locale": "C",
+          "pristine": {
+            "native": "US-ASCII",
+            "jnu": "US-ASCII",
+            "language": "en"
+          },
+          "patched": {
+            "native": "US-ASCII",
+            "jnu": "US-ASCII",
+            "language": "en"
+          }
+        },
+        {
+          "platform_macro_case": "bsd",
+          "locale": "C",
+          "pristine": {
+            "native": "US-ASCII",
+            "jnu": "US-ASCII",
+            "language": "en"
+          },
+          "patched": {
+            "native": "US-ASCII",
+            "jnu": "US-ASCII",
+            "language": "en"
+          }
+        }
+      ]
+    }
+  },
+  "ci_log": "build/ios-jvm-image-39818913578.log",
+  "ci_log_sha256": "965423d466c80be5ed7a40516adfc3be41143a679dc15aecaeb6188b37071820",
+  "previous_buggy_libjava_sha256": "5d9de1ec02fac65a6a14b8d6bfb41c3d1f49972ca6c90199f94b3ffbba1e3d9b",
+  "current_libjava_sha256": "b30fbec807fe569ac58e5b17481dabb0a27e4f7dc26193740b370c888ae3d959",
+  "device_execution": false,
+  "real_extension_execution": false,
+  "scope": "Source-built iOS Zero image; complete artifact digest and all manifest hashes verified. Native UTF-8 patch source matches reviewed SHA-256; new physical iPhone fixture result required."
+}

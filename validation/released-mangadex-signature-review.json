@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-22T17:39:08.971044+00:00",
+  "scope": "Host inspection of one public released MangaDex JAR as archive/signature data only. No extension classes loaded, initialized, reflected on, or executed. No production activation and no iPhone source execution.",
+  "repository_snapshot": {
+    "repository": "https://github.com/keiyoushi/extensions",
+    "commit": "229fddf8eeb9b44940fa10a77db3897c4783045d",
+    "files": {
+      "index.json": {
+        "bytes": 1476319,
+        "sha256": "567c190d85020531f9a71a2cf3148a8e23face92dacb5787f3081ab8d788c722"
+      },
+      "index.pb": {
+        "bytes": 109697,
+        "sha256": "c0ef5ec28b646dbce0064210c05004a4cdbbce01f5f4711999da4463543eea68"
+      },
+      "repo.json": {
+        "bytes": 262,
+        "sha256": "5e400e546b91b3977a463205c788a8fac744c1017c7f33b2770f1be14b26968e"
+      },
+      "index.min.json": {
+        "bytes": 765,
+        "sha256": "a8a88c2ade5bd5a5ba8169b2d7da7b237fc597b059d214b52aee4f646bae9221"
+      }
+    },
+    "json_repository_signing_field": "signingKey",
+    "repo_json_signing_field": "meta.signingKeyFingerprint",
+    "protobuf_repository_signing_field_number": 3,
+    "signing_key_fingerprint": "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2",
+    "source_of_fingerprint": "Same pinned repository metadata; not an independently authenticated publisher identity.",
+    "mangadex_json_extension_fields": [
+      "name",
+      "packageName",
+      "resources",
+      "extensionLib",
+      "versionCode",
+      "versionName",
+      "contentWarning",
+      "sources"
+    ],
+    "mangadex_json_resource_fields": [
+      "apkUrl",
+      "iconUrl",
+      "jarUrl"
+    ],
+    "per_extension_archive_digest_field_present": false,
+    "per_extension_signer_field_present": false,
+    "protobuf_observation": {
+      "compressed_size": 109697,
+      "compressed_sha256": "c0ef5ec28b646dbce0064210c05004a4cdbbce01f5f4711999da4463543eea68",
+      "decompressed_size": 714453,
+      "root_field_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "101": 1
+      },
+      "repository_signing_key_field_3": "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2",
+      "extension_count": 1420,
+      "mangadex_extension_field_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 61
+      },
+      "mangadex_resources_fields": {
+        "1": "https://github.com/keiyoushi/extensions/releases/download/8ef06cd-0/tachiyomi-all.mangadex-v1.6.0.apk",
+        "2": "https://cdn.jsdelivr.net/gh/keiyoushi/extensions-source@main/src/all/mangadex/res/mipmap-xhdpi/ic_launcher.png",
+        "501": "https://github.com/keiyoushi/extensions/releases/download/f303b9c/tachiyomi-all.mangadex-v1.6.0.jar"
+      },
+      "mangadex_sources_count": 61
+    },
+    "apk_url": "https://github.com/keiyoushi/extensions/releases/download/8ef06cd-0/tachiyomi-all.mangadex-v1.6.0.apk",
+    "apk_downloaded_or_signature_checked": false
+  },
+  "released_jar": {
+    "requested_url": "https://github.com/keiyoushi/extensions/releases/download/f303b9c/tachiyomi-all.mangadex-v1.6.0.jar",
+    "retrieved_at": "2026-10-22T17:35:12.295717+00:00",
+    "max_download_bytes": 33554432,
+    "https_redirects_only": true,
+    "extension_code_loaded": false,
+    "status": 200,
+    "headers": {
+      "Content-Length": "244643",
+      "Content-Type": "application/octet-stream",
+      "ETag": "\"0x8DF0FCE7527091E\"",
+      "Last-Modified": "Fri, 11 Sep 2026 06:32:31 GMT"
+    },
+    "final_origin_and_path": "https://release-assets.githubusercontent.com/github-production-release-asset/740717768/bd8ab407-c098-49dd-9b1f-bfa14f73917f",
+    "filename": "tachiyomi-all.mangadex-v1.6.0.jar",
+    "size": 244643,
+    "sha256": "2781d8593d68f2e79ad54f20949399c44afb703d5679299f84f7356df697008e",
+    "download_succeeded": true
+  },
+  "archive_inspection": {
+    "entries": 159,
+    "class_entries": 145,
+    "expanded_bytes": 505181,
+    "first_entries": [
+      "AndroidManifest.xml",
+      "eu/kanade/tachiyomi/extension/all/mangadex/A.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/B.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/C.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/D.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/E.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/F.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/G.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/H.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/I.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/J.class",
+      "eu/kanade/tachiyomi/extension/all/mangadex/K.class"
+    ],
+    "signature_metadata": [
+      "META-INF/CERT.SF",
+      "META-INF/CERT.RSA",
+      "META-INF/MANIFEST.MF"
+    ]
+  },
+  "certificate": {
+    "leaf_der_sha256": "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2",
+    "matches_pinned_repository_fingerprint": true,
+    "fingerprint_encoding": "SHA-256 of whole X.509 leaf certificate DER bytes, not a whole-JAR hash.",
+    "openssl_output": "subject=O=WorkshopOfAntsyLich, CN=AntsyLich\nissuer=O=WorkshopOfAntsyLich, CN=AntsyLich\nnotBefore=Jun 10 13:10:26 2022 GMT\nnotAfter=Jun  4 13:10:26 2047 GMT\nsha256 Fingerprint=9A:DD:65:5A:78:E9:6C:4E:C7:A5:3E:F8:9D:CC:B5:57:CB:5D:76:74:89:FA:C5:E7:85:D6:71:A5:A7:5D:4D:A2\n",
+    "certificate_der_size": 775,
+    "self_signed_as_reported_by_jarsigner": true,
+    "independent_publisher_trust_established": false
+  },
+  "verification": {
+    "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
+    "verifier_source": "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java",
+    "verifier_source_sha256": "39f5214ea35f7cfe6bfd9bf40d8176a1af34813657ae51f179a09f5ae9c5391f",
+    "compile_release": 17,
+    "all_physical_payload_entries_read_to_eof_before_getCodeSigners": true,
+    "result_with_observed_repository_pin": {
+      "verified": true,
+      "archiveSha256": "2781d8593d68f2e79ad54f20949399c44afb703d5679299f84f7356df697008e",
+      "signerCertificateSha256": "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2",
+      "entries": 159,
+      "payloadEntries": 156,
+      "expandedBytes": 505181
+    },
+    "command_with_observed_repository_pin": {
+      "arguments": [
+        "java",
+        "-Xint",
+        "-cp",
+        "/home/user/Documents/Managa-app/extension-signature-review/own-verifier-classes",
+        "mangashelf.runtime.ExtensionArchiveVerifier",
+        "/home/user/Documents/Managa-app/extension-signature-review/tachiyomi-all.mangadex-v1.6.0.jar",
+        "2781d8593d68f2e79ad54f20949399c44afb703d5679299f84f7356df697008e",
+        "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2",
+        "/home/user/Documents/Managa-app/extension-signature-review/scratch"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"2781d8593d68f2e79ad54f20949399c44afb703d5679299f84f7356df697008e\",\"signerCertificateSha256\":\"9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2\",\"entries\":159,\"payloadEntries\":156,\"expandedBytes\":505181}\n",
+      "stderr": ""
+    },
+    "negative_debug_certificate_pin_result": {
+      "verified": false,
+      "code": "signer_mismatch"
+    },
+    "negative_debug_certificate_pin_command": {
+      "arguments": [
+        "java",
+        "-Xint",
+        "-cp",
+        "/home/user/Documents/Managa-app/extension-signature-review/own-verifier-classes",
+        "mangashelf.runtime.ExtensionArchiveVerifier",
+        "/home/user/Documents/Managa-app/extension-signature-review/tachiyomi-all.mangadex-v1.6.0.jar",
+        "2781d8593d68f2e79ad54f20949399c44afb703d5679299f84f7356df697008e",
+        "a5086c0c2f8e442846a0ea6df55af9cfc70baba17382029e7903de84731bbe7a",
+        "/home/user/Documents/Managa-app/extension-signature-review/scratch"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
+      "stderr": ""
+    },
+    "classpath_contains_only_project_owned_compiled_verifier": true,
+    "jarfile_random_access_used": true,
+    "jarinputstream_used": false,
+    "jar_file_on_classpath": false,
+    "jar_classloading_performed": false,
+    "jdk_security_policy_weakened": false,
+    "snapshot_deleted_before_return": true,
+    "result_authorizes_loading_original_path": false
+  },
+  "jarsigner_diagnostic": {
+    "command": [
+      "jarsigner",
+      "-verify",
+      "-verbose",
+      "-certs",
+      "-strict",
+      "/home/user/Documents/Managa-app/extension-signature-review/tachiyomi-all.mangadex-v1.6.0.jar"
+    ],
+    "exit_code": 4,
+    "summary": "jar verified, with signer errors: self-signed certificate and no default PKIX trust chain; no timestamp; manifest occurs after payload, so JarInputStream does not recognize signatures. JarFile verification and explicit observed certificate pin passed.",
+    "full_stdout_sha256": "546776a40b3019fbf06e879a53a623b02ed9bd9a624ca3db758f12697d739859",
+    "stderr": "",
+    "strict_command_passed": false
+  },
+  "trust_limits": {
+    "published_whole_jar_digest_found_in_pinned_metadata": false,
+    "observed_download_digest_independently_authenticated": false,
+    "fingerprint_from_same_repository_is_independent_publisher_trust": false,
+    "debug_rebuild_certificate_is_release_signer": false,
+    "production_trust_bootstrap_complete": false,
+    "production_loader_integrated": false,
+    "phone_jvm_signature_verifier_tested": false,
+    "real_source_executed": false
+  },
+  "external_evidence_directory": "/home/user/Documents/Managa-app/extension-signature-review",
+  "external_evidence_files": {
+    "download-release.py": {
+      "bytes": 1792,
+      "sha256": "829d7b593ab8640500031c12492a41cd64bace7aebaea8938de9eec975940f32"
+    },
+    "download-provenance.json": {
+      "bytes": 819,
+      "sha256": "5a8649f1f1dcbaee60e9aacaf080ec0362fed68981c5f910b95fed30e78a68e7"
+    },
+    "pinned-mangadex-entry.json": {
+      "bytes": 10258,
+      "sha256": "2e6a5009e44c59e486a562c4d22b88e3894eb21506c7dd8a6216a3a9c7f3ac60"
+    },
+    "inspect-signature.py": {
+      "bytes": 2220,
+      "sha256": "55408454aa34dc4c2298e9632b4032a871a154cdc647361b6737f0a1f4d0965b"
+    },
+    "signature-inspection.json": {
+      "bytes": 101042,
+      "sha256": "f46ee1f7535d90e038698724ba73d172e09adaba3482dfc17fa5393fdcc4f6f1"
+    },
+    "inspect-pinned-pb.py": {
+      "bytes": 1851,
+      "sha256": "917540c0b41a2ba9494d6e7474b3e35c6d5fb5931fb8fe64f9dc0e9012b328f0"
+    },
+    "protobuf-inspection.json": {
+      "bytes": 936,
+      "sha256": "f67e9b32d33f472860b9c2d4c545cc69390b3b11785206bcaa412d3e577bfd48"
+    },
+    "archive-inspection.json": {
+      "bytes": 20179,
+      "sha256": "4d4de2d302496c6832c79b7adc66c5f220e88c3a2e978e3134025722de2a2725"
+    },
+    "signer.der": {
+      "bytes": 775,
+      "sha256": "9add655a78e96c4ec7a53ef89dccb557cb5d767489fac5e785d671a5a75d4da2"
+    }
+  },
+  "primary_sources": [
+    "https://github.com/keiyoushi/extensions/blob/229fddf8eeb9b44940fa10a77db3897c4783045d/index.json",
+    "https://github.com/keiyoushi/extensions/blob/229fddf8eeb9b44940fa10a77db3897c4783045d/repo.json",
+    "https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/jar/JarFile.html",
+    "https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/jar/JarEntry.html"
+  ]
+}
