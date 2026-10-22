@@ -46,3 +46,8 @@ Gradle، ولا توجد حزمة JAR مثبتة النجاح في هذا الت
 بعد نجاح بناء المحرك وفحص الهاتف، تبقى تهيئة التبعيات وSourceFactory
 وتسجيل sourceId وتحويل SManga/SChapter/Page وطلبات المصدر والإلغاء، ثم
 تجربة البحث والتفاصيل والفصول والصور الفعلية. تبقى ENG-05/06/09/11 مفتوحة.
+
+المحاولة الأولى [39768053220](https://github.com/badrcoderman/MangaShelf/actions/runs/39768053220)
+توقفت قبل Gradle لأن اسم platforms;android-37 غير موجود. فُحص فهرس Google
+الرسمي؛ الاسم هو platforms;android-37.0، revision 2، وصُحح طلب التثبيت.
+لم تتغير compileSdk=37 في المصدر. [الدليل](../validation/mangadex-source-39768053220.json).

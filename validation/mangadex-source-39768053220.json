@@ -1,0 +1,21 @@
+{
+  "run_id": 39768053220,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39768053220",
+  "source_commit": "4c57e1771eeac4346a1ab9a11b8c53e21a1ef8f4",
+  "status": "completed",
+  "conclusion": "failure",
+  "completed_at": "2026-10-22T11:06:32Z",
+  "failure": "SDK Manager: Failed to find package platforms;android-37",
+  "official_repository": "https://dl.google.com/android/repository/repository2-3.xml",
+  "available_platform_path": "platforms;android-37.0",
+  "platform_revision": 2,
+  "platform_archive": "platform-37.0_r02.zip",
+  "platform_archive_sha1": "ed8ebf7f8822a4de5686d427f237d2fa30ff7410",
+  "source_build_started": false,
+  "jar_built": false,
+  "source_executed": false,
+  "device_executed": false,
+  "log_file": "build/mangadex-source-39768053220.log",
+  "log_sha256": "1d8f2b42102f62bef5db288376297c4413785a9ab5ab31c6c1ab099d4de95715",
+  "scope": "Terminal installation failure. Corrected official SDK package identifier; upstream compileSdk stays 37."
+}
