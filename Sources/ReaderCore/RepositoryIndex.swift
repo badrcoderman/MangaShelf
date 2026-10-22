@@ -51,11 +51,25 @@ public struct RepositoryIndex: Codable, Sendable {
             for source in extensionRecord.sources {
                 guard source.id.count <= 128, source.name.count <= 512,
                       source.language.count <= 32,
-                      source.homeURL.map({ HTTPSPolicy.accepts($0) }) ?? true else {
+                      source.homeURL.map(Self.acceptsSourceWebsite) ?? true else {
                     throw ReaderFailure(ReaderText.string("Invalid source data."))
                 }
             }
         }
+    }
+
+    /// A website address is metadata, not permission for a transport request.
+    /// Some legitimate sources use HTTP; their presence must not reject a store.
+    private static func acceptsSourceWebsite(_ text: String) -> Bool {
+        guard !text.isEmpty, text.utf8.count <= 8192,
+              !text.unicodeScalars.contains(where: { $0.value <= 0x20 || $0.value == 0x7f }),
+              let components = URLComponents(string: text),
+              ["http", "https"].contains(components.scheme?.lowercased() ?? ""),
+              let host = components.host, !host.isEmpty,
+              components.user == nil, components.password == nil,
+              components.port.map({ (1...65535).contains($0) }) ?? true,
+              components.url != nil else { return false }
+        return true
     }
 }
 

@@ -1,6 +1,12 @@
 name: Build iPhone IPA
 on:
   workflow_dispatch:
+    inputs:
+      repository_probe:
+        description: Verify JSON and gzip protobuf against a pinned public repository snapshot
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
 jobs:
@@ -35,6 +41,13 @@ jobs:
             echo "::error::MangaShelf requires Xcode with iOS 26 SDK or newer."
             exit 1
           fi
+      - name: Download pinned public repository snapshot
+        if: inputs.repository_probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/download-pinned-repository.py --destination build/repository-index-probe
+          echo "MSL_REFERENCE_INDEX_DIR=$GITHUB_WORKSPACE/build/repository-index-probe" >> "$GITHUB_ENV"
       - name: Build unsigned device IPA
         run: bash scripts/build-ios.sh unsigned
       - name: Upload IPA
