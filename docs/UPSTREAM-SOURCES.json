@@ -23,6 +23,17 @@
         "updates and history screens are empty",
         "no extension loading, repository index parsing, reader, downloads, or JAR runtime"
       ]
+    },
+    {
+      "repository": "https://github.com/keiyoushi/extensions-source.git",
+      "commit": "1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa",
+      "role": "MangaDex real extension build candidate; not integrated or executed",
+      "license": "Apache-2.0 root license; built dependency notices require review before distribution",
+      "review_manifest": "validation/mangadex-source-review.json",
+      "workflow": ".github/workflows/backend-probe.yml",
+      "entry_point": "keiyoushi.source.Generated",
+      "source_executed": false,
+      "device_execution": false
     }
   ],
   "repository": "https://github.com/tachimanga/Tachidesk-Server.git",

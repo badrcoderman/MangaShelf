@@ -1,0 +1,211 @@
+{
+  "repository": "https://github.com/keiyoushi/extensions-source",
+  "commit": "1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa",
+  "candidate": "MangaDex, extension library 1.6",
+  "role": "Public source candidate for an independent build; no extension or build script executed locally",
+  "main_class": "keiyoushi.source.Generated",
+  "generated_factory": true,
+  "source_executed": false,
+  "jar_built": false,
+  "device_executed": false,
+  "dependencies": {
+    "android-gradle": "9.4.1",
+    "coroutines": "1.11.0",
+    "serialization": "1.11.0",
+    "junit": "4.13.2",
+    "kotlin-gradle": "2.4.10",
+    "ksp": "2.3.9",
+    "kotlinpoet": "2.3.0",
+    "ktlint": "1.8.0",
+    "spotless": "8.10.1",
+    "tapmoc": "0.4.2",
+    "okhttp": "5.4.0"
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 4239,
+      "sha256": "d649c2787d2c21b496a0058b9b63243008a568aef291e1e363730f08f7b82bff"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "build.gradle.kts",
+      "bytes": 528,
+      "sha256": "f8b3f6b3c52cce86dc6509158e1e6e9e08b781005391ce3071fabb276e4d9f6e"
+    },
+    {
+      "path": "common/AndroidManifest.xml",
+      "bytes": 52,
+      "sha256": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849"
+    },
+    {
+      "path": "compiler/build.gradle.kts",
+      "bytes": 193,
+      "sha256": "d01d30acf872bee131845c15d98411fa3e5e63478dae8f41d3468f62616b7c33"
+    },
+    {
+      "path": "compiler/src/main/kotlin/keiyoushi/processor/SourceProcessor.kt",
+      "bytes": 19342,
+      "sha256": "4c109752520202d3abb3a89cf258c82cc5ec6821fa1c9bd564749480f6e5fcfe"
+    },
+    {
+      "path": "core/build.gradle.kts",
+      "bytes": 559,
+      "sha256": "41873a8834af697ff9e3016b94b321c1f74aad459d7a10332bdd7438cdfaa559"
+    },
+    {
+      "path": "core/src/main/kotlin/keiyoushi/source/KeiSource.kt",
+      "bytes": 16142,
+      "sha256": "acfe3bd735656d1ee13a6ba25298908120009efc0f75e4705731fddef43611d8"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/AndroidBasePlugin.kt",
+      "bytes": 1664,
+      "sha256": "fdef427f0d285e15020dc74157dfd30294538557f910d0974ed5148692ac6c63"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/ExtensionPlugin.kt",
+      "bytes": 15946,
+      "sha256": "d1b5aefa690e7ef5e31363afa6bdac6498f7508c4d857d5c45ac0a07ecedaae1"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/io/github/keiyoushi/gradle/tasks/CreateExtensionJarTask.kt",
+      "bytes": 6990,
+      "sha256": "36fa0dfdd912310146ca284eef79ef766cf53097b54fbb28385bf89df2591792"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/io/github/keiyoushi/gradle/tasks/GenerateManifestTask.kt",
+      "bytes": 4374,
+      "sha256": "0837115c609b8bf0d5688fbe8194c75e460378c7d619378a5d3fcb55bb208e63"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/io/github/keiyoushi/gradle/tasks/GenerateSourceInfoTask.kt",
+      "bytes": 674,
+      "sha256": "5e5b110fb28a40f9569caf00e9b1fa2592effc0e7a109db23f0b4b17d2f5b439"
+    },
+    {
+      "path": "gradle/build-logic/src/main/kotlin/io/github/keiyoushi/gradle/tasks/SignExtensionJarTask.kt",
+      "bytes": 3193,
+      "sha256": "b9116524c7ea5afb3101225e7b8f567a23e6e4039207668ca12f2345f0ae6e02"
+    },
+    {
+      "path": "gradle/kei.versions.toml",
+      "bytes": 399,
+      "sha256": "d1deae3ab6613927e6a619ecfe34271957ab6dc748d758f9ad65bfd76fe69b18"
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "bytes": 3744,
+      "sha256": "c5d7a12bba6322b81de14f9955bfc17fe087587bb7f724ee9996cde66acf9acb"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 281,
+      "sha256": "3cbe35d0020d8393c73f4cc2572838d1db338dd27885dd4d88c46b4d28f762e0"
+    },
+    {
+      "path": "gradle.properties",
+      "bytes": 285,
+      "sha256": "88d75b03bc141b46470661820175807bc80935f1a13419759a7c69dfdb582df1"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "bytes": 1845,
+      "sha256": "af858989bd885332e6b12f0efbc8d182c36b3d3f0dba7ec566c3050aa409e211"
+    },
+    {
+      "path": "src/all/mangadex/build.gradle.kts",
+      "bytes": 1111,
+      "sha256": "e12cc89785c9e3ac80f9aedaeb59bcbfe43012e1e96f7943e1a5e9da8dfc991c"
+    },
+    {
+      "path": "src/all/mangadex/proguard-rules.pro",
+      "bytes": 425,
+      "sha256": "17b95ee500a44d2b850f5c9f688f556f95bdb7e9ff94a7554ea1876c03b6c167"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MDConstants.kt",
+      "bytes": 6592,
+      "sha256": "99d6d777251b4001e9e30799fe19f0304b5594bef1b12b7047e09000d068c0c6"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDex.kt",
+      "bytes": 39530,
+      "sha256": "8f395da2eb7ad1974e4011b0e666a6d8ab3ac4749d942758711fea2080faa8a8"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDexFilters.kt",
+      "bytes": 19865,
+      "sha256": "7347cee284683504afa58a06cdb7335ccf3e5744188807861e8374e8f8348183"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDexHelper.kt",
+      "bytes": 19962,
+      "sha256": "e7b389c955d0faeec6b796e59e7fc9359a2c1b96107590693f033734a3630ea7"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDexIntl.kt",
+      "bytes": 572,
+      "sha256": "6c72ae59d3afbee9f9ae519b795c2684abad400f059ba65c535d797512a7e986"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/AggregateDto.kt",
+      "bytes": 447,
+      "sha256": "d978650d3771312b8280e9245a5f6ab8e9c51a15c6dea9f0d86c1e911e4ac864"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/AtHomeDto.kt",
+      "bytes": 487,
+      "sha256": "ec7e4ca6ed02103bd9a1f0a16a60eb45882087bddcd7b4dde801fe8b5314909c"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/AuthorDto.kt",
+      "bytes": 572,
+      "sha256": "4e1959b06f3d82ecb6ae158c0b109b4b9af6e9c4e90891bbbed40d8b9cf83790"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/ChapterDto.kt",
+      "bytes": 1292,
+      "sha256": "a5a90d6177e33f95ca4dd790046d9674032ba022bbf748dfd4aa3d18bfdafbe8"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/CoverArtDto.kt",
+      "bytes": 541,
+      "sha256": "d40fe4796b2f48c0585ac4936ea0c7b68e5812396f1013487c04ec4d4d887239"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/EntityDto.kt",
+      "bytes": 409,
+      "sha256": "566bfe52ed4e3004b07fc5957500ed5cfcbecbf21e725aa59e50d28ff68bfa7f"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/ListDto.kt",
+      "bytes": 517,
+      "sha256": "36a71ee4e744007fe3ca0ad85e3a4f01da3a3f8627e8bef4ebd089d380f7850f"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/MangaDto.kt",
+      "bytes": 3209,
+      "sha256": "4139b5c88b8fa43fa4c4f6871bd6543ea6bdef02c44c6e7308c5a3776d50b97c"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/ResponseDto.kt",
+      "bytes": 537,
+      "sha256": "fcd33c5fd73f9f544073a36ca30a1f55bc1c69a77240d63ca336a9e5e57aaa90"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/ScanlationGroupDto.kt",
+      "bytes": 449,
+      "sha256": "43fb6d2b246440ed3d7cf080e0fd39ce7e29b25aa8dd2b711379786f64df6340"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/dto/UserDto.kt",
+      "bytes": 408,
+      "sha256": "59306ac7c427cabe628809fdacc2a8063145d5b82a9ec3cc392cb8fb3f07dc1b"
+    }
+  ]
+}

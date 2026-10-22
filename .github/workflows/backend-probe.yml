@@ -1,4 +1,4 @@
-name: Verify upstream JAR backend
+name: Build pinned reference source JAR
 on:
   workflow_dispatch:
 permissions:
@@ -6,29 +6,30 @@ permissions:
 jobs:
   compile:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          repository: tachimanga/Tachidesk-Server
-          ref: 2e52214106ffab02d13ff61a620def78414a8a45
           persist-credentials: false
-      - name: Compile pinned upstream backend
-        shell: bash
-        run: |
-          set -euo pipefail
-          export JAVA_HOME="$JAVA_HOME_17_X64"
-          export PATH="$JAVA_HOME/bin:$PATH"
-          mkdir -p probe-results
-          git rev-parse HEAD > probe-results/revision.txt
-          java -version 2> probe-results/java-version.txt
-          sha256sum libs/*.jar > probe-results/upstream-binary-dependencies.txt
-          ./gradlew :server:compileKotlin --no-daemon --console=plain 2>&1 | tee probe-results/compile.log
-      - name: Preserve diagnostic logs
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: keiyoushi/extensions-source
+          ref: 1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa
+          path: extension-src/keiyoushi
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install pinned source's Android platform
+        run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37"'
+      - name: Build MangaDex reference JAR from public source
+        run: bash scripts/build-reference-extension.sh
+      - name: Preserve source JAR and evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: upstream-backend-probe
-          path: probe-results/
-          if-no-files-found: error
+          name: mangadex-source-build
+          path: build/reference-extension/
+          if-no-files-found: warn
           retention-days: 14
