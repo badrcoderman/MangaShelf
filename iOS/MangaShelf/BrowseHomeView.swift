@@ -43,15 +43,24 @@ struct BrowseView: View {
 }
 
 private struct AvailableSourcesView: View {
+    @EnvironmentObject private var appModel: AppModel
+
+    var body: some View {
+        AvailableSourcesContent(indexedSources: IndexedExtensionSource.available(
+            indexes: appModel.state.repositories.map(\.index), staged: appModel.stagedExtensions))
+    }
+}
+
+private struct AvailableSourcesContent: View {
+    let indexedSources: [IndexedExtensionSource]
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var appModel: AppModel
     @AppStorage("source.lastUsed") private var lastUsed = "local"
     @AppStorage("source.pinnedLocal") private var pinnedLocal = false
     @AppStorage("source.pinnedMangaDex") private var pinnedMangaDex = false
 
-    private var activeExtensions: [StagedExtension] {
-        appModel.stagedExtensions.filter { $0.isActive && $0.isTrusted }
-    }
+    private var availableIDs: [String] { ["local", "mangadex"] + indexedSources.map(\.id) }
+    private var lastAvailableID: String { availableIDs.contains(lastUsed) ? lastUsed : "local" }
 
     @ViewBuilder private func destination(_ id: String) -> some View {
         if id == "local" {
@@ -59,20 +68,25 @@ private struct AvailableSourcesView: View {
         } else if id == "mangadex" {
             SourceCatalogView(sourceId: "mangadex", sourceTitle: "MangaDex").onAppear { lastUsed = id }
         } else {
-            let ext = appModel.stagedExtensions.first { $0.packageName == id }
-            SourceCatalogView(sourceId: id, sourceTitle: ext?.displayName ?? id).onAppear { lastUsed = id }
+            if let source = indexedSources.first(where: { $0.id == id }) {
+                SourceCatalogView(sourceId: source.id, sourceTitle: rowTitle(id)).onAppear { lastUsed = id }
+            }
         }
     }
 
     private func rowTitle(_ id: String) -> String {
         if id == "local" { return L10n.string("Local source") }
         if id == "mangadex" { return "MangaDex" }
-        let ext = appModel.stagedExtensions.first { $0.packageName == id }
-        return ext?.displayName ?? id
+        let name = indexedSources.first { $0.id == id }?.source.name ?? ""
+        return name.isEmpty ? id : name
     }
 
     private func rowSubtitle(_ id: String) -> String {
         if id == "local" { return L10n.string("Other") }
+        if let entry = indexedSources.first(where: { $0.id == id }) {
+            return [entry.source.language, entry.extensionName, entry.packageName]
+                .filter { !$0.isEmpty }.joined(separator: " · ")
+        }
         return L10n.string("Available source")
     }
 
@@ -106,9 +120,11 @@ private struct AvailableSourcesView: View {
                     Spacer(minLength: 0)
                 }.frame(minHeight: 80).contentShape(Rectangle())
             }.buttonStyle(.plain)
-            ShelfIconButton(L10n.string("Pin source"), symbol: isPinned(id) ? "pin.fill" : "pin") {
-                togglePin(id)
-            }.foregroundStyle(isPinned(id) ? ShelfStyle.accent : ShelfStyle.secondary)
+            if id == "local" || id == "mangadex" {
+                ShelfIconButton(L10n.string("Pin source"), symbol: isPinned(id) ? "pin.fill" : "pin") {
+                    togglePin(id)
+                }.foregroundStyle(isPinned(id) ? ShelfStyle.accent : ShelfStyle.secondary)
+            }
             NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "gearshape") }
                 .buttonStyle(.plain).foregroundStyle(ShelfStyle.secondary).accessibilityLabel(L10n.string("Source settings"))
         }
@@ -118,7 +134,7 @@ private struct AvailableSourcesView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(L10n.string("Last used source")).font(.headline).padding(.top, 8)
-                row(lastUsed)
+                row(lastAvailableID)
                 if pinnedLocal || pinnedMangaDex {
                     Text(L10n.string("Pinned")).font(.headline)
                     if pinnedLocal { row("local") }
@@ -128,12 +144,18 @@ private struct AvailableSourcesView: View {
                 row("local")
                 Text(L10n.string("Available sources")).font(.headline)
                 row("mangadex")
-                ForEach(activeExtensions) { ext in
-                    row(ext.packageName)
+                ForEach(indexedSources) { source in
+                    row(source.id)
                 }
                 NavigationLink { HelpView() } label: { TachiLabel(L10n.string("Getting started"), systemImage: "questionmark.circle.fill") }
                     .frame(maxWidth: .infinity).padding(.top, 12)
             }.padding(.horizontal, 18)
+        }
+        .onChange(of: availableIDs) { _, ids in
+            if appModel.ready && !ids.contains(lastUsed) { lastUsed = "local" }
+        }
+        .onChange(of: appModel.ready, initial: true) { _, ready in
+            if ready && !availableIDs.contains(lastUsed) { lastUsed = "local" }
         }
     }
 }
