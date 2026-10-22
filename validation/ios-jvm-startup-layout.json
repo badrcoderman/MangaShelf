@@ -1,0 +1,103 @@
+{
+  "commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+  "scope": "Static inspection of public pinned source startup ordering, boot image path, built-in native libraries and static VM selection. No specimen or target execution.",
+  "files": [
+    {
+      "path": "src/hotspot/os/bsd/os_bsd.cpp",
+      "bytes": 92308,
+      "sha256": "0311a72a146af5122cc820d472ee7872852dfca8cb2e34d77ae94294091683be"
+    },
+    {
+      "path": "src/hotspot/os/posix/os_posix.cpp",
+      "bytes": 77155,
+      "sha256": "6c317738751db5c0356e231c07b0566c66370cc4108ce94e46365ec371955ed5"
+    },
+    {
+      "path": "src/hotspot/share/runtime/os.cpp",
+      "bytes": 94707,
+      "sha256": "c047f90dd5c77d0986491870d4cc52ba7ab2d23f9372295d300e55f189b7d98a"
+    },
+    {
+      "path": "src/hotspot/share/runtime/threads.cpp",
+      "bytes": 54686,
+      "sha256": "92fe2072df5ca12a013218d52f4b83ddf09fdfc4fc321cfd982ddf669f7cfc73"
+    },
+    {
+      "path": "src/hotspot/share/runtime/arguments.cpp",
+      "bytes": 139425,
+      "sha256": "c1e661213b2d24c1ed5c1b55703ea8dbd48bd6a062d9dc20fd2c9f2f62444be8"
+    },
+    {
+      "path": "src/java.base/share/native/libjava/NativeLibraries.c",
+      "bytes": 8721,
+      "sha256": "4609719b27b65f042cc5fa8ff56ba95e8260c68f0a3896c172d26fbce8c71f02"
+    },
+    {
+      "path": "src/hotspot/share/prims/jvm_misc.hpp",
+      "bytes": 2972,
+      "sha256": "5268e784ca948d85c894e6c975ee0ebcf92bd12924f70c0e4d9e7218db271537"
+    },
+    {
+      "path": "src/hotspot/share/prims/jni.cpp",
+      "bytes": 162847,
+      "sha256": "06857d67a67fedcdd31a170b227154cb4d1289c13e511c4ea1adf3d920acfdff"
+    },
+    {
+      "path": "src/java.base/share/classes/jdk/internal/loader/NativeLibraries.java",
+      "bytes": 21105,
+      "sha256": "58f0abbc80fbef8091650ce6e4fc124188f52621dc54c66dbf1c8b970e564dc8"
+    },
+    {
+      "path": "src/hotspot/share/utilities/globalDefinitions.hpp",
+      "bytes": 54075,
+      "sha256": "db433c5c9baf461ffd8361f333da343409ca4b3954306c606cc4fdcaa14a78b8"
+    },
+    {
+      "path": "src/hotspot/share/utilities/globalDefinitions.cpp",
+      "bytes": 14794,
+      "sha256": "3adea7c3a4cadb4233e82666a47c2d9c8652371a0473d071f4ada93d9dc88872"
+    },
+    {
+      "path": "src/hotspot/share/utilities/macros.hpp",
+      "bytes": 17053,
+      "sha256": "93b30e02e7a2e1542a39f6e064070e59fd1ea9bf519e4ded23a816349d6afa99"
+    },
+    {
+      "path": "src/hotspot/share/prims/jvm.cpp",
+      "bytes": 146190,
+      "sha256": "a32e217d5da5e2ab40ef9dc00c90ad51d7b6d9e56b3c48c67a6f8a92004abf54"
+    },
+    {
+      "path": "src/hotspot/share/include/jvm.h",
+      "bytes": 33844,
+      "sha256": "87ff18ed96d9b42bbaff753efc622ac3e83dbf1f65367c2b52224c38ff4800cc"
+    },
+    {
+      "path": "src/hotspot/share/runtime/os.hpp",
+      "bytes": 53281,
+      "sha256": "68908fdb30ace04d7ec98b4008dd05afea6d86c5c66c6b2f7a3b70d14899df75"
+    },
+    {
+      "path": "src/hotspot/share/runtime/os.inline.hpp",
+      "bytes": 2015,
+      "sha256": "6d2eaf2132a729f616996111ce4a80ce5d0e2d2e8581a04cab8ea9f95a7f19a4"
+    },
+    {
+      "path": "src/hotspot/os/bsd/os_bsd.inline.hpp",
+      "bytes": 2152,
+      "sha256": "bdfeb8899d36716017e18d1fa805c5258f4631f4e43d92f7f53e7ba82bdc256e"
+    },
+    {
+      "path": "src/hotspot/share/runtime/linkType.cpp",
+      "bytes": 1364,
+      "sha256": "16911006355efe0e9bcc9b16a9b1912eed971535f7a577f858df58a207d6adcc"
+    }
+  ],
+  "findings": {
+    "properties_before_vm_options": true,
+    "static_ios_java_home": "<executable-directory>/lib",
+    "boot_image": "<executable-directory>/lib/lib/modules",
+    "old_harness_layout_accepted": false,
+    "new_harness_image_root": "lib"
+  }
+}

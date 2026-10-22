@@ -180,7 +180,8 @@ static NSString *Text(NSString *key) {
     setvbuf(stdout, NULL, _IONBF, 0);
     NSString *resources = NSBundle.mainBundle.resourcePath;
     NSString *classpath = [resources stringByAppendingPathComponent:@"probe/main.jar"];
-    NSString *home = [resources stringByAppendingPathComponent:@"jre"];
+    // Match the pinned static iOS VM's home before it parses Java options.
+    NSString *home = [resources stringByAppendingPathComponent:@"lib"];
     NSString *plugin = [resources stringByAppendingPathComponent:@"probe/plugin.jar"];
     int start = ms_java_start(JNI_CreateJavaVM, classpath.fileSystemRepresentation, home.fileSystemRepresentation);
     NSMutableDictionary *result = [@{@"start_code": @(start)} mutableCopy];

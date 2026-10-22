@@ -52,7 +52,7 @@
 متابعة فهرس المستودع: عُزل تحقق موقع المصدر الوصفي عن سياسة تنزيل الحزم؛
 كانت 9 روابط HTTP تمنع قبول فهرس Keiyoushi المثبت ذي 1420 إضافة و2393 مصدرًا.
 أضيف اختبار JSON/GZIP protobuf حقيقي اختياري إلى Actions؛
-[العقد والمدخلات](docs/REAL-REPOSITORY-PROBE-AR.md). نتيجة Swift معلقة.
+[العقد والمدخلات](docs/REAL-REPOSITORY-PROBE-AR.md). نجحت الحالات الأربع ضمن 121 اختبار Swift وبناء IPA في 39804272061؛ تشغيل الإضافات على الهاتف ما زال مطلوبًا.
 
 متابعة SRC-03: فُصل latest عن popular، وأصبحت قوائم الإضافات تحمل hasNextPage
 صريحة حتى الواجهة؛ اجتاز عقد JSON التجريبي 129 حالة مضيف، واجتازت حالات Swift
@@ -65,11 +65,12 @@
 [النطاق والحدود](docs/EXTENSION-MANIFEST-AR.md)؛ تبقى ENG-03/05/06 مفتوحة
 ولا يعني التعديل تشغيل إضافة فعلية على iPhone.
 
-آخر متابعة للمحرك: انتهت [39645343405](https://github.com/badrcoderman/MangaShelf/actions/runs/39645343405)
-بالفشل عند libnio بسبب CFStringCreateWithCharacters بعد غياب تكرار libjli
-السابق. أضيف ربط NIO ومساعدة MIME على iOS؛ اجتاز فحص فروع المصدر وfixture
-المضيف، وبدأت [39762272353](https://github.com/badrcoderman/MangaShelf/actions/runs/39762272353)
-عند `8f7872a` (جارية وقت التحديث). لم يُثبت تشغيل VM أو إضافة على iPhone بعد.
+آخر متابعة للمحرك: نجح بناء أدوات المضيف والمكتبات الساكنة وصورة Java
+الكاملة في [39769103017](https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017)
+عند `c465f19`؛ فُحص artifact وكل بصمة في manifest وملفات modules/tzdb/security.
+صُحح مكان الصورة داخل تطبيق الفحص إلى app/lib ليتطابق مع بحث VM المبكر؛
+[الدليل والحدود](docs/IPHONE-ENGINE-CHECK-AR.md). بناء IPA الفحص وتشغيل VM
+وإضافة حقيقية على iPhone ما زالت مطلوبة.
 
 - [ ] **ENG-01:** بناء JVM من مصدر مثبت ومراجعة رخصه وتبعياته لـARM64 iOS؛ إثبات بدء المحرك وإيقافه وتحميل fixture مستقل على iPhone.
 - [ ] **ENG-02:** ربط بدء `ms_java_*` مع dispatcher في `ms_bridge_*` في مسار إنتاج واحد، ثم اختباره من Swift حتى Java والعودة.

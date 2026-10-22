@@ -38,6 +38,28 @@ C-string، أو استثناءات JNI عند OOM، أو كل خيارات عم�
 لا يُعاد استخدام المحاولة القديمة `39382504723` لبناء هذا التطبيق: تلك النسخة
 تحتوي المكتبات الأصلية فقط، دون ملفات Java الضرورية لبدء المحرك.
 
+نجح بناء الصورة الكاملة في
+[39769103017](https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017)
+عند `c465f19`؛ فُحص artifact وmanifest وبصمات المكتبات وملفات Java الأساسية.
+[دليل الصورة](../validation/ios-jvm-image-39769103017.json) يثبت البناء فقط.
+
+## مكان ملفات Java داخل تطبيق الفحص
+
+المراجعة المثبتة تهيئ مسار Java من موقع executable قبل قراءة خيارات VM:
+[threads.cpp](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/hotspot/share/runtime/threads.cpp#L480)،
+[os_bsd.cpp](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/hotspot/os/bsd/os_bsd.cpp#L492).
+في فرع iOS الساكن يصبح home هو `MangaShelfEngineCheck.app/lib`؛ ويبحث
+[set_boot_path](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/hotspot/share/runtime/os.cpp#L1501)
+عن `lib/lib/modules` نسبةً إلى حزمة التطبيق. وضع الصورة تحت `jre` يفشل
+هذا الفحص قبل أن يصل التنفيذ إلى `-Djava.home`.
+
+لذلك يضع سكربت التغليف الصورة الكاملة تحت `app/lib` ويمرر المكان نفسه إلى
+`ms_java_start`. لا توجد نسخة ثانية من modules أو روابط رمزية. فُحص
+`linkType.o` من المكتبة المبنية كتعليمات ARM64: تعيد الدالة
+`is_vm_statically_linked()` القيمة 1؛ يطابق هذا اختيار
+[linkType.cpp](https://github.com/openjdk/mobile/blob/c1ed06aaef34c8dccf71e236d1ffa20918a77cfb/src/hotspot/share/runtime/linkType.cpp)
+عند STATIC_BUILD. هذا فحص ساكن للمسار، ويبقى بدء VM على الهاتف مطلوبًا.
+
 يُستخدم مسار link المسجل سابقًا كي يمكن تشغيله على فرع التطوير عبر CLI دون
 دمج workflow جديدة في الفرع الافتراضي؛ تفاصيل القيد في
 [توثيق GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch).

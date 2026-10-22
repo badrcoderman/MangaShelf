@@ -80,13 +80,15 @@ for name in ['lib', 'conf', 'legal', 'release']:
         if prefix[:4] in native_magic or prefix == b'!<arch>\n' or file.suffix in {'.dylib', '.so', '.a'}:
             omitted.append(str(relative))
             continue
-        destination = app / 'jre' / relative
+        # Pinned iOS static VM derives its early Java home as executable-dir/lib
+        # before it parses -Djava.home. Keep the full image at that same root.
+        destination = app / 'lib' / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(file, destination)
         included.append({'path': str(relative), 'bytes': file.stat().st_size,
                          'sha256': hashlib.sha256(file.read_bytes()).hexdigest()})
 for required in ['lib/modules', 'lib/tzdb.dat']:
-    if not (app / 'jre' / required).is_file():
+    if not (app / 'lib' / required).is_file():
         raise ValueError(f'Java image is missing required data: {required}')
 for name in ['LICENSE', 'ADDITIONAL_LICENSE_INFO', 'ASSEMBLY_EXCEPTION']:
     shutil.copyfile(evidence / name, app / name)
@@ -114,7 +116,9 @@ info = {
 (app / 'Info.plist').write_bytes(plistlib.dumps(info))
 (app / 'runtime-provenance.json').write_text(json.dumps(selection, indent=2) + '\n')
 (out / 'device-build.json').write_text(json.dumps({
-    'commit': commit, 'runtime': selection, 'included_java_data': included, 'omitted_native_libraries': omitted,
+    'commit': commit, 'runtime': selection, 'java_home_relative': 'lib',
+    'boot_image_relative': 'lib/lib/modules',
+    'included_java_data': included, 'omitted_native_libraries': omitted,
     'scope': 'Separate unsigned iOS VM/JAR harness. No real extension is bundled or tested.',
     'device_execution': 'pending',
 }, indent=2) + '\n')

@@ -1,17 +1,139 @@
 {
-  "observed_at": "2026-10-22T11:20:39.188728+00:00",
+  "observed_at": "2026-10-22T15:34:21.011803+00:00",
+  "repository": "badrcoderman/MangaShelf",
   "run_id": 39769103017,
+  "head_sha": "c465f1937f716a658aa38c5c89ac377b3915f3a9",
+  "workflow": ".github/workflows/ios-jvm.yml",
   "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017",
+  "conclusion": "success",
+  "artifact_id": 12421979254,
+  "artifact_sha256": "06d8fcb0c48b90d5c6711f50291e323fa73f2bef85e305f74a343908e9d58583",
+  "java_modules_present": true,
+  "build_manifest_verified": true,
+  "execution_proven": false,
   "source_commit": "c465f1937f716a658aa38c5c89ac377b3915f3a9",
-  "status": "in_progress",
-  "conclusion": null,
-  "active_steps": [
-    "Build iOS Zero runtime"
+  "status": "completed",
+  "complete_java_image_verified": true,
+  "build_targets": [
+    "same-source host jdk-image",
+    "arm64 iOS static-libs-image",
+    "arm64 iOS legacy-jre-image"
   ],
-  "change": "Shared configure ICONV_LIBS for iOS; removed per-instrument duplicate and verified JDWP library call",
-  "source_checks": "validation/ios-jvm-source-fixes.json",
-  "complete_java_image_verified": false,
+  "build_manifest": {
+    "format": 1,
+    "target": "arm64-apple-ios26.0",
+    "vm_variant": "zero",
+    "openjdk_commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+    "libffi_commit": "12ffd1f9dc56fcea79d2f742f424301ae668d663",
+    "cups_ref": "2e5573560cfa2da65002f86b41bd1770c9853c4d",
+    "cups_commit": "7d535f73e407a72dfb5c5e83549a5ba27219dfcd",
+    "repository": "badrcoderman/MangaShelf",
+    "head_sha": "c465f1937f716a658aa38c5c89ac377b3915f3a9",
+    "run_id": "39769103017",
+    "sdk_path": "/Applications/Xcode_26.0.1.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk",
+    "xcode": "Xcode 26.0.1\nBuild version 17A400",
+    "compiler": "Apple clang version 17.0.0 (clang-1700.3.19.1)\nTarget: arm64-apple-darwin24.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode_26.0.1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "zero_wx_source_fix": true,
+    "java_modules_present": true,
+    "execution_proven": false,
+    "darwin_dynamic_library_fix": true,
+    "build_jdk": "same-source native macOS host tools",
+    "darwin_origin_fix": true,
+    "ios_libjava_corefoundation_fix": true,
+    "ios_libjli_platform_source_fix": true,
+    "ios_libnio_corefoundation_fix": true,
+    "ios_filetype_source_fix": true,
+    "ios_filetype_sdk_compiled": true,
+    "ios_libprefs_framework_fix": true,
+    "ios_iconv_configure_fix": true,
+    "sha256": {
+      "ffi/lib/libffi.a": "fd90ac617a563950244e8aae6affe0ab47e15e3582f0bfd68befaa86981104ba",
+      "static-libs/lib/libattach.a": "2bba38388743983e7427a61070f88acb751e0b7c2588f1d26e47380bbd9af264",
+      "static-libs/lib/libdt_socket.a": "c47ac7d925f90932549135d05a91f9e1fa2d86cf4ade0c7316f75c3b6c55490b",
+      "static-libs/lib/libextnet.a": "3d3cf4e05c8e452eff3b4b977edd66c4f1cf72c1e20e19c222fe99cfcd5efe2f",
+      "static-libs/lib/libfallbackLinker.a": "8adc22220e881742256b314aa1a4c5bcfe38c5ecdd21906b840173f3e32efae8",
+      "static-libs/lib/libinstrument.a": "da80986bbbb63dc5412a9d902f519cae8a34c5d1d1832d148b64d97bac6eaefc",
+      "static-libs/lib/libj2gss.a": "c71fe699e43b7b46d0fde8a89e3b4239f9c88edc828b959c416fbcf00689a747",
+      "static-libs/lib/libj2pcsc.a": "3521c93794b7feaf922a6f5fbe2e76b228cf2e7df4d5b64b56109083d7d6339a",
+      "static-libs/lib/libj2pkcs11.a": "d4bdfc3ad325cc99244f1bfe24d729c0e840ab7106214b8271f67c09336f0f7c",
+      "static-libs/lib/libjava.a": "5d9de1ec02fac65a6a14b8d6bfb41c3d1f49972ca6c90199f94b3ffbba1e3d9b",
+      "static-libs/lib/libjdwp.a": "525a0480a1c57ada294e9391df451da64d54f7406984e51b85224934b38d3dda",
+      "static-libs/lib/libjimage.a": "7a02e039503eb9f63ce2c3c6945455cafbe9d884b5928b6103b7e8c91df5bbfa",
+      "static-libs/lib/libjli.a": "a0fb26dfaa7156927a53635ce81b5b2dd53c92a52872fcb1af309c70f9f62762",
+      "static-libs/lib/libjsig.a": "cc00d2862adf5dd821ed7a025e1fd10d34703632e1fbf4751f4afc5675a1a799",
+      "static-libs/lib/libmanagement.a": "761d211fe37ab93afa4e2ef1a7c9a548d703409f9a25eebf2d8324287d642949",
+      "static-libs/lib/libmanagement_agent.a": "a5c2ce41c28b189cd558a2a24b21fb17d7d0170db98f9181bee9cfd56ad405db",
+      "static-libs/lib/libmanagement_ext.a": "41de93248c1585e60c5b59cf494dd2e2bdbf16f4fa821d88443591f3b101bbeb",
+      "static-libs/lib/libnet.a": "6d2b04d94903fb441df7d246b5e85ca9f17e6d6cc070d84c750595172fd5663f",
+      "static-libs/lib/libnio.a": "6653bbaf6d7aa4ef679e89aeb80030ce0d4a501dcc2857866729991b5c82439e",
+      "static-libs/lib/libprefs.a": "cf6f31d2f0df8298d85e4261c152982fdcf72db598cce7dad47f52dd220eace6",
+      "static-libs/lib/librmi.a": "d21250b3d6736c3127bccd7c93c6bff7bb891a77672d9189d5b13acdedea3d20",
+      "static-libs/lib/libsyslookup.a": "d445fffd575315e8aa67c9ccb21342cdd5279654010dfa5f5a8445415b97c66e",
+      "static-libs/lib/libverify.a": "f06bf6ebef91e5fb55c49fc6e3c5624e31960da4f615e5db23bc68e3c788ecde",
+      "static-libs/lib/libzip.a": "eea47acebc2c4e76bf98cf9006c34f8288564118046ba1c467e39bb6b8e14e6d",
+      "static-libs/lib/zero/libjvm.a": "ff1a709aa4b338babe143d1e03c02661716ffe82db70506f3eccadd6c33b7d1f",
+      "jre/lib/modules": "b5dc7df4320e0e4beed5392a463f12a49d9361b29f1152f1ef823c97a88fe0ee",
+      "jre/release": "a5b625dea532bb2f356be62a289577e49f115fd6d71966ddf9b347ccf596f6e4",
+      "logs/ios_jvm_compat.cpp": "f16ec4936bbdb72538e684d487e367f6b6fa2c2d9039ef80054051c501dbe443",
+      "logs/source-patch.diff": "00efa364206808760113e113dba4eb69e57723038d58e9946ff8c6751498d4d1",
+      "logs/source-link-flags.json": "0f14db7c840879cf432a7f39f14cc94a4c9f76ff14fd08fa8ae8db2ed0ada7d3",
+      "logs/host-java-version.txt": "3e550ba34ebfaa718eeccad124b7c424724b2670c8cb061ee1daa3dd3fe005d4",
+      "logs/ios_filetype.m": "1189b849b1e973b6b07486cd6ee336e596ffcbb6a010e792a117b74896aac3e7",
+      "logs/ios-filetype-sdk-check.o": "6ae185aae4e9d0ab5bce4a2f8df28add6d6dc03d56894cc7f54561301f032101",
+      "logs/ios-filetype-sdk-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "required_image_files": [
+    {
+      "path": "jre/lib/modules",
+      "bytes": 100176282,
+      "sha256": "b5dc7df4320e0e4beed5392a463f12a49d9361b29f1152f1ef823c97a88fe0ee"
+    },
+    {
+      "path": "jre/lib/tzdb.dat",
+      "bytes": 102956,
+      "sha256": "5906b44e25a8a730131d7ba1beb5d15af27043f6536f1a169ca8a5d8b8bed8f8"
+    },
+    {
+      "path": "jre/conf/security/java.security",
+      "bytes": 78548,
+      "sha256": "d3b821fee6c8e69dee5e23253eedab349a70347e68a52acdc722c9048634fd1b"
+    },
+    {
+      "path": "jre/release",
+      "bytes": 849,
+      "sha256": "a5b625dea532bb2f356be62a289577e49f115fd6d71966ddf9b347ccf596f6e4"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 19274,
+      "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+    },
+    {
+      "path": "ADDITIONAL_LICENSE_INFO",
+      "bytes": 2114,
+      "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+    },
+    {
+      "path": "ASSEMBLY_EXCEPTION",
+      "bytes": 1514,
+      "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+    },
+    {
+      "path": "ffi/LICENSE",
+      "bytes": 1132,
+      "sha256": "17b64dc60f3b6897a60f971e288b973f655c2edcdf08b25f3c3dd5549857881c"
+    }
+  ],
+  "static_vm_link_type": {
+    "archive_member": "static-libs/lib/zero/libjvm.a:linkType.o",
+    "member_sha256": "dedde60911afe86f2a0bdec605414aedb34646eb54322a8322490642197db7a4",
+    "static_disassembly": "is_vm_statically_linked returns 1 (mov w0,#1; ret)",
+    "executed": false
+  },
   "target_vm_executed": false,
   "real_extension_on_iphone_verified": false,
-  "scope": "Live job snapshot; not a new target build or device success."
+  "ci_log_file": "build/ios-jvm-image-39769103017.log",
+  "ci_log_sha256": "4e45baf8b06cc3a5b061c4801ce34dd9fb09668c0aaa09bc6d7b83f84392f01d",
+  "scope": "Source build and artifact/image integrity only; no physical device or real source execution."
 }
