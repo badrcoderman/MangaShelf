@@ -1,0 +1,17 @@
+{
+  "observed_at": "2026-10-22T11:20:39.188728+00:00",
+  "run_id": 39769103017,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017",
+  "source_commit": "c465f1937f716a658aa38c5c89ac377b3915f3a9",
+  "status": "in_progress",
+  "conclusion": null,
+  "active_steps": [
+    "Build iOS Zero runtime"
+  ],
+  "change": "Shared configure ICONV_LIBS for iOS; removed per-instrument duplicate and verified JDWP library call",
+  "source_checks": "validation/ios-jvm-source-fixes.json",
+  "complete_java_image_verified": false,
+  "target_vm_executed": false,
+  "real_extension_on_iphone_verified": false,
+  "scope": "Live job snapshot; not a new target build or device success."
+}

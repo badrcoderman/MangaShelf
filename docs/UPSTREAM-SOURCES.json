@@ -33,7 +33,12 @@
       "workflow": ".github/workflows/backend-probe.yml",
       "entry_point": "keiyoushi.source.Generated",
       "source_executed": false,
-      "device_execution": false
+      "device_execution": false,
+      "source_build_run_id": 39768470880,
+      "source_build_report": "validation/mangadex-source-39768470880.json",
+      "source_built": true,
+      "jar_sha256": "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
+      "publisher_signature_verified": false
     }
   ],
   "repository": "https://github.com/tachimanga/Tachidesk-Server.git",

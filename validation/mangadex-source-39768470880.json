@@ -1,0 +1,1209 @@
+{
+  "repository": "https://github.com/keiyoushi/extensions-source",
+  "commit": "1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa",
+  "package": "eu.kanade.tachiyomi.extension.all.mangadex",
+  "version_name": "1.6.0",
+  "version_code": 106000,
+  "main_class": "keiyoushi.source.Generated",
+  "file": "tachiyomi-all.mangadex-v1.6.0.jar",
+  "bytes": 244602,
+  "sha256": "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
+  "class_count": 145,
+  "maximum_class_major": 55,
+  "sources": [
+    {
+      "id": "4638673959522768501",
+      "name": "MangaDex",
+      "lang": "af",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "987803387023224960",
+      "name": "MangaDex",
+      "lang": "sq",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3339599426223341161",
+      "name": "MangaDex",
+      "lang": "ar",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "9127464796236242233",
+      "name": "MangaDex",
+      "lang": "az",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1553736397938752611",
+      "name": "MangaDex",
+      "lang": "eu",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3601180820582582605",
+      "name": "MangaDex",
+      "lang": "be",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4150470519566206911",
+      "name": "MangaDex",
+      "lang": "bn",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5463447640980279236",
+      "name": "MangaDex",
+      "lang": "bg",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1347402746269051958",
+      "name": "MangaDex",
+      "lang": "my",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5860541308324630662",
+      "name": "MangaDex",
+      "lang": "ca",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5148895169070562838",
+      "name": "MangaDex",
+      "lang": "zh-Hans",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1493666528525752601",
+      "name": "MangaDex",
+      "lang": "zh-Hant",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2072928884077964642",
+      "name": "MangaDex",
+      "lang": "cv",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8548374501079910130",
+      "name": "MangaDex",
+      "lang": "hr",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3578612018159256808",
+      "name": "MangaDex",
+      "lang": "cs",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "425785191804166217",
+      "name": "MangaDex",
+      "lang": "da",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "6750440049024086587",
+      "name": "MangaDex",
+      "lang": "nl",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2499283573021220255",
+      "name": "MangaDex",
+      "lang": "en",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2819252027406613931",
+      "name": "MangaDex",
+      "lang": "eo",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8773024089257004344",
+      "name": "MangaDex",
+      "lang": "et",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8578871918181236609",
+      "name": "MangaDex",
+      "lang": "fil",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8254121249433835847",
+      "name": "MangaDex",
+      "lang": "fi",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4505830566611664829",
+      "name": "MangaDex",
+      "lang": "fr",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8952567078513962586",
+      "name": "MangaDex",
+      "lang": "ka",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5098537545549490547",
+      "name": "MangaDex",
+      "lang": "de",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3260701926561129943",
+      "name": "MangaDex",
+      "lang": "el",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1424273154577029558",
+      "name": "MangaDex",
+      "lang": "he",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "6840513937945146538",
+      "name": "MangaDex",
+      "lang": "hi",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4284949320785450865",
+      "name": "MangaDex",
+      "lang": "hu",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3686775439235747344",
+      "name": "MangaDex",
+      "lang": "ga",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3807502156582598786",
+      "name": "MangaDex",
+      "lang": "id",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1952071260038453057",
+      "name": "MangaDex",
+      "lang": "it",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1411768577036936240",
+      "name": "MangaDex",
+      "lang": "ja",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1573550798452063564",
+      "name": "MangaDex",
+      "lang": "jv",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8884149958776527952",
+      "name": "MangaDex",
+      "lang": "kk",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3285208643537017688",
+      "name": "MangaDex",
+      "lang": "ko",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "764587568075398530",
+      "name": "MangaDex",
+      "lang": "la",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "737986167355114438",
+      "name": "MangaDex",
+      "lang": "lt",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1471784905273036181",
+      "name": "MangaDex",
+      "lang": "ms",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5967745367608513818",
+      "name": "MangaDex",
+      "lang": "mn",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "954368055061084457",
+      "name": "MangaDex",
+      "lang": "ne",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4872213291993424667",
+      "name": "MangaDex",
+      "lang": "no",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3781216447842245147",
+      "name": "MangaDex",
+      "lang": "fa",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "8033579885162383068",
+      "name": "MangaDex",
+      "lang": "pl",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2655149515337070132",
+      "name": "MangaDex",
+      "lang": "pt-BR",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5189216366882819742",
+      "name": "MangaDex",
+      "lang": "pt",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4774459486579224459",
+      "name": "MangaDex",
+      "lang": "ro",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2098905203823335614",
+      "name": "MangaDex",
+      "lang": "ru",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3507378005483435886",
+      "name": "MangaDex",
+      "lang": "sr",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2875503798326600410",
+      "name": "MangaDex",
+      "lang": "sk",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4938773340256184018",
+      "name": "MangaDex",
+      "lang": "es-419",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "6400665728063187402",
+      "name": "MangaDex",
+      "lang": "es",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1145824452519314725",
+      "name": "MangaDex",
+      "lang": "sv",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "4273071356706429527",
+      "name": "MangaDex",
+      "lang": "ta",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "6886894829142702925",
+      "name": "MangaDex",
+      "lang": "te",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "1713554459881080228",
+      "name": "MangaDex",
+      "lang": "th",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "3846770256925560569",
+      "name": "MangaDex",
+      "lang": "tr",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "5779037855201976894",
+      "name": "MangaDex",
+      "lang": "uk",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "72800122520214493",
+      "name": "MangaDex",
+      "lang": "ur",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "2838715564514827672",
+      "name": "MangaDex",
+      "lang": "uz",
+      "baseUrl": "https://mangadex.org"
+    },
+    {
+      "id": "9194073792736219759",
+      "name": "MangaDex",
+      "lang": "vi",
+      "baseUrl": "https://mangadex.org"
+    }
+  ],
+  "members": [
+    {
+      "path": "AndroidManifest.xml",
+      "bytes": 2346,
+      "sha256": "b9e800d6a2781b6eed84acbe935714b92e2b78e69427160ddcbcfb4ff93a7430"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/A.class",
+      "bytes": 535,
+      "sha256": "41b02826e338686fe2522101a6208f5ce29c4969c535d9059baa5b1743ddd74b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/B.class",
+      "bytes": 1290,
+      "sha256": "cfe9fd4c788ac3cc9c9d25b41a1c79b58021f8ac39566190a06302a6694791dd"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/C.class",
+      "bytes": 1290,
+      "sha256": "858ecee5054ae36f55ed768ca6fbeca8870d84ac22bc9b4eb02b0968e93a5262"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/D.class",
+      "bytes": 1383,
+      "sha256": "821de58353fdbdfc65d5d66e853f1514fe191e7181eb79532ba088c180881a79"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/E.class",
+      "bytes": 819,
+      "sha256": "87b631d4a673f93ffcf28a9eeb54457a5793e40fd6e5491895be2eecb291f34e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/F.class",
+      "bytes": 1394,
+      "sha256": "bf2c2bb66a3761f43268d87e2573c6e3284d8e18260ac177a7ee28de341ce803"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/G.class",
+      "bytes": 157,
+      "sha256": "4de13199f180d779e21978b93b06db93ae01ae8d51d91240abe54047780f311a"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/H.class",
+      "bytes": 590,
+      "sha256": "e7760ac7a46ef49df06f9e0360ee17d977e4bc70d424fba9c27898092ff79033"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/I.class",
+      "bytes": 29289,
+      "sha256": "afaefdf93df8575c1fa47c514470b5c4b3d3a391a655881ded5e51b9c571c2ba"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/J.class",
+      "bytes": 202,
+      "sha256": "feae9978df27c936058ca5449ac4f0d64eaedf593e3d7e040fd7fc35fb41c87a"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/K.class",
+      "bytes": 614,
+      "sha256": "215fc6ee2f7c6f45412689d55661a1317c20406c2e55acd7f999cc02f4948137"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/L.class",
+      "bytes": 2404,
+      "sha256": "d1bb58685d385b36fb3f44cf2d0fcc5c97c086015716484276412265b600fdef"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/M.class",
+      "bytes": 687,
+      "sha256": "b9ff2074794f22194b48c95705e9bc8335492bd545c2b288aca77d29deef54b0"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/MangaDex.class",
+      "bytes": 45158,
+      "sha256": "3d5cdf6dee75c39fb064182de4c517c5e44d194a41edd7586f2e5e9479f2e3e8"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a.class",
+      "bytes": 5017,
+      "sha256": "ac08999c9c3a0d71f5442f1c22a9698c74bfa34e119aa5da375da682a2b6301e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/A.class",
+      "bytes": 4343,
+      "sha256": "532ed3236bb2984d94a05560ee7b672067b1d2b088d791c279be09c3b085d475"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/B.class",
+      "bytes": 5324,
+      "sha256": "3e16c8bce2515d8a41967976f69adcca478a3c48726ca446103415d018586b18"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/C.class",
+      "bytes": 543,
+      "sha256": "b9a9c195eb03a639c4af14b7fa735a9df138cdd0ec77ddd0947af1e885555277"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/D.class",
+      "bytes": 4652,
+      "sha256": "029962eec201bb180d388baceb38bbfe022f41e6ff6b0a8bfc11abe9dd48e092"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/E.class",
+      "bytes": 4437,
+      "sha256": "255458250b3afe2b3ca4893ec8dfff4ba20dee586405afd7b427a5db3dd75701"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/F.class",
+      "bytes": 543,
+      "sha256": "5e956d4ac1479a4f419b67b4a9e24fbfe7b9a035626af643f6ffdc9f7abc01ac"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/G.class",
+      "bytes": 3046,
+      "sha256": "bd9179eb848152335977ec7d07cca2c91c5544e37be6c7fad8ff71d96ad815ee"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/H.class",
+      "bytes": 580,
+      "sha256": "17acc083c6c71a6d9ca17cbf8fd6ce4068575e788ad6df2bc7e361bfd20e872e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/I.class",
+      "bytes": 3224,
+      "sha256": "180ac71d86ab30d6713a00c41d260b1a7ecbdc593a6328c32b1f6f28d03020cb"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/J.class",
+      "bytes": 3866,
+      "sha256": "52acefb4217dccf58b70e9a63b5ac121db38895c3134ad7017a2dc324888d576"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/K.class",
+      "bytes": 543,
+      "sha256": "1a9b0d87167c02f076c4e234fe293d4ded7947eae8b390a3e011b67fab9c30f9"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/L.class",
+      "bytes": 4651,
+      "sha256": "0345407be174dfe17f6a4f16d5f9b69b6df0131a777aaf65495fe0f858a4f175"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/M.class",
+      "bytes": 4439,
+      "sha256": "29b8afceb3db09f257171f4a1de1f1ac15cb082d5f21f397f03be25f37f4551d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/N.class",
+      "bytes": 543,
+      "sha256": "81ec6d6900f2f05b60868e6b5b8eb46d7cb1dfa2311be3cc18ec5b4004b7f5ef"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/O.class",
+      "bytes": 3655,
+      "sha256": "d3006de4c0421da7ba6ff5bba8cedb09d0bd3976426dd9ac249434d3b7900e3f"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/P.class",
+      "bytes": 580,
+      "sha256": "11cdc950998223fa11dd0827fee811b41b8d39ffe52008dcc7a957e6ddda7f9c"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/Q.class",
+      "bytes": 2568,
+      "sha256": "b8d81c7fd44fc228049dddd8ac4addd931ba28d0f0868c3c296219e8652d4e56"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/R.class",
+      "bytes": 3835,
+      "sha256": "67c696d0951a900ba968be3f3aea2d4416d9bc2eed4efef06cde0d27d8850cc5"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/S.class",
+      "bytes": 543,
+      "sha256": "8a9fa99a266c7442284ef0ff303b5e748b62c0f13c6a7d4a44526f8fe6e824fe"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/T.class",
+      "bytes": 4565,
+      "sha256": "d6811d81e5e4ffadcde70bfbf94fad0d96f201513e5c43b0ee224351f900ac53"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/U.class",
+      "bytes": 4437,
+      "sha256": "f1acef2623320ac189a03e6845ec0a920fc49314afb4381bcd9f8d0431880155"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/V.class",
+      "bytes": 543,
+      "sha256": "eaed82039cf623debb5a9175307cfc4ec55babd95a102f19fe394304f0b88e23"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/W.class",
+      "bytes": 3353,
+      "sha256": "d9841c2a0be9222e6ff74aaaf17026e84a3b0909f5b26d28a63e530aae71562f"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/X.class",
+      "bytes": 7889,
+      "sha256": "e08b6f198aaaa6c2629d415be6c39561b02da30205515d7cc83766d506bc9b07"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/Y.class",
+      "bytes": 5556,
+      "sha256": "21520db6f53de4440c7ff4ce21c2f5f2637b4461dcdeae986632e52ac63c83fc"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/Z.class",
+      "bytes": 543,
+      "sha256": "c9116a509a57bc5565f3ae2e521bcdcad18caa64f83590565075801b05ce1559"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/a.class",
+      "bytes": 2192,
+      "sha256": "d88d6587be4ecb6f69875f4e68edfedce0ef0a942273857997e4f000d07897d3"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aA.class",
+      "bytes": 4397,
+      "sha256": "a2bd4c0c1e7e6ce6bb7ff82097deb24ed276d3208a2a2c76becc2d9a106df879"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aB.class",
+      "bytes": 547,
+      "sha256": "9a882e9840282295c627acaaa0146cb212f12347df83ad4dc268c54a2fa4878f"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aC.class",
+      "bytes": 2249,
+      "sha256": "184036ba78d9eb447af4b8fa4a9d24d9debbd8ea68b381adbb4e6adc93cca56a"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aD.class",
+      "bytes": 3428,
+      "sha256": "d75605dadadef3bec8b2a033f798b9be6c2e79dd9c17a4f867b6c9c4c2262bd5"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aE.class",
+      "bytes": 547,
+      "sha256": "e125bcaebdc8c8f61a93d1d6b206e76bfb9b24161c72e3911cdadf5eaf6a3c8c"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aF.class",
+      "bytes": 4657,
+      "sha256": "ed2f190929b7ecce0bce513006355e76dca8d59b758490f966a5b44a2448a508"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aG.class",
+      "bytes": 4443,
+      "sha256": "274c9c74b7636c8efc5d24f9f484176838dc33089253aa37b63bfc6f73171755"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aH.class",
+      "bytes": 547,
+      "sha256": "0d82433a8b525eb27eac9ce344625ab41c9abd74274b6349881d04a68db3a57e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aa.class",
+      "bytes": 4654,
+      "sha256": "8df29017bda96b0243d737de3b1cbb9b4db443d4cf967187ddde4e69cec35cf0"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ab.class",
+      "bytes": 4440,
+      "sha256": "a094fad2480e1eb4594d4d377f962d1a87183ec8762817c99d94e4bdaf1b4871"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ac.class",
+      "bytes": 547,
+      "sha256": "9971e45437508e7028ac64fb3fbd1d93c3ca35ead80d5d009224d692ac088e71"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ad.class",
+      "bytes": 4321,
+      "sha256": "7dd85ef04d1de0c67cc54c0a9db9747a53413457e4d827e6c9f92f78014d6bba"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ae.class",
+      "bytes": 4697,
+      "sha256": "14117b3b83b243a2a4f8f63294061bfe87dca778994b00c7285382ebf742baf3"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/af.class",
+      "bytes": 767,
+      "sha256": "d5a2a39327af1d70856981a50a2ed5ccd18f76f8456853e85a4ef68e20e06ce5"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ag.class",
+      "bytes": 3134,
+      "sha256": "ca196f61e212676d6dfcd9b90066ad8a66a33f5bb7bcc5ffa44e55e002e5110e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ah.class",
+      "bytes": 583,
+      "sha256": "c0128c500447e7d8e02241301ba247df5cdd8d0e1053bbe1a8134b71c98c0599"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ai.class",
+      "bytes": 3513,
+      "sha256": "fe3989c91ab8e732e81510fc350773e39f04d869600336d1139d42f4772782cb"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aj.class",
+      "bytes": 4321,
+      "sha256": "ded454d3880b79a50d2c3e6cfd4cebcf6164f81da5951eee9bdc2a07e4609db8"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ak.class",
+      "bytes": 767,
+      "sha256": "d9ac0042a6e1d8b4e168d55f65826dd4ac8841243da378fb890ebb2cf623c8f4"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/al.class",
+      "bytes": 2256,
+      "sha256": "e8a89293325c4a0ecc37d6becfe9db3443f457c1bddb10da333b8d9caa56ea71"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/am.class",
+      "bytes": 3435,
+      "sha256": "b6986e3d30c2c50d7aefb64c2a79f32e682fc2510aad3671f2d8cadea0faf523"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/an.class",
+      "bytes": 547,
+      "sha256": "71f2cd3329a41d2e9944fdd8fdad929fbd143e0264eaa1fef7bede62bce7660b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ao.class",
+      "bytes": 4680,
+      "sha256": "2ba4d6ac58b8094a0483d7ae5d21f3ddaba09d01877da02f3ca842be002e37c4"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ap.class",
+      "bytes": 4455,
+      "sha256": "302847ba78fba51c269657d823b963b23281ee521d2a5a961f9c58715d93c178"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aq.class",
+      "bytes": 547,
+      "sha256": "e2f9d1d5923be40e4790f34c6a6126a62f60da7c69859f8ccebbde72d8c2a226"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ar.class",
+      "bytes": 3043,
+      "sha256": "73b434940b867f5a7dacfce206ee21460c14d33f8b433bdf2a308b48f5000f14"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/as.class",
+      "bytes": 583,
+      "sha256": "b0b03d89705b285b138235096e7a70815524654bce5c6b1a34f25c965071362d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/at.class",
+      "bytes": 2248,
+      "sha256": "ee0ec2b23af51b03555adcf901eb0f0fca61cf61f1909e4406488d7a50419f69"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/au.class",
+      "bytes": 3427,
+      "sha256": "c4e0f871fc7c5706fee508a9c58da26de5c7e295f2cef8ded0eb5482f13657f0"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/av.class",
+      "bytes": 547,
+      "sha256": "63a91a2104a1e387f64ebecb9d16d91a5fe9919dd677b3fb2b0ce48e8bacf0ab"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/aw.class",
+      "bytes": 4655,
+      "sha256": "09c0bd5e9ab5fa6b3f58ae42c362fbae7a0f358b66d56d94ef2f6370c1a43bd2"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ax.class",
+      "bytes": 4442,
+      "sha256": "67780a7b645114b05a14dc550f263371d9e81d89e83f06dab27aff62c1e4db12"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/ay.class",
+      "bytes": 547,
+      "sha256": "5668a008a4f5d2b9ff87c67e28c2e48a89633518b26e31e6324e4633ce6b24eb"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/az.class",
+      "bytes": 4630,
+      "sha256": "cead4f740db9a16e33b9efdff5d4491d07e0e3748a34728905928146ca37c8d4"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/b.class",
+      "bytes": 3473,
+      "sha256": "8c0b9f002b5fe2476e81665214b95c09c6ca7f1ea997ef61152536bf6ac88206"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/c.class",
+      "bytes": 204,
+      "sha256": "f8c5a253ab5be1a843b8b0b0cd060bd072f0017d9fb5e24fb859366c6fa1db93"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/d.class",
+      "bytes": 4045,
+      "sha256": "900ab3af762e04ba585aa0349b445d6f44ad34ed1cc0eb182f523631ffd7c518"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/e.class",
+      "bytes": 4064,
+      "sha256": "6357ea3c1c67e7c45ad63bc1da732f5e200040f06a3f961dc4d2daef6000d12a"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/f.class",
+      "bytes": 543,
+      "sha256": "5162de5ea6cdaaf787be0dbf0d8f63237b4f6007a66b4b1a637ff82ac64cb244"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/g.class",
+      "bytes": 4140,
+      "sha256": "ed786c84e1ef9e86cec1653f57262a75cf28a11fcd23105080d04ce1ca4e33ec"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/h.class",
+      "bytes": 4024,
+      "sha256": "5dfb0e8f704c692f6a0e9720b72cd803512ca10ef1e969652b18a7a09a5e9d28"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/i.class",
+      "bytes": 204,
+      "sha256": "a089ea1c5074bf51669ee2c6a3f273f5fbceeb0dafe857d1d042f603b4de30fd"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/j.class",
+      "bytes": 4646,
+      "sha256": "345517af4323a5f01c3c1867ab0547d1399e29a122029e24b1eb019858851185"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/k.class",
+      "bytes": 4436,
+      "sha256": "d3654da72cdbdaf53b055923785072d53e3bfe1c2adfcdaa1581898cd43815f4"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/l.class",
+      "bytes": 543,
+      "sha256": "6b428b03e985b5bfca9396841bc38457e2bbb9bb91c3c6386c41e9c7cc0ac890"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/m.class",
+      "bytes": 4067,
+      "sha256": "83fc4810cba91659c04cf15ed8389fef414a4796a6ef994ffc0ec509ef74337c"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/n.class",
+      "bytes": 4035,
+      "sha256": "1155a69edfb7397b1d11034d9f4ee86bdc4f43904e9d91d59a035ef0e6a8c472"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/o.class",
+      "bytes": 204,
+      "sha256": "a373376d891b38bd79a4c75a0d965b9dd1c18fae138b3976660b0e849a66dbb7"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/p.class",
+      "bytes": 2767,
+      "sha256": "c05644a7d2bab0922406ed5676709b7d58c6f74a8c5196c3c7d9fc6224c6ab6b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/q.class",
+      "bytes": 3918,
+      "sha256": "6d5d87538391969e0ef4821b7f5379873717e88580c8cf749b65d9c3b6c46811"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/r.class",
+      "bytes": 543,
+      "sha256": "9d9477cc6c63c90f35ea695dc2885d0e5abbb123d019b1f8290c993fa2acbd45"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/s.class",
+      "bytes": 1682,
+      "sha256": "896d8d162da99342863a39e95c1cf74056e63b69a2ea8a31c439d0ed2863812b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/t.class",
+      "bytes": 576,
+      "sha256": "5715edc6209ec766b2bf7b625b2d9831d700fea5d26ff300babfc37453d7e192"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/u.class",
+      "bytes": 2250,
+      "sha256": "5e88bfe74d0c3f73776a0eef8d8d619d3be4ddadb4d04430b7aaedc2ce42f4d9"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/v.class",
+      "bytes": 3430,
+      "sha256": "9ede18594587ccfed55e9187019fdb805f9bd23e7a0abffd927329c1b5e598bd"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/w.class",
+      "bytes": 543,
+      "sha256": "eb28257e6163badbc675549a5eb36d27569039065858de46f9592f060c9bee5b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/x.class",
+      "bytes": 4646,
+      "sha256": "a3bc0ed8e96ee8acfcfa153da2432bee530cdced7b3d2e706787d54998a6b5fc"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/y.class",
+      "bytes": 4436,
+      "sha256": "b92c2a3d4fdaa5de9e560b866cf7d4ddec2d0a98b8a842d73f6f495be105cc3b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/a/z.class",
+      "bytes": 543,
+      "sha256": "751434f24050eaa1fa8e9a35a348b5a419ebd409944979edad0b3b9dda37eaf0"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/b.class",
+      "bytes": 3779,
+      "sha256": "9d2b514bd6f897ee76a6abd21498656cd6e892c3e0b8b5291fa2d0c3405227cc"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/c.class",
+      "bytes": 2585,
+      "sha256": "c2ddb18360797fe3bcccfb05f98e1e55a689dc04d7f6f7618434fa50adb10763"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/d.class",
+      "bytes": 2596,
+      "sha256": "9b4bf9125f07a55da4c096d80b857be22231177cdc32fc4afe51591e9d98150a"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/e.class",
+      "bytes": 1135,
+      "sha256": "7baad09a95936e9878e2ca3e884336ee1a67d281584a8d7e028d22fd217b5453"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/f.class",
+      "bytes": 945,
+      "sha256": "2640959743343c77a6d49b41ccf231f2574243c5bf283cf747b4fbb08b6b29a5"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/g.class",
+      "bytes": 942,
+      "sha256": "29682a133c3b2ecec6fc3c1f20703d697cc20215c95e4b5e6bbac896a5bb5b1d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/h.class",
+      "bytes": 984,
+      "sha256": "ff288a5e6c5fe9e43494f3b01139da0dfc4053689dfc57a9bb46cab73cee142c"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/i.class",
+      "bytes": 994,
+      "sha256": "6b3e190200cb462e9397e90679632a3130725b07dedbe868bbaf9825c2bf474d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/j.class",
+      "bytes": 956,
+      "sha256": "4aabe3a79eb24c452ec6785ca0630ea50e6ca3e0625e5f19424b732c463fcec6"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/k.class",
+      "bytes": 1018,
+      "sha256": "8a2f53d85d98064eafadd2b8a39b087105de38a47fe10012238bc9f87a3da1db"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/l.class",
+      "bytes": 640,
+      "sha256": "0759315d843e0e68ec364d66746a3463b5e3c9aa9061c129fbd8821275b71bed"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/m.class",
+      "bytes": 961,
+      "sha256": "3b218fe033eb70e418c7e9e4271409dd8e3e87484c83375d070d10b79bcb6d0d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/n.class",
+      "bytes": 14830,
+      "sha256": "86768412dc5e480104831b4aa0acebc9d780d130986a2b0aa72e14902a353ea8"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/o.class",
+      "bytes": 535,
+      "sha256": "01a50b126019d826108ebf29824ab0d3f050ba9a6bb4fe0394d488b34bb83c8d"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/p.class",
+      "bytes": 1704,
+      "sha256": "66cdf2c9f139ecd6ca55c6c2581b9c42465eb5d65bbf0065145b81ec0112fc8b"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/q.class",
+      "bytes": 2992,
+      "sha256": "3871b8be28052709b2947939b39b0cc49c8f03dc115f8c4fbd0bee80fd39c906"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/r.class",
+      "bytes": 535,
+      "sha256": "bbf181f9972e2d3b28f1ce506a9c21127541dae27693288856f00a978b6546e8"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/s.class",
+      "bytes": 1722,
+      "sha256": "eb6b21d626f6fb39339f9ebd29dd856df4cae88ad458e76f3064c4d906367507"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/t.class",
+      "bytes": 1030,
+      "sha256": "56b91cf4562ef6c73333449dd356ce01eb3ff654732bbab71d5a0d07d9f1b252"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/u.class",
+      "bytes": 487,
+      "sha256": "44d28b04b34db5aac7e9ef4169ba310f202d0aa0b5121a14266e87a07a8fdb24"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/v.class",
+      "bytes": 1823,
+      "sha256": "7d791d1916df58d51d6d285b51f6d5c944a8686cc5c0a114b39571d4e3985c4e"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/w.class",
+      "bytes": 2064,
+      "sha256": "726bb870abd2818c588cf5fdd6959d4ff6ce4e66ebc55d93fd98bf93ec4085c9"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/x.class",
+      "bytes": 850,
+      "sha256": "2c9b7dbe9167ec7963568a75d20fb6dfb38f6d0b9e94149693277f9ba009af8c"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/y.class",
+      "bytes": 535,
+      "sha256": "fdace4cbe37bceab81a665ebb92e217cb3dc0fdd13db73d7d01bf7c0fe97e570"
+    },
+    {
+      "path": "eu/kanade/tachiyomi/extension/all/mangadex/z.class",
+      "bytes": 1689,
+      "sha256": "2aa173cb268945ae1c02e080b92cd7892c1de8032a848c83dd2d1908c11f7a73"
+    },
+    {
+      "path": "keiyoushi/a/a/a.class",
+      "bytes": 4690,
+      "sha256": "0ec310f4bf616247263aa3235a29e80be02bacf911b32a50658d3e9d29671157"
+    },
+    {
+      "path": "keiyoushi/a/a/b.class",
+      "bytes": 1071,
+      "sha256": "553909f6a447bed5ac9bfbdf4f1197c9dfa6a85b500386120aa2fcc430b41bb4"
+    },
+    {
+      "path": "keiyoushi/b/a.class",
+      "bytes": 2952,
+      "sha256": "d5193c9ddf754d0f772b47ed1a8d060aa59856e2bd2fadc169af347d363de69b"
+    },
+    {
+      "path": "keiyoushi/b/b.class",
+      "bytes": 2450,
+      "sha256": "60f7b1debc1b51f990eddcc9dcf570d3c9ae319b61259c57d604ccd13e49ee71"
+    },
+    {
+      "path": "keiyoushi/b/c.class",
+      "bytes": 4036,
+      "sha256": "61f5786f1a8363adc4595f3ffd49f46822ce11e13d99c62b57e6ad81a66b6e26"
+    },
+    {
+      "path": "keiyoushi/b/d.class",
+      "bytes": 1856,
+      "sha256": "143ead4ae551fb6292fca1637f38525d1a722583f27b00fbf1ff53c042251700"
+    },
+    {
+      "path": "keiyoushi/b/e.class",
+      "bytes": 328,
+      "sha256": "191ca852fe040bc1dd8a3ebc17ffd5c357083f27ec3a74633fb4c8e5b6a27c3a"
+    },
+    {
+      "path": "keiyoushi/b/f.class",
+      "bytes": 867,
+      "sha256": "ac539091c557bdab17a92174473b85fdd47a028ec8b677a2a24f74b5de990563"
+    },
+    {
+      "path": "keiyoushi/b/g.class",
+      "bytes": 2130,
+      "sha256": "1de1e8330fe9a0f0c56ec9d6b6336c292cb57476ae3bdeac60adcfaa6ae3a656"
+    },
+    {
+      "path": "keiyoushi/b/h.class",
+      "bytes": 973,
+      "sha256": "5ce6badd1a229d2781e69bab1fe0ab8f94aa9c82454cb572ef3d90097fed2ebc"
+    },
+    {
+      "path": "keiyoushi/c/a.class",
+      "bytes": 632,
+      "sha256": "436621f385db29498fa4f699f85806e86af62b346150dac9e22fbc0b84ab1aec"
+    },
+    {
+      "path": "keiyoushi/c/b.class",
+      "bytes": 244,
+      "sha256": "22205a4d321fad4a5136a60165082134470e5c0479a96b218eddc66307c6a814"
+    },
+    {
+      "path": "keiyoushi/c/c.class",
+      "bytes": 785,
+      "sha256": "5a971e576779558bf1e692f18ba9277b9f11c75fdc73ea41589fdea69e10f2f3"
+    },
+    {
+      "path": "keiyoushi/source/Generated.class",
+      "bytes": 2875,
+      "sha256": "83de6a1a9c1c2ee773404b82515058526ef2059857f5a7044e4a75af2a63f2f7"
+    },
+    {
+      "path": "keiyoushi/source/UrlActivity.class",
+      "bytes": 1275,
+      "sha256": "a10f03ab9e6966d59a7c154744bea2bf98d67f51c65de5e2118d67c6d475a9e1"
+    },
+    {
+      "path": "keiyoushi/source/a.class",
+      "bytes": 11693,
+      "sha256": "4a79a006c02ac67de647632b602365a6150b5bd7eb2b42f94d59109679c8e3fe"
+    },
+    {
+      "path": "keiyoushi/source/b.class",
+      "bytes": 574,
+      "sha256": "5ffb83e06d93281ae93b7a5b1b55a25d113c5fe5c3cab9f8c8a5209efbf725b7"
+    },
+    {
+      "path": "keiyoushi/source/c.class",
+      "bytes": 848,
+      "sha256": "0b46c43777fce0a668ab5dd34085de2d01952935c37633a048529024337df08b"
+    },
+    {
+      "path": "keiyoushi/source/d.class",
+      "bytes": 792,
+      "sha256": "dfe9456f88afd61ae15ec96712ea610b5570fcbb2d61d00e695393f630049eab"
+    },
+    {
+      "path": "assets/i18n/messages_en.properties",
+      "bytes": 6158,
+      "sha256": "c9fb475fe7610cdc13536e9ca23da8db499dd86fd40e1ac9b6825eac82d1f67d"
+    },
+    {
+      "path": "assets/i18n/messages_es.properties",
+      "bytes": 4168,
+      "sha256": "85bc5d25204d54abcd63ab1fe7e9ce51a2f842cd3529e478564ba0c298ede3a7"
+    },
+    {
+      "path": "assets/i18n/messages_pt_br.properties",
+      "bytes": 4898,
+      "sha256": "cb9a0d1716357761e1c9a0b13a55d75cffb4df2b09c50c947cf78eb902ce8641"
+    },
+    {
+      "path": "assets/i18n/messages_ru.properties",
+      "bytes": 6709,
+      "sha256": "ce9d1e9dee84b28da5671ec9caa050ee93d36c08c6529ba6cc2fea3259839141"
+    },
+    {
+      "path": "res/9w.png",
+      "bytes": 1647,
+      "sha256": "c1fc7e9cb10d5dd3479d9a79e6f8cd4c5b274b100d850a4ca4a0eb4acdfaf28a"
+    },
+    {
+      "path": "res/FS.png",
+      "bytes": 3632,
+      "sha256": "0b1eae96d1686efc60da97ef0ca077f27380b6f5f0b82f4ac42cdf29d6edb353"
+    },
+    {
+      "path": "res/RJ.png",
+      "bytes": 6640,
+      "sha256": "7134d7e68eeb1fa6fe0479dff4a9413c4bc7fba26e958e519c526cddb54351fc"
+    },
+    {
+      "path": "res/o-.png",
+      "bytes": 9078,
+      "sha256": "6260f2c3ce8c49f117d9a64c9eeaebb8377a8f929017c1ca08b6d0e6f097521c"
+    },
+    {
+      "path": "res/yn.png",
+      "bytes": 2961,
+      "sha256": "c60f3d3a26ed1e5217d0f5c0615cedab6bc660b1ed99312aea6ec559b196e50f"
+    },
+    {
+      "path": "resources.arsc",
+      "bytes": 1052,
+      "sha256": "8c45ecf2b24beb15c55c097fbbe6638f8bd68309bfdbb90c7d56062e18307239"
+    },
+    {
+      "path": "META-INF/CERT.SF",
+      "bytes": 18504,
+      "sha256": "0f10e9749044060055fc8c7c1999f19dfe9653473e061150b6fa54bfe50b2f37"
+    },
+    {
+      "path": "META-INF/CERT.RSA",
+      "bytes": 1167,
+      "sha256": "b5eddfb251b7473450098ab80668dde002c9a77082ef87ba72679518abf65c17"
+    },
+    {
+      "path": "META-INF/MANIFEST.MF",
+      "bytes": 18405,
+      "sha256": "0192fccb746b62f3ff1054da37c5f24578bec8862a4ab6a1589a9503daa23d44"
+    }
+  ],
+  "signature_entries": [
+    "META-INF/CERT.SF",
+    "META-INF/CERT.RSA"
+  ],
+  "publisher_signature_verified": false,
+  "source_executed": false,
+  "device_executed": false,
+  "scope": "Public source-built MangaDex JAR candidate with 61 metadata sources. JarFile signature integrity reported by host jarsigner with an untrusted debug signer and JarInputStream ordering warnings. No extension code was executed; not installed or activated in MSL.",
+  "run_id": 39768470880,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39768470880",
+  "workflow_commit": "914a723660486c5e09867c9f7ec25ef79c4cf137",
+  "conclusion": "success",
+  "artifact_id": 12421526311,
+  "artifact_sha256": "b7868cc3117b190d7e5af82ebae28b375b522aecc4c40af986739d2162f89049",
+  "artifact_sha256_verified": true,
+  "jar_member_hashes_verified_locally": true,
+  "jar_crc_verified_locally": true,
+  "source_count": 61,
+  "entrypoint_static_declaration": "public final class keiyoushi.source.Generated implements eu.kanade.tachiyomi.source.SourceFactory {\n  public keiyoushi.source.Generated();\n  public final java.util.List<eu.kanade.tachiyomi.source.Source> createSources();\n}",
+  "host_signature_audit": {
+    "jarsigner_reported_verified": true,
+    "signer_subject": "C=US, O=Android, CN=Android Debug",
+    "certificate_sha256": "a5086c0c2f8e442846a0ea6df55af9cfc70baba17382029e7903de84731bbe7a",
+    "certificate_chain_trusted": false,
+    "jar_input_stream_order_warning": true,
+    "publisher_signature_verified": false
+  },
+  "local_file": "build/mangadex-source-39768470880/evidence/tachiyomi-all.mangadex-v1.6.0.jar",
+  "ci_log_sha256": "506a752434c703d7c000023cdaeb408a02486ea7c55c0f8702500d38a073bdfa",
+  "signature_audit_sha256": "ed1ea669e9b3d43e5d782715e3840d774a4a16340f6ccde0b04d3dca3c6aa730",
+  "entrypoint_audit_sha256": "74032ce94077a80e4677374169cf6eaf4e49e36fd80b09a28bc75f7695b8d6e1"
+}

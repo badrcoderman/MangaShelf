@@ -4,7 +4,7 @@
 [keiyoushi/extensions-source عند 1d3d7c4](https://github.com/keiyoushi/extensions-source/tree/1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa/src/all/mangadex).
 قُرئ كبيانات خارج مستودع التطبيق؛ تحفظ [قائمة البصمات](../validation/mangadex-source-review.json)
 37 ملفًا من المصدر وتعريفات البناء والمولّد. لم يُنفّذ محليًا كود الإضافة أو
-Gradle، ولا توجد حزمة JAR مثبتة النجاح في هذا التقرير بعد.
+Gradle. نجح بناء JAR في Actions كما هو موثق أدناه؛ لم تُنفّذ أصناف الإضافة.
 
 ## ما تغيّر عن افتراض المحوّل الحالي؟
 
@@ -51,3 +51,29 @@ Gradle، ولا توجد حزمة JAR مثبتة النجاح في هذا الت
 توقفت قبل Gradle لأن اسم platforms;android-37 غير موجود. فُحص فهرس Google
 الرسمي؛ الاسم هو platforms;android-37.0، revision 2، وصُحح طلب التثبيت.
 لم تتغير compileSdk=37 في المصدر. [الدليل](../validation/mangadex-source-39768053220.json).
+
+## البناء والفحص المثبتان
+
+نجحت المحاولة [39768470880](https://github.com/badrcoderman/MangaShelf/actions/runs/39768470880)
+عند commit MSL `914a723660486c5e09867c9f7ec25ef79c4cf137`، من مراجعة المصدر
+العامة المثبتة نفسها. فُحصت بصمة artifact المنشورة وCRC وكل بصمة عضو JAR
+محليًا؛ [الدليل](../validation/mangadex-source-39768470880.json).
+
+- الملف tachiyomi-all.mangadex-v1.6.0.jar، حجمه 244602 بايت.
+- SHA-256: `23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070`.
+- الحزمة eu.kanade.tachiyomi.extension.all.mangadex، versionCode=106000.
+- يحتوي 145 class، وأعلى major=55 (Java 11).
+- تضم metadata عدد 61 مصدرًا لغويًا؛ العربية 3339599426223341161،
+  والإنجليزية 2499283573021220255. هذا عدّ metadata وليس تسجيلًا داخل JVM.
+- يؤكد javap الساكن وجود مُنشئ Generated بلا معاملات وcreateSources()
+  وإعلانه SourceFactory؛ لم يُستدعَ أي منها.
+
+أعلن jarsigner على المضيف jar verified مع شهادة Android Debug غير موثوقة
+في سلسلة الناشر، وتحذير ترتيب JarInputStream: يرى JarFile التواقيع، بينما
+لا يراها القارئ المتسلسل في هذا الترتيب. لا يُحوّل هذا إلى نجاح مصادقة الناشر؛
+يجب أن يستخدم محقق التشغيل عقدًا صريحًا يغطي جميع الأعضاء ويتحقق من هوية
+الموقّع المقبولة، لا وجود CERT.RSA أو نتيجة CRC فقط.
+
+يبقى محوّل النماذج الفعلي مطلوبًا، بما فيه مطابقة وحدات date_upload وحقول
+الفصول واللغة وحالة العنوان. العقد التجريبي الحالي يعيد نص JSON؛ هذه الحزمة
+تعيد كائنات Source الحقيقية وتحتاج التبعيات وخدمات المضيف.
