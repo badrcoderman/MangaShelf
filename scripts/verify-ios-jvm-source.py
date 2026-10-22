@@ -40,7 +40,17 @@ def stack_flags(source, platform):
     return subprocess.check_output(['bash', '-eu', '-c', script, 'stack-flag-check', platform], text=True).strip()
 
 
-def library_link_flags(source, flag_source, platform, library, parameter=None):
+def iconv_flags(source, platform):
+    start = source.index('  # Setup libiconv flags and library')
+    end = source.index('  AC_SUBST(ICONV_CFLAGS)', start)
+    script = 'OPENJDK_TARGET_OS="$1"\n' + source[start:end]
+    script += '\nprintf "%s\\n" "$ICONV_CFLAGS" "$ICONV_LDFLAGS" "$ICONV_LIBS"\n'
+    values = subprocess.check_output(['bash', '-eu', '-c', script, 'iconv-flag-check', platform], text=True).splitlines()
+    assert len(values) == 3, values
+    return dict(zip(['cflags', 'ldflags', 'libs'], values))
+
+
+def library_link_flags(source, flag_source, platform, library, parameter=None, iconv=''):
     # Evaluate the actual library call with a named-argument capture stub, then
     # the pinned upstream SetupLinkerFlags body. No compile/link targets run.
     start = source.index(f'$(eval $(call SetupJdkLibrary, {library},')
@@ -63,7 +73,7 @@ all:
 """
     if parameter is not None:
         makefile = makefile.replace('$(BUILD_LIBJAVA_LIBS) $(BUILD_LIBJAVA_EXTRA_LIBS)', f'$(BUILD_LIBJAVA_{parameter})')
-    makefile = makefile.replace('BUILD_LIBJAVA', library)
+    makefile = 'ICONV_LIBS := ' + iconv + '\n' + makefile.replace('BUILD_LIBJAVA', library)
     return subprocess.check_output(
         ['make', '--no-print-directory', '-s', '-f', '-', f'OPENJDK_TARGET_OS={platform}'],
         input=makefile, text=True).strip()
@@ -90,12 +100,19 @@ def verify(root):
     base = (root / 'make/modules/java.base/Lib.gmk').read_text()
     prefs = (root / 'make/modules/java.prefs/Lib.gmk').read_text()
     instrument = (root / 'make/modules/java.instrument/Lib.gmk').read_text()
+    libraries = (root / 'make/autoconf/libraries.m4').read_text()
+    jdwp_bytes = (root / 'make/modules/jdk.jdwp.agent/Lib.gmk').read_bytes()
+    if hashlib.sha256(jdwp_bytes).hexdigest() != '0305d605b180dccd0dd8239ca9c402c6f6bea325661ecc0f8ea281c208fde7a7':
+        raise ValueError('Unexpected upstream JDWP library call; refusing Make evaluation')
     flag_bytes = (root / 'make/common/native/Flags.gmk').read_bytes()
     if hashlib.sha256(flag_bytes).hexdigest() != '29265e2886f737e9fcf0ff36d6c5d43490a6bae67117fe96492c699f2ec99f33':
         raise ValueError('Unexpected upstream native/Flags.gmk; refusing Make evaluation')
     flag_source = flag_bytes.decode()
     results = []
     for platform in ["ios", "macosx", "linux"]:
+        iconv = iconv_flags(libraries, platform)
+        assert iconv['cflags'] == iconv['ldflags'] == '', (platform, iconv)
+        assert iconv['libs'] == ('-liconv' if platform in ['ios', 'macosx'] else ''), (platform, iconv['libs'])
         suffix = shell_macro(toolchain, "TOOLCHAIN_SETUP_FILENAME_PATTERNS", platform)
         shared_flags = shell_macro(flags, "FLAGS_SETUP_SHARED_LIBS", platform)
         name_flags = make_flag(linker, platform, 'SetSharedLibraryName', 'libprobe.dylib')
@@ -106,7 +123,8 @@ def verify(root):
         nio_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO')
         net_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNET')
         prefs_flags = library_link_flags(prefs, flag_source, platform, 'BUILD_LIBPREFS')
-        instrument_flags = library_link_flags(instrument, flag_source, platform, 'BUILD_LIBINSTRUMENT')
+        instrument_flags = library_link_flags(instrument, flag_source, platform, 'BUILD_LIBINSTRUMENT', iconv=iconv['libs'])
+        jdwp_flags = library_link_flags(jdwp_bytes.decode(), flag_source, platform, 'BUILD_LIBJDWP', iconv=iconv['libs'])
         filetype_flags = library_link_flags(base, flag_source, platform, 'BUILD_LIBNIO', 'msl_ios_filetype.m_CFLAGS')
         jli_excluded = libjli_exclusions(core, platform)
         expected_java_flags = {
@@ -129,11 +147,12 @@ def verify(root):
         }
         expected_instrument_flags = {
             'ios': '-liconv',
-            'macosx': '-framework ApplicationServices -framework Cocoa -framework Security',
+            'macosx': '-liconv -framework ApplicationServices -framework Cocoa -framework Security',
             'linux': '',
         }
         assert prefs_flags == expected_prefs_flags[platform], (platform, prefs_flags)
         assert instrument_flags == expected_instrument_flags[platform], (platform, instrument_flags)
+        assert jdwp_flags == {'ios': '-liconv', 'macosx': '-liconv', 'linux': '-ldl'}[platform], (platform, jdwp_flags)
         apple = platform in ["ios", "macosx"]
         assert jli_excluded == (['java_md.c'] if apple else []), (platform, jli_excluded)
         assert suffix == (".dylib" if apple else ".so"), (platform, suffix)
@@ -155,6 +174,8 @@ def verify(root):
                         "libnet_platform_libraries": net_flags,
                         "libprefs_platform_libraries": prefs_flags,
                         "libinstrument_platform_libraries": instrument_flags,
+                        "libjdwp_platform_libraries": jdwp_flags,
+                        "iconv_configure_flags": iconv,
                         "filetype_source_flags": filetype_flags,
                         "libjli_excluded_files": jli_excluded})
     return {"flag_branches_verified": True, "vm_built": False, "vm_executed": False, "cases": results}

@@ -1,15 +1,27 @@
 {
-  "observed_at": "2026-10-22T10:46:28.611619+00:00",
+  "observed_at": "2026-10-22T11:14:11.213715+00:00",
   "run_id": 39765519203,
   "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39765519203",
   "source_commit": "a04a45f0fb590837922a9b6d061f5e2bb980bac5",
   "created_at": "2026-10-22T10:45:45Z",
-  "status": "in_progress",
-  "conclusion": null,
+  "status": "completed",
+  "conclusion": "failure",
   "change": "iOS libprefs CoreFoundation/Foundation and libinstrument iconv link fixes after the two terminal errors in run 39762272353",
   "local_source_checks": "validation/ios-jvm-source-fixes.json",
   "complete_java_image_verified": false,
   "target_vm_executed": false,
   "real_extension_on_iphone_verified": false,
-  "scope": "Live workflow snapshot only; no new target build or device result is asserted."
+  "scope": "Terminal Java image failure at JDWP iconv linking, after prefs and instrument jmod creation. Failed artifact is not used for iPhone.",
+  "host_jdk_built": true,
+  "ios_static_libraries_built": true,
+  "ios_filetype_sdk_compile_preflight_passed": true,
+  "prefs_and_instrument_jmods_created": true,
+  "failure_target": "jdk.jdwp.agent/libjdwp.dylib",
+  "failure_symbols": [
+    "_iconv",
+    "_iconv_close",
+    "_iconv_open"
+  ],
+  "ci_log_file": "build/ios-jvm-failed-39765519203.log",
+  "ci_log_sha256": "a1d6abc3588a8b261ed3247ce840143949b89e1a8b5b2ae6e123bd6c7717baf8"
 }

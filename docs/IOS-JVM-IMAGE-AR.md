@@ -155,9 +155,20 @@ libprefs، و-liconv إلى libinstrument. قُرئت ملفات Make من ال�
 استدعاءات Make الفعلية مع ثبات macOS/Linux، ورفض غياب أي من الإضافتين
 أو تغير أي مدخل أو إعادة تطبيق التعديل. إثبات الربط بـSDK يتطلب إعادة البناء.
 
-بدأت إعادة البناء [39765519203](https://github.com/badrcoderman/MangaShelf/actions/runs/39765519203)
-عند `a04a45f` بعد الإصلاحين؛ كانت جارية وقت حفظ
-[الحالة](../validation/ios-jvm-image-39765519203.json). تبقى البوابات التالية مفتوحة:
+انتهت إعادة البناء [39765519203](https://github.com/badrcoderman/MangaShelf/actions/runs/39765519203)
+عند `a04a45f` بالفشل. اكتملت أدوات المضيف والمكتبات الساكنة، وتجاوزت المحاولة
+ربط prefs وinstrument إلى إنشاء jmod لكل منهما. توقف libjdwp عند
+iconv/iconv_close/iconv_open؛ [الدليل النهائي](../validation/ios-jvm-image-39765519203.json).
+
+قُرئ libraries.m4 من المصدر المثبت: يضبط ICONV_LIBS=-liconv لـAIX وmacOS
+فقط، بينما يستعمل كل من instrument وJDWP هذا المتغير المشترك. وُسّع الشرط
+إلى iOS وأزيل تخصيص instrument السابق كي لا يتكرر الربط. بقي ملفا
+instrument وJDWP كما في المصدر الأصلي. يجمع الفاحص ناتج Bash الفعلي مع
+استدعاء Make لكل مكتبة، ويتحقق من ثبات macOS/Linux/AIX/Windows ورفض غياب
+الإصلاح أو تكراره. صار التحضير يتحقق من 12 مدخلًا قبل الكتابة. تبقى ترجمة
+الإصلاح المشترك وصورة Java وتشغيل الهاتف مطلوبة.
+
+تبقى البوابات التالية مفتوحة:
 
 1. نجاح Actions في بناء المكتبات وصورة Java من المصدر نفسه، والتحقق من
    `modules / tzdb / java.security / release` ومنشأ الملفات.

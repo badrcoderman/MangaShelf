@@ -16,6 +16,7 @@ PINNED_FILES = {
     "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": "7706136f78495d9c33ac4e153a44089b871a7e02d6c926152f1c689e492b3b62",
     "make/modules/java.prefs/Lib.gmk": "b69c8f19d49de73318e3032f2855e054b513788094271b1d4776d73b6c716dad",
     "make/modules/java.instrument/Lib.gmk": "a8665634a69b13563f95b406d333da504efe927465c97773aa187d1d8771b57c",
+    "make/autoconf/libraries.m4": "bf75cabbaccfa7650e878c7ada059dcd9f0823d434e55c0feae167365eb27383",
 }
 
 def prepare(source_root, project_root):
@@ -68,6 +69,10 @@ def prepare(source_root, project_root):
             b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_macosx :=',
             b'    LIBS_linux := $(LIBDL) $(LIBPTHREAD), \\\n    LIBS_aix := $(LIBDL), \\\n    LIBS_ios := -lobjc -framework CoreFoundation -framework Foundation -framework UniformTypeIdentifiers, \\\n    LIBS_macosx :=',
         ),
+        "make/autoconf/libraries.m4": (
+            b'if test "x$OPENJDK_TARGET_OS" == "xaix" || test "x$OPENJDK_TARGET_OS" == "xmacosx"; then\n    ICONV_CFLAGS=',
+            b'if test "x$OPENJDK_TARGET_OS" == "xaix" || test "x$OPENJDK_TARGET_OS" == "xmacosx" \\\n      || test "x$OPENJDK_TARGET_OS" == "xios"; then\n    ICONV_CFLAGS=',
+        ),
         "src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c": (
             b'    jstring result = NULL;\n\n    CFStringRef extension = toCFString(env, ext);',
             b'#ifdef __IOS__\n    extern jstring msl_ios_filetype_probe(JNIEnv *, jstring);\n    return msl_ios_filetype_probe(env, ext);\n#else\n    jstring result = NULL;\n\n    CFStringRef extension = toCFString(env, ext);',
@@ -79,7 +84,6 @@ def prepare(source_root, project_root):
         results[name] = results[name].replace(before, after)
     for name, libraries in [
         ("make/modules/java.prefs/Lib.gmk", b'-framework CoreFoundation -framework Foundation'),
-        ("make/modules/java.instrument/Lib.gmk", b'-liconv'),
     ]:
         before = b'    LIBS_macosx := \\\n'
         if results[name].count(before) != 1:

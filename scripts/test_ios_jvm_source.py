@@ -19,7 +19,7 @@ def load(name):
 def check(pristine):
     prepare = load('prepare-ios-jvm-source')
     verify = load('verify-ios-jvm-source')
-    names = list(prepare.PINNED_FILES) + ['make/common/native/Flags.gmk']
+    names = list(prepare.PINNED_FILES) + ['make/common/native/Flags.gmk', 'make/modules/jdk.jdwp.agent/Lib.gmk']
     originals = {name: (pristine / name).read_bytes() for name in names}
     for name, expected in prepare.PINNED_FILES.items():
         if hashlib.sha256(originals[name]).hexdigest() != expected:
@@ -44,14 +44,19 @@ def check(pristine):
         for os in ['ios', 'macosx', 'linux']
     }
     assert baseline_nio['ios'] == ''
+    libraries = 'make/autoconf/libraries.m4'
+    baseline_iconv = {os: verify.iconv_flags(originals[libraries].decode(), os)
+                      for os in ['ios', 'macosx', 'linux', 'aix', 'windows']}
+    assert baseline_iconv['ios']['libs'] == ''
     extra_libraries = {
         'libprefs': ('make/modules/java.prefs/Lib.gmk', 'BUILD_LIBPREFS',
                      b'    LIBS_ios := -framework CoreFoundation -framework Foundation, \\\n'),
         'libinstrument': ('make/modules/java.instrument/Lib.gmk', 'BUILD_LIBINSTRUMENT',
-                          b'    LIBS_ios := -liconv, \\\n'),
+                          None),
     }
     extra_baseline = {
-        label: {os: verify.library_link_flags(originals[path].decode(), originals[native_flags].decode(), os, library)
+        label: {os: verify.library_link_flags(originals[path].decode(), originals[native_flags].decode(), os, library,
+                                            iconv=baseline_iconv[os]['libs'])
                 for os in ['ios', 'macosx', 'linux']}
         for label, (path, library, _) in extra_libraries.items()
     }
@@ -114,11 +119,17 @@ def check(pristine):
         extra_patched = {}
         for label, (path, _, addition) in extra_libraries.items():
             patched = (root / path).read_bytes()
-            assert patched.count(addition) == 1
-            assert patched.replace(addition, b'') == originals[path]
+            if addition is None:
+                assert patched == originals[path]  # Global ICONV_LIBS, no per-library duplicate.
+            else:
+                assert patched.count(addition) == 1
+                assert patched.replace(addition, b'') == originals[path]
             extra_patched[path] = patched
             assert all(case[label + '_platform_libraries'] == extra_baseline[label][case['platform']]
                        for case in result['cases'] if case['platform'] != 'ios')
+        patched_libraries = (root / libraries).read_bytes()
+        for os in ['macosx', 'linux', 'aix', 'windows']:
+            assert verify.iconv_flags(patched_libraries.decode(), os) == baseline_iconv[os]
         addition = b'    LIBS_ios := -framework CoreFoundation, \\\n'
         patched_core = (root / core).read_bytes()
         assert patched_core.count(addition) == 1
@@ -173,6 +184,8 @@ def check(pristine):
             raise AssertionError('Missing file type ARC setting accepted')
         (root / base).write_bytes(patched_base)
         for label, (path, _, addition) in extra_libraries.items():
+            if addition is None:
+                continue
             (root / path).write_bytes(extra_patched[path].replace(addition, b''))
             try:
                 verify.verify(root)
@@ -181,6 +194,24 @@ def check(pristine):
             else:
                 raise AssertionError(f'Missing iOS {label} libraries accepted')
             (root / path).write_bytes(extra_patched[path])
+        (root / libraries).write_bytes(originals[libraries])
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert error.args == (('ios', ''),), error.args
+        else:
+            raise AssertionError('Missing global iOS ICONV_LIBS accepted')
+        (root / libraries).write_bytes(patched_libraries)
+        # A leftover local fix would link iconv twice after the shared fix.
+        path = extra_libraries['libinstrument'][0]
+        duplicate = originals[path].replace(b'    LIBS_macosx :=', b'    LIBS_ios := -liconv, \\\n    LIBS_macosx :=')
+        (root / path).write_bytes(duplicate)
+        try:
+            verify.verify(root)
+        except AssertionError as error:
+            assert error.args == (('ios', '-liconv -liconv'),), error.args
+        else:
+            raise AssertionError('Duplicate per-library iconv fix accepted')
     result.update({
         'changed_input_rejected_before_writes': len(rejected) == len(prepare.PINNED_FILES),
         'rejected_changed_inputs': rejected,
@@ -206,6 +237,10 @@ def check(pristine):
         'baseline_libinstrument_platform_libraries': extra_baseline['libinstrument'],
         'missing_ios_libprefs_frameworks_rejected': True,
         'missing_ios_libinstrument_iconv_rejected': True,
+        'missing_global_ios_iconv_rejected': True,
+        'duplicate_libinstrument_iconv_rejected': True,
+        'iconv_non_ios_branches_unchanged': True,
+        'baseline_iconv_configure_flags': baseline_iconv,
         'libprefs_non_ios_branches_unchanged': True,
         'libinstrument_non_ios_branches_unchanged': True,
         'openjdk_commit': 'c1ed06aaef34c8dccf71e236d1ffa20918a77cfb',

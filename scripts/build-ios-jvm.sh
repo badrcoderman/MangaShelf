@@ -20,7 +20,7 @@ git -C "$mobile" diff -- src/hotspot/os_cpu/bsd_zero/os_bsd_zero.cpp \
   make/modules/java.base/lib/CoreLibraries.gmk \
   make/modules/java.base/Lib.gmk \
   src/java.base/macosx/native/libnio/fs/UTIFileTypeDetector.c \
-  make/modules/java.prefs/Lib.gmk make/modules/java.instrument/Lib.gmk \
+  make/modules/java.prefs/Lib.gmk make/modules/java.instrument/Lib.gmk make/autoconf/libraries.m4 \
   > "$out/logs/source-patch.diff"
 cp runtime-native/ios_jvm_compat.cpp "$out/logs/ios_jvm_compat.cpp"
 cp runtime-native/ios_filetype.m "$out/logs/ios_filetype.m"
@@ -124,7 +124,7 @@ manifest = {
     'ios_filetype_source_fix': True,
     'ios_filetype_sdk_compiled': True,
     'ios_libprefs_framework_fix': True,
-    'ios_libinstrument_iconv_fix': True,
+    'ios_iconv_configure_fix': True,
     'sha256': {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
 }
 (root / 'build-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')
