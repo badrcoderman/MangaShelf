@@ -1,0 +1,163 @@
+{
+  "scope": "Host-only read-only static inspection of our source-built artifacts and in-memory malformed data; no archived class or native executable executed.",
+  "working_directory": "/home/user/Documents/Managa-app/MangaShilf",
+  "script": "scripts/inspect-ios-jvm-device.py",
+  "script_sha256": "5580d2d01f9fc3c37e67d52181a8aa5c3cc5933df46c25ad7b552206548f9302",
+  "script_sha256_at_full_inspection_and_ten_case_check": "unretained",
+  "revision_note": "The final script SHA includes an inspection_inputs output-metadata addition made after the last full IPA invocation started. The ten rejection checks also preceded the zero-size directory CRC guard. Neither added check is claimed to have been covered by those earlier checks. The default UTF-8 gate check ran after the final source edit.",
+  "legacy_ipa_self_check": {
+    "argv": [
+      "python3",
+      "scripts/inspect-ios-jvm-device.py",
+      "--ipa",
+      "build/ios-jvm-device-39806485937/MangaShelfEngineCheck-unsigned.ipa",
+      "--device-build",
+      "build/ios-jvm-link-39806485937/ios-jvm-device/device-build.json",
+      "--runtime-selection",
+      "build/ios-jvm-link-39806485937/ios-jvm-link/runtime-selection.json",
+      "--runtime-root",
+      "build/ios-jvm-evidence-39769103017/build/ios-jvm",
+      "--runtime-manifest",
+      "build/ios-jvm-evidence-39769103017/build/ios-jvm/build-provenance.json",
+      "--expected-device-commit",
+      "2075088a71636a3d5f127534cbb916b1ed2e3905",
+      "--runtime-run-id",
+      "39769103017",
+      "--expected-version",
+      "0.1.0",
+      "--expected-build",
+      "1",
+      "--legacy-runtime-without-utf8-fix"
+    ],
+    "stdout_redirect": "/tmp/msl-engine-inspection-legacy.json",
+    "exit_code": 0,
+    "stdout_retained": true,
+    "stdout_bytes": 48382,
+    "stdout_sha256": "bb67d037e124315067cc5a32ccd2736326b9fe72396e1723411f0b5226f0155c",
+    "output_summary": {
+      "sha256": "f38cff553e4eeb6a60a4db4f9bd5c355b0ccfae7ee652e62db7333bfa3f4860a",
+      "bytes": 36482531,
+      "version": "0.1.0",
+      "build": "1",
+      "member_count": 207,
+      "java_image_file_hashes_verified": 196,
+      "source_manifest_output_hashes_verified": 34,
+      "device_execution": false,
+      "real_extension_execution": false
+    },
+    "note": "Historical version/runtime overrides were explicit; this is not evidence for the pending UTF-8 runtime or a new phone build."
+  },
+  "rejection_check": {
+    "execution": "Inline Python heredoc called archive_entries, inspect_macho and inspect_own_jar; no external executable invoked.",
+    "exact_command_retained_in_filesystem": false,
+    "command_note": "The inline command and success labels were observed in the tool exchange; no standalone command/result artifact was saved at execution. Error messages were caught and were not printed, so they are not reconstructed here.",
+    "cases": [
+      {
+        "case": "parent traversal",
+        "input_names": [
+          "../escape"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "backslash path",
+        "input_names": [
+          "a\\b"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "empty path component",
+        "input_names": [
+          "a//b"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "dot path component",
+        "input_names": [
+          "a/./b"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "case-aliased names",
+        "input_names": [
+          "x",
+          "X"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "file shadows parent directory",
+        "input_names": [
+          "a",
+          "a/b"
+        ],
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "symlink",
+        "input": "ZIP external mode 0120777",
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "simulator",
+        "input": "prior executable LC_BUILD_VERSION platform replaced with 7",
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "code signature",
+        "input": "prior executable LC_BUILD_VERSION command tag replaced with LC_CODE_SIGNATURE (0x1d)",
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      },
+      {
+        "case": "unexpected fixture class",
+        "input": "evil/Extra.class added to own plugin.jar as bytes",
+        "rejected": true,
+        "observed_exception_type": "ValueError",
+        "observed_error_message": null,
+        "error_message_retained": false
+      }
+    ],
+    "passed_count": 10
+  },
+  "default_utf8_gate_check": {
+    "execution": "Inline Python heredoc loaded the final helper source without main(), supplied prior runtime selection/manifest to inspect_runtime with legacy_runtime_without_utf8_fix=False, and asserted the caught ValueError message.",
+    "exact_command_retained_in_filesystem": false,
+    "rejected": true,
+    "observed_exception_type": "ValueError",
+    "observed_error_message": "Runtime does not contain the iOS UTF-8 fix",
+    "observed_stdout": "Default mode rejected the historical runtime without the UTF-8 fix."
+  },
+  "device_execution": false,
+  "real_extension_execution": false,
+  "new_runtime_or_new_ipa_inspected": false
+}
