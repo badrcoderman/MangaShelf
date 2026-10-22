@@ -69,8 +69,9 @@
 الكاملة في [39769103017](https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017)
 عند `c465f19`؛ فُحص artifact وكل بصمة في manifest وملفات modules/tzdb/security.
 صُحح مكان الصورة داخل تطبيق الفحص إلى app/lib ليتطابق مع بحث VM المبكر؛
-[الدليل والحدود](docs/IPHONE-ENGINE-CHECK-AR.md). بناء IPA الفحص وتشغيل VM
-وإضافة حقيقية على iPhone ما زالت مطلوبة.
+[الدليل والحدود](docs/IPHONE-ENGINE-CHECK-AR.md). نجح بناء IPA الفحص المنفصل
+وفحص ملفاتها في [39806485937](https://github.com/badrcoderman/MangaShelf/actions/runs/39806485937)؛
+أُرسلت للمستخدم للتوقيع والاختبار. تشغيل VM وإضافة حقيقية على iPhone ما زال مطلوبًا.
 
 - [ ] **ENG-01:** بناء JVM من مصدر مثبت ومراجعة رخصه وتبعياته لـARM64 iOS؛ إثبات بدء المحرك وإيقافه وتحميل fixture مستقل على iPhone.
 - [ ] **ENG-02:** ربط بدء `ms_java_*` مع dispatcher في `ms_bridge_*` في مسار إنتاج واحد، ثم اختباره من Swift حتى Java والعودة.
@@ -83,6 +84,7 @@
 39768470880: عدد 145 class و61 مصدرًا في metadata؛ لا تنفيذ أو تفعيل في MSL.
 
 - [ ] **ENG-05:** تنفيذ عقد المصدر الحقيقي وتبعيات Android/Kotlin/Rx/OkHttp المطلوبة؛ تحويل نماذج المصادر الفعلية بدل قبول رد نصي فقط.
+  - متابعة العقد المثبت: واجهات 1.6 هي suspend مع Continuation، وextensions-lib مكتبة compileOnly ذات stubs وليست تنفيذًا للمضيف. يتطلب المرشح OkHttp 5.4.0 وحقل headers$delegate وخدمات التفضيلات والشبكة؛ date_upload بالميلي ثانية ويحتاج تحويلًا صريحًا إلى ثواني عقد Swift. [الأدلة](docs/MANGADEX-SOURCE-BUILD-AR.md).
 
 متابعة ENG-06: فُصلت هوية تخزين عناوين الإضافات وفصولها بحسب المصدر والرابط،
 مع حفظ المعرفات القديمة عند تطابق sourceURL، ورفض استبدال عنوان بمصدر آخر

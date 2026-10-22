@@ -43,6 +43,16 @@ C-string، أو استثناءات JNI عند OOM، أو كل خيارات عم�
 عند `c465f19`؛ فُحص artifact وmanifest وبصمات المكتبات وملفات Java الأساسية.
 [دليل الصورة](../validation/ios-jvm-image-39769103017.json) يثبت البناء فقط.
 
+نسخة الفحص الحالية جاهزة في
+[39806485937 — MangaShelfEngineCheck-unsigned](https://github.com/badrcoderman/MangaShelf/actions/runs/39806485937/artifacts/12438686011)،
+عند `2075088a71636a3d5f127534cbb916b1ed2e3905`، من المحرك المبني في 39769103017.
+حجم IPA بعد فك ZIP هو 36482531 بايت، وSHA-256:
+`f38cff553e4eeb6a60a4db4f9bd5c355b0ccfae7ee652e62db7333bfa3f4860a`.
+فُحصت بصمة artifact وCRC و207 أعضاء، ومنصة ARM64 iOS 26 وعدم وجود توقيع،
+ومطابقة 196 ملفًا لصورة Java، وJAR المشروع وjrt-fs المبنية من مصدر JDK؛
+[دليل IPA](../validation/ios-jvm-device-39806485937.json).
+نتيجة التشغيل على الهاتف ما زالت مطلوبة.
+
 ## مكان ملفات Java داخل تطبيق الفحص
 
 المراجعة المثبتة تهيئ مسار Java من موقع executable قبل قراءة خيارات VM:

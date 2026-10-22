@@ -1,0 +1,33 @@
+{
+  "run_id": 39806485937,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39806485937",
+  "status": "completed",
+  "conclusion": "success",
+  "source_commit": "2075088a71636a3d5f127534cbb916b1ed2e3905",
+  "artifact_id": 12437073967,
+  "artifact_sha256": "sha256:baa250ec59af02d940e70e79161a32d5fb2adc0e23a675d8dec94cf6f3ef1eda",
+  "artifact_digest_verified": true,
+  "runtime": {
+    "repository": "badrcoderman/MangaShelf",
+    "run_id": 39769103017,
+    "head_sha": "c465f1937f716a658aa38c5c89ac377b3915f3a9",
+    "workflow": ".github/workflows/ios-jvm.yml",
+    "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39769103017",
+    "conclusion": "success",
+    "artifact_id": 12421979254,
+    "artifact_sha256": "06d8fcb0c48b90d5c6711f50291e323fa73f2bef85e305f74a343908e9d58583",
+    "java_modules_present": true,
+    "build_manifest_verified": true,
+    "execution_proven": false
+  },
+  "link_result": {
+    "link_succeeded": true,
+    "target": "arm64-apple-ios26.0",
+    "executable_sha256": "7059b0c18ba1ab69ee863bd0c70331c40c9322ba83f81cd98078518983c428a9",
+    "execution_proven": false
+  },
+  "archive_hashes_match_source_build": true,
+  "device_ipa_proof": "validation/ios-jvm-device-39806485937.json",
+  "target_execution": false,
+  "scope": "Source-built runtime provenance, static link and separately audited unsigned device IPA only."
+}

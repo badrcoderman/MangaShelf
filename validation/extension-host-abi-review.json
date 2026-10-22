@@ -1,0 +1,95 @@
+{
+  "api_review": {
+    "repository": "keiyoushi/extensions-lib",
+    "commit": "42255ee5fa96d9425697b7c143587483207308d1",
+    "files": [
+      {
+        "path": "README.md",
+        "bytes": 2559,
+        "sha256": "c31a914e1b40b971765770db1d827a504a45f50e88c76c304eaa2d44761cf397"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 11357,
+        "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/Source.kt",
+        "bytes": 2801,
+        "sha256": "bc467e76170ebbed2b5f8c73eab75fa25ace410c3416d962f722ecf3de584aca"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/SourceFactory.kt",
+        "bytes": 267,
+        "sha256": "4f37f28813e2f379e09930ce56f8dfacea2d73ff52ea1591279e5a6c14b28de3"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/online/HttpSource.kt",
+        "bytes": 4268,
+        "sha256": "3530feb613ea51dee6fb1be57e33e14a634c555f7d0ff6d7b33234b31737c6c5"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/model/MangasPage.kt",
+        "bytes": 563,
+        "sha256": "8efaeed41abed9e6b8c56c9d4dc19d76215b809b5cb9748895d687ad47361997"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/model/SManga.kt",
+        "bytes": 1184,
+        "sha256": "434ed2370a14cf1faef12019c9b0710ed67cd03668a112af7c77d7eb22ace194"
+      },
+      {
+        "path": "library/src/main/java/eu/kanade/tachiyomi/source/model/SChapter.kt",
+        "bytes": 819,
+        "sha256": "19a66bf99b202f92f8615f64b15fd000f2eae770823ba46f40997137e45712ed"
+      }
+    ],
+    "source_executed": false
+  },
+  "extension_source_commit": "1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa",
+  "extension_source_files": [
+    {
+      "path": "core/src/main/kotlin/keiyoushi/utils/Date.kt",
+      "bytes": 3417,
+      "sha256": "6a8a712af00caa5d6e8fd7f3aab062cd473278fbab24bcadfc7f41922bb55dc7"
+    },
+    {
+      "path": "core/src/main/kotlin/keiyoushi/source/KeiSource.kt",
+      "bytes": 16142,
+      "sha256": "acfe3bd735656d1ee13a6ba25298908120009efc0f75e4705731fddef43611d8"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDex.kt",
+      "bytes": 39530,
+      "sha256": "8f395da2eb7ad1974e4011b0e666a6d8ab3ac4749d942758711fea2080faa8a8"
+    },
+    {
+      "path": "src/all/mangadex/src/eu/kanade/tachiyomi/extension/all/mangadex/MangaDexHelper.kt",
+      "bytes": 19962,
+      "sha256": "e7b389c955d0faeec6b796e59e7fc9359a2c1b96107590693f033734a3630ea7"
+    }
+  ],
+  "findings": {
+    "api_is_compile_only_stubs": true,
+    "requires_real_host_implementation": true,
+    "source_methods_are_suspend": true,
+    "mangadex_date_upload_unit": "Unix epoch milliseconds",
+    "date_parse_failure_value": 0,
+    "swift_fixture_wire_date_unit": "Unix epoch seconds",
+    "keisource_reflects_headers_delegate": true,
+    "required_okhttp": "5.4.0",
+    "fixture_json_runner_is_real_source_adapter": false
+  },
+  "source_or_jar_executed": false,
+  "production_integration_complete": false,
+  "scope": "Static public source ABI review for the real host adapter; no source invocation or device proof.",
+  "binary_abi_inspection": {
+    "tool": "javap -p -s",
+    "file": "build/mangadex-source-39768470880/source-abi.txt",
+    "output_sha256": "958cf6a74b3497d0cfde855160de047a317af0b86cdb36a93f432466fd19677c",
+    "source_jar_sha256": "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
+    "keisource_binary_name": "keiyoushi.source.a",
+    "suspend_continuation_descriptors_confirmed": true,
+    "class_execution": false
+  }
+}

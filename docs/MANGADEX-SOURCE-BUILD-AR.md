@@ -77,3 +77,44 @@ Gradle. نجح بناء JAR في Actions كما هو موثق أدناه؛ لم 
 يبقى محوّل النماذج الفعلي مطلوبًا، بما فيه مطابقة وحدات date_upload وحقول
 الفصول واللغة وحالة العنوان. العقد التجريبي الحالي يعيد نص JSON؛ هذه الحزمة
 تعيد كائنات Source الحقيقية وتحتاج التبعيات وخدمات المضيف.
+
+## عقد المضيف 1.6 الذي يحتاج التنفيذ
+
+قُرئت واجهات
+[extensions-lib عند 42255ee5](https://github.com/keiyoushi/extensions-lib/tree/42255ee5fa96d9425697b7c143587483207308d1)
+المطابقة لتثبيت المرشح. يوضح README أنها مكتبة `compileOnly` ذات stubs؛
+المضيف مسؤول عن التنفيذ. مثلًا تهيئة `HttpSource.network` و`client` و
+`headers`، وكذلك مصانع `SManga.create()` و`SChapter.create()`، ترمي
+`Exception("Stub!")` في المكتبة. وضع هذه المكتبة داخل runtime لا يوفر المضيف.
+
+واجهة Source تصرح بالطرق المعلقة `getPopularManga` و`getLatestUpdates` و
+`getSearchManga` و`getMangaUpdate` و`getPageList`. تتلقى الطرق نماذج فعلية
+وتعيد MangasPage/SMangaUpdate/List<Page>؛ يحتاج الاستدعاء سياق coroutine
+وإلغاءً صحيحًا. المحوّل الموجود `ExtensionRunner` يستدعي popularManga(int)
+ويطلب String JSON، لذلك يبقى عقد اختبار مستقلًا ولا يُستخدم لتشغيل المرشح.
+
+تعتمد تهيئة KeiSource على حقل `HttpSource.headers$delegate` باسم محدد،
+وعلى عميل شبكة وخدمات Android والتفضيلات المسجلة مسبقًا. كما تتطلب
+CompressionInterceptor وBrotli/Zstd من OkHttp 5.4.0. يثبت checkout خادم
+Tachimanga المدروس OkHttp 5.0.0-alpha.14؛ يجب تكييف التنفيذ والتبعيات معًا
+قبل اختبار تحميل Generated وتسجيل المصادر الـ61، وليس مجرد تغيير أسماء
+الطرق في المحوّل التجريبي.
+
+أكد javap الساكن للحزمة المبنية أن methods المعلقة تتلقى
+`kotlin.coroutines.Continuation` وتعيد Object على مستوى JVM. صارت KeiSource
+داخل هذه الحزمة `keiyoushi.source.a` بعد التصغير، بينما بقيت طرق Source
+العامة مثل getSearchManga وgetMangaUpdate بأسمائها؛ يستعمل المحوّل واجهة
+Source/SourceFactory العامة، ولا يربط التشغيل باسم KeiSource الداخلي.
+
+حُسمت وحدة التاريخ من المصدر العام: يعين MangaDexHelper قيمة date_upload
+من `Instant.tryParse(attr.publishAt)`، وينفذ
+[Date.kt](https://github.com/keiyoushi/extensions-source/blob/1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa/core/src/main/kotlin/keiyoushi/utils/Date.kt)
+ذلك بواسطة `toEpochMilliseconds()` مع 0 عند غياب/فشل التاريخ.
+عقد SourceChapterItem التجريبي الحالي يستهلك ثواني Unix في Date؛ يجب أن
+يحوّل محوّل الكائنات الفعلي الوحدة صراحةً، دون تخمينها من عدد الأرقام أو
+تغيير معنى fixture JSON القائمة. كذلك تأتي لغة العنوان والفصول من كائن
+المصدر المحدد؛ يجب ألا تستبدلها لغة الواجهة أو تفضيل لغة عام.
+
+[بصمات مراجعة العقد](../validation/extension-host-abi-review.json) تسجل هذه
+المدخلات. هذا تحديد لعقد التنفيذ القادم؛ لا يشمل تهيئة المضيف أو استدعاء
+إضافة فعلية أو تحقق توقيع الناشر.
