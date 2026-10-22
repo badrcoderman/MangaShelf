@@ -48,8 +48,14 @@ extension SecureHTTP: SourceTransport {
         await mutate { try await $0.batchSetCompleted(seriesIDs: seriesIDs, completed: completed) }
     }
     func refresh(_ series: MangaSeries) async throws {
-        let store = try requireStore(); let selectedLanguage = language
-        try await store.save(series)
+        let store = try requireStore()
+        var request = series
+        if request.sourceLanguage == nil, let existing = saved(series.id),
+           existing.series.sourceID == series.sourceID {
+            request.sourceLanguage = existing.series.sourceLanguage
+        }
+        let selectedLanguage = request.chapterLanguage(preference: language)
+        try await store.save(request)
         // Network work is completed before committing the chapter list.
         let details: MangaSeries
         let chapters: [MangaChapter]
@@ -64,7 +70,8 @@ extension SecureHTTP: SourceTransport {
                                   coverURL: extDetails.coverURL ?? series.coverURL,
                                   authors: extDetails.author.map { [$0] } ?? [],
                                   tags: extDetails.genre, status: extDetails.status ?? "ongoing",
-                                  sourceID: series.sourceID, sourceURL: mangaURL)
+                                  sourceID: series.sourceID, sourceURL: mangaURL,
+                                  sourceLanguage: request.sourceLanguage)
             let savedByURL = Dictionary(grouping: saved(series.id)?.chapters ?? [], by: { $0.sourceURL ?? "" })
             chapters = extChapters.map {
                 $0.libraryChapter(seriesID: series.id, language: selectedLanguage, saved: savedByURL[$0.url] ?? [])

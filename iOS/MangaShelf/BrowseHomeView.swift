@@ -69,7 +69,8 @@ private struct AvailableSourcesContent: View {
             SourceCatalogView(sourceId: "mangadex", sourceTitle: "MangaDex").onAppear { lastUsed = id }
         } else {
             if let source = indexedSources.first(where: { $0.id == id }) {
-                SourceCatalogView(sourceId: source.id, sourceTitle: rowTitle(id)).onAppear { lastUsed = id }
+                SourceCatalogView(sourceId: source.id, sourceTitle: rowTitle(id),
+                                  sourceLanguage: source.source.language).onAppear { lastUsed = id }
             }
         }
     }

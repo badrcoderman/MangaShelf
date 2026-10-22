@@ -25,13 +25,15 @@ public enum ExtensionContentIdentity {
 }
 
 extension SourceMangaItem {
-    public func librarySeries(sourceID: String, saved: [SavedSeries] = []) -> MangaSeries {
+    public func librarySeries(sourceID: String, sourceLanguage: String? = nil,
+                              saved: [SavedSeries] = []) -> MangaSeries {
         let canonical = ExtensionContentIdentity.seriesID(sourceID: sourceID, url: url)
         let matches = saved.filter { $0.series.sourceID == sourceID && $0.series.sourceURL == url }
         // Preserve existing IDs and therefore their progress, downloads and overrides.
         let existing = matches.first { $0.id == canonical } ?? matches.min { $0.id < $1.id }
         return MangaSeries(id: existing?.id ?? canonical, title: title, coverURL: coverURL,
-                           sourceID: sourceID, sourceURL: url)
+                           sourceID: sourceID, sourceURL: url,
+                           sourceLanguage: sourceLanguage ?? existing?.series.sourceLanguage)
     }
 }
 

@@ -12,12 +12,20 @@ public struct MangaSeries: Codable, Identifiable, Hashable, Sendable {
     /// Opaque URL returned by the extension, distinct from our storage identifier.
     /// Optional so libraries saved before this field was added still decode.
     public var sourceURL: String?
+    /// Language of the individual extension source, independent of UI and browse preferences.
+    /// Older libraries may not contain this metadata.
+    public var sourceLanguage: String?
     public init(id: String, title: String, synopsis: String = "", coverURL: String? = nil,
                 authors: [String] = [], tags: [String] = [], status: String = "", sourceID: String = "mangadex",
-                sourceURL: String? = nil) {
+                sourceURL: String? = nil, sourceLanguage: String? = nil) {
         self.id = id; self.title = title; self.synopsis = synopsis; self.coverURL = coverURL
         self.authors = authors; self.tags = tags; self.status = status; self.sourceID = sourceID
         self.sourceURL = sourceURL
+        self.sourceLanguage = sourceLanguage
+    }
+
+    public func chapterLanguage(preference: String) -> String {
+        sourceID == "mangadex" ? preference : (sourceLanguage ?? "")
     }
 
     public func requireSourceURL() throws -> String {
@@ -121,6 +129,7 @@ public struct OnlineState: Codable, Sendable {
             guard (UUID(uuidString: item.id) != nil || (!item.id.isEmpty && item.id.count <= 256)),
                   (item.series.sourceID == "mangadex" || (!item.series.sourceID.isEmpty && item.series.sourceID.count <= 256)),
                   !item.series.title.isEmpty, item.series.title.count <= 2048,
+                  item.series.sourceLanguage.map({ $0.count <= 32 }) ?? true,
                   item.series.coverURL.map(HTTPSPolicy.accepts) ?? true,
                   item.chapters.count <= 30_000, Set(item.chapters.map(\.id)).count == item.chapters.count,
                   item.progress.count <= 30_000 else { throw ReaderFailure(ReaderText.string("Invalid title data.")) }

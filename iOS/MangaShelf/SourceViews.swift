@@ -9,6 +9,7 @@ struct SourceCatalogView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     let sourceId: String
     let sourceTitle: String
+    let sourceLanguage: String?
     @State private var query = ""
     @State private var latest = false
     @State private var items: [MangaSeries] = []
@@ -16,12 +17,15 @@ struct SourceCatalogView: View {
     @State private var hasMore = false
     @State private var loading = false
     @State private var error: String?
-    init(sourceId: String = "mangadex", sourceTitle: String = "MangaDex", initialQuery: String = "") {
+    init(sourceId: String = "mangadex", sourceTitle: String = "MangaDex",
+         sourceLanguage: String? = nil, initialQuery: String = "") {
         self.sourceId = sourceId
         self.sourceTitle = sourceTitle
+        self.sourceLanguage = sourceLanguage
         _query = State(initialValue: initialQuery)
     }
-    private var requestID: String { "\(sourceId)|\(query)|\(language)|\(latest)" }
+    private var catalogLanguage: String { sourceId == "mangadex" ? language : (sourceLanguage ?? "") }
+    private var requestID: String { "\(sourceId)|\(query)|\(catalogLanguage)|\(latest)" }
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
@@ -65,7 +69,8 @@ struct SourceCatalogView: View {
                 let savedByURL = Dictionary(grouping: online.state.series.filter { $0.series.sourceID == sourceId },
                                             by: { $0.series.sourceURL ?? "" })
                 let seriesList = result.mangas.map {
-                    $0.librarySeries(sourceID: sourceId, saved: savedByURL[$0.url] ?? [])
+                    $0.librarySeries(sourceID: sourceId, sourceLanguage: sourceLanguage,
+                                     saved: savedByURL[$0.url] ?? [])
                 }
                 let existing = Set(items.map(\.id))
                 items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })
@@ -114,6 +119,9 @@ struct SeriesDetailView: View {
         if stored.sourceID == series.sourceID, stored.sourceURL?.isEmpty ?? true {
             stored.sourceURL = series.sourceURL
         }
+        if stored.sourceID == series.sourceID, let knownLanguage = series.sourceLanguage {
+            stored.sourceLanguage = knownLanguage
+        }
         return stored
     }
     private var sourceName: String {
@@ -126,16 +134,19 @@ struct SeriesDetailView: View {
         }
         return item.sourceID
     }
+    private func matchesChapterLanguage(_ chapter: MangaChapter) -> Bool {
+        item.sourceID != "mangadex" || language.isEmpty || chapter.language == language
+    }
     private var chapters: [MangaChapter] {
         let entries = (saved?.chapters ?? []).filter {
-            (language.isEmpty || $0.language == language) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&
+            matchesChapterLanguage($0) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&
             (!downloadedOnly || online.download($0.id)?.phase == .complete) &&
             (search.isEmpty || $0.localizedTitle.localizedStandardContains(search))
         }
         return reversed ? Array(entries.reversed()) : entries
     }
     private var startChapter: MangaChapter? {
-        let available = (saved?.chapters ?? []).filter { language.isEmpty || $0.language == language }
+        let available = (saved?.chapters ?? []).filter { matchesChapterLanguage($0) }
         if let last = available.filter({ saved?.progress[$0.id]?.lastReadAt != nil && saved?.progress[$0.id]?.read != true }).max(by: {
             (saved?.progress[$0.id]?.lastReadAt ?? .distantPast) < (saved?.progress[$1.id]?.lastReadAt ?? .distantPast)
         }) { return last }
@@ -213,7 +224,7 @@ struct SeriesDetailView: View {
                     } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Title options"))
                 }
             }
-            .task(id: item.id + language) { await refresh() }
+            .task(id: item.id + item.chapterLanguage(preference: language)) { await refresh() }
             .refreshable { await refresh() }
             .fullScreenCover(item: $reading) { OnlineReaderView(chapter: $0) }
     }
@@ -229,7 +240,7 @@ struct SeriesDetailView: View {
                 ForEach([1, 5, 10], id: \.self) { count in
                     Button(L10n.format("Download %@ unread chapters", String(describing: count))) {
                         let selected = (saved?.chapters ?? []).reversed().filter {
-                            (language.isEmpty || $0.language == language) && saved?.progress[$0.id]?.read != true
+                            matchesChapterLanguage($0) && saved?.progress[$0.id]?.read != true
                         }
                         Task { await online.enqueue(Array(selected.prefix(count))) }
                     }

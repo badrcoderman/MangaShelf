@@ -34,7 +34,11 @@ public actor OnlineStore {
             guard candidate.series[index].series.sourceID == series.sourceID else {
                 throw ReaderFailure(ReaderText.string("The title identifier belongs to a different source."))
             }
-            candidate.series[index].series = series
+            var updated = series
+            if updated.sourceLanguage == nil {
+                updated.sourceLanguage = candidate.series[index].series.sourceLanguage
+            }
+            candidate.series[index].series = updated
             if let favorite { candidate.series[index].inLibrary = favorite }
         } else {
             var item = SavedSeries(series: series); item.inLibrary = favorite ?? false
@@ -228,6 +232,9 @@ public actor OnlineStore {
                     throw ReaderFailure(ReaderText.string("The title identifier belongs to a different source."))
                 }
                 candidate.series[i].inLibrary = candidate.series[i].inLibrary || item.inLibrary
+                if candidate.series[i].series.sourceLanguage == nil {
+                    candidate.series[i].series.sourceLanguage = item.series.sourceLanguage
+                }
                 candidate.series[i].categories.formUnion(item.categories)
                 for (id, progress) in item.progress {
                     let current = candidate.series[i].progress[id]
