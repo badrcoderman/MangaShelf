@@ -14,12 +14,16 @@ func extensionTestDispatch(action: String, payload: String) throws -> String {
     case "load": return "{\"status\":\"loaded\"}"
     case "unload": return "{\"status\":\"unloaded\"}"
     case "popular":
-        return try encode([
+        return try encode(SourceMangaPage(mangas: [
             SourceMangaItem(id: "\(sourceID)-pop-1", title: "Fixture 1", url: "/fixture/1"),
             SourceMangaItem(id: "\(sourceID)-pop-2", title: "Fixture 2", url: "/fixture/2")
-        ])
+        ], hasNextPage: true))
+    case "latest":
+        return try encode(SourceMangaPage(mangas: [
+            SourceMangaItem(id: "\(sourceID)-latest-1", title: "Latest Fixture", url: "/fixture/latest")
+        ], hasNextPage: false))
     case "search":
-        return try encode([SourceMangaItem(id: "\(sourceID)-search-1", title: fields["query"] as? String ?? "Fixture", url: "/fixture/search")])
+        return try encode(SourceMangaPage(mangas: [SourceMangaItem(id: "\(sourceID)-search-1", title: fields["query"] as? String ?? "Fixture", url: "/fixture/search")], hasNextPage: false))
     case "details":
         return try encode(SourceMangaDetails(title: "Fixture Details", genre: ["Action", "Adventure"]))
     case "chapters":
@@ -61,13 +65,13 @@ final class ExtensionEngineTests: XCTestCase {
 
         // Query popular
         let popular = try await runtime.popular(sourceId: "mocksource", page: 1)
-        XCTAssertFalse(popular.isEmpty)
-        XCTAssertEqual(popular.first?.id, "mocksource-pop-1")
+        XCTAssertFalse(popular.mangas.isEmpty)
+        XCTAssertEqual(popular.mangas.first?.id, "mocksource-pop-1")
 
         // Query search
         let searchResults = try await runtime.search(sourceId: "mocksource", query: "Solo", page: 1)
-        XCTAssertFalse(searchResults.isEmpty)
-        XCTAssertTrue(searchResults.first?.title.contains("Solo") == true)
+        XCTAssertFalse(searchResults.mangas.isEmpty)
+        XCTAssertTrue(searchResults.mangas.first?.title.contains("Solo") == true)
 
         // Query details
         let details = try await runtime.details(sourceId: "mocksource", mangaURL: "/manga/mocksource/1")
@@ -94,10 +98,10 @@ final class ExtensionEngineTests: XCTestCase {
         let coordinator = SourceEngineCoordinator(stagedStore: nil, runtime: runtime)
 
         let popular = try await coordinator.search(sourceId: "ext-test", query: "", page: 1)
-        XCTAssertFalse(popular.isEmpty)
+        XCTAssertFalse(popular.mangas.isEmpty)
 
         let search = try await coordinator.search(sourceId: "ext-test", query: "Hero", page: 1)
-        XCTAssertFalse(search.isEmpty)
+        XCTAssertFalse(search.mangas.isEmpty)
 
         let details = try await coordinator.fetchDetails(sourceId: "ext-test", mangaURL: "/manga/hero")
         XCTAssertFalse(details.title.isEmpty)
@@ -114,7 +118,7 @@ final class ExtensionEngineTests: XCTestCase {
         ms_bridge_set_vm_available(0)
         let runtime = ExtensionRuntime()
         let message = ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet.")
-        for action in ["load", "unload", "popular", "search", "details", "chapters", "pages"] {
+        for action in ["load", "unload", "popular", "latest", "search", "details", "chapters", "pages"] {
             XCTAssertThrowsError(try runtime.dispatch(action: action)) { error in
                 XCTAssertEqual((error as? ReaderFailure)?.message, message)
             }
@@ -165,8 +169,9 @@ final class ExtensionEngineTests: XCTestCase {
         _ = try await runtime.details(sourceId: text, mangaURL: text)
         _ = try await runtime.chapters(sourceId: text, mangaURL: text)
         _ = try await runtime.pages(sourceId: text, chapterURL: text)
+        _ = try await runtime.latest(sourceId: text, page: 9)
 
-        XCTAssertEqual(calls.map { $0.0 }, ["load", "unload", "popular", "search", "details", "chapters", "pages"])
+        XCTAssertEqual(calls.map { $0.0 }, ["load", "unload", "popular", "search", "details", "chapters", "pages", "latest"])
         XCTAssertEqual(calls[0].1["package"] as? String, text)
         XCTAssertEqual(calls[0].1["path"] as? String, text)
         XCTAssertEqual(calls[0].1["mainClass"] as? String, text)
@@ -179,10 +184,12 @@ final class ExtensionEngineTests: XCTestCase {
         XCTAssertEqual(calls[3].1["query"] as? String, text)
         XCTAssertEqual(calls[3].1["page"] as? Int, 8)
         XCTAssertEqual(calls[3].1.count, 3)
-        for (_, fields) in calls.dropFirst(4) {
+        for (_, fields) in calls[4...6] {
             XCTAssertEqual(fields["url"] as? String, text)
             XCTAssertEqual(fields.count, 2)
         }
+        XCTAssertEqual(calls[7].1["page"] as? Int, 9)
+        XCTAssertEqual(calls[7].1.count, 2)
     }
 
     func testOversizedNativeResponseDoesNotAllocateOrReplay() {

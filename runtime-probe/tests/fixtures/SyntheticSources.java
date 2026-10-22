@@ -12,18 +12,22 @@ public final class SyntheticSources {
                 case 4: return Integer.valueOf(42);
                 case 5: return "[invalid";
                 case 6: return "{}";
-                case 7: return "[{}]";
-                case 8: return "[]";
-                case 9: return "[{\"id\":\"a\",\"title\":4,\"url\":\"/a\"}]";
+                case 7: return "{\"mangas\":[{}],\"hasNextPage\":false}";
+                case 8: return "{\"mangas\":[],\"hasNextPage\":false}";
+                case 9: return "{\"mangas\":[{\"id\":\"a\",\"title\":4,\"url\":\"/a\"}],\"hasNextPage\":false}";
                 case 10:
                     StringBuilder oversized = new StringBuilder();
                     for (int i = 0; i < 4 * 1024 * 1024 + 1; i++) oversized.append(' ');
                     return oversized.toString();
-                case 11: return "[{\"id\":\"a\",\"id\":\"b\",\"title\":\"t\",\"url\":\"/a\"}]";
-                case 12: return "[null]";
+                case 11: return "{\"mangas\":[{\"id\":\"a\",\"id\":\"b\",\"title\":\"t\",\"url\":\"/a\"}],\"hasNextPage\":false}";
+                case 12: return "{\"mangas\":[null],\"hasNextPage\":false}";
                 case 13: throw new AssertionError("Synthetic source error");
-                default: return "[{\"id\":\"fixture-popular\",\"title\":\"Synthetic Popular\",\"url\":\"/fixture/manga\",\"coverURL\":null}]";
+                default: return "{\"mangas\":[{\"id\":\"fixture-popular\",\"title\":\"Synthetic Popular\",\"url\":\"/fixture/manga\",\"coverURL\":null}],\"hasNextPage\":true}";
             }
+        }
+
+        public String latestUpdates(int page) {
+            return "{\"mangas\":[{\"id\":\"fixture-latest\",\"title\":\"Synthetic Latest\",\"url\":\"/fixture/latest\"}],\"hasNextPage\":false}";
         }
 
         // Returning the supplied JSON lets the Python test compare independent serialization.

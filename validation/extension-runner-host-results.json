@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-10-19T23:05:21.904906+00:00",
+  "timestamp": "2026-10-21T17:45:30.312069+00:00",
   "command": "python3 scripts/test_extension_runner.py",
   "scope": "Host Java runner, synthetic project fixtures only; no specimen execution or iOS compatibility claim.",
   "inputs": {
-    "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java": "7e031e41ecd4436d703b77195096fc5ba11288b1ed562228d09dd92ba5c09db8",
-    "runtime-probe/tests/mangashelf/runtime/RunnerHost.java": "f0ddfd83224fdc737c4f78fb936d1ffee0ac02918dbab19a140c0d00c2a4f6fe",
-    "runtime-probe/tests/fixtures/SyntheticSources.java": "424cb6c4affef57849d6a8c53eecaf2bba7591efac69324d371c5147fb9b7479"
+    "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java": "4337277e5db73ca666583dc5f8f423942a8880a452d50965d2ce96db622eca69",
+    "runtime-probe/tests/mangashelf/runtime/RunnerHost.java": "8d344d6193a49e3d32090c97b8a42684a5a6faf1fb170daa9d7d8ef29b4352d7",
+    "runtime-probe/tests/fixtures/SyntheticSources.java": "5e8de104816de244f21e7c4a75a7e7a58eafcc9008659f5794460e313048f1f7"
   },
   "commands": [
     {
@@ -27,7 +27,7 @@
         "-Xlint:all,-options",
         "-Werror",
         "-d",
-        "/tmp/mangashelf-runner-u30zn4bc/host",
+        "/tmp/mangashelf-runner-_5mja_qx/host",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/src/mangashelf/runtime/ExtensionRunner.java",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/tests/mangashelf/runtime/RunnerHost.java"
       ],
@@ -45,7 +45,7 @@
         "-Xlint:all,-options",
         "-Werror",
         "-d",
-        "/tmp/mangashelf-runner-u30zn4bc/fixture",
+        "/tmp/mangashelf-runner-_5mja_qx/fixture",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/tests/fixtures/SyntheticSources.java"
       ],
       "returncode": 0,
@@ -57,11 +57,11 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/mangashelf-runner-u30zn4bc/host",
+        "/tmp/mangashelf-runner-_5mja_qx/host",
         "mangashelf.runtime.RunnerHost"
       ],
       "returncode": 0,
-      "stdout": "eyJzdGF0dXMiOiJvayIsImVuZ2luZSI6Ik1hbmdhU2hlbGYgZXhwZXJpbWVudGFsIGhvc3QgcnVubmVyIiwidmVyc2lvbiI6IjEuMC4wIn0=\neyJlcnJvciI6Ik1pc3NpbmcgYWN0aW9uLiIsImNvZGUiOiJpbnZhbGlkX2FjdGlvbiJ9\neyJlcnJvciI6IlVua25vd24gYWN0aW9uOiB1bmtub3duXCJcXFxuIiwiY29kZSI6InVua25vd25fYWN0aW9uIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogbWFpbkNsYXNzIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4dGVuc2lvbiBhcmNoaXZlIGZpbGUgbm90IGZvdW5kLiIsImNvZGUiOiJsb2FkX2ZhaWxlZCJ9\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBDbGFzc05vdEZvdW5kRXhjZXB0aW9uIiwiY29kZSI6ImxvYWRfZmFpbGVkIn0=\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoibG9hZF9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYWJzZW50Iiwic291cmNlSWQiOiJudW1lcmljLXNvdXJjZS0xMjMiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IlVubG9hZCB0aGUgcGFja2FnZSBiZWZvcmUgbG9hZGluZyBpdCBhZ2Fpbi4iLCJjb2RlIjoiYWxyZWFkeV9sb2FkZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgaWRlbnRpZmllciBpcyBhbHJlYWR5IGxvYWRlZC4iLCJjb2RlIjoic291cmNlX2NvbmZsaWN0In0=\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIGEgSlNPTiBhcnJheS4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogaWQiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogQXNzZXJ0aW9uRXJyb3IiLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\nW10=\nW3siaWQiOiAiZml4dHVyZS9cIlxcXHQiLCAidGl0bGUiOiAiXHUwNjM5XHUwNjMxXHUwNjI4XHUwNjRhIFx1ZDgzZFx1ZGNkYSBcInF1b3RlZFwiIFxcIG5ld2xpbmVcbiIsICJjb3ZlclVSTCI6IG51bGwsICJ1cmwiOiAiL21hbmdhL1wiXFwifV0=\nW10=\neyJlcnJvciI6IlNvdXJjZSBtZXRob2Qgc2VhcmNoTWFuZ2EgZmFpbGVkOiBJbGxlZ2FsQXJndW1lbnRFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogTWFsZm9ybWVkIEpTT04gYXQgY2hhcmFjdGVyIDAuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgc3RyaW5nIGZpZWxkOiBpZCIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgc3RyaW5nIGZpZWxkOiB1cmwiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJ0aXRsZSI6IlN5bnRoZXRpYyBEZXRhaWxzIiwiYXV0aG9yIjpudWxsLCJhcnRpc3QiOm51bGwsImRlc2NyaXB0aW9uIjoiRml4dHVyZSBvbmx5IiwiZ2VucmUiOlsiVGVzdCJdLCJzdGF0dXMiOiJvbmdvaW5nIiwiY292ZXJVUkwiOm51bGx9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IGdlbnJlIGVudHJpZXMgbXVzdCBiZSBzdHJpbmdzLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzMi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\nW3siaWQiOiJmaXh0dXJlLWNoYXB0ZXIiLCJuYW1lIjoiU3ludGhldGljIENoYXB0ZXIiLCJ1cmwiOiIvZml4dHVyZS9jaGFwdGVyIiwiY2hhcHRlck51bWJlciI6MS41LCJkYXRlVXBsb2FkIjoxNzAwMDAwMDAwLCJzY2FubGF0b3IiOm51bGx9XQ==\nW10=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBzdHJpbmcgZmllbGQ6IGlkIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBJbnZhbGlkIGNoYXB0ZXIgbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\nW3siaW5kZXgiOjAsInVybCI6Ii9maXh0dXJlL3BhZ2UiLCJpbWFnZVVSTCI6Imh0dHBzOi8vZml4dHVyZS5pbnZhbGlkL3BhZ2UucG5nIn1d\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBFeHBlY3RlZCBhIEpTT04gbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBObyBjaGFwdGVyIHBhZ2VzIHdlcmUgcmV0dXJuZWQuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgbWFuZ2FEZXRhaWxzIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgY2hhcHRlckxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcGFnZUxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzLiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyNy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyMC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNS4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA5LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogc291cmNlSWQiLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoibm8tbWV0aG9kcyIsInNvdXJjZUlkIjoibm8tbWV0aG9kcyIsImhhc0luc3RhbmNlIjp0cnVlfQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IG1hbmdhRGV0YWlscyB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IGNoYXB0ZXJMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBhZ2VMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoid3Jvbmctc2lnbmF0dXJlIiwic291cmNlSWQiOiJ3cm9uZy1zaWduYXR1cmUiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiY2xhc3NwYXRoIiwic291cmNlSWQiOiJjbGFzc3BhdGgiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\nW10=\neyJzdGF0dXMiOiJ1bmxvYWRlZCIsInBhY2thZ2UiOiJhYnNlbnQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSBwYWNrYWdlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6Im5vdF9sb2FkZWQifQ==\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYW5vdGhlciIsInNvdXJjZUlkIjoibnVtZXJpYy1zb3VyY2UtMTIzIiwiaGFzSW5zdGFuY2UiOnRydWV9\nW3siaWQiOiJmaXh0dXJlLXBvcHVsYXIiLCJ0aXRsZSI6IlN5bnRoZXRpYyBQb3B1bGFyIiwidXJsIjoiL2ZpeHR1cmUvbWFuZ2EiLCJjb3ZlclVSTCI6bnVsbH1d\n",
+      "stdout": "eyJzdGF0dXMiOiJvayIsImVuZ2luZSI6Ik1hbmdhU2hlbGYgZXhwZXJpbWVudGFsIGhvc3QgcnVubmVyIiwidmVyc2lvbiI6IjIuMC4wIn0=\neyJlcnJvciI6Ik1pc3NpbmcgYWN0aW9uLiIsImNvZGUiOiJpbnZhbGlkX2FjdGlvbiJ9\neyJlcnJvciI6IlVua25vd24gYWN0aW9uOiB1bmtub3duXCJcXFxuIiwiY29kZSI6InVua25vd25fYWN0aW9uIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogbWFpbkNsYXNzIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IkV4dGVuc2lvbiBhcmNoaXZlIGZpbGUgbm90IGZvdW5kLiIsImNvZGUiOiJsb2FkX2ZhaWxlZCJ9\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBDbGFzc05vdEZvdW5kRXhjZXB0aW9uIiwiY29kZSI6ImxvYWRfZmFpbGVkIn0=\neyJlcnJvciI6IkNvdWxkIG5vdCBjcmVhdGUgc291cmNlIGluc3RhbmNlOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoibG9hZF9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYWJzZW50Iiwic291cmNlSWQiOiJudW1lcmljLXNvdXJjZS0xMjMiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJtYW5nYXMiOlt7ImlkIjoiZml4dHVyZS1wb3B1bGFyIiwidGl0bGUiOiJTeW50aGV0aWMgUG9wdWxhciIsInVybCI6Ii9maXh0dXJlL21hbmdhIiwiY292ZXJVUkwiOm51bGx9XSwiaGFzTmV4dFBhZ2UiOnRydWV9\neyJlcnJvciI6IlVubG9hZCB0aGUgcGFja2FnZSBiZWZvcmUgbG9hZGluZyBpdCBhZ2Fpbi4iLCJjb2RlIjoiYWxyZWFkeV9sb2FkZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgaWRlbnRpZmllciBpcyBhbHJlYWR5IGxvYWRlZC4iLCJjb2RlIjoic291cmNlX2NvbmZsaWN0In0=\neyJtYW5nYXMiOlt7ImlkIjoiZml4dHVyZS1wb3B1bGFyIiwidGl0bGUiOiJTeW50aGV0aWMgUG9wdWxhciIsInVybCI6Ii9maXh0dXJlL21hbmdhIiwiY292ZXJVUkwiOm51bGx9XSwiaGFzTmV4dFBhZ2UiOnRydWV9\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IGhhc05leHRQYWdlIG11c3QgYmUgYSBib29sZWFuLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogaWQiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyNi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwb3B1bGFyIGRhdGE6IEV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcG9wdWxhck1hbmdhIGZhaWxlZDogQXNzZXJ0aW9uRXJyb3IiLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJtYW5nYXMiOltdLCJoYXNOZXh0UGFnZSI6ZmFsc2V9\neyJtYW5nYXMiOlt7ImlkIjoiZml4dHVyZS1sYXRlc3QiLCJ0aXRsZSI6IlN5bnRoZXRpYyBMYXRlc3QiLCJ1cmwiOiIvZml4dHVyZS9sYXRlc3QifV0sImhhc05leHRQYWdlIjpmYWxzZX0=\neyJtYW5nYXMiOiBbeyJpZCI6ICJmaXh0dXJlL1wiXFxcdCIsICJ0aXRsZSI6ICJcdTA2MzlcdTA2MzFcdTA2MjhcdTA2NGEgXHVkODNkXHVkY2RhIFwicXVvdGVkXCIgXFwgbmV3bGluZVxuIiwgImNvdmVyVVJMIjogbnVsbCwgInVybCI6ICIvbWFuZ2EvXCJcXCJ9XSwgImhhc05leHRQYWdlIjogZmFsc2V9\neyJtYW5nYXMiOiBbXSwgImhhc05leHRQYWdlIjogZmFsc2V9\neyJtYW5nYXMiOiBbXSwgImhhc05leHRQYWdlIjogZmFsc2V9\neyJtYW5nYXMiOiBbXSwgImhhc05leHRQYWdlIjogdHJ1ZX0=\neyJtYW5nYXMiOiBbeyJpZCI6ICJmaXh0dXJlL1wiXFxcdCIsICJ0aXRsZSI6ICJcdTA2MzlcdTA2MzFcdTA2MjhcdTA2NGEgXHVkODNkXHVkY2RhIFwicXVvdGVkXCIgXFwgbmV3bGluZVxuIiwgImNvdmVyVVJMIjogbnVsbCwgInVybCI6ICIvbWFuZ2EvXCJcXCJ9XSwgImhhc05leHRQYWdlIjogZmFsc2V9\neyJtYW5nYXMiOiBbeyJpZCI6ICJmaXh0dXJlL1wiXFxcdCIsICJ0aXRsZSI6ICJcdTA2MzlcdTA2MzFcdTA2MjhcdTA2NGEgXHVkODNkXHVkY2RhIFwicXVvdGVkXCIgXFwgbmV3bGluZVxuIiwgImNvdmVyVVJMIjogbnVsbCwgInVybCI6ICIvbWFuZ2EvXCJcXCJ9XSwgImhhc05leHRQYWdlIjogdHJ1ZX0=\neyJtYW5nYXMiOiBbeyJpZCI6ICJmaXh0dXJlL1wiXFxcdCIsICJ0aXRsZSI6ICJcdTA2MzlcdTA2MzFcdTA2MjhcdTA2NGEgXHVkODNkXHVkY2RhIFwicXVvdGVkXCIgXFwgbmV3bGluZVxuIiwgImNvdmVyVVJMIjogbnVsbCwgInVybCI6ICIvbWFuZ2EvXCJcXCJ9LCB7ImlkIjogImZpeHR1cmUvXCJcXFx0IiwgInRpdGxlIjogIlx1MDYzOVx1MDYzMVx1MDYyOFx1MDY0YSBcdWQ4M2RcdWRjZGEgXCJxdW90ZWRcIiBcXCBuZXdsaW5lXG4iLCAiY292ZXJVUkwiOiBudWxsLCAidXJsIjogIi9tYW5nYS9cIlxcIn0sIHsiaWQiOiAiZml4dHVyZS9cIlxcXHQiLCAidGl0bGUiOiAiXHUwNjM5XHUwNjMxXHUwNjI4XHUwNjRhIFx1ZDgzZFx1ZGNkYSBcInF1b3RlZFwiIFxcIG5ld2xpbmVcbiIsICJjb3ZlclVSTCI6IG51bGwsICJ1cmwiOiAiL21hbmdhL1wiXFwifV0sICJoYXNOZXh0UGFnZSI6IGZhbHNlfQ==\neyJtYW5nYXMiOiBbeyJpZCI6ICJmaXh0dXJlL1wiXFxcdCIsICJ0aXRsZSI6ICJcdTA2MzlcdTA2MzFcdTA2MjhcdTA2NGEgXHVkODNkXHVkY2RhIFwicXVvdGVkXCIgXFwgbmV3bGluZVxuIiwgImNvdmVyVVJMIjogbnVsbCwgInVybCI6ICIvbWFuZ2EvXCJcXCJ9LCB7ImlkIjogImZpeHR1cmUvXCJcXFx0IiwgInRpdGxlIjogIlx1MDYzOVx1MDYzMVx1MDYyOFx1MDY0YSBcdWQ4M2RcdWRjZGEgXCJxdW90ZWRcIiBcXCBuZXdsaW5lXG4iLCAiY292ZXJVUkwiOiBudWxsLCAidXJsIjogIi9tYW5nYS9cIlxcIn0sIHsiaWQiOiAiZml4dHVyZS9cIlxcXHQiLCAidGl0bGUiOiAiXHUwNjM5XHUwNjMxXHUwNjI4XHUwNjRhIFx1ZDgzZFx1ZGNkYSBcInF1b3RlZFwiIFxcIG5ld2xpbmVcbiIsICJjb3ZlclVSTCI6IG51bGwsICJ1cmwiOiAiL21hbmdhL1wiXFwifV0sICJoYXNOZXh0UGFnZSI6IHRydWV9\neyJlcnJvciI6IlNvdXJjZSBtZXRob2Qgc2VhcmNoTWFuZ2EgZmFpbGVkOiBJbGxlZ2FsQXJndW1lbnRFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogTWFsZm9ybWVkIEpTT04gYXQgY2hhcmFjdGVyIDAuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogaGFzTmV4dFBhZ2UgbXVzdCBiZSBhIGJvb2xlYW4uIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIG9iamVjdC4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogaGFzTmV4dFBhZ2UgbXVzdCBiZSBhIGJvb2xlYW4uIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogaGFzTmV4dFBhZ2UgbXVzdCBiZSBhIGJvb2xlYW4uIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogaGFzTmV4dFBhZ2UgbXVzdCBiZSBhIGJvb2xlYW4uIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogaGFzTmV4dFBhZ2UgbXVzdCBiZSBhIGJvb2xlYW4uIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgYSBKU09OIGFycmF5LiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBzZWFyY2ggZGF0YTogRXhwZWN0ZWQgc3RyaW5nIGZpZWxkOiB1cmwiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJ0aXRsZSI6IlN5bnRoZXRpYyBEZXRhaWxzIiwiYXV0aG9yIjpudWxsLCJhcnRpc3QiOm51bGwsImRlc2NyaXB0aW9uIjoiRml4dHVyZSBvbmx5IiwiZ2VucmUiOlsiVGVzdCJdLCJzdGF0dXMiOiJvbmdvaW5nIiwiY292ZXJVUkwiOm51bGx9\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IEV4cGVjdGVkIHN0cmluZyBmaWVsZDogdGl0bGUiLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IGdlbnJlIGVudHJpZXMgbXVzdCBiZSBzdHJpbmdzLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBkZXRhaWxzIGRhdGE6IE1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzMi4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\nW3siaWQiOiJmaXh0dXJlLWNoYXB0ZXIiLCJuYW1lIjoiU3ludGhldGljIENoYXB0ZXIiLCJ1cmwiOiIvZml4dHVyZS9jaGFwdGVyIiwiY2hhcHRlck51bWJlciI6MS41LCJkYXRlVXBsb2FkIjoxNzAwMDAwMDAwLCJzY2FubGF0b3IiOm51bGx9XQ==\nW10=\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBzdHJpbmcgZmllbGQ6IGlkIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBJbnZhbGlkIGNoYXB0ZXIgbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBjaGFwdGVycyBkYXRhOiBFeHBlY3RlZCBhIDY0LWJpdCBpbnRlZ2VyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\nW3siaW5kZXgiOjAsInVybCI6Ii9maXh0dXJlL3BhZ2UiLCJpbWFnZVVSTCI6Imh0dHBzOi8vZml4dHVyZS5pbnZhbGlkL3BhZ2UucG5nIn1d\neyJlcnJvciI6IlRoZSBzb3VyY2UgbXVzdCByZXR1cm4gYSBKU09OIHN0cmluZy4iLCJjb2RlIjoiaW52YWxpZF9yZXNwb25zZSJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBFeHBlY3RlZCBhIEpTT04gbnVtYmVyLiIsImNvZGUiOiJpbnZhbGlkX3Jlc3BvbnNlIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBObyBjaGFwdGVyIHBhZ2VzIHdlcmUgcmV0dXJuZWQuIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgcmV0dXJuZWQgaW52YWxpZCBwYWdlcyBkYXRhOiBJbnZhbGlkIHBhZ2UgaW5kZXguIiwiY29kZSI6ImludmFsaWRfcmVzcG9uc2UifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgbWFuZ2FEZXRhaWxzIGZhaWxlZDogSWxsZWdhbFN0YXRlRXhjZXB0aW9uIiwiY29kZSI6Imludm9jYXRpb25fZmFpbGVkIn0=\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgY2hhcHRlckxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IlNvdXJjZSBtZXRob2QgcGFnZUxpc3QgZmFpbGVkOiBJbGxlZ2FsU3RhdGVFeGNlcHRpb24iLCJjb2RlIjoiaW52b2NhdGlvbl9mYWlsZWQifQ==\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkludmFsaWQgcGFnZSBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBudW1iZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgNjQtYml0IGludGVnZXIuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6IkV4cGVjdGVkIGEgSlNPTiBvYmplY3QuIiwiY29kZSI6ImludmFsaWRfcmVxdWVzdCJ9\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAzLiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyNy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAyMC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNS4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA5LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciA4LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxNi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMi4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6Ik1hbGZvcm1lZCBKU09OIGF0IGNoYXJhY3RlciAxMy4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc2l6ZSBsaW1pdC4iLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJlcnJvciI6IkpTT04gZXhjZWVkcyB0aGUgc3RydWN0dXJlIGxpbWl0LiIsImNvZGUiOiJpbnZhbGlkX3JlcXVlc3QifQ==\neyJtYW5nYXMiOlt7ImlkIjoiZml4dHVyZS1wb3B1bGFyIiwidGl0bGUiOiJTeW50aGV0aWMgUG9wdWxhciIsInVybCI6Ii9maXh0dXJlL21hbmdhIiwiY292ZXJVUkwiOm51bGx9XSwiaGFzTmV4dFBhZ2UiOnRydWV9\neyJlcnJvciI6IkV4cGVjdGVkIHN0cmluZyBmaWVsZDogc291cmNlSWQiLCJjb2RlIjoiaW52YWxpZF9yZXF1ZXN0In0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoibm8tbWV0aG9kcyIsInNvdXJjZUlkIjoibm8tbWV0aG9kcyIsImhhc0luc3RhbmNlIjp0cnVlfQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IGxhdGVzdFVwZGF0ZXMgd2l0aCB0aGUgcmVxdWlyZWQgc2lnbmF0dXJlLiIsImNvZGUiOiJ1bnN1cHBvcnRlZF9tZXRob2QifQ==\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IG1hbmdhRGV0YWlscyB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IGNoYXB0ZXJMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBhZ2VMaXN0IHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoid3Jvbmctc2lnbmF0dXJlIiwic291cmNlSWQiOiJ3cm9uZy1zaWduYXR1cmUiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHBvcHVsYXJNYW5nYSB3aXRoIHRoZSByZXF1aXJlZCBzaWduYXR1cmUuIiwiY29kZSI6InVuc3VwcG9ydGVkX21ldGhvZCJ9\neyJlcnJvciI6IlRoZSBzb3VyY2UgZG9lcyBub3QgaW1wbGVtZW50IHNlYXJjaE1hbmdhIHdpdGggdGhlIHJlcXVpcmVkIHNpZ25hdHVyZS4iLCJjb2RlIjoidW5zdXBwb3J0ZWRfbWV0aG9kIn0=\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiY2xhc3NwYXRoIiwic291cmNlSWQiOiJjbGFzc3BhdGgiLCJoYXNJbnN0YW5jZSI6dHJ1ZX0=\neyJtYW5nYXMiOltdLCJoYXNOZXh0UGFnZSI6ZmFsc2V9\neyJzdGF0dXMiOiJ1bmxvYWRlZCIsInBhY2thZ2UiOiJhYnNlbnQifQ==\neyJlcnJvciI6IlRoZSByZXF1ZXN0ZWQgc291cmNlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6InNvdXJjZV9ub3RfbG9hZGVkIn0=\neyJlcnJvciI6IlRoZSBwYWNrYWdlIGlzIG5vdCBsb2FkZWQuIiwiY29kZSI6Im5vdF9sb2FkZWQifQ==\neyJzdGF0dXMiOiJsb2FkZWQiLCJwYWNrYWdlIjoiYW5vdGhlciIsInNvdXJjZUlkIjoibnVtZXJpYy1zb3VyY2UtMTIzIiwiaGFzSW5zdGFuY2UiOnRydWV9\neyJtYW5nYXMiOlt7ImlkIjoiZml4dHVyZS1wb3B1bGFyIiwidGl0bGUiOiJTeW50aGV0aWMgUG9wdWxhciIsInVybCI6Ii9maXh0dXJlL21hbmdhIiwiY292ZXJVUkwiOm51bGx9XSwiaGFzTmV4dFBhZ2UiOnRydWV9\n",
       "stderr": ""
     }
   ],
@@ -72,7 +72,7 @@
       "response": {
         "status": "ok",
         "engine": "MangaShelf experimental host runner",
-        "version": "1.0.0"
+        "version": "2.0.0"
       }
     },
     {
@@ -93,6 +93,14 @@
     },
     {
       "name": "missing source / popular",
+      "passed": true,
+      "response": {
+        "error": "The requested source is not loaded.",
+        "code": "source_not_loaded"
+      }
+    },
+    {
+      "name": "missing source / latest",
       "passed": true,
       "response": {
         "error": "The requested source is not loaded.",
@@ -200,14 +208,17 @@
     {
       "name": "explicit source identifier works",
       "passed": true,
-      "response": [
-        {
-          "id": "fixture-popular",
-          "title": "Synthetic Popular",
-          "url": "/fixture/manga",
-          "coverURL": null
-        }
-      ]
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture-popular",
+            "title": "Synthetic Popular",
+            "url": "/fixture/manga",
+            "coverURL": null
+          }
+        ],
+        "hasNextPage": true
+      }
     },
     {
       "name": "duplicate package rejected",
@@ -228,14 +239,17 @@
     {
       "name": "failed replacements preserve existing source",
       "passed": true,
-      "response": [
-        {
-          "id": "fixture-popular",
-          "title": "Synthetic Popular",
-          "url": "/fixture/manga",
-          "coverURL": null
-        }
-      ]
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture-popular",
+            "title": "Synthetic Popular",
+            "url": "/fixture/manga",
+            "coverURL": null
+          }
+        ],
+        "hasNextPage": true
+      }
     },
     {
       "name": "popular explicit failure / page 2",
@@ -273,7 +287,7 @@
       "name": "popular explicit failure / page 6",
       "passed": true,
       "response": {
-        "error": "The source returned invalid popular data: Expected a JSON array.",
+        "error": "The source returned invalid popular data: hasNextPage must be a boolean.",
         "code": "invalid_response"
       }
     },
@@ -305,7 +319,7 @@
       "name": "popular explicit failure / page 11",
       "passed": true,
       "response": {
-        "error": "The source returned invalid popular data: Malformed JSON at character 16.",
+        "error": "The source returned invalid popular data: Malformed JSON at character 26.",
         "code": "invalid_response"
       }
     },
@@ -328,24 +342,147 @@
     {
       "name": "genuine empty popular response stays empty",
       "passed": true,
-      "response": []
+      "response": {
+        "mangas": [],
+        "hasNextPage": false
+      }
+    },
+    {
+      "name": "latest calls its own method",
+      "passed": true,
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture-latest",
+            "title": "Synthetic Latest",
+            "url": "/fixture/latest"
+          }
+        ],
+        "hasNextPage": false
+      }
     },
     {
       "name": "escaped Unicode query reaches source intact",
       "passed": true,
-      "response": [
-        {
-          "id": "fixture/\"\\\t",
-          "title": "عربي 📚 \"quoted\" \\ newline\n",
-          "coverURL": null,
-          "url": "/manga/\"\\"
-        }
-      ]
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          }
+        ],
+        "hasNextPage": false
+      }
     },
     {
       "name": "empty search response stays empty",
       "passed": true,
-      "response": []
+      "response": {
+        "mangas": [],
+        "hasNextPage": false
+      }
+    },
+    {
+      "name": "source pagination preserved / 0 / False",
+      "passed": true,
+      "response": {
+        "mangas": [],
+        "hasNextPage": false
+      }
+    },
+    {
+      "name": "source pagination preserved / 0 / True",
+      "passed": true,
+      "response": {
+        "mangas": [],
+        "hasNextPage": true
+      }
+    },
+    {
+      "name": "source pagination preserved / 1 / False",
+      "passed": true,
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          }
+        ],
+        "hasNextPage": false
+      }
+    },
+    {
+      "name": "source pagination preserved / 1 / True",
+      "passed": true,
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          }
+        ],
+        "hasNextPage": true
+      }
+    },
+    {
+      "name": "source pagination preserved / 3 / False",
+      "passed": true,
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          },
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          },
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          }
+        ],
+        "hasNextPage": false
+      }
+    },
+    {
+      "name": "source pagination preserved / 3 / True",
+      "passed": true,
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          },
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          },
+          {
+            "id": "fixture/\"\\\t",
+            "title": "عربي 📚 \"quoted\" \\ newline\n",
+            "coverURL": null,
+            "url": "/manga/\"\\"
+          }
+        ],
+        "hasNextPage": true
+      }
     },
     {
       "name": "search invocation failure",
@@ -367,7 +504,7 @@
       "name": "invalid search reply / {}",
       "passed": true,
       "response": {
-        "error": "The source returned invalid search data: Expected a JSON array.",
+        "error": "The source returned invalid search data: hasNextPage must be a boolean.",
         "code": "invalid_response"
       }
     },
@@ -375,7 +512,7 @@
       "name": "invalid search reply / [{}]",
       "passed": true,
       "response": {
-        "error": "The source returned invalid search data: Expected string field: id",
+        "error": "The source returned invalid search data: Expected a JSON object.",
         "code": "invalid_response"
       }
     },
@@ -391,7 +528,7 @@
       "name": "invalid search reply / null",
       "passed": true,
       "response": {
-        "error": "The source returned invalid search data: Expected a JSON array.",
+        "error": "The source returned invalid search data: Expected a JSON object.",
         "code": "invalid_response"
       }
     },
@@ -405,6 +542,62 @@
     },
     {
       "name": "invalid search reply / [{\"id\":\"a\",\"title\":\"t\",\"url\":false}]",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON object.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":[]}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: hasNextPage must be a boolean.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":[],\"hasNextPage\":null}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: hasNextPage must be a boolean.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":[],\"hasNextPage\":1}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: hasNextPage must be a boolean.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":[],\"hasNextPage\":\"false\"}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: hasNextPage must be a boolean.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"hasNextPage\":false}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON array.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":null,\"hasNextPage\":false}",
+      "passed": true,
+      "response": {
+        "error": "The source returned invalid search data: Expected a JSON array.",
+        "code": "invalid_response"
+      }
+    },
+    {
+      "name": "invalid search reply / {\"mangas\":[{\"id\":\"a\",\"title\":\"t\",\"url\":false}],\"hasNextPage\":false}",
       "passed": true,
       "response": {
         "error": "The source returned invalid search data: Expected string field: url",
@@ -601,7 +794,23 @@
       }
     },
     {
+      "name": "invalid latest page field / 0",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
       "name": "invalid page field / -1",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid latest page field / -1",
       "passed": true,
       "response": {
         "error": "Invalid page number.",
@@ -617,7 +826,23 @@
       }
     },
     {
+      "name": "invalid latest page field / 10001",
+      "passed": true,
+      "response": {
+        "error": "Invalid page number.",
+        "code": "invalid_request"
+      }
+    },
+    {
       "name": "invalid page field / 1.5",
+      "passed": true,
+      "response": {
+        "error": "Expected a 64-bit integer.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid latest page field / 1.5",
       "passed": true,
       "response": {
         "error": "Expected a 64-bit integer.",
@@ -633,7 +858,23 @@
       }
     },
     {
+      "name": "invalid latest page field / True",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
       "name": "invalid page field / '1'",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid latest page field / '1'",
       "passed": true,
       "response": {
         "error": "Expected a JSON number.",
@@ -649,6 +890,14 @@
       }
     },
     {
+      "name": "invalid latest page field / None",
+      "passed": true,
+      "response": {
+        "error": "Expected a JSON number.",
+        "code": "invalid_request"
+      }
+    },
+    {
       "name": "invalid page field / 9223372036854775808",
       "passed": true,
       "response": {
@@ -657,7 +906,15 @@
       }
     },
     {
-      "name": "malformed/oversized request 71",
+      "name": "invalid latest page field / 9223372036854775808",
+      "passed": true,
+      "response": {
+        "error": "Expected a 64-bit integer.",
+        "code": "invalid_request"
+      }
+    },
+    {
+      "name": "malformed/oversized request 94",
       "passed": true,
       "response": {
         "error": "Expected a JSON object.",
@@ -665,7 +922,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 72",
+      "name": "malformed/oversized request 95",
       "passed": true,
       "response": {
         "error": "Expected a JSON object.",
@@ -673,7 +930,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 73",
+      "name": "malformed/oversized request 96",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 3.",
@@ -681,7 +938,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 74",
+      "name": "malformed/oversized request 97",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 27.",
@@ -689,7 +946,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 75",
+      "name": "malformed/oversized request 98",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 20.",
@@ -697,7 +954,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 76",
+      "name": "malformed/oversized request 99",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 16.",
@@ -705,7 +962,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 77",
+      "name": "malformed/oversized request 100",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 15.",
@@ -713,7 +970,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 78",
+      "name": "malformed/oversized request 101",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 9.",
@@ -721,7 +978,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 79",
+      "name": "malformed/oversized request 102",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 8.",
@@ -729,7 +986,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 80",
+      "name": "malformed/oversized request 103",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 8.",
@@ -737,7 +994,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 81",
+      "name": "malformed/oversized request 104",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 16.",
@@ -745,7 +1002,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 82",
+      "name": "malformed/oversized request 105",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 12.",
@@ -753,7 +1010,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 83",
+      "name": "malformed/oversized request 106",
       "passed": true,
       "response": {
         "error": "Malformed JSON at character 13.",
@@ -761,7 +1018,7 @@
       }
     },
     {
-      "name": "malformed/oversized request 84",
+      "name": "malformed/oversized request 107",
       "passed": true,
       "response": {
         "error": "JSON exceeds the size limit.",
@@ -787,14 +1044,17 @@
     {
       "name": "escaped field name is decoded",
       "passed": true,
-      "response": [
-        {
-          "id": "fixture-popular",
-          "title": "Synthetic Popular",
-          "url": "/fixture/manga",
-          "coverURL": null
-        }
-      ]
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture-popular",
+            "title": "Synthetic Popular",
+            "url": "/fixture/manga",
+            "coverURL": null
+          }
+        ],
+        "hasNextPage": true
+      }
     },
     {
       "name": "key text inside query cannot spoof sourceId",
@@ -819,6 +1079,14 @@
       "passed": true,
       "response": {
         "error": "The source does not implement popularManga with the required signature.",
+        "code": "unsupported_method"
+      }
+    },
+    {
+      "name": "unsupported method / latest",
+      "passed": true,
+      "response": {
+        "error": "The source does not implement latestUpdates with the required signature.",
         "code": "unsupported_method"
       }
     },
@@ -893,7 +1161,10 @@
     {
       "name": "classpath fixture executes",
       "passed": true,
-      "response": []
+      "response": {
+        "mangas": [],
+        "hasNextPage": false
+      }
     },
     {
       "name": "unload source by package",
@@ -932,16 +1203,19 @@
     {
       "name": "reloaded source works",
       "passed": true,
-      "response": [
-        {
-          "id": "fixture-popular",
-          "title": "Synthetic Popular",
-          "url": "/fixture/manga",
-          "coverURL": null
-        }
-      ]
+      "response": {
+        "mangas": [
+          {
+            "id": "fixture-popular",
+            "title": "Synthetic Popular",
+            "url": "/fixture/manga",
+            "coverURL": null
+          }
+        ],
+        "hasNextPage": true
+      }
     }
   ],
   "passed": true,
-  "test_count": 105
+  "test_count": 129
 }

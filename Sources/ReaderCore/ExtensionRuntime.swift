@@ -157,16 +157,22 @@ public final class ExtensionRuntime: @unchecked Sendable {
         return loadedPackages.contains(package)
     }
 
-    public func popular(sourceId: String, page: Int = 1) async throws -> [SourceMangaItem] {
-        guard !sourceId.isEmpty else { return [] }
+    public func popular(sourceId: String, page: Int = 1) async throws -> SourceMangaPage {
+        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         let jsonStr = try dispatch(action: "popular", payload: payload(["sourceId": sourceId, "page": page]))
-        return try JSONDecoder().decode([SourceMangaItem].self, from: Data(jsonStr.utf8))
+        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
     }
 
-    public func search(sourceId: String, query: String, page: Int = 1) async throws -> [SourceMangaItem] {
-        guard !sourceId.isEmpty else { return [] }
+    public func latest(sourceId: String, page: Int = 1) async throws -> SourceMangaPage {
+        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
+        let jsonStr = try dispatch(action: "latest", payload: payload(["sourceId": sourceId, "page": page]))
+        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
+    }
+
+    public func search(sourceId: String, query: String, page: Int = 1) async throws -> SourceMangaPage {
+        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         let jsonStr = try dispatch(action: "search", payload: payload(["sourceId": sourceId, "query": query, "page": page]))
-        return try JSONDecoder().decode([SourceMangaItem].self, from: Data(jsonStr.utf8))
+        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
     }
 
     public func details(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails {

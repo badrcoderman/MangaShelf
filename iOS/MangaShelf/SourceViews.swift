@@ -59,15 +59,15 @@ struct SourceCatalogView: View {
                 let existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { !existing.contains($0.id) })
                 hasMore = result.hasMore; nextPage += 1; loading = false
             } else {
-                let cleanQuery = latest ? "" : query
-                let extItems = try await SourceEngineCoordinator.shared.search(sourceId: sourceId, query: cleanQuery, page: nextPage + 1)
+                let result = try await SourceEngineCoordinator.shared.search(
+                    sourceId: sourceId, query: query, page: nextPage + 1, latest: latest)
                 try Task.checkCancellation(); guard identity == requestID else { return }
-                let seriesList = extItems.map {
+                let seriesList = result.mangas.map {
                     MangaSeries(id: $0.id, title: $0.title, coverURL: $0.coverURL, sourceID: sourceId, sourceURL: $0.url)
                 }
                 let existing = Set(items.map(\.id))
                 items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })
-                hasMore = !extItems.isEmpty && extItems.count >= 2
+                hasMore = result.hasNextPage
                 nextPage += 1
                 loading = false
             }

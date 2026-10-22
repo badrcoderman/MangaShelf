@@ -22,6 +22,6 @@ public final class RunnerHost {
         }
     }
     public static final class ClasspathSource {
-        public String popularManga(int page) { return "[]"; }
+        public String popularManga(int page) { return "{\"mangas\":[],\"hasNextPage\":false}"; }
     }
 }

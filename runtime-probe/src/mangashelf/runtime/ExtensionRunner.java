@@ -34,11 +34,13 @@ public final class ExtensionRunner {
             Map<String, Object> request = object(Json.parse(payload == null ? "{}" : payload, MAX_REQUEST_CHARS));
             switch (action) {
                 case "ping":
-                    return "{\"status\":\"ok\",\"engine\":\"MangaShelf experimental host runner\",\"version\":\"1.0.0\"}";
+                    return "{\"status\":\"ok\",\"engine\":\"MangaShelf experimental host runner\",\"version\":\"2.0.0\"}";
                 case "load": return load(request);
                 case "unload": return unload(request);
                 case "popular":
                     return invoke(action, request, "popularManga", new Class<?>[]{int.class}, page(request));
+                case "latest":
+                    return invoke(action, request, "latestUpdates", new Class<?>[]{int.class}, page(request));
                 case "search":
                     return invoke(action, request, "searchManga", new Class<?>[]{int.class, String.class},
                             page(request), optionalString(request, "query", ""));
@@ -141,12 +143,22 @@ public final class ExtensionRunner {
             }
             return;
         }
-        List<?> entries = array(result);
+        boolean catalog = action.equals("popular") || action.equals("latest") || action.equals("search");
+        final List<?> entries;
+        if (catalog) {
+            Map<String, Object> page = object(result);
+            if (!(page.get("hasNextPage") instanceof Boolean)) {
+                throw failure("invalid_response", "hasNextPage must be a boolean.");
+            }
+            entries = array(page.get("mangas"));
+        } else {
+            entries = array(result);
+        }
         if (entries.size() > (action.equals("pages") ? 4096 : 30_000)) throw failure("invalid_response", "Too many entries.");
         if (action.equals("pages") && entries.isEmpty()) throw failure("invalid_response", "No chapter pages were returned.");
         for (Object entry : entries) {
             Map<String, Object> item = object(entry);
-            if (action.equals("popular") || action.equals("search")) {
+            if (catalog) {
                 requiredString(item, "id"); requiredString(item, "title"); requiredString(item, "url");
                 nullableString(item, "coverURL");
             } else if (action.equals("chapters")) {

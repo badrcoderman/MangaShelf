@@ -10,6 +10,18 @@ public struct SourceMangaItem: Codable, Identifiable, Sendable {
     }
 }
 
+/// Pagination belongs to the source. An empty or short page can still have a
+/// next page; a large result does not imply that one exists.
+public struct SourceMangaPage: Codable, Sendable {
+    public let mangas: [SourceMangaItem]
+    public let hasNextPage: Bool
+
+    public init(mangas: [SourceMangaItem], hasNextPage: Bool) {
+        self.mangas = mangas
+        self.hasNextPage = hasNextPage
+    }
+}
+
 public struct SourceMangaDetails: Codable, Sendable {
     public let title: String
     public let author: String?
@@ -53,7 +65,7 @@ public struct SourcePageItem: Codable, Identifiable, Sendable {
 }
 
 public protocol SourceEngineProtocol: Sendable {
-    func search(sourceId: String, query: String, page: Int) async throws -> [SourceMangaItem]
+    func search(sourceId: String, query: String, page: Int, latest: Bool) async throws -> SourceMangaPage
     func fetchDetails(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails
     func fetchChapters(sourceId: String, mangaURL: String) async throws -> [SourceChapterItem]
     func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem]
@@ -78,13 +90,14 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
                                              mainClass: candidate.manifest.mainClass)
     }
 
-    public func search(sourceId: String, query: String, page: Int) async throws -> [SourceMangaItem] {
+    public func search(sourceId: String, query: String, page: Int, latest: Bool = false) async throws -> SourceMangaPage {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         // Bounded query limit
         let cleanQuery = String(query.prefix(256)).trimmingCharacters(in: .whitespacesAndNewlines)
         guard page >= 1, page <= 10_000 else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
 
         if cleanQuery.isEmpty {
+            if latest { return try await runtime.latest(sourceId: sourceId, page: page) }
             return try await runtime.popular(sourceId: sourceId, page: page)
         } else {
             return try await runtime.search(sourceId: sourceId, query: cleanQuery, page: page)

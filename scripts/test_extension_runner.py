@@ -76,7 +76,7 @@ def main():
             case("ping", "ping", None, status="ok")
             case("null action is explicit error", None, {}, error="invalid_action")
             case("unknown action escapes correctly", 'unknown"\\\n', {}, error="unknown_action")
-            for action in ("popular", "search", "details", "chapters", "pages"):
+            for action in ("popular", "latest", "search", "details", "chapters", "pages"):
                 case("missing source / " + action, action, {"sourceId": "absent", "url": "/x"}, error="source_not_loaded")
             case("load without mainClass cannot succeed", "load", {"package": "absent", "path": str(archive)}, error="invalid_request")
             case("failed load registers no source", "popular", {"sourceId": "absent"}, error="source_not_loaded")
@@ -86,7 +86,7 @@ def main():
             case("constructor failure registers no source", "popular", {"sourceId": "absent"}, error="source_not_loaded")
             load("successful retry after failed load", "absent", source_id="numeric-source-123")
             case("package is not silently a source alias", "popular", {"sourceId": "absent"}, error="source_not_loaded")
-            popular = [{"id": "fixture-popular", "title": "Synthetic Popular", "url": "/fixture/manga", "coverURL": None}]
+            popular = {"mangas": [{"id": "fixture-popular", "title": "Synthetic Popular", "url": "/fixture/manga", "coverURL": None}], "hasNextPage": True}
             source = "numeric-source-123"
             case("explicit source identifier works", "popular", {"sourceId": source}, expected=popular)
             case("duplicate package rejected", "load", {"package": "absent", "path": str(archive), "mainClass": "mangashelf.fixtures.SyntheticSources$Good"}, error="already_loaded")
@@ -97,13 +97,26 @@ def main():
                                (9, "invalid_response"), (10, "invalid_response"), (11, "invalid_response"),
                                (12, "invalid_response"), (13, "invocation_failed")):
                 case("popular explicit failure / page " + str(page), "popular", {"sourceId": source, "page": page}, error=code)
-            case("genuine empty popular response stays empty", "popular", {"sourceId": source, "page": 8}, expected=[])
+            empty_page = {"mangas": [], "hasNextPage": False}
+            case("genuine empty popular response stays empty", "popular", {"sourceId": source, "page": 8}, expected=empty_page)
+            latest = {"mangas": [{"id": "fixture-latest", "title": "Synthetic Latest", "url": "/fixture/latest"}], "hasNextPage": False}
+            case("latest calls its own method", "latest", {"sourceId": source, "page": 1}, expected=latest)
 
             titles = [{"id": 'fixture/"\\\t', "title": 'عربي 📚 "quoted" \\ newline\n', "coverURL": None, "url": '/manga/"\\'}]
-            case("escaped Unicode query reaches source intact", "search", {"sourceId": source, "page": 1, "query": json.dumps(titles, ensure_ascii=True)}, expected=titles)
-            case("empty search response stays empty", "search", {"sourceId": source, "query": "[]"}, expected=[])
+            title_page = {"mangas": titles, "hasNextPage": False}
+            case("escaped Unicode query reaches source intact", "search", {"sourceId": source, "page": 1, "query": json.dumps(title_page, ensure_ascii=True)}, expected=title_page)
+            case("empty search response stays empty", "search", {"sourceId": source, "query": json.dumps(empty_page)}, expected=empty_page)
+            for items in ([], titles, titles * 3):
+                for has_next in (False, True):
+                    reply = {"mangas": items, "hasNextPage": has_next}
+                    case("source pagination preserved / " + str(len(items)) + " / " + str(has_next),
+                         "search", {"sourceId": source, "query": json.dumps(reply)}, expected=reply)
             case("search invocation failure", "search", {"sourceId": source, "query": "throw"}, error="invocation_failed")
-            for query in ("not JSON", "{}", "[{}]", "[null]", "null", "[true]", '[{"id":"a","title":"t","url":false}]'):
+            for query in ("not JSON", "{}", "[{}]", "[null]", "null", "[true]", '[{"id":"a","title":"t","url":false}]',
+                          '{"mangas":[]}', '{"mangas":[],"hasNextPage":null}',
+                          '{"mangas":[],"hasNextPage":1}', '{"mangas":[],"hasNextPage":"false"}',
+                          '{"hasNextPage":false}', '{"mangas":null,"hasNextPage":false}',
+                          '{"mangas":[{"id":"a","title":"t","url":false}],"hasNextPage":false}'):
                 case("invalid search reply / " + query, "search", {"sourceId": source, "query": query}, error="invalid_response")
             case("details from synthetic source", "details", {"sourceId": source, "url": "good"}, expected={
                 "title": "Synthetic Details", "author": None, "artist": None, "description": "Fixture only",
@@ -124,6 +137,7 @@ def main():
                 case("invocation failure / " + action, action, {"sourceId": source, "url": "throw"}, error="invocation_failed")
             for page in (0, -1, 10001, 1.5, True, "1", None, 9223372036854775808):
                 case("invalid page field / " + repr(page), "popular", {"sourceId": source, "page": page}, error="invalid_request")
+                case("invalid latest page field / " + repr(page), "latest", {"sourceId": source, "page": page}, error="invalid_request")
             for payload in ('[]', 'null', '{} trailing', '{"sourceId":"x","sourceId":"y"}', '{"sourceId":"\\ud800"}',
                             '{"sourceId":"\\uZZZZ"}', '{"sourceId":"\\x41"}', '{"page":01}', '{"page":+1}', '{"page":NaN}',
                             '{"sourceId":"x",}', '{"sourceId":', '"unterminated', ' ' * (256 * 1024 + 1)):
@@ -133,13 +147,13 @@ def main():
             case("escaped field name is decoded", "popular", '{"source\\u0049d" : "numeric-source-123", "page" : 1}', expected=popular)
             case("key text inside query cannot spoof sourceId", "search", {"query": '"sourceId":"numeric-source-123"'}, error="invalid_request")
             load("load unsupported source", "no-methods", "NoMethods")
-            for action in ("popular", "search", "details", "chapters", "pages"):
+            for action in ("popular", "latest", "search", "details", "chapters", "pages"):
                 case("unsupported method / " + action, action, {"sourceId": "no-methods", "url": "good"}, error="unsupported_method")
             load("load wrong-signature source", "wrong-signature", "WrongSignature")
             for action in ("popular", "search"):
                 case("no loose reflection matching / " + action, action, {"sourceId": "wrong-signature"}, error="unsupported_method")
             case("classpath loader need not be URLClassLoader", "load", {"package": "classpath", "mainClass": "mangashelf.runtime.RunnerHost$ClasspathSource"}, status="loaded")
-            case("classpath fixture executes", "popular", {"sourceId": "classpath"}, expected=[])
+            case("classpath fixture executes", "popular", {"sourceId": "classpath"}, expected=empty_page)
             case("unload source by package", "unload", {"package": "absent"}, status="unloaded")
             case("unloaded source no longer works", "popular", {"sourceId": source}, error="source_not_loaded")
             case("unknown unload cannot claim success", "unload", {"package": "absent"}, error="not_loaded")

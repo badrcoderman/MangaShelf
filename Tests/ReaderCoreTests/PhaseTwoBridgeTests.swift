@@ -149,12 +149,12 @@ final class PhaseTwoBridgeTests: XCTestCase {
 
         // Query execution
         let searchResults = try await coordinator.search(sourceId: "src-1", query: "Solo", page: 1)
-        XCTAssertFalse(searchResults.isEmpty)
-        XCTAssertEqual(searchResults[0].id, "src-1-search-1")
+        XCTAssertFalse(searchResults.mangas.isEmpty)
+        XCTAssertEqual(searchResults.mangas[0].id, "src-1-search-1")
 
         // Popular list
         let popular = try await coordinator.search(sourceId: "src-1", query: "", page: 1)
-        XCTAssertEqual(popular.count, 2)
+        XCTAssertEqual(popular.mangas.count, 2)
 
         // Details
         let details = try await coordinator.fetchDetails(sourceId: "src-1", mangaURL: "/manga/sample-1")
