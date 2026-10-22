@@ -31,7 +31,11 @@
   وملف object. اجتازت هذه الخطوة في Actions 39762272353؛ توقف بناء الصورة
   لاحقًا عند libprefs وlibinstrument، كما في [دليل المحاولة](../validation/ios-jvm-image-39762272353.json).
 - تطبيق فحص الهاتف يتطلب runtime بمنشأ يثبت إدراج التنفيذ الجديد؛ فحصه الآن
-  يتضمن MIME أيضًا. إثبات السلوك والموارد على iPhone ما زال ضمن ENG-15.
+  يتضمن MIME أيضًا. أكد تقرير المستخدم نجاح text/plain وimage/png على
+  iOS 26.2 في 0.1.1 والمحرك 39818913578، مع الاسم العربي وفحص الملفات
+  وJNI؛ [تقرير الهاتف](../validation/ios-jvm-device-39823313828-iphone-report.json).
+  لا يختبر ذلك تسرب الموارد أو مسارات استثناء Objective-C/OOM على الجهاز؛
+  تبقى تلك الحالات ضمن ENG-12/15.
 
 الأدلة المحلية: [خيارات المصدر](../validation/ios-jvm-source-fixes.json)،
 [fixture المضيف](../validation/ios-device-fixture-host.json). لا تتضمن الخطوة

@@ -1,0 +1,18 @@
+User-pasted physical iPhone report, normalized key order; repeated identical report blocks retained once.
+{
+  "build": "0e6a3eb93a5f3a0c85f369dfda8db824df553e3c",
+  "call_code": 0,
+  "ios": "26.2",
+  "java_diagnostics": "JVM/file diagnostics\nsun.jnu.encoding=UTF-8\nnative.encoding=UTF-8\nfile.encoding=UTF-8\nstdout.encoding=UTF-8\nstderr.encoding=UTF-8\njava.version=28-internal\njava.runtime.version=28-internal-adhoc.runner.mobile\njava.vm.name=OpenJDK 64-Bit Zero VM\njava.vm.version=28-internal-adhoc.runner.mobile\nos.name=Darwin\nos.arch=aarch64\nos.version=25.2.0\nCharset.defaultCharset=UTF-8\n",
+  "java_diagnostics_code": 0,
+  "output": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem",
+  "probe_version": "0.1.1",
+  "runtime_run_id": "39818913578",
+  "scope": "VM and project-owned JAR check; does not test a real extension",
+  "stage": "passed",
+  "start_code": 0,
+  "unicode_code": 0,
+  "unicode_roundtrip": true
+}
+
+Accompanying runtime.log also contained the two older InvalidPathException traces with RuntimeProbe.run(RuntimeProbe.java:44), matching the previously recorded 2075088 failure. The current native harness opens runtime.log with O_APPEND. Two UTF-8 diagnostic blocks followed those traces. These repetitions do not establish an independent attempt count.

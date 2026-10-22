@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-10-22T19:37:49Z",
+  "origin": "User-pasted report and accumulated runtime.log from physical iPhone; not an automated capture",
+  "report": {
+    "build": "0e6a3eb93a5f3a0c85f369dfda8db824df553e3c",
+    "call_code": 0,
+    "ios": "26.2",
+    "java_diagnostics": "JVM/file diagnostics\nsun.jnu.encoding=UTF-8\nnative.encoding=UTF-8\nfile.encoding=UTF-8\nstdout.encoding=UTF-8\nstderr.encoding=UTF-8\njava.version=28-internal\njava.runtime.version=28-internal-adhoc.runner.mobile\njava.vm.name=OpenJDK 64-Bit Zero VM\njava.vm.version=28-internal-adhoc.runner.mobile\nos.name=Darwin\nos.arch=aarch64\nos.version=25.2.0\nCharset.defaultCharset=UTF-8\n",
+    "java_diagnostics_code": 0,
+    "output": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem",
+    "probe_version": "0.1.1",
+    "runtime_run_id": "39818913578",
+    "scope": "VM and project-owned JAR check; does not test a real extension",
+    "stage": "passed",
+    "start_code": 0,
+    "unicode_code": 0,
+    "unicode_roundtrip": true
+  },
+  "artifact_proof": "validation/ios-jvm-device-39823313828.json",
+  "artifact_ipa_sha256": "eb22bdf73f4a5d6bb02929789e82a365a91cc9092ffab1b31abc0c5e14c6f161",
+  "raw_excerpt": "validation/iphone-enginecheck-0e6a3eb-user-report.txt",
+  "raw_excerpt_sha256": "81cd3477f7e8ca639a52aed81a02008e1d691be641d90d22f4cfcd1312defb40",
+  "reported_vm_start_success": true,
+  "fixture_passed": true,
+  "native_unicode_echo_passed": true,
+  "reported_checks_passed": [
+    "separate project-owned JAR class loading",
+    "reflection",
+    "Java Unicode value",
+    "Java worker thread",
+    "GZIP round trip",
+    "file read/write",
+    "text/plain and image/png MIME through Files.probeContentType",
+    "Arabic and emoji file creation/list/read/URI/cleanup",
+    "JNI Arabic and emoji round trip"
+  ],
+  "reported_encodings": {
+    "sun.jnu.encoding": "UTF-8",
+    "native.encoding": "UTF-8",
+    "file.encoding": "UTF-8",
+    "stdout.encoding": "UTF-8",
+    "stderr.encoding": "UTF-8",
+    "Charset.defaultCharset": "UTF-8"
+  },
+  "old_exceptions_in_appended_log": {
+    "matches_previous_user_report": "validation/ios-jvm-device-39806485937-iphone-report.json",
+    "log_uses_append": true,
+    "current_success_report_has_no_java_exception": true,
+    "attempt_count_established": false
+  },
+  "vm_shutdown_or_restart_same_process_proven": false,
+  "jni_embedded_nul_or_oom_proven": false,
+  "swift_to_java_source_dispatch_proven": false,
+  "native_net_or_network_proven": false,
+  "real_extension_executed": false,
+  "finding": "Physical iPhone report confirms source-built iOS VM and project-owned fixture including UTF-8 filesystem, MIME and JNI Unicode. Continue actual native dispatcher/host API integration; no real extension proof."
+}
