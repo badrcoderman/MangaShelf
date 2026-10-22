@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-10-22T10:23:29.795843+00:00",
+  "run_id": 39762272353,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39762272353",
+  "source_commit": "8f7872a5c178d83a3c70b3b1a9091626dc2f7850",
+  "created_at": "2026-10-22T10:19:47Z",
+  "status": "in_progress",
+  "conclusion": null,
+  "active_steps": [
+    "Build iOS Zero runtime"
+  ],
+  "change": "iOS libnio linking and UTType MIME probe with ARC exception cleanup; SDK compile preflight then full Java image build",
+  "local_source_checks": "validation/ios-jvm-source-fixes.json",
+  "host_fixture_checks": "validation/ios-device-fixture-host.json",
+  "complete_java_image_verified": false,
+  "target_vm_executed": false,
+  "real_extension_on_iphone_verified": false,
+  "scope": "Live CI snapshot only; no target SDK or device success is asserted."
+}
