@@ -62,8 +62,10 @@ struct SourceCatalogView: View {
                 let result = try await SourceEngineCoordinator.shared.search(
                     sourceId: sourceId, query: query, page: nextPage + 1, latest: latest)
                 try Task.checkCancellation(); guard identity == requestID else { return }
+                let savedByURL = Dictionary(grouping: online.state.series.filter { $0.series.sourceID == sourceId },
+                                            by: { $0.series.sourceURL ?? "" })
                 let seriesList = result.mangas.map {
-                    MangaSeries(id: $0.id, title: $0.title, coverURL: $0.coverURL, sourceID: sourceId, sourceURL: $0.url)
+                    $0.librarySeries(sourceID: sourceId, saved: savedByURL[$0.url] ?? [])
                 }
                 let existing = Set(items.map(\.id))
                 items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })

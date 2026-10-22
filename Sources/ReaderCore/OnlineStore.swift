@@ -31,6 +31,9 @@ public actor OnlineStore {
     public func save(_ series: MangaSeries, favorite: Bool? = nil) throws {
         var candidate = state
         if let index = candidate.series.firstIndex(where: { $0.id == series.id }) {
+            guard candidate.series[index].series.sourceID == series.sourceID else {
+                throw ReaderFailure(ReaderText.string("The title identifier belongs to a different source."))
+            }
             candidate.series[index].series = series
             if let favorite { candidate.series[index].inLibrary = favorite }
         } else {
@@ -221,6 +224,9 @@ public actor OnlineStore {
         var candidate = state
         for item in incoming.series {
             if let i = candidate.series.firstIndex(where: { $0.id == item.id }) {
+                guard candidate.series[i].series.sourceID == item.series.sourceID else {
+                    throw ReaderFailure(ReaderText.string("The title identifier belongs to a different source."))
+                }
                 candidate.series[i].inLibrary = candidate.series[i].inLibrary || item.inLibrary
                 candidate.series[i].categories.formUnion(item.categories)
                 for (id, progress) in item.progress {

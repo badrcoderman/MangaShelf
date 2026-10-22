@@ -1068,3 +1068,5 @@
 "The repository redirected too many times." = "تجاوز المستودع الحد المسموح لتحويل الفهرس.";
 
 "The repository identity changed while its extension list was loading." = "تغيّرت هوية المستودع أثناء تحميل قائمة الإضافات.";
+
+"The title identifier belongs to a different source." = "معرّف العنوان مرتبط بمصدر آخر.";

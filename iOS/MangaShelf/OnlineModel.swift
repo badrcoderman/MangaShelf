@@ -65,10 +65,9 @@ extension SecureHTTP: SourceTransport {
                                   authors: extDetails.author.map { [$0] } ?? [],
                                   tags: extDetails.genre, status: extDetails.status ?? "ongoing",
                                   sourceID: series.sourceID, sourceURL: mangaURL)
+            let savedByURL = Dictionary(grouping: saved(series.id)?.chapters ?? [], by: { $0.sourceURL ?? "" })
             chapters = extChapters.map {
-                MangaChapter(id: $0.id, seriesID: series.id, title: $0.name, number: String($0.chapterNumber),
-                             language: selectedLanguage, publishedAt: Date(timeIntervalSince1970: TimeInterval($0.dateUpload)),
-                             sourceURL: $0.url)
+                $0.libraryChapter(seriesID: series.id, language: selectedLanguage, saved: savedByURL[$0.url] ?? [])
             }
         }
         try Task.checkCancellation()
