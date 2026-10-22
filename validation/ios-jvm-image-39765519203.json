@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-10-22T10:46:28.611619+00:00",
+  "run_id": 39765519203,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39765519203",
+  "source_commit": "a04a45f0fb590837922a9b6d061f5e2bb980bac5",
+  "created_at": "2026-10-22T10:45:45Z",
+  "status": "in_progress",
+  "conclusion": null,
+  "change": "iOS libprefs CoreFoundation/Foundation and libinstrument iconv link fixes after the two terminal errors in run 39762272353",
+  "local_source_checks": "validation/ios-jvm-source-fixes.json",
+  "complete_java_image_verified": false,
+  "target_vm_executed": false,
+  "real_extension_on_iphone_verified": false,
+  "scope": "Live workflow snapshot only; no new target build or device result is asserted."
+}
