@@ -60,6 +60,10 @@ jobs:
           java-version: '25'
       - name: Check pinned API and source registry
         run: python3 -u scripts/test-runtime-host.py
+      - name: Check durable extension preferences
+        run: python3 -u scripts/test-runtime-preferences.py
+      - name: Check authored HTTP sources and TLS on host JVM
+        run: python3 -u scripts/test-runtime-network.py
       - name: Check signatures and bounded archive handling
         run: python3 -u scripts/test-extension-archive-verifier.py
       - name: Load authored signed SourceFactory fixtures
@@ -72,6 +76,8 @@ jobs:
           path: |
             validation/runtime-host-build.json
             validation/runtime-host-tests.json
+            validation/runtime-preferences-host.json
+            validation/runtime-network-host.json
             validation/extension-archive-verifier-host.json
             validation/extension-loader-host.json
             build/runtime-host/runtime-host.jar

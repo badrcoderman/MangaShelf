@@ -1,9 +1,16 @@
 package mangashelf.host
 
+import android.content.Context
+import com.sun.net.httpserver.HttpServer
+import java.io.IOException
+import java.net.InetSocketAddress
 import java.nio.file.Files
 import java.nio.file.Path
 import java.security.MessageDigest
 import java.util.HexFormat
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin
@@ -22,6 +29,32 @@ import mangashelf.runtime.ExtensionArchiveVerifier
 
 /** Only project-authored signed fixtures are executable inputs to this check. */
 object LoaderCheck {
+    private class HttpFixtureServer : AutoCloseable {
+        val entered = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        private val executor = Executors.newCachedThreadPool { Thread(it, "authored-source-server").apply { isDaemon = true } }
+        private val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
+        val url get() = "http://127.0.0.1:${server.address.port}"
+        init {
+            server.executor = executor
+            server.createContext("/") { exchange ->
+                try {
+                    check(exchange.requestHeaders.getFirst("X-Fixture") == "verified")
+                    if (exchange.requestURI.path == "/slow") {
+                        entered.countDown()
+                        check(release.await(10, TimeUnit.SECONDS))
+                    }
+                    val body = "العربية 📚".toByteArray(Charsets.UTF_8)
+                    exchange.responseHeaders.add("Content-Type", "text/plain; charset=utf-8")
+                    exchange.sendResponseHeaders(200, body.size.toLong())
+                    exchange.responseBody.use { it.write(body) }
+                } catch (_: IOException) { /* A cancelled client may close its socket. */ }
+                finally { exchange.close() }
+            }
+            server.start()
+        }
+        override fun close() { release.countDown(); server.stop(0); executor.shutdownNow() }
+    }
     private fun count() = System.getProperty("msl.fixture.constructs", "0").toInt()
     private fun lastLoader() = System.getProperties()["msl.fixture.loader"] as VerifiedExtensionClassLoader
     private suspend fun until(property: String) {
@@ -58,11 +91,17 @@ object LoaderCheck {
                 listOf(SourceRegistry.ExpectedSource(-37, "ar"), SourceRegistry.ExpectedSource(42, "en")))
         }
         suspend fun case(name: String, body: suspend () -> Unit) {
+            System.err.println("START $name")
             System.getProperties().keys.filter { it.toString().startsWith("msl.fixture.") }.toList()
                 .forEach { System.getProperties().remove(it) }
-            withTimeout(15000) { body() }
+            try { withTimeout(15000) { body() } }
+            catch (error: Throwable) {
+                System.err.println("FAIL $name: ${error.javaClass.name}: ${error.message}")
+                throw error
+            }
             Files.list(scratch).use { check(it.count() == 0L) { "Snapshot paths leaked" } }
             checks[name] = true
+            System.err.println("PASS $name")
         }
 
         case("fixture_classes_are_absent_from_parent_classpath") {
@@ -241,6 +280,57 @@ object LoaderCheck {
                 }
             }
         }
+        case("signed_http_source_fetches_unicode_over_real_http_through_registry") {
+            val registry = SourceRegistry()
+            HttpFixtureServer().use { server ->
+                HostServices.configure(Context(root.resolve("http-success"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                try {
+                    System.setProperty("msl.fixture.http_url", server.url)
+                    val http = request("http").copy(expectedSources = listOf(SourceRegistry.ExpectedSource(987, "en")))
+                    check(ExtensionLoader(registry, scratch).install(http).single().id == 987L)
+                    registry.withSource(987) { source ->
+                        check(source.javaClass.classLoader === lastLoader())
+                        check(source.getPopularManga(1).mangas.single().title == "العربية 📚")
+                    }
+                    registry.remove("fixture.extension").await()
+                    check(lastLoader().isClosed)
+                } finally { registry.close().forEach { it.await() }; HostServices.close() }
+            }
+        }
+        case("http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup") {
+            val registry = SourceRegistry()
+            HttpFixtureServer().use { server ->
+                HostServices.configure(Context(root.resolve("http-cancel"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                try {
+                    System.setProperty("msl.fixture.http_url", server.url)
+                    val http = request("http").copy(expectedSources = listOf(SourceRegistry.ExpectedSource(987, "en")))
+                    ExtensionLoader(registry, scratch).install(http)
+                    coroutineScope {
+                        val call = async(start = kotlinx.coroutines.CoroutineStart.UNDISPATCHED) {
+                            registry.withSource(987) { it.getPopularManga(99) }
+                        }
+                        try {
+                            check(server.entered.await(5, TimeUnit.SECONDS))
+                            val released = registry.remove("fixture.extension")
+                            until("msl.fixture.http_cleanup_entered")
+                            check(!released.isCompleted && !lastLoader().isClosed)
+                            System.setProperty("msl.fixture.http_release", "true")
+                            try { call.await(); error("Cancelled HTTP source returned data") } catch (_: CancellationException) { }
+                            released.await()
+                            check(lastLoader().isClosed && System.getProperty("msl.fixture.http_cleanup_done") == "true")
+                        } finally {
+                            System.setProperty("msl.fixture.http_release", "true")
+                            server.release.countDown()
+                            call.cancelAndJoin()
+                        }
+                    }
+                } finally {
+                    System.setProperty("msl.fixture.http_release", "true")
+                    registry.close().forEach { it.await() }
+                    HostServices.close()
+                }
+            }
+        }
         case("manifest_parser_bounds_namespaces_duplicates_and_unsigned_version_range") {
             val manifest = Files.readString(root.resolve("manifest.xml"))
             val parsed = ExtensionManifest.parse(manifest.replace("xmlns:android", "xmlns:a").replace("android:", "a:").toByteArray())
@@ -268,7 +358,7 @@ object LoaderCheck {
         println(buildJsonObject {
             put("passed", true)
             put("checks", JsonObject(checks.mapValues { Json.parseToJsonElement(it.value.toString()) }))
-            put("scope", "Project-authored signed fixture JARs only, typed registry and host JVM; no published extension, network or iOS execution")
+            put("scope", "Project-authored signed fixture JARs and loopback HTTP, typed registry and host JVM; no published extension, NativeNet or iOS execution")
         })
     }
 }

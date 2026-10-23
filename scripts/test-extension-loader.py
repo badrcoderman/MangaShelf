@@ -20,12 +20,12 @@ PASSWORD = 'mangashelf-authored-loader-test-key'
 
 
 def main():
-    sources = [ROOT/'scripts/build-runtime-host.py', Path(__file__),
+    sources = [ROOT/'scripts/build-runtime-host.py', ROOT/'runtime-host/dependencies.lock.json', Path(__file__),
                ROOT/'runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java']
     sources += sorted((ROOT/'runtime-host/src').rglob('*.kt'))
     sources += sorted((ROOT/'runtime-host/src').rglob('*.java'))
     report = {'recorded_at': datetime.now(timezone.utc).isoformat(),
-              'scope': 'Host JVM, project-authored signed executable fixtures only. No published extension, production activation, networking, publisher trust bootstrap or iOS execution.',
+              'scope': 'Host JVM, project-authored signed executable fixtures and loopback HTTP only. No published extension, production activation, NativeNet, publisher trust bootstrap or iOS execution.',
               'published_extension_executed': False, 'ios_execution': False, 'passed': False,
               'inputs_sha256': {str(p.relative_to(ROOT)): build.digest(p) for p in sources},
               'documentation': [
@@ -94,7 +94,7 @@ def main():
                 'abstract': {'main': 'AbstractEntry'}, 'throws': {'main': 'ThrowingEntry'},
                 'blocking': {'main': 'BlockingEntry'}, 'parent': {'main': 'mangashelf.host.SourceRegistry'},
                 'no_android': {}, 'entity': {}, 'old_api': {}, 'shadow': {},
-                'versioned_shadow': {}, 'classpath': {}, 'multi': {},
+                'versioned_shadow': {}, 'classpath': {}, 'multi': {}, 'http': {'main': 'HttpFixture'},
             }
             records = {}
             for label, options in variants.items():

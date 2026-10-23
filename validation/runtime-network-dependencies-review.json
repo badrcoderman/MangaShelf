@@ -1,0 +1,79 @@
+{
+  "recorded_at": "2026-10-23T10:20:58.245778+00:00",
+  "scope": "JVM network dependency publication and file integrity review over Maven Central TLS, before any compiler/runtime use; not iOS or source execution proof.",
+  "artifacts": [
+    {
+      "artifact": {
+        "group": "com.squareup.okhttp3",
+        "artifact": "okhttp-jvm",
+        "version": "5.4.0",
+        "roles": [
+          "runtime"
+        ],
+        "filename": "okhttp-jvm-5.4.0.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-jvm/5.4.0/okhttp-jvm-5.4.0.jar",
+        "bytes": 863503,
+        "sha256": "b15e605ca0a4b12c62ea7f657dad413c236c947e875854767349cdbe20df473c",
+        "sha512": "2b5da32a14319d78ebb62067011dd0f4533ae95652d153e84f9803fab55cb1eedc8a3aaa189efa5ebacdc7e52b8618c08dd20e82e73e91305dc12038ca8e1e76",
+        "checksum_url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-jvm/5.4.0/okhttp-jvm-5.4.0.module",
+        "provenance_checksum_algorithm": "gradle_module_sha512",
+        "provenance_checksum": "2b5da32a14319d78ebb62067011dd0f4533ae95652d153e84f9803fab55cb1eedc8a3aaa189efa5ebacdc7e52b8618c08dd20e82e73e91305dc12038ca8e1e76",
+        "license_spdx": "Apache-2.0"
+      },
+      "module_sha256": "2ee94132ec09cd3f113cc900f6e6dce7a56d9ef9af44ed5acb2ea6b7bca1367d",
+      "declared_dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.21"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.21"
+          }
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "group": "com.squareup.okio",
+        "artifact": "okio-jvm",
+        "version": "3.18.1",
+        "roles": [
+          "runtime"
+        ],
+        "filename": "okio-jvm-3.18.1.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.18.1/okio-jvm-3.18.1.jar",
+        "bytes": 392463,
+        "sha256": "b97b640557a650d15411f2be29aef558c4e422a83653cb18ba494311dbed18be",
+        "sha512": "a4b9db7bc68876aefbbd57e1e232aadcd9666fffb1ead59f7a9f4dfcc22f2f90a50b29524380548d08dd040379b5dad4737513ed4a78d6f5fc99ae1b5665ef1f",
+        "checksum_url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.18.1/okio-jvm-3.18.1.module",
+        "provenance_checksum_algorithm": "gradle_module_sha512",
+        "provenance_checksum": "a4b9db7bc68876aefbbd57e1e232aadcd9666fffb1ead59f7a9f4dfcc22f2f90a50b29524380548d08dd040379b5dad4737513ed4a78d6f5fc99ae1b5665ef1f",
+        "license_spdx": "Apache-2.0"
+      },
+      "module_sha256": "3581865143cbe7556e1975be4c823834a7b775534de856d0b355c77af946027b",
+      "declared_dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.21"
+          }
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,84 @@
+{
+  "recorded_at": "2026-10-23T16:22:38.935042+00:00",
+  "scope": "Authored Android preference descriptors, application file context and bounded durable preference store on host JVM only. No Android UI, real extension, networking or iOS execution.",
+  "passed": true,
+  "inputs_sha256": {
+    "runtime-host/src/main/java/android/content/SharedPreferences.java": "c149d71633e95f7d3842ba8567bd512619d4a468cb9fdb440fe719d30a9a2701",
+    "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
+    "runtime-host/src/main/java/android/preference/PreferenceManager.java": "315e9652c1850d1268778a999eadb3537795ae53107c25dd9f6d1c63678a0847",
+    "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b",
+    "runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java": "c503c59ce1c51e96536f51e91cd646ad751d804558d9af7561e6597cb7383919",
+    "scripts/test-runtime-preferences.py": "c92209b73d22a2b9b9c50f24c7ed35054ef77f01040243952cd993fb6774f256"
+  },
+  "documentation": [
+    "https://developer.android.com/reference/android/content/SharedPreferences",
+    "https://developer.android.com/reference/android/content/SharedPreferences.Editor"
+  ],
+  "commands": [
+    {
+      "command": [
+        "java",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n"
+    },
+    {
+      "command": [
+        "javac",
+        "--release",
+        "17",
+        "-encoding",
+        "UTF-8",
+        "-Xlint:all",
+        "-Werror",
+        "-d",
+        "/tmp/msl-preference-check-laxmg257/classes",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/SharedPreferences.java",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/Context.java",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/preference/PreferenceManager.java",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/PreferenceStore.java",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "java",
+        "-Xint",
+        "-cp",
+        "/tmp/msl-preference-check-laxmg257/classes",
+        "mangashelf.host.PreferenceStoreCheck",
+        "/tmp/msl-preference-check-laxmg257/data"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"passed\":true,\"checks\":{\"typed_defaults_atomic_editor_and_reopen\":true,\"set_input_output_and_get_all_do_not_alias_storage\":true,\"clear_remove_null_and_editor_reuse_follow_android_value_rules\":true,\"names_and_unicode_keys_stay_distinct_without_path_traversal\":true,\"apply_is_immediately_visible_and_commit_waits_for_prior_writes\":true,\"failed_atomic_replace_preserves_disk_and_retry_clears_pending_error\":true,\"asynchronous_failure_is_observable_and_recoverable_per_store\":true,\"unchecked_async_writer_failures_surface_at_flush_and_allow_retry\":true,\"pending_write_bytes_and_count_are_bounded_before_memory_publication\":true,\"listeners_can_edit_reentrantly_unregister_and_observe_clear\":true,\"bad_listener_does_not_retain_plugin_exception_or_block_other_listeners\":true,\"concurrent_edits_preserve_disjoint_keys_and_latest_memory_snapshot\":true,\"truncated_corrupt_and_symlink_files_are_rejected_without_reset\":true,\"limits_and_malformed_unicode_fail_before_memory_publication\":true,\"application_context_default_preferences_files_and_shutdown\":true,\"writer_uses_host_loader_instead_of_inheriting_plugin_context\":true}}\n",
+      "stderr": ""
+    }
+  ],
+  "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
+  "test_result": {
+    "passed": true,
+    "checks": {
+      "typed_defaults_atomic_editor_and_reopen": true,
+      "set_input_output_and_get_all_do_not_alias_storage": true,
+      "clear_remove_null_and_editor_reuse_follow_android_value_rules": true,
+      "names_and_unicode_keys_stay_distinct_without_path_traversal": true,
+      "apply_is_immediately_visible_and_commit_waits_for_prior_writes": true,
+      "failed_atomic_replace_preserves_disk_and_retry_clears_pending_error": true,
+      "asynchronous_failure_is_observable_and_recoverable_per_store": true,
+      "unchecked_async_writer_failures_surface_at_flush_and_allow_retry": true,
+      "pending_write_bytes_and_count_are_bounded_before_memory_publication": true,
+      "listeners_can_edit_reentrantly_unregister_and_observe_clear": true,
+      "bad_listener_does_not_retain_plugin_exception_or_block_other_listeners": true,
+      "concurrent_edits_preserve_disjoint_keys_and_latest_memory_snapshot": true,
+      "truncated_corrupt_and_symlink_files_are_rejected_without_reset": true,
+      "limits_and_malformed_unicode_fail_before_memory_publication": true,
+      "application_context_default_preferences_files_and_shutdown": true,
+      "writer_uses_host_loader_instead_of_inheriting_plugin_context": true
+    }
+  }
+}

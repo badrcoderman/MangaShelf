@@ -2,7 +2,8 @@
 
 Independently authored Kotlin/JVM implementations of the Source 1.6 interfaces,
 factories, models and filters used by the pinned public `extensions-lib` ABI,
-plus a verified archive loader and source registry. This module is outside the
+plus HTTP source services, persistent preferences, a verified archive loader and
+source registry. This module is outside the
 production iOS target. Published extensions have not been executed with it.
 
 ## Build and check
@@ -10,6 +11,8 @@ production iOS target. Published extensions have not been executed with it.
 ```sh
 python3 scripts/build-runtime-host.py
 python3 scripts/test-runtime-host.py
+python3 scripts/test-runtime-preferences.py
+python3 scripts/test-runtime-network.py
 python3 scripts/test-extension-loader.py
 ```
 
@@ -25,8 +28,9 @@ reused from the local Gradle cache; missing files are fetched from Maven Central
 over HTTPS with size and hash checks. Compiler dependencies stay separate from
 runtime dependencies. No extension JAR is placed on either classpath.
 
-The retained checks cover 25 public classes and 185 members, including static
-method flags, interface kinds and inheritance, plus 14 functional checks using
+The retained ABI checks cover 32 public/protected classes and 222 members,
+including member visibility, static method flags, interface kinds and inheritance,
+plus 14 functional checks using
 authored suspend sources and 19 registry/lifecycle checks. See
 `validation/runtime-host-tests.json`. No real extension is loaded or executed.
 
@@ -88,8 +92,11 @@ resource bytes or arbitrary global threads created by a plugin.
 with a generated test key. Their JARs/classes are absent from the parent classpath.
 It exercises actual SourceFactory loading, typed calls, original-path replacement,
 signers, multi-release/sealed packages, Unicode resources, manifest rejection,
-initialization checks, cancellation and draining removal. This proves neither
-publisher identity nor Android/network bootstrap or iOS execution. Trusted
+initialization checks, cancellation and draining removal. The HTTP fixture also
+performs loopback requests through a separately loaded signed source and checks
+that cancellation retains its archive until asynchronous interceptor cleanup ends.
+These checks prove neither publisher identity nor a published source's complete
+Android bootstrap or iOS execution. Trusted
 plugins share the host process; SecureClassLoader provides no sandbox.
 
 Actions run [39934045293](https://github.com/badrcoderman/MangaShelf/actions/runs/39934045293)
@@ -98,6 +105,42 @@ and 46 authored signature checks each. Both artifacts passed digest/CRC/source
 fingerprint inspection and contain the same host JAR. The local 47th signature
 case is an optional data-only check of the separately rebuilt public candidate;
 that file is absent from CI. See `validation/runtime-host-39934045293.json`.
+
+## HTTP and application services
+
+`HostServices.configure` installs one application Context, version identity,
+user agent and NetworkHelper before initializing a source. `HttpSource` implements
+the pinned default source ID, lazy replaceable `headers$delegate`, headers,
+request helpers and relative URL handling. It leaves unresolved image extraction
+to the source implementation.
+
+NetworkHelper uses the locked OkHttp 5.4.0 / Okio 3.18.1 JVM artifacts, actual
+HTTP sockets, the JVM's certificate/hostname checks, a 50 MiB disk cache and
+bounded in-memory cookies. It applies a configured user agent and reports
+Cloudflare browser challenges explicitly; it has no browser verification flow.
+This is **not** the NativeNet/URLSession transport, and sockets/TLS have not been
+proven inside the iOS VM. Cookies do not survive host restart.
+
+`Call.await` transfers a successful response to its caller, closes responses lost
+to cancellation, cancels the underlying call, and waits for its callback before
+releasing the source operation. Thus package resources remain available during
+asynchronous interceptor cleanup. An interceptor that never returns can delay
+package removal. Close registries and await release tickets before calling the
+blocking `HostServices.close` from a worker.
+
+Context/Application expose app-owned files, cache and SharedPreferences; they do
+not emulate Android UI, system services or a main Looper. Preferences support
+typed values, reusable editors, clear/remove, weak listeners, immediate `apply`
+visibility and ordered atomic disk replacement. Corrupt data is rejected without
+a silent reset; asynchronous failures surface at flush/close. The bounded binary
+file format belongs to MSL and is not Android XML or Tachimanga backup support.
+Queued/active disk snapshots are limited to 32 MiB and 4096 writes; exceeding
+either fails before publishing new values. Use one owner per directory.
+Preferences must be flushed at lifecycle boundaries.
+
+See [implementation and remaining gates](../docs/RUNTIME-HTTP-PREFERENCES-AR.md),
+`validation/runtime-preferences-host.json` and
+`validation/runtime-network-host.json` for the exact current results and inputs.
 
 ## Reference and limits
 
@@ -111,6 +154,7 @@ page order must be preserved independently of each Page's index.
 
 The authored `android.net.Uri` currently supplies the encoded value, parsing
 entrypoint, equality and ordering needed for the Page descriptor. Android
-Parcelable, URI component parsing, preferences, Context, Injekt, HttpSource,
-OkHttp/NativeNet setup, publisher trust provisioning and wire conversion
+Parcelable, URI component parsing, Injekt application bootstrap, additional
+source dependencies, Android preference forms, NativeNet setup, publisher trust
+provisioning and Swift wire conversion
 are still required for a complete host. The module has not run on iPhone.

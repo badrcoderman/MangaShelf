@@ -1,6 +1,6 @@
 {
   "scope": "Compile independently authored source host, verifier and loader only; no archive execution during build or iOS execution.",
-  "dependency_lock_sha256": "8bc873b9725ebcf5ed00664f0b66d838365c91761ce23b0048b5e80de7f177c0",
+  "dependency_lock_sha256": "1fd29b72442457c4e29ed8347b4b565c673efc2d4de915d5070c543b79f50680",
   "dependencies": [
     {
       "filename": "kotlin-compiler-embeddable-2.4.10.jar",
@@ -80,10 +80,29 @@
       "roles": [
         "runtime"
       ]
+    },
+    {
+      "filename": "okhttp-jvm-5.4.0.jar",
+      "sha256": "b15e605ca0a4b12c62ea7f657dad413c236c947e875854767349cdbe20df473c",
+      "roles": [
+        "runtime"
+      ]
+    },
+    {
+      "filename": "okio-jvm-3.18.1.jar",
+      "sha256": "b97b640557a650d15411f2be29aef558c4e422a83653cb18ba494311dbed18be",
+      "roles": [
+        "runtime"
+      ]
     }
   ],
   "sources": {
     "runtime-host/src/main/kotlin/android/net/Uri.kt": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt": "d093b38f0fb83b01c6ed4176d61b8a3be90b9d511f90a71c7d86960df0fd621d",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt": "8ee434cc033ccba1657bda4c8bebe8a52b73be4d8140ba6ccbc38cecf62e6500",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/NetworkHelper.kt": "67be2148d3666a3d980e1a08dfe01b3d81b2412e31113511398be224ade65f2e",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/OkHttpExtensions.kt": "25cb9c08f5a0c17f243320896553d0a5d051ac58001f504ae0f6b31a5ec238c6",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/Requests.kt": "727aab7d3d3e7a5a3474f90a5d186322642b5620ee88d13cbee6d5613cc8656c",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt": "f70b1dd932eaf98660ad22339cdd9f4ed90d9800e6a61a02ca1db84acf7c97d1",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt": "22e2b790ee628cea892dab5b31070afab491a653903c92f9525aaa8c3bd512b4",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/SourceFactory.kt": "3bdc74dca6c9bbec21fc6c07e3903750249c07289d8329ac1b1aab6f013ba1f0",
@@ -97,10 +116,17 @@
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt": "1030aeeb8128b451342cbf2196bca25e84b8e29eecc037a829fcb32142d029dd",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
+    "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "4b966ffacea35366f3dfbc79e43bb4ba70d0455d173283b4b98c14da52fe91b2",
     "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "6350ad26630b72d6f108abc72ae4febc25de43c9723aa38428edd2ff743731ee",
+    "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
+    "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
+    "runtime-host/src/main/java/android/content/SharedPreferences.java": "c149d71633e95f7d3842ba8567bd512619d4a468cb9fdb440fe719d30a9a2701",
+    "runtime-host/src/main/java/android/preference/PreferenceManager.java": "315e9652c1850d1268778a999eadb3537795ae53107c25dd9f6d1c63678a0847",
     "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d",
+    "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b",
     "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "6bf4ac4565535ef082ea1b41778d08d4af99039f5837c61329b582f438c96616",
     "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e"
   },
@@ -118,8 +144,13 @@
       "-Xlint:all",
       "-Werror",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/app/Application.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/Context.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/SharedPreferences.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/preference/PreferenceManager.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/PreferenceStore.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java"
     ],
@@ -140,10 +171,15 @@
       "-jvm-default=enable",
       "-Werror",
       "-classpath",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/NetworkHelper.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/OkHttpExtensions.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/Requests.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/SourceFactory.kt",
@@ -157,8 +193,10 @@
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt"
     ],
     "exit_code": 0,
@@ -168,7 +206,7 @@
   "passed": true,
   "jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 103059,
-    "sha256": "1cb8f0d0eafed9e6419e37d101d84fb6059a4e572853734eacff1c65e946a544"
+    "bytes": 159742,
+    "sha256": "70cd8754430a7cc70075ba5b0329b680707679d989bc0eaf58267b3293848931"
   }
 }

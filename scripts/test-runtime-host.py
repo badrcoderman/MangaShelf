@@ -55,7 +55,7 @@ def class_members(data):
         result, flags_by_member = set(), {}
         for _ in range(u2()):
             flags, name, descriptor = u2(), u2(), u2()
-            if flags & 1:
+            if flags & 5:
                 result.add((pool[name], pool[descriptor]))
                 flags_by_member[(pool[name], pool[descriptor])] = flags
             attributes()
@@ -75,6 +75,10 @@ def expected_api(path):
     expected, current = {}, None
     names = {'eu/kanade/tachiyomi/source/'+name for name in
              ('Source','Source$DefaultImpls','SourceFactory','CatalogueSource','CatalogueSource$DefaultImpls')}
+    names.update({'android/content/Context', 'eu/kanade/tachiyomi/AppInfo',
+                  'eu/kanade/tachiyomi/source/online/HttpSource',
+                  *('eu/kanade/tachiyomi/network/'+name for name in
+                    ('HttpException','NetworkHelper','OkHttpExtensionsKt','RequestsKt'))})
     for line in data.decode().splitlines():
         match = re.match(r'public .*?class ([^ :{]+).*\{', line)
         if match:
@@ -82,7 +86,7 @@ def expected_api(path):
             current = name if name in names or name.startswith('eu/kanade/tachiyomi/source/model/') else None
             if current:
                 parents = line.split(' : ', 1)[1].removesuffix(' {').split(', ') if ' : ' in line else []
-                expected[current] = {'methods':set(), 'fields':set(), 'static':set(),
+                expected[current] = {'methods':set(), 'fields':set(), 'static':set(), 'visibility':{},
                                      'interface':' interface ' in line, 'parents':parents}
         elif line == '}': current = None
         elif current:
@@ -90,6 +94,7 @@ def expected_api(path):
             if match:
                 kind, name, descriptor = match.groups()
                 expected[current]['methods' if kind=='fun' else 'fields'].add((name, descriptor))
+                expected[current]['visibility'][(kind, name, descriptor)] = 4 if 'protected ' in line else 1
                 if ' static ' in line:
                     expected[current]['static'].add((kind, name, descriptor))
     if len(expected) < 20: raise ValueError('Pinned API selection unexpectedly small')
@@ -127,6 +132,9 @@ def main():
                     expected_static = ('fun' if kind=='methods' else 'field', *member) in members['static']
                     if bool(actual[name][kind+'_flags'][member] & 8) != expected_static:
                         missing.append({'class':name,'kind':'static/instance mismatch','member':member})
+                    expected_visibility = members['visibility'][('fun' if kind=='methods' else 'field', *member)]
+                    if actual[name][kind+'_flags'][member] & 5 != expected_visibility:
+                        missing.append({'class':name,'kind':'public/protected mismatch','member':member})
         report['abi'] = {'classes_checked':len(expected), 'members_checked':sum(len(v['fields'])+len(v['methods']) for v in expected.values()), 'missing':missing}
         if missing: raise ValueError('Authored API is missing pinned public descriptors')
         tests = sorted((ROOT / 'runtime-host/src/test/kotlin').rglob('*.kt'))
