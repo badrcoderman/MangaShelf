@@ -156,6 +156,14 @@ loopback HTTP result, restores it after reinstall and gates archive release on
 cleanup. Swift rendering and iOS execution remain pending. See
 [the contract, evidence and limits](../docs/SOURCE-PREFERENCES-AR.md).
 
+These settings changes passed on Linux/macOS Java 25 in
+[40032630971](https://github.com/badrcoderman/MangaShelf/actions/runs/40032630971)
+at `8e3102e`: 17 settings checks, 20 signed-loader checks, API 45/278 and the
+existing model/registry/bootstrap/preferences/HTTP/signature checks. Both
+nine-file artifacts passed digest, CRC and source fingerprint inspection and
+contain the same host JAR. See `validation/runtime-host-40032630971.json`.
+This workflow produces no IPA.
+
 ## HTTP and application services
 
 `HostServices.configure` takes one Application, installs its Context, version

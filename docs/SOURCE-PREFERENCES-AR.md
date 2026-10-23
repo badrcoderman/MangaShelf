@@ -98,7 +98,15 @@ python3 scripts/test-extension-loader.py
 `runtime-source-preferences-host.json` و`extension-loader-host.json`؛ تحتوي
 بصمات المدخلات والأوامر ونتائج التشغيل. workflow `backend-probe.yml` يحتوي
 فحص الإعدادات على Linux وmacOS ويحذف التقارير التاريخية قبل الفحوص. تشغيل
-CI الجديد وإثباته يُسجلان بعد اكتماله، ولا يستنتجان من نجاح التشغيل المحلي.
+CI الجديد نجح في
+[Actions 40032630971](https://github.com/badrcoderman/MangaShelf/actions/runs/40032630971)
+عند `8e3102e54bcb7515d4f83684d233cc911cf5acbc`: على كل منصة 17 حالة
+إعدادات و20 تحميلًا موقّعًا و14 نماذج و20 سجلًا و6 bootstrap و16 تفضيلات
+و16 HTTP/TLS و46 توقيعًا مؤلفًا، مع مطابقة ABI 45/278. فُحص ملفا artifact
+بالحجم وSHA-256 وCRC، وبصمات المدخلات مقابل commit، ومحتواهما التساعي
+ورخصة Injekt وmodule metadata وغياب fixture classes والمكتبات الأصلية؛
+تطابقت JAR بين المنصتين. [الدليل](../validation/runtime-host-40032630971.json).
+لا IPA أو تشغيل مصدر منشور/iPhone بهذا workflow.
 
 ## ما بقي لتفعيل الإضافات
 

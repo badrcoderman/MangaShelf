@@ -52,5 +52,275 @@
   },
   "next_requirement": "Build codec/JNI from reviewed source for arm64 iOS; provide a Darwin loading path appropriate for static/signable iOS code. Do not spoof os.name or load a bundled macOS dylib.",
   "device_evidence": "validation/ios-jvm-device-39823313828-iphone-report.json",
-  "source_archive_checks": "Source archives matched size/SHA-256/SHA-512 declared by their Gradle module metadata before ZIP parsing."
+  "source_archive_checks": "Source archives matched size/SHA-256/SHA-512 declared by their Gradle module metadata before ZIP parsing.",
+  "upstream_source_review": {
+    "pin": "4fbdf35df030888d2a0cce4a84329d107438134f",
+    "repository": "square/okio-zstd",
+    "files": [
+      {
+        "path": ".gitmodules",
+        "git_blob": "8ef60ef9b44367205f412b5d41d4fec2537e11af",
+        "bytes": 76,
+        "sha256": "87d692b0c986a45813a3c2758b29621ac374de65c00652765cba2f1dcc99a760"
+      },
+      {
+        "path": "LICENSE",
+        "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "build.gradle.kts",
+        "git_blob": "360140da0c29ee067f69f1c688d53c734539d779",
+        "bytes": 6015,
+        "sha256": "eab74be66ab014b1d21ffe44d9f15ef5ee332c1d8fc32f26bc9eb5be8a8f82ac"
+      },
+      {
+        "path": "gradle/libs.versions.toml",
+        "git_blob": "5e808947083d7a36e55a6419db8bdf2d884e7307",
+        "bytes": 1361,
+        "sha256": "6b17a8b05664372891ec8a8a2767c7164fb08068b9a667f8f1b6ff371550be8f"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/Zstd.kt",
+        "git_blob": "f081e2f40c52d02167be6cedf772162894865304",
+        "bytes": 1279,
+        "sha256": "3cb1ff84e86fb57d880ba95def71858e9f440814efc20c238523d3bc85cd8825"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdCompressSink.kt",
+        "git_blob": "e374db2209d2ec6f99e4fdb978bc5ae8eb10ad90",
+        "bytes": 4556,
+        "sha256": "985427f2b3bceac984b999717244487642fee260f8ccca4fa861095b8ea85766"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdDecompressSource.kt",
+        "git_blob": "5d7a0a437d127ca1f0fec99628f2a79613a17432",
+        "bytes": 3484,
+        "sha256": "10d557dafe37a6a7295d30f4820594164cd7fc8bed392634674cc69b57640f9d"
+      },
+      {
+        "path": "zstd-kmp/build.gradle.kts",
+        "git_blob": "169ed2f7d7c14b21aad90b43b2675b664b9b20c1",
+        "bytes": 4281,
+        "sha256": "676718f529c9270ca01f8c252a6b1a7c72250fbb0ce8c3648feb9851cf9d2b03"
+      },
+      {
+        "path": "zstd-kmp/native/ZstdKmp.cpp",
+        "git_blob": "b8804ed20d79e6421896632a7f6bfb5561e8a7aa",
+        "bytes": 6433,
+        "sha256": "b2b3d14e4845ed9315a2fef63507201637ea777e911c13be761e7f3bd7c6076a"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/Zstd.kt",
+        "git_blob": "0873e9e08de54ec46304ae72261e5282255cf56d",
+        "bytes": 1167,
+        "sha256": "a00afad1c734b534508dd78cd396424f265172111cc2b71f79024d025f63f186"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdCompressor.kt",
+        "git_blob": "f262d6fe66ddcd413d5549950c423996e45ddb8f",
+        "bytes": 1387,
+        "sha256": "89b919712c8d4ced1592e59e57f48341767809c3f6792f3c960a6a956e4df356"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdDecompressor.kt",
+        "git_blob": "b70a0200ada42f234e38c7d7430c4c1d7a758e2f",
+        "bytes": 1165,
+        "sha256": "7e8eb7284a8ec43f4d46c3345f4f1f7cc3bbf7485596d2ff2d18e3f5e3e4323d"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstd.kt",
+        "git_blob": "982c6e0f0a6851fafe2347f03688e11622e6ede4",
+        "bytes": 1086,
+        "sha256": "0c68722d679d9ce819bb99d0a887b18cd17683d5d78d1885ed37840fb92cd304"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdCompressor.kt",
+        "git_blob": "a595fe8599e5d27fff8f7cdb621c288c4dbc9b95",
+        "bytes": 1986,
+        "sha256": "94e46b3eb77d42e02c5901a6db9135a05291ef94057e6424dac74479537cfdd0"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdDecompressor.kt",
+        "git_blob": "7518b8e4b0c8674d0f4aaeb065e621d8d3683663",
+        "bytes": 1763,
+        "sha256": "6d45d72c6e27ad93873b136e230ed6b8b8d9d29b72ad548cf1a0600a1cf8069e"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/Zstd.jni.kt",
+        "git_blob": "f2aed423c6ec3a03080ff4b12d6b4425f6e42bed",
+        "bytes": 884,
+        "sha256": "b847ea17a8c47843de0bae6ffbbbc2691c8283b62959ea067b6f3766b711d1e9"
+      },
+      {
+        "path": "zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt",
+        "git_blob": "b37e723fd0d95873234f2522f646e8798a83eef5",
+        "bytes": 1696,
+        "sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472"
+      },
+      {
+        "path": "zstd-kmp/src/androidMain/CMakeLists.txt",
+        "git_blob": "fffa80bb617afa9abc3d3df38e52fbd71e716347",
+        "bytes": 489,
+        "sha256": "341d3e7759252b2ade6e8ecdaf57084da3669581acb1e18c9776cbe8711fb405"
+      }
+    ],
+    "license": "Apache-2.0",
+    "public_source_files_match_maven_sources": [
+      {
+        "source": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/Zstd.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/Zstd.kt",
+        "sha256": "a00afad1c734b534508dd78cd396424f265172111cc2b71f79024d025f63f186",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdCompressor.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/ZstdCompressor.kt",
+        "sha256": "89b919712c8d4ced1592e59e57f48341767809c3f6792f3c960a6a956e4df356",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdDecompressor.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/ZstdDecompressor.kt",
+        "sha256": "7e8eb7284a8ec43f4d46c3345f4f1f7cc3bbf7485596d2ff2d18e3f5e3e4323d",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstd.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "jniMain/com/squareup/zstd/JniZstd.kt",
+        "sha256": "0c68722d679d9ce819bb99d0a887b18cd17683d5d78d1885ed37840fb92cd304",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdCompressor.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "jniMain/com/squareup/zstd/JniZstdCompressor.kt",
+        "sha256": "94e46b3eb77d42e02c5901a6db9135a05291ef94057e6424dac74479537cfdd0",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdDecompressor.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "jniMain/com/squareup/zstd/JniZstdDecompressor.kt",
+        "sha256": "6d45d72c6e27ad93873b136e230ed6b8b8d9d29b72ad548cf1a0600a1cf8069e",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/Zstd.jni.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "jniMain/com/squareup/zstd/Zstd.jni.kt",
+        "sha256": "b847ea17a8c47843de0bae6ffbbbc2691c8283b62959ea067b6f3766b711d1e9",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt",
+        "source_jar": "zstd-kmp-jvm-0.4.0-sources.jar",
+        "entry": "jvmMain/com/squareup/zstd/JvmZstd.kt",
+        "sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/Zstd.kt",
+        "source_jar": "zstd-kmp-okio-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/okio/Zstd.kt",
+        "sha256": "3cb1ff84e86fb57d880ba95def71858e9f440814efc20c238523d3bc85cd8825",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdCompressSink.kt",
+        "source_jar": "zstd-kmp-okio-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/okio/ZstdCompressSink.kt",
+        "sha256": "985427f2b3bceac984b999717244487642fee260f8ccca4fa861095b8ea85766",
+        "matches": true
+      },
+      {
+        "source": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdDecompressSource.kt",
+        "source_jar": "zstd-kmp-okio-jvm-0.4.0-sources.jar",
+        "entry": "commonMain/com/squareup/zstd/okio/ZstdDecompressSource.kt",
+        "sha256": "10d557dafe37a6a7295d30f4820594164cd7fc8bed392634674cc69b57640f9d",
+        "matches": true
+      }
+    ],
+    "source_only": true,
+    "native_submodule": {
+      "repository": "facebook/zstd",
+      "pin": "1dbc2e09084e843f6c0dcc2d0791610015c50979",
+      "header_version": "1.5.8",
+      "distribution_license": "BSD-3-Clause (LICENSE); COPYING also supplied upstream",
+      "files": [
+        {
+          "path": "LICENSE",
+          "git_blob": "75800288cc243f164b9d130f125e2ffae28f8e39",
+          "bytes": 1549,
+          "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+        },
+        {
+          "path": "COPYING",
+          "git_blob": "ecbc0593737be657aef92e3adcf3bcbd6fdb812e",
+          "bytes": 18091,
+          "sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505"
+        },
+        {
+          "path": "lib/zstd.h",
+          "git_blob": "8504694907c44b8e125a82f3ae21fdd048f20819",
+          "bytes": 182252,
+          "sha256": "9e132ed39fc7cf224e1a54ff8c09c98898169208bdf66258ad15b6d7710d096e"
+        },
+        {
+          "path": "lib/zstd_errors.h",
+          "git_blob": "8ebc95cbb2ab882027a3e6cc92cdd5abc1a0dee4",
+          "bytes": 4278,
+          "sha256": "66a8c3f71d12ea6e797e4f622f31f3f8f81c41b36f48cad4f5de7d8bfb6aac0a"
+        }
+      ]
+    }
+  },
+  "pinned_vm_builtin_loading_review": {
+    "repository": "openjdk/mobile",
+    "pin": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+    "files": [
+      {
+        "path": "src/java.base/share/native/libjava/NativeLibraries.c",
+        "bytes": 8721,
+        "git_blob": "b6624eccd1d1262dddfdf62e8ae7a4565613cac5",
+        "sha256": "4609719b27b65f042cc5fa8ff56ba95e8260c68f0a3896c172d26fbce8c71f02"
+      },
+      {
+        "path": "src/java.base/share/classes/jdk/internal/loader/NativeLibraries.java",
+        "bytes": 21105,
+        "git_blob": "98cedb0b3bff18beadd6d2413174ec7fc3b208a1",
+        "sha256": "58f0abbc80fbef8091650ce6e4fc124188f52621dc54c66dbf1c8b970e564dc8"
+      },
+      {
+        "path": "src/hotspot/share/prims/nativeLookup.cpp",
+        "bytes": 17004,
+        "git_blob": "2780581629a736bea78a020eabec1198a170568f",
+        "sha256": "76b79f3fb899334b249e3c29819fad221ca180bea442938c513a0e7c5ae68d44"
+      },
+      {
+        "path": "src/hotspot/os/bsd/os_bsd.cpp",
+        "bytes": 92308,
+        "git_blob": "9e7620df6578353e9077e8355bf6ad21bbd2f52b",
+        "sha256": "0311a72a146af5122cc820d472ee7872852dfca8cb2e34d77ae94294091683be"
+      }
+    ],
+    "observations": [
+      "NativeLibraries.findBuiltinLib searches the process handle for JNI_OnLoad_<name> before relying on a library file.",
+      "NativeLibraries.load uses procHandle for a builtin and invokes its named JNI_OnLoad.",
+      "The pinned BSD os::dll_load returns the default process handle when the VM is statically linked."
+    ],
+    "proposed_codec_path": "Source-build an arm64 iOS static codec/JNI library, export JNI_OnLoad_mslzstd and JNI entries, and replace only the Kotlin native loader with System.loadLibrary(\"mslzstd\"). Verify symbol discovery, linking and device behavior before activation.",
+    "device_or_codec_loading_proven": false
+  },
+  "native_jni_review": {
+    "file": "zstd-kmp/native/ZstdKmp.cpp",
+    "observed": "JNI buffer acquisition, field lookup and allocation paths need explicit pending-exception/null handling and array-bound/lifecycle checks in the MSL build.",
+    "implementation_complete": false,
+    "next_gate": "Review and source-build codec/JNI with recorded source changes; prove success/failure, bounded streaming, cleanup and static-library loading on host and arm64 iOS."
+  }
 }

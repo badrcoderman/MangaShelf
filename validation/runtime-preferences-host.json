@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T16:22:38.935042+00:00",
+  "recorded_at": "2026-10-23T22:18:01.962992+00:00",
   "scope": "Authored Android preference descriptors, application file context and bounded durable preference store on host JVM only. No Android UI, real extension, networking or iOS execution.",
   "passed": true,
   "inputs_sha256": {
@@ -22,7 +22,7 @@
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n"
+      "stderr": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n"
     },
     {
       "command": [
@@ -34,12 +34,12 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-preference-check-laxmg257/classes",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/SharedPreferences.java",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/Context.java",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/preference/PreferenceManager.java",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/PreferenceStore.java",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java"
+        "/tmp/msl-preference-check-5c0a3t6s/classes",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/main/java/android/content/SharedPreferences.java",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/main/java/android/content/Context.java",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/main/java/android/preference/PreferenceManager.java",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/main/java/mangashelf/host/PreferenceStore.java",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java"
       ],
       "exit_code": 0,
       "stdout": "",
@@ -50,16 +50,16 @@
         "java",
         "-Xint",
         "-cp",
-        "/tmp/msl-preference-check-laxmg257/classes",
+        "/tmp/msl-preference-check-5c0a3t6s/classes",
         "mangashelf.host.PreferenceStoreCheck",
-        "/tmp/msl-preference-check-laxmg257/data"
+        "/tmp/msl-preference-check-5c0a3t6s/data"
       ],
       "exit_code": 0,
       "stdout": "{\"passed\":true,\"checks\":{\"typed_defaults_atomic_editor_and_reopen\":true,\"set_input_output_and_get_all_do_not_alias_storage\":true,\"clear_remove_null_and_editor_reuse_follow_android_value_rules\":true,\"names_and_unicode_keys_stay_distinct_without_path_traversal\":true,\"apply_is_immediately_visible_and_commit_waits_for_prior_writes\":true,\"failed_atomic_replace_preserves_disk_and_retry_clears_pending_error\":true,\"asynchronous_failure_is_observable_and_recoverable_per_store\":true,\"unchecked_async_writer_failures_surface_at_flush_and_allow_retry\":true,\"pending_write_bytes_and_count_are_bounded_before_memory_publication\":true,\"listeners_can_edit_reentrantly_unregister_and_observe_clear\":true,\"bad_listener_does_not_retain_plugin_exception_or_block_other_listeners\":true,\"concurrent_edits_preserve_disjoint_keys_and_latest_memory_snapshot\":true,\"truncated_corrupt_and_symlink_files_are_rejected_without_reset\":true,\"limits_and_malformed_unicode_fail_before_memory_publication\":true,\"application_context_default_preferences_files_and_shutdown\":true,\"writer_uses_host_loader_instead_of_inheriting_plugin_context\":true}}\n",
       "stderr": ""
     }
   ],
-  "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
+  "host_java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
   "test_result": {
     "passed": true,
     "checks": {

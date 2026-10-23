@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T22:12:21.857157+00:00",
+  "recorded_at": "2026-10-23T22:18:30.262446+00:00",
   "scope": "Authored ConfigurableSource settings, validation, persistence and source-lease lifecycle on host JVM; no published extension, Android rendering, Swift UI or iOS execution.",
   "passed": true,
   "inputs_sha256": {
@@ -76,7 +76,7 @@
         "java",
         "-Xmx768m",
         "-cp",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar",
         "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
         "-no-stdlib",
         "-no-reflect",
@@ -84,23 +84,23 @@
         "-jvm-default=enable",
         "-Werror",
         "-classpath",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar",
         "-d",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/source-preferences-check-f0uk9kre/test-classes",
-        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/source-preferences/kotlin/mangashelf/host/SourcePreferencesCheck.kt"
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/source-preferences-check-ko0uti_l/test-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/source-preferences/kotlin/mangashelf/host/SourcePreferencesCheck.kt"
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
+      "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
     },
     {
       "command": [
         "java",
         "-Xint",
         "-cp",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/source-preferences-check-f0uk9kre/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/source-preferences-check-ko0uti_l/test-classes:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
         "mangashelf.host.SourcePreferencesCheck",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/source-preferences-check-f0uk9kre/data"
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/source-preferences-check-ko0uti_l/data"
       ],
       "exit_code": 0,
       "stdout": "{\"passed\":true,\"checks\":{\"twelve_row_source_configuration_defaults_and_native_value_snapshot\":true,\"list_switch_and_multiselect_changes_persist_and_reject_unlisted_values\":true,\"uuid_text_validation_blocks_save_without_mutating_preferences_or_calling_change_listener\":true,\"source_namespaces_are_isolated_and_changes_survive_application_restart\":true,\"listeners_can_reject_user_changes_and_programmatic_setters_do_not_call_them\":true,\"choice_arrays_sets_and_mutable_labels_are_copied_on_assignment\":true,\"hidden_disabled_rows_and_positive_button_validation_reject_changes\":true,\"invalid_requests_are_bounded_and_do_not_break_a_valid_session\":true,\"text_watcher_uses_utf16_edit_indices_and_supports_validator_text_correction\":true,\"watcher_corrected_text_reaches_the_change_listener_and_durable_value\":true,\"cancelled_queued_change_is_skipped_and_following_requests_continue\":true,\"package_removal_cancels_settings_and_waits_for_callback_detachment_before_archive_close\":true,\"explicit_session_close_waits_for_detachment_and_keeps_source_installed\":true,\"callback_failure_is_sanitized_pending_requests_finish_and_package_can_be_reopened\":true,\"cancelled_open_drains_setup_and_detaches_rows_before_returning\":true,\"unsupported_missing_and_malformed_screens_fail_without_releasing_a_live_package\":true,\"screen_duplicate_key_rejection_and_failed_attach_leave_existing_rows_usable\":true},\"scope\":\"Authored ConfigurableSource settings and source lifetime on host JVM; no published extension, Android rendering, Swift UI or iOS execution\"}\n",
@@ -109,10 +109,10 @@
   ],
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 346209,
-    "sha256": "ff7e86e186106a0e3a313ed54ea8e972f93eda761934b23cccd39fcbd0a3e1a2"
+    "bytes": 346019,
+    "sha256": "4e4ca5ca72fd0a54888c0a23a5908274f0dc655a52f731950193b6ea0f38d4b8"
   },
-  "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
+  "host_java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
   "test_result": {
     "passed": true,
     "checks": {

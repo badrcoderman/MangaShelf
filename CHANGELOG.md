@@ -2,6 +2,9 @@
 
 ## إعدادات المصادر — 24 أكتوبر 2026
 
+- تأكيد إعدادات المصادر في [Actions 40032630971](https://github.com/badrcoderman/MangaShelf/actions/runs/40032630971) عند 8e3102e على Linux وmacOS: نجحت 17 إعدادات و20 تحميلًا موقّعًا و14 نماذج و20 سجلًا و6 bootstrap و16 تفضيلات و16 HTTP/TLS و46 توقيعًا لكل منصة، وABI 45/278. فُحصت artifacts التساعية وبصمات المصدر ورخصة Injekt، وتطابقت JAR بين المنصتين. لا IPA أو إضافة منشورة/iPhone؛ [الإثبات](validation/runtime-host-40032630971.json).
+- مراجعة المصدر العام للـcodec: طابقت 11 ملف Kotlin مع source archives، وثُبت Zstd 1.5.8 وواجهات JNI وآلية تحميل builtin في JVM المثبتة. سُجلت بصمات النصوص ومسار static المقترح؛ لا codec مبنية أو منفذة بهذه المراجعة. [التفاصيل](validation/zstd-ios-static-review.json).
+
 - تنفيذ ConfigurableSource وأنواع التفضيلات وقيمها المحفوظة والتحقق من EditText/TextWatcher والزر الموجب. تحتفظ SourcePreferenceSession بصفوف الإضافة داخل lease واحدة، وتنقل snapshots immutable فقط، وتنتظر تنظيف callbacks قبل تحرير الأرشيف. نجحت 17 حالة مؤلفة محليًا، منها حفظ النص الذي صححه watcher، والتفضيلات بعد إعادة التشغيل والإلغاء والإزالة؛ API تضم 45 صنفًا و278 عضوًا. أضيف مسار إعدادات إلى مصدر HTTP موقّع مؤلف وأثبت تأثيرها في النتائج وإعادة التثبيت. CI الجديد والربط بـSwift/iPhone ما زالا مطلوبين، ولا IPA جديدة. [التفاصيل](docs/SOURCE-PREFERENCES-AR.md).
 
 ## متابعة محرك المصادر — 23 أكتوبر 2026
