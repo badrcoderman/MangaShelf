@@ -2,6 +2,8 @@
 
 ## متابعة محرك المصادر — 23 أكتوبر 2026
 
+- تأكيد بناء Injekt وخدمات التطبيق على Linux وmacOS في [Actions 39992873306](https://github.com/badrcoderman/MangaShelf/actions/runs/39992873306): نجحت 6 حالات bootstrap مع 19 تحميلًا موقّعًا و14 نماذج و20 سجلًا و16 تفضيلات و16 HTTP/TLS و46 توقيعًا لكل منصة. طابقت بصمات artifact ومدخلات المصدر ورخصة MIT وmodule metadata، وتطابقت JAR المضيف بين المنصتين. لا IPA أو codec أصلية أو مصدر منشور منفذ؛ [الدليل](validation/runtime-host-39992873306.json).
+
 - بناء Injekt المثبتة من مصدر MIT مرخّص والتحقق من ملفاتها وتكييف helper inline فقط، مع تسجيل Application/Context/NetworkHelper ومسح الخدمات عند الإغلاق. نجحت 6 حالات bootstrap و19 تحميلًا موقّعًا، مع طلب الخدمات داخل مصدر HTTP مؤلف وحفظ تفضيلاته بعد إعادة التثبيت. ثُبت أيضًا أن loader الخاص بـZstd لا يدعم Darwin الذي أبلغ عنه iPhone؛ بناء codec لـiOS وباقي بدء المصدر وSwift ما زالت مطلوبة، ولا IPA جديدة. [التنفيذ والحدود](docs/SOURCE-INJEKT-BOOTSTRAP-AR.md).
 
 - تأكيد خدمات HTTP والتفضيلات والتحميل الموقّع على Linux وmacOS في [Actions 39988642098](https://github.com/badrcoderman/MangaShelf/actions/runs/39988642098): نجحت 14/20/19/16/16/46 حالة للنماذج والسجل والتحميل والتفضيلات والشبكة والتوقيع لكل منصة، مع مطابقة artifacts والسورس وJAR متطابقة. كشف التشغيل السابق سباقًا في إلغاء المستدعي؛ صُحح انتظار تنظيف المصدر مع فحص محجوز، وحُذفت التقارير القديمة قبل CI لمنع رفع نجاح متقادم. لا IPA جديدة أو إضافة منشورة أو إثبات iOS؛ [الدليل](validation/runtime-host-39988642098.json).

@@ -123,6 +123,15 @@ finish before source cleanup. The fix joins that source task, and a gated test
 checks the ordering. Actions remove old reports first so skipped checks cannot
 upload stale passes. See `validation/runtime-host-39988642098.json`.
 
+The source-built Injekt/bootstrap changes passed in
+[39992873306](https://github.com/badrcoderman/MangaShelf/actions/runs/39992873306)
+at `e2c87d0` on both platforms, adding 6 startup/lifecycle checks and extending
+the signed HTTP fixture with constructor injection and preference persistence
+across reinstall. Both 8-file artifacts passed digest/CRC/source inspection,
+including the pinned upstream files and compatibility edit; the same host JAR
+contains the MIT notice and separate Injekt module metadata, without codec native
+libraries. See `validation/runtime-host-39992873306.json`. No IPA is produced.
+
 ## HTTP and application services
 
 `HostServices.configure` takes one Application, installs its Context, version
