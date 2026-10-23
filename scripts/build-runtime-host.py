@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the authored source API with pinned Kotlin tools, never an extension JAR."""
+"""Build the authored source host with pinned Kotlin tools, never an extension JAR."""
 import argparse
 import hashlib
 import json
@@ -105,23 +105,30 @@ def build():
     if not match or int(match.group(1)) < 21:
         raise ValueError('JDK 21 or later is required for the pinned List ABI; bytecode targets 17')
     sources = sorted((ROOT / 'runtime-host/src/main/kotlin').rglob('*.kt'))
-    if not sources:
+    java_sources = sorted((ROOT / 'runtime-host/src/main/java').rglob('*.java'))
+    java_sources.append(ROOT / 'runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java')
+    if not sources or len(java_sources) < 2:
         raise ValueError('No authored runtime host sources')
     OUT.mkdir(parents=True, exist_ok=True)
-    report = {'scope': 'Compile independently authored model/API implementation on host only; no extension class loading or iOS execution.',
+    report = {'scope': 'Compile independently authored source host, verifier and loader only; no archive execution during build or iOS execution.',
               'dependency_lock_sha256': digest(LOCK),
               'dependencies': [{'filename': item['filename'], 'sha256': digest(path), 'roles': item['roles']} for item, path in resolved],
-              'sources': {str(path.relative_to(ROOT)): digest(path) for path in sources},
+              'sources': {str(path.relative_to(ROOT)): digest(path) for path in [*sources, *java_sources]},
               'build_jdk': java_version,
               'platform_api': 'JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee',
               'extension_code_executed': False, 'ios_execution': False}
     with tempfile.TemporaryDirectory(prefix='classes-', dir=OUT) as directory:
         classes = Path(directory)
-        command = compiler_command(resolved, sources, classes)
+        java_command = ['javac', '--release', '17', '-encoding', 'UTF-8', '-Xlint:all', '-Werror',
+                        '-d', str(classes), *map(str, java_sources)]
+        java_result = subprocess.run(java_command, cwd=ROOT, capture_output=True, text=True, timeout=60)
+        report['java_compile'] = {'command': java_command, 'exit_code': java_result.returncode,
+                                  'stdout': java_result.stdout, 'stderr': java_result.stderr}
+        command = compiler_command(resolved, sources, classes, str(classes))
         result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=120)
         report['compile'] = {'command': command, 'exit_code': result.returncode,
                              'stdout': result.stdout, 'stderr': result.stderr}
-        report['passed'] = result.returncode == 0
+        report['passed'] = result.returncode == 0 and java_result.returncode == 0
         if report['passed'] and any(digest(ROOT / name) != value for name, value in report['sources'].items()):
             report['passed'] = False
             report['compile']['stderr'] += '\nAuthored source changed during compilation.\n'
@@ -137,6 +144,7 @@ def build():
     (ROOT / 'validation/runtime-host-build.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({'passed': report['passed'], 'sources': len(sources), 'report': 'validation/runtime-host-build.json'}))
     if not report['passed']:
+        print(report['java_compile']['stderr'])
         print(report['compile']['stderr'])
         raise SystemExit(1)
     return resolved, report

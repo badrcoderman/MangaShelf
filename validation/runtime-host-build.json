@@ -1,5 +1,5 @@
 {
-  "scope": "Compile independently authored model/API implementation on host only; no extension class loading or iOS execution.",
+  "scope": "Compile independently authored source host, verifier and loader only; no archive execution during build or iOS execution.",
   "dependency_lock_sha256": "8bc873b9725ebcf5ed00664f0b66d838365c91761ce23b0048b5e80de7f177c0",
   "dependencies": [
     {
@@ -97,12 +97,36 @@
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3",
-    "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "69e9e2983eed20e6511da141d7f8620a085efad113a2c4808c934897e5f20f07"
+    "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
+    "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
+    "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "6350ad26630b72d6f108abc72ae4febc25de43c9723aa38428edd2ff743731ee",
+    "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d",
+    "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "6bf4ac4565535ef082ea1b41778d08d4af99039f5837c61329b582f438c96616",
+    "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e"
   },
   "build_jdk": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
   "platform_api": "JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee",
   "extension_code_executed": false,
   "ios_execution": false,
+  "java_compile": {
+    "command": [
+      "javac",
+      "--release",
+      "17",
+      "-encoding",
+      "UTF-8",
+      "-Xlint:all",
+      "-Werror",
+      "-d",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
   "compile": {
     "command": [
       "java",
@@ -116,9 +140,9 @@
       "-jvm-default=enable",
       "-Werror",
       "-classpath",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-se4st59p",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-la2q7g0e",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
@@ -133,6 +157,8 @@
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt"
     ],
     "exit_code": 0,
@@ -142,7 +168,7 @@
   "passed": true,
   "jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 65071,
-    "sha256": "9b3a77c424128f46bc2f78b7d19063e8d74a280d52047f7db3a0fc9bb532cfb7"
+    "bytes": 103059,
+    "sha256": "1cb8f0d0eafed9e6419e37d101d84fb6059a4e572853734eacff1c65e946a544"
   }
 }

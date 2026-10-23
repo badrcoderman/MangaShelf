@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T17:16:31.721405+00:00",
+  "timestamp": "2026-10-23T09:36:04.625560+00:00",
   "command": "python3 scripts/test-extension-archive-verifier.py",
   "scope": "Host-only JAR v1 cryptographic/data inspection; no archive class loading, iOS, real source execution, publisher/PKIX trust, expiry or revocation proof. No production activation.",
   "policy": "Expected whole-file SHA-256 and one explicitly pinned leaf certificate DER SHA-256; every physical payload must have exactly that one signer after EOF. Private snapshot is deleted; result does not authorize later loading of the original path.",
@@ -9,7 +9,7 @@
     "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/jar/JarInputStream.html"
   ],
   "inputs": {
-    "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "39f5214ea35f7cfe6bfd9bf40d8176a1af34813657ae51f179a09f5ae9c5391f",
+    "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e",
     "scripts/test-extension-archive-verifier.py": "df0f88e5094e83d40f0a79f5651352934de47608a08507fdbf1ca7baa209f693"
   },
   "commands": [
@@ -32,7 +32,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java"
       ],
       "returncode": 0,
@@ -46,7 +46,7 @@
         "-alias",
         "fixturea",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -76,15 +76,15 @@
         "-alias",
         "fixturea",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-file",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/fixturea.der"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/fixturea.der"
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-x_6kbr2u/fixturea.der>\n"
+      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-t60x8i1m/fixturea.der>\n"
     },
     {
       "argv": [
@@ -93,7 +93,7 @@
         "-alias",
         "fixtureb",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -123,21 +123,21 @@
         "-alias",
         "fixtureb",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-file",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/fixtureb.der"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/fixtureb.der"
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-x_6kbr2u/fixtureb.der>\n"
+      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-t60x8i1m/fixtureb.der>\n"
     },
     {
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -146,7 +146,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -158,15 +158,15 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
-        "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
+        "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce\",\"signerCertificateSha256\":\"c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2705}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424\",\"signerCertificateSha256\":\"5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2703}\n",
       "stderr": ""
     },
     {
@@ -174,15 +174,15 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
-        "C18174C9E050D24B0B47D859B0D3AEB9AA1439AFE2A324AD1392475627EF90CE",
-        "C98771B20AD5FE9E24C549EA656CFC5DBF0E8F05D7B440B29559BBE492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
+        "745C1783688A3C94ED561AFDD757C9C8B5D89945A6D76B50345F738D4FDD4424",
+        "5B78B5B6D4FBFB2ED88B1C58CEF9B7D39BCF7C471F227DC40861A3F76C605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce\",\"signerCertificateSha256\":\"c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2705}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424\",\"signerCertificateSha256\":\"5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2703}\n",
       "stderr": ""
     },
     {
@@ -190,12 +190,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
         "0000000000000000000000000000000000000000000000000000000000000000",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"digest_mismatch\"}\n",
@@ -206,12 +206,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
-        "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "e5d083694fed6d0a82296cff0184436191578fa26aefe5c3c833bdfb66a6ff34",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
+        "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "0fd499bbdea484defed01626852b130a880275414ef7b7dbe8a9b0337b101e9b",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -222,12 +222,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
         "not-a-hash",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -238,12 +238,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
-        "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
+        "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
         "",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -254,12 +254,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned.jar",
-        "7fdaeb7523d18f4f89f1e5dfca08c6bd7b6e23b7d9a0324ff7472156b19f606a",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned.jar",
+        "61592c8432d1f42ff133e0ab2806f43fc1deceaed39d77c8d17d3b06b456d76f",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_archive\"}\n",
@@ -270,12 +270,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/signed.jar",
-        "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/missing"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/signed.jar",
+        "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/missing"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -286,12 +286,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/tampered.jar",
-        "50ef383340fc1cb39c72a176d04c2e640972360030a9bece558366cce4fbf3d0",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/tampered.jar",
+        "9cbb3e5c1eacbe32fe7ce3ea00f477412970b772f71024f510091b6f004c624a",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature\"}\n",
@@ -302,12 +302,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/tampered-manifest.jar",
-        "ab0c0d1133d0e3297391bec722a3e33b3bd295d03cf5cbeeeac722ee5522680a",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/tampered-manifest.jar",
+        "a605b51ac66d16c7724d7227a3773df7c199e30359cb1dde5754c3a43bb53c31",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature\"}\n",
@@ -318,12 +318,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/central-crc.jar",
-        "baa4674b19e8a1bc02522f7fbaa8354aa1b99f22a84039f52d4b664b3e7e93fc",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/central-crc.jar",
+        "b2358a92d274b2cba79acb4c706c87230d48e6b53868629fef83fe36ecdc748d",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -334,12 +334,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/central-understated-size.jar",
-        "56b56d57b042ec59d22959f5c290aa8a179e00504d3d922193b4cd45cabb6b49",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/central-understated-size.jar",
+        "9166debc652b09cb8290f0269bab0275ba1723f9952dbeb80c13ec1cde25447c",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -350,12 +350,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-0.jar",
-        "fbf973f141a39fc1a5c066accd133ceb0750e99fa5f0a9ea0b877915938bccce",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-0.jar",
+        "871ab6ff31523515b33a6c7c8739cba12faacffe2a78ad2cbbc1d3f739cf5277",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -366,12 +366,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-1.jar",
-        "9514ad968ca7e41b174e1668161e85d89cd1216d7ec0852ba86672a21661f334",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-1.jar",
+        "c6b7d28cf213cd1bc3b4ecf7c214d8b1e5d527d67d3e98dce37ec56d0f093049",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -382,12 +382,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-2.jar",
-        "f4a70e32e0c2448d3d085bc12c146f7d6917029a893f7a5a0468eda593b64960",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-2.jar",
+        "2f95a585d758c9ce9ca7df1e974f003d3142c809e50aa31f48f38e30389b1b35",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -398,12 +398,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-3.jar",
-        "cd29066bbc9809f32c1b8b546088aebd260aed779ed0e4ca450002596af66342",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-3.jar",
+        "4a2771123a931022d936cfa550554ce1eb25cb273e25f5e08ea4310c30a6618c",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -414,12 +414,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-4.jar",
-        "f83d703bca63da85678ba97510d4470b45010b8611b4c568f26687aee21eb914",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-4.jar",
+        "c812c8c3f503a189b6095e63e5230a9e5feea6e6fa965ac7cd01486105058737",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -430,12 +430,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsigned-extra-5.jar",
-        "8c6e0b9164ffacf97099d04b66f71264d556a38a270bb862d1066e35d148ab0c",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsigned-extra-5.jar",
+        "581f2040db5296e7bf207776056125c7308fa764d1ddb86ef9f27b3ea2f7574d",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -445,7 +445,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -454,7 +454,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/dual-signed.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/dual-signed.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -466,12 +466,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/dual-signed.jar",
-        "4696ca1cda5f18730add0313b811e1d614385495969f0a7d6608bc0e70d08297",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/dual-signed.jar",
+        "9336df42fdcce68047b7d47d79f8159b11a5fa6299d6dd90150372c03d1eded2",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"multiple_signers\"}\n",
@@ -481,7 +481,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -490,7 +490,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/mixed-signers.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/mixed-signers.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -502,12 +502,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/mixed-signers.jar",
-        "95fff6b469bc7799bc33c8df89e6653fa471224a773b4f22da9d253171021633",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/mixed-signers.jar",
+        "b2aade951c29f899e13420aaf15e73484b32688b5462f12f959e72fe691eb6a4",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"multiple_signers\"}\n",
@@ -517,7 +517,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -526,7 +526,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/second-signer.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/second-signer.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -538,12 +538,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/second-signer.jar",
-        "ede0f7cc69015428756fdf15c5e1a660c1daf1e11edcc8e67c1741a114530db5",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/second-signer.jar",
+        "4c513ac0cfb00a33ba02c124023d9851277cfa3732e9295075965a331c6b5824",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -553,7 +553,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -563,7 +563,7 @@
         "-digestalg",
         "SHA-256",
         "-sectionsonly",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/fixturea-section.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/fixturea-section.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -574,7 +574,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -584,7 +584,7 @@
         "-digestalg",
         "SHA-256",
         "-sectionsonly",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/fixtureb-section.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/fixtureb-section.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -599,8 +599,8 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/DisjointSignerProbe.java"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/DisjointSignerProbe.java"
       ],
       "returncode": 0,
       "stdout": "",
@@ -610,12 +610,12 @@
       "argv": [
         "/usr/bin/java",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "DisjointSignerProbe",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/genuinely-disjoint-signers.jar"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/genuinely-disjoint-signers.jar"
       ],
       "returncode": 0,
-      "stdout": "a-only.txt c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168\nb-only.txt e5d083694fed6d0a82296cff0184436191578fa26aefe5c3c833bdfb66a6ff34\n",
+      "stdout": "a-only.txt 5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942\nb-only.txt 0fd499bbdea484defed01626852b130a880275414ef7b7dbe8a9b0337b101e9b\n",
       "stderr": ""
     },
     {
@@ -623,12 +623,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/genuinely-disjoint-signers.jar",
-        "02d41edae49756030b3613de4a514a626f0e49b4e26a3ba1a4a7c0db3628efe6",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/genuinely-disjoint-signers.jar",
+        "18ae2813414253db5e30d72f13d1af8b68efb502c62c7e792459faf9e6154099",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -639,12 +639,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/genuinely-disjoint-signers.jar",
-        "02d41edae49756030b3613de4a514a626f0e49b4e26a3ba1a4a7c0db3628efe6",
-        "e5d083694fed6d0a82296cff0184436191578fa26aefe5c3c833bdfb66a6ff34",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/genuinely-disjoint-signers.jar",
+        "18ae2813414253db5e30d72f13d1af8b68efb502c62c7e792459faf9e6154099",
+        "0fd499bbdea484defed01626852b130a880275414ef7b7dbe8a9b0337b101e9b",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -655,15 +655,15 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/late-signature-metadata.jar",
-        "de079d9836c4178cbc3a621f86f065188acfd37f10c3728611746e1198414b98",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/late-signature-metadata.jar",
+        "b1f19f65ec0ad2c2b4461f99315bfafad1d9e36b445c17d9d1f0b4cab0148fdf",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"de079d9836c4178cbc3a621f86f065188acfd37f10c3728611746e1198414b98\",\"signerCertificateSha256\":\"c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2705}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"b1f19f65ec0ad2c2b4461f99315bfafad1d9e36b445c17d9d1f0b4cab0148fdf\",\"signerCertificateSha256\":\"5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2703}\n",
       "stderr": ""
     },
     {
@@ -674,8 +674,8 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/StreamOrderProbe.java"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/StreamOrderProbe.java"
       ],
       "returncode": 0,
       "stdout": "",
@@ -685,9 +685,9 @@
       "argv": [
         "/usr/bin/java",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "StreamOrderProbe",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/late-signature-metadata.jar"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/late-signature-metadata.jar"
       ],
       "returncode": 0,
       "stdout": "{\"payloadEntries\":3,\"signedEntries\":0}\n",
@@ -698,12 +698,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/duplicate.jar",
-        "4ed68c006899ba0e5cd51bc1392c9db6d0b38df508e847815fb0b816e158c430",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/duplicate.jar",
+        "1929f75ca9e2e6b52cff5a95e038cfe740eb9f82bab892abf3d9f9081811ae45",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"duplicate_entry\"}\n",
@@ -714,12 +714,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-0.jar",
-        "553cbe57987ecb2f2a97726047f4e112f2e8cc8ac554b967ea8e8d250b6114e0",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-0.jar",
+        "1ae022a9d9bf7d3aac995614cd758d9730025ea6cc416fa44171690bd047152f",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -730,12 +730,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-1.jar",
-        "b5a2ae676dbb689d818ecdbfe6a77d1844d495d7ebb014bcf0d8a6b81d826c51",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-1.jar",
+        "64059d95fd76ad78d21bdd3b29e1d21ed46fd6eca6efd1e93c94b8ae08ae9891",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -746,12 +746,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-2.jar",
-        "7c6e9a1bcc74171fa9b14e9a3f75d57f25670bbf79a9dce05986f9ba50f7eb40",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-2.jar",
+        "f12e97e33320f2ef1c792b6ebdd2a539b9b98184221e99d86459052071215bc2",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -762,12 +762,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-3.jar",
-        "58444c9334b148c014548d7e4167e37013c8dccc75b9a9b5156452f5af9f2f34",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-3.jar",
+        "f7cef223d1e04f48a76fbe0cf446df900974bb9b23616add772c2da32e9d38aa",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -778,12 +778,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-4.jar",
-        "83080f9092ed328aff41219054fcb737db3ed7e000160a69f2831e5559cf3842",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-4.jar",
+        "6e8a4559df17e1a49421662d9e87295462eab869575477a51736abc23516d300",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -794,12 +794,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-5.jar",
-        "97495db7d280edf47dae9848d1956af85ce11360c27ac075d82fb25ad71ace92",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-5.jar",
+        "f52ba3a470af34025821f70c23532791573f2a802960d1231c1db97d5110bc62",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -810,12 +810,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unsafe-6.jar",
-        "253cf2c7271df37282e874d88fe16808df55342f0b1d04bd8548228906b52f1f",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unsafe-6.jar",
+        "31017ebfd88130c52b954b8c66470cc6f6d14adf717b3e9ae752368c60327169",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -826,12 +826,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/ambiguous-manifest.jar",
-        "9a3f2c7724d4cf65512779e4292a2801498794e28df559bba87a4a7c127a8d5e",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/ambiguous-manifest.jar",
+        "12d5d019c089ea024db1edc5323a63a131dfdc6e1b779fbd4290329bb16da88c",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"ambiguous_signature_metadata\"}\n",
@@ -842,12 +842,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/unpaired-signature.jar",
-        "f271751da894bd83c5335e4a256e37d8a2e501cf8561212dafbf5cb83742d331",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/unpaired-signature.jar",
+        "506676455380714a996f9cc897551bd4a8db76fd9383eefb4c70005d652c400a",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature_metadata\"}\n",
@@ -857,7 +857,7 @@
       "argv": [
         "/usr/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -866,7 +866,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/empty-signed.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/empty-signed.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -878,12 +878,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/empty-signed.jar",
-        "0a1fdfd47ac30448d7a582e3fffa5cddb5672881ca001ad8a9a53ba8ddec3062",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/empty-signed.jar",
+        "e8318bb85e1bf9115bd55b1676a383c75c65c68660f18c0beae574153ef387be",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"no_payload\"}\n",
@@ -894,12 +894,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/large-entry.jar",
-        "aafc77afe22bac30d8e2455dd58527719ce57edb8401fad309219693c174e749",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/large-entry.jar",
+        "f9a04905a9ae4ad04e7b15cc0e618ad9ead1d1dc7d5498d9f1a4c67cd1753306",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -910,12 +910,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/large-manifest.jar",
-        "0ff5a97ccb6cef5628894b1c25c34afc5d30b6f5f4e764b0677449b2732903e3",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/large-manifest.jar",
+        "2e83df2360b7617d26e262e3995006c6802b76a14481d779a800eb4cf85752eb",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -926,12 +926,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/large-signature.jar",
-        "fa1dd1f39821dca5edbe3e8293dbff9c564b2413a204c2c06d8fa4f6d9e48953",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/large-signature.jar",
+        "9c72d0ee4f19d56599560c11e92a35202800cc7d7f5e85e0e37ca6612732cf7e",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -942,12 +942,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/too-many.jar",
-        "39c8c7b728185d0b614096843d3ea16291a022e0ee567a77bacdec13ebde2af0",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/too-many.jar",
+        "13e231880a5bca57faa7099f48cf5ec5d110a069c670c57fed992e66936c5f38",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_count_limit\"}\n",
@@ -958,12 +958,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/long-name.jar",
-        "2cbb14bebda002bbe972240389e33dac425186bbc9c1f2f8a4dac070df12727a",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/long-name.jar",
+        "fa35277dd65088397fddd25d0c75b9dbc681326c42983136662f8709aed323e5",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -974,12 +974,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/expanded-total.jar",
-        "13e91cf5c1c2ade88744e806d8d87f9ed8988501f9d856a447622141723e4cac",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/expanded-total.jar",
+        "8fc0c23c7fdb3c0f18ea8ee527d209856459529df67eefd5352d179686c90d68",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"expanded_size_limit\"}\n",
@@ -990,12 +990,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/file-limit.jar",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/file-limit.jar",
         "0000000000000000000000000000000000000000000000000000000000000000",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"archive_limit\"}\n",
@@ -1006,12 +1006,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/no-manifest.jar",
-        "c51d75812ea989fc0a0b62c17d45768c063615848da06164595b60a359e65c0f",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/no-manifest.jar",
+        "a4da5565dd71bc386cd3dd942ee58704b80207104026c86c433777de64556e79",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"missing_manifest\"}\n",
@@ -1022,12 +1022,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/archive-symlink.jar",
-        "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/archive-symlink.jar",
+        "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -1038,12 +1038,12 @@
         "/usr/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/verifier-classes",
+        "/tmp/msl-jar-signature-tests-t60x8i1m/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
         "/home/user/Documents/Managa-app/MangaShilf/build/mangadex-source-39768470880/evidence/tachiyomi-all.mangadex-v1.6.0.jar",
         "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
         "a5086c0c2f8e442846a0ea6df55af9cfc70baba17382029e7903de84731bbe7a",
-        "/tmp/msl-jar-signature-tests-x_6kbr2u/private-scratch"
+        "/tmp/msl-jar-signature-tests-t60x8i1m/private-scratch"
       ],
       "returncode": 0,
       "stdout": "{\"verified\":true,\"archiveSha256\":\"23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070\",\"signerCertificateSha256\":\"a5086c0c2f8e442846a0ea6df55af9cfc70baba17382029e7903de84731bbe7a\",\"entries\":159,\"payloadEntries\":156,\"expandedBytes\":505152}\n",
@@ -1056,11 +1056,11 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "signerCertificateSha256": "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
+        "archiveSha256": "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "signerCertificateSha256": "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
         "entries": 9,
         "payloadEntries": 5,
-        "expandedBytes": 2705
+        "expandedBytes": 2703
       },
       "scratch_cleaned": true
     },
@@ -1069,11 +1069,11 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "c18174c9e050d24b0b47d859b0d3aeb9aa1439afe2a324ad1392475627ef90ce",
-        "signerCertificateSha256": "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
+        "archiveSha256": "745c1783688a3c94ed561afdd757c9c8b5d89945a6d76b50345f738d4fdd4424",
+        "signerCertificateSha256": "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
         "entries": 9,
         "payloadEntries": 5,
-        "expandedBytes": 2705
+        "expandedBytes": 2703
       },
       "scratch_cleaned": true
     },
@@ -1252,8 +1252,8 @@
       "name": "disjoint fixture has valid A-only and B-only payload signatures",
       "passed": true,
       "response": {
-        "a-only.txt": "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-        "b-only.txt": "e5d083694fed6d0a82296cff0184436191578fa26aefe5c3c833bdfb66a6ff34"
+        "a-only.txt": "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+        "b-only.txt": "0fd499bbdea484defed01626852b130a880275414ef7b7dbe8a9b0337b101e9b"
       }
     },
     {
@@ -1279,11 +1279,11 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "de079d9836c4178cbc3a621f86f065188acfd37f10c3728611746e1198414b98",
-        "signerCertificateSha256": "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
+        "archiveSha256": "b1f19f65ec0ad2c2b4461f99315bfafad1d9e36b445c17d9d1f0b4cab0148fdf",
+        "signerCertificateSha256": "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
         "entries": 9,
         "payloadEntries": 5,
-        "expandedBytes": 2705
+        "expandedBytes": 2703
       },
       "scratch_cleaned": true
     },
@@ -1491,8 +1491,8 @@
   ],
   "passed": true,
   "generated_fixture_certificate_sha256": {
-    "fixturea": "c98771b20ad5fe9e24c549ea656cfc5dbf0e8f05d7b440b29559bbe492973168",
-    "fixtureb": "e5d083694fed6d0a82296cff0184436191578fa26aefe5c3c833bdfb66a6ff34"
+    "fixturea": "5b78b5b6d4fbfb2ed88b1c58cef9b7d39bcf7c471f227dc40861a3f76c605942",
+    "fixtureb": "0fd499bbdea484defed01626852b130a880275414ef7b7dbe8a9b0337b101e9b"
   },
   "central_directory_corruptions": [
     {

@@ -1,5 +1,6 @@
 package mangashelf.runtime;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -8,12 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.security.CodeSigner;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HexFormat;
 import java.util.List;
@@ -37,10 +40,10 @@ import java.util.zip.ZipFile;
  * canonical manifest/signature metadata and empty directory entries are exempt.
  * Disabled signature algorithms remain subject to the JDK's security policy.
  *
- * <p>Verification uses a bounded private temporary snapshot and deletes it before
- * returning. Result describes that snapshot; it does not authorize loading the
- * original path later. A future host must preserve an immutable verified file
- * through its actual load operation. This class is not wired into production.
+ * <p>verify returns data only and closes its snapshot. openVerified instead keeps
+ * the exact checked JarFile open after unlinking its private snapshot on POSIX.
+ * A loader must retain that handle, never reopen the caller's original path.
+ * Neither entry point is wired into the production iOS target.
  *
  * <p>API contracts:
  * https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/jar/JarFile.html
@@ -62,6 +65,65 @@ public final class ExtensionArchiveVerifier {
     public record Result(String archiveSha256, String signerCertificateSha256,
                          int entries, int payloadEntries, long expandedBytes) {}
 
+    /** A fresh bounded copy of an entry, with the signers of its physical bytes. */
+    public record VerifiedEntry(byte[] bytes, CodeSigner[] codeSigners) {
+        public VerifiedEntry {
+            bytes = bytes.clone();
+            codeSigners = codeSigners == null ? new CodeSigner[0] : codeSigners.clone();
+        }
+        @Override public byte[] bytes() { return bytes.clone(); }
+        @Override public CodeSigner[] codeSigners() { return codeSigners.clone(); }
+    }
+
+    /** Owns one unlinked, verified archive until close. No mutable path escapes. */
+    public static final class VerifiedArchive implements AutoCloseable {
+        private JarFile jar;
+        private final Result result;
+        private final List<String> names;
+
+        private VerifiedArchive(JarFile jar, Result result) {
+            this.jar = jar;
+            this.result = result;
+            List<String> found = new ArrayList<>();
+            jar.entries().asIterator().forEachRemaining(entry -> found.add(entry.getName()));
+            names = List.copyOf(found);
+        }
+
+        public Result result() { return result; }
+        public List<String> entryNames() { return names; }
+        public synchronized boolean isClosed() { return jar == null; }
+
+        public synchronized boolean contains(String name) throws IOException {
+            if (jar == null) throw failure("archive_closed");
+            if (name == null) throw failure("invalid_argument");
+            safeName(name);
+            JarEntry entry = jar.getJarEntry(name);
+            return entry != null && !entry.isDirectory();
+        }
+
+        /** Multi-release selection uses this VM's version; every physical entry was verified. */
+        public synchronized VerifiedEntry read(String name) throws IOException {
+            if (jar == null) throw failure("archive_closed");
+            if (name == null) throw failure("invalid_argument");
+            safeName(name);
+            JarEntry entry = jar.getJarEntry(name);
+            if (entry == null || entry.isDirectory()) return null;
+            ByteArrayOutputStream output = new ByteArrayOutputStream((int) Math.min(entry.getSize(), 32 * 1024));
+            try {
+                readEntry(jar.getInputStream(entry), entry, entryLimit(entry.getName()), output);
+                return new VerifiedEntry(output.toByteArray(), entry.getCodeSigners());
+            } catch (SecurityException error) {
+                throw failure("invalid_signature");
+            }
+        }
+
+        @Override public synchronized void close() throws IOException {
+            JarFile owned = jar;
+            jar = null;
+            if (owned != null) owned.close();
+        }
+    }
+
     public static final class VerificationException extends IOException {
         private static final long serialVersionUID = 1L;
         public final String code;
@@ -74,6 +136,20 @@ public final class ExtensionArchiveVerifier {
 
     public static Result verify(Path archive, String expectedArchiveSha256,
                                 String trustedSignerCertificateSha256, Path scratchDirectory) throws IOException {
+        try (VerifiedArchive verified = openVerified(archive, expectedArchiveSha256,
+                trustedSignerCertificateSha256, scratchDirectory)) {
+            return verified.result();
+        }
+    }
+
+    /**
+     * Opens a bounded 0600 copy in a new 0700 child of the trusted scratch directory.
+     * Unlinks it before signature verification and returns that same JarFile handle.
+     * Platforms unable to unlink an open file fail; no mutable-path fallback exists.
+     */
+    public static VerifiedArchive openVerified(Path archive, String expectedArchiveSha256,
+                                               String trustedSignerCertificateSha256,
+                                               Path scratchDirectory) throws IOException {
         String expected = hashArgument(expectedArchiveSha256);
         String trusted = hashArgument(trustedSignerCertificateSha256);
         if (archive == null || scratchDirectory == null) throw failure("invalid_argument");
@@ -83,9 +159,13 @@ public final class ExtensionArchiveVerifier {
         if (!attributes.isRegularFile()) throw failure("invalid_archive");
         if (attributes.size() < 1 || attributes.size() > MAX_ARCHIVE_BYTES) throw failure("archive_limit");
 
-        // The host chooses a writable directory inside its own application container.
-        Path snapshot = Files.createTempFile(scratchDirectory, "msl-archive-verification-", ".jar");
+        Path directory = Files.createTempDirectory(scratchDirectory, "msl-archive-verification-",
+                PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwx------")));
+        Path snapshot = null;
+        JarFile jar = null;
         try {
+            snapshot = Files.createTempFile(directory, "archive-", ".jar",
+                    PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-------")));
             MessageDigest digest = sha256();
             long copied = 0;
             byte[] buffer = new byte[32 * 1024];
@@ -102,12 +182,29 @@ public final class ExtensionArchiveVerifier {
             String actual = HexFormat.of().formatHex(digest.digest());
             if (!actual.equals(expected)) throw failure("digest_mismatch");
             preflight(snapshot);
-            return verifySignatures(snapshot, actual, trusted);
+            jar = new JarFile(snapshot.toFile(), true, ZipFile.OPEN_READ, Runtime.version());
+            Files.delete(snapshot);
+            snapshot = null;
+            Files.delete(directory);
+            Result result = verifySignatures(jar, actual, trusted);
+            return new VerifiedArchive(jar, result);
         } catch (SecurityException error) {
-            throw failure("invalid_signature");
-        } finally {
-            Files.deleteIfExists(snapshot);
+            VerificationException reported = failure("invalid_signature");
+            cleanup(jar, snapshot, directory, reported);
+            throw reported;
+        } catch (IOException | RuntimeException | Error error) {
+            cleanup(jar, snapshot, directory, error);
+            throw error;
         }
+    }
+
+    private static void cleanup(JarFile jar, Path snapshot, Path directory, Throwable error) {
+        try { if (jar != null) jar.close(); }
+        catch (IOException failure) { error.addSuppressed(failure); }
+        try { if (snapshot != null) Files.deleteIfExists(snapshot); }
+        catch (IOException failure) { error.addSuppressed(failure); }
+        try { Files.deleteIfExists(directory); }
+        catch (IOException failure) { error.addSuppressed(failure); }
     }
 
     /** Bounds metadata before JarFile can eagerly parse manifest/signature files. */
@@ -152,11 +249,11 @@ public final class ExtensionArchiveVerifier {
         }
     }
 
-    private static Result verifySignatures(Path archive, String digest, String trusted) throws IOException {
+    private static Result verifySignatures(JarFile jar, String digest, String trusted) throws IOException {
         int count = 0;
         int payloads = 0;
         long expanded = 0;
-        try (JarFile jar = new JarFile(archive.toFile(), true, ZipFile.OPEN_READ, JarFile.baseVersion())) {
+        {
             Enumeration<JarEntry> entries = jar.entries();
             while (entries.hasMoreElements()) {
                 JarEntry entry = entries.nextElement();
@@ -183,6 +280,10 @@ public final class ExtensionArchiveVerifier {
     }
 
     private static long readEntry(InputStream stream, ZipEntry entry, long limit) throws IOException {
+        return readEntry(stream, entry, limit, null);
+    }
+
+    private static long readEntry(InputStream stream, ZipEntry entry, long limit, OutputStream output) throws IOException {
         long count = 0;
         CRC32 crc = new CRC32();
         byte[] buffer = new byte[32 * 1024];
@@ -192,6 +293,7 @@ public final class ExtensionArchiveVerifier {
                 count += length;
                 if (count > limit) throw failure("entry_size_limit");
                 crc.update(buffer, 0, length);
+                if (output != null) output.write(buffer, 0, length);
             }
         }
         if (count != entry.getSize() || crc.getValue() != entry.getCrc()) throw failure("invalid_archive");

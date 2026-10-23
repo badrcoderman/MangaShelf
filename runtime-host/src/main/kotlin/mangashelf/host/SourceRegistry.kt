@@ -31,9 +31,9 @@ class SourceRegistry(
     data class SourceInfo(val packageName: String, val id: Long, val name: String, val language: String)
     class RegistrationException(val code: String) : IllegalStateException(code)
 
-    private class Lease(val resource: AutoCloseable?) {
+    private class Lease(val resource: AutoCloseable?, loader: ClassLoader) {
         private val job = SupervisorJob()
-        val scope = CoroutineScope(Dispatchers.IO + job)
+        val scope = CoroutineScope(Dispatchers.IO + job + ExtensionExecutionContext(loader))
         val released = CompletableDeferred<Unit>()
 
         init {
@@ -83,7 +83,8 @@ class SourceRegistry(
 
             // Return to the caller context before publication. Cancellation of this
             // preparation prevents registration and closes the uncommitted handle.
-            val prepared = withContext(Dispatchers.IO) {
+            val loader = instance.javaClass.classLoader ?: Source::class.java.classLoader
+            val prepared = withContext(Dispatchers.IO + ExtensionExecutionContext(loader)) {
                 val returned: List<*> = when (instance) {
                     is SourceFactory -> instance.createSources()
                     is Source -> listOf(instance)
@@ -114,7 +115,7 @@ class SourceRegistry(
             val callerContext = currentCoroutineContext()
             callerContext.ensureActive()
             val infos = prepared.map { it.info }
-            val installed = Lease(resource)
+            val installed = Lease(resource, loader)
             lease = installed
             val entries = prepared.map { Entry(it.source, it.info, installed) }
             synchronized(lock) {

@@ -1,10 +1,19 @@
 name: Build pinned reference source JAR
 on:
   workflow_dispatch:
+    inputs:
+      task:
+        description: Choose the pinned source build or authored runtime host checks
+        type: choice
+        options:
+          - reference-extension
+          - runtime-host
+        default: reference-extension
 permissions:
   contents: read
 jobs:
   compile:
+    if: inputs.task != 'runtime-host'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -31,5 +40,40 @@ jobs:
         with:
           name: mangadex-source-build
           path: build/reference-extension/
+          if-no-files-found: warn
+          retention-days: 14
+  runtime-host:
+    if: inputs.task == 'runtime-host'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Check pinned API and source registry
+        run: python3 -u scripts/test-runtime-host.py
+      - name: Check signatures and bounded archive handling
+        run: python3 -u scripts/test-extension-archive-verifier.py
+      - name: Load authored signed SourceFactory fixtures
+        run: python3 -u scripts/test-extension-loader.py
+      - name: Preserve authored host and evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: runtime-host-check-${{ matrix.os }}
+          path: |
+            validation/runtime-host-build.json
+            validation/runtime-host-tests.json
+            validation/extension-archive-verifier-host.json
+            validation/extension-loader-host.json
+            build/runtime-host/runtime-host.jar
           if-no-files-found: warn
           retention-days: 14
