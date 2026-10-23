@@ -71,8 +71,14 @@ object RegistryCheck {
     fun main(args: Array<String>) = runBlocking {
         val checks = linkedMapOf<String, Boolean>()
         suspend fun case(name: String, body: suspend () -> Unit) {
-            withTimeout(8000) { body() }
+            System.err.println("START $name")
+            try { withTimeout(8000) { body() } }
+            catch (error: Throwable) {
+                System.err.println("FAIL $name: ${error.javaClass.name}: ${error.message}")
+                throw error
+            }
             checks[name] = true
+            System.err.println("PASS $name")
         }
 
         case("factory_registers_61_metadata_id_language_pairs_and_invokes_them") {
@@ -212,6 +218,36 @@ object RegistryCheck {
             }
             check(cleaned.get() && handle.closes.get() == 0 && registry.withSource(1) { it.id } == 1L)
             registry.remove("fixture.cancel").await()
+            check(handle.closes.get() == 1)
+        }
+
+        case("cancelled_caller_waits_for_non_cancellable_source_cleanup") {
+            val registry = SourceRegistry()
+            val started = CompletableDeferred<Unit>()
+            val cleaning = CompletableDeferred<Unit>()
+            val gate = CompletableDeferred<Unit>()
+            val cleaned = AtomicBoolean()
+            val source = FixtureSource(1) {
+                started.complete(Unit)
+                try { awaitCancellation() }
+                finally { withContext(NonCancellable) { cleaning.complete(Unit); gate.await(); cleaned.set(true) } }
+            }
+            val handle = Handle()
+            registry.register("fixture.cancel", source, expected(source), handle)
+            coroutineScope {
+                val request = async { registry.withSource(1) { it.getPopularManga(1) } }
+                try {
+                    started.await(); request.cancel(); cleaning.await()
+                    check(!request.isCompleted && !cleaned.get() && handle.closes.get() == 0)
+                    check(registry.withSource(1) { it.id } == 1L)
+                    gate.complete(Unit); request.join()
+                    check(request.isCancelled && cleaned.get() && handle.closes.get() == 0)
+                } finally {
+                    gate.complete(Unit)
+                    request.cancelAndJoin()
+                    registry.close().forEach { it.await() }
+                }
+            }
             check(handle.closes.get() == 1)
         }
 

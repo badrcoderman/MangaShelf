@@ -105,7 +105,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--reference-api', type=Path, default=ROOT/'runtime-host/reference/library.api')
     args = parser.parse_args()
-    report = {'scope':'Authored Source1.6 API/model subset descriptors, synthetic sources and SourceFactory registry lifecycle on host. No HttpSource/Android bootstrap, real extension class loading, trusted archive loading, network or iOS proof.',
+    report = {'scope':'Authored Source1.6 API/model/HttpSource/network/context descriptors, synthetic sources and SourceFactory registry lifecycle on host. No complete Android bootstrap, real extension class loading, trusted archive loading, actual network or iOS proof in this check.',
               'reference_commit':'42255ee5fa96d9425697b7c143587483207308d1', 'reference_api_sha256':API_HASH,
               'extension_code_executed':False, 'passed':False,
               'script_sha256':build.digest(Path(__file__)),

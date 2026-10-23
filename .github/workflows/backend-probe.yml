@@ -59,7 +59,13 @@ jobs:
           distribution: temurin
           java-version: '25'
       - name: Check pinned API and source registry
-        run: python3 -u scripts/test-runtime-host.py
+        # Remove historical reports so skipped checks cannot upload old passes.
+        # These paths are generated evidence in this disposable checkout.
+        run: |
+          rm -f validation/runtime-host-build.json validation/runtime-host-tests.json \
+            validation/runtime-preferences-host.json validation/runtime-network-host.json \
+            validation/extension-archive-verifier-host.json validation/extension-loader-host.json
+          python3 -u scripts/test-runtime-host.py
       - name: Check durable extension preferences
         run: python3 -u scripts/test-runtime-preferences.py
       - name: Check authored HTTP sources and TLS on host JVM

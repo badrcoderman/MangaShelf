@@ -120,7 +120,7 @@
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
     "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "4b966ffacea35366f3dfbc79e43bb4ba70d0455d173283b4b98c14da52fe91b2",
-    "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "6350ad26630b72d6f108abc72ae4febc25de43c9723aa38428edd2ff743731ee",
+    "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "054e0919fa8b9abdbf9e591278f281c6b82e90ed56ed4a2c445be687ebf913b2",
     "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
     "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
     "runtime-host/src/main/java/android/content/SharedPreferences.java": "c149d71633e95f7d3842ba8567bd512619d4a468cb9fdb440fe719d30a9a2701",
@@ -144,7 +144,7 @@
       "-Xlint:all",
       "-Werror",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/app/Application.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/Context.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/SharedPreferences.java",
@@ -171,9 +171,9 @@
       "-jvm-default=enable",
       "-Werror",
       "-classpath",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-etkd16fl",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt",
@@ -206,7 +206,7 @@
   "passed": true,
   "jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 159742,
-    "sha256": "70cd8754430a7cc70075ba5b0329b680707679d989bc0eaf58267b3293848931"
+    "bytes": 161509,
+    "sha256": "70732a7d5e1c13aac77c9f4fbf6c9200ec5407eb7618536c8027192124f9c932"
   }
 }

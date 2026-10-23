@@ -1,15 +1,15 @@
 {
-  "scope": "Authored Source1.6 API/model subset descriptors, synthetic sources and SourceFactory registry lifecycle on host. No HttpSource/Android bootstrap, real extension class loading, trusted archive loading, network or iOS proof.",
+  "scope": "Authored Source1.6 API/model/HttpSource/network/context descriptors, synthetic sources and SourceFactory registry lifecycle on host. No complete Android bootstrap, real extension class loading, trusted archive loading, actual network or iOS proof in this check.",
   "reference_commit": "42255ee5fa96d9425697b7c143587483207308d1",
   "reference_api_sha256": "28685652e15c6ea010212db5cd94e8d7019c5227f260442cbb985ec0f51cb324",
   "extension_code_executed": false,
   "passed": true,
-  "script_sha256": "b2a1fa8e958e91909c722863d07a6ba36e38eb3835858b731dcb9a137c863461",
+  "script_sha256": "71127393b6e208be2b24ddf1e6ab6f3660d556089864f9f7fda054a40923955c",
   "build_script_sha256": "143ddb3443fc7be9ad7682776ad51bac8493ce3941c9058a7c218d526c5d9f55",
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 159742,
-    "sha256": "70cd8754430a7cc70075ba5b0329b680707679d989bc0eaf58267b3293848931"
+    "bytes": 161509,
+    "sha256": "70732a7d5e1c13aac77c9f4fbf6c9200ec5407eb7618536c8027192124f9c932"
   },
   "abi": {
     "classes_checked": 32,
@@ -18,7 +18,7 @@
   },
   "test_source_sha256": {
     "runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt": "e61a20c5f758715ad1d481ff561437f138e5f7f68e445bde8cfc3f58ea3f6661",
-    "runtime-host/src/test/kotlin/mangashelf/host/RegistryCheck.kt": "c7f6cbcf851eb3960ac6a040fb45d8ccbb5d98453530480ab0583f35f565bd5a"
+    "runtime-host/src/test/kotlin/mangashelf/host/RegistryCheck.kt": "79d47d638ef1d965487ee05edbe8c2d684b0ddb4ec26eeac86f02daa6c96ac08"
   },
   "test_compile": {
     "command": [
@@ -35,7 +35,7 @@
       "-classpath",
       "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-lhjqml66",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-7dl0fuv9",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/kotlin/mangashelf/host/RegistryCheck.kt"
     ],
@@ -48,7 +48,7 @@
       "java",
       "-Xint",
       "-cp",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-lhjqml66:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-7dl0fuv9:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
       "mangashelf.host.ModelApiCheck"
     ],
     "exit_code": 0,
@@ -85,12 +85,12 @@
       "java",
       "-Xint",
       "-cp",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-lhjqml66:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-7dl0fuv9:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
       "mangashelf.host.RegistryCheck"
     ],
     "exit_code": 0,
-    "stdout": "{\"passed\":true,\"scope\":\"Authored SourceFactory/Source registry and coroutine lifecycle on host only\",\"checks\":{\"factory_registers_61_metadata_id_language_pairs_and_invokes_them\":true,\"single_source_entrypoint_keeps_signed_long_id_and_language\":true,\"non_catalogue_source_preserves_metadata_language_without_inventing_a_getter\":true,\"duplicate_metadata_rejected_before_factory_and_resource_closed\":true,\"duplicate_factory_ids_reject_entire_package\":true,\"metadata_id_and_language_mismatch_never_partially_register\":true,\"cross_package_conflict_is_atomic_and_preserves_existing_handle\":true,\"package_duplicate_and_global_bounds_preserve_prior_registration\":true,\"factory_exception_propagates_and_releases_uncommitted_resource\":true,\"source_failure_does_not_cancel_sibling_or_package\":true,\"caller_cancellation_reaches_source_and_keeps_package_available\":true,\"removal_cancels_live_call_then_releases_handle_after_cleanup\":true,\"already_cancelled_caller_does_not_execute_source\":true,\"cancelled_factory_preparation_cannot_publish_sources\":true,\"concurrent_conflicting_installs_have_one_atomic_winner\":true,\"release_failure_is_reported_without_restoring_removed_source\":true,\"closed_registry_rejects_registration_and_close_is_idempotent\":true,\"mutating_returned_snapshot_cannot_mutate_registry\":true,\"bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size\":true},\"real_extension_executed\":false,\"archive_loader_tested\":false,\"network_tested\":false,\"ios_execution\":false}\n",
-    "stderr": ""
+    "stdout": "{\"passed\":true,\"scope\":\"Authored SourceFactory/Source registry and coroutine lifecycle on host only\",\"checks\":{\"factory_registers_61_metadata_id_language_pairs_and_invokes_them\":true,\"single_source_entrypoint_keeps_signed_long_id_and_language\":true,\"non_catalogue_source_preserves_metadata_language_without_inventing_a_getter\":true,\"duplicate_metadata_rejected_before_factory_and_resource_closed\":true,\"duplicate_factory_ids_reject_entire_package\":true,\"metadata_id_and_language_mismatch_never_partially_register\":true,\"cross_package_conflict_is_atomic_and_preserves_existing_handle\":true,\"package_duplicate_and_global_bounds_preserve_prior_registration\":true,\"factory_exception_propagates_and_releases_uncommitted_resource\":true,\"source_failure_does_not_cancel_sibling_or_package\":true,\"caller_cancellation_reaches_source_and_keeps_package_available\":true,\"cancelled_caller_waits_for_non_cancellable_source_cleanup\":true,\"removal_cancels_live_call_then_releases_handle_after_cleanup\":true,\"already_cancelled_caller_does_not_execute_source\":true,\"cancelled_factory_preparation_cannot_publish_sources\":true,\"concurrent_conflicting_installs_have_one_atomic_winner\":true,\"release_failure_is_reported_without_restoring_removed_source\":true,\"closed_registry_rejects_registration_and_close_is_idempotent\":true,\"mutating_returned_snapshot_cannot_mutate_registry\":true,\"bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size\":true},\"real_extension_executed\":false,\"archive_loader_tested\":false,\"network_tested\":false,\"ios_execution\":false}\n",
+    "stderr": "START factory_registers_61_metadata_id_language_pairs_and_invokes_them\nPASS factory_registers_61_metadata_id_language_pairs_and_invokes_them\nSTART single_source_entrypoint_keeps_signed_long_id_and_language\nPASS single_source_entrypoint_keeps_signed_long_id_and_language\nSTART non_catalogue_source_preserves_metadata_language_without_inventing_a_getter\nPASS non_catalogue_source_preserves_metadata_language_without_inventing_a_getter\nSTART duplicate_metadata_rejected_before_factory_and_resource_closed\nPASS duplicate_metadata_rejected_before_factory_and_resource_closed\nSTART duplicate_factory_ids_reject_entire_package\nPASS duplicate_factory_ids_reject_entire_package\nSTART metadata_id_and_language_mismatch_never_partially_register\nPASS metadata_id_and_language_mismatch_never_partially_register\nSTART cross_package_conflict_is_atomic_and_preserves_existing_handle\nPASS cross_package_conflict_is_atomic_and_preserves_existing_handle\nSTART package_duplicate_and_global_bounds_preserve_prior_registration\nPASS package_duplicate_and_global_bounds_preserve_prior_registration\nSTART factory_exception_propagates_and_releases_uncommitted_resource\nPASS factory_exception_propagates_and_releases_uncommitted_resource\nSTART source_failure_does_not_cancel_sibling_or_package\nPASS source_failure_does_not_cancel_sibling_or_package\nSTART caller_cancellation_reaches_source_and_keeps_package_available\nPASS caller_cancellation_reaches_source_and_keeps_package_available\nSTART cancelled_caller_waits_for_non_cancellable_source_cleanup\nPASS cancelled_caller_waits_for_non_cancellable_source_cleanup\nSTART removal_cancels_live_call_then_releases_handle_after_cleanup\nPASS removal_cancels_live_call_then_releases_handle_after_cleanup\nSTART already_cancelled_caller_does_not_execute_source\nPASS already_cancelled_caller_does_not_execute_source\nSTART cancelled_factory_preparation_cannot_publish_sources\nPASS cancelled_factory_preparation_cannot_publish_sources\nSTART concurrent_conflicting_installs_have_one_atomic_winner\nPASS concurrent_conflicting_installs_have_one_atomic_winner\nSTART release_failure_is_reported_without_restoring_removed_source\nPASS release_failure_is_reported_without_restoring_removed_source\nSTART closed_registry_rejects_registration_and_close_is_idempotent\nPASS closed_registry_rejects_registration_and_close_is_idempotent\nSTART mutating_returned_snapshot_cannot_mutate_registry\nPASS mutating_returned_snapshot_cannot_mutate_registry\nSTART bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size\nPASS bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size\n"
   },
   "registry_checks": {
     "passed": true,
@@ -107,6 +107,7 @@
       "factory_exception_propagates_and_releases_uncommitted_resource": true,
       "source_failure_does_not_cancel_sibling_or_package": true,
       "caller_cancellation_reaches_source_and_keeps_package_available": true,
+      "cancelled_caller_waits_for_non_cancellable_source_cleanup": true,
       "removal_cancels_live_call_then_releases_handle_after_cleanup": true,
       "already_cancelled_caller_does_not_execute_source": true,
       "cancelled_factory_preparation_cannot_publish_sources": true,

@@ -9,6 +9,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.currentCoroutineContext
@@ -149,6 +150,7 @@ class SourceRegistry(
 
     /**
      * Caller cancellation and package removal both cancel the source coroutine.
+     * A cancelled caller waits for its source coroutine's cleanup to finish.
      * Convert plugin models inside operation; do not retain source/plugin objects
      * after this lease ends or its package may release the archive handle.
      */
@@ -157,7 +159,12 @@ class SourceRegistry(
         val entry = synchronized(lock) { sources[id] ?: fail("source_not_registered") }
         val task = entry.lease.scope.async { operation(entry.source) }
         try { return task.await() }
-        finally { if (!task.isCompleted) task.cancel() }
+        finally {
+            if (!task.isCompleted) {
+                task.cancel()
+                withContext(NonCancellable) { task.join() }
+            }
+        }
     }
 
     /** Starts cancellation without blocking on potentially noncooperative plugin code. */
