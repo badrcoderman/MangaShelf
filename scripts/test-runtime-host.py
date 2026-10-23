@@ -74,7 +74,7 @@ def expected_api(path):
         raise ValueError('Public API file does not match the pinned revision')
     expected, current = {}, None
     names = {'eu/kanade/tachiyomi/source/'+name for name in
-             ('Source','Source$DefaultImpls','SourceFactory','CatalogueSource','CatalogueSource$DefaultImpls')}
+             ('Source','Source$DefaultImpls','SourceFactory','CatalogueSource','CatalogueSource$DefaultImpls','ConfigurableSource')}
     names.update({'android/content/Context', 'eu/kanade/tachiyomi/AppInfo',
                   'eu/kanade/tachiyomi/source/online/HttpSource',
                   *('eu/kanade/tachiyomi/network/'+name for name in
@@ -83,7 +83,7 @@ def expected_api(path):
         match = re.match(r'public .*?class ([^ :{]+).*\{', line)
         if match:
             name = match.group(1)
-            current = name if name in names or name.startswith('eu/kanade/tachiyomi/source/model/') else None
+            current = name if name in names or name.startswith(('eu/kanade/tachiyomi/source/model/', 'androidx/preference/')) else None
             if current:
                 parents = line.split(' : ', 1)[1].removesuffix(' {').split(', ') if ' : ' in line else []
                 expected[current] = {'methods':set(), 'fields':set(), 'static':set(), 'visibility':{},

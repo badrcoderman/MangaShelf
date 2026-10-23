@@ -305,6 +305,46 @@ object LoaderCheck {
                 } finally { registry.close().forEach { it.await() }; HostServices.close() }
             }
         }
+        case("signed_source_settings_validate_persist_drive_http_and_drain_before_archive_close") {
+            val registry = SourceRegistry()
+            HttpFixtureServer().use { server ->
+                HostServices.configure(Application(root.resolve("signed-settings"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                try {
+                    System.setProperty("msl.fixture.http_url", server.url)
+                    val http = request("http").copy(expectedSources = listOf(SourceRegistry.ExpectedSource(987, "en")))
+                    ExtensionLoader(registry, scratch).install(http)
+                    val loader = lastLoader()
+                    val session = SourcePreferenceSession.open(registry, 987)
+                    try {
+                        check(session.snapshot().rows.map { it.title } == listOf("Quality", "Result prefix"))
+                        check(!session.validateText(2, "bad\nvalue").allowed)
+                        check(!session.change(2, SourcePreferenceSession.Value.Text("bad\nvalue")).accepted)
+                        check(System.getProperty("msl.fixture.settings_changed") == null)
+                        check(session.change(1, SourcePreferenceSession.Value.Text("small")).screen.rows[0].summary == "Small")
+                        check(session.change(2, SourcePreferenceSession.Value.Text("إعداد 📚: ")).accepted)
+                        check(System.getProperty("msl.fixture.settings_changed") == "true")
+                        registry.withSource(987) { check(it.getPopularManga(1).mangas.single().title == "إعداد 📚: العربية 📚") }
+                        System.setProperty("msl.fixture.settings_hold", "true")
+                        val removed = registry.remove("fixture.extension")
+                        until("msl.fixture.settings_cleanup_entered")
+                        check(!removed.isCompleted && !loader.isClosed)
+                        System.setProperty("msl.fixture.settings_release", "true")
+                        removed.await(); session.closeAndJoin()
+                        check(loader.isClosed && System.getProperty("msl.fixture.settings_cleanup_done") == "true")
+                        ExtensionLoader(registry, scratch).install(http)
+                        val reopened = SourcePreferenceSession.open(registry, 987)
+                        try {
+                            check(reopened.snapshot().rows[1].value == SourcePreferenceSession.Value.Text("إعداد 📚: "))
+                            registry.withSource(987) { check(it.getPopularManga(2).mangas.single().title == "إعداد 📚: العربية 📚") }
+                        } finally { reopened.closeAndJoin() }
+                        registry.remove("fixture.extension").await()
+                    } finally { System.setProperty("msl.fixture.settings_release", "true"); session.closeAndJoin() }
+                } finally {
+                    System.setProperty("msl.fixture.settings_release", "true")
+                    registry.close().forEach { it.await() }; HostServices.close()
+                }
+            }
+        }
         case("http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup") {
             val registry = SourceRegistry()
             HttpFixtureServer().use { server ->

@@ -1,5 +1,9 @@
 # سجل تغييرات MangaShelf
 
+## إعدادات المصادر — 24 أكتوبر 2026
+
+- تنفيذ ConfigurableSource وأنواع التفضيلات وقيمها المحفوظة والتحقق من EditText/TextWatcher والزر الموجب. تحتفظ SourcePreferenceSession بصفوف الإضافة داخل lease واحدة، وتنقل snapshots immutable فقط، وتنتظر تنظيف callbacks قبل تحرير الأرشيف. نجحت 17 حالة مؤلفة محليًا، منها حفظ النص الذي صححه watcher، والتفضيلات بعد إعادة التشغيل والإلغاء والإزالة؛ API تضم 45 صنفًا و278 عضوًا. أضيف مسار إعدادات إلى مصدر HTTP موقّع مؤلف وأثبت تأثيرها في النتائج وإعادة التثبيت. CI الجديد والربط بـSwift/iPhone ما زالا مطلوبين، ولا IPA جديدة. [التفاصيل](docs/SOURCE-PREFERENCES-AR.md).
+
 ## متابعة محرك المصادر — 23 أكتوبر 2026
 
 - تأكيد بناء Injekt وخدمات التطبيق على Linux وmacOS في [Actions 39992873306](https://github.com/badrcoderman/MangaShelf/actions/runs/39992873306): نجحت 6 حالات bootstrap مع 19 تحميلًا موقّعًا و14 نماذج و20 سجلًا و16 تفضيلات و16 HTTP/TLS و46 توقيعًا لكل منصة. طابقت بصمات artifact ومدخلات المصدر ورخصة MIT وmodule metadata، وتطابقت JAR المضيف بين المنصتين. لا IPA أو codec أصلية أو مصدر منشور منفذ؛ [الدليل](validation/runtime-host-39992873306.json).

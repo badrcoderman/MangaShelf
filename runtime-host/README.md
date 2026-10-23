@@ -14,6 +14,7 @@ python3 scripts/build-runtime-host.py
 python3 scripts/test-runtime-host.py
 python3 scripts/test-runtime-preferences.py
 python3 scripts/test-runtime-bootstrap.py
+python3 scripts/test-runtime-source-preferences.py
 python3 scripts/test-runtime-network.py
 python3 scripts/test-extension-loader.py
 ```
@@ -33,7 +34,7 @@ against `injekt-source.lock.json`; the build applies `injekt-compat.patch.json`
 only to a temporary copy and includes the upstream MIT notice. No upstream build
 scripts or binaries are executed. No extension JAR is placed on either classpath.
 
-The retained ABI checks cover 32 public/protected classes and 222 members,
+The retained ABI checks cover 45 public/protected classes and 278 members,
 including member visibility, static method flags, interface kinds and inheritance,
 plus 14 functional checks using
 authored suspend sources and 20 registry/lifecycle checks. See
@@ -131,6 +132,29 @@ across reinstall. Both 8-file artifacts passed digest/CRC/source inspection,
 including the pinned upstream files and compatibility edit; the same host JAR
 contains the MIT notice and separate Injekt module metadata, without codec native
 libraries. See `validation/runtime-host-39992873306.json`. No IPA is produced.
+
+## Source settings
+
+`ConfigurableSource` and the pinned `androidx.preference` types maintain source
+settings, choices, defaults, persistence and change/click/bind listeners. A small
+headless text/dialog model supports `TextWatcher`, `EditText.error` and the
+positive-button gate used by source validators. It does not implement Android
+rendering, spans or a Looper.
+
+`SourcePreferenceSession` keeps the screen and all source callbacks inside one
+long-lived registry lease. Only immutable host snapshots leave it. Use its
+snapshot/change/validateText/click operations and await `closeAndJoin` when the
+native settings view closes. Package removal cancels the session and waits for
+callback detachment before releasing its archive. Queue cancellation skips work
+that has not started; it cannot roll back an already executing plugin callback.
+Callback failures return host codes without retaining a plugin exception.
+
+Seventeen authored checks cover persistence, validation, immutable values, input
+bounds, cancellation and cleanup. The signed fixture also exercises these
+callbacks from its verified child classloader, applies a saved setting to a real
+loopback HTTP result, restores it after reinstall and gates archive release on
+cleanup. Swift rendering and iOS execution remain pending. See
+[the contract, evidence and limits](../docs/SOURCE-PREFERENCES-AR.md).
 
 ## HTTP and application services
 
