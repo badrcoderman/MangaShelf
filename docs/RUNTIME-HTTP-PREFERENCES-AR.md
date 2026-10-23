@@ -77,8 +77,9 @@ ABI للأصناف الـ32 والأعضاء الـ222. فُحصت بصمتا ar
 
 ## المتبقي قبل تفعيل الإضافات
 
-1. إكمال bootstrap الخاص بـInjekt وAndroid وتبعيات المصدر المثبت، ومنها
-   compression وJSON/Okio وتهيئة التفضيلات. وجود أصناف Context لا يكفي وحده.
+1. نُفذ سجل Injekt للتطبيق وContext وNetworkHelper على المضيف؛
+   [التحقق والحدود](SOURCE-INJEKT-BOOTSTRAP-AR.md). تبقى ConfigurableSource
+   وصفوف Android وحقول المنصة وتبعيات compression وJSON/Okio للمصدر الكامل.
 2. حسم النقل على iOS: تنفيذ JVM الحالي لا يستعمل NativeNet/URLSession، ولم
    تُثبت sockets أو TLS في VM الهاتف. نجاح فحص Java السابق لا يثبت الشبكة.
 3. محوّل نماذج/أوامر إلى Swift يحفظ memo وترتيب الصفحات ويحوّل تواريخ الفصول

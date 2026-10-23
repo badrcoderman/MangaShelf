@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "name": "injekt",
+  "repository": "https://github.com/null2264/injekt",
+  "commit": "4135455a2a744796967b3b4a38764c699d340aa7",
+  "license_spdx": "MIT",
+  "source_root": "runtime-host/third_party/injekt",
+  "files": [
+    {
+      "path": "LICENSE",
+      "git_blob": "0652599299961d5954a3a07f5751960ca3bb5343",
+      "bytes": 1146,
+      "sha256": "08a5be6e3c03075440ad532846713849592aefe8c90111cdb5b96cfadaaa850f"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Exceptions.kt",
+      "git_blob": "8547762b39827eb4d4d027e14144532c6816db00",
+      "bytes": 96,
+      "sha256": "96b9bdc6ce4d3e285fa13d8f6ca3a24f794ee3e5600cf41983569fff50d3ee62"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Factory.kt",
+      "git_blob": "44140b19f50670dca6588648b768fef218f04f5d",
+      "bytes": 4082,
+      "sha256": "0a26ae1b2702f1fa2a7167055facf7e929ae7db55efff970757e19faa5846bec"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Modules.kt",
+      "git_blob": "bc51c7738bfede795327c52d224a52bdc57648b6",
+      "bytes": 541,
+      "sha256": "297e0caf09432c60d9adb4b1db82cd1f68177e3b575a0f41cb5c67e054909781"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Registrar.kt",
+      "git_blob": "bf380e3ed4db02d06ae749d89d254e37ef18e0eb",
+      "bytes": 185,
+      "sha256": "13d283cd67957e6329c2e8330347a87f6a9e4eb81c6beb012de02d7dce5a23a2"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Registry.kt",
+      "git_blob": "b187f455f48c82720e2df7c574efceb1caa91dcf",
+      "bytes": 2493,
+      "sha256": "1bb01b335a4ef71e7896942eaf012fb15e4c74befb00a9b036efb55377934dcc"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/Scope.kt",
+      "git_blob": "ef83098005c5600cd6b695945dfe3d4f4cfcb1cb",
+      "bytes": 2918,
+      "sha256": "6f27712d82002f01b301bacba00070a653ec067ae3caef8dcb5a26f828492c4d"
+    },
+    {
+      "path": "api/src/main/kotlin/uy/kohesive/injekt/api/TypeInfo.kt",
+      "git_blob": "6b57e7bd2e4ead309f5d5147f2be728fe31a8bbc",
+      "bytes": 1501,
+      "sha256": "005c8d6416f5295c986194c555126147f92978738bc84b66dd0f0fef7057635d"
+    },
+    {
+      "path": "core/src/main/kotlin/uy/kohesive/injekt/Injekt.kt",
+      "git_blob": "0ed9c4d0b94ac12e568933938d80c71a12dea8ac",
+      "bytes": 1398,
+      "sha256": "153f41ce2ffe201122f362c433fe58e0f39f48296617b2aae70fa943d25f4650"
+    },
+    {
+      "path": "core/src/main/kotlin/uy/kohesive/injekt/registry/default/DefaultRegistrar.kt",
+      "git_blob": "60737cc9ccc070dd3d77d6e337bdd5cb3fab27c6",
+      "bytes": 7560,
+      "sha256": "f7abedc2c60017a7bbe17b3d2aca8f149ae564a2fc929ef3c207b55c950617d5"
+    }
+  ],
+  "scope": "Reviewed upstream Kotlin library sources and license only. No upstream build scripts, Gradle wrapper, published JAR or reference IPA bytes."
+}

@@ -1,6 +1,6 @@
 package mangashelf.host
 
-import android.content.Context
+import android.app.Application
 import com.sun.net.httpserver.HttpServer
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -283,15 +283,23 @@ object LoaderCheck {
         case("signed_http_source_fetches_unicode_over_real_http_through_registry") {
             val registry = SourceRegistry()
             HttpFixtureServer().use { server ->
-                HostServices.configure(Context(root.resolve("http-success"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("http-success"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     System.setProperty("msl.fixture.http_url", server.url)
                     val http = request("http").copy(expectedSources = listOf(SourceRegistry.ExpectedSource(987, "en")))
                     check(ExtensionLoader(registry, scratch).install(http).single().id == 987L)
+                    check(System.getProperty("msl.fixture.injected_app_package") == "app.mangashelf.test")
+                    val preferences = HostServices.current.context.getSharedPreferences("source_987", 0)
+                    check(preferences.getInt("starts", 0) == 1)
                     registry.withSource(987) { source ->
                         check(source.javaClass.classLoader === lastLoader())
                         check(source.getPopularManga(1).mangas.single().title == "العربية 📚")
                     }
+                    registry.remove("fixture.extension").await()
+                    check(lastLoader().isClosed)
+                    ExtensionLoader(registry, scratch).install(http)
+                    check(preferences.getInt("starts", 0) == 2)
+                    registry.withSource(987) { check(it.getPopularManga(2).mangas.single().title == "العربية 📚") }
                     registry.remove("fixture.extension").await()
                     check(lastLoader().isClosed)
                 } finally { registry.close().forEach { it.await() }; HostServices.close() }
@@ -300,7 +308,7 @@ object LoaderCheck {
         case("http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup") {
             val registry = SourceRegistry()
             HttpFixtureServer().use { server ->
-                HostServices.configure(Context(root.resolve("http-cancel"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("http-cancel"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     System.setProperty("msl.fixture.http_url", server.url)
                     val http = request("http").copy(expectedSources = listOf(SourceRegistry.ExpectedSource(987, "en")))

@@ -1,6 +1,6 @@
 package mangashelf.host
 
-import android.content.Context
+import android.app.Application
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpServer
 import com.sun.net.httpserver.HttpsConfigurator
@@ -222,7 +222,7 @@ object NetworkCheck {
             check(empty.method == "POST" && empty.body?.contentLength() == 0L)
             val bytes = byteArrayOf(0, 1, -1, 0, 42)
             Server().use { server ->
-                HostServices.configure(Context(root.resolve("upload"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("upload"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     val call = HostServices.current.network.client.newCall(POST(server.url + "/echo", body = bytes.toRequestBody()))
                     call.awaitSuccess().use { response ->
@@ -233,7 +233,7 @@ object NetworkCheck {
         }
         case("configured_http_source_fetches_unicode_and_exposes_required_client_interceptors") {
             Server().use { server ->
-                HostServices.configure(Context(root.resolve("source"), "app.mangashelf.test"), "0.5-test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("source"), "app.mangashelf.test"), "0.5-test", 7, "MangaShelf-Test/7")
                 try {
                     val source = FixtureSource(server.url)
                     check(source.getPopularManga(1).mangas.single().title == "العربية 📚")
@@ -248,7 +248,7 @@ object NetworkCheck {
             }
         }
         case("http_source_id_is_lazy_and_independent_of_turkish_default_locale") {
-            HostServices.configure(Context(root.resolve("identity"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+            HostServices.configure(Application(root.resolve("identity"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
             val original = Locale.getDefault()
             try {
                 Locale.setDefault(Locale.forLanguageTag("tr-TR"))
@@ -257,7 +257,7 @@ object NetworkCheck {
             } finally { Locale.setDefault(original); HostServices.close() }
         }
         case("headers_delegate_can_be_replaced_without_mutating_a_final_field") {
-            HostServices.configure(Context(root.resolve("headers"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+            HostServices.configure(Application(root.resolve("headers"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
             try {
                 val source = FixtureSource("https://example.invalid")
                 val field = HttpSource::class.java.getDeclaredField("headers\$delegate")
@@ -268,7 +268,7 @@ object NetworkCheck {
             } finally { HostServices.close() }
         }
         case("relative_urls_queries_fragments_and_image_requests_are_preserved") {
-            HostServices.configure(Context(root.resolve("urls"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+            HostServices.configure(Application(root.resolve("urls"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
             try {
                 val source = FixtureSource("https://example.invalid")
                 val expected = "/a%2Fb?q=%23#page%202"
@@ -282,7 +282,7 @@ object NetworkCheck {
         }
         case("redirects_error_status_challenges_and_http_cache_use_real_http") {
             Server().use { server ->
-                HostServices.configure(Context(root.resolve("http"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("http"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     val client = HostServices.current.network.client
                     client.newCall(GET(server.url + "/redirect")).awaitSuccess().use { check(it.body.string() == "العربية 📚" && it.priorResponse?.code == 302) }
@@ -298,7 +298,7 @@ object NetworkCheck {
         }
         case("response_cookies_are_sent_only_to_matching_paths") {
             Server().use { server ->
-                HostServices.configure(Context(root.resolve("cookies"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("cookies"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     val client = HostServices.current.network.client
                     client.newCall(GET(server.url + "/cookies/set")).awaitSuccess().close()
@@ -314,7 +314,7 @@ object NetworkCheck {
             val (serverTls, clientTls, manager) = tls(Path.of(args[1]))
             stage("keystore loaded")
             Server(serverTls).use { server ->
-                HostServices.configure(Context(root.resolve("tls"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("tls"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     // Bind DNS to this fixture's IPv4 listener. Otherwise an
                     // unrelated IPv6 refusal may mask the certificate rejection.
@@ -341,7 +341,7 @@ object NetworkCheck {
         }
         case("cancellation_closes_real_inflight_http_and_finishes_callback") {
             Server().use { server ->
-                HostServices.configure(Context(root.resolve("cancel-http"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+                HostServices.configure(Application(root.resolve("cancel-http"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
                 try {
                     coroutineScope {
                         val call = HostServices.current.network.client.newCall(GET(server.url + "/slow"))

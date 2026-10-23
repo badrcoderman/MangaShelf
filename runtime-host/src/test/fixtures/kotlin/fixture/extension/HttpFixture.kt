@@ -1,5 +1,8 @@
 package fixture.extension
 
+import android.app.Application
+import android.content.Context
+import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.awaitSuccess
 import eu.kanade.tachiyomi.source.model.FilterList
@@ -10,6 +13,8 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import eu.kanade.tachiyomi.source.online.HttpSource
 import okhttp3.Headers
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /** Authored executable fixture, never a published extension or production data. */
 class HttpFixture : HttpSource() {
@@ -18,7 +23,15 @@ class HttpFixture : HttpSource() {
     override val lang = "en"
     override val supportsLatest = true
     override val baseUrl: String get() = checkNotNull(System.getProperty("msl.fixture.http_url"))
-    init { System.getProperties()["msl.fixture.loader"] = javaClass.classLoader }
+    private val application: Application = Injekt.get()
+    init {
+        check(Injekt.get<NetworkHelper>() === network)
+        check(Injekt.get<Context>() === application && application.applicationContext === application)
+        val preferences = application.getSharedPreferences("source_$id", Context.MODE_PRIVATE)
+        check(preferences.edit().putInt("starts", preferences.getInt("starts", 0) + 1).commit())
+        System.setProperty("msl.fixture.injected_app_package", application.packageName)
+        System.getProperties()["msl.fixture.loader"] = javaClass.classLoader
+    }
 
     private fun resource(): String {
         check(Thread.currentThread().contextClassLoader === javaClass.classLoader)

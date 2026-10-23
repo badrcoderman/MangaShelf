@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "file": "api/src/main/kotlin/uy/kohesive/injekt/api/Scope.kt",
+  "original_sha256": "6f27712d82002f01b301bacba00070a653ec067ae3caef8dcb5a26f828492c4d",
+  "patched_sha256": "900ac425adb51afff0202cb6bd800fb43a8e37580cca83526f847c37c811186d",
+  "replacements": [
+    {
+      "old": "abstract class LocalScoped(protected val localScope: InjektScope) {\n",
+      "new": "abstract class LocalScoped(protected val localScope: InjektScope) {\n    @PublishedApi\n    internal val localScopeForInlining: InjektScope get() = localScope\n",
+      "count": 1
+    },
+    {
+      "old": "return localScope.inject",
+      "new": "return localScopeForInlining.inject",
+      "count": 4
+    }
+  ],
+  "reason": "Kotlin 2.4 prohibits protected property access from public inline helpers. Preserve protected getLocalScope and all original methods; add a PublishedApi internal bridge for the four inline helpers."
+}

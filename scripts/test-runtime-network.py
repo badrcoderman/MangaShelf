@@ -18,6 +18,8 @@ PASSWORD = 'mangashelf-authored-network-test'
 def main():
     tests = sorted((ROOT/'runtime-host/src/test/network').rglob('*.kt'))
     sources = [ROOT/'scripts/build-runtime-host.py', ROOT/'runtime-host/dependencies.lock.json', Path(__file__), *tests]
+    _, vendor = build.injekt_sources()
+    sources += [build.INJEKT_LOCK, build.INJEKT_PATCH, *vendor]
     sources += sorted((ROOT/'runtime-host/src/main').rglob('*.kt'))
     sources += sorted((ROOT/'runtime-host/src/main').rglob('*.java'))
     sources.append(ROOT/'runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java')

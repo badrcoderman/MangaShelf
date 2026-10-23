@@ -63,11 +63,13 @@ jobs:
         # These paths are generated evidence in this disposable checkout.
         run: |
           rm -f validation/runtime-host-build.json validation/runtime-host-tests.json \
-            validation/runtime-preferences-host.json validation/runtime-network-host.json \
+            validation/runtime-preferences-host.json validation/runtime-network-host.json validation/runtime-bootstrap-host.json \
             validation/extension-archive-verifier-host.json validation/extension-loader-host.json
           python3 -u scripts/test-runtime-host.py
       - name: Check durable extension preferences
         run: python3 -u scripts/test-runtime-preferences.py
+      - name: Check source-built Injekt and application bootstrap
+        run: python3 -u scripts/test-runtime-bootstrap.py
       - name: Check authored HTTP sources and TLS on host JVM
         run: python3 -u scripts/test-runtime-network.py
       - name: Check signatures and bounded archive handling
@@ -84,6 +86,7 @@ jobs:
             validation/runtime-host-tests.json
             validation/runtime-preferences-host.json
             validation/runtime-network-host.json
+            validation/runtime-bootstrap-host.json
             validation/extension-archive-verifier-host.json
             validation/extension-loader-host.json
             build/runtime-host/runtime-host.jar

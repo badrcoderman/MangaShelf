@@ -3,7 +3,8 @@
 Independently authored Kotlin/JVM implementations of the Source 1.6 interfaces,
 factories, models and filters used by the pinned public `extensions-lib` ABI,
 plus HTTP source services, persistent preferences, a verified archive loader and
-source registry. This module is outside the
+source registry. The host also builds the pinned MIT Injekt library from reviewed
+public Kotlin sources with a recorded compiler compatibility bridge. This module is outside the
 production iOS target. Published extensions have not been executed with it.
 
 ## Build and check
@@ -12,6 +13,7 @@ production iOS target. Published extensions have not been executed with it.
 python3 scripts/build-runtime-host.py
 python3 scripts/test-runtime-host.py
 python3 scripts/test-runtime-preferences.py
+python3 scripts/test-runtime-bootstrap.py
 python3 scripts/test-runtime-network.py
 python3 scripts/test-extension-loader.py
 ```
@@ -26,7 +28,10 @@ The build verifies every tool and runtime JAR against
 `dependencies.lock.json` before executing the compiler. Matching files may be
 reused from the local Gradle cache; missing files are fetched from Maven Central
 over HTTPS with size and hash checks. Compiler dependencies stay separate from
-runtime dependencies. No extension JAR is placed on either classpath.
+runtime dependencies. Injekt's exact source/license set is separately checked
+against `injekt-source.lock.json`; the build applies `injekt-compat.patch.json`
+only to a temporary copy and includes the upstream MIT notice. No upstream build
+scripts or binaries are executed. No extension JAR is placed on either classpath.
 
 The retained ABI checks cover 32 public/protected classes and 222 members,
 including member visibility, static method flags, interface kinds and inheritance,
@@ -120,8 +125,15 @@ upload stale passes. See `validation/runtime-host-39988642098.json`.
 
 ## HTTP and application services
 
-`HostServices.configure` installs one application Context, version identity,
-user agent and NetworkHelper before initializing a source. `HttpSource` implements
+`HostServices.configure` takes one Application, installs its Context, version
+identity, user agent and NetworkHelper, and registers the same Application,
+Context and NetworkHelper instances with a fresh Injekt scope before initializing
+a source. Close clears that owned scope and serializes against startup.
+Six lifecycle checks cover identity, cross-module inline access, persistence,
+failed/duplicate startup and failing shutdown. The signed HTTP fixture also uses
+the injector in its constructor and preserves preferences across reinstall.
+See [source provenance and limits](../docs/SOURCE-INJEKT-BOOTSTRAP-AR.md).
+`HttpSource` implements
 the pinned default source ID, lazy replaceable `headers$delegate`, headers,
 request helpers and relative URL handling. It leaves unresolved image extraction
 to the source implementation.
@@ -166,7 +178,7 @@ page order must be preserved independently of each Page's index.
 
 The authored `android.net.Uri` currently supplies the encoded value, parsing
 entrypoint, equality and ordering needed for the Page descriptor. Android
-Parcelable, URI component parsing, Injekt application bootstrap, additional
-source dependencies, Android preference forms, NativeNet setup, publisher trust
+Parcelable, URI component parsing, additional source dependencies,
+ConfigurableSource and Android preference forms, iOS codec/network setup, publisher trust
 provisioning and Swift wire conversion
 are still required for a complete host. The module has not run on iPhone.

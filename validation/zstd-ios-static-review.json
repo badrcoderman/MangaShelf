@@ -1,0 +1,56 @@
+{
+  "scope": "Static review of pinned public codec source archives and Gradle module metadata only. No codec JAR/native library executed or included in the app.",
+  "files": [
+    {
+      "name": "zstd-kmp-jvm-0.4.0.module",
+      "bytes": 3373,
+      "sha256": "37fdd746efa0679c8d2aa461c2a425f888cb4200b244b2099cf1999f00c56c17",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/zstd/zstd-kmp-jvm/0.4.0/zstd-kmp-jvm-0.4.0.module"
+    },
+    {
+      "name": "zstd-kmp-jvm-0.4.0-sources.jar",
+      "bytes": 8208,
+      "sha256": "53b879bb8abcfc408c4790b5d5a180ee309b7cf3633fd5cb813591c18b8b8c03",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/zstd/zstd-kmp-jvm/0.4.0/zstd-kmp-jvm-0.4.0-sources.jar"
+    },
+    {
+      "name": "zstd-kmp-okio-jvm-0.4.0.module",
+      "bytes": 3888,
+      "sha256": "798583ff808de231085f25f38a1a21cbf12791783bef58786dc880b4eb09d1b3",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/zstd/zstd-kmp-okio-jvm/0.4.0/zstd-kmp-okio-jvm-0.4.0.module"
+    },
+    {
+      "name": "zstd-kmp-okio-jvm-0.4.0-sources.jar",
+      "bytes": 5061,
+      "sha256": "baa1515c12603670a7fcf1d855bb9af36e445411251d64ac6497bd4cba599606",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/zstd/zstd-kmp-okio-jvm/0.4.0/zstd-kmp-okio-jvm-0.4.0-sources.jar"
+    },
+    {
+      "name": "okhttp-zstd-5.4.0.module",
+      "bytes": 3788,
+      "sha256": "2f0b307ecdde2ce7ba2d392b8f605207fa85518462ffd72b8e202d5d07ade02d",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0.module"
+    },
+    {
+      "name": "okhttp-zstd-5.4.0-sources.jar",
+      "bytes": 1141,
+      "sha256": "58c24491bf7d20a0dd0d861e9fae5548addd5ec9ae808433cfcb67d4ba7ca130",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0-sources.jar"
+    }
+  ],
+  "jvm_loader": {
+    "entry": "jvmMain/com/squareup/zstd/JvmZstd.kt",
+    "sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472",
+    "recognized_os_names": [
+      "windows",
+      "linux",
+      "mac"
+    ],
+    "device_reported_os_name": "Darwin",
+    "darwin_supported": false,
+    "loading": "extract bundled native library to temp file, then System.load"
+  },
+  "next_requirement": "Build codec/JNI from reviewed source for arm64 iOS; provide a Darwin loading path appropriate for static/signable iOS code. Do not spoof os.name or load a bundled macOS dylib.",
+  "device_evidence": "validation/ios-jvm-device-39823313828-iphone-report.json",
+  "source_archive_checks": "Source archives matched size/SHA-256/SHA-512 declared by their Gradle module metadata before ZIP parsing."
+}

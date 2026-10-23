@@ -22,6 +22,8 @@ PASSWORD = 'mangashelf-authored-loader-test-key'
 def main():
     sources = [ROOT/'scripts/build-runtime-host.py', ROOT/'runtime-host/dependencies.lock.json', Path(__file__),
                ROOT/'runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java']
+    _, vendor = build.injekt_sources()
+    sources += [build.INJEKT_LOCK, build.INJEKT_PATCH, *vendor]
     sources += sorted((ROOT/'runtime-host/src').rglob('*.kt'))
     sources += sorted((ROOT/'runtime-host/src').rglob('*.java'))
     report = {'recorded_at': datetime.now(timezone.utc).isoformat(),

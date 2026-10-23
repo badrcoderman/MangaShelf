@@ -1,5 +1,5 @@
 {
-  "scope": "Compile independently authored source host, verifier and loader only; no archive execution during build or iOS execution.",
+  "scope": "Compile MSL host, verifier and loader, plus reviewed pinned MIT Injekt sources; no extension archive execution during build or iOS execution.",
   "dependency_lock_sha256": "1fd29b72442457c4e29ed8347b4b565c673efc2d4de915d5070c543b79f50680",
   "dependencies": [
     {
@@ -119,7 +119,7 @@
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt": "1030aeeb8128b451342cbf2196bca25e84b8e29eecc037a829fcb32142d029dd",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
-    "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "4b966ffacea35366f3dfbc79e43bb4ba70d0455d173283b4b98c14da52fe91b2",
+    "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "ccf42c600a4197af1b1b680fca94e90d487c3149bfd257cdbf20701f85b05765",
     "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "054e0919fa8b9abdbf9e591278f281c6b82e90ed56ed4a2c445be687ebf913b2",
     "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
     "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
@@ -128,8 +128,30 @@
     "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d",
     "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b",
     "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "6bf4ac4565535ef082ea1b41778d08d4af99039f5837c61329b582f438c96616",
-    "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e"
+    "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e",
+    "runtime-host/third_party/injekt/LICENSE": "08a5be6e3c03075440ad532846713849592aefe8c90111cdb5b96cfadaaa850f",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Exceptions.kt": "96b9bdc6ce4d3e285fa13d8f6ca3a24f794ee3e5600cf41983569fff50d3ee62",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Factory.kt": "0a26ae1b2702f1fa2a7167055facf7e929ae7db55efff970757e19faa5846bec",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Modules.kt": "297e0caf09432c60d9adb4b1db82cd1f68177e3b575a0f41cb5c67e054909781",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Registrar.kt": "13d283cd67957e6329c2e8330347a87f6a9e4eb81c6beb012de02d7dce5a23a2",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Registry.kt": "1bb01b335a4ef71e7896942eaf012fb15e4c74befb00a9b036efb55377934dcc",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Scope.kt": "6f27712d82002f01b301bacba00070a653ec067ae3caef8dcb5a26f828492c4d",
+    "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/TypeInfo.kt": "005c8d6416f5295c986194c555126147f92978738bc84b66dd0f0fef7057635d",
+    "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/Injekt.kt": "153f41ce2ffe201122f362c433fe58e0f39f48296617b2aae70fa943d25f4650",
+    "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/registry/default/DefaultRegistrar.kt": "f7abedc2c60017a7bbe17b3d2aca8f149ae564a2fc929ef3c207b55c950617d5",
+    "runtime-host/injekt-source.lock.json": "79053c360a923aab8e6761254a17f39204c616459da7c316aa96f2ff34d63007",
+    "runtime-host/injekt-compat.patch.json": "83081b5598023706dc4de591ad9039fce42db4a83e0dc4c0f2f4c0aadee804ea"
   },
+  "source_dependencies": [
+    {
+      "name": "injekt",
+      "repository": "https://github.com/null2264/injekt",
+      "commit": "4135455a2a744796967b3b4a38764c699d340aa7",
+      "license_spdx": "MIT",
+      "lock_sha256": "79053c360a923aab8e6761254a17f39204c616459da7c316aa96f2ff34d63007",
+      "compatibility_patch_sha256": "83081b5598023706dc4de591ad9039fce42db4a83e0dc4c0f2f4c0aadee804ea"
+    }
+  ],
   "build_jdk": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
   "platform_api": "JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee",
   "extension_code_executed": false,
@@ -144,7 +166,7 @@
       "-Xlint:all",
       "-Werror",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bv482v0o",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/app/Application.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/Context.java",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/java/android/content/SharedPreferences.java",
@@ -157,6 +179,38 @@
     "exit_code": 0,
     "stdout": "",
     "stderr": ""
+  },
+  "injekt_compile": {
+    "command": [
+      "java",
+      "-Xmx768m",
+      "-cp",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar",
+      "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
+      "-no-stdlib",
+      "-no-reflect",
+      "-jvm-target=17",
+      "-jvm-default=enable",
+      "-Werror",
+      "-classpath",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+      "-module-name",
+      "msl_injekt",
+      "-d",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bv482v0o",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Exceptions.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Factory.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Modules.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Registrar.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Registry.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/Scope.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/api/src/main/kotlin/uy/kohesive/injekt/api/TypeInfo.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/core/src/main/kotlin/uy/kohesive/injekt/Injekt.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/injekt-source-3fff9ic8/core/src/main/kotlin/uy/kohesive/injekt/registry/default/DefaultRegistrar.kt"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
   },
   "compile": {
     "command": [
@@ -171,9 +225,9 @@
       "-jvm-default=enable",
       "-Werror",
       "-classpath",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bv482v0o",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bcnn995x",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-bv482v0o",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt",
@@ -206,7 +260,7 @@
   "passed": true,
   "jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 161509,
-    "sha256": "70732a7d5e1c13aac77c9f4fbf6c9200ec5407eb7618536c8027192124f9c932"
+    "bytes": 268003,
+    "sha256": "8de45d77491c5dc36d2cbb87a0924676a21cef8cd385df98c7554097cbacf003"
   }
 }
