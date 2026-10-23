@@ -207,10 +207,13 @@ static int test_native_net_and_channel(void) {
     /* Get env for current thread */
     /* Verify registration via direct JNI entrypoint */
     JNIEnv *env = NULL;
-    char out_buf[64];
-    size_t needed = 0;
-    /* Touch probe to ensure thread is attached */
-    int touch = ms_java_call_string2("mangashelf/probe/RuntimeProbe", "run", plugin, directory, out_buf, sizeof(out_buf), &needed);
+    char *probe_output = NULL;
+    size_t probe_length = 0;
+    /* Exercise the fixture once without a stale fixed-size result assumption.
+     * The helper detaches its own attachment; obtain our JNI env explicitly below. */
+    int touch = ms_java_call_string2_owned("mangashelf/probe/RuntimeProbe", "run", plugin, directory,
+                                           4096, &probe_output, &probe_length);
+    ms_java_free_string(probe_output);
     if (touch != MS_JAVA_OK) return 20;
 
     /* Get JavaVM via JNI */

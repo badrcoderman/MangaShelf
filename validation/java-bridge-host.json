@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-10-22T19:57:34.301752+00:00",
+  "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution.",
+  "checks": [
+    "requires explicit successful VM start and backend resolution",
+    "actual callback bridge reaches linked JNI VM",
+    "native-owned large UTF-8 response with one Java execution",
+    "fixed-buffer overflow and size query execute once without replay",
+    "native output bounds and oversized inputs reject with empty ownership",
+    "embedded NUL preserved by generic API and rejected by C-string adapter",
+    "Java exception and lookup failure recovery, including repeated failed initialization",
+    "already-attached caller remains attached and its preexisting exception survives",
+    "four concurrent workers detach their own JNI attachment",
+    "disable blocks new work while captured Java invocation completes",
+    "uninstall does not destroy or restart the process VM"
+  ],
+  "inputs_sha256": {
+    "runtime-native/MSJavaRuntime.c": "518fda37975beaaf4f16441ce842db6200469e9a3b992ec7e5ba8b38c7f066ea",
+    "runtime-native/MSJavaRuntime.h": "2926c937dead0e4aca382e5a7e5f716f2e2954bf528b4621b55337c575f8e4ad",
+    "runtime-native/MSJavaBridge.c": "5d292f9b4027c25ac96dde3b73cd83a12e62c06d297eb079e2a73b531e5ae62c",
+    "runtime-native/MSJavaBridge.h": "35b7a909ab24ea1f304a41e04881ae86f77d7f9f44fdee7df8b0ff83ad6a2518",
+    "Sources/CSafeArchive/MSJNIBridge.c": "358e08b437f98ba4e590483a52a107a57d9ed441af1df268f75645ce878ae3fb",
+    "Sources/CSafeArchive/include/MSJNIBridge.h": "bfd582b5e3e137e47d331b62c2ae869d3014d3936ca4c5d011a299604f9432e4",
+    "runtime-native/tests/BridgeFixture.java": "ee127959dcd5a3929780e2b7e3d8db9f9fd0af76dbd83b65e9e4bcffceeff58f",
+    "runtime-native/tests/java_bridge_test.c": "b331558eb109f0f44cecaf741b2227b7cb26ea1780a2b72b058bab5dd7ead12d"
+  },
+  "exit_code": 0,
+  "stdout": "PASS: JNI owned response, callback bridge dispatch, single execution, bounds, exceptions, attachment, concurrency, lifecycle\n",
+  "stderr": "",
+  "passed": true,
+  "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)"
+}

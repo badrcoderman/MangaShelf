@@ -61,12 +61,31 @@ static jstring from_utf8(JNIEnv *env, const char *text) {
     return (jstring)(*env)->NewObject(env, string, constructor, bytes, charset);
 }
 
-int ms_java_call_string2(const char *class_name, const char *method_name,
-                         const char *first, const char *second,
-                         char *output, size_t capacity, size_t *needed) {
-    if (!class_name || !method_name || !first || !second || !needed || (!output && capacity)) return MS_JAVA_ARGUMENT;
-    *needed = 0;
-    if (capacity) output[0] = 0;
+int ms_java_is_started(void) {
+    pthread_mutex_lock(&runtime_lock);
+    int started = runtime_vm != NULL;
+    pthread_mutex_unlock(&runtime_lock);
+    return started;
+}
+
+static int lookup_failure(JNIEnv *env, const char *expected_name, int missing_status) {
+    jthrowable exception = (*env)->ExceptionOccurred(env);
+    if (!exception) return MS_JAVA_EXCEPTION;
+    (*env)->ExceptionClear(env);
+    jclass expected = (*env)->FindClass(env, expected_name);
+    if (!expected) return MS_JAVA_EXCEPTION;
+    int status = (*env)->IsInstanceOf(env, exception, expected) ? missing_status : MS_JAVA_EXCEPTION;
+    (*env)->DeleteLocalRef(env, expected);
+    (*env)->DeleteLocalRef(env, exception);
+    return status;
+}
+
+/* mode: zero resolves only, one copies into a fixed caller buffer, two returns
+ * a native allocation. All modes share attachment and exception ownership. */
+static int string2_call(const char *class_name, const char *method_name,
+                        const char *first, const char *second, int mode,
+                        char *output, size_t capacity, size_t *needed,
+                        size_t maximum_bytes, char **owned, size_t *owned_length) {
     pthread_mutex_lock(&runtime_lock);
     JavaVM *vm = runtime_vm;
     pthread_mutex_unlock(&runtime_lock);
@@ -79,11 +98,16 @@ int ms_java_call_string2(const char *class_name, const char *method_name,
         attached = 1;
     } else if (state != JNI_OK) return MS_JAVA_THREAD;
     int result = MS_JAVA_EXCEPTION;
+    int preserve_exception = (*env)->ExceptionCheck(env);
+    char *allocation = NULL;
+    /* An exception already belonging to an attached caller is not ours to clear. */
+    if (preserve_exception) goto finish;
     if ((*env)->PushLocalFrame(env, 32) != JNI_OK) goto finish;
     jclass type = (*env)->FindClass(env, class_name);
-    if (!type) goto pop;
+    if (!type) { result = lookup_failure(env, "java/lang/NoClassDefFoundError", MS_JAVA_CLASS_NOT_FOUND); goto pop; }
     jmethodID method = (*env)->GetStaticMethodID(env, type, method_name, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
-    if (!method) goto pop;
+    if (!method) { result = lookup_failure(env, "java/lang/NoSuchMethodError", MS_JAVA_METHOD_NOT_FOUND); goto pop; }
+    if (mode == 0) { result = MS_JAVA_OK; goto pop; }
     jstring a = from_utf8(env, first);
     if (!a || (*env)->ExceptionCheck(env)) goto pop;
     jstring b = from_utf8(env, second);
@@ -99,19 +123,64 @@ int ms_java_call_string2(const char *class_name, const char *method_name,
     jbyteArray bytes = (jbyteArray)(*env)->CallObjectMethod(env, answer, get_bytes, utf8);
     if (!bytes || (*env)->ExceptionCheck(env)) goto pop;
     jsize length = (*env)->GetArrayLength(env, bytes);
-    *needed = (size_t)length + 1;
-    if (*needed > capacity) { result = MS_JAVA_BUFFER; goto pop; }
-    (*env)->GetByteArrayRegion(env, bytes, 0, length, (jbyte *)output);
+    char *destination = output;
+    if (mode == 1) {
+        *needed = (size_t)length + 1;
+        if (*needed > capacity) { result = MS_JAVA_BUFFER; goto pop; }
+    } else {
+        if ((size_t)length > maximum_bytes) { result = MS_JAVA_LIMIT; goto pop; }
+        allocation = malloc((size_t)length + 1);
+        if (!allocation) { result = MS_JAVA_MEMORY; goto pop; }
+        destination = allocation;
+    }
+    (*env)->GetByteArrayRegion(env, bytes, 0, length, (jbyte *)destination);
     if ((*env)->ExceptionCheck(env)) goto pop;
-    output[length] = 0;
+    destination[length] = 0;
+    if (mode == 2) *owned_length = (size_t)length;
     result = MS_JAVA_OK;
 pop:
     (*env)->PopLocalFrame(env, NULL);
 finish:
-    if ((*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
+    if (!preserve_exception && (*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
     if (attached && (*vm)->DetachCurrentThread(vm) != JNI_OK) result = MS_JAVA_THREAD;
+    if (mode == 2) {
+        if (result == MS_JAVA_OK) *owned = allocation;
+        else { free(allocation); *owned_length = 0; }
+    }
     return result;
 }
+
+int ms_java_check_string2(const char *class_name, const char *method_name) {
+    if (!class_name || !*class_name || !method_name || !*method_name) return MS_JAVA_ARGUMENT;
+    return string2_call(class_name, method_name, NULL, NULL, 0, NULL, 0, NULL, 0, NULL, NULL);
+}
+
+int ms_java_call_string2(const char *class_name, const char *method_name,
+                         const char *first, const char *second,
+                         char *output, size_t capacity, size_t *needed) {
+    if (needed) *needed = 0;
+    if (output && capacity) output[0] = 0;
+    if (!class_name || !method_name || !first || !second || !needed || (!output && capacity)) return MS_JAVA_ARGUMENT;
+    int result = string2_call(class_name, method_name, first, second, 1,
+                             output, capacity, needed, 0, NULL, NULL);
+    /* Preserve the original bootstrap API's class/method lookup status. */
+    if (result == MS_JAVA_CLASS_NOT_FOUND || result == MS_JAVA_METHOD_NOT_FOUND) return MS_JAVA_EXCEPTION;
+    return result;
+}
+
+int ms_java_call_string2_owned(const char *class_name, const char *method_name,
+                              const char *first, const char *second,
+                              size_t maximum_bytes, char **output, size_t *length) {
+    if (output) *output = NULL;
+    if (length) *length = 0;
+    if (!class_name || !*class_name || !method_name || !*method_name || !first || !second ||
+        !output || !length || maximum_bytes > MS_JAVA_MAX_STRING_BYTES ||
+        strlen(first) > 1024 * 1024 || strlen(second) > 1024 * 1024) return MS_JAVA_ARGUMENT;
+    return string2_call(class_name, method_name, first, second, 2,
+                        NULL, 0, NULL, maximum_bytes, output, length);
+}
+
+void ms_java_free_string(char *output) { free(output); }
 
 static ms_native_net_fn registered_net_fn = NULL;
 static ms_buffer_free_fn registered_free_fn = NULL;

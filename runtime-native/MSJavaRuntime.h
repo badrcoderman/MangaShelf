@@ -12,6 +12,21 @@ int ms_java_start(ms_create_vm_fn create_vm, const char *classpath, const char *
 int ms_java_call_string2(const char *class_name, const char *method_name,
                          const char *first, const char *second,
                          char *output, size_t capacity, size_t *needed);
+/* These APIs never start or stop the VM. The check resolves the static target
+ * without invoking its method (normal JVM class initialization can still run).
+ * Owned calls invoke Java once, then allocate UTF-8 bytes plus a trailing NUL.
+ * length excludes that NUL and can describe embedded NUL bytes. On any failure,
+ * output/length are NULL/zero; release successful output with ms_java_free_string.
+ * maximum_bytes bounds native output allocation, not the Java method's work.
+ * Do not replay a failed/oversized call: it may already have performed work.
+ */
+enum { MS_JAVA_MAX_STRING_BYTES = 16 * 1024 * 1024 };
+int ms_java_is_started(void);
+int ms_java_check_string2(const char *class_name, const char *method_name);
+int ms_java_call_string2_owned(const char *class_name, const char *method_name,
+                              const char *first, const char *second,
+                              size_t maximum_bytes, char **output, size_t *length);
+void ms_java_free_string(char *output);
 
 /* NativeNet transport bridge. Invoked synchronously from Java worker threads.
  * Request spans are borrowed only for the callback. Response buffers must be
@@ -41,7 +56,10 @@ JNIEXPORT void JNICALL Java_org_tachiyomi_NativeChannel_call_1utf8(JNIEnv *env, 
 
 enum { MS_JAVA_OK=0, MS_JAVA_ARGUMENT=1, MS_JAVA_MEMORY=2,
        MS_JAVA_START_FAILED=3, MS_JAVA_NOT_STARTED=4, MS_JAVA_EXCEPTION=5,
-       MS_JAVA_BUFFER=6, MS_JAVA_THREAD=7, MS_JAVA_ALREADY_STARTED=8 };
+       MS_JAVA_BUFFER=6, MS_JAVA_THREAD=7, MS_JAVA_ALREADY_STARTED=8,
+       /* NoClassDefFoundError during resolution: the target, a dependency, or
+        * a class whose initialization failed earlier can cause this status. */
+       MS_JAVA_CLASS_NOT_FOUND=9, MS_JAVA_METHOD_NOT_FOUND=10, MS_JAVA_LIMIT=11 };
 #ifdef __cplusplus
 }
 #endif

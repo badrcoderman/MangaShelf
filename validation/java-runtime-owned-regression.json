@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-10-22T19:44:57.976740+00:00",
+  "command": "python3 scripts/build-native-runtime-probe.py --java-home /usr/lib/jvm/java-27-openjdk",
+  "scope": "Existing host JNI probe with own Java fixtures; no extension execution or iOS adapter proof",
+  "before": {
+    "scope": "Unchanged HEAD runtime with unchanged legacy host probe and current own fixtures; expected preexisting 64-byte fixture-result overflow",
+    "runtime_sha256": "56b17692b520518d25bf98ea528c712f90dff8f1c320c11832026d8138a8ea30",
+    "helper_sha256": "e62074396bfa50844111d87bb6a6871186794e9174e4610b43a09565adc9d00e",
+    "exit_code": 20,
+    "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem\nPASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem\n",
+    "stderr": "NativeNet/Channel test failed: 20\n"
+  },
+  "after": {
+    "platform": "Linux",
+    "exit_code": 0,
+    "stdout": "PASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem\nPASS: separate JAR, reflection, Unicode, thread, GZIP, file I/O, file MIME types, Unicode filesystem\nPASS: NativeNet rejects invalid bodies and malformed/oversize responses without invoking transport or truncating success\n",
+    "stderr": "",
+    "checks": [
+      "JNI VM creation",
+      "native thread attach/detach",
+      "separate JAR and reflection",
+      "Java exception recovery",
+      "synthetic Okio-shaped buffer extraction",
+      "request metadata/body rejection before transport",
+      "body size preflight before consuming buffer",
+      "malformed/oversize response rejection and buffer release",
+      "small buffer sizing probe",
+      "NativeChannel topic and content validation",
+      "missing method exception recovery",
+      "concurrent multithreaded dispatch"
+    ],
+    "scope": "Host JNI integration; no claim of iOS runtime or real extension support."
+  },
+  "correction": "Replace the outdated 64-byte RuntimeProbe run-output assumption with one bounded owned-output invocation. The original fixture coverage remains.",
+  "inputs_sha256": {
+    "runtime-native/MSJavaRuntime.c": "518fda37975beaaf4f16441ce842db6200469e9a3b992ec7e5ba8b38c7f066ea",
+    "runtime-native/MSJavaRuntime.h": "003d9d511e3497e58e4544bded85964884176111247bb9a0ea9d573d482c4c2a",
+    "runtime-native/host_probe.c": "27299909331eeab6a10342af4d01f9b870bbd66aec8cdea15dc966d290f0f368",
+    "runtime-probe/src/mangashelf/probe/RuntimeProbe.java": "d2e19da9077f7c39c505c13005ad7153c1c4798d9d6f20f8b56a3947c319e17a"
+  }
+}

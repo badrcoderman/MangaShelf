@@ -16,4 +16,33 @@ The transport callback receives borrowed request spans for the duration of the c
 
 The host probe checks VM creation, concurrent native worker attachment, a separate project-owned JAR, Unicode and recovery after failed class/method lookup. It registers project-owned NativeNet/NativeChannel callbacks and calls the exported JNI entrypoints directly with real JVM objects. Network cases cover a byte array, a synthetic Okio-shaped buffer, size preflight, missing methods, throwing/null/mismatched reads, oversized request metadata/body, invalid response pointer/length pairs, `SIZE_MAX` lengths, callback failures and release counts. Channel coverage is a valid topic/content pair only; malformed channels and JNI allocation failures are not fault-injected. The fixtures are rebuilt for every host probe.
 
-This does not validate Java native-method symbol resolution, a production Swift/JNI adapter, iOS, Android compatibility classes, real Okio integration, cookies, source execution or app UI integration. The app's `ms_bridge_*` callbacks and this file's `ms_java_*` callbacks remain separate APIs with no production adapter. These sources are intentionally outside the app build until an iOS VM artifact exists.
+## Explicit Java dispatcher adapter
+
+`MSJavaBridge.c` now connects `ms_bridge_dispatch` to an explicitly selected
+static Java backend. Start the process VM first, then call
+`ms_java_bridge_install(class_name, method_name)` on a worker. No class is chosen
+implicitly, and installing a backend does not grant extension trust or provide
+the source API. Disable/uninstall prevents new calls; captured calls may finish.
+It does not cancel Java work or destroy/restart the VM.
+
+`ms_java_call_string2_owned` and `ms_java_bridge_dispatch_owned` invoke Java once
+and return an allocation released with `ms_java_free_string`. Their returned
+length excludes the trailing NUL, and output is bounded at 16 MiB. The generic
+owned API preserves embedded NUL bytes; the JSON/C-string adapter rejects them.
+The legacy fixed-buffer API remains available. A buffer overflow or size query
+has already executed the Java action and must not be replayed to resize it.
+
+`python3 scripts/test-java-bridge.py` exercises the actual registered callback
+through JNI with project-owned Java fixtures, including large responses,
+exception recovery, attachment ownership, concurrent callers and disabling an
+active backend. `validation/java-bridge-host.json` records the executed inputs.
+Class-resolution failure can include missing dependencies or an earlier failed
+initializer, rather than only a missing target class.
+
+The separate iPhone check passed on iOS 26.2 with source-built runtime
+39818913578, including its own JAR, filesystem MIME, Arabic/emoji and JNI echo;
+see `validation/ios-jvm-device-39823313828-iphone-report.json`. This subsequent
+dispatcher adapter still needs iOS verification and owned-output exposure to
+Swift. Native-method symbol resolution, Android compatibility, real Okio,
+cookies, source execution and main-app integration remain unproven. These sources
+are outside the production app build until that integration is implemented.
