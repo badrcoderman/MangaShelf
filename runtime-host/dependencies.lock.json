@@ -1,0 +1,184 @@
+{
+  "format": 1,
+  "repository": "https://repo.maven.apache.org/maven2/",
+  "artifacts": [
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-compiler-embeddable",
+      "version": "2.4.10",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlin-compiler-embeddable-2.4.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-compiler-embeddable/2.4.10/kotlin-compiler-embeddable-2.4.10.jar",
+      "bytes": 60352373,
+      "sha256": "9309638a2ee03e6bde9ef4b7444055a94b84ab906563675d71ff9aecb64da913",
+      "sha512": "bcedbd5c394651b64e20a9f50f20dcfe2ff019385dc91935e499acd0538c2190e2dd75cac116fae5eac0eba929a4c294741e0fc6cbdfa5cec4b276dc77d211e9",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-compiler-embeddable/2.4.10/kotlin-compiler-embeddable-2.4.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "cac44a5a360313427c693a9de295017bc76d6e4e"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-build-tools-api",
+      "version": "2.4.10",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlin-build-tools-api-2.4.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-build-tools-api/2.4.10/kotlin-build-tools-api-2.4.10.jar",
+      "bytes": 310932,
+      "sha256": "3953d283e7710c990672e403a87df393d9726a9bf3e172194ebb5c33e062fcb0",
+      "sha512": "30cd81a17616ad7fa724e1c05ada276195f846cd05cc2814b37ae84caabdb20db22a21fce55d4f8a9f7df92ae8ce3afc21845e816839595a26a6520dea49442d",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-build-tools-api/2.4.10/kotlin-build-tools-api-2.4.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "c88fe54d8d8c568de500b26fd459853c7202de39"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-stdlib",
+      "version": "2.4.10",
+      "roles": [
+        "compiler",
+        "runtime"
+      ],
+      "filename": "kotlin-stdlib-2.4.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.jar",
+      "bytes": 1841933,
+      "sha256": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+      "sha512": "2214a0acb80919a40f3d45416e9c22f7fd32a6c63b70d3b7435a66d9f729dd5e77c40081b549ce570cea4c2c87b261069b575e515376033b35cb969b2faa3d3d",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "8943c84ddc6d5cc00a10dbc3736c397066eeaab5"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-script-runtime",
+      "version": "2.4.10",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlin-script-runtime-2.4.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-script-runtime/2.4.10/kotlin-script-runtime-2.4.10.jar",
+      "bytes": 46565,
+      "sha256": "f4a5b30c2fdfbe386b097101b7989dbeea3743c06396136664784e08e15c6899",
+      "sha512": "2cc1a7060533a7c25620bc788d7005d1c1bc3860164d5bae9213fb2cf8ef009d72002d1b95a7961f84f55fcfa112401e4de8414300debb71189483520e006864",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-script-runtime/2.4.10/kotlin-script-runtime-2.4.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "8365e84d1043a759f868135e8146ed949698804a"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-reflect",
+      "version": "1.6.10",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlin-reflect-1.6.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar",
+      "bytes": 3038560,
+      "sha256": "3277ac102ae17aad10a55abec75ff5696c8d109790396434b496e75087854203",
+      "sha512": "b28392f114dc049bc4582c5bdbb5b60d74358668efb25579c2ed5ac749debda89dc7426aed1f7f548b5f121f7df227c9d37b4aa49b315a0779afd5847d17872d",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "1cbe9c92c12a94eea200d23c2bbaedaf3daf5132"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "artifact": "kotlin-daemon-embeddable",
+      "version": "2.4.10",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlin-daemon-embeddable-2.4.10.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-daemon-embeddable/2.4.10/kotlin-daemon-embeddable-2.4.10.jar",
+      "bytes": 381839,
+      "sha256": "547d969a2eab602fe0bdfd9fcb1b563a5c6d30099d3351394d6427eba8288467",
+      "sha512": "258cd7b2303481146dbdec7745475e13cde6e09007e19d54b95563233540b08b60afd93495dacb463649c2f001b7112c26634f2ecb564390a903b8048ba41ea8",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-daemon-embeddable/2.4.10/kotlin-daemon-embeddable-2.4.10.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "266ea1db63e2a3d5f471a4d5e72cc40c2ff23c29"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "artifact": "kotlinx-coroutines-core-jvm",
+      "version": "1.8.0",
+      "roles": [
+        "compiler"
+      ],
+      "filename": "kotlinx-coroutines-core-jvm-1.8.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.0/kotlinx-coroutines-core-jvm-1.8.0.jar",
+      "bytes": 1548360,
+      "sha256": "9860906a1937490bf5f3b06d2f0e10ef451e65b95b269f22daf68a3d1f5065c5",
+      "sha512": "081391dcc0b66e4f71401a0684c8f0fe0fa10f195ca5e50208419b4f6110d9b0f90250a43950114d75c79455b9d304afadc069b98c5bc86afa7701ddaed51af1",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.0/kotlinx-coroutines-core-jvm-1.8.0.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "081391dcc0b66e4f71401a0684c8f0fe0fa10f195ca5e50208419b4f6110d9b0f90250a43950114d75c79455b9d304afadc069b98c5bc86afa7701ddaed51af1"
+    },
+    {
+      "group": "org.jetbrains",
+      "artifact": "annotations",
+      "version": "13.0",
+      "roles": [
+        "compiler",
+        "runtime"
+      ],
+      "filename": "annotations-13.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.jar",
+      "bytes": 17536,
+      "sha256": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+      "sha512": "5622d0ffe410e7272e2bb9fae1006caedeb86d0c62d2d9f3929a3b3cdcdef1963218fcf0cede82e95ef9f4da3ed4a173fa055ee6e4038886376181e0423e02ff",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "919f0dfe192fb4e063e7dacadee7f8bb9a2672a9"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "artifact": "kotlinx-coroutines-core-jvm",
+      "version": "1.11.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "kotlinx-coroutines-core-jvm-1.11.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.jar",
+      "bytes": 1577052,
+      "sha256": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa",
+      "sha512": "6d7daee4c8d796dbf20f31225cd0a5d01c45d6f57fecd4e3b91c0e47fa59ac095f9605edad0fdd21954fb06eeab4a7b3a9c52cbe01f7033b058273642ec85e78",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "6d7daee4c8d796dbf20f31225cd0a5d01c45d6f57fecd4e3b91c0e47fa59ac095f9605edad0fdd21954fb06eeab4a7b3a9c52cbe01f7033b058273642ec85e78"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "artifact": "kotlinx-serialization-core-jvm",
+      "version": "1.11.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "kotlinx-serialization-core-jvm-1.11.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0.jar",
+      "bytes": 404509,
+      "sha256": "f4a801c647d4351327cd9e1ac4113e2be9ea37a64ab0abae269c25a52e28f35d",
+      "sha512": "098993238d26951acc7172117685861d8728fba697bfa20bd6b246fc74b6bcb0b73cc36cdf9bfc14e8b40845259c78f59a4698f6e8dfff2ae6c673113ecfc135",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "098993238d26951acc7172117685861d8728fba697bfa20bd6b246fc74b6bcb0b73cc36cdf9bfc14e8b40845259c78f59a4698f6e8dfff2ae6c673113ecfc135"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "artifact": "kotlinx-serialization-json-jvm",
+      "version": "1.11.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "kotlinx-serialization-json-jvm-1.11.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.11.0/kotlinx-serialization-json-jvm-1.11.0.jar",
+      "bytes": 294166,
+      "sha256": "563a25b4eb5c9128ae9c2479f3d1a5c44dcd176112b91cf03682e906eba5c935",
+      "sha512": "4cf6dc06159bda70017887719eaf529ad28d30f714c007d4895f80ffce6d5c849c98d5fb6ba7de142749c424be94e5935f367053a92c2ca4118cecd653af87cc",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.11.0/kotlinx-serialization-json-jvm-1.11.0.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "4cf6dc06159bda70017887719eaf529ad28d30f714c007d4895f80ffce6d5c849c98d5fb6ba7de142749c424be94e5935f367053a92c2ca4118cecd653af87cc"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "scope": "Compile independently authored model/API implementation on host only; no extension class loading or iOS execution.",
+  "dependency_lock_sha256": "8bc873b9725ebcf5ed00664f0b66d838365c91761ce23b0048b5e80de7f177c0",
+  "dependencies": [
+    {
+      "filename": "kotlin-compiler-embeddable-2.4.10.jar",
+      "sha256": "9309638a2ee03e6bde9ef4b7444055a94b84ab906563675d71ff9aecb64da913",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "kotlin-build-tools-api-2.4.10.jar",
+      "sha256": "3953d283e7710c990672e403a87df393d9726a9bf3e172194ebb5c33e062fcb0",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "kotlin-stdlib-2.4.10.jar",
+      "sha256": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+      "roles": [
+        "compiler",
+        "runtime"
+      ]
+    },
+    {
+      "filename": "kotlin-script-runtime-2.4.10.jar",
+      "sha256": "f4a5b30c2fdfbe386b097101b7989dbeea3743c06396136664784e08e15c6899",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "kotlin-reflect-1.6.10.jar",
+      "sha256": "3277ac102ae17aad10a55abec75ff5696c8d109790396434b496e75087854203",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "kotlin-daemon-embeddable-2.4.10.jar",
+      "sha256": "547d969a2eab602fe0bdfd9fcb1b563a5c6d30099d3351394d6427eba8288467",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "kotlinx-coroutines-core-jvm-1.8.0.jar",
+      "sha256": "9860906a1937490bf5f3b06d2f0e10ef451e65b95b269f22daf68a3d1f5065c5",
+      "roles": [
+        "compiler"
+      ]
+    },
+    {
+      "filename": "annotations-13.0.jar",
+      "sha256": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+      "roles": [
+        "compiler",
+        "runtime"
+      ]
+    },
+    {
+      "filename": "kotlinx-coroutines-core-jvm-1.11.0.jar",
+      "sha256": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa",
+      "roles": [
+        "runtime"
+      ]
+    },
+    {
+      "filename": "kotlinx-serialization-core-jvm-1.11.0.jar",
+      "sha256": "f4a801c647d4351327cd9e1ac4113e2be9ea37a64ab0abae269c25a52e28f35d",
+      "roles": [
+        "runtime"
+      ]
+    },
+    {
+      "filename": "kotlinx-serialization-json-jvm-1.11.0.jar",
+      "sha256": "563a25b4eb5c9128ae9c2479f3d1a5c44dcd176112b91cf03682e906eba5c935",
+      "roles": [
+        "runtime"
+      ]
+    }
+  ],
+  "sources": {
+    "runtime-host/src/main/kotlin/android/net/Uri.kt": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt": "f70b1dd932eaf98660ad22339cdd9f4ed90d9800e6a61a02ca1db84acf7c97d1",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt": "22e2b790ee628cea892dab5b31070afab491a653903c92f9525aaa8c3bd512b4",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/SourceFactory.kt": "3bdc74dca6c9bbec21fc6c07e3903750249c07289d8329ac1b1aab6f013ba1f0",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Filter.kt": "94343deaded4c3b073aa1da3a71aea1aac978785bcfda8a0a7550dabdf88d21d",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/FilterList.kt": "3714c69d19bcc7975eabe7d2e38b55fa8418a3f2b3c15cb3c4d2f81f5eec0f61",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/MangasPage.kt": "1dd48e77a02c63f246444536304fd1c36da576338480ce592f7ede1f9dbddf51",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Page.kt": "44e9b5724ff407946f1df799b9d44e55c0b1454ce00d38ae620153605efcc427",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapter.kt": "c07d46bb1b25fd20bfe17024e8610648422ec6011cefc19a7464fec671e4cdd7",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapterImpl.kt": "59e71ed52d82580dd3a670c79dd9b2469523320c6a04cdcc77f9d4e8605bae15",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SManga.kt": "65a14833f04a58f7c48957d237674ad2bc2238df0b6e137c9fad77e6d692ee21",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3"
+  },
+  "build_jdk": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
+  "platform_api": "JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee",
+  "extension_code_executed": false,
+  "ios_execution": false,
+  "compile": {
+    "command": [
+      "java",
+      "-Xmx768m",
+      "-cp",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar",
+      "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
+      "-no-stdlib",
+      "-no-reflect",
+      "-jvm-target=17",
+      "-jvm-default=enable",
+      "-Werror",
+      "-classpath",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar",
+      "-d",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-ibzsgwh6",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/SourceFactory.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Filter.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/FilterList.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/MangasPage.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Page.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapter.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapterImpl.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SManga.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
+  },
+  "passed": true,
+  "jar": {
+    "path": "build/runtime-host/runtime-host.jar",
+    "bytes": 35292,
+    "sha256": "d6a0e34304a18be5843de65ea86f2090133a179f3cfdbbf542f48f034ecd2622"
+  }
+}

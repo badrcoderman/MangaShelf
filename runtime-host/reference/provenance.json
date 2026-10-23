@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/keiyoushi/extensions-lib",
+  "commit": "42255ee5fa96d9425697b7c143587483207308d1",
+  "scope": "Public text ABI and Apache2 license only; no upstream executable/stub JAR copied.",
+  "files": {
+    "LICENSE-extensions-lib.txt": {
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    "library.api": {
+      "bytes": 21125,
+      "sha256": "28685652e15c6ea010212db5cd94e8d7019c5227f260442cbb985ec0f51cb324"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "scope": "Authored Source1.6 API/model subset descriptors and functional synthetic sources on host. No HttpSource/Android host bootstrap, real extension class loading, source registry, network or iOS proof.",
+  "reference_commit": "42255ee5fa96d9425697b7c143587483207308d1",
+  "reference_api_sha256": "28685652e15c6ea010212db5cd94e8d7019c5227f260442cbb985ec0f51cb324",
+  "extension_code_executed": false,
+  "passed": true,
+  "script_sha256": "2462b76600a1a1f9b5bdef80690370ea7a8b3379a172865294cd7491e8dc0482",
+  "build_script_sha256": "fa61eb36961c1ba55bcd9bfa138b55d8148638c13058feafd61e9096a1e92272",
+  "build_jar": {
+    "path": "build/runtime-host/runtime-host.jar",
+    "bytes": 35292,
+    "sha256": "d6a0e34304a18be5843de65ea86f2090133a179f3cfdbbf542f48f034ecd2622"
+  },
+  "abi": {
+    "classes_checked": 25,
+    "members_checked": 185,
+    "missing": []
+  },
+  "test_source_sha256": {
+    "runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt": "e61a20c5f758715ad1d481ff561437f138e5f7f68e445bde8cfc3f58ea3f6661"
+  },
+  "test_compile": {
+    "command": [
+      "java",
+      "-Xmx768m",
+      "-cp",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar",
+      "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
+      "-no-stdlib",
+      "-no-reflect",
+      "-jvm-target=17",
+      "-jvm-default=enable",
+      "-Werror",
+      "-classpath",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
+      "-d",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-xiuzp9ok",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
+  },
+  "functional_run": {
+    "command": [
+      "java",
+      "-Xint",
+      "-cp",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/tests-xiuzp9ok:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar",
+      "mangashelf.host.ModelApiCheck"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"scope\":\"Authored Source 1.6 interfaces/models and suspend calls on host only\",\"passed\":true,\"checks\":{\"manga_factories_and_fields\":true,\"chapter_factories_and_millisecond_timestamp\":true,\"pagination_and_compatibility_copies\":true,\"filter_defaults_and_mutable_states\":true,\"readonly_sequenced_collection_compatibility_bridges\":true,\"page_uri_descriptor_and_encoded_value\":true,\"authored_factory_61_distinct_ids_and_languages\":true,\"61_source_suspend_popular_calls\":true,\"source_defaults_and_related_unsupported\":true,\"suspend_latest_and_search_objects\":true,\"suspend_update_flags_and_model_values\":true,\"suspend_page_list_preserves_returned_order\":true,\"async_source_failure_propagates\":true,\"suspended_source_cancellation_propagates_and_cleans_up\":true},\"authored_factory_source_count\":61,\"extension_code_executed\":false,\"registry_tested\":false,\"network_tested\":false,\"ios_execution\":false}\n",
+    "stderr": ""
+  },
+  "functional_checks": {
+    "scope": "Authored Source 1.6 interfaces/models and suspend calls on host only",
+    "passed": true,
+    "checks": {
+      "manga_factories_and_fields": true,
+      "chapter_factories_and_millisecond_timestamp": true,
+      "pagination_and_compatibility_copies": true,
+      "filter_defaults_and_mutable_states": true,
+      "readonly_sequenced_collection_compatibility_bridges": true,
+      "page_uri_descriptor_and_encoded_value": true,
+      "authored_factory_61_distinct_ids_and_languages": true,
+      "61_source_suspend_popular_calls": true,
+      "source_defaults_and_related_unsupported": true,
+      "suspend_latest_and_search_objects": true,
+      "suspend_update_flags_and_model_values": true,
+      "suspend_page_list_preserves_returned_order": true,
+      "async_source_failure_propagates": true,
+      "suspended_source_cancellation_propagates_and_cleans_up": true
+    },
+    "authored_factory_source_count": 61,
+    "extension_code_executed": false,
+    "registry_tested": false,
+    "network_tested": false,
+    "ios_execution": false
+  }
+}
