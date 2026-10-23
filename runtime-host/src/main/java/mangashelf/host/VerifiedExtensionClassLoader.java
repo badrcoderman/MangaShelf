@@ -29,6 +29,7 @@ public final class VerifiedExtensionClassLoader extends SecureClassLoader implem
             "kotlin.", "kotlinx.", "okhttp3.", "okio.", "mangashelf.",
             "org.jetbrains.annotations.", "org.tachiyomi.", "uy.kohesive.injekt.",
             "com.squareup.zstd.",
+            "org.jsoup.", "org.brotli.", "org.jspecify.",
             "eu.kanade.tachiyomi.source.", "eu.kanade.tachiyomi.network.",
             "eu.kanade.tachiyomi.util.");
     private final VerifiedArchive archive;

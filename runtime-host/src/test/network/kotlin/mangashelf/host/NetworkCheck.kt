@@ -165,7 +165,7 @@ object NetworkCheck {
         fun fail(error: IOException) = callback.onFailure(this, error)
     }
 
-    private class FixtureSource(override val baseUrl: String, override val name: String = "Authored HTTP") : HttpSource() {
+    private open class FixtureSource(override val baseUrl: String, override val name: String = "Authored HTTP") : HttpSource() {
         override val lang = "en"
         override val supportsLatest = true
         override suspend fun getPopularManga(page: Int): MangasPage = client.newCall(GET("$baseUrl/utf8")).awaitSuccess().use {
@@ -278,6 +278,25 @@ object NetworkCheck {
                 check(source.getImageUrl(page) == page.imageUrl && source.image(page).url.toString() == page.imageUrl)
                 try { source.getImageUrl(Page(0, "/html", null)); error("Invented unresolved image URL") }
                 catch (_: UnsupportedOperationException) { }
+            } finally { HostServices.close() }
+        }
+        case("image_urls_use_source_request_builder_and_preserve_opaque_page_metadata") {
+            HostServices.configure(Application(root.resolve("image-resolver"), "app.mangashelf.test"), "test", 7, "MangaShelf-Test/7")
+            try {
+                var calls = 0
+                val caller = Thread.currentThread()
+                val source = object : FixtureSource("https://example.invalid") {
+                    override fun imageRequest(page: Page): Request {
+                        check(Thread.currentThread() !== caller)
+                        check(page.url == "https://images.example.invalid,token,0")
+                        calls++
+                        return GET("https://images.example.invalid" + page.imageUrl,
+                            Headers.Builder().add("X-Image-Token", "source-owned").build())
+                    }
+                }
+                val page = Page(4, "https://images.example.invalid,token,0", "/data/hash/image%20one.jpg")
+                check(source.getImageUrl(page) == "https://images.example.invalid/data/hash/image%20one.jpg")
+                check(calls == 1 && page.imageUrl == "/data/hash/image%20one.jpg" && page.url == "https://images.example.invalid,token,0")
             } finally { HostServices.close() }
         }
         case("redirects_error_status_challenges_and_http_cache_use_real_http") {

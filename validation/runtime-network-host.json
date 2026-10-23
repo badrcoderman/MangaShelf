@@ -1,12 +1,12 @@
 {
-  "recorded_at": "2026-10-23T22:53:38.633917+00:00",
+  "recorded_at": "2026-10-23T23:51:16.395807+00:00",
   "scope": "Authored HTTP source/call fixtures and actual loopback HTTP/HTTPS on host JVM only. No NativeNet/URLSession, published extension, Android UI or iOS execution.",
   "passed": true,
   "inputs_sha256": {
     "scripts/build-runtime-host.py": "ef7394922eac721ae796ec2f745f889e73669e2256cb9f1815868d6313282d92",
-    "runtime-host/dependencies.lock.json": "1fd29b72442457c4e29ed8347b4b565c673efc2d4de915d5070c543b79f50680",
+    "runtime-host/dependencies.lock.json": "2e2337abd525b0243077b3b514a79e308fe77f20ab96cce028dcfa1aad5d8d4b",
     "scripts/test-runtime-network.py": "91ff52c28ec7eba2f916f303f3ab62ec9ac33f3d97a91b2dbab1a04554cc9694",
-    "runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt": "553116613c65ff6b86e32254d879af4fa4f0d37f760d00b4e29b4223c90ccb5e",
+    "runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt": "7224a13678a4d8b3d4f7adb11ec21b817b81e9894cb8229c7a2ab2fc629e0bc3",
     "runtime-host/injekt-source.lock.json": "79053c360a923aab8e6761254a17f39204c616459da7c316aa96f2ff34d63007",
     "runtime-host/injekt-compat.patch.json": "83081b5598023706dc4de591ad9039fce42db4a83e0dc4c0f2f4c0aadee804ea",
     "runtime-host/third_party/injekt/LICENSE": "08a5be6e3c03075440ad532846713849592aefe8c90111cdb5b96cfadaaa850f",
@@ -124,19 +124,22 @@
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3",
-    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt": "1030aeeb8128b451342cbf2196bca25e84b8e29eecc037a829fcb32142d029dd",
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt": "02ee0d8838a9944b909e33c4f3ba8c54adf89b3339401eee20714d7503d2ad53",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
-    "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "ccf42c600a4197af1b1b680fca94e90d487c3149bfd257cdbf20701f85b05765",
+    "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "05a5aa917979d73156fc76ac9ab1d4dda77d9fe6d181bf59fb47ce04017b1c45",
     "runtime-host/src/main/kotlin/mangashelf/host/SourcePreferenceSession.kt": "0a5e15eb9b9b2ee0b2eb47296013c62cea4c331c847c14bc7b1a24a247358e2b",
     "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "054e0919fa8b9abdbf9e591278f281c6b82e90ed56ed4a2c445be687ebf913b2",
     "runtime-host/src/main/java/android/R.java": "b9d0f560c58f88a1aec48247ab20cabb537bd953878f15909a8e40d46a8193bf",
     "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
     "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
     "runtime-host/src/main/java/android/content/SharedPreferences.java": "c149d71633e95f7d3842ba8567bd512619d4a468cb9fdb440fe719d30a9a2701",
+    "runtime-host/src/main/java/android/os/Build.java": "b79f136025c984bf422e08fd89ca6e7b6ce26851976183915d164a77023db3fc",
+    "runtime-host/src/main/java/android/os/SystemClock.java": "fb3abfe1c816af627298aa2dfe55665036db275b3ea1d4828bef579a2d6c78e5",
     "runtime-host/src/main/java/android/preference/PreferenceManager.java": "315e9652c1850d1268778a999eadb3537795ae53107c25dd9f6d1c63678a0847",
     "runtime-host/src/main/java/android/text/Editable.java": "a561796f6f16ff94286884dd089f5993e6937f5d4601aca55664eb15cad63b91",
     "runtime-host/src/main/java/android/text/TextWatcher.java": "d5dbb9771353841d3d87603fa9171db65ddb92c7d303c5bcf365eee932e717c4",
+    "runtime-host/src/main/java/android/util/Log.java": "be132702b2545405cdaea268133cd8d7a0d2f9632e4f0f2b87433c8e1d034211",
     "runtime-host/src/main/java/android/view/View.java": "5de1b9db4c7135f1241196dc1d5fdf57133004b7630cdfbd2f4c74ddc4d1197a",
     "runtime-host/src/main/java/android/widget/Button.java": "69406359823efe62692274e83ff87163c003c58b4df21e811af7a3e319b085fe",
     "runtime-host/src/main/java/android/widget/EditText.java": "fa26f05410fda719f08dad1b32b09eac01f39a9918ac5416380f2aa2c66634b9",
@@ -152,7 +155,7 @@
     "runtime-host/src/main/java/androidx/preference/TwoStatePreference.java": "edf30c0cde8ab569efb4f518ffe5f79bc4e0f4de6e18ee5957f941271639ccf6",
     "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d",
     "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b",
-    "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "2e4e9fa7c09cb03999a6f63a05a53b29d553d557d69ab74d2110ec925bc4a4ea",
+    "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "3848f91e3f1a6950d45b9858ded81f879921c1732a31b7a9593df0e17a07ad3f",
     "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e"
   },
   "documentation": [
@@ -168,7 +171,7 @@
         "-alias",
         "fixture",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/fixture.jks",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/fixture.jks",
         "-storetype",
         "JKS",
         "-storepass",
@@ -191,14 +194,14 @@
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": "Generating 2048-bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 365 days\n\tfor: CN=localhost, O=MangaShelf Authored Network Tests, C=ZZ\n\nWarning:\nThe JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using \"keytool -importkeystore -srckeystore /home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/fixture.jks -destkeystore /home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/fixture.jks -deststoretype pkcs12\".\n"
+      "stderr": "Generating 2048-bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 365 days\n\tfor: CN=localhost, O=MangaShelf Authored Network Tests, C=ZZ\n\nWarning:\nJKS uses outdated cryptographic algorithms and will be removed in a future release. Migrate to PKCS12 using:\nkeytool -importkeystore -srckeystore /home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/fixture.jks -destkeystore /home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/fixture.jks -deststoretype pkcs12\n"
     },
     {
       "command": [
         "java",
         "-Xmx768m",
         "-cp",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-build-tools-api-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-script-runtime-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-reflect-1.6.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-daemon-embeddable-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.8.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar",
         "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
         "-no-stdlib",
         "-no-reflect",
@@ -206,36 +209,36 @@
         "-jvm-default=enable",
         "-Werror",
         "-classpath",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-brotli-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-zstd-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-okio-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jsoup-1.22.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/dec-0.1.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jspecify-1.0.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/test-classes",
-        "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt"
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/test-classes",
+        "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt"
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
+      "stderr": "WARNING: A restricted method in java.lang.System has been called\nWARNING: java.lang.System::load has been called by org.jetbrains.kotlin.org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module\nWARNING: Restricted methods will be blocked in a future release unless native access is enabled\n\nWARNING: A terminally deprecated method in sun.misc.Unsafe has been called\nWARNING: sun.misc.Unsafe::invokeCleaner has been called by org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt (file:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-compiler-embeddable-2.4.10.jar)\nWARNING: Please consider reporting this to the maintainers of class org.jetbrains.kotlin.cli.jvm.compiler.jarfs.FastJarFileSystemKt\nWARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release\n"
     },
     {
       "command": [
         "java",
         "-Xint",
         "-cp",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/test-classes:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-brotli-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-zstd-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-okio-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jsoup-1.22.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/dec-0.1.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jspecify-1.0.0.jar",
         "mangashelf.host.NetworkCheck",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/data",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/network-check-qc0v3yun/fixture.jks"
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/data",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/network-check-zrvqyb5v/fixture.jks"
       ],
       "exit_code": 0,
-      "stdout": "{\"passed\":true,\"checks\":{\"request_defaults_overloads_headers_cache_and_binary_upload\":true,\"configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\":true,\"http_source_id_is_lazy_and_independent_of_turkish_default_locale\":true,\"headers_delegate_can_be_replaced_without_mutating_a_final_field\":true,\"relative_urls_queries_fragments_and_image_requests_are_preserved\":true,\"redirects_error_status_challenges_and_http_cache_use_real_http\":true,\"response_cookies_are_sent_only_to_matching_paths\":true,\"jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\":true,\"cancellation_closes_real_inflight_http_and_finishes_callback\":true,\"successful_response_ownership_is_transferred_to_caller\":true,\"error_response_is_closed_before_http_exception\":true,\"cancelled_request_waits_for_callback_and_closes_late_response\":true,\"response_lost_to_prompt_cancellation_is_closed\":true,\"precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\":true,\"enqueue_failure_does_not_leave_cancellation_drain_waiting\":true,\"duplicate_callback_does_not_leak_second_response\":true},\"scope\":\"Authored source and call fixtures, real loopback HTTP/HTTPS on host JVM; no NativeNet, real extension or iOS execution\"}\n",
-      "stderr": "START request_defaults_overloads_headers_cache_and_binary_upload\nPASS request_defaults_overloads_headers_cache_and_binary_upload\nSTART configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\nPASS configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\nSTART http_source_id_is_lazy_and_independent_of_turkish_default_locale\nPASS http_source_id_is_lazy_and_independent_of_turkish_default_locale\nSTART headers_delegate_can_be_replaced_without_mutating_a_final_field\nPASS headers_delegate_can_be_replaced_without_mutating_a_final_field\nSTART relative_urls_queries_fragments_and_image_requests_are_preserved\nPASS relative_urls_queries_fragments_and_image_requests_are_preserved\nSTART redirects_error_status_challenges_and_http_cache_use_real_http\nPASS redirects_error_status_challenges_and_http_cache_use_real_http\nSTART response_cookies_are_sent_only_to_matching_paths\nPASS response_cookies_are_sent_only_to_matching_paths\nSTART jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\nTLS loading fixture keystore after 0 ms\nTLS keystore loaded after 7 ms\nTLS untrusted certificate rejected after 1958 ms\nTLS trusted fixture fetched after 2136 ms\nTLS wrong hostname rejected after 2305 ms\nPASS jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\nSTART cancellation_closes_real_inflight_http_and_finishes_callback\nPASS cancellation_closes_real_inflight_http_and_finishes_callback\nSTART successful_response_ownership_is_transferred_to_caller\nPASS successful_response_ownership_is_transferred_to_caller\nSTART error_response_is_closed_before_http_exception\nPASS error_response_is_closed_before_http_exception\nSTART cancelled_request_waits_for_callback_and_closes_late_response\nPASS cancelled_request_waits_for_callback_and_closes_late_response\nSTART response_lost_to_prompt_cancellation_is_closed\nPASS response_lost_to_prompt_cancellation_is_closed\nSTART precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\nPASS precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\nSTART enqueue_failure_does_not_leave_cancellation_drain_waiting\nPASS enqueue_failure_does_not_leave_cancellation_drain_waiting\nSTART duplicate_callback_does_not_leak_second_response\nPASS duplicate_callback_does_not_leak_second_response\n"
+      "stdout": "{\"passed\":true,\"checks\":{\"request_defaults_overloads_headers_cache_and_binary_upload\":true,\"configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\":true,\"http_source_id_is_lazy_and_independent_of_turkish_default_locale\":true,\"headers_delegate_can_be_replaced_without_mutating_a_final_field\":true,\"relative_urls_queries_fragments_and_image_requests_are_preserved\":true,\"image_urls_use_source_request_builder_and_preserve_opaque_page_metadata\":true,\"redirects_error_status_challenges_and_http_cache_use_real_http\":true,\"response_cookies_are_sent_only_to_matching_paths\":true,\"jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\":true,\"cancellation_closes_real_inflight_http_and_finishes_callback\":true,\"successful_response_ownership_is_transferred_to_caller\":true,\"error_response_is_closed_before_http_exception\":true,\"cancelled_request_waits_for_callback_and_closes_late_response\":true,\"response_lost_to_prompt_cancellation_is_closed\":true,\"precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\":true,\"enqueue_failure_does_not_leave_cancellation_drain_waiting\":true,\"duplicate_callback_does_not_leak_second_response\":true},\"scope\":\"Authored source and call fixtures, real loopback HTTP/HTTPS on host JVM; no NativeNet, real extension or iOS execution\"}\n",
+      "stderr": "START request_defaults_overloads_headers_cache_and_binary_upload\nPASS request_defaults_overloads_headers_cache_and_binary_upload\nSTART configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\nPASS configured_http_source_fetches_unicode_and_exposes_required_client_interceptors\nSTART http_source_id_is_lazy_and_independent_of_turkish_default_locale\nPASS http_source_id_is_lazy_and_independent_of_turkish_default_locale\nSTART headers_delegate_can_be_replaced_without_mutating_a_final_field\nPASS headers_delegate_can_be_replaced_without_mutating_a_final_field\nSTART relative_urls_queries_fragments_and_image_requests_are_preserved\nPASS relative_urls_queries_fragments_and_image_requests_are_preserved\nSTART image_urls_use_source_request_builder_and_preserve_opaque_page_metadata\nPASS image_urls_use_source_request_builder_and_preserve_opaque_page_metadata\nSTART redirects_error_status_challenges_and_http_cache_use_real_http\nPASS redirects_error_status_challenges_and_http_cache_use_real_http\nSTART response_cookies_are_sent_only_to_matching_paths\nPASS response_cookies_are_sent_only_to_matching_paths\nSTART jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\nTLS loading fixture keystore after 0 ms\nTLS keystore loaded after 63 ms\nTLS untrusted certificate rejected after 2181 ms\nTLS trusted fixture fetched after 3919 ms\nTLS wrong hostname rejected after 5578 ms\nPASS jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust\nSTART cancellation_closes_real_inflight_http_and_finishes_callback\nPASS cancellation_closes_real_inflight_http_and_finishes_callback\nSTART successful_response_ownership_is_transferred_to_caller\nPASS successful_response_ownership_is_transferred_to_caller\nSTART error_response_is_closed_before_http_exception\nPASS error_response_is_closed_before_http_exception\nSTART cancelled_request_waits_for_callback_and_closes_late_response\nPASS cancelled_request_waits_for_callback_and_closes_late_response\nSTART response_lost_to_prompt_cancellation_is_closed\nPASS response_lost_to_prompt_cancellation_is_closed\nSTART precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\nPASS precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call\nSTART enqueue_failure_does_not_leave_cancellation_drain_waiting\nPASS enqueue_failure_does_not_leave_cancellation_drain_waiting\nSTART duplicate_callback_does_not_leak_second_response\nPASS duplicate_callback_does_not_leak_second_response\n"
     }
   ],
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 368607,
-    "sha256": "d0385efca1818793c45795c86722b68b632e4dc98070697f009f9d7008603fbd"
+    "bytes": 375303,
+    "sha256": "7c7f9b30be74f3bde8f90c849245b41e8783d257296b0a932cb0269b8f618721"
   },
-  "host_java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
+  "host_java": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
   "test_result": {
     "passed": true,
     "checks": {
@@ -244,6 +247,7 @@
       "http_source_id_is_lazy_and_independent_of_turkish_default_locale": true,
       "headers_delegate_can_be_replaced_without_mutating_a_final_field": true,
       "relative_urls_queries_fragments_and_image_requests_are_preserved": true,
+      "image_urls_use_source_request_builder_and_preserve_opaque_page_metadata": true,
       "redirects_error_status_challenges_and_http_cache_use_real_http": true,
       "response_cookies_are_sent_only_to_matching_paths": true,
       "jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust": true,

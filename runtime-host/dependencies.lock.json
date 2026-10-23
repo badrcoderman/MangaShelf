@@ -213,6 +213,108 @@
       "provenance_checksum_algorithm": "gradle_module_sha512",
       "provenance_checksum": "a4b9db7bc68876aefbbd57e1e232aadcd9666fffb1ead59f7a9f4dfcc22f2f90a50b29524380548d08dd040379b5dad4737513ed4a78d6f5fc99ae1b5665ef1f",
       "license_spdx": "Apache-2.0"
+    },
+    {
+      "group": "com.squareup.okhttp3",
+      "artifact": "okhttp-brotli",
+      "version": "5.4.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "okhttp-brotli-5.4.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-brotli/5.4.0/okhttp-brotli-5.4.0.jar",
+      "bytes": 3969,
+      "sha256": "d77c78fa2cd971a909ba48241cf0cb1cf41ab1adc57b86cbbe6fd77e550f700f",
+      "sha512": "83cc8d57f6577659173ce721f005acefce96ec655cd432daf8049e8716b72b8156c52e2e044b30a2b864388714afa6807e8222d0c2327ff83b8e4abd3eedbe7c",
+      "checksum_url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-brotli/5.4.0/okhttp-brotli-5.4.0.module",
+      "provenance_checksum_algorithm": "gradle_module_sha512",
+      "provenance_checksum": "83cc8d57f6577659173ce721f005acefce96ec655cd432daf8049e8716b72b8156c52e2e044b30a2b864388714afa6807e8222d0c2327ff83b8e4abd3eedbe7c",
+      "license_spdx": "Apache-2.0"
+    },
+    {
+      "group": "com.squareup.okhttp3",
+      "artifact": "okhttp-zstd",
+      "version": "5.4.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "okhttp-zstd-5.4.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0.jar",
+      "bytes": 2024,
+      "sha256": "9ccd7db01a4704193f9de50da019da734c79606fb875763d8f8921fa54da2564",
+      "sha512": "8088675237b30269aaf135c46f6bb6e0c9ee7bb873595117a37dc6e61b6587362c7e636d70164f980602be65250375ee404d75cf042e7126f8c9ac87620ce655",
+      "checksum_url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0.module",
+      "provenance_checksum_algorithm": "gradle_module_sha512",
+      "provenance_checksum": "8088675237b30269aaf135c46f6bb6e0c9ee7bb873595117a37dc6e61b6587362c7e636d70164f980602be65250375ee404d75cf042e7126f8c9ac87620ce655",
+      "license_spdx": "Apache-2.0"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "artifact": "kotlinx-serialization-json-okio-jvm",
+      "version": "1.11.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "kotlinx-serialization-json-okio-jvm-1.11.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-okio-jvm/1.11.0/kotlinx-serialization-json-okio-jvm-1.11.0.jar",
+      "bytes": 7101,
+      "sha256": "746b0ab2709dc42e8ddcdefc2a730c98d1bd65ed47eb5163375a82380153a5a0",
+      "sha512": "5ca43d6191a3c9c59e7aca1e56a3edd98d8b10c074bba70e7dce8a21faa125fac85554541b5cf0a0792ab9b4febc09f8d890c9a647ddae57ea2f386cfda76f48",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-okio-jvm/1.11.0/kotlinx-serialization-json-okio-jvm-1.11.0.module",
+      "provenance_checksum_algorithm": "gradle_module_sha512",
+      "provenance_checksum": "5ca43d6191a3c9c59e7aca1e56a3edd98d8b10c074bba70e7dce8a21faa125fac85554541b5cf0a0792ab9b4febc09f8d890c9a647ddae57ea2f386cfda76f48",
+      "license_spdx": "Apache-2.0"
+    },
+    {
+      "group": "org.jsoup",
+      "artifact": "jsoup",
+      "version": "1.22.2",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "jsoup-1.22.2.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jsoup/jsoup/1.22.2/jsoup-1.22.2.jar",
+      "bytes": 512826,
+      "sha256": "596785996d3c6df16f544c232d10a9a1d88783b2a4740cf5251cb616f2be704d",
+      "sha512": "7e7bf4ced4eb26eaa7810bdc001b8171336f3b2f395f8659aef06cb207520f199cf61a67e6f77e9a2ce1c3e78f64f6ee56b3c2af58da9af42cb7f08925263ff8",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jsoup/jsoup/1.22.2/jsoup-1.22.2.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "7e7bf4ced4eb26eaa7810bdc001b8171336f3b2f395f8659aef06cb207520f199cf61a67e6f77e9a2ce1c3e78f64f6ee56b3c2af58da9af42cb7f08925263ff8",
+      "license_spdx": "MIT"
+    },
+    {
+      "group": "org.brotli",
+      "artifact": "dec",
+      "version": "0.1.2",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "dec-0.1.2.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/brotli/dec/0.1.2/dec-0.1.2.jar",
+      "bytes": 98115,
+      "sha256": "615c0c3efef990d77831104475fba6a1f7971388691d4bad1471ad84101f6d52",
+      "sha512": "d4cd2b33f7c358012ff01db6a13ebfe1e8051a580698bffcd942c47451012cf53ce49a400b1c8bf7502b01e631d79d7c6417202a145622572d79fd145ccde61a",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/brotli/dec/0.1.2/dec-0.1.2.jar.sha1",
+      "provenance_checksum_algorithm": "sha1",
+      "provenance_checksum": "0c26a897ae0d524809eef1c786cc6183b4ddcc3b",
+      "license_spdx": "MIT"
+    },
+    {
+      "group": "org.jspecify",
+      "artifact": "jspecify",
+      "version": "1.0.0",
+      "roles": [
+        "runtime"
+      ],
+      "filename": "jspecify-1.0.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar",
+      "bytes": 3819,
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+      "sha512": "efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar.sha512",
+      "provenance_checksum_algorithm": "sha512",
+      "provenance_checksum": "efded31ef5b342f09422935076e599789076431e93a746685c0607e7de5592719ba6aacde0be670b3f064d1e85630d58d5bce6b34aed2a288fdb34f745efb7bc",
+      "license_spdx": "Apache-2.0"
     }
   ]
 }

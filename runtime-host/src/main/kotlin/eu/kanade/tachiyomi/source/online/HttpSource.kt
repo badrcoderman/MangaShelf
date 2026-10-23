@@ -9,6 +9,8 @@ import java.net.URI
 import java.nio.ByteBuffer
 import java.security.MessageDigest
 import java.util.Locale
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mangashelf.host.HostServices
 import okhttp3.Headers
 import okhttp3.OkHttpClient
@@ -40,11 +42,17 @@ abstract class HttpSource : CatalogueSource {
     override suspend fun fetchRelatedMangaList(manga: SManga): List<SManga> =
         super<CatalogueSource>.fetchRelatedMangaList(manga)
 
-    open suspend fun getImageUrl(page: Page): String = page.imageUrl
-        ?: throw UnsupportedOperationException("This source must implement getImageUrl for unresolved image pages")
+    // Page.imageUrl may be relative and Page.url may carry source-owned refresh
+    // metadata. Let the source construct its request, including token refresh.
+    // Some imageRequest overrides perform synchronous HTTP, so keep them off
+    // the caller's dispatcher while the enclosing source lease remains active.
+    open suspend fun getImageUrl(page: Page): String = withContext(Dispatchers.IO) {
+        imageRequest(page).url.toString()
+    }
 
     protected open fun imageRequest(page: Page): Request = Request.Builder()
-        .url(checkNotNull(page.imageUrl) { "Image URL has not been resolved" }).headers(headers).get().build()
+        .url(page.imageUrl ?: throw UnsupportedOperationException("This source must implement getImageUrl for unresolved image pages"))
+        .headers(headers).get().build()
 
     fun SChapter.setUrlWithoutDomain(url: String) { this.url = withoutDomain(url) }
     fun SManga.setUrlWithoutDomain(url: String) { this.url = withoutDomain(url) }

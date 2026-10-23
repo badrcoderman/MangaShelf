@@ -2,6 +2,8 @@
 
 ## إعدادات المصادر — 24 أكتوبر 2026
 
+- تشغيل فعلي لإعادة بناء MangaDex من المصدر العام المثبت عبر المحمّل المتحقق: نجحت 4 حالات دون شبكة و7 حالات مباشرة، تشمل 61 مصدرًا و12 إعدادًا والتصفح والبحث والتفاصيل والفصول وروابط 23 صفحة وتجديد رابط منتهٍ. ثُبتت ست تبعيات runtime ومساعدات المنصة، وصُحح حل الصور عبر imageRequest الخاصة بالمصدر. شهادة debug للتشخيص؛ لا ثقة ناشر مستقلة أو صور محملة أو IPA جديدة أو تنفيذ iPhone. [التنفيذ والمتبقي](docs/MANGADEX-HOST-EXECUTION-AR.md).
+
 - تأكيد codec في [40036314382](https://github.com/badrcoderman/MangaShelf/actions/runs/40036314382) للمجموعة الكاملة عند 29a1379، ثم [40037458892](https://github.com/badrcoderman/MangaShelf/actions/runs/40037458892) لتصحيح JNI عند 8734c7b: نجحت 17 حالة لكل نمط تحميل على Linux وmacOS؛ أُعيد بناء/link arm64 iOS. فُحصت البصمات وCRC والمصادر و27 object وexport trie يحوي 11 رمز JNI بلا test hooks، وتطابقت JAR بين المنصتين والتشغيلين. لا IPA أو تنفيذ إضافة/iPhone؛ [الدليل الكامل](validation/runtime-host-40036314382.json) و[دليل التصحيح](validation/runtime-codec-40037458892.json).
 - إضافة جرد ثابت لمرشح MangaDex المعاد بناؤه: 11 class reference غير محلولة في classpath الحالية، لتوجيه استكمال Android وBrotli/OkHttp Zstd/Jsoup. لم يُنفذ المرشح، والجرد لا يغطي كل member resolution أو reflection. [الجرد](validation/mangadex-runtime-dependencies-static.json).
 
