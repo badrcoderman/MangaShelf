@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T22:43:38.885810+00:00",
+  "recorded_at": "2026-10-23T22:58:13.992106+00:00",
   "passed": true,
   "scope": "Pinned source-built native codec and authored JNI adapter. iOS target is compile/link inspection only, never device execution.",
   "target": "host",
@@ -91,7 +91,7 @@
     "runtime-native/third_party/openjdk-jni/LICENSE": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
     "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
     "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
-    "runtime-native/MSZstdJNI.c": "0d4cd0d90b2611e31d4627f3f4b39b53b417dcdd6d8c3c7635372dcde4ab9514",
+    "runtime-native/MSZstdJNI.c": "ebb9b243a6486657b8ea66f4a6c813f79aa8d42dcfcd067a3b03f529f962af36",
     "runtime-native/MSZstdJNI.h": "3fd0b372ef6c5eeaf9dc1a175623b69b523c3b4cb721c384784bf63a62e2a52e"
   },
   "commands": [
@@ -844,18 +844,18 @@
   "artifacts": [
     {
       "path": "build/zstd-native/host/libmslzstd.a",
-      "bytes": 758398,
-      "sha256": "76bb809ca529b3acbfde1086e5cfe9d22276c038d5fb24fb11cc3f6fa8b9dda7"
+      "bytes": 759510,
+      "sha256": "9418937e8ddb70852eb9fbba72db099d98692d2c28c0c531e14a2baa238c3cb0"
     },
     {
       "path": "build/zstd-native/host/libmslzstd-test.a",
-      "bytes": 763232,
-      "sha256": "d6deb068d6df088491d3f1bf296818c2220e0b3c549e9524c8ad3de7ec36835f"
+      "bytes": 763856,
+      "sha256": "3925a809d7461052cd508779e204626cfd5e1a04f0df5396391ec9d9bfd6d959"
     },
     {
       "path": "build/zstd-native/host/libmslzstd.so",
       "bytes": 658944,
-      "sha256": "164bbe4b91a946feccb5bfbd1e4c1f534fa240889ebecf3f6e98034a6d00fb08"
+      "sha256": "f1bc538143eea8c771b7185291d1373b9943aa018ab6e1e9b8a5545b8b08bdca"
     },
     {
       "path": "build/zstd-native/host/notices/native-LICENSE.txt",

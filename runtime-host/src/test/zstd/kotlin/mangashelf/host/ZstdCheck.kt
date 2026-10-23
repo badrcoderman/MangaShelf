@@ -139,7 +139,10 @@ object ZstdCheck {
         case("parameters_return_codec_errors_with_safe_error_names") {
             zstdCompressor().use { compressor ->
                 check(getErrorName(compressor.setParameter(100, 1)) == null)
-                check(getErrorName(compressor.setParameter(-1, 0))?.isNotEmpty() == true)
+                val code = compressor.setParameter(-1, 0)
+                ZstdNativeTestHooks.faultNext(8)
+                fails<OutOfMemoryError> { getErrorName(code) }
+                check(getErrorName(code)?.isNotEmpty() == true)
             }
         }
         case("close_is_idempotent_and_operations_after_close_fail_safely") {
@@ -191,7 +194,7 @@ object ZstdCheck {
         case("context_and_metadata_failures_preserve_pending_exceptions_and_release_global_references") {
             ZstdNativeTestHooks.faultNext(1)
             fails<OutOfMemoryError> { zstdCompressor() }
-            for (stage in 4..6) {
+            for (stage in 4..7) {
                 check(ZstdNativeTestHooks.shutdown() == 0 && ZstdNativeTestHooks.globalReferences() == 0)
                 ZstdNativeTestHooks.faultNext(stage)
                 if (stage == 6) fails<NoSuchFieldError> { zstdCompressor() } else fails<OutOfMemoryError> { zstdCompressor() }

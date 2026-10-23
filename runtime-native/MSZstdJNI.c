@@ -106,7 +106,8 @@ static void operation_gate(void) { }
 
 static jclass global_class(JNIEnv *env, jclass value, int stage) {
     if (fail_at(stage)) { throw_error(env, "java/lang/OutOfMemoryError", "zstd_class_reference"); return NULL; }
-    jclass result = (*env)->NewGlobalRef(env, value);
+    jclass result = fail_at(7) ? NULL : (*env)->NewGlobalRef(env, value);
+    if (result == NULL) throw_error(env, "java/lang/OutOfMemoryError", "zstd_class_reference");
 #ifdef MSL_ZSTD_TESTING
     if (result != NULL) atomic_fetch_add(&global_references, 1);
 #endif
@@ -132,9 +133,12 @@ static int initialize_metadata(JNIEnv *env) {
     if (ready) return 1;
     struct Metadata prepared = {0};
     jclass compressor = (*env)->FindClass(env, "com/squareup/zstd/ZstdCompressor");
-    if (compressor == NULL) return 0;
+    if (compressor == NULL) { throw_error(env, "java/lang/OutOfMemoryError", "zstd_metadata_class"); return 0; }
     jclass decompressor = (*env)->FindClass(env, "com/squareup/zstd/ZstdDecompressor");
-    if (decompressor == NULL) { (*env)->DeleteLocalRef(env, compressor); return 0; }
+    if (decompressor == NULL) {
+        throw_error(env, "java/lang/OutOfMemoryError", "zstd_metadata_class");
+        (*env)->DeleteLocalRef(env, compressor); return 0;
+    }
     prepared.compressor_input = (*env)->GetFieldID(env, compressor, fail_at(6) ? "authored_missing_field" : "inputBytesProcessed", "I");
     if (prepared.compressor_input == NULL) goto failed;
     prepared.compressor_output = (*env)->GetFieldID(env, compressor, "outputBytesProcessed", "I");
@@ -154,6 +158,7 @@ static int initialize_metadata(JNIEnv *env) {
     (*env)->DeleteLocalRef(env, compressor); (*env)->DeleteLocalRef(env, decompressor);
     return 1;
 failed:
+    throw_error(env, "java/lang/OutOfMemoryError", "zstd_metadata_lookup");
     delete_metadata(env, &prepared);
     (*env)->DeleteLocalRef(env, compressor); (*env)->DeleteLocalRef(env, decompressor);
     return 0;
@@ -279,7 +284,11 @@ JNIEXPORT jlong JNICALL Java_com_squareup_zstd_JniZstdKt_createJniZstd(JNIEnv *e
     (void)type; return initialize_metadata(env) ? MSL_ZSTD_TABLE : 0;
 }
 JNIEXPORT jstring JNICALL Java_com_squareup_zstd_JniZstdKt_jniGetErrorName(JNIEnv *env, jclass type, jlong code) {
-    (void)type; return ZSTD_isError((size_t)code) ? (*env)->NewStringUTF(env, ZSTD_getErrorName((size_t)code)) : NULL;
+    (void)type;
+    if (!ZSTD_isError((size_t)code)) return NULL;
+    jstring result = fail_at(8) ? NULL : (*env)->NewStringUTF(env, ZSTD_getErrorName((size_t)code));
+    if (result == NULL) throw_error(env, "java/lang/OutOfMemoryError", "zstd_error_string");
+    return result;
 }
 JNIEXPORT jlong JNICALL Java_com_squareup_zstd_JniZstdKt_createZstdCompressor(JNIEnv *env, jclass type) {
     (void)type; return create_context(env, COMPRESSOR);

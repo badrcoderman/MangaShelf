@@ -8,12 +8,13 @@ on:
         options:
           - reference-extension
           - runtime-host
+          - runtime-codec
         default: reference-extension
 permissions:
   contents: read
 jobs:
   compile:
-    if: inputs.task != 'runtime-host'
+    if: inputs.task == 'reference-extension'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -43,7 +44,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
   runtime-host:
-    if: inputs.task == 'runtime-host'
+    if: inputs.task == 'runtime-host' || inputs.task == 'runtime-codec'
     strategy:
       fail-fast: false
       matrix:
@@ -58,7 +59,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-      - name: Check pinned API and source registry
+      - name: Remove historical check reports
         # Remove historical reports so skipped checks cannot upload old passes.
         # These paths are generated evidence in this disposable checkout.
         run: |
@@ -67,14 +68,20 @@ jobs:
             validation/runtime-source-preferences-host.json \
             validation/runtime-zstd-host.json validation/zstd-native-host.json validation/zstd-native-ios.json \
             validation/extension-archive-verifier-host.json validation/extension-loader-host.json
-          python3 -u scripts/test-runtime-host.py
+      - name: Check pinned API and source registry
+        if: inputs.task == 'runtime-host'
+        run: python3 -u scripts/test-runtime-host.py
       - name: Check durable extension preferences
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-preferences.py
       - name: Check source-built Injekt and application bootstrap
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-bootstrap.py
       - name: Check source settings and callback lifetime
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-source-preferences.py
       - name: Check authored HTTP sources and TLS on host JVM
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-network.py
       - name: Check source-built codec, JNI failures and builtin loading
         run: python3 -u scripts/test-runtime-zstd.py
@@ -95,8 +102,10 @@ jobs:
         if: runner.os == 'macOS'
         run: python3 -u scripts/build-zstd-native.py --target ios
       - name: Check signatures and bounded archive handling
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-extension-archive-verifier.py
       - name: Load authored signed SourceFactory fixtures
+        if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-extension-loader.py
       - name: Preserve authored host and evidence
         if: always()

@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T22:43:38.685887+00:00",
+  "recorded_at": "2026-10-23T22:58:13.793435+00:00",
   "passed": true,
   "scope": "Source-built Zstd/Okio and authored host JNI/format/fault fixtures under -Xcheck:jni; dynamic and named builtin loading, no iOS execution or published extension.",
   "ios_execution": false,
@@ -106,11 +106,11 @@
     "runtime-native/third_party/openjdk-jni/LICENSE": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
     "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
     "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
-    "runtime-native/MSZstdJNI.c": "0d4cd0d90b2611e31d4627f3f4b39b53b417dcdd6d8c3c7635372dcde4ab9514",
+    "runtime-native/MSZstdJNI.c": "ebb9b243a6486657b8ea66f4a6c813f79aa8d42dcfcd067a3b03f529f962af36",
     "runtime-native/MSZstdJNI.h": "3fd0b372ef6c5eeaf9dc1a175623b69b523c3b4cb721c384784bf63a62e2a52e",
     "runtime-native/zstd_host_check.c": "f3fa3f8e7140a230daad2fc8ffb2b535b274afc4b0612757fb3cd45d359ecc89",
     "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e",
-    "runtime-host/src/test/zstd/kotlin/mangashelf/host/ZstdCheck.kt": "db2d02f41e7b4312538866633e05c5d2e5f1ce05a66c481e87711ce1f326fcbb",
+    "runtime-host/src/test/zstd/kotlin/mangashelf/host/ZstdCheck.kt": "b3a089369887c7dda94ef08e84e763a7f7a798fedc1bab13378de84fe43e74ed",
     "runtime-host/src/test/zstd/java/mangashelf/host/ZstdNativeTestHooks.java": "50b8fc73b9bdc76766737d2c76d0277a9d29832795157d130b51a53bfbfb7f2a",
     "runtime-host/src/main/kotlin/android/net/Uri.kt": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt": "d093b38f0fb83b01c6ed4176d61b8a3be90b9d511f90a71c7d86960df0fd621d",
@@ -173,7 +173,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/test-classes",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/test-classes",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/zstd/java/mangashelf/host/ZstdNativeTestHooks.java"
       ],
       "exit_code": 0,
@@ -193,9 +193,9 @@
         "-jvm-default=enable",
         "-Werror",
         "-classpath",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
         "-d",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/test-classes",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/test-classes",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/zstd/kotlin/mangashelf/host/ZstdCheck.kt"
       ],
       "exit_code": 0,
@@ -209,9 +209,9 @@
         "-Xint",
         "-Xcheck:jni",
         "-Djava.library.path=/home/user/Documents/Managa-app/MangaShilf/build/zstd-native/host",
-        "-Djava.io.tmpdir=/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/dynamic-temp",
+        "-Djava.io.tmpdir=/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/dynamic-temp",
         "-cp",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
         "mangashelf.host.ZstdCheck",
         "dynamic"
       ],
@@ -251,7 +251,7 @@
         "-ljvm",
         "-pthread",
         "-o",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/ZstdBuiltinHostCheck"
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/ZstdBuiltinHostCheck"
       ],
       "exit_code": 0,
       "stdout": "",
@@ -259,10 +259,10 @@
     },
     {
       "command": [
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/ZstdBuiltinHostCheck",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/empty-libraries",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-01hxu7sr/builtin-temp"
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/ZstdBuiltinHostCheck",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/test-classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/empty-libraries",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/zstd-check-dd9f3p0f/builtin-temp"
       ],
       "exit_code": 0,
       "stdout": "{\"passed\":true,\"loading\":\"builtin\",\"checks\":{\"darwin_named_loader_uses_the_requested_native_loading_mode\":true,\"independent_raw_and_rle_format_vectors_decode\":true,\"okio_empty_binary_and_unicode_roundtrips\":true,\"tiny_output_buffers_offsets_and_byte_counters_preserve_unrelated_bytes\":true,\"flush_and_concatenated_frames_preserve_all_data\":true,\"truncated_and_checksum_corrupt_frames_fail_without_leaking_contexts\":true,\"oversized_decoder_window_is_rejected\":true,\"parameters_return_codec_errors_with_safe_error_names\":true,\"close_is_idempotent_and_operations_after_close_fail_safely\":true,\"bounds_null_and_alias_checks_precede_native_memory_access\":true,\"forged_metadata_handle_and_wrong_context_kind_are_rejected\":true,\"injected_array_allocation_failures_release_acquisitions_and_leave_stream_reusable\":true,\"context_and_metadata_failures_preserve_pending_exceptions_and_release_global_references\":true,\"concurrent_close_retains_active_call_siblings_work_and_busy_shutdown_is_rejected\":true,\"shutdown_closes_idle_contexts_drops_refs_and_new_ids_do_not_alias_stale_objects\":true,\"parallel_streams_keep_independent_contexts_and_bytes\":true,\"upstream_io_failures_close_codec_contexts\":true},\"scope\":\"Source-built codec, authored host JNI/streaming/fault fixtures and simulated Darwin loader property; no iOS execution or published extension\"}\n",
@@ -322,7 +322,7 @@
     }
   },
   "native_build": {
-    "recorded_at": "2026-10-23T22:43:38.885810+00:00",
+    "recorded_at": "2026-10-23T22:58:13.992106+00:00",
     "passed": true,
     "scope": "Pinned source-built native codec and authored JNI adapter. iOS target is compile/link inspection only, never device execution.",
     "target": "host",
@@ -414,7 +414,7 @@
       "runtime-native/third_party/openjdk-jni/LICENSE": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
       "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
       "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
-      "runtime-native/MSZstdJNI.c": "0d4cd0d90b2611e31d4627f3f4b39b53b417dcdd6d8c3c7635372dcde4ab9514",
+      "runtime-native/MSZstdJNI.c": "ebb9b243a6486657b8ea66f4a6c813f79aa8d42dcfcd067a3b03f529f962af36",
       "runtime-native/MSZstdJNI.h": "3fd0b372ef6c5eeaf9dc1a175623b69b523c3b4cb721c384784bf63a62e2a52e"
     },
     "commands": [
@@ -1167,18 +1167,18 @@
     "artifacts": [
       {
         "path": "build/zstd-native/host/libmslzstd.a",
-        "bytes": 758398,
-        "sha256": "76bb809ca529b3acbfde1086e5cfe9d22276c038d5fb24fb11cc3f6fa8b9dda7"
+        "bytes": 759510,
+        "sha256": "9418937e8ddb70852eb9fbba72db099d98692d2c28c0c531e14a2baa238c3cb0"
       },
       {
         "path": "build/zstd-native/host/libmslzstd-test.a",
-        "bytes": 763232,
-        "sha256": "d6deb068d6df088491d3f1bf296818c2220e0b3c549e9524c8ad3de7ec36835f"
+        "bytes": 763856,
+        "sha256": "3925a809d7461052cd508779e204626cfd5e1a04f0df5396391ec9d9bfd6d959"
       },
       {
         "path": "build/zstd-native/host/libmslzstd.so",
         "bytes": 658944,
-        "sha256": "164bbe4b91a946feccb5bfbd1e4c1f534fa240889ebecf3f6e98034a6d00fb08"
+        "sha256": "f1bc538143eea8c771b7185291d1373b9943aa018ab6e1e9b8a5545b8b08bdca"
       },
       {
         "path": "build/zstd-native/host/notices/native-LICENSE.txt",
