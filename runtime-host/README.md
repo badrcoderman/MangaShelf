@@ -31,7 +31,7 @@ runtime dependencies. No extension JAR is placed on either classpath.
 The retained ABI checks cover 32 public/protected classes and 222 members,
 including member visibility, static method flags, interface kinds and inheritance,
 plus 14 functional checks using
-authored suspend sources and 19 registry/lifecycle checks. See
+authored suspend sources and 20 registry/lifecycle checks. See
 `validation/runtime-host-tests.json`. No real extension is loaded or executed.
 
 ## Source registry
@@ -50,6 +50,8 @@ operation. Removal prevents new calls immediately and returns a release ticket.
 The optional resource is closed once after in-flight work finishes; code that
 ignores cancellation can delay this. Registry close also returns tickets for
 earlier removals still draining. Await tickets to observe release failures.
+Caller cancellation waits for the source task's cleanup before completing the
+caller; it does not remove the package or cancel sibling requests.
 
 Registration takes ownership of the optional resource on failure as well as
 success. The archive loader passes its verified classloader resource; callers
@@ -105,6 +107,16 @@ and 46 authored signature checks each. Both artifacts passed digest/CRC/source
 fingerprint inspection and contain the same host JAR. The local 47th signature
 case is an optional data-only check of the separately rebuilt public candidate;
 that file is absent from CI. See `validation/runtime-host-39934045293.json`.
+
+The expanded checks passed on Linux and macOS Java 25 in
+[39988642098](https://github.com/badrcoderman/MangaShelf/actions/runs/39988642098)
+at `95e9b11`: 32 API classes / 222 members, 14 model, 20 registry, 19 signed
+loader, 16 preference, 16 HTTP/TLS and 46 signature checks per platform.
+Artifact digests/CRC and source fingerprints match; both contain the same host
+JAR. The earlier run `39987683915` exposed a cancellation race: the caller could
+finish before source cleanup. The fix joins that source task, and a gated test
+checks the ordering. Actions remove old reports first so skipped checks cannot
+upload stale passes. See `validation/runtime-host-39988642098.json`.
 
 ## HTTP and application services
 
