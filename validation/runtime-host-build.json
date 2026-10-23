@@ -96,7 +96,8 @@
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SManga.kt": "65a14833f04a58f7c48957d237674ad2bc2238df0b6e137c9fad77e6d692ee21",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457",
-    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3"
+    "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3",
+    "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "69e9e2983eed20e6511da141d7f8620a085efad113a2c4808c934897e5f20f07"
   },
   "build_jdk": "openjdk version \"27\" 2026-09-15\nOpenJDK Runtime Environment (build 27)\nOpenJDK 64-Bit Server VM (build 27, mixed mode, sharing)\n",
   "platform_api": "JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee",
@@ -117,7 +118,7 @@
       "-classpath",
       "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar",
       "-d",
-      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-ibzsgwh6",
+      "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/classes-se4st59p",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/android/net/Uri.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
@@ -131,7 +132,8 @@
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SManga.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt",
       "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt",
-      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt"
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt",
+      "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt"
     ],
     "exit_code": 0,
     "stdout": "",
@@ -140,7 +142,7 @@
   "passed": true,
   "jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 35292,
-    "sha256": "d6a0e34304a18be5843de65ea86f2090133a179f3cfdbbf542f48f034ecd2622"
+    "bytes": 65071,
+    "sha256": "9b3a77c424128f46bc2f78b7d19063e8d74a280d52047f7db3a0fc9bb532cfb7"
   }
 }

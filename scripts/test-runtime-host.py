@@ -100,7 +100,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--reference-api', type=Path, default=ROOT/'runtime-host/reference/library.api')
     args = parser.parse_args()
-    report = {'scope':'Authored Source1.6 API/model subset descriptors and functional synthetic sources on host. No HttpSource/Android host bootstrap, real extension class loading, source registry, network or iOS proof.',
+    report = {'scope':'Authored Source1.6 API/model subset descriptors, synthetic sources and SourceFactory registry lifecycle on host. No HttpSource/Android bootstrap, real extension class loading, trusted archive loading, network or iOS proof.',
               'reference_commit':'42255ee5fa96d9425697b7c143587483207308d1', 'reference_api_sha256':API_HASH,
               'extension_code_executed':False, 'passed':False,
               'script_sha256':build.digest(Path(__file__)),
@@ -146,6 +146,14 @@ def main():
             result = json.loads(ran.stdout)
             if result.get('passed') is not True: raise ValueError('Functional API tests did not report a pass')
             report['functional_checks'] = result
+            registry_command = ['java','-Xint','-cp',cp,'mangashelf.host.RegistryCheck']
+            registry_run = subprocess.run(registry_command,cwd=ROOT,capture_output=True,text=True,timeout=45)
+            report['registry_run'] = {'command':registry_command,'exit_code':registry_run.returncode,
+                                      'stdout':registry_run.stdout,'stderr':registry_run.stderr}
+            if registry_run.returncode: raise ValueError('Authored source registry tests failed')
+            registry_result = json.loads(registry_run.stdout)
+            if registry_result.get('passed') is not True: raise ValueError('Registry tests did not report a pass')
+            report['registry_checks'] = registry_result
         for name, value in report['test_source_sha256'].items():
             if build.digest(ROOT/name) != value:
                 raise ValueError('Functional test input changed during compilation/execution')
