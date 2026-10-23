@@ -4,7 +4,9 @@ Independently authored Kotlin/JVM implementations of the Source 1.6 interfaces,
 factories, models and filters used by the pinned public `extensions-lib` ABI,
 plus HTTP source services, persistent preferences, a verified archive loader and
 source registry. The host also builds the pinned MIT Injekt library from reviewed
-public Kotlin sources with a recorded compiler compatibility bridge. This module is outside the
+public Kotlin sources with a recorded compiler compatibility bridge, and the
+pinned Apache Zstd/Okio Kotlin sources with a separate source-built native codec.
+This module is outside the
 production iOS target. Published extensions have not been executed with it.
 
 ## Build and check
@@ -16,6 +18,7 @@ python3 scripts/test-runtime-preferences.py
 python3 scripts/test-runtime-bootstrap.py
 python3 scripts/test-runtime-source-preferences.py
 python3 scripts/test-runtime-network.py
+python3 scripts/test-runtime-zstd.py
 python3 scripts/test-extension-loader.py
 ```
 
@@ -33,6 +36,16 @@ runtime dependencies. Injekt's exact source/license set is separately checked
 against `injekt-source.lock.json`; the build applies `injekt-compat.patch.json`
 only to a temporary copy and includes the upstream MIT notice. No upstream build
 scripts or binaries are executed. No extension JAR is placed on either classpath.
+
+`zstd-source.lock.json` additionally verifies 12 Kotlin/license files, 65 native
+Zstd source/notice files and 5 JNI header/notice files from pinned public commits.
+Only the JVM native loader is edited in a temporary copy, using
+`System.loadLibrary("mslzstd")` without extraction or OS-name guessing. The
+separate native build compiles Zstd C and MSL's JNI adapter with checked context
+IDs, array bounds and reference ownership. Seventeen authored checks pass per
+dynamic/builtin loading mode locally, including a genuinely linked builtin and
+embedded JVM shutdown under `-Xcheck:jni`. iOS compilation/linking and phone
+execution have separate gates. See [sources, lifecycle and limits](../docs/SOURCE-ZSTD-AR.md).
 
 The retained ABI checks cover 45 public/protected classes and 278 members,
 including member visibility, static method flags, interface kinds and inheritance,

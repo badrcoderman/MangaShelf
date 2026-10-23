@@ -28,6 +28,7 @@ public final class VerifiedExtensionClassLoader extends SecureClassLoader implem
             "java.", "javax.", "jdk.", "sun.", "com.sun.", "android.", "androidx.",
             "kotlin.", "kotlinx.", "okhttp3.", "okio.", "mangashelf.",
             "org.jetbrains.annotations.", "org.tachiyomi.", "uy.kohesive.injekt.",
+            "com.squareup.zstd.",
             "eu.kanade.tachiyomi.source.", "eu.kanade.tachiyomi.network.",
             "eu.kanade.tachiyomi.util.");
     private final VerifiedArchive archive;

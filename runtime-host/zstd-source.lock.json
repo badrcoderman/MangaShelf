@@ -1,0 +1,519 @@
+{
+  "format": 1,
+  "kotlin": {
+    "repository": "https://github.com/square/okio-zstd",
+    "commit": "4fbdf35df030888d2a0cce4a84329d107438134f",
+    "license_spdx": "Apache-2.0",
+    "source_root": "runtime-host/third_party/zstd-kmp",
+    "files": [
+      {
+        "path": "LICENSE",
+        "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/Zstd.kt",
+        "git_blob": "f081e2f40c52d02167be6cedf772162894865304",
+        "bytes": 1279,
+        "sha256": "3cb1ff84e86fb57d880ba95def71858e9f440814efc20c238523d3bc85cd8825"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdCompressSink.kt",
+        "git_blob": "e374db2209d2ec6f99e4fdb978bc5ae8eb10ad90",
+        "bytes": 4556,
+        "sha256": "985427f2b3bceac984b999717244487642fee260f8ccca4fa861095b8ea85766"
+      },
+      {
+        "path": "zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdDecompressSource.kt",
+        "git_blob": "5d7a0a437d127ca1f0fec99628f2a79613a17432",
+        "bytes": 3484,
+        "sha256": "10d557dafe37a6a7295d30f4820594164cd7fc8bed392634674cc69b57640f9d"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/Zstd.kt",
+        "git_blob": "0873e9e08de54ec46304ae72261e5282255cf56d",
+        "bytes": 1167,
+        "sha256": "a00afad1c734b534508dd78cd396424f265172111cc2b71f79024d025f63f186"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdCompressor.kt",
+        "git_blob": "f262d6fe66ddcd413d5549950c423996e45ddb8f",
+        "bytes": 1387,
+        "sha256": "89b919712c8d4ced1592e59e57f48341767809c3f6792f3c960a6a956e4df356"
+      },
+      {
+        "path": "zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdDecompressor.kt",
+        "git_blob": "b70a0200ada42f234e38c7d7430c4c1d7a758e2f",
+        "bytes": 1165,
+        "sha256": "7e8eb7284a8ec43f4d46c3345f4f1f7cc3bbf7485596d2ff2d18e3f5e3e4323d"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstd.kt",
+        "git_blob": "982c6e0f0a6851fafe2347f03688e11622e6ede4",
+        "bytes": 1086,
+        "sha256": "0c68722d679d9ce819bb99d0a887b18cd17683d5d78d1885ed37840fb92cd304"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdCompressor.kt",
+        "git_blob": "a595fe8599e5d27fff8f7cdb621c288c4dbc9b95",
+        "bytes": 1986,
+        "sha256": "94e46b3eb77d42e02c5901a6db9135a05291ef94057e6424dac74479537cfdd0"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdDecompressor.kt",
+        "git_blob": "7518b8e4b0c8674d0f4aaeb065e621d8d3683663",
+        "bytes": 1763,
+        "sha256": "6d45d72c6e27ad93873b136e230ed6b8b8d9d29b72ad548cf1a0600a1cf8069e"
+      },
+      {
+        "path": "zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/Zstd.jni.kt",
+        "git_blob": "f2aed423c6ec3a03080ff4b12d6b4425f6e42bed",
+        "bytes": 884,
+        "sha256": "b847ea17a8c47843de0bae6ffbbbc2691c8283b62959ea067b6f3766b711d1e9"
+      },
+      {
+        "path": "zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt",
+        "git_blob": "b37e723fd0d95873234f2522f646e8798a83eef5",
+        "bytes": 1696,
+        "sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472"
+      }
+    ]
+  },
+  "native": {
+    "repository": "https://github.com/facebook/zstd",
+    "commit": "1dbc2e09084e843f6c0dcc2d0791610015c50979",
+    "license_spdx": "BSD-3-Clause",
+    "source_root": "runtime-native/third_party/zstd",
+    "files": [
+      {
+        "path": "COPYING",
+        "bytes": 18091,
+        "git_blob": "ecbc0593737be657aef92e3adcf3bcbd6fdb812e",
+        "sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 1549,
+        "git_blob": "75800288cc243f164b9d130f125e2ffae28f8e39",
+        "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+      },
+      {
+        "path": "lib/common/allocations.h",
+        "bytes": 1637,
+        "git_blob": "5e8995501090fd631c0773e2c5ec233e7acc05e6",
+        "sha256": "6a718e8edaca112abdc0bdfa7de67edefaa44c8d9e514b79672ab58ab3a9118a"
+      },
+      {
+        "path": "lib/common/bits.h",
+        "bytes": 5953,
+        "git_blob": "910ffa38812d7f1fca3644d1f4d88e2698f6fdab",
+        "sha256": "a7c538410d152df8a7ec6ecca194804f6d9fb998a92765513b38aa6f00226448"
+      },
+      {
+        "path": "lib/common/bitstream.h",
+        "bytes": 18727,
+        "git_blob": "3b7ad483d9e978537679e8b00796ba169295dfe7",
+        "sha256": "a9461685c9add6f609078acc950a08db4c02e6e6a849d550f45182ba2ae38556"
+      },
+      {
+        "path": "lib/common/compiler.h",
+        "bytes": 17029,
+        "git_blob": "6131ad0688f158a27b0bb4548d78187f49b39168",
+        "sha256": "e788b6b7f0dc6d73f92c0669bcd3d069d2b3ede4ede7be2241c979e3722362b1"
+      },
+      {
+        "path": "lib/common/cpu.h",
+        "bytes": 5438,
+        "git_blob": "3f15d560f0ccf9b9aa259a4c080bb04e6359d4aa",
+        "sha256": "23d520b536a6f23114e66549d03a967b1f24b15560c5b1ebd47ee392ccee4a1c"
+      },
+      {
+        "path": "lib/common/debug.c",
+        "bytes": 1091,
+        "git_blob": "9d0b7d229c14ca63dc365c53b2089570ae958e43",
+        "sha256": "7ab1ea104acf3243fc1cd4e6d2514046f1dfc1101c7c676145c8da080e8c24ca"
+      },
+      {
+        "path": "lib/common/debug.h",
+        "bytes": 3925,
+        "git_blob": "4b60ddf7f51e779fb17b843ffeca41579664d4ae",
+        "sha256": "8260cd5087b8309679c61b772b535688993c61a675a30481b8ae55b45740ba15"
+      },
+      {
+        "path": "lib/common/entropy_common.c",
+        "bytes": 13308,
+        "git_blob": "e2173afb0a8b0c8c070033ac404f830157c27c6a",
+        "sha256": "7dfce29c6bc807645b1f0c373dad94bbb49603b175a84e72d1739bf9df65feb8"
+      },
+      {
+        "path": "lib/common/error_private.c",
+        "bytes": 3905,
+        "git_blob": "7e7f24f6756535cf379251987e49421a2341df5e",
+        "sha256": "3f5873b2626ca1cdf554b7ec7b04ea0ef296fd0f6882d7fad42448b7e2dbb41c"
+      },
+      {
+        "path": "lib/common/error_private.h",
+        "bytes": 6438,
+        "git_blob": "9dcc8595123cd70c8e3a7808ab36da8402141d08",
+        "sha256": "ae077bb433eb150ee247410a0357f910b9c07be839c6a9abe0b2e6b18ceb716d"
+      },
+      {
+        "path": "lib/common/fse.h",
+        "bytes": 30033,
+        "git_blob": "b6c2a3e9ccc762ebdcb8986ffeb5ce46e77a1c80",
+        "sha256": "5235ce1e512bf80204d013b1f4cecd776fdaa9effddb48308bce08f6d0b84499"
+      },
+      {
+        "path": "lib/common/fse_decompress.c",
+        "bytes": 12478,
+        "git_blob": "c8f1bb0cf23363354af1cf3b33bb46e1993cbe0a",
+        "sha256": "84eba7030a036b36363a5108e760428ce549f1a833bec6464dc755f6ed51a6fb"
+      },
+      {
+        "path": "lib/common/huf.h",
+        "bytes": 14119,
+        "git_blob": "4b142c4f996c1f9cc77d38270091f5948d049aa2",
+        "sha256": "9a83d899c8c9bf03389d482562090ec2443bc0f87f27864a2b891b180333f2d4"
+      },
+      {
+        "path": "lib/common/mem.h",
+        "bytes": 12939,
+        "git_blob": "e66a2eaeb27c7ec80def54bd4dee50c48ecf308d",
+        "sha256": "4dd5fe76fa30a020cd4b3af3134ae143920300a1fe54baac1a5da73297e66783"
+      },
+      {
+        "path": "lib/common/pool.c",
+        "bytes": 11782,
+        "git_blob": "3adcefc9a50aedbbaacef5fa43277ddb6109b435",
+        "sha256": "9431e26cf7ca46ffb878f17df31198046664d592ae208dfbe3715e82b87af79d"
+      },
+      {
+        "path": "lib/common/pool.h",
+        "bytes": 2569,
+        "git_blob": "f39b7f1eb99e7f90485746df68275acfb93c959e",
+        "sha256": "bca19a2408e85f31bad3a13f205de92ac26ecda0c5af96fdd7f213ce03d9fc78"
+      },
+      {
+        "path": "lib/common/portability_macros.h",
+        "bytes": 5613,
+        "git_blob": "bcca634e4192c800333871de7951a9ce8dbcc275",
+        "sha256": "fb69eb648f4c0e66a2cbf552a8f0e031b795a9c68dd5a1fc6fb35b9747eedcfb"
+      },
+      {
+        "path": "lib/common/threading.c",
+        "bytes": 4886,
+        "git_blob": "25bb8b981042d8637df0d4eb45100f85487e4aad",
+        "sha256": "50448323b46a8e1bde042ee88ec44fcfc646f3d4aeba8a06be54d26a710ed78d"
+      },
+      {
+        "path": "lib/common/threading.h",
+        "bytes": 5112,
+        "git_blob": "e123cdf14a3344a3d9e1c14f2cae9063c4b6f96f",
+        "sha256": "9ca63027ea64046acacccbe056a414d37ea7ea428ce299fe08abe53c204c5c65"
+      },
+      {
+        "path": "lib/common/xxhash.c",
+        "bytes": 607,
+        "git_blob": "052cd522824b1eb0fa04d5d87e3c27fdc8e069a3",
+        "sha256": "8444d064922f434b67b708a987981aa21dfeece735b48c82d31f7027d0ccef03"
+      },
+      {
+        "path": "lib/common/xxhash.h",
+        "bytes": 262488,
+        "git_blob": "b6af402fdf4c9a39207974448a0525e20631c115",
+        "sha256": "8cb837b21a8fe9a6b9dbcd0961ab16e733bfcbfa9e003f3a496ce07ae80aa8ee"
+      },
+      {
+        "path": "lib/common/zstd_common.c",
+        "bytes": 1797,
+        "git_blob": "98542061870cf1eea49c6f39f7c3402fa5b2ce5a",
+        "sha256": "e85829d25434d841c96491bc9d8bb2d73c0ee80319e3d59e9ca6e2951d9592cf"
+      },
+      {
+        "path": "lib/common/zstd_deps.h",
+        "bytes": 3010,
+        "git_blob": "8a9c7cc5313ad8c507f456e43f2b3afaad374673",
+        "sha256": "9c77ea7d0afa8d5c868a7839e178a446a82d88eb75fd56f2fd7d9d96c5ab7c11"
+      },
+      {
+        "path": "lib/common/zstd_internal.h",
+        "bytes": 10933,
+        "git_blob": "791b6485d23c8c8d65a8a14ebaee48e582be03f0",
+        "sha256": "82f438584048fa704ae71166edf8c60bc91dcb2473c53e7049128a04276a27db"
+      },
+      {
+        "path": "lib/common/zstd_trace.h",
+        "bytes": 4562,
+        "git_blob": "d8eec100758fa4ade9e502e77c1e1a8c58026304",
+        "sha256": "17f6daa4c7e97055cd1ed7bcf4d9241a4e79b465f083c5d732fda1df2f0be11e"
+      },
+      {
+        "path": "lib/compress/clevels.h",
+        "bytes": 6860,
+        "git_blob": "c18da465f3211bd915ef791a7ab7c5ec54192928",
+        "sha256": "d764daa89b7a636d26fe96ff3536c5075e9867fb5dddbf8c9d57023a8ff4a155"
+      },
+      {
+        "path": "lib/compress/fse_compress.c",
+        "bytes": 24103,
+        "git_blob": "1ce3cf16ac10c09c3e0a1fb09d0c65e290d508a5",
+        "sha256": "5070807a489757b87c1e1f50332b099e8ffe22971228218111eef64d3321ae82"
+      },
+      {
+        "path": "lib/compress/hist.c",
+        "bytes": 19422,
+        "git_blob": "3692bc250cadbb831133b432094a7115efed848e",
+        "sha256": "06073ee418d67ad16ac650d8c812db1e14c114b3da699e5411940285c7d50f5d"
+      },
+      {
+        "path": "lib/compress/hist.h",
+        "bytes": 3828,
+        "git_blob": "e526e9532a7d1f7760460e8ff22a68cad2c310b2",
+        "sha256": "1c1a7a020df310d4ac8ee0729acb21bfa6d6a107e07d4036bb193a70570e5d48"
+      },
+      {
+        "path": "lib/compress/huf_compress.c",
+        "bytes": 58609,
+        "git_blob": "6f2194e7934846af1e7808fea41d18e6227c4481",
+        "sha256": "d213b5f8d1e9f5c52df38c432597a00cf046869910993f3a1a22b620f85b31a7"
+      },
+      {
+        "path": "lib/compress/zstd_compress.c",
+        "bytes": 351881,
+        "git_blob": "9b7aaf9f4f4ad156f740a45a54917957c5117bb2",
+        "sha256": "51700092a725fc780c1f30310898c238d8fdc787a2f07a9658797af5b33cef3e"
+      },
+      {
+        "path": "lib/compress/zstd_compress_internal.h",
+        "bytes": 68498,
+        "git_blob": "13a394b38161f0747c5ba347a7448c16583e19e9",
+        "sha256": "e99de778a2a733bde856172057fe380256c379f082bd3513cac600b005ac2b98"
+      },
+      {
+        "path": "lib/compress/zstd_compress_literals.c",
+        "bytes": 9155,
+        "git_blob": "06036de5da59a6199cfb396176d5aa0ebb8b3fb1",
+        "sha256": "a8f25f1bd4c0d2d9dda3355d2103c9dfbd0b7056bfd373e29e923662bfea5596"
+      },
+      {
+        "path": "lib/compress/zstd_compress_literals.h",
+        "bytes": 1613,
+        "git_blob": "b060c8ad21875a93f4ee996fd9fc9ed39ac341c1",
+        "sha256": "02270cd6bc060279217861776a53adb67f8d7e54f47f59d2a4ddcef2e705fe2d"
+      },
+      {
+        "path": "lib/compress/zstd_compress_sequences.c",
+        "bytes": 20004,
+        "git_blob": "7beb9daa603993aebc4add3dd81a0dcbedab57f1",
+        "sha256": "3f4334c19ed770c4007bc12df4098026d4eb1a6fbebfbf36df58054e7babc3e9"
+      },
+      {
+        "path": "lib/compress/zstd_compress_sequences.h",
+        "bytes": 2224,
+        "git_blob": "4be8e91f248451b7b760a3e30fabceaf28c4d52f",
+        "sha256": "361d108d7d452ed26f0ae4b39964f8e62166ed91d03347a5229e5d228734efc8"
+      },
+      {
+        "path": "lib/compress/zstd_compress_superblock.c",
+        "bytes": 34085,
+        "git_blob": "6f57345be62c31ccda488ab36ae79d4d1e1cfa30",
+        "sha256": "dd62ed79ee1feec78b2e5bfc63417ccbdcda426f4220d112b0fcd8a9d0c7e667"
+      },
+      {
+        "path": "lib/compress/zstd_compress_superblock.h",
+        "bytes": 1168,
+        "git_blob": "8e494f0d5e6477007821c6cb5514d2878971cf05",
+        "sha256": "6b097999ea1d91776ca5a12e5ee02c1ed15edfcd31ba07b9ada94b0955195677"
+      },
+      {
+        "path": "lib/compress/zstd_cwksp.h",
+        "bytes": 28892,
+        "git_blob": "77518002d006b3d4520fbbbbb6cb016d7e901eca",
+        "sha256": "ed77c2739b18b9800b97785262526a1dd4f385311ca5c2caa20b6f2a35f3735d"
+      },
+      {
+        "path": "lib/compress/zstd_double_fast.c",
+        "bytes": 35303,
+        "git_blob": "1a266e7d955f7533640f738311d1711d996f0b27",
+        "sha256": "9f6d003c2fe1208737bec685910324220424ba47d0323fa30d9d5f53c50e91da"
+      },
+      {
+        "path": "lib/compress/zstd_double_fast.h",
+        "bytes": 1767,
+        "git_blob": "cd562fea8ef6bbbd7b065ec8b1430ec838eb79e0",
+        "sha256": "d9c29c9c004f572532265e12af78d5949c0908f4ef0bb0158977bcf80e1cf92b"
+      },
+      {
+        "path": "lib/compress/zstd_fast.c",
+        "bytes": 38104,
+        "git_blob": "ee25bcbac8d8eb3881ff33b17a30aef85a6b961e",
+        "sha256": "8037320f321836652e73ab6cbf7b8f1f4c97cef38835ac6b4aaf0af716aa398d"
+      },
+      {
+        "path": "lib/compress/zstd_fast.h",
+        "bytes": 1178,
+        "git_blob": "216821ac33bf2f662d642d306fbeea9d7de7a0ee",
+        "sha256": "dffdf43fae7ee10a2acc04e6a5eaaf03f7d3572898117a06c330d647eed5591d"
+      },
+      {
+        "path": "lib/compress/zstd_lazy.c",
+        "bytes": 102821,
+        "git_blob": "272ebe0ece7d9ceecaaa22a7ce0f067aa483c99b",
+        "sha256": "dd6ccf357165dc8cb574ea56a34ff1db57b7b31728b32103d0c6b72319fd45b1"
+      },
+      {
+        "path": "lib/compress/zstd_lazy.h",
+        "bytes": 9684,
+        "git_blob": "bd8dc49e64c23a1d3ce0283189fd4836ef77cbcc",
+        "sha256": "6f13007fbd6824058a73b097960446defe265e33b22c7c6dc2304dcf53998bbf"
+      },
+      {
+        "path": "lib/compress/zstd_ldm.c",
+        "bytes": 29313,
+        "git_blob": "070551cad818ddffbf86b165894c82d63d6ba262",
+        "sha256": "4a2bef3612ae4a9e15a78a55541a152091fa8ba160410db24d495bd6dd57249e"
+      },
+      {
+        "path": "lib/compress/zstd_ldm.h",
+        "bytes": 4365,
+        "git_blob": "42736231aa8d84211d0ee29088b0f319a3b6ad06",
+        "sha256": "bd0cb86041d3a72fd7846e141a41aadae229c8e331a2117df7f6b70a1b4cb08c"
+      },
+      {
+        "path": "lib/compress/zstd_ldm_geartab.h",
+        "bytes": 6077,
+        "git_blob": "ef34bc5c92314c19d70c7bf38ad843d27fa74b09",
+        "sha256": "7285ac8ba1f0fa57a8cd8158bd427ded4e70e32a58e73b57c420b83a76e5e6e3"
+      },
+      {
+        "path": "lib/compress/zstd_opt.c",
+        "bytes": 72006,
+        "git_blob": "3d7171b755bde44cf324fb31d4a791e8554f268a",
+        "sha256": "625936ee3fb02d789abb894c1fbc2918ee47582434094c963b630da13532c876"
+      },
+      {
+        "path": "lib/compress/zstd_opt.h",
+        "bytes": 3046,
+        "git_blob": "756c7b1d0c5d748b0e4f3532f29ad421fe386c41",
+        "sha256": "9b677efbae28909034d3c24f37dc5c4295d267cf477bf04e14653579f90d8b6e"
+      },
+      {
+        "path": "lib/compress/zstd_preSplit.c",
+        "bytes": 8729,
+        "git_blob": "d820c20ac24debf5e2877e217e143339862ea74f",
+        "sha256": "8d7da15de31318ebb7dfe2f2e2c79f05b0d0563dcb92d4525814d05a279d0d64"
+      },
+      {
+        "path": "lib/compress/zstd_preSplit.h",
+        "bytes": 1175,
+        "git_blob": "b89a200dccd073d203418a6365b4c31800e5fad6",
+        "sha256": "910facb2e3442e42a6952c514223c4502d95ed957bf7dc73982b3b03785b361b"
+      },
+      {
+        "path": "lib/compress/zstdmt_compress.c",
+        "bytes": 84098,
+        "git_blob": "0f1fe6d74697f879c328bd3bb9283e890a4152df",
+        "sha256": "c83db699b4041bf4db89c5558db490dd295635f1eeefd60b643fbc862bbac7b5"
+      },
+      {
+        "path": "lib/compress/zstdmt_compress.h",
+        "bytes": 4574,
+        "git_blob": "91b489b9cb4f12df6a60728d22190a6e10751cc2",
+        "sha256": "033fb25d96b4295c3d0158edf4d1bd4067f42aac39427706754e6c034b20f80f"
+      },
+      {
+        "path": "lib/decompress/huf_decompress.c",
+        "bytes": 77026,
+        "git_blob": "c7e342648f66979e7595a93065d39be82f2407bb",
+        "sha256": "0086a55ab29623b914453e9d6d07f8f93a868fcf7d6862fb70177587ba09b1f1"
+      },
+      {
+        "path": "lib/decompress/zstd_ddict.c",
+        "bytes": 9182,
+        "git_blob": "309ec0d03642a1372aa9130eed51bc56d9d67ab5",
+        "sha256": "38bf812283d61f4cd1f6aea30f84b43317418257c4e6fc198b09b436bd484397"
+      },
+      {
+        "path": "lib/decompress/zstd_ddict.h",
+        "bytes": 1319,
+        "git_blob": "c4ca8877a077c84d97c095481175f12de03860db",
+        "sha256": "a97a250fd2f956e3ae419ddde68ae1f9fe4025bc0373254058d31bbd352fa71c"
+      },
+      {
+        "path": "lib/decompress/zstd_decompress.c",
+        "bytes": 102400,
+        "git_blob": "9eb98327ef3b3d177c2137be5d3d10a372bc10d9",
+        "sha256": "029580818b7e9cd38d9d07c63516b00ceaa943ffcfbd099fc5ccbe3628fa362f"
+      },
+      {
+        "path": "lib/decompress/zstd_decompress_block.c",
+        "bytes": 101849,
+        "git_blob": "6174a250bceb5ff6116a868df375b929a34dd0fd",
+        "sha256": "3b5578187aab5ec88105e8f6567127d9b5686aad5bff50add3bef979c75ff48a"
+      },
+      {
+        "path": "lib/decompress/zstd_decompress_block.h",
+        "bytes": 2682,
+        "git_blob": "ab152404ba057a2e22abd669951a435e6b3fddc9",
+        "sha256": "62ee0c6ae3f7353020538397f436b59743da8acb922068841b346f480f7078ac"
+      },
+      {
+        "path": "lib/decompress/zstd_decompress_internal.h",
+        "bytes": 9683,
+        "git_blob": "e4bffdbc6cf219c0cf1f205bd80328e8cbc5138c",
+        "sha256": "73217b49a644c0fcf567b70677cae31449ba9f50a235ef3b681001c3f36dc56d"
+      },
+      {
+        "path": "lib/zstd.h",
+        "bytes": 182252,
+        "git_blob": "8504694907c44b8e125a82f3ae21fdd048f20819",
+        "sha256": "9e132ed39fc7cf224e1a54ff8c09c98898169208bdf66258ad15b6d7710d096e"
+      },
+      {
+        "path": "lib/zstd_errors.h",
+        "bytes": 4278,
+        "git_blob": "8ebc95cbb2ab882027a3e6cc92cdd5abc1a0dee4",
+        "sha256": "66a8c3f71d12ea6e797e4f622f31f3f8f81c41b36f48cad4f5de7d8bfb6aac0a"
+      }
+    ]
+  },
+  "jni": {
+    "repository": "https://github.com/openjdk/mobile",
+    "commit": "c1ed06aaef34c8dccf71e236d1ffa20918a77cfb",
+    "license_spdx": "GPL-2.0-only WITH Classpath-exception-2.0",
+    "source_root": "runtime-native/third_party/openjdk-jni",
+    "files": [
+      {
+        "path": "ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916",
+        "git_blob": "ff700cd09f6ea0cc497f68169fd5c210bdaa7c2b"
+      },
+      {
+        "path": "ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33",
+        "git_blob": "429666664e9ff5029d51dc7f807e1ec9eff2dd9f"
+      },
+      {
+        "path": "LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
+        "git_blob": "8b400c7ab81b7b18baff3f81d597f5e511883134"
+      },
+      {
+        "path": "src/java.base/share/native/include/jni.h",
+        "bytes": 76300,
+        "sha256": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
+        "git_blob": "1a31c38b3ce7f7226040b6ddc399afc8c198433d"
+      },
+      {
+        "path": "src/java.base/unix/native/include/jni_md.h",
+        "bytes": 2191,
+        "sha256": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
+        "git_blob": "b4ed87e0c48b5951d8e005f202efa934daed4beb"
+      }
+    ]
+  }
+}

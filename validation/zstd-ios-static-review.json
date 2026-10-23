@@ -322,5 +322,18 @@
     "observed": "JNI buffer acquisition, field lookup and allocation paths need explicit pending-exception/null handling and array-bound/lifecycle checks in the MSL build.",
     "implementation_complete": false,
     "next_gate": "Review and source-build codec/JNI with recorded source changes; prove success/failure, bounded streaming, cleanup and static-library loading on host and arm64 iOS."
+  },
+  "implementation_followup": {
+    "scope": "Source-built MSL codec on host; original upstream loader observations above remain historical source facts. No iOS execution or main app integration.",
+    "source_lock": "runtime-host/zstd-source.lock.json",
+    "loader_patch": "runtime-host/zstd-compat.patch.json",
+    "upstream_cpp_adapter_built": false,
+    "msl_jni_adapter": "runtime-native/MSZstdJNI.c",
+    "host_test_report": "validation/runtime-zstd-host.json",
+    "host_checks_per_loading_mode": 17,
+    "host_dynamic_and_builtin_passed": true,
+    "ios_compile_link": "pending CI",
+    "ios_execution": false,
+    "documentation": "docs/SOURCE-ZSTD-AR.md"
   }
 }

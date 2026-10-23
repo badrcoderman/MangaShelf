@@ -16,9 +16,8 @@ spec.loader.exec_module(build)
 
 def main():
     tests = sorted((ROOT/'runtime-host/src/test/bootstrap').rglob('*.kt'))
-    _, vendor = build.injekt_sources()
     sources = [ROOT/'scripts/build-runtime-host.py', ROOT/'runtime-host/dependencies.lock.json', Path(__file__),
-               build.INJEKT_LOCK, build.INJEKT_PATCH, *vendor, *tests]
+               *build.source_dependency_inputs(), *tests]
     sources += sorted((ROOT/'runtime-host/src/main').rglob('*.kt'))
     sources += sorted((ROOT/'runtime-host/src/main').rglob('*.java'))
     sources.append(ROOT/'runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java')

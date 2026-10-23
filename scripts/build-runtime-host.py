@@ -2,6 +2,7 @@
 """Build MSL's host and reviewed MIT Injekt sources with pinned tools; never an extension JAR."""
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -17,6 +18,9 @@ OUT = ROOT / 'build/runtime-host'
 LOCK = ROOT / 'runtime-host/dependencies.lock.json'
 INJEKT_LOCK = ROOT / 'runtime-host/injekt-source.lock.json'
 INJEKT_PATCH = ROOT / 'runtime-host/injekt-compat.patch.json'
+_codec_spec = importlib.util.spec_from_file_location('msl_zstd_source', ROOT/'scripts/zstd-source.py')
+zstd_source = importlib.util.module_from_spec(_codec_spec)
+_codec_spec.loader.exec_module(zstd_source)
 
 
 def digest(path, algorithm='sha256'):
@@ -124,6 +128,11 @@ def compiler_command(resolved, sources, destination, extra_classpath=''):
             '-d', str(destination), *map(str, sources)]
 
 
+def source_dependency_inputs():
+    _, vendor = injekt_sources()
+    return [INJEKT_LOCK, INJEKT_PATCH, *vendor, *zstd_source.inputs()]
+
+
 def prepare_injekt(lock, files, directory):
     """Apply the reviewed compiler compatibility bridge to a build-only copy."""
     patch = json.loads(INJEKT_PATCH.read_text())
@@ -159,6 +168,7 @@ def prepare_injekt(lock, files, directory):
 def build():
     resolved = dependencies()  # Every tool/runtime artifact is verified before Java runs.
     injekt, vendor_sources = injekt_sources()
+    codec, codec_sources = zstd_source.verify()
     java = subprocess.run(['java', '-version'], capture_output=True, text=True, check=True)
     java_version = java.stdout + java.stderr
     match = re.search(r'version "(\d+)', java_version)
@@ -170,13 +180,16 @@ def build():
     if not sources or len(java_sources) < 2:
         raise ValueError('No authored runtime host sources')
     OUT.mkdir(parents=True, exist_ok=True)
-    report = {'scope': 'Compile MSL host, verifier and loader, plus reviewed pinned MIT Injekt sources; no extension archive execution during build or iOS execution.',
+    report = {'scope': 'Compile MSL host, verifier and loader, plus pinned Injekt and Zstd/Okio Kotlin sources; native codec is built separately. No extension archive execution during build or iOS execution.',
               'dependency_lock_sha256': digest(LOCK),
               'dependencies': [{'filename': item['filename'], 'sha256': digest(path), 'roles': item['roles']} for item, path in resolved],
-              'sources': {str(path.relative_to(ROOT)): digest(path) for path in [*sources, *java_sources, *vendor_sources, INJEKT_LOCK, INJEKT_PATCH]},
+              'sources': {str(path.relative_to(ROOT)): digest(path) for path in [*sources, *java_sources, *vendor_sources, INJEKT_LOCK, INJEKT_PATCH, *codec_sources, zstd_source.LOCK, zstd_source.PATCH, Path(zstd_source.__file__)]},
               'source_dependencies': [{'name': injekt['name'], 'repository': injekt['repository'],
                                        'commit': injekt['commit'], 'license_spdx': injekt['license_spdx'],
-                                       'lock_sha256': digest(INJEKT_LOCK), 'compatibility_patch_sha256': digest(INJEKT_PATCH)}],
+                                       'lock_sha256': digest(INJEKT_LOCK), 'compatibility_patch_sha256': digest(INJEKT_PATCH)},
+                                      {'name': 'zstd-kmp and zstd-kmp-okio Kotlin sources', 'repository': codec['kotlin']['repository'],
+                                       'commit': codec['kotlin']['commit'], 'license_spdx': codec['kotlin']['license_spdx'],
+                                       'lock_sha256': digest(zstd_source.LOCK), 'compatibility_patch_sha256': digest(zstd_source.PATCH)}],
               'build_jdk': java_version,
               'platform_api': 'JDK21+ List compatibility bridges; Java17 bytecode, not a Java17 platform API guarantee',
               'extension_code_executed': False, 'ios_execution': False}
@@ -194,11 +207,28 @@ def build():
             vendor_result = subprocess.run(vendor_command, cwd=ROOT, capture_output=True, text=True, timeout=120)
         report['injekt_compile'] = {'command': vendor_command, 'exit_code': vendor_result.returncode,
                                      'stdout': vendor_result.stdout, 'stderr': vendor_result.stderr}
+        with tempfile.TemporaryDirectory(prefix='zstd-source-', dir=OUT) as codec_directory:
+            groups = zstd_source.prepare_kotlin(codec, Path(codec_directory))
+            codec_command = compiler_command(resolved, groups['common']+groups['platform'], classes)
+            codec_command[codec_command.index('-d'):codec_command.index('-d')] = [
+                '-module-name', 'msl_zstd', '-Xmulti-platform', '-Xexpect-actual-classes',
+                # This shared JNI file also declares the JVM/Android loader expect.
+                '-Xcommon-sources='+','.join(map(str, groups['common']+[
+                    p for p in groups['platform'] if p.name == 'JniZstd.kt']))]
+            codec_result = subprocess.run(codec_command, cwd=ROOT, capture_output=True, text=True, timeout=120)
+            okio_command = compiler_command(resolved, groups['okio'], classes, str(classes))
+            okio_command[okio_command.index('-d'):okio_command.index('-d')] = ['-module-name', 'msl_zstd_okio']
+            okio_result = subprocess.run(okio_command, cwd=ROOT, capture_output=True, text=True, timeout=120)
+        report['zstd_compile'] = {'command': codec_command, 'exit_code': codec_result.returncode,
+                                   'stdout': codec_result.stdout, 'stderr': codec_result.stderr}
+        report['zstd_okio_compile'] = {'command': okio_command, 'exit_code': okio_result.returncode,
+                                        'stdout': okio_result.stdout, 'stderr': okio_result.stderr}
         command = compiler_command(resolved, sources, classes, str(classes))
         result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=120)
         report['compile'] = {'command': command, 'exit_code': result.returncode,
                              'stdout': result.stdout, 'stderr': result.stderr}
-        report['passed'] = result.returncode == 0 and java_result.returncode == 0 and vendor_result.returncode == 0
+        report['passed'] = all(code == 0 for code in [result.returncode, java_result.returncode,
+                                                    vendor_result.returncode, codec_result.returncode, okio_result.returncode])
         if report['passed'] and any(digest(ROOT / name) != value for name, value in report['sources'].items()):
             report['passed'] = False
             report['compile']['stderr'] += '\nAuthored source changed during compilation.\n'
@@ -206,6 +236,7 @@ def build():
             license_path = classes / 'META-INF/licenses/injekt-LICENSE.txt'
             license_path.parent.mkdir(parents=True, exist_ok=True)
             license_path.write_bytes((ROOT / injekt['source_root'] / 'LICENSE').read_bytes())
+            (license_path.parent/'zstd-kmp-LICENSE.txt').write_bytes((ROOT/codec['kotlin']['source_root']/'LICENSE').read_bytes())
             jar_path = OUT / 'runtime-host.jar'
             with zipfile.ZipFile(jar_path, 'w', zipfile.ZIP_DEFLATED) as jar:
                 for path in sorted(classes.rglob('*')):
@@ -219,6 +250,8 @@ def build():
     if not report['passed']:
         print(report['java_compile']['stderr'])
         print(report['injekt_compile']['stderr'])
+        print(report['zstd_compile']['stderr'])
+        print(report['zstd_okio_compile']['stderr'])
         print(report['compile']['stderr'])
         raise SystemExit(1)
     return resolved, report

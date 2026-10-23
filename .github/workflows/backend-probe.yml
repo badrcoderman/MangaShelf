@@ -65,6 +65,7 @@ jobs:
           rm -f validation/runtime-host-build.json validation/runtime-host-tests.json \
             validation/runtime-preferences-host.json validation/runtime-network-host.json validation/runtime-bootstrap-host.json \
             validation/runtime-source-preferences-host.json \
+            validation/runtime-zstd-host.json validation/zstd-native-host.json validation/zstd-native-ios.json \
             validation/extension-archive-verifier-host.json validation/extension-loader-host.json
           python3 -u scripts/test-runtime-host.py
       - name: Check durable extension preferences
@@ -75,6 +76,24 @@ jobs:
         run: python3 -u scripts/test-runtime-source-preferences.py
       - name: Check authored HTTP sources and TLS on host JVM
         run: python3 -u scripts/test-runtime-network.py
+      - name: Check source-built codec, JNI failures and builtin loading
+        run: python3 -u scripts/test-runtime-zstd.py
+      - name: Select iOS 26 toolchain for codec compilation
+        if: runner.os == 'macOS'
+        run: |
+          for APP in /Applications/Xcode*.app; do
+            DEV="$APP/Contents/Developer"
+            SDK=$(DEVELOPER_DIR="$DEV" xcrun --sdk iphoneos --show-sdk-version 2>/dev/null) || continue
+            if [ "${SDK%%.*}" -ge 26 ]; then
+              echo "DEVELOPER_DIR=$DEV" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          echo '::error::iOS 26 SDK missing'
+          exit 1
+      - name: Compile and link codec JNI for arm64 iOS without execution
+        if: runner.os == 'macOS'
+        run: python3 -u scripts/build-zstd-native.py --target ios
       - name: Check signatures and bounded archive handling
         run: python3 -u scripts/test-extension-archive-verifier.py
       - name: Load authored signed SourceFactory fixtures
@@ -91,8 +110,16 @@ jobs:
             validation/runtime-network-host.json
             validation/runtime-bootstrap-host.json
             validation/runtime-source-preferences-host.json
+            validation/runtime-zstd-host.json
+            validation/zstd-native-host.json
+            validation/zstd-native-ios.json
             validation/extension-archive-verifier-host.json
             validation/extension-loader-host.json
             build/runtime-host/runtime-host.jar
+            build/zstd-native/host/libmslzstd.a
+            build/zstd-native/host/notices/
+            build/zstd-native/ios/libmslzstd.a
+            build/zstd-native/ios/MSLZstdLinkProbe
+            build/zstd-native/ios/notices/
           if-no-files-found: warn
           retention-days: 14

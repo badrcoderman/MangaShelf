@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "file": "zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt",
+  "reason": "Use a separately source-built library, including a named statically linked iOS JNI library; no native extraction or os.name guessing.",
+  "original_sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472",
+  "patched_sha256": "4a8dcb34fd76192947f5e7b5cf8a7e4061a41e6b1d1882f77278fbbb982d0e48",
+  "replacements": [
+    {
+      "old": "import java.nio.file.Files\nimport java.nio.file.StandardCopyOption\nimport java.util.Locale.US\n\n",
+      "new": "",
+      "count": 1
+    },
+    {
+      "old": "internal actual fun loadNativeLibrary() {\n  val osName = System.getProperty(\"os.name\").lowercase(US)\n  val osArch = System.getProperty(\"os.arch\").lowercase(US)\n  val resourcePath = when {\n    osName.contains(\"windows\") -> \"/jni/$osArch/zstd-kmp.dll\"\n    osName.contains(\"linux\") -> \"/jni/$osArch/libzstd-kmp.so\"\n    osName.contains(\"mac\") -> \"/jni/$osArch/libzstd-kmp.dylib\"\n    else -> error(\"Unsupported OS: $osName (arch=$osArch)\")\n  }\n\n  // File-based deleteOnExit() uses a special internal shutdown hook that always runs last.\n  val tempFile = Files.createTempFile(\"zstd-kmp\", null)\n  tempFile.toFile().deleteOnExit()\n\n  ZstdCompressor::class.java.getResourceAsStream(resourcePath).use { inputStream ->\n    Files.copy(inputStream, tempFile, StandardCopyOption.REPLACE_EXISTING)\n  }\n\n  System.load(tempFile.toAbsolutePath().toString())\n}\n",
+      "new": "internal actual fun loadNativeLibrary() {\n  System.loadLibrary(\"mslzstd\")\n}\n",
+      "count": 1
+    }
+  ]
+}

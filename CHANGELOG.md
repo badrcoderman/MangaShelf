@@ -2,6 +2,8 @@
 
 ## إعدادات المصادر — 24 أكتوبر 2026
 
+- بناء Zstd 1.5.8 وKotlin/Okio من مصادر مثبتة، مع الاحتفاظ بالإشعارات ومحوّل JNI مستقل وloader للمكتبة المرتبطة بدل استخراجها. نجحت 17 حالة لكل من dynamic وbuiltin على المضيف، تشمل فشل JNI وOOM محقونة والإغلاق المتزامن وفساد البيانات وإغلاق VM بعد التنظيف. أضيفت بوابة compile/link لـarm64 iOS في CI؛ نجاح الهاتف وربط المصدر وIPA ما زالت مطلوبة. [النطاق](docs/SOURCE-ZSTD-AR.md).
+
 - تأكيد إعدادات المصادر في [Actions 40032630971](https://github.com/badrcoderman/MangaShelf/actions/runs/40032630971) عند 8e3102e على Linux وmacOS: نجحت 17 إعدادات و20 تحميلًا موقّعًا و14 نماذج و20 سجلًا و6 bootstrap و16 تفضيلات و16 HTTP/TLS و46 توقيعًا لكل منصة، وABI 45/278. فُحصت artifacts التساعية وبصمات المصدر ورخصة Injekt، وتطابقت JAR بين المنصتين. لا IPA أو إضافة منشورة/iPhone؛ [الإثبات](validation/runtime-host-40032630971.json).
 - مراجعة المصدر العام للـcodec: طابقت 11 ملف Kotlin مع source archives، وثُبت Zstd 1.5.8 وواجهات JNI وآلية تحميل builtin في JVM المثبتة. سُجلت بصمات النصوص ومسار static المقترح؛ لا codec مبنية أو منفذة بهذه المراجعة. [التفاصيل](validation/zstd-ios-static-review.json).
 
