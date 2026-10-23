@@ -16,7 +16,8 @@ python3 scripts/test-extension-loader.py
 Use a JDK 21 or later. Kotlin 2.4.10 generates Java 17 bytecode while seeing
 the current JDK collection API. This preserves the read-only `FilterList`
 compatibility methods in the reference ABI; it is not a guarantee that the
-module runs on a Java 17 platform. Checks currently run on host Java 27.
+module runs on a Java 17 platform. Checks run locally on Java 27 and in Actions
+on Linux/macOS Java 25.
 
 The build verifies every tool and runtime JAR against
 `dependencies.lock.json` before executing the compiler. Matching files may be
@@ -90,6 +91,13 @@ signers, multi-release/sealed packages, Unicode resources, manifest rejection,
 initialization checks, cancellation and draining removal. This proves neither
 publisher identity nor Android/network bootstrap or iOS execution. Trusted
 plugins share the host process; SecureClassLoader provides no sandbox.
+
+Actions run [39934045293](https://github.com/badrcoderman/MangaShelf/actions/runs/39934045293)
+passed on both platforms: 14 model checks, 19 registry checks, 17 loader checks
+and 46 authored signature checks each. Both artifacts passed digest/CRC/source
+fingerprint inspection and contain the same host JAR. The local 47th signature
+case is an optional data-only check of the separately rebuilt public candidate;
+that file is absent from CI. See `validation/runtime-host-39934045293.json`.
 
 ## Reference and limits
 

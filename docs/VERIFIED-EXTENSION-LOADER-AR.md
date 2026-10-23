@@ -59,6 +59,13 @@ python3 scripts/test-runtime-host.py
 نجحت 17 حالة على مضيف Java 27، وبقيت حالات التوقيع الـ47 وواجهات النماذج
 والسجل ناجحة. النتيجة المحفوظة:
 [extension-loader-host.json](../validation/extension-loader-host.json).
+نجح كذلك [Actions 39934045293](https://github.com/badrcoderman/MangaShelf/actions/runs/39934045293)
+على Linux وmacOS بـJava 25: عدد 14 فحص نماذج و19 سجل و17 تحميل و46 توقيع
+في كل منصة. الحالة المحلية الإضافية للتوقيع تفحص حزمة المصدر المعاد بناؤها
+كبيانات، وهي غير موجودة في CI. طابقت بصمتا artifact والـCRC وبصمات المدخلات
+المراجعة `efabe81`، وتطابقت JAR المضيف الناتجة بين المنصتين؛
+[سجل الفحص](../validation/runtime-host-39934045293.json).
+
 لم تدخل JAR منشورة أو ملفات العينة التنفيذية في اختبار التحميل.
 تبقى Android/HttpSource والشبكة ومحوّل النماذج وربط Swift واختبار إضافة
 حقيقية على iPhone ضمن ENG-03/05/06/09/11؛ لا تُغلق بهذه الاختبارات.
