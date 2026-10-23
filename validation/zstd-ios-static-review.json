@@ -332,8 +332,19 @@
     "host_test_report": "validation/runtime-zstd-host.json",
     "host_checks_per_loading_mode": 17,
     "host_dynamic_and_builtin_passed": true,
-    "ios_compile_link": "pending CI",
+    "ios_compile_link": {
+      "run_id": 40037458892,
+      "source_commit": "8734c7b6af84f55541199a89f64b09f877005468",
+      "objects": 27,
+      "target": "arm64-apple-ios26.0",
+      "sdk_version": "26.0",
+      "export_trie_jni_symbols": 11,
+      "test_hooks_absent": true,
+      "evidence": "validation/runtime-codec-40037458892.json"
+    },
     "ios_execution": false,
-    "documentation": "docs/SOURCE-ZSTD-AR.md"
+    "documentation": "docs/SOURCE-ZSTD-AR.md",
+    "full_host_suite_evidence": "validation/runtime-host-40036314382.json",
+    "main_app_integration": false
   }
 }

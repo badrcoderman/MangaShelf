@@ -47,6 +47,17 @@ dynamic/builtin loading mode locally, including a genuinely linked builtin and
 embedded JVM shutdown under `-Xcheck:jni`. iOS compilation/linking and phone
 execution have separate gates. See [sources, lifecycle and limits](../docs/SOURCE-ZSTD-AR.md).
 
+The full suite passed on Linux/macOS at `29a1379` in
+[40036314382](https://github.com/badrcoderman/MangaShelf/actions/runs/40036314382).
+The subsequent native null-allocation fix passed the focused `runtime-codec`
+task at `8734c7b` in
+[40037458892](https://github.com/badrcoderman/MangaShelf/actions/runs/40037458892),
+including iOS compilation/linking again. Artifact inspection verified all 27 iOS
+objects and the link probe's 11 JNI exports directly from its export trie, with
+no test hooks. Neither run executes iOS code or produces an IPA. See the
+corresponding `validation/runtime-host-40036314382.json` and
+`validation/runtime-codec-40037458892.json` reports.
+
 The retained ABI checks cover 45 public/protected classes and 278 members,
 including member visibility, static method flags, interface kinds and inheritance,
 plus 14 functional checks using

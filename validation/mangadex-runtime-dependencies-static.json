@@ -1,0 +1,122 @@
+{
+  "scope": "Constant-pool class/descriptor reference inventory only; not class linking, member resolution, execution, reflection discovery or an exhaustive runtime dependency proof. Candidate remains data-only.",
+  "candidate_sha256": "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
+  "candidate_class_count": 145,
+  "available_class_count": 3103,
+  "runtime_inputs_sha256": {
+    "build/runtime-host/runtime-host.jar": "d0385efca1818793c45795c86722b68b632e4dc98070697f009f9d7008603fbd",
+    "build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df",
+    "build/runtime-host/dependencies/annotations-13.0.jar": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478",
+    "build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa",
+    "build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar": "f4a801c647d4351327cd9e1ac4113e2be9ea37a64ab0abae269c25a52e28f35d",
+    "build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar": "563a25b4eb5c9128ae9c2479f3d1a5c44dcd176112b91cf03682e906eba5c935",
+    "build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar": "b15e605ca0a4b12c62ea7f657dad413c236c947e875854767349cdbe20df473c",
+    "build/runtime-host/dependencies/okio-jvm-3.18.1.jar": "b97b640557a650d15411f2be29aef558c4e422a83653cb18ba494311dbed18be"
+  },
+  "unresolved_class_references": {
+    "android/app/Activity": [
+      "keiyoushi/source/UrlActivity"
+    ],
+    "android/content/ActivityNotFoundException": [
+      "keiyoushi/source/UrlActivity"
+    ],
+    "android/content/Intent": [
+      "keiyoushi/source/UrlActivity"
+    ],
+    "android/os/Build$VERSION": [
+      "eu/kanade/tachiyomi/extension/all/mangadex/MangaDex"
+    ],
+    "android/os/Bundle": [
+      "keiyoushi/source/UrlActivity"
+    ],
+    "android/os/SystemClock": [
+      "keiyoushi/b/c"
+    ],
+    "android/util/Log": [
+      "eu/kanade/tachiyomi/extension/all/mangadex/I",
+      "keiyoushi/source/UrlActivity"
+    ],
+    "okhttp3/brotli/Brotli": [
+      "keiyoushi/source/a"
+    ],
+    "okhttp3/brotli/BrotliInterceptor": [
+      "keiyoushi/source/a"
+    ],
+    "okhttp3/zstd/Zstd": [
+      "keiyoushi/source/a"
+    ],
+    "org/jsoup/parser/Parser": [
+      "eu/kanade/tachiyomi/extension/all/mangadex/I"
+    ]
+  },
+  "jdk_references": [
+    "java/io/Closeable",
+    "java/io/IOException",
+    "java/io/InputStream",
+    "java/io/InputStreamReader",
+    "java/io/Reader",
+    "java/lang/Boolean",
+    "java/lang/CharSequence",
+    "java/lang/Character",
+    "java/lang/Class",
+    "java/lang/ClassLoader",
+    "java/lang/Comparable",
+    "java/lang/Enum",
+    "java/lang/Exception",
+    "java/lang/IllegalArgumentException",
+    "java/lang/IllegalStateException",
+    "java/lang/Integer",
+    "java/lang/Iterable",
+    "java/lang/Long",
+    "java/lang/NoSuchFieldError",
+    "java/lang/Number",
+    "java/lang/Object",
+    "java/lang/RuntimeException",
+    "java/lang/String",
+    "java/lang/StringBuilder",
+    "java/lang/System",
+    "java/lang/Throwable",
+    "java/lang/UnsupportedOperationException",
+    "java/lang/annotation/Annotation",
+    "java/lang/invoke/CallSite",
+    "java/lang/invoke/LambdaMetafactory",
+    "java/lang/invoke/MethodHandle",
+    "java/lang/invoke/MethodHandles$Lookup",
+    "java/lang/invoke/MethodType",
+    "java/lang/invoke/StringConcatFactory",
+    "java/lang/reflect/Field",
+    "java/lang/reflect/Type",
+    "java/text/Collator",
+    "java/time/LocalDate",
+    "java/time/LocalDateTime",
+    "java/time/ZoneId",
+    "java/time/ZoneOffset",
+    "java/time/ZonedDateTime",
+    "java/time/format/DateTimeFormatter",
+    "java/time/temporal/ChronoUnit",
+    "java/time/temporal/TemporalAccessor",
+    "java/time/temporal/TemporalUnit",
+    "java/util/ArrayDeque",
+    "java/util/ArrayList",
+    "java/util/Arrays",
+    "java/util/Collection",
+    "java/util/Comparator",
+    "java/util/HashMap",
+    "java/util/Iterator",
+    "java/util/LinkedHashMap",
+    "java/util/List",
+    "java/util/Locale",
+    "java/util/Map",
+    "java/util/Map$Entry",
+    "java/util/PropertyResourceBundle",
+    "java/util/Set",
+    "java/util/concurrent/ConcurrentHashMap",
+    "java/util/concurrent/atomic/AtomicBoolean",
+    "java/util/concurrent/atomic/AtomicInteger",
+    "java/util/concurrent/locks/Condition",
+    "java/util/concurrent/locks/Lock",
+    "java/util/concurrent/locks/ReentrantLock"
+  ],
+  "extension_executed": false,
+  "ios_execution": false
+}

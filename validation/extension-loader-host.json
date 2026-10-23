@@ -1,13 +1,13 @@
 {
-  "recorded_at": "2026-10-23T22:19:41.943343+00:00",
+  "recorded_at": "2026-10-23T22:54:44.249677+00:00",
   "scope": "Host JVM, project-authored signed executable fixtures and loopback HTTP only. No published extension, production activation, NativeNet, publisher trust bootstrap or iOS execution.",
   "published_extension_executed": false,
   "ios_execution": false,
   "passed": true,
   "inputs_sha256": {
-    "scripts/build-runtime-host.py": "d6d9f3e6ba734a9706e7d2f4142cbfda57d860e099aad8e2e7bbd55996bcf6a2",
+    "scripts/build-runtime-host.py": "ef7394922eac721ae796ec2f745f889e73669e2256cb9f1815868d6313282d92",
     "runtime-host/dependencies.lock.json": "1fd29b72442457c4e29ed8347b4b565c673efc2d4de915d5070c543b79f50680",
-    "scripts/test-extension-loader.py": "ab8a17b63456e2d1e77517cbac08f4a26cc40689d10ea71a3bf1a0c3ec2890d4",
+    "scripts/test-extension-loader.py": "ccb6c7ede5a92f370475396782969df66995415052d3fef3bc8be389817cefcf",
     "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e",
     "runtime-host/injekt-source.lock.json": "79053c360a923aab8e6761254a17f39204c616459da7c316aa96f2ff34d63007",
     "runtime-host/injekt-compat.patch.json": "83081b5598023706dc4de591ad9039fce42db4a83e0dc4c0f2f4c0aadee804ea",
@@ -21,6 +21,91 @@
     "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/TypeInfo.kt": "005c8d6416f5295c986194c555126147f92978738bc84b66dd0f0fef7057635d",
     "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/Injekt.kt": "153f41ce2ffe201122f362c433fe58e0f39f48296617b2aae70fa943d25f4650",
     "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/registry/default/DefaultRegistrar.kt": "f7abedc2c60017a7bbe17b3d2aca8f149ae564a2fc929ef3c207b55c950617d5",
+    "scripts/zstd-source.py": "429a3b9b2adbb9fb547d54a147f26488f7c0e6b041892d1bf57a9b1feaa2a0b4",
+    "runtime-host/zstd-source.lock.json": "e93e031636ebb14c39e4a67fb00cd877678fcc47672c16e8fea749b36bde1762",
+    "runtime-host/zstd-compat.patch.json": "527ad24388387da721dd2ff9e0d37249e13ab6d90109176f28c9473000e797ea",
+    "runtime-host/third_party/zstd-kmp/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/Zstd.kt": "3cb1ff84e86fb57d880ba95def71858e9f440814efc20c238523d3bc85cd8825",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdCompressSink.kt": "985427f2b3bceac984b999717244487642fee260f8ccca4fa861095b8ea85766",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdDecompressSource.kt": "10d557dafe37a6a7295d30f4820594164cd7fc8bed392634674cc69b57640f9d",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/Zstd.kt": "a00afad1c734b534508dd78cd396424f265172111cc2b71f79024d025f63f186",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdCompressor.kt": "89b919712c8d4ced1592e59e57f48341767809c3f6792f3c960a6a956e4df356",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdDecompressor.kt": "7e8eb7284a8ec43f4d46c3345f4f1f7cc3bbf7485596d2ff2d18e3f5e3e4323d",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstd.kt": "0c68722d679d9ce819bb99d0a887b18cd17683d5d78d1885ed37840fb92cd304",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdCompressor.kt": "94e46b3eb77d42e02c5901a6db9135a05291ef94057e6424dac74479537cfdd0",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdDecompressor.kt": "6d45d72c6e27ad93873b136e230ed6b8b8d9d29b72ad548cf1a0600a1cf8069e",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/Zstd.jni.kt": "b847ea17a8c47843de0bae6ffbbbc2691c8283b62959ea067b6f3766b711d1e9",
+    "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472",
+    "runtime-native/third_party/zstd/COPYING": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505",
+    "runtime-native/third_party/zstd/LICENSE": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+    "runtime-native/third_party/zstd/lib/common/allocations.h": "6a718e8edaca112abdc0bdfa7de67edefaa44c8d9e514b79672ab58ab3a9118a",
+    "runtime-native/third_party/zstd/lib/common/bits.h": "a7c538410d152df8a7ec6ecca194804f6d9fb998a92765513b38aa6f00226448",
+    "runtime-native/third_party/zstd/lib/common/bitstream.h": "a9461685c9add6f609078acc950a08db4c02e6e6a849d550f45182ba2ae38556",
+    "runtime-native/third_party/zstd/lib/common/compiler.h": "e788b6b7f0dc6d73f92c0669bcd3d069d2b3ede4ede7be2241c979e3722362b1",
+    "runtime-native/third_party/zstd/lib/common/cpu.h": "23d520b536a6f23114e66549d03a967b1f24b15560c5b1ebd47ee392ccee4a1c",
+    "runtime-native/third_party/zstd/lib/common/debug.c": "7ab1ea104acf3243fc1cd4e6d2514046f1dfc1101c7c676145c8da080e8c24ca",
+    "runtime-native/third_party/zstd/lib/common/debug.h": "8260cd5087b8309679c61b772b535688993c61a675a30481b8ae55b45740ba15",
+    "runtime-native/third_party/zstd/lib/common/entropy_common.c": "7dfce29c6bc807645b1f0c373dad94bbb49603b175a84e72d1739bf9df65feb8",
+    "runtime-native/third_party/zstd/lib/common/error_private.c": "3f5873b2626ca1cdf554b7ec7b04ea0ef296fd0f6882d7fad42448b7e2dbb41c",
+    "runtime-native/third_party/zstd/lib/common/error_private.h": "ae077bb433eb150ee247410a0357f910b9c07be839c6a9abe0b2e6b18ceb716d",
+    "runtime-native/third_party/zstd/lib/common/fse.h": "5235ce1e512bf80204d013b1f4cecd776fdaa9effddb48308bce08f6d0b84499",
+    "runtime-native/third_party/zstd/lib/common/fse_decompress.c": "84eba7030a036b36363a5108e760428ce549f1a833bec6464dc755f6ed51a6fb",
+    "runtime-native/third_party/zstd/lib/common/huf.h": "9a83d899c8c9bf03389d482562090ec2443bc0f87f27864a2b891b180333f2d4",
+    "runtime-native/third_party/zstd/lib/common/mem.h": "4dd5fe76fa30a020cd4b3af3134ae143920300a1fe54baac1a5da73297e66783",
+    "runtime-native/third_party/zstd/lib/common/pool.c": "9431e26cf7ca46ffb878f17df31198046664d592ae208dfbe3715e82b87af79d",
+    "runtime-native/third_party/zstd/lib/common/pool.h": "bca19a2408e85f31bad3a13f205de92ac26ecda0c5af96fdd7f213ce03d9fc78",
+    "runtime-native/third_party/zstd/lib/common/portability_macros.h": "fb69eb648f4c0e66a2cbf552a8f0e031b795a9c68dd5a1fc6fb35b9747eedcfb",
+    "runtime-native/third_party/zstd/lib/common/threading.c": "50448323b46a8e1bde042ee88ec44fcfc646f3d4aeba8a06be54d26a710ed78d",
+    "runtime-native/third_party/zstd/lib/common/threading.h": "9ca63027ea64046acacccbe056a414d37ea7ea428ce299fe08abe53c204c5c65",
+    "runtime-native/third_party/zstd/lib/common/xxhash.c": "8444d064922f434b67b708a987981aa21dfeece735b48c82d31f7027d0ccef03",
+    "runtime-native/third_party/zstd/lib/common/xxhash.h": "8cb837b21a8fe9a6b9dbcd0961ab16e733bfcbfa9e003f3a496ce07ae80aa8ee",
+    "runtime-native/third_party/zstd/lib/common/zstd_common.c": "e85829d25434d841c96491bc9d8bb2d73c0ee80319e3d59e9ca6e2951d9592cf",
+    "runtime-native/third_party/zstd/lib/common/zstd_deps.h": "9c77ea7d0afa8d5c868a7839e178a446a82d88eb75fd56f2fd7d9d96c5ab7c11",
+    "runtime-native/third_party/zstd/lib/common/zstd_internal.h": "82f438584048fa704ae71166edf8c60bc91dcb2473c53e7049128a04276a27db",
+    "runtime-native/third_party/zstd/lib/common/zstd_trace.h": "17f6daa4c7e97055cd1ed7bcf4d9241a4e79b465f083c5d732fda1df2f0be11e",
+    "runtime-native/third_party/zstd/lib/compress/clevels.h": "d764daa89b7a636d26fe96ff3536c5075e9867fb5dddbf8c9d57023a8ff4a155",
+    "runtime-native/third_party/zstd/lib/compress/fse_compress.c": "5070807a489757b87c1e1f50332b099e8ffe22971228218111eef64d3321ae82",
+    "runtime-native/third_party/zstd/lib/compress/hist.c": "06073ee418d67ad16ac650d8c812db1e14c114b3da699e5411940285c7d50f5d",
+    "runtime-native/third_party/zstd/lib/compress/hist.h": "1c1a7a020df310d4ac8ee0729acb21bfa6d6a107e07d4036bb193a70570e5d48",
+    "runtime-native/third_party/zstd/lib/compress/huf_compress.c": "d213b5f8d1e9f5c52df38c432597a00cf046869910993f3a1a22b620f85b31a7",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress.c": "51700092a725fc780c1f30310898c238d8fdc787a2f07a9658797af5b33cef3e",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_internal.h": "e99de778a2a733bde856172057fe380256c379f082bd3513cac600b005ac2b98",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_literals.c": "a8f25f1bd4c0d2d9dda3355d2103c9dfbd0b7056bfd373e29e923662bfea5596",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_literals.h": "02270cd6bc060279217861776a53adb67f8d7e54f47f59d2a4ddcef2e705fe2d",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_sequences.c": "3f4334c19ed770c4007bc12df4098026d4eb1a6fbebfbf36df58054e7babc3e9",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_sequences.h": "361d108d7d452ed26f0ae4b39964f8e62166ed91d03347a5229e5d228734efc8",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_superblock.c": "dd62ed79ee1feec78b2e5bfc63417ccbdcda426f4220d112b0fcd8a9d0c7e667",
+    "runtime-native/third_party/zstd/lib/compress/zstd_compress_superblock.h": "6b097999ea1d91776ca5a12e5ee02c1ed15edfcd31ba07b9ada94b0955195677",
+    "runtime-native/third_party/zstd/lib/compress/zstd_cwksp.h": "ed77c2739b18b9800b97785262526a1dd4f385311ca5c2caa20b6f2a35f3735d",
+    "runtime-native/third_party/zstd/lib/compress/zstd_double_fast.c": "9f6d003c2fe1208737bec685910324220424ba47d0323fa30d9d5f53c50e91da",
+    "runtime-native/third_party/zstd/lib/compress/zstd_double_fast.h": "d9c29c9c004f572532265e12af78d5949c0908f4ef0bb0158977bcf80e1cf92b",
+    "runtime-native/third_party/zstd/lib/compress/zstd_fast.c": "8037320f321836652e73ab6cbf7b8f1f4c97cef38835ac6b4aaf0af716aa398d",
+    "runtime-native/third_party/zstd/lib/compress/zstd_fast.h": "dffdf43fae7ee10a2acc04e6a5eaaf03f7d3572898117a06c330d647eed5591d",
+    "runtime-native/third_party/zstd/lib/compress/zstd_lazy.c": "dd6ccf357165dc8cb574ea56a34ff1db57b7b31728b32103d0c6b72319fd45b1",
+    "runtime-native/third_party/zstd/lib/compress/zstd_lazy.h": "6f13007fbd6824058a73b097960446defe265e33b22c7c6dc2304dcf53998bbf",
+    "runtime-native/third_party/zstd/lib/compress/zstd_ldm.c": "4a2bef3612ae4a9e15a78a55541a152091fa8ba160410db24d495bd6dd57249e",
+    "runtime-native/third_party/zstd/lib/compress/zstd_ldm.h": "bd0cb86041d3a72fd7846e141a41aadae229c8e331a2117df7f6b70a1b4cb08c",
+    "runtime-native/third_party/zstd/lib/compress/zstd_ldm_geartab.h": "7285ac8ba1f0fa57a8cd8158bd427ded4e70e32a58e73b57c420b83a76e5e6e3",
+    "runtime-native/third_party/zstd/lib/compress/zstd_opt.c": "625936ee3fb02d789abb894c1fbc2918ee47582434094c963b630da13532c876",
+    "runtime-native/third_party/zstd/lib/compress/zstd_opt.h": "9b677efbae28909034d3c24f37dc5c4295d267cf477bf04e14653579f90d8b6e",
+    "runtime-native/third_party/zstd/lib/compress/zstd_preSplit.c": "8d7da15de31318ebb7dfe2f2e2c79f05b0d0563dcb92d4525814d05a279d0d64",
+    "runtime-native/third_party/zstd/lib/compress/zstd_preSplit.h": "910facb2e3442e42a6952c514223c4502d95ed957bf7dc73982b3b03785b361b",
+    "runtime-native/third_party/zstd/lib/compress/zstdmt_compress.c": "c83db699b4041bf4db89c5558db490dd295635f1eeefd60b643fbc862bbac7b5",
+    "runtime-native/third_party/zstd/lib/compress/zstdmt_compress.h": "033fb25d96b4295c3d0158edf4d1bd4067f42aac39427706754e6c034b20f80f",
+    "runtime-native/third_party/zstd/lib/decompress/huf_decompress.c": "0086a55ab29623b914453e9d6d07f8f93a868fcf7d6862fb70177587ba09b1f1",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_ddict.c": "38bf812283d61f4cd1f6aea30f84b43317418257c4e6fc198b09b436bd484397",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_ddict.h": "a97a250fd2f956e3ae419ddde68ae1f9fe4025bc0373254058d31bbd352fa71c",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_decompress.c": "029580818b7e9cd38d9d07c63516b00ceaa943ffcfbd099fc5ccbe3628fa362f",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_block.c": "3b5578187aab5ec88105e8f6567127d9b5686aad5bff50add3bef979c75ff48a",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_block.h": "62ee0c6ae3f7353020538397f436b59743da8acb922068841b346f480f7078ac",
+    "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_internal.h": "73217b49a644c0fcf567b70677cae31449ba9f50a235ef3b681001c3f36dc56d",
+    "runtime-native/third_party/zstd/lib/zstd.h": "9e132ed39fc7cf224e1a54ff8c09c98898169208bdf66258ad15b6d7710d096e",
+    "runtime-native/third_party/zstd/lib/zstd_errors.h": "66a8c3f71d12ea6e797e4f622f31f3f8f81c41b36f48cad4f5de7d8bfb6aac0a",
+    "runtime-native/third_party/openjdk-jni/ADDITIONAL_LICENSE_INFO": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916",
+    "runtime-native/third_party/openjdk-jni/ASSEMBLY_EXCEPTION": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33",
+    "runtime-native/third_party/openjdk-jni/LICENSE": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
+    "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
+    "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
     "runtime-host/src/main/kotlin/android/net/Uri.kt": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt": "d093b38f0fb83b01c6ed4176d61b8a3be90b9d511f90a71c7d86960df0fd621d",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt": "8ee434cc033ccba1657bda4c8bebe8a52b73be4d8140ba6ccbc38cecf62e6500",
@@ -55,6 +140,7 @@
     "runtime-host/src/test/loader/mangashelf/host/LoaderCheck.kt": "2927660c380fea65e75b10f618facc9fd94fb7f0448a3131730e31c52b8ee652",
     "runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt": "553116613c65ff6b86e32254d879af4fa4f0d37f760d00b4e29b4223c90ccb5e",
     "runtime-host/src/test/source-preferences/kotlin/mangashelf/host/SourcePreferencesCheck.kt": "f278080559b4c6f482cc02a2edaaa959f05e074bd2c8aa77d2acff37774f8d02",
+    "runtime-host/src/test/zstd/kotlin/mangashelf/host/ZstdCheck.kt": "db2d02f41e7b4312538866633e05c5d2e5f1ce05a66c481e87711ce1f326fcbb",
     "runtime-host/src/main/java/android/R.java": "b9d0f560c58f88a1aec48247ab20cabb537bd953878f15909a8e40d46a8193bf",
     "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
     "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
@@ -77,11 +163,12 @@
     "runtime-host/src/main/java/androidx/preference/TwoStatePreference.java": "edf30c0cde8ab569efb4f518ffe5f79bc4e0f4de6e18ee5957f941271639ccf6",
     "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d",
     "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b",
-    "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "6bf4ac4565535ef082ea1b41778d08d4af99039f5837c61329b582f438c96616",
+    "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java": "2e4e9fa7c09cb03999a6f63a05a53b29d553d557d69ab74d2110ec925bc4a4ea",
     "runtime-host/src/test/fixtures/java/fixture/extension/Versioned.java": "9165c44bbee72c1f9b550b93e83cce2add68fc9830fd0075ea8c7d53903fd708",
     "runtime-host/src/test/fixtures/shadow/kotlin/Shadow.java": "1d81e75e55e3a5e62f65d5f9c8c4a9ab7fc43eeccf5734db72165fd714301754",
     "runtime-host/src/test/fixtures/versioned/fixture/extension/Versioned.java": "21d7e43bd2a6b186e94e48cc2b523fe0977447f1f514e56b643dab3937cf1aff",
-    "runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java": "c503c59ce1c51e96536f51e91cd646ad751d804558d9af7561e6597cb7383919"
+    "runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java": "c503c59ce1c51e96536f51e91cd646ad751d804558d9af7561e6597cb7383919",
+    "runtime-host/src/test/zstd/java/mangashelf/host/ZstdNativeTestHooks.java": "50b8fc73b9bdc76766737d2c76d0277a9d29832795157d130b51a53bfbfb7f2a"
   },
   "documentation": [
     "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/jar/JarFile.html",
@@ -97,7 +184,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/fixture-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/fixture-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/fixtures/java/fixture/extension/Versioned.java"
       ],
       "exit_code": 0,
@@ -117,9 +204,9 @@
         "-jvm-default=enable",
         "-Werror",
         "-classpath",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/fixture-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/fixture-classes",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/fixture-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/fixture-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/fixtures/kotlin/fixture/extension/Generated.kt",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/fixtures/kotlin/fixture/extension/HttpFixture.kt"
       ],
@@ -135,7 +222,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/versioned-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/versioned-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/fixtures/versioned/fixture/extension/Versioned.java"
       ],
       "exit_code": 0,
@@ -150,7 +237,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/shadow-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/shadow-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/fixtures/shadow/kotlin/Shadow.java"
       ],
       "exit_code": 0,
@@ -164,7 +251,7 @@
         "-alias",
         "authored",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -194,21 +281,21 @@
         "-alias",
         "authored",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storepass",
         "mangashelf-authored-loader-test-key",
         "-file",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/fixture.der"
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/fixture.der"
       ],
       "exit_code": 0,
       "stdout": "",
-      "stderr": "Certificate stored in file </home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/fixture.der>\n"
+      "stderr": "Certificate stored in file </home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/fixture.der>\n"
     },
     {
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -219,7 +306,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/valid.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/valid.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -230,7 +317,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -241,7 +328,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/single.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/single.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -252,7 +339,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -263,7 +350,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/not_source.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/not_source.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -274,7 +361,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -285,7 +372,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/private.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/private.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -296,7 +383,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -307,7 +394,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/abstract.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/abstract.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -318,7 +405,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -329,7 +416,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/throws.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/throws.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -340,7 +427,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -351,7 +438,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/blocking.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/blocking.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -362,7 +449,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -373,7 +460,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/parent.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/parent.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -384,7 +471,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -395,7 +482,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/no_android.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/no_android.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -406,7 +493,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -417,7 +504,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/entity.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/entity.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -428,7 +515,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -439,7 +526,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/old_api.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/old_api.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -450,7 +537,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -461,7 +548,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/shadow.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/shadow.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -472,7 +559,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -483,7 +570,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/versioned_shadow.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/versioned_shadow.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -494,7 +581,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -505,7 +592,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/classpath.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/classpath.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -516,7 +603,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -527,7 +614,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/multi.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/multi.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -538,7 +625,7 @@
       "command": [
         "jarsigner",
         "-keystore",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/authored-test-key.p12",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/authored-test-key.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -549,7 +636,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/http.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/http.jar",
         "authored"
       ],
       "exit_code": 0,
@@ -571,7 +658,7 @@
         "-classpath",
         "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar",
         "-d",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/test-classes",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/test-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/loader/mangashelf/host/LoaderCheck.kt"
       ],
       "exit_code": 0,
@@ -583,9 +670,9 @@
         "java",
         "-Xint",
         "-cp",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1/test-classes:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt/test-classes:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
         "mangashelf.host.LoaderCheck",
-        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-a0gl9tx1"
+        "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/loader-check-0reptxtt"
       ],
       "exit_code": 0,
       "stdout": "{\"passed\":true,\"checks\":{\"fixture_classes_are_absent_from_parent_classpath\":true,\"verified_open_handle_survives_original_replacement_without_snapshot_paths\":true,\"signed_factory_registers_and_invokes_two_real_typed_fixture_sources\":true,\"single_source_entrypoint_and_relative_manifest_class\":true,\"multi_release_class_selection_and_signed_package_sealing\":true,\"unicode_resource_urls_enumeration_and_closed_handle_behavior\":true,\"digest_and_pin_rejection_precede_constructor_execution\":true,\"manifest_identity_and_api_rejection_precede_initialization\":true,\"missing_manifest_and_entity_declarations_are_rejected\":true,\"host_class_shadow_and_external_classpath_are_rejected_before_initialization\":true,\"unsupported_entrypoint_types_and_abstract_classes_do_not_initialize\":true,\"entrypoint_must_resolve_from_verified_child_not_host_parent\":true,\"constructor_failure_closes_owned_loader_without_replay\":true,\"registration_failure_closes_owned_loader_without_replay\":true,\"cancellation_after_constructor_prevents_publication_and_closes_handle\":true,\"removal_drains_cancelled_source_before_archive_release\":true,\"signed_http_source_fetches_unicode_over_real_http_through_registry\":true,\"signed_source_settings_validate_persist_drive_http_and_drain_before_archive_close\":true,\"http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup\":true,\"manifest_parser_bounds_namespaces_duplicates_and_unsigned_version_range\":true},\"scope\":\"Project-authored signed fixture JARs and loopback HTTP, typed registry and host JVM; no published extension, NativeNet or iOS execution\"}\n",
@@ -594,122 +681,122 @@
   ],
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 346019,
-    "sha256": "4e4ca5ca72fd0a54888c0a23a5908274f0dc655a52f731950193b6ea0f38d4b8"
+    "bytes": 368607,
+    "sha256": "d0385efca1818793c45795c86722b68b632e4dc98070697f009f9d7008603fbd"
   },
-  "generated_fixture_certificate_sha256": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+  "generated_fixture_certificate_sha256": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
   "authored_fixtures": {
     "valid": {
       "file": "valid.jar",
-      "sha256": "8d2d6aaf028e54dfee17c771a02ceee75ef036e616c378760344163b261c9de3",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "ac69d548b0f67ac899e0ebe420635d265049bbd966e4691b06af9c90a1708345",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 40731
+      "bytes": 40726
     },
     "single": {
       "file": "single.jar",
-      "sha256": "accf142f4fcd2a3c13078505961c6d6e3521b88f366decd3ccd7d26c8b7bd4f7",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "df38aebb9e84d8c21659f6723cfffeaf442551a6c01d53fd4bab03beebe08d41",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Single",
-      "bytes": 40727
+      "bytes": 40721
     },
     "not_source": {
       "file": "not_source.jar",
-      "sha256": "51015501901258fb082d8b6b5be77ee5e60ac19650c00a9b090341ddb4a4aba4",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "d6a41bd5041f912228e3acda286223d3344da4272f18bcf47c8cc1acc6f33282",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.NotSource",
-      "bytes": 40735
+      "bytes": 40730
     },
     "private": {
       "file": "private.jar",
-      "sha256": "9aaff1d5b2451ec8f8ba71c944bd045df45695a2b5448be8ac8629c3cefa0070",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "286427e5d0830e2cfbe4079834ea1d20db697cdb4895081a6fecb84535e7addd",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.PrivateEntry",
-      "bytes": 40741
+      "bytes": 40736
     },
     "abstract": {
       "file": "abstract.jar",
-      "sha256": "7791b97c9c3f04fb56ebba1f0c9560ac62e904760820a3dc8ff6a14204dfb2dc",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "0d76e445f107dc88c3c325b8b206a1accd35967e328a9cdd697fd5e767a6e20e",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.AbstractEntry",
-      "bytes": 40732
+      "bytes": 40730
     },
     "throws": {
       "file": "throws.jar",
-      "sha256": "8263147c315d2898ff91c1ef27a158190e989f70987fe8c80db48793f451fdbb",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "c5c5d6d16c201e754de58cecfdb32f7309461aa30cfb71816448a10a1b359bf4",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.ThrowingEntry",
-      "bytes": 40740
+      "bytes": 40735
     },
     "blocking": {
       "file": "blocking.jar",
-      "sha256": "2c04923aad1573de8a0e78b3b69de4c41d6c40e3d3e2e854332d9654f94a2196",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "c876c58c6cbc7fc32eddaf803b4265406a63c47f83112ea061f509b0786aea53",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.BlockingEntry",
-      "bytes": 40739
+      "bytes": 40730
     },
     "parent": {
       "file": "parent.jar",
-      "sha256": "addd280b8d61b5066b4060b9458f5a6fdfe18e2bf7439d7514d74982e9b2c514",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "b4f3e12255104dcebfdd3b22e6da7d2a4aa4d3f00f2f3eccd190723f71a7011c",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "mangashelf.host.SourceRegistry",
-      "bytes": 40753
+      "bytes": 40745
     },
     "no_android": {
       "file": "no_android.jar",
-      "sha256": "cac5b43cf1149a48d35a560dcba0cf6bca2a320f1f64a8146a12c2b9bebcb20b",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "55bef01595da27336929a14de235db22bd3d460df059cbec1fea4b780ac26389",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 40277
+      "bytes": 40270
     },
     "entity": {
       "file": "entity.jar",
-      "sha256": "491a572309af40aae62aec964626db52ce657a2b5fb9f4dc4323a0d507702790",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "d6a0d77bf3c9c828815c6ea172ef53a5247334d416216e045a4672cf91ce2010",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 40785
+      "bytes": 40782
     },
     "old_api": {
       "file": "old_api.jar",
-      "sha256": "a7b94a55b36acceb94ddc94ba5c223404ba51a5fe9db687f2fea2b4d998893f2",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "e5f59110f12f31e9e00b79f925841da2b0e0269b05326215d2d927c840618933",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 40735
+      "bytes": 40728
     },
     "shadow": {
       "file": "shadow.jar",
-      "sha256": "a05ef2bf30e0b4e67bd2e6b11fc5a2b3ac27b578f3cefd17954955a0fa8355b3",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "e0930757e53484d6a598bc161f4c587a65b45426ea78f6a2461f3936ffbe9ae6",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 41122
+      "bytes": 41117
     },
     "versioned_shadow": {
       "file": "versioned_shadow.jar",
-      "sha256": "8c5bae8ddb3dbe50e9fd2ce81128ce72341b2e2f2329ede6688bd55b700d6d8e",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "df2c724d513ed2b7bc40b0485e37b1c82d162426089d4fb21ded545b6a2a0711",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 41178
+      "bytes": 41170
     },
     "classpath": {
       "file": "classpath.jar",
-      "sha256": "9f4612dbf5d737c4b228063c2768b2b36d0d0336db654b53e5c2027503aa0b5b",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "129aadbc6e4b19630e33fa78d549186f17cbbef1314aea62cd4a3b50e388d592",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 40771
+      "bytes": 40765
     },
     "multi": {
       "file": "multi.jar",
-      "sha256": "1025b744e6c0b8dcdb7441bf2c57e70073c6aba5bfbcb3599f34538d0ac7c893",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "ec6736c7ca4271fe7fb976ffb2561064c087ef16e11b50d00b836d80e80b4418",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.Generated",
-      "bytes": 41300
+      "bytes": 41295
     },
     "http": {
       "file": "http.jar",
-      "sha256": "564ebc373672859564d490bf6e57309fc9e2bebdff0249afa5bcd1a21bfbfc34",
-      "pin": "8daa283a9122254f27b36143a62fa016f9e5d00cfa7f4cbce30f5cb15c809e12",
+      "sha256": "f2949aaa92cec378da2a1b5b34176bea7156828a90025c5e989540b0655acc95",
+      "pin": "7f00b09c3942e9210de1a13854658dea3ed3ed220d7f5a8d06970680fd3335bf",
       "mainClass": "fixture.extension.HttpFixture",
-      "bytes": 40735
+      "bytes": 40730
     }
   },
   "parent_classpath_excludes_fixtures": true,

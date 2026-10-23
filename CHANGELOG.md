@@ -2,6 +2,9 @@
 
 ## إعدادات المصادر — 24 أكتوبر 2026
 
+- تأكيد codec في [40036314382](https://github.com/badrcoderman/MangaShelf/actions/runs/40036314382) للمجموعة الكاملة عند 29a1379، ثم [40037458892](https://github.com/badrcoderman/MangaShelf/actions/runs/40037458892) لتصحيح JNI عند 8734c7b: نجحت 17 حالة لكل نمط تحميل على Linux وmacOS؛ أُعيد بناء/link arm64 iOS. فُحصت البصمات وCRC والمصادر و27 object وexport trie يحوي 11 رمز JNI بلا test hooks، وتطابقت JAR بين المنصتين والتشغيلين. لا IPA أو تنفيذ إضافة/iPhone؛ [الدليل الكامل](validation/runtime-host-40036314382.json) و[دليل التصحيح](validation/runtime-codec-40037458892.json).
+- إضافة جرد ثابت لمرشح MangaDex المعاد بناؤه: 11 class reference غير محلولة في classpath الحالية، لتوجيه استكمال Android وBrotli/OkHttp Zstd/Jsoup. لم يُنفذ المرشح، والجرد لا يغطي كل member resolution أو reflection. [الجرد](validation/mangadex-runtime-dependencies-static.json).
+
 - تصحيح فشل JNI الذي يرجع NULL دون pending exception في مراجع الأصناف وmetadata ونص خطأ codec، مع إضافة حقن لهذه الحالة واستمرار نجاح 17 فحصًا لكل نمط تحميل. أضيف task منفصل runtime-codec لإعادة فحص التغيير الأصلي وlink iOS دون إعادة فحوص لم يتغير تنفيذها.
 
 - بناء Zstd 1.5.8 وKotlin/Okio من مصادر مثبتة، مع الاحتفاظ بالإشعارات ومحوّل JNI مستقل وloader للمكتبة المرتبطة بدل استخراجها. نجحت 17 حالة لكل من dynamic وbuiltin على المضيف، تشمل فشل JNI وOOM محقونة والإغلاق المتزامن وفساد البيانات وإغلاق VM بعد التنظيف. أضيفت بوابة compile/link لـarm64 iOS في CI؛ نجاح الهاتف وربط المصدر وIPA ما زالت مطلوبة. [النطاق](docs/SOURCE-ZSTD-AR.md).

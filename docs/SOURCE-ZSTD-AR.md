@@ -94,12 +94,43 @@ threads من Zstd. الناتج الإنتاجي `libmslzstd.a`. ملفات test
 التقارير: `validation/runtime-zstd-host.json` و`validation/zstd-native-host.json`
 و`validation/runtime-host-build.json`. CI أضيف له تشغيل النمطين على Linux
 وmacOS، ثم بناء archive وlink probe لـarm64 iOS على macOS وفحص platform
-والرموز وغياب hooks؛ نتيجة CI تُسجل بعد اكتمالها.
+والرموز وغياب hooks.
+
+نجحت المجموعة الكاملة عند `29a1379` في
+[40036314382](https://github.com/badrcoderman/MangaShelf/actions/runs/40036314382):
+API 45/278 و14 نماذج و20 سجلًا و6 bootstrap و16 تفضيلات و17 إعدادات
+و16 HTTP/TLS و20 تحميلًا موقّعًا و46 توقيعًا مؤلفًا، إضافة إلى 17 فحص codec
+لكل نمط تحميل على كل منصة. طابقت artifacts ذات 25 ملفًا على macOS و17
+على Linux الحجم وSHA-256 وCRC ومدخلات المصدر عند ذلك commit.
+[الدليل الكامل](../validation/runtime-host-40036314382.json).
+
+بعد تصحيح NULL دون استثناء، أُعيد فحص codec فقط عند `8734c7b` عبر task
+`runtime-codec` في
+[40037458892](https://github.com/badrcoderman/MangaShelf/actions/runs/40037458892).
+نجحت 17 حالة بكل نمط على المنصتين، مع إعادة build/link iOS. حُذفت التقارير
+التاريخية قبل تشغيل task، ولم تُرفع فحوص المجموعة الكاملة المتجاوزة كأنها
+أُعيدت؛ artifact الجديدة تضم 18 ملفًا على macOS و10 على Linux.
+[دليل التصحيح](../validation/runtime-codec-40037458892.json).
+
+فُحصت archive الإنتاجية: 27 object من نوع arm64/iOS device. فُحص executable
+المربوط: iOS 26.0 وSDK 26.0، مع فك export trie والتحقق من مدخلي OnLoad/OnUnload
+والدوال التسع لـJNI، وعدم وجود test hooks. تطابقت JAR بين المنصتين وبين
+التشغيل الكامل وتصحيح native اللاحق، بما في ذلك كل class/resource بعد فكها.
+لا تُعد ترجمة أو رموز link probe تنفيذًا على الهاتف أو تفعيلًا داخل MSL.
 
 ## المتبقي
 
 ربط archive الإنتاجية داخل تطبيق iOS مع إبقاء رموز JNI في symbol table،
-واستدعاء shutdown بعد إغلاق المصادر وقبل VM، ثم إثبات الضغط وفك الضغط على
+واستخدام إعداد native access الصريح نفسه الموجود في الفحوص
+(`--enable-native-access=ALL-UNNAMED`)، واستدعاء shutdown بعد إغلاق المصادر
+وقبل VM، ثم إثبات الضغط وفك الضغط على
 الهاتف. كذلك بقيت بقية JSON/Brotli/Android التي يحتاجها المصدر، ونقل
 الشبكة/TLS، وowned JNI/نماذج المصدر/الجلسات في Swift، وتدفق إضافة حقيقية
 والإلغاء وإعادة التشغيل وبناء IPA. لا يغلق نجاح host أو link probe ENG-16.
+
+الجرد الثابت لمرشح MangaDex المعاد بناؤه كشف 11 class reference غير محلولة
+في classpath الحالية: Build.VERSION وSystemClock وLog، وActivity/Intent/Bundle
+وActivityNotFoundException المستخدمة في UrlActivity، وBrotli/BrotliInterceptor
+وOkHttp Zstd وJsoup Parser. هذا جرد class/descriptor فقط، ولا يثبت أن جميع
+الطرق أو reflection أو التبعيات غير المباشرة جاهزة.
+[الجرد وبصماته](../validation/mangadex-runtime-dependencies-static.json).

@@ -5,11 +5,11 @@
   "extension_code_executed": false,
   "passed": true,
   "script_sha256": "8179e0a3ac1b9dbd760309314241f5a185235f5ae0a61109d99ccbc5c03d366d",
-  "build_script_sha256": "d6d9f3e6ba734a9706e7d2f4142cbfda57d860e099aad8e2e7bbd55996bcf6a2",
+  "build_script_sha256": "ef7394922eac721ae796ec2f745f889e73669e2256cb9f1815868d6313282d92",
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 346019,
-    "sha256": "4e4ca5ca72fd0a54888c0a23a5908274f0dc655a52f731950193b6ea0f38d4b8"
+    "bytes": 368607,
+    "sha256": "d0385efca1818793c45795c86722b68b632e4dc98070697f009f9d7008603fbd"
   },
   "abi": {
     "classes_checked": 45,
@@ -35,7 +35,7 @@
       "-classpath",
       "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar",
       "-d",
-      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-f4k4tqrt",
+      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-a6a114f4",
       "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt",
       "/home/runner/work/MangaShelf/MangaShelf/runtime-host/src/test/kotlin/mangashelf/host/RegistryCheck.kt"
     ],
@@ -48,7 +48,7 @@
       "java",
       "-Xint",
       "-cp",
-      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-f4k4tqrt:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-a6a114f4:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
       "mangashelf.host.ModelApiCheck"
     ],
     "exit_code": 0,
@@ -85,7 +85,7 @@
       "java",
       "-Xint",
       "-cp",
-      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-f4k4tqrt:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
+      "/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/tests-a6a114f4:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/runtime-host.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/annotations-13.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/runner/work/MangaShelf/MangaShelf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar",
       "mangashelf.host.RegistryCheck"
     ],
     "exit_code": 0,

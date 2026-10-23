@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-23T22:19:27.025287+00:00",
+  "timestamp": "2026-10-23T22:54:35.242849+00:00",
   "command": "python3 scripts/test-extension-archive-verifier.py",
   "scope": "Host-only JAR v1 cryptographic/data inspection; no archive class loading, iOS, real source execution, publisher/PKIX trust, expiry or revocation proof. No production activation.",
   "policy": "Expected whole-file SHA-256 and one explicitly pinned leaf certificate DER SHA-256; every physical payload must have exactly that one signer after EOF. Private snapshot is deleted; result does not authorize later loading of the original path.",
@@ -32,7 +32,7 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "/home/runner/work/MangaShelf/MangaShelf/runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java"
       ],
       "returncode": 0,
@@ -46,7 +46,7 @@
         "-alias",
         "fixturea",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -76,15 +76,15 @@
         "-alias",
         "fixturea",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-file",
-        "/tmp/msl-jar-signature-tests-r9wh917x/fixturea.der"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/fixturea.der"
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-r9wh917x/fixturea.der>\n"
+      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-qy71a8m7/fixturea.der>\n"
     },
     {
       "argv": [
@@ -93,7 +93,7 @@
         "-alias",
         "fixtureb",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storetype",
         "PKCS12",
         "-storepass",
@@ -123,21 +123,21 @@
         "-alias",
         "fixtureb",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-file",
-        "/tmp/msl-jar-signature-tests-r9wh917x/fixtureb.der"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/fixtureb.der"
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-r9wh917x/fixtureb.der>\n"
+      "stderr": "Certificate stored in file </tmp/msl-jar-signature-tests-qy71a8m7/fixtureb.der>\n"
     },
     {
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -146,7 +146,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -158,15 +158,15 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
-        "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
+        "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51\",\"signerCertificateSha256\":\"b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc\",\"signerCertificateSha256\":\"715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
       "stderr": ""
     },
     {
@@ -174,15 +174,15 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
-        "69319DACDEC1EB76F37E2CA7A955352DC51310175B84668952025693FB8D4D51",
-        "B61FFFE243708F29AD1B107C0C321E9297D6C4F436564543D170DEF82A27F77D",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
+        "506535D905B5415C9FF0E3CAB314622B12196287AD01226A54B2CBB384BC5CDC",
+        "715B4CFE7E5FE23BA6C628BEA5DE4875E7C5094F2112C2DF9BF09A38949E9E2C",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51\",\"signerCertificateSha256\":\"b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc\",\"signerCertificateSha256\":\"715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
       "stderr": ""
     },
     {
@@ -190,12 +190,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
         "0000000000000000000000000000000000000000000000000000000000000000",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"digest_mismatch\"}\n",
@@ -206,12 +206,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
-        "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "b7fbfa98f76418dbdf55e7fb11a7826eab432eb9b8e83733ce36f07df8cb6ca0",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
+        "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "4d32f2073e37c199bcb9d9cbcd1fcce2908365ab5fd2a87bdd85d127be6efc72",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -222,12 +222,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
         "not-a-hash",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -238,12 +238,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
-        "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
+        "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
         "",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -254,12 +254,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned.jar",
-        "d788d079bbd44862c6ea25b7f719f88b60a083a10da461394fa6c80244824148",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned.jar",
+        "a7962f56e1ae5d08f37ea3f0028dfd77ead73c11dd4112319fd5bc1804418ff4",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_archive\"}\n",
@@ -270,12 +270,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/signed.jar",
-        "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/missing"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/signed.jar",
+        "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/missing"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_argument\"}\n",
@@ -286,12 +286,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/tampered.jar",
-        "74a4e6ccf67dd86371bb9c50c2a9953f7607a96778eee4dbb050a787ca2e1e6c",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/tampered.jar",
+        "8fc55ef6ae8ad08f445abee25d2caeb90d788d369606c7c55726e35e72242c6c",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature\"}\n",
@@ -302,12 +302,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/tampered-manifest.jar",
-        "dbc143682f34330e8f29a8e1da0123ab1a597e8c6fa3839b1ac7ebb04bfa8d7b",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/tampered-manifest.jar",
+        "c182dec696e0b2e1d0f17e4e8b427bff433e7b97d8b809a33028f3e3b555ea7e",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature\"}\n",
@@ -318,12 +318,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/central-crc.jar",
-        "fc8b35ca62dde2fd50d44f64a5c6eccebe5862d32dab238d538d72f14e6974c3",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/central-crc.jar",
+        "8e95588a33f486e61ab0a0d0a38dd1d9c2a9cdccc82e9d94599ec549f8cacef5",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -334,12 +334,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/central-understated-size.jar",
-        "35fdff359d10ab778bdb5fc421c0a52cfa9b8b342c7059074c70efb94106816e",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/central-understated-size.jar",
+        "11de73853901003f3d0a8a471d6173181bb7a15a43966a95de1a1244d89c34a0",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -350,12 +350,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-0.jar",
-        "7630d7ae1f0b61caefc7e50fababdbce7242aabf4e514e70b75fde620ffbb6c4",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-0.jar",
+        "7f15ba73efcc94d3ac61d67853da210becbb3c35c0cd1fecd8151ea103905aa4",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -366,12 +366,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-1.jar",
-        "8b94396d35b705ac27b7ac7b01a9888afce5e79ec46b0601ea6b2dfacaf53073",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-1.jar",
+        "2b43726fdb37ac4b0cbfc0ba08a3896860f3d2adb564d99712ebbac0356ae384",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -382,12 +382,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-2.jar",
-        "36e39b5c0e9fe9a1258a8073e8f6d49a69cca2f2a0129aeb442123a8ea276d13",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-2.jar",
+        "3a2742f65a489c1aac66f7bb0f04d243c197b040b200c54cad424d2bd1278da5",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -398,12 +398,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-3.jar",
-        "789c398324efacb5839d4eaeba8274c6eedef68fd626f46ca6489a9a816b618a",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-3.jar",
+        "50acc437fb9b73b3be1c821de039f7979d31d1ac756b335ae321e26258da9c00",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -414,12 +414,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-4.jar",
-        "7ca2f35228434439c6e7f88daff95863a88f2ced5df6aa88dc3778bf2c150fdb",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-4.jar",
+        "90e60da9ac8c839977cd3b25459d6186e522f1cd6bfedd6f3792e60c4c910fba",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -430,12 +430,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsigned-extra-5.jar",
-        "5ac67be54d7b5c439bfb160eafa76b9e3de2eea4165f07f5866e763e765647ca",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsigned-extra-5.jar",
+        "fb96e4b3a0ce6b798a7b50a694489e58ccbc50f2d65ea668ef48c8c1b44e3650",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsigned_entry\"}\n",
@@ -445,7 +445,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -454,7 +454,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-r9wh917x/dual-signed.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/dual-signed.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -466,12 +466,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/dual-signed.jar",
-        "57fce06f2c557a176af14bbf901cfababc373965afc59a5cb92090f8ea263897",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/dual-signed.jar",
+        "f53d4f328518288079f24ac65d891a337d7af7047506ac863b1644d435560cc5",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"multiple_signers\"}\n",
@@ -481,7 +481,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -490,7 +490,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-r9wh917x/mixed-signers.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/mixed-signers.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -502,12 +502,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/mixed-signers.jar",
-        "5177d29a29df7a575acd264c68bfe5ad92d609080ecd51895d2069fb154adf13",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/mixed-signers.jar",
+        "04b447a925af49cc015597afe4ee4357a99714b729cadf2c52aad3e50d7778bc",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"multiple_signers\"}\n",
@@ -517,7 +517,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -526,7 +526,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-r9wh917x/second-signer.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/second-signer.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -538,12 +538,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/second-signer.jar",
-        "df806b0fe9ec7f7a8472e419c6ed2b27ae6bf74f89939f5686adbfea3d58288f",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/second-signer.jar",
+        "c8c7fc94ec1c7f772a2a86469b2e228a6ba0c79d292535388e5e6660c44176c6",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -553,7 +553,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -563,7 +563,7 @@
         "-digestalg",
         "SHA-256",
         "-sectionsonly",
-        "/tmp/msl-jar-signature-tests-r9wh917x/fixturea-section.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/fixturea-section.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -574,7 +574,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -584,7 +584,7 @@
         "-digestalg",
         "SHA-256",
         "-sectionsonly",
-        "/tmp/msl-jar-signature-tests-r9wh917x/fixtureb-section.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/fixtureb-section.jar",
         "fixtureb"
       ],
       "returncode": 0,
@@ -599,8 +599,8 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
-        "/tmp/msl-jar-signature-tests-r9wh917x/DisjointSignerProbe.java"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/DisjointSignerProbe.java"
       ],
       "returncode": 0,
       "stdout": "",
@@ -610,12 +610,12 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "DisjointSignerProbe",
-        "/tmp/msl-jar-signature-tests-r9wh917x/genuinely-disjoint-signers.jar"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/genuinely-disjoint-signers.jar"
       ],
       "returncode": 0,
-      "stdout": "a-only.txt b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d\nb-only.txt b7fbfa98f76418dbdf55e7fb11a7826eab432eb9b8e83733ce36f07df8cb6ca0\n",
+      "stdout": "a-only.txt 715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c\nb-only.txt 4d32f2073e37c199bcb9d9cbcd1fcce2908365ab5fd2a87bdd85d127be6efc72\n",
       "stderr": ""
     },
     {
@@ -623,12 +623,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/genuinely-disjoint-signers.jar",
-        "d23fab3e79a4440ac7ef2d28b292772666a9ebff85b61e0f1bdf37155ab70095",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/genuinely-disjoint-signers.jar",
+        "2387924ca65a021aa992a1aeb4f45cd6e5e168488e5d016274e207d3e17158fe",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -639,12 +639,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/genuinely-disjoint-signers.jar",
-        "d23fab3e79a4440ac7ef2d28b292772666a9ebff85b61e0f1bdf37155ab70095",
-        "b7fbfa98f76418dbdf55e7fb11a7826eab432eb9b8e83733ce36f07df8cb6ca0",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/genuinely-disjoint-signers.jar",
+        "2387924ca65a021aa992a1aeb4f45cd6e5e168488e5d016274e207d3e17158fe",
+        "4d32f2073e37c199bcb9d9cbcd1fcce2908365ab5fd2a87bdd85d127be6efc72",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"signer_mismatch\"}\n",
@@ -655,15 +655,15 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/late-signature-metadata.jar",
-        "df917ba3858824d7e12bf83dbf1d26b6c7eac921928289a51a2ac03931e0ba65",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/late-signature-metadata.jar",
+        "b7448bd886d375260371b313b8e8dcfddf7f2b6c7da30c47de8df2476e0aadc6",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 0,
-      "stdout": "{\"verified\":true,\"archiveSha256\":\"df917ba3858824d7e12bf83dbf1d26b6c7eac921928289a51a2ac03931e0ba65\",\"signerCertificateSha256\":\"b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
+      "stdout": "{\"verified\":true,\"archiveSha256\":\"b7448bd886d375260371b313b8e8dcfddf7f2b6c7da30c47de8df2476e0aadc6\",\"signerCertificateSha256\":\"715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c\",\"entries\":9,\"payloadEntries\":5,\"expandedBytes\":2715}\n",
       "stderr": ""
     },
     {
@@ -674,8 +674,8 @@
         "-Xlint:all",
         "-Werror",
         "-d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
-        "/tmp/msl-jar-signature-tests-r9wh917x/StreamOrderProbe.java"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/StreamOrderProbe.java"
       ],
       "returncode": 0,
       "stdout": "",
@@ -685,9 +685,9 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "StreamOrderProbe",
-        "/tmp/msl-jar-signature-tests-r9wh917x/late-signature-metadata.jar"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/late-signature-metadata.jar"
       ],
       "returncode": 0,
       "stdout": "{\"payloadEntries\":3,\"signedEntries\":0}\n",
@@ -698,12 +698,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/duplicate.jar",
-        "83109e5120763f7be0b76d507e83024b2fcb6a9b20b68878948107429e949cee",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/duplicate.jar",
+        "a6fac1f8461152e7a11f352a479a3d4ecf53e3298219ac91bb26e8489a9fb8e8",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"duplicate_entry\"}\n",
@@ -714,12 +714,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-0.jar",
-        "2ff18d5225010108b8cc52583d3ae744637d95f2052b9c91fa65f0e886dd9132",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-0.jar",
+        "bc6481b2bc55d18562779ff8ac33bc52abaac2030d1a6c4acc6c6d2bb185d438",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -730,12 +730,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-1.jar",
-        "b21b9b91cc429f05c6900943694bc27e6b9e3a8761f1121e47cac1d1b6b5c0f3",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-1.jar",
+        "56ba4a16181ece37bd5d65fb53e1c6b2a92b406ca8e7ad0a5d2915e7d40c46f7",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -746,12 +746,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-2.jar",
-        "263f2edfba2bd58dc944239b8f8e4a88ae2d752a5400d78dcfdfd4c343a547f7",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-2.jar",
+        "cc6b7a3491558bccb52b2bb06d05ea455966d030e18df14cae3b05185e696586",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -762,12 +762,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-3.jar",
-        "1a6a7549481138e4e9fa34c7b112d1f6b365f52d2818475fd544e12576f61ee8",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-3.jar",
+        "2e4b476e05fa868db5075d6452a438e347d972e9de052e10968bfb3ec822509d",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -778,12 +778,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-4.jar",
-        "66546fa59d0f7b802e57a6e75f885084f7ad46d0dc709a37afc3f049efe160f6",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-4.jar",
+        "580b4055c0f7fae3900bcc63a25bec4f0a442f9e824a6b0792e86a8e2a8d05d6",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -794,12 +794,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-5.jar",
-        "6e25f581b2969417c466df0cd66601045762b5dc2325766e5a3348d81f5c9b96",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-5.jar",
+        "41621b212b53c700442e5ef1c974a33ea05c45adbccd86eb00fbdb717bf90b39",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -810,12 +810,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unsafe-6.jar",
-        "fcefa3e7866d08a0743db4892ee23943a67e50c778fc44b1ae3d2c9bca191be2",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unsafe-6.jar",
+        "11fd735116dfd500d18bc8cb44d3260c377adc77c36a6f8e195cd6b90a8f2118",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -826,12 +826,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/ambiguous-manifest.jar",
-        "ffbff6fb245f5d3c29c4be271c2b0c035424ff7e4e050e50e0cc08d81ff7116e",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/ambiguous-manifest.jar",
+        "54fa6ac421ad9296476cb396bae2c37fdca0d5fd6b6e8e60aaaa101086c00dd4",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"ambiguous_signature_metadata\"}\n",
@@ -842,12 +842,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/unpaired-signature.jar",
-        "a91a60da7eb834cdc586244ed975cd8d3cf8371481a7a07c10133bc9f71c00dc",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/unpaired-signature.jar",
+        "435703d157b8407f9d2a81f09663a3ca0ab3345b066aa418bbed56a9b2c27bf2",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_signature_metadata\"}\n",
@@ -857,7 +857,7 @@
       "argv": [
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/jarsigner",
         "-keystore",
-        "/tmp/msl-jar-signature-tests-r9wh917x/generated-fixtures.p12",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/generated-fixtures.p12",
         "-storepass",
         "mangashelf-generated-test-key",
         "-keypass",
@@ -866,7 +866,7 @@
         "SHA256withRSA",
         "-digestalg",
         "SHA-256",
-        "/tmp/msl-jar-signature-tests-r9wh917x/empty-signed.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/empty-signed.jar",
         "fixturea"
       ],
       "returncode": 0,
@@ -878,12 +878,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/empty-signed.jar",
-        "b6376f5bdd91e947812d53994ba27b9f7a0894758eef00f55912367a27c24584",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/empty-signed.jar",
+        "a970b1bc8b2de2430da593c84f61073100d2a3fc72dbfc9405e1e07a7c91a11b",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"no_payload\"}\n",
@@ -894,12 +894,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/large-entry.jar",
-        "db1d1b5feb0c3aac94322155f38ffe906b1314d1ba7f16e9a97d5b06a47504be",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/large-entry.jar",
+        "f1fb029e3a191708b20152d989cec9ba2d577566516aac5beba7a4ab6032b8d9",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -910,12 +910,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/large-manifest.jar",
-        "56e01f7169893e7c2c4638e633666025d9f0d71b63802d6ab1cd962e88f80716",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/large-manifest.jar",
+        "ee4680b84c29379e5bc468514d8aa8ab90abae07cf056437abd980b1787de75d",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -926,12 +926,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/large-signature.jar",
-        "3820796cbe01ffb1b57d8b2bbb45ea9679da9140ec204ca1281b822a4d7d2223",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/large-signature.jar",
+        "ca16934bca9063d87069263e3afb17d72fb3ab9637b79f76f46f02d59c20e790",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_size_limit\"}\n",
@@ -942,12 +942,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/too-many.jar",
-        "a7251cfff387bb43166c15290db664d17957a87f7fac83a8297768eba031a0ae",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/too-many.jar",
+        "05c20e5a041523b61913b34610912c9e88269ce2b17d0f087dec537536ce1e4c",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"entry_count_limit\"}\n",
@@ -958,12 +958,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/long-name.jar",
-        "8ffa5f87827ebe595f9f51053ccb35647180803fa79b3205d4146d520934acbc",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/long-name.jar",
+        "8eb1aadd506de3d088bb7eb86a8f995118d2d23cd927dde4b1feab5624bf002c",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"unsafe_entry_name\"}\n",
@@ -974,12 +974,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/expanded-total.jar",
-        "d6436302b74ab8206f3bafbd72f7b6bd44fcf08a01b814c60da9bb041e39fdee",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/expanded-total.jar",
+        "e6ad1f6bd4e09a9fb725167e72a2634f8fa2c46e8aef085fb28e65672f5ec603",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"expanded_size_limit\"}\n",
@@ -990,12 +990,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/file-limit.jar",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/file-limit.jar",
         "0000000000000000000000000000000000000000000000000000000000000000",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"archive_limit\"}\n",
@@ -1006,12 +1006,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/no-manifest.jar",
-        "fa4d8dcb342cb78511592dee2f9db746b4da76007d5f7c0fdd7e12d03896455a",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/no-manifest.jar",
+        "70d5a5e2457fc45604fa4cde17c004262c8a7116cfbef89201641ea32f0e9b87",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"missing_manifest\"}\n",
@@ -1022,12 +1022,12 @@
         "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64/bin/java",
         "-Xmx128m",
         "-cp",
-        "/tmp/msl-jar-signature-tests-r9wh917x/verifier-classes",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/verifier-classes",
         "mangashelf.runtime.ExtensionArchiveVerifier",
-        "/tmp/msl-jar-signature-tests-r9wh917x/archive-symlink.jar",
-        "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "/tmp/msl-jar-signature-tests-r9wh917x/private-scratch"
+        "/tmp/msl-jar-signature-tests-qy71a8m7/archive-symlink.jar",
+        "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "/tmp/msl-jar-signature-tests-qy71a8m7/private-scratch"
       ],
       "returncode": 1,
       "stdout": "{\"verified\":false,\"code\":\"invalid_archive\"}\n",
@@ -1040,8 +1040,8 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "signerCertificateSha256": "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
+        "archiveSha256": "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "signerCertificateSha256": "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
         "entries": 9,
         "payloadEntries": 5,
         "expandedBytes": 2715
@@ -1053,8 +1053,8 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "69319dacdec1eb76f37e2ca7a955352dc51310175b84668952025693fb8d4d51",
-        "signerCertificateSha256": "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
+        "archiveSha256": "506535d905b5415c9ff0e3cab314622b12196287ad01226a54b2cbb384bc5cdc",
+        "signerCertificateSha256": "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
         "entries": 9,
         "payloadEntries": 5,
         "expandedBytes": 2715
@@ -1236,8 +1236,8 @@
       "name": "disjoint fixture has valid A-only and B-only payload signatures",
       "passed": true,
       "response": {
-        "a-only.txt": "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-        "b-only.txt": "b7fbfa98f76418dbdf55e7fb11a7826eab432eb9b8e83733ce36f07df8cb6ca0"
+        "a-only.txt": "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+        "b-only.txt": "4d32f2073e37c199bcb9d9cbcd1fcce2908365ab5fd2a87bdd85d127be6efc72"
       }
     },
     {
@@ -1263,8 +1263,8 @@
       "passed": true,
       "response": {
         "verified": true,
-        "archiveSha256": "df917ba3858824d7e12bf83dbf1d26b6c7eac921928289a51a2ac03931e0ba65",
-        "signerCertificateSha256": "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
+        "archiveSha256": "b7448bd886d375260371b313b8e8dcfddf7f2b6c7da30c47de8df2476e0aadc6",
+        "signerCertificateSha256": "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
         "entries": 9,
         "payloadEntries": 5,
         "expandedBytes": 2715
@@ -1462,8 +1462,8 @@
   ],
   "passed": true,
   "generated_fixture_certificate_sha256": {
-    "fixturea": "b61fffe243708f29ad1b107c0c321e9297d6c4f436564543d170def82a27f77d",
-    "fixtureb": "b7fbfa98f76418dbdf55e7fb11a7826eab432eb9b8e83733ce36f07df8cb6ca0"
+    "fixturea": "715b4cfe7e5fe23ba6c628bea5de4875e7c5094f2112c2df9bf09a38949e9e2c",
+    "fixtureb": "4d32f2073e37c199bcb9d9cbcd1fcce2908365ab5fd2a87bdd85d127be6efc72"
   },
   "central_directory_corruptions": [
     {
