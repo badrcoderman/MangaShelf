@@ -217,7 +217,7 @@ static void test_lifecycle_in_flight(void) {
 }
 
 int main(int argc, char **argv) {
-    assert(argc == 3);
+    assert(argc == 4);
     char *owned = (char *)1;
     size_t length = 99;
     assert(ms_java_is_started() == 0);
@@ -226,11 +226,19 @@ int main(int argc, char **argv) {
     assert(owned == NULL && length == 0);
     assert(ms_java_bridge_install(fixture, "dispatch") == MS_BRIDGE_NOT_STARTED);
     assert(ms_bridge_is_vm_available() == 0);
-    assert(ms_java_start(create_vm, argv[1], argv[2]) == MS_JAVA_OK);
+    assert(ms_java_start_config(create_vm, argv[1], argv[2], "", "") == MS_JAVA_ARGUMENT);
+    assert(ms_java_is_started() == 0);
+    assert(ms_java_start_config(create_vm, argv[1], argv[2], argv[3], "") == MS_JAVA_OK);
     assert(ms_java_is_started() == 1);
     assert_detached();
     assert(ms_java_start(create_vm, argv[1], argv[2]) == MS_JAVA_ALREADY_STARTED);
     test_lookup_and_exception_recovery();
+    char *temporary = raw_call("tmpdir", "", &length);
+    assert(strcmp(temporary, argv[3]) == 0); ms_java_free_string(temporary);
+    temporary = raw_call("temporary_file", "", &length);
+    assert(strcmp(temporary, argv[3]) == 0); ms_java_free_string(temporary);
+    char *library_path = raw_call("library_path", "", &length);
+    assert(length == 0 && library_path[0] == 0); ms_java_free_string(library_path);
     test_fixed_dispatch_and_once_only();
     test_owned_bounds_and_nul();
     test_attachment_and_foreign_exception();

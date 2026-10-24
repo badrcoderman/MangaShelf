@@ -18,19 +18,31 @@ static char *option(const char *prefix, const char *value) {
 }
 
 int ms_java_start(ms_create_vm_fn create_vm, const char *classpath, const char *java_home) {
-    if (!create_vm || !classpath || !*classpath || !java_home || !*java_home) return MS_JAVA_ARGUMENT;
+    return ms_java_start_config(create_vm, classpath, java_home, NULL, NULL);
+}
+
+int ms_java_start_config(ms_create_vm_fn create_vm, const char *classpath, const char *java_home,
+                          const char *tmp_dir, const char *library_path) {
+    if (!create_vm || !classpath || !*classpath || !java_home || !*java_home || (tmp_dir && !*tmp_dir)) return MS_JAVA_ARGUMENT;
     char *cp = option("-Djava.class.path=", classpath), *home = option("-Djava.home=", java_home);
-    if (!cp || !home) { free(cp); free(home); return MS_JAVA_MEMORY; }
+    char *temporary = tmp_dir ? option("-Djava.io.tmpdir=", tmp_dir) : NULL;
+    char *libraries = library_path ? option("-Djava.library.path=", library_path) : NULL;
+    if (!cp || !home || (tmp_dir && !temporary) || (library_path && !libraries)) {
+        free(cp); free(home); free(temporary); free(libraries); return MS_JAVA_MEMORY;
+    }
     pthread_mutex_lock(&runtime_lock);
     if (start_attempted) {
-        pthread_mutex_unlock(&runtime_lock); free(cp); free(home); return MS_JAVA_ALREADY_STARTED;
+        pthread_mutex_unlock(&runtime_lock); free(cp); free(home); free(temporary); free(libraries); return MS_JAVA_ALREADY_STARTED;
     }
     /* JVM restart in one process is not assumed safe, including after a failed launch. */
     start_attempted = 1;
-    JavaVMOption options[] = {{(char *)"-Xint", NULL}, {(char *)"-Xms32M", NULL}, {(char *)"-Xmx256M", NULL}, {cp, NULL}, {home, NULL}};
+    JavaVMOption options[7] = {{(char *)"-Xint", NULL}, {(char *)"-Xms32M", NULL}, {(char *)"-Xmx256M", NULL}, {cp, NULL}, {home, NULL}};
+    jint count = 5;
+    if (temporary) options[count++] = (JavaVMOption){temporary, NULL};
+    if (libraries) options[count++] = (JavaVMOption){libraries, NULL};
     JavaVMInitArgs args = {0};
     args.version = JNI_VERSION_1_8;
-    args.nOptions = (jint)(sizeof(options)/sizeof(options[0]));
+    args.nOptions = count;
     args.options = options;
     args.ignoreUnrecognized = JNI_FALSE;
     JNIEnv *env = NULL;
@@ -41,7 +53,7 @@ int ms_java_start(ms_create_vm_fn create_vm, const char *classpath, const char *
     /* The creating thread owns its initial JNI attachment; do not retain its JNIEnv. */
     if (runtime_vm && (*runtime_vm)->DetachCurrentThread(runtime_vm) != JNI_OK) result = MS_JAVA_THREAD;
     pthread_mutex_unlock(&runtime_lock);
-    free(cp); free(home);
+    free(cp); free(home); free(temporary); free(libraries);
     return result;
 }
 

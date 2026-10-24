@@ -8,6 +8,11 @@ extern "C" {
 /* Process-lifetime JVM. Call off the UI thread. Function pointer selects the linked VM. */
 typedef jint (JNICALL *ms_create_vm_fn)(JavaVM **, void **, void *);
 int ms_java_start(ms_create_vm_fn create_vm, const char *classpath, const char *java_home);
+/* Startup-only properties: tmp_dir is a nonempty app-owned directory, or NULL
+ * for the VM default. library_path may be empty to use builtins only, or NULL
+ * for the VM default. They must be set before JDK property caches initialize. */
+int ms_java_start_config(ms_create_vm_fn create_vm, const char *classpath, const char *java_home,
+                          const char *tmp_dir, const char *library_path);
 /* Calls a static (String,String)->String method. Uses UTF-8, never Modified UTF-8 for arguments. */
 int ms_java_call_string2(const char *class_name, const char *method_name,
                          const char *first, const char *second,

@@ -1,0 +1,271 @@
+{
+  "format": 1,
+  "scope": "Pinned legal/source data only; no source archive is compiled, executed or added to the runtime classpath.",
+  "notices": {
+    "path": "runtime-host/Runtime-ThirdPartyNotices.txt",
+    "bytes": 63235,
+    "sha256": "0bb865b8e1aac0deb582071fbab23f5a5639176668d52770f3dc1257f38a1248"
+  },
+  "artifacts": [
+    {
+      "runtime_filename": "kotlin-stdlib-2.4.10.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "kotlin-stdlib-2.4.10-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10-sources.jar",
+        "bytes": 757671,
+        "sha256": "5c4fa84ec945a63453e64bc0141c222ece806a2026c2961fe76b0be483896323",
+        "sha512": "5fede4384df1ffa94c58cbf4e9a13e09e0b5f1fbbb1fe94c01810929da0c839ec8ac61f0bacc7db0160a412a1e8cd11535790353c1d2c325a8de3fa70b0373fe",
+        "upstream_checksum_algorithm": "sha1",
+        "upstream_checksum": "52f5e97c76ad95737dd21d37f3814117ae76495c"
+      },
+      "pom": {
+        "filename": "kotlin-stdlib-2.4.10.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.pom",
+        "bytes": 2301,
+        "sha256": "9f81f25e96b919153392ded53bd33216e76624909cfd080a3edb278d44fc34f0",
+        "sha512": "9191ac9ff5eeccbe5cbabd6ad3d07f00e5911a9af2828d384908352a06c79a5bba4b8d91a55c160195ad595e77f43be26011d01c590ae4a9183b7026402dc918"
+      }
+    },
+    {
+      "runtime_filename": "annotations-13.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "annotations-13.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar",
+        "bytes": 17566,
+        "sha256": "42a5e144b8e81d50d6913d1007b695e62e614705268d8cf9f13dbdc478c2c68e",
+        "sha512": "23069b09ddd2d9a6d4710ef4309229393632ac30fbe7f148c6779b15bf0894e328c535d8cb6e79ccd1b1371e6d3d205ce24ec122de9b3e0bfd8eb19b33ddea2b",
+        "upstream_checksum_algorithm": "sha1",
+        "upstream_checksum": "5991ca87ef1fb5544943d9abc5a9a37583fabe03"
+      },
+      "pom": {
+        "filename": "annotations-13.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.pom",
+        "bytes": 4930,
+        "sha256": "965aeb2bedff369819bdde1bf7a0b3b89b8247dd69c88b86375d76163bb8c397",
+        "sha512": "63ef480f698215d4cd4501b06e86df1a741ac2b86216fd3ff6eee146da746caa390df27351e25598971edb368aeae41055ff1ed77e4bf5d7edb6abc832d150ce"
+      }
+    },
+    {
+      "runtime_filename": "kotlinx-coroutines-core-jvm-1.11.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "kotlinx-coroutines-core-jvm-1.11.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0-sources.jar",
+        "bytes": 438533,
+        "sha256": "3e0847c0b463965404d5b6fe5d6868000a220b050180dec68501801e9439976a",
+        "sha512": "312bc1b0d8b5f92a63d6aa4184f100c0f1d04c34e2757b8fb9f31859d848fd6e31367d4a0ca91bafae351245e30ce5cf729ca2b6e7074be56dd7c7023a19c2a7",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "312bc1b0d8b5f92a63d6aa4184f100c0f1d04c34e2757b8fb9f31859d848fd6e31367d4a0ca91bafae351245e30ce5cf729ca2b6e7074be56dd7c7023a19c2a7"
+      },
+      "pom": {
+        "filename": "kotlinx-coroutines-core-jvm-1.11.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.pom",
+        "bytes": 2168,
+        "sha256": "dd54b97aa3fab91fc24f5df2916c22be9429a339d2f45b7ff092332f6c19dc39",
+        "sha512": "6d1e3d260b534761b7d0bf7c1bf94683ef2d43999555374cbf9629ef6d2b07b10ca469a6118e13da4d6a43c665b1361f3c6a4ca7300e1c3bbcb3bebb7d9a53e9"
+      }
+    },
+    {
+      "runtime_filename": "kotlinx-serialization-core-jvm-1.11.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "kotlinx-serialization-core-jvm-1.11.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0-sources.jar",
+        "bytes": 111809,
+        "sha256": "9c9b7d4aabc03e671b5297ca5d50931f7c961f3d7e36a67ce945921b08a7be40",
+        "sha512": "cb3a90284304fba544259a22fd58d6a80b7f26a6092cdf3a60b019132d73b9ce39b627ee841b136a69714e3851b14cef0a8358c2d8e5ec1e9adcd6231a0051d6",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "cb3a90284304fba544259a22fd58d6a80b7f26a6092cdf3a60b019132d73b9ce39b627ee841b136a69714e3851b14cef0a8358c2d8e5ec1e9adcd6231a0051d6"
+      },
+      "pom": {
+        "filename": "kotlinx-serialization-core-jvm-1.11.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0.pom",
+        "bytes": 2068,
+        "sha256": "83039385976fdc494241f4572558a136e7b21116d7279b26daf335478bfacb57",
+        "sha512": "521fd3499e64d0c3ca199b062b5a1ba983c2a62f215380b7c7ff6fb27308f54c6061169ddb0d61d3177cae9d850cef1f9d1b7a020f34375d45d33f749afbf925"
+      }
+    },
+    {
+      "runtime_filename": "kotlinx-serialization-json-jvm-1.11.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "kotlinx-serialization-json-jvm-1.11.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.11.0/kotlinx-serialization-json-jvm-1.11.0-sources.jar",
+        "bytes": 93490,
+        "sha256": "8a0eae6ac1a42a0fbe1b850ea4e21ad71d2a8aa896ee2257b1492b471bd5c5fe",
+        "sha512": "8b14523ea60536968414a9b7615632fa6cca616e8a899bf47099fa804b88047d60c49c2a0d75fdc277ce9aba380a13bafceca7f01d981779a3d74cec83f78860",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "8b14523ea60536968414a9b7615632fa6cca616e8a899bf47099fa804b88047d60c49c2a0d75fdc277ce9aba380a13bafceca7f01d981779a3d74cec83f78860"
+      },
+      "pom": {
+        "filename": "kotlinx-serialization-json-jvm-1.11.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.11.0/kotlinx-serialization-json-jvm-1.11.0.pom",
+        "bytes": 2279,
+        "sha256": "dc6ffce390f328d9bca740a63b91092afd09f4473a1f2a80d77d64b3c5b505d3",
+        "sha512": "3c860a26bf4e34a5a573ade29df5dbc525801620fa339c5b476867b4a865dd5b0fc8e98e5e6b6c5c543997cf61461c50b76b86887845fbe124bb2486c7c4ea0a"
+      }
+    },
+    {
+      "runtime_filename": "okhttp-jvm-5.4.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "okhttp-jvm-5.4.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-jvm/5.4.0/okhttp-jvm-5.4.0-sources.jar",
+        "bytes": 393376,
+        "sha256": "52d1992759a1d0da8135b3a6819b881f44d949d2e07cfd3fb3007f804cf1909a",
+        "sha512": "16108190dd14d3f915dea22bcbd47e53bbbd1371df33d7c5c4ed652dc6d79123bc185e02d4bcadb6f787764ed7e072ea0b0d829a4094975df4b55f826312711b",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "16108190dd14d3f915dea22bcbd47e53bbbd1371df33d7c5c4ed652dc6d79123bc185e02d4bcadb6f787764ed7e072ea0b0d829a4094975df4b55f826312711b"
+      },
+      "pom": {
+        "filename": "okhttp-jvm-5.4.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-jvm/5.4.0/okhttp-jvm-5.4.0.pom",
+        "bytes": 1860,
+        "sha256": "02ca957550d89f499b561744d9b6a59abfd535723faf31269c3290a0d78c6d0e",
+        "sha512": "10148b4fa77e87b95155532add09fc8f4c78f3aa81272966e5e11fe3cf5254a632e80a3ebdd4dbb8d02b569d64b5486e4d1c7fb292b7de8267feff8cda1794f1"
+      }
+    },
+    {
+      "runtime_filename": "okio-jvm-3.18.1.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "okio-jvm-3.18.1-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.18.1/okio-jvm-3.18.1-sources.jar",
+        "bytes": 192914,
+        "sha256": "967a2e30e8504e48c2de60acfc96d091d2fd44671def26875896a37a1624a0f4",
+        "sha512": "2f6c85ab87bf51e6a096ab4c218314de0b4b35f2c0cda18a2ac29084b5fc4e30d65510be538d4a247c38983df2ddad54426ec80c944be29964554e81272b9ca3",
+        "upstream_checksum_algorithm": "sha1",
+        "upstream_checksum": "503eb3c429cad4d054a2940ec8568b04eacdd39e"
+      },
+      "pom": {
+        "filename": "okio-jvm-3.18.1.pom",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.18.1/okio-jvm-3.18.1.pom",
+        "bytes": 1715,
+        "sha256": "6457712bf7dfdfa0d1b25a303600288c34a1ff8613d55c24c8c99bcc63301dd0",
+        "sha512": "ec4b184ac3c28ca33a850bcff7f7f7d4d5a3776caac884f3f2f683d20d0cabc0b197038a372433e65599da00b67ee62015d01d7311160f1256d98af64746af20"
+      }
+    },
+    {
+      "runtime_filename": "okhttp-brotli-5.4.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "okhttp-brotli-5.4.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-brotli/5.4.0/okhttp-brotli-5.4.0-sources.jar",
+        "bytes": 1816,
+        "sha256": "1bc81a83232d5f833a57d2f9fee0fb943fb87a460097e1c11e82c375afbdd276",
+        "sha512": "4dbdf1863a48caccabc3947a39982d666b9dd5850dd4159542c057cda54a09ae51d9ad2aff2284d797efdf21eb0d7cf78bce90450871468c15edfef21deae853",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "4dbdf1863a48caccabc3947a39982d666b9dd5850dd4159542c057cda54a09ae51d9ad2aff2284d797efdf21eb0d7cf78bce90450871468c15edfef21deae853"
+      },
+      "pom": {
+        "filename": "okhttp-brotli-5.4.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-brotli/5.4.0/okhttp-brotli-5.4.0.pom",
+        "bytes": 2040,
+        "sha256": "2df902acc3d4a04797338c42413ceaee47d12431bef45e06861ee267c5fd562c",
+        "sha512": "430d9679108a5551b37af577b7801fa6c191af14dc21dd1865761036820bf2f3621571d9677f94ef6eb47dca22826892613427751e99bbd487acbe36ff7f7b76"
+      }
+    },
+    {
+      "runtime_filename": "okhttp-zstd-5.4.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "okhttp-zstd-5.4.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0-sources.jar",
+        "bytes": 1141,
+        "sha256": "58c24491bf7d20a0dd0d861e9fae5548addd5ec9ae808433cfcb67d4ba7ca130",
+        "sha512": "a78356a663a16e3d8d18b5fe51237fe8db44131707333ce35710a4dc5e149b118bfba8ad1a099698ca9b009743afdd4155bac073706eb17db1bf53ccd2a4481f",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "a78356a663a16e3d8d18b5fe51237fe8db44131707333ce35710a4dc5e149b118bfba8ad1a099698ca9b009743afdd4155bac073706eb17db1bf53ccd2a4481f"
+      },
+      "pom": {
+        "filename": "okhttp-zstd-5.4.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-zstd/5.4.0/okhttp-zstd-5.4.0.pom",
+        "bytes": 2057,
+        "sha256": "26858adc2978521c68f6c076bcdc52a201d2d24819fe68471d1815edcb01a899",
+        "sha512": "36686669886eed9b95a72f737298c6bb9c956f9dd86c1cbb80d0986e6407945d289c3c56ebeab346c9c4913d68c117753b411a3b34ef09f8bf162c181fc82f25"
+      }
+    },
+    {
+      "runtime_filename": "kotlinx-serialization-json-okio-jvm-1.11.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "kotlinx-serialization-json-okio-jvm-1.11.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-okio-jvm/1.11.0/kotlinx-serialization-json-okio-jvm-1.11.0-sources.jar",
+        "bytes": 3405,
+        "sha256": "bd19fbbcd59a570b1909f82d400944cc221edabbcd67741216ce3eea992e602a",
+        "sha512": "8ae40dde766fc19cc44f71a239371793748971e86f7e9074745bea8c01ba89d2c314030af2dea9ed05b6ae4e63d2c3d49baccc391cd760e64d157dd4d6c56c8a",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "8ae40dde766fc19cc44f71a239371793748971e86f7e9074745bea8c01ba89d2c314030af2dea9ed05b6ae4e63d2c3d49baccc391cd760e64d157dd4d6c56c8a"
+      },
+      "pom": {
+        "filename": "kotlinx-serialization-json-okio-jvm-1.11.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-okio-jvm/1.11.0/kotlinx-serialization-json-okio-jvm-1.11.0.pom",
+        "bytes": 2684,
+        "sha256": "f74d63ca8639a2acc6b5353ba089c7521f8b5f8d98d5b1f3cf7f6d149571e30d",
+        "sha512": "779b19db51aaffdedb7d6821c00cc25fef05ef2b5842bf1c78471bb2444206249960616e4e39f300879c91ea3bf8226ed531ead0a51cddcbf6331b08554d739f"
+      }
+    },
+    {
+      "runtime_filename": "jsoup-1.22.2.jar",
+      "license_spdx": "MIT",
+      "source": {
+        "filename": "jsoup-1.22.2-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jsoup/jsoup/1.22.2/jsoup-1.22.2-sources.jar",
+        "bytes": 271783,
+        "sha256": "3aed3e38ec1e0373eb6755213b01d197802f858850bce20e63d99c93e08818bc",
+        "sha512": "39a9f6037771b434c5006670553b4442b426155a964036e1439761397fe527c11fcd528ee93d01e81e86f052afa0785c996c6e66115b434b53fd9fbb17ba30ce",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "39a9f6037771b434c5006670553b4442b426155a964036e1439761397fe527c11fcd528ee93d01e81e86f052afa0785c996c6e66115b434b53fd9fbb17ba30ce"
+      },
+      "pom": {
+        "filename": "jsoup-1.22.2.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jsoup/jsoup/1.22.2/jsoup-1.22.2.pom",
+        "bytes": 20787,
+        "sha256": "54fab990a0ef56297088c252213fa83394fafcefa516059044c09e3a8e05e552",
+        "sha512": "622474020101f7c8fcafe623b357d7c2f42270cb1d420cd6100245b33d1f0216bd0c8dc8cf47a71f2fb0211d018824cfa6fe8c822ab7ab66ea0e627f5f867380"
+      }
+    },
+    {
+      "runtime_filename": "dec-0.1.2.jar",
+      "license_spdx": "MIT",
+      "source": {
+        "filename": "dec-0.1.2-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/brotli/dec/0.1.2/dec-0.1.2-sources.jar",
+        "bytes": 89491,
+        "sha256": "064ac1e41f475c1fd0479b6505f44b6e3bb044b948bddc75d56a496ebb85fbc3",
+        "sha512": "00ebbda7e3d8e558651523f8d3ab3f66aa20e300422ae2f5de57fca9a95538cb12751b87a959c8229a228878e61661ba01c4f08077b1e540c3a2d2219a71f070",
+        "upstream_checksum_algorithm": "sha1",
+        "upstream_checksum": "c04c22a0f5a84e985bd04d2129638e590c1e5edc"
+      },
+      "pom": {
+        "filename": "dec-0.1.2.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/brotli/dec/0.1.2/dec-0.1.2.pom",
+        "bytes": 4304,
+        "sha256": "1d3db28e001eb9a01732d0c98be062af9af536d942897a0c937984af8b4228c0",
+        "sha512": "d038a1c19ea6b9a57f3bd9ce77d7215b24278c6e01586787cb5dd58f676ca8357d92546808834116863c19e437aa6abcfdf78f788503ae986518a06ea8000c59"
+      }
+    },
+    {
+      "runtime_filename": "jspecify-1.0.0.jar",
+      "license_spdx": "Apache-2.0",
+      "source": {
+        "filename": "jspecify-1.0.0-sources.jar",
+        "url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0-sources.jar",
+        "bytes": 11996,
+        "sha256": "adf0898191d55937fb3192ba971826f4f294292c4a960740f3c27310e7b70296",
+        "sha512": "bf7fb987d159033d1809c1e2e120374d05f3387045d7e074a54ecdeaa77a216a0d32785e7b0e6147bdaf1bf2dd63b9419a254ffaab753422a76f5bd4744e0552",
+        "upstream_checksum_algorithm": "sha512",
+        "upstream_checksum": "bf7fb987d159033d1809c1e2e120374d05f3387045d7e074a54ecdeaa77a216a0d32785e7b0e6147bdaf1bf2dd63b9419a254ffaab753422a76f5bd4744e0552"
+      },
+      "pom": {
+        "filename": "jspecify-1.0.0.pom",
+        "url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.pom",
+        "bytes": 1511,
+        "sha256": "cdab929a3b95211f43d2090c5e2d0dfe8465960e378bc32b35841dab324433a6",
+        "sha512": "291d8fb333121ba18ebd427e7ee5e98694be797b8280a228be7c4958af934b2465f341957248dcd396f5ffbe99dd9a65aa61cef70ca772ee37a92c3d20e41f32"
+      }
+    }
+  ]
+}

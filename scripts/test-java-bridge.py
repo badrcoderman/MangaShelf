@@ -38,6 +38,7 @@ def main():
     report = {"recorded_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
               "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution.",
               "checks": ["requires explicit successful VM start and backend resolution",
+                         "startup sets app-owned Unicode temp directory before JDK caches and disables native library search paths",
                          "actual callback bridge reaches linked JNI VM",
                          "native-owned large UTF-8 response with one Java execution",
                          "fixed-buffer overflow and size query execute once without replay",
@@ -64,7 +65,9 @@ def main():
                        *[str(inputs[index]) for index in (0, 2, 4, 7)], "-L" + str(library),
                        "-Wl,-rpath," + str(library), "-ljvm", "-o", str(executable)]
             subprocess.run(command, check=True, capture_output=True, text=True, timeout=60)
-            result = subprocess.run([str(executable), str(classes), str(java_home)], capture_output=True, text=True, timeout=60)
+            application_temp = directory / "العربية 📚"
+            application_temp.mkdir()
+            result = subprocess.run([str(executable), str(classes), str(java_home), str(application_temp)], capture_output=True, text=True, timeout=60)
             report.update(exit_code=result.returncode, stdout=result.stdout, stderr=result.stderr,
                           passed=result.returncode == 0)
         version = subprocess.run([str(java), "-version"], capture_output=True, text=True, timeout=15)

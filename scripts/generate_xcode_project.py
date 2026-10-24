@@ -16,17 +16,23 @@ objects = {}
 def identifier(name): return hashlib.sha256(name.encode()).hexdigest()[:24].upper()
 def add(object_label, isa, **values):
     key=identifier(object_label); objects[key]={"isa":isa,**values}; return key
-def config_list(name, base):
+def config_list(name, base, configuration_file=None):
     configs=[]
     for kind in ("Debug","Release"):
         settings={**base,"SWIFT_OPTIMIZATION_LEVEL":"-Onone" if kind=="Debug" else "-O"}
-        configs.append(add(name+kind,"XCBuildConfiguration",name=kind,buildSettings=settings))
+        extra={"baseConfigurationReference":configuration_file} if configuration_file else {}
+        configs.append(add(name+kind,"XCBuildConfiguration",name=kind,buildSettings=settings,**extra))
     return add(name+"List","XCConfigurationList",buildConfigurations=configs,defaultConfigurationIsVisible="0",defaultConfigurationName="Release")
 
 file_refs=[]; source_builds=[]
 for path in sorted((ROOT/"iOS/MangaShelf").glob("*.swift")):
     ref=add("file:"+path.name,"PBXFileReference",lastKnownFileType="sourcecode.swift",path="MangaShelf/"+path.name,sourceTree="<group>")
     file_refs.append(ref);source_builds.append(add("build:"+path.name,"PBXBuildFile",fileRef=ref))
+for name in ["MSJavaRuntime.c","MSJavaBridge.c","MSAppEngine.c"]:
+    ref=add("native-file:"+name,"PBXFileReference",lastKnownFileType="sourcecode.c.c",path="../runtime-native/"+name,sourceTree="<group>")
+    file_refs.append(ref);source_builds.append(add("native-build:"+name,"PBXBuildFile",fileRef=ref))
+engine_config=add("engine-config","PBXFileReference",lastKnownFileType="text.xcconfig",path="MangaShelf/EngineBase.xcconfig",sourceTree="<group>")
+file_refs.append(engine_config)
 privacy=add("privacy","PBXFileReference",lastKnownFileType="text.xml",path="MangaShelf/PrivacyInfo.xcprivacy",sourceTree="<group>")
 plist=add("plist","PBXFileReference",lastKnownFileType="text.plist.xml",path="MangaShelf/Info.plist",sourceTree="<group>")
 file_refs.extend([privacy,plist])
@@ -53,7 +59,7 @@ target_settings={"PRODUCT_BUNDLE_IDENTIFIER":"app.mangashelf.reader","PRODUCT_NA
                  "GENERATE_INFOPLIST_FILE":"NO","TARGETED_DEVICE_FAMILY":"1,2","CODE_SIGN_STYLE":"Automatic",
                  "SWIFT_VERSION":"5.0","SWIFT_STRICT_CONCURRENCY":"targeted","SUPPORTED_PLATFORMS":"iphoneos iphonesimulator",
                  "ENABLE_PREVIEWS":"YES","LD_RUNPATH_SEARCH_PATHS":["$(inherited)","@executable_path/Frameworks"]}
-target=add("target","PBXNativeTarget",buildConfigurationList=config_list("target-config",target_settings),buildPhases=[sources,frameworks,resources],
+target=add("target","PBXNativeTarget",buildConfigurationList=config_list("target-config",target_settings,engine_config),buildPhases=[sources,frameworks,resources],
            buildRules=[],dependencies=[],name="MangaShelf",packageProductDependencies=[dependency],productName="MangaShelf",productReference=product,
            productType="com.apple.product-type.application")
 targets=[target]

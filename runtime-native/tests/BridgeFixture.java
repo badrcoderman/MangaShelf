@@ -15,12 +15,19 @@ public final class BridgeFixture {
         public static String dispatch(String action, String payload) { return payload; }
     }
 
-    public static String dispatch(String action, String payload) throws InterruptedException {
+    public static String dispatch(String action, String payload) throws Exception {
         if (action.equals("calls")) return Integer.toString(calls.get());
         if (action.equals("entered")) return Boolean.toString(entered);
         if (action.equals("release")) { released = true; return "released"; }
         calls.incrementAndGet();
         switch (action) {
+            case "tmpdir": return System.getProperty("java.io.tmpdir");
+            case "library_path": return System.getProperty("java.library.path");
+            case "temporary_file": {
+                java.nio.file.Path file = java.nio.file.Files.createTempFile("ملف📚-", ".txt");
+                try { return file.getParent().toString(); }
+                finally { java.nio.file.Files.delete(file); }
+            }
             case "large": return "x".repeat(100_000) + "العربية📚";
             case "oversize": return "x".repeat(16 * 1024 * 1024 + 1);
             case "throw": throw new IllegalStateException("project-owned expected failure");

@@ -7,6 +7,15 @@ if ! command -v xcodebuild >/dev/null 2>&1; then
 fi
 cd "$project_root"
 mode="${1:-simulator}"
+engine_options=()
+if [ -n "${MSL_ENGINE_INPUTS:-}" ]; then
+  if [ "$mode" != unsigned ]; then
+    echo 'Prepared engine inputs currently require a fresh unsigned device build.' >&2
+    exit 2
+  fi
+  python3 scripts/copy-ios-app-engine.py --inputs "$MSL_ENGINE_INPUTS" --check
+  engine_options=(-xcconfig "$(dirname "$MSL_ENGINE_INPUTS")/Engine.xcconfig")
+fi
 case "$mode" in
   simulator)
     python3 scripts/check_ui_resources.py
@@ -25,8 +34,13 @@ case "$mode" in
     trap 'rm -rf -- "$unsigned_build"' EXIT
     xcodebuild -project iOS/MangaShelf.xcodeproj -scheme MangaShelf \
       -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' \
+      "${engine_options[@]}" \
       -derivedDataPath "$unsigned_build" ARCHS=arm64 ONLY_ACTIVE_ARCH=NO \
       CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY='' build
+    if [ -n "${MSL_ENGINE_INPUTS:-}" ]; then
+      python3 scripts/copy-ios-app-engine.py --inputs "$MSL_ENGINE_INPUTS" \
+        --app "$unsigned_build/Build/Products/Release-iphoneos/MangaShelf.app"
+    fi
     python3 scripts/package_unsigned_ipa.py \
       "$unsigned_build/Build/Products/Release-iphoneos/MangaShelf.app" \
       build/Export/MangaShelf-unsigned.ipa

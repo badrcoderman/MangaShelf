@@ -1076,3 +1076,11 @@
 "The source took too long to respond. Try again." = "استغرق المصدر وقتًا طويلًا للرد. حاول مرة أخرى.";
 
 "The source request failed. Try again." = "فشل طلب المصدر. حاول مرة أخرى.";
+
+"The extension engine could not start. Reopen the app and try again." = "تعذّر بدء محرك الإضافات. أعد فتح التطبيق وحاول مرة أخرى.";
+
+"Extension engine" = "محرك الإضافات";
+
+"Engine startup failed with code %@." = "فشل بدء المحرك بالرمز %@.";
+
+"Extension engine started" = "بدأ محرك الإضافات";

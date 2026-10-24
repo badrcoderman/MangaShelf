@@ -1,8 +1,9 @@
 {
-  "recorded_at": "2026-10-24T00:05:10.813717+00:00",
+  "recorded_at": "2026-10-24T11:10:22.569243+00:00",
   "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution.",
   "checks": [
     "requires explicit successful VM start and backend resolution",
+    "startup sets app-owned Unicode temp directory before JDK caches and disables native library search paths",
     "actual callback bridge reaches linked JNI VM",
     "native-owned large UTF-8 response with one Java execution",
     "fixed-buffer overflow and size query execute once without replay",
@@ -15,14 +16,14 @@
     "uninstall does not destroy or restart the process VM"
   ],
   "inputs_sha256": {
-    "runtime-native/MSJavaRuntime.c": "518fda37975beaaf4f16441ce842db6200469e9a3b992ec7e5ba8b38c7f066ea",
-    "runtime-native/MSJavaRuntime.h": "2926c937dead0e4aca382e5a7e5f716f2e2954bf528b4621b55337c575f8e4ad",
+    "runtime-native/MSJavaRuntime.c": "095bda656e0dce84f6697f40bad8538dbc21cf2c14fe46500af9c72e4a050bdf",
+    "runtime-native/MSJavaRuntime.h": "bf604d03f93a5db7a318704376d827319334a190d12ae888090e15b677cf50a6",
     "runtime-native/MSJavaBridge.c": "2b61f467701605ce03b1dea799de2f45af0f6248a9fa97c0e603dfba4a363037",
     "runtime-native/MSJavaBridge.h": "35b7a909ab24ea1f304a41e04881ae86f77d7f9f44fdee7df8b0ff83ad6a2518",
     "Sources/CSafeArchive/MSJNIBridge.c": "7c032f82c04ed32f6a023b6a39e2e081bb95adcde7d9040ffac1848438ea37b8",
     "Sources/CSafeArchive/include/MSJNIBridge.h": "2ec64d0b83c9c031adebcd8528d842aefda0852c7a682781b3605d189868adb4",
-    "runtime-native/tests/BridgeFixture.java": "ee127959dcd5a3929780e2b7e3d8db9f9fd0af76dbd83b65e9e4bcffceeff58f",
-    "runtime-native/tests/java_bridge_test.c": "7885a0950b3915d059bc0e6d3dc18c9f85f39c1105c71b441af866c82bb245d6"
+    "runtime-native/tests/BridgeFixture.java": "ecd977c91078c4c8d4202a8b183484abd7bc8301746c66e5cef82a3c4783e7f4",
+    "runtime-native/tests/java_bridge_test.c": "8f01ffa6f293844202158ad58f0dcfb1ea1e5e6f3c5a3b324dbf083459e10b96"
   },
   "exit_code": 0,
   "stdout": "PASS: JNI owned response, callback bridge dispatch, single execution, bounds, exceptions, attachment, concurrency, lifecycle\n",

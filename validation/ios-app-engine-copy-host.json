@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "tests": 5,
+  "scope": "Synthetic engine resource copy/integrity boundaries only; no app, JVM, code linking or iOS execution.",
+  "inputs_sha256": {
+    "scripts/test_ios_app_engine.py": "e5e7ade84dca7a8eb6d33ef63cdf236a9d747938c02aa4f81a516a47f156ca23",
+    "scripts/copy-ios-app-engine.py": "e5d55723f3df959768c0959ea8afc26531a17daa85b72b07deb76eb4032f4ab6"
+  }
+}

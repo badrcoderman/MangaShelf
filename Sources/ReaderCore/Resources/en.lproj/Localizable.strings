@@ -1076,3 +1076,11 @@
 "The source took too long to respond. Try again." = "The source took too long to respond. Try again.";
 
 "The source request failed. Try again." = "The source request failed. Try again.";
+
+"The extension engine could not start. Reopen the app and try again." = "The extension engine could not start. Reopen the app and try again.";
+
+"Extension engine" = "Extension engine";
+
+"Engine startup failed with code %@." = "Engine startup failed with code %@.";
+
+"Extension engine started" = "Extension engine started";

@@ -154,6 +154,15 @@ public final class ExtensionRuntime: @unchecked Sendable {
 
     private struct RuntimeFailure: Decodable { let error: String }
 
+    public func configureHost(dataDirectory: URL, applicationID: String, versionName: String, versionCode: Int,
+                              userAgent: String, platformRelease: String) async throws {
+        let request = try payload(["dataDirectory": dataDirectory.path, "applicationId": applicationID,
+                                   "versionName": versionName, "versionCode": versionCode,
+                                   "userAgent": userAgent, "platformRelease": platformRelease])
+        let result = try await dispatchAsync(action: "configure", payload: request, checkAfterCompletion: false)
+        try requireAcknowledgment(result, status: "configured")
+    }
+
     private struct LifecycleResponse: Decodable {
         let status: String
         let error: String?

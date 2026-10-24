@@ -1,0 +1,2 @@
+SWIFT_OBJC_BRIDGING_HEADER = $(SRCROOT)/MangaShelf/MangaShelf-Bridging-Header.h
+HEADER_SEARCH_PATHS = $(inherited) "$(SRCROOT)/../runtime-native" "$(SRCROOT)/../Sources/CSafeArchive/include" "$(SRCROOT)/../runtime-native/third_party/openjdk-jni/src/java.base/share/native/include" "$(SRCROOT)/../runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include"
