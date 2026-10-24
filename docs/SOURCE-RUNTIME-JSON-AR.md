@@ -22,6 +22,21 @@ popular → update → pages مع بيانات المصدر المحفوظة. س
   منها إغلاق نقطة الدخول أثناء HTTP وانتظار تنظيف interceptor قبل إغلاق
   الأرشيف وخدمات التطبيق.
 
+تأكيد CI عند `b6c9ebe`: نجح المحرك وC/JNI على Linux وmacOS في
+[40045606077](https://github.com/badrcoderman/MangaShelf/actions/runs/40045606077).
+طابقت بصمات المصادر وartifacts ذات 20/28 ملفًا وCRC، وتطابقت JAR بين
+المنصتين. نجحت 7 حالات تحويل و21 تحميلًا موقّعًا، بينها تمييز مهلة المصدر
+عن الإلغاء، و12 حالة C لكل نمط و17 codec لكل نمط، وأعيد compile/link
+لـarm64 iOS مع 27 object و11 رمز JNI دون test hooks.
+[تقرير الفحص](../validation/runtime-host-40045606077.json).
+
+نجح أيضًا [بناء iOS 40045605922](https://github.com/badrcoderman/MangaShelf/actions/runs/40045605922):
+137 اختبار Swift، واحد متجاوز لفقد مدخل snapshot الاختياري، وصفر فشل؛
+اجتازت الحالات السبع الجديدة. فُحصت IPA من 66 عضوًا وarm64/iOS 26، وثُبت
+وجود رمزي الرد المملوك وتحريره في executable. رقمها ما زال 0.5.0 build 6؛
+لا تحمل JAR المضيف أو صورة JVM، ولم تُختبر على iPhone.
+[أدلة الاختبارات وIPA](../validation/ios-40045605922.json).
+
 ## العقد
 
 | الأمر | المدخلات الأساسية | النتيجة |

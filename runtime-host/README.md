@@ -250,13 +250,13 @@ See [implementation and remaining gates](../docs/RUNTIME-HTTP-PREFERENCES-AR.md)
 `42255ee5fa96d9425697b7c143587483207308d1`. Its Apache 2.0 license and provenance
 are included beside it. No upstream throwing stub implementation is used.
 
-Model factories are functional. Chapter upload dates remain milliseconds here;
-the future Swift wire adapter must explicitly convert them to seconds. Returned
-page order must be preserved independently of each Page's index.
+Model factories are functional. Chapter upload dates remain milliseconds in
+source models; SourceCommands converts the visible wire value to seconds and
+keeps the exact milliseconds in metadata. Returned page order is preserved
+independently of each Page's index.
 
 The authored `android.net.Uri` currently supplies the encoded value, parsing
 entrypoint, equality and ordering needed for the Page descriptor. Android
-Parcelable, URI component parsing, additional source dependencies,
-ConfigurableSource and Android preference forms, iOS codec/network setup, publisher trust
-provisioning and Swift wire conversion
+Parcelable, URI component parsing, additional source dependencies, native source
+settings forms, iOS codec/network setup, publisher trust provisioning and full Swift activation
 are still required for a complete host. The module has not run on iPhone.
