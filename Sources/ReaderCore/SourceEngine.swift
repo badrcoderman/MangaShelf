@@ -80,23 +80,73 @@ public protocol SourceEngineProtocol: Sendable {
     func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem]
 }
 
-/// Source execution coordinator. The native runtime remains unavailable until
-/// device proof; project test fixtures use an injected dispatcher.
-public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sendable {
+/// Serializes package transitions while source requests execute in the host's leases.
+public actor SourceEngineCoordinator: SourceEngineProtocol {
     public static let shared = SourceEngineCoordinator()
-    private let stagedStore: StagedExtensionStore?
+    private var stagedStore: StagedExtensionStore?
     private let runtime: ExtensionRuntime
+    private var prepareRuntime: (@Sendable () async throws -> Void)?
+    private struct Pending { let id: UUID; let task: Task<Void, Error> }
+    private var pending: [String: Pending] = [:]
+    private var loaded: [String: StagedRuntimeCandidate.Identity] = [:]
 
     public init(stagedStore: StagedExtensionStore? = nil, runtime: ExtensionRuntime = .shared) {
         self.stagedStore = stagedStore
         self.runtime = runtime
     }
 
+    public func configure(stagedStore: StagedExtensionStore, prepareRuntime: @escaping @Sendable () async throws -> Void) throws {
+        guard self.stagedStore == nil || self.stagedStore === stagedStore else { throw StagedExtensionError.invalidIdentity }
+        self.stagedStore = stagedStore; self.prepareRuntime = prepareRuntime
+    }
+
     public func ensureExtensionLoaded(packageName: String) async throws {
         guard let store = stagedStore else { throw StagedExtensionError.notFound }
-        let candidate = try await store.verifiedLoadCandidate(packageName: packageName)
-        _ = try await runtime.loadExtension(package: packageName, path: candidate.url.path,
-                                             mainClass: candidate.manifest.mainClass)
+        let previous = pending[packageName]?.task
+        let id = UUID()
+        let task = Task { [self] in
+            if let previous { _ = try? await previous.value }
+            var candidate = try await store.verifiedRuntimeCandidate(packageName: packageName)
+            if loaded[packageName] == candidate.identity && runtime.isLoaded(package: packageName) { return }
+            try await prepareRuntime?()
+            candidate = try await store.verifiedRuntimeCandidate(packageName: packageName)
+            if runtime.isLoaded(package: packageName) { _ = try await runtime.unloadExtension(package: packageName) }
+            try await runtime.loadExtension(candidate)
+            do {
+                let current = try await store.verifiedRuntimeCandidate(packageName: packageName)
+                guard current.identity == candidate.identity else { throw StagedExtensionError.invalidIdentity }
+                loaded[packageName] = candidate.identity
+            } catch {
+                _ = try? await runtime.unloadExtension(package: packageName)
+                loaded.removeValue(forKey: packageName)
+                throw error
+            }
+        }
+        pending[packageName] = Pending(id: id, task: task)
+        do { try await task.value; if pending[packageName]?.id == id { pending.removeValue(forKey: packageName) } }
+        catch { if pending[packageName]?.id == id { pending.removeValue(forKey: packageName) }; throw error }
+    }
+
+    public func unloadExtension(packageName: String) async throws {
+        let previous = pending[packageName]?.task
+        let id = UUID()
+        let task = Task { [self] in
+            if let previous { _ = try? await previous.value }
+            loaded.removeValue(forKey: packageName)
+            if runtime.isLoaded(package: packageName) { _ = try await runtime.unloadExtension(package: packageName) }
+        }
+        pending[packageName] = Pending(id: id, task: task)
+        do { try await task.value; if pending[packageName]?.id == id { pending.removeValue(forKey: packageName) } }
+        catch { if pending[packageName]?.id == id { pending.removeValue(forKey: packageName) }; throw error }
+    }
+
+    private func prepareSource(_ sourceID: String) async throws {
+        try Task.checkCancellation()
+        if let stagedStore {
+            let package = try await stagedStore.packageForSource(sourceID)
+            try await ensureExtensionLoaded(packageName: package)
+        }
+        try Task.checkCancellation()
     }
 
     public func search(sourceId: String, query: String, page: Int, latest: Bool = false) async throws -> SourceMangaPage {
@@ -104,6 +154,7 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
         // Bounded query limit
         let cleanQuery = String(query.prefix(256)).trimmingCharacters(in: .whitespacesAndNewlines)
         guard page >= 1, page <= 10_000 else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
+        try await prepareSource(sourceId)
 
         if cleanQuery.isEmpty {
             if latest { return try await runtime.latest(sourceId: sourceId, page: page) }
@@ -119,6 +170,7 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
 
     public func fetchDetails(sourceId: String, mangaURL: String, sourceMetadataJSON: String?) async throws -> SourceMangaDetails {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
+        try await prepareSource(sourceId)
         return try await runtime.details(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
@@ -128,6 +180,7 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
 
     public func fetchChapters(sourceId: String, mangaURL: String, sourceMetadataJSON: String?) async throws -> [SourceChapterItem] {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
+        try await prepareSource(sourceId)
         return try await runtime.chapters(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
@@ -137,6 +190,7 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
 
     public func fetchPages(sourceId: String, chapterURL: String, sourceMetadataJSON: String?) async throws -> [SourcePageItem] {
         guard !sourceId.isEmpty, !chapterURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source page URL.")) }
+        try await prepareSource(sourceId)
         return try await runtime.pages(sourceId: sourceId, chapterURL: chapterURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 }

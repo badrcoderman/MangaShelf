@@ -32,6 +32,11 @@ final class ExtensionManifestTests: XCTestCase {
         return root
     }
 
+    private func verification() throws -> ExtensionVerification {
+        try ExtensionVerification(certificateSHA256: String(repeating: "a", count: 64), versionName: "1.6.3",
+            sources: [SourceRecord(id: "73", name: "Authored fixture", language: "en", homeURL: nil)])
+    }
+
     func testRelativeClassNamespaceAliasAndUnsignedVersion() throws {
         let manifest = try ExtensionPackageManifest.parse(Data(xml().utf8))
         XCTAssertEqual(manifest.packageName, package)
@@ -131,19 +136,24 @@ final class ExtensionManifestTests: XCTestCase {
         let store = try StagedExtensionStore(root: root)
         let bytes = try fixture()
         _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
-        try await store.setTrust(packageName: package, trusted: true)
+        try await store.setTrust(packageName: package, trusted: true, verification: verification())
         try await store.setActive(packageName: package, active: true)
-        var calls: [[String: String]] = []
+        var calls: [[String: Any]] = []
         let runtime = ExtensionRuntime(dispatchHandler: { action, payload in
             XCTAssertEqual(action, "load")
-            calls.append(try JSONDecoder().decode([String: String].self, from: Data(payload.utf8)))
+            calls.append(try XCTUnwrap(JSONSerialization.jsonObject(with: Data(payload.utf8)) as? [String: Any]))
             return "{\"status\":\"loaded\"}"
         })
         try await SourceEngineCoordinator(stagedStore: store, runtime: runtime).ensureExtensionLoaded(packageName: package)
         XCTAssertEqual(calls.count, 1)
-        XCTAssertEqual(calls.first?["mainClass"], package + ".SourceFactory")
-        XCTAssertEqual(calls.first?["package"], package)
-        XCTAssertEqual(calls.first?["path"], root.appendingPathComponent(digest(bytes) + ".jar").path)
+        XCTAssertEqual(calls.first?["mainClass"] as? String, package + ".SourceFactory")
+        XCTAssertEqual(calls.first?["package"] as? String, package)
+        XCTAssertEqual(calls.first?["path"] as? String, root.appendingPathComponent(digest(bytes) + ".jar").path)
+        XCTAssertEqual(calls.first?["archiveSha256"] as? String, digest(bytes))
+        XCTAssertEqual(calls.first?["trustedCertificateSha256"] as? String, String(repeating: "a", count: 64))
+        XCTAssertEqual(calls.first?["versionCode"] as? String, String(version))
+        XCTAssertEqual(calls.first?["versionName"] as? String, "1.6.3")
+        XCTAssertEqual(calls.first?["sources"] as? [[String: String]], [["id": "73", "language": "en"]])
         // The dispatcher acknowledgment here is a fixture, not a JVM or source ABI test.
     }
 
@@ -167,7 +177,7 @@ final class ExtensionManifestTests: XCTestCase {
         let store = try StagedExtensionStore(root: root)
         let bytes = try fixture()
         _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
-        try await store.setTrust(packageName: package, trusted: true)
+        try await store.setTrust(packageName: package, trusted: true, verification: verification())
         try await store.setActive(packageName: package, active: true)
         let indexURL = root.appendingPathComponent("staged.json")
         var records = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: indexURL)) as? [[String: Any]])
@@ -180,11 +190,106 @@ final class ExtensionManifestTests: XCTestCase {
         let reloaded = try StagedExtensionStore(root: root)
         var loadedClass: String?
         let runtime = ExtensionRuntime(dispatchHandler: { _, payload in
-            loadedClass = try JSONDecoder().decode([String: String].self, from: Data(payload.utf8))["mainClass"]
+            loadedClass = (try JSONSerialization.jsonObject(with: Data(payload.utf8)) as? [String: Any])?["mainClass"] as? String
             return "{\"status\":\"loaded\"}"
         })
         try await SourceEngineCoordinator(stagedStore: reloaded, runtime: runtime).ensureExtensionLoaded(packageName: package)
         XCTAssertEqual(loadedClass, package + ".SourceFactory")
+    }
+
+    func testBooleanTrustWithoutReviewedPublisherCannotReachDispatcher() async throws {
+        let store = try StagedExtensionStore(root: temporaryRoot())
+        let bytes = try fixture()
+        _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
+        try await store.setTrust(packageName: package, trusted: true)
+        try await store.setActive(packageName: package, active: true)
+        let runtime = ExtensionRuntime(dispatchHandler: { _, _ in XCTFail("Legacy Boolean trust must not load code"); return "{}" })
+        do {
+            try await SourceEngineCoordinator(stagedStore: store, runtime: runtime).ensureExtensionLoaded(packageName: package)
+            XCTFail("Expected publisher review")
+        } catch { XCTAssertEqual(error as? StagedExtensionError, .verificationRequired) }
+    }
+
+    func testReviewedPublisherPersistsAndRevocationClearsSourceOwnership() async throws {
+        let root = try temporaryRoot()
+        let store = try StagedExtensionStore(root: root)
+        let bytes = try fixture()
+        _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
+        try await store.setTrust(packageName: package, trusted: true, verification: verification(), expectedDigest: digest(bytes))
+        try await store.setActive(packageName: package, active: true)
+        let reopened = try StagedExtensionStore(root: root)
+        let candidate = try await reopened.verifiedRuntimeCandidate(packageName: package)
+        XCTAssertEqual(candidate.verification, try verification())
+        let owner = try await reopened.packageForSource("73")
+        XCTAssertEqual(owner, package)
+        try await reopened.setTrust(packageName: package, trusted: false)
+        let records = await reopened.snapshot()
+        XCTAssertNil(records.first?.verification)
+        XCTAssertFalse(records[0].isActive)
+        do { _ = try await reopened.packageForSource("73"); XCTFail("Revoked sources must disappear") }
+        catch { XCTAssertEqual(error as? StagedExtensionError, .notFound) }
+    }
+
+    func testReviewCannotGrantTrustToAnotherArchive() async throws {
+        let store = try StagedExtensionStore(root: temporaryRoot())
+        let bytes = try fixture()
+        _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
+        do {
+            try await store.setTrust(packageName: package, trusted: true, verification: verification(), expectedDigest: String(repeating: "b", count: 64))
+            XCTFail("A review must apply only to the reviewed archive")
+        } catch { XCTAssertEqual(error as? StagedExtensionError, .digestMismatch) }
+        let records = await store.snapshot()
+        XCTAssertFalse(records[0].isTrusted)
+        XCTAssertNil(records[0].verification)
+    }
+
+    func testRepeatedAndConcurrentLoadsShareTheLoadedPackage() async throws {
+        let store = try StagedExtensionStore(root: temporaryRoot())
+        let bytes = try fixture()
+        _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
+        try await store.setTrust(packageName: package, trusted: true, verification: verification())
+        try await store.setActive(packageName: package, active: true)
+        let commands = LockedExtensionCommands()
+        let runtime = ExtensionRuntime(dispatchHandler: { action, _ in
+            commands.append(action)
+            return "{\"status\":\"loaded\"}"
+        })
+        let engine = SourceEngineCoordinator(stagedStore: store, runtime: runtime)
+        async let first: Void = engine.ensureExtensionLoaded(packageName: package)
+        async let second: Void = engine.ensureExtensionLoaded(packageName: package)
+        _ = try await (first, second)
+        try await engine.ensureExtensionLoaded(packageName: package)
+        XCTAssertEqual(commands.snapshot(), ["load"])
+    }
+
+    func testRevocationDuringNativeLoadUnloadsBeforeReturning() async throws {
+        let store = try StagedExtensionStore(root: temporaryRoot())
+        let bytes = try fixture()
+        _ = try await store.stage(packageName: package, versionCode: version, data: bytes, expectedDigest: digest(bytes))
+        try await store.setTrust(packageName: package, trusted: true, verification: verification())
+        try await store.setActive(packageName: package, active: true)
+        let started = expectation(description: "Native load entered")
+        let release = DispatchSemaphore(value: 0)
+        defer { release.signal() }
+        let commands = LockedExtensionCommands()
+        let runtime = ExtensionRuntime(dispatchHandler: { action, _ in
+            commands.append(action)
+            if action == "load" {
+                started.fulfill()
+                guard release.wait(timeout: .now() + 10) == .success else { throw ReaderFailure("Authored load gate timed out") }
+                return "{\"status\":\"loaded\"}"
+            }
+            return "{\"status\":\"unloaded\"}"
+        })
+        let engine = SourceEngineCoordinator(stagedStore: store, runtime: runtime)
+        let loading = Task { try await engine.ensureExtensionLoaded(packageName: package) }
+        await fulfillment(of: [started], timeout: 5)
+        try await store.setTrust(packageName: package, trusted: false)
+        release.signal()
+        do { try await loading.value; XCTFail("A revoked package must not stay loaded") }
+        catch { XCTAssertEqual(error as? StagedExtensionError, .untrustedActivation) }
+        XCTAssertEqual(commands.snapshot(), ["load", "unload"])
+        XCTAssertFalse(runtime.isLoaded(package: package))
     }
 
     func testMissingUntrustedAndInactiveCandidatesCannotReachDispatcher() async throws {
@@ -214,4 +319,11 @@ final class ExtensionManifestTests: XCTestCase {
             XCTFail("Expected missing manifest")
         } catch { XCTAssertEqual(error as? StagedExtensionError, .invalidIdentity) }
     }
+}
+
+private final class LockedExtensionCommands: @unchecked Sendable {
+    private let lock = NSLock()
+    private var values: [String] = []
+    func append(_ value: String) { lock.lock(); defer { lock.unlock() }; values.append(value) }
+    func snapshot() -> [String] { lock.lock(); defer { lock.unlock() }; return values }
 }

@@ -199,6 +199,22 @@ public final class ExtensionRuntime: @unchecked Sendable {
         return true
     }
 
+    public func loadExtension(_ candidate: StagedRuntimeCandidate) async throws {
+        try candidate.verification.validate()
+        let fields: [String: Any] = [
+            "package": candidate.manifest.packageName, "path": candidate.url.path,
+            "mainClass": candidate.manifest.mainClass, "archiveSha256": candidate.digest,
+            "trustedCertificateSha256": candidate.verification.certificateSHA256,
+            "versionCode": String(candidate.manifest.versionCode),
+            "versionName": candidate.manifest.versionName.map { $0 as Any } ?? NSNull(),
+            "sources": candidate.verification.sources.map { ["id": $0.id, "language": $0.language] }
+        ]
+        let response = try await dispatchAsync(action: "load", payload: payload(fields), checkAfterCompletion: false)
+        try requireAcknowledgment(response, status: "loaded")
+        addLoadedPackage(candidate.manifest.packageName)
+        try Task.checkCancellation()
+    }
+
     public func unloadExtension(package: String) async throws -> Bool {
         guard !package.isEmpty else { return false }
         let response = try await dispatchAsync(action: "unload", payload: payload(["package": package]), checkAfterCompletion: false)

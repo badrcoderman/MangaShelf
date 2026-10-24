@@ -1084,3 +1084,18 @@
 "Engine startup failed with code %@." = "فشل بدء المحرك بالرمز %@.";
 
 "Extension engine started" = "بدأ محرك الإضافات";
+
+"Review this extension's publisher fingerprint before enabling it." = "راجع بصمة ناشر هذه الإضافة قبل تفعيلها.";
+"Two enabled extensions declare the same source. Disable one and try again." = "تعلن إضافتان مفعّلتان عن المصدر نفسه. عطّل إحداهما وحاول مجددًا.";
+"Enable and trust this extension before using its sources." = "امنح هذه الإضافة الثقة وفعّلها قبل استخدام مصادرها.";
+"The extension file changed or does not match its repository. Download it again." = "تغيّر ملف الإضافة أو لا يطابق مستودعها. نزّله مجددًا.";
+"Extension package saved" = "حُفظت حزمة الإضافة";
+"Download an extension, review its publisher, then enable it to use its sources." = "نزّل إضافة وراجع ناشرها، ثم فعّلها لاستخدام مصادرها.";
+"Publisher fingerprint (SHA-256)" = "بصمة الناشر (SHA-256)";
+"Compare this fingerprint with the publisher's published fingerprint before granting trust." = "قارن هذه البصمة بالبصمة التي أعلنها الناشر قبل منحه الثقة.";
+"Review publisher" = "مراجعة الناشر";
+"Trust publisher" = "منح الناشر الثقة";
+"Revoke publisher trust" = "سحب الثقة من الناشر";
+"Disable extension" = "تعطيل الإضافة";
+"Enable extension" = "تفعيل الإضافة";
+"Save extension package" = "حفظ حزمة الإضافة";

@@ -1,6 +1,46 @@
 import Foundation
 import CryptoKit
 
+/// Explicitly reviewed publisher material and the source metadata for this version.
+/// A repository fingerprint is a proposed identity; the caller must obtain the user's trust decision.
+public struct ExtensionVerification: Codable, Equatable, Sendable {
+    public let certificateSHA256: String
+    public let versionName: String?
+    public let sources: [SourceRecord]
+
+    public init(certificateSHA256: String, versionName: String?, sources: [SourceRecord]) throws {
+        var value = certificateSHA256.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if value.hasPrefix("sha256:") { value = String(value.dropFirst(7)) }
+        value = value.replacingOccurrences(of: ":", with: "")
+        self.certificateSHA256 = value; self.versionName = versionName
+        self.sources = sources.sorted { $0.id < $1.id }
+        try validate()
+    }
+    public func validate() throws {
+        guard certificateSHA256.utf8.count == 64,
+              certificateSHA256.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }),
+              versionName.map({ !$0.isEmpty && $0.utf8.count <= 128 }) ?? true,
+              !sources.isEmpty, sources.count <= 4096, Set(sources.map(\.id)).count == sources.count,
+              sources.allSatisfy({ source in
+                  guard let id = Int64(source.id), String(id) == source.id else { return false }
+                  return !source.language.isEmpty && source.language.utf8.count <= 32 && !source.language.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains)
+              }) else { throw StagedExtensionError.invalidVerification }
+    }
+}
+
+public struct StagedRuntimeCandidate: Sendable {
+    public let url: URL
+    public let manifest: ExtensionPackageManifest
+    public let digest: String
+    public let verification: ExtensionVerification
+    struct Identity: Equatable, Sendable {
+        let digest: String
+        let manifest: ExtensionPackageManifest
+        let verification: ExtensionVerification
+    }
+    var identity: Identity { Identity(digest: digest, manifest: manifest, verification: verification) }
+}
+
 public struct StagedExtension: Codable, Identifiable, Sendable {
     public var id: String { packageName }
     public let packageName: String
@@ -10,10 +50,11 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
     public let inspection: JARInspection
     public var isTrusted: Bool
     public var isActive: Bool
+    public var verification: ExtensionVerification?
 
     public init(packageName: String, versionCode: UInt64, digest: String,
                 stagedAt: Date, inspection: JARInspection,
-                isTrusted: Bool = false, isActive: Bool = false) {
+                isTrusted: Bool = false, isActive: Bool = false, verification: ExtensionVerification? = nil) {
         self.packageName = packageName
         self.versionCode = versionCode
         self.digest = digest
@@ -21,6 +62,7 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
         self.inspection = inspection
         self.isTrusted = isTrusted
         self.isActive = isActive
+        self.verification = verification
     }
 
     public var displayName: String {
@@ -32,7 +74,7 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case packageName, versionCode, digest, stagedAt, inspection, isTrusted, isActive
+        case packageName, versionCode, digest, stagedAt, inspection, isTrusted, isActive, verification
     }
 
     public init(from decoder: Decoder) throws {
@@ -44,6 +86,8 @@ public struct StagedExtension: Codable, Identifiable, Sendable {
         inspection = try container.decode(JARInspection.self, forKey: .inspection)
         isTrusted = try container.decodeIfPresent(Bool.self, forKey: .isTrusted) ?? false
         isActive = try container.decodeIfPresent(Bool.self, forKey: .isActive) ?? false
+        verification = try container.decodeIfPresent(ExtensionVerification.self, forKey: .verification)
+        try verification?.validate()
     }
 }
 
@@ -97,13 +141,16 @@ public actor StagedExtensionStore {
         try commit(candidate)
         return record
     }
-    public func setTrust(packageName: String, trusted: Bool) throws {
+    public func setTrust(packageName: String, trusted: Bool, verification: ExtensionVerification? = nil, expectedDigest: String? = nil) throws {
         guard let idx = records.firstIndex(where: { $0.id == packageName }) else {
             throw StagedExtensionError.notFound
         }
         var updated = records
         var item = updated[idx]
+        if let expectedDigest, item.digest != expectedDigest { throw StagedExtensionError.digestMismatch }
+        try verification?.validate()
         item.isTrusted = trusted
+        item.verification = trusted ? verification : nil
         if !trusted { item.isActive = false }
         updated[idx] = item
         try commit(updated)
@@ -146,6 +193,22 @@ public actor StagedExtensionStore {
               manifest.versionCode == record.versionCode else { throw StagedExtensionError.invalidIdentity }
         return (blob(record.digest), manifest)
     }
+
+    public func packageForSource(_ sourceID: String) throws -> String {
+        let found = records.filter { $0.isTrusted && $0.isActive && ($0.verification?.sources.contains { $0.id == sourceID } ?? false) }
+        guard found.count <= 1 else { throw StagedExtensionError.conflictingSource }
+        guard let record = found.first else { throw StagedExtensionError.notFound }
+        return record.packageName
+    }
+
+    public func verifiedRuntimeCandidate(packageName: String) throws -> StagedRuntimeCandidate {
+        let candidate = try verifiedLoadCandidate(packageName: packageName)
+        guard let record = records.first(where: { $0.id == packageName }) else { throw StagedExtensionError.notFound }
+        guard let verification = record.verification else { throw StagedExtensionError.verificationRequired }
+        try verification.validate()
+        guard verification.versionName == candidate.manifest.versionName else { throw StagedExtensionError.invalidIdentity }
+        return StagedRuntimeCandidate(url: candidate.url, manifest: candidate.manifest, digest: record.digest, verification: verification)
+    }
     /// Verifies package on disk and rolls back if file has been corrupted.
     public func verifiedPackageWithRollback(packageName: String) throws -> Data {
         do {
@@ -170,4 +233,5 @@ public actor StagedExtensionStore {
 
 public enum StagedExtensionError: Error, Equatable {
     case invalidIndex, invalidIdentity, digestMismatch, downgrade, versionConflict, notFound, untrustedActivation, inactive
+    case invalidVerification, verificationRequired, conflictingSource
 }

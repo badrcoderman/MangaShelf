@@ -1084,3 +1084,18 @@
 "Engine startup failed with code %@." = "Engine startup failed with code %@.";
 
 "Extension engine started" = "Extension engine started";
+
+"Review this extension's publisher fingerprint before enabling it." = "Review this extension's publisher fingerprint before enabling it.";
+"Two enabled extensions declare the same source. Disable one and try again." = "Two enabled extensions declare the same source. Disable one and try again.";
+"Enable and trust this extension before using its sources." = "Enable and trust this extension before using its sources.";
+"The extension file changed or does not match its repository. Download it again." = "The extension file changed or does not match its repository. Download it again.";
+"Extension package saved" = "Extension package saved";
+"Download an extension, review its publisher, then enable it to use its sources." = "Download an extension, review its publisher, then enable it to use its sources.";
+"Publisher fingerprint (SHA-256)" = "Publisher fingerprint (SHA-256)";
+"Compare this fingerprint with the publisher's published fingerprint before granting trust." = "Compare this fingerprint with the publisher's published fingerprint before granting trust.";
+"Review publisher" = "Review publisher";
+"Trust publisher" = "Trust publisher";
+"Revoke publisher trust" = "Revoke publisher trust";
+"Disable extension" = "Disable extension";
+"Enable extension" = "Enable extension";
+"Save extension package" = "Save extension package";

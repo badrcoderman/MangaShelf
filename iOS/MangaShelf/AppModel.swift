@@ -1,9 +1,23 @@
 import SwiftUI
+import UIKit
 import ReaderCore
 
 enum AppError {
     static func describe(_ error: Error) -> String {
         if let failure = error as? ReaderFailure { return L10n.string(failure.message) }
+        if let failure = error as? StagedExtensionError {
+            switch failure {
+            case .verificationRequired, .invalidVerification:
+                return L10n.string("Review this extension's publisher fingerprint before enabling it.")
+            case .conflictingSource:
+                return L10n.string("Two enabled extensions declare the same source. Disable one and try again.")
+            case .inactive, .untrustedActivation:
+                return L10n.string("Enable and trust this extension before using its sources.")
+            case .digestMismatch, .invalidIdentity:
+                return L10n.string("The extension file changed or does not match its repository. Download it again.")
+            default: break
+            }
+        }
         let code = error as NSError
         if code.domain == NSURLErrorDomain {
             switch code.code {
@@ -36,6 +50,23 @@ enum AppError {
             let root = support.appendingPathComponent("MangaShelf", isDirectory: true)
             store = try LibraryStore(root: root)
             stagedStore = try StagedExtensionStore(root: root.appendingPathComponent("Extensions", isDirectory: true))
+            if let stagedStore {
+                let configuration = AppExtensionEngine.Configuration(
+                    directory: root.appendingPathComponent("Engine", isDirectory: true),
+                    temporaryDirectory: root.appendingPathComponent("Engine/Temporary", isDirectory: true),
+                    applicationID: Bundle.main.bundleIdentifier ?? "app.mangashelf.reader",
+                    versionName: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "dev",
+                    versionCode: Int(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "0") ?? 0,
+                    platformRelease: UIDevice.current.systemVersion)
+                try await SourceEngineCoordinator.shared.configure(stagedStore: stagedStore) {
+                    try await AppExtensionEngine.shared.prepare(configuration)
+                }
+                // Older Boolean trust records contain no reviewed certificate or
+                // source mapping. Preserve the packages while requiring review.
+                for item in await stagedStore.snapshot() where item.isActive && item.verification == nil {
+                    try await stagedStore.setActive(packageName: item.packageName, active: false)
+                }
+            }
             if let store {
                 state = await store.snapshot()
                 if let stagedStore { stagedExtensions = await stagedStore.snapshot() }
@@ -139,29 +170,63 @@ enum AppError {
         DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("JAR downloaded and inspected"))
         return artifact
     }
-    /// Staging is durable storage for a future runtime, not installation or
-    /// activation. The UI passes the digest only after explicit review.
+    /// Staging stores the inspected package without activating it.
     func stageExtension(_ artifact: DownloadedExtension) async throws {
         guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
         _ = try await stagedStore.stage(packageName: artifact.packageName, versionCode: artifact.versionCode,
                                         data: artifact.data, expectedDigest: artifact.digest)
         stagedExtensions = await stagedStore.snapshot()
-        DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("JAR staged for a future runtime"))
+        DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("Extension package saved"))
     }
     func removeStagedExtension(packageName: String) async throws {
         guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
         try await stagedStore.remove(packageName: packageName)
         stagedExtensions = await stagedStore.snapshot()
+        try await SourceEngineCoordinator.shared.unloadExtension(packageName: packageName)
     }
-    func setExtensionTrust(packageName: String, trusted: Bool) async throws {
+    func proposedExtensionVerification(packageName: String, repositoryID: UUID? = nil) throws -> ExtensionVerification {
+        guard let staged = stagedExtension(packageName: packageName) else { throw StagedExtensionError.notFound }
+        var found: [ExtensionVerification] = []
+        for repository in state.repositories where repositoryID == nil || repository.id == repositoryID {
+            for entry in repository.index.extensions where entry.packageName == packageName && entry.versionCode == staged.versionCode {
+                guard let fingerprint = repository.index.signingKey else { continue }
+                if let candidate = try? ExtensionVerification(certificateSHA256: fingerprint, versionName: entry.versionName, sources: entry.sources) {
+                    found.append(candidate)
+                }
+            }
+        }
+        guard let first = found.first, found.allSatisfy({ $0 == first }) else { throw StagedExtensionError.invalidVerification }
+        return first
+    }
+    func setExtensionTrust(packageName: String, trusted: Bool, verification: ExtensionVerification? = nil, expectedDigest: String? = nil) async throws {
         guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
-        try await stagedStore.setTrust(packageName: packageName, trusted: trusted)
+        let material: ExtensionVerification?
+        let reviewedDigest: String?
+        if trusted {
+            material = try verification ?? proposedExtensionVerification(packageName: packageName)
+            guard let staged = stagedExtension(packageName: packageName),
+                  expectedDigest == nil || expectedDigest == staged.digest else { throw StagedExtensionError.digestMismatch }
+            reviewedDigest = staged.digest
+        } else { material = nil; reviewedDigest = nil }
+        try await stagedStore.setTrust(packageName: packageName, trusted: false)
+        stagedExtensions = await stagedStore.snapshot()
+        try await SourceEngineCoordinator.shared.unloadExtension(packageName: packageName)
+        if trusted { try await stagedStore.setTrust(packageName: packageName, trusted: true, verification: material, expectedDigest: reviewedDigest) }
         stagedExtensions = await stagedStore.snapshot()
     }
     func setExtensionActive(packageName: String, active: Bool) async throws {
         guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        if active, stagedExtension(packageName: packageName)?.verification == nil { throw StagedExtensionError.verificationRequired }
         try await stagedStore.setActive(packageName: packageName, active: active)
         stagedExtensions = await stagedStore.snapshot()
+        if active {
+            do { try await SourceEngineCoordinator.shared.ensureExtensionLoaded(packageName: packageName) }
+            catch {
+                try? await stagedStore.setActive(packageName: packageName, active: false)
+                stagedExtensions = await stagedStore.snapshot()
+                throw error
+            }
+        } else { try await SourceEngineCoordinator.shared.unloadExtension(packageName: packageName) }
     }
     func stagedExtension(packageName: String) -> StagedExtension? {
         stagedExtensions.first { $0.packageName == packageName }

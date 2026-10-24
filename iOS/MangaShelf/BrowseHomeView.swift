@@ -167,6 +167,16 @@ struct ExtensionsCatalogView: View {
     @State private var query = ""
     @State private var preparingPackage: String?
     @State private var pendingArtifact: DownloadedExtension?
+    @State private var changingPackage: String?
+    @State private var trustReview: ExtensionTrustReview?
+
+    private struct ExtensionTrustReview: Identifiable {
+        var id: String { packageName }
+        let packageName: String
+        let name: String
+        let digest: String
+        let verification: ExtensionVerification
+    }
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -183,7 +193,7 @@ struct ExtensionsCatalogView: View {
                 ShelfSearchField(text: $query, prompt: L10n.string("Search extensions"))
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 16) {
-                        Text(L10n.string("JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet."))
+                        Text(L10n.string("Download an extension, review its publisher, then enable it to use its sources."))
                             .font(.footnote).foregroundStyle(ShelfStyle.secondary)
                         ForEach(model.state.repositories) { repository in
                             Text(repository.index.name).font(.headline)
@@ -200,39 +210,7 @@ struct ExtensionsCatalogView: View {
                                         VStack(alignment: .trailing, spacing: 4) {
                                             Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
                                                 .font(.caption).foregroundStyle(ShelfStyle.accent)
-                                            HStack(spacing: 8) {
-                                                Button {
-                                                    Task {
-                                                        do { try await model.setExtensionTrust(packageName: entry.packageName, trusted: !staged.isTrusted) }
-                                                        catch { model.errorMessage = AppError.describe(error) }
-                                                    }
-                                                } label: {
-                                                    TachiIcon(symbol: staged.isTrusted ? "shield.checkmark.fill" : "shield", size: 16)
-                                                        .foregroundStyle(staged.isTrusted ? ShelfStyle.accent : ShelfStyle.secondary)
-                                                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Trust status"))
-
-                                                if staged.isTrusted {
-                                                    Button {
-                                                        Task {
-                                                            do { try await model.setExtensionActive(packageName: entry.packageName, active: !staged.isActive) }
-                                                            catch { model.errorMessage = AppError.describe(error) }
-                                                        }
-                                                    } label: {
-                                                        TachiIcon(symbol: staged.isActive ? "checkmark.circle.fill" : "circle", size: 16)
-                                                            .foregroundStyle(staged.isActive ? ShelfStyle.accent : ShelfStyle.secondary)
-                                                    }.buttonStyle(.plain).accessibilityLabel(L10n.string("Active status"))
-                                                }
-
-                                                Button {
-                                                    Task {
-                                                        do { try await model.removeStagedExtension(packageName: entry.packageName) }
-                                                        catch { model.errorMessage = AppError.describe(error) }
-                                                    }
-                                                } label: {
-                                                    TachiIcon(symbol: "trash", size: 16)
-                                                        .foregroundStyle(ShelfStyle.secondary)
-                                                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Remove staged JAR"))
-                                            }
+                                            extensionControls(staged, entry: entry, repositoryID: repository.id)
                                         }
                                     } else {
                                         if preparingPackage == entry.packageName {
@@ -261,9 +239,52 @@ struct ExtensionsCatalogView: View {
                 }.refreshable { await model.refreshAllRepositories() }
             }
         }
+        .sheet(item: $trustReview) { review in
+            NavigationStack {
+                Form {
+                    Section {
+                        Text(review.name).font(.headline)
+                        Text(review.packageName).font(.caption).textSelection(.enabled)
+                    }
+                    Section(L10n.string("Publisher fingerprint (SHA-256)")) {
+                        Text(review.verification.certificateSHA256)
+                            .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
+                        Text(L10n.string("Compare this fingerprint with the publisher's published fingerprint before granting trust."))
+                            .font(.footnote).foregroundStyle(ShelfStyle.secondary)
+                    }
+                    Section(L10n.string("Sources")) {
+                        ForEach(review.verification.sources, id: \.id) { source in
+                            HStack {
+                                Text(source.name)
+                                Spacer()
+                                Text(source.language).foregroundStyle(ShelfStyle.secondary)
+                            }
+                        }
+                    }
+                }
+                .navigationTitle(L10n.string("Review publisher"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button(L10n.string("Cancel")) { trustReview = nil }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(L10n.string("Trust publisher")) {
+                            trustReview = nil
+                            Task {
+                                await change(review.packageName) {
+                                    try await model.setExtensionTrust(packageName: review.packageName, trusted: true,
+                                        verification: review.verification, expectedDigest: review.digest)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .confirmationDialog(L10n.string("Review JAR before staging"), isPresented: Binding(get: { pendingArtifact != nil }, set: { if !$0 { pendingArtifact = nil } }), titleVisibility: .visible) {
             if let artifact = pendingArtifact {
-                Button(L10n.string("Stage for later runtime")) {
+                Button(L10n.string("Save extension package")) {
                     Task { await stage(artifact) }
                 }
             }
@@ -273,6 +294,56 @@ struct ExtensionsCatalogView: View {
                 Text(L10n.format("Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.", artifact.packageName, artifact.digest, String(describing: artifact.inspection.classes.count)))
             }
         }
+    }
+
+    private func extensionControls(_ staged: StagedExtension, entry: ExtensionRecord, repositoryID: UUID) -> some View {
+        let reviewed = staged.isTrusted && staged.verification != nil
+        return HStack(spacing: 0) {
+            if changingPackage == entry.packageName {
+                ProgressView().controlSize(.small).frame(width: 44, height: 44)
+            } else {
+                Button {
+                    if reviewed {
+                        Task { await change(entry.packageName) { try await model.setExtensionTrust(packageName: entry.packageName, trusted: false) } }
+                    } else {
+                        do {
+                            let verification = try model.proposedExtensionVerification(packageName: entry.packageName, repositoryID: repositoryID)
+                            trustReview = ExtensionTrustReview(packageName: entry.packageName, name: entry.name,
+                                digest: staged.digest, verification: verification)
+                        } catch { model.errorMessage = AppError.describe(error) }
+                    }
+                } label: {
+                    TachiIcon(symbol: reviewed ? "shield.checkmark.fill" : "shield", size: 16)
+                        .foregroundStyle(reviewed ? ShelfStyle.accent : ShelfStyle.secondary)
+                        .frame(width: 44, height: 44)
+                }.buttonStyle(.plain).accessibilityLabel(L10n.string(reviewed ? "Revoke publisher trust" : "Review publisher"))
+
+                if reviewed {
+                    Button {
+                        Task { await change(entry.packageName) { try await model.setExtensionActive(packageName: entry.packageName, active: !staged.isActive) } }
+                    } label: {
+                        TachiIcon(symbol: staged.isActive ? "checkmark.circle.fill" : "circle", size: 16)
+                            .foregroundStyle(staged.isActive ? ShelfStyle.accent : ShelfStyle.secondary)
+                            .frame(width: 44, height: 44)
+                    }.buttonStyle(.plain).accessibilityLabel(L10n.string(staged.isActive ? "Disable extension" : "Enable extension"))
+                }
+
+                Button {
+                    Task { await change(entry.packageName) { try await model.removeStagedExtension(packageName: entry.packageName) } }
+                } label: {
+                    TachiIcon(symbol: "trash", size: 16).foregroundStyle(ShelfStyle.secondary)
+                        .frame(width: 44, height: 44)
+                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Remove staged JAR"))
+            }
+        }.disabled(changingPackage != nil)
+    }
+
+    @MainActor private func change(_ packageName: String, operation: () async throws -> Void) async {
+        guard changingPackage == nil else { return }
+        changingPackage = packageName
+        defer { changingPackage = nil }
+        do { try await operation() }
+        catch { model.errorMessage = AppError.describe(error) }
     }
 
     @MainActor private func inspect(_ item: ExtensionRecord) async {
