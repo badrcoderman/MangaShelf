@@ -1,0 +1,1707 @@
+{
+  "recorded_at": "2026-10-24T11:57:34.951599+00:00",
+  "run_id": 40091534340,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40091534340",
+  "source_commit": "ff53b9c2e74060ce097d58c4f7197f0fb592cd84",
+  "passed": true,
+  "scope": "137 Swift tests (one skipped), arm64 iOS compilation/link, unsigned IPA packaging with verified Java image/host/classpath and codec symbols. No app startup or extension execution on a physical iPhone. Includes app trust/activation wiring; Swift runtime callbacks are authored fixtures.",
+  "swift_tests_total": 142,
+  "swift_tests_skipped": 1,
+  "swift_tests_failures": 0,
+  "artifacts": {
+    "ipa": {
+      "id": 12558739857,
+      "sha256": "cb037b07f33d26bae99a8d16ff6514fce266b45baa30018126601083f76ad429",
+      "bytes": 46888670,
+      "github_digest_matched": true,
+      "crc_verified": true
+    },
+    "engine_evidence": {
+      "id": 12558944174,
+      "sha256": "fb544260edfcc48b03d86c3884e9a9fc2103ca738aebb87a94f696bb986843c7",
+      "bytes": 43304,
+      "github_digest_matched": true,
+      "crc_verified": true
+    }
+  },
+  "ipa": {
+    "sha256": "2e30441095a406f8c79dc9cf555de5bce3ff55f2a402e9a43f18e6a27545ea47",
+    "bytes": 48108666,
+    "entries": 313,
+    "crc_verified": true,
+    "version": "0.5.0",
+    "build": "6",
+    "minimum_os": "26.0",
+    "macho": {
+      "architecture": "arm64",
+      "build_commands": [
+        {
+          "platform": 2,
+          "minimum": "26.0.0",
+          "sdk": "26.0.0"
+        }
+      ],
+      "code_signature_load_commands": 0,
+      "linked_libraries": [
+        "/usr/lib/libz.1.dylib",
+        "/usr/lib/libiconv.2.dylib",
+        "/usr/lib/libobjc.A.dylib",
+        "/usr/lib/libc++.1.dylib",
+        "/System/Library/Frameworks/UniformTypeIdentifiers.framework/UniformTypeIdentifiers",
+        "/System/Library/Frameworks/Foundation.framework/Foundation",
+        "/System/Library/Frameworks/Security.framework/Security",
+        "/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration",
+        "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+        "/usr/lib/libSystem.B.dylib",
+        "/System/Library/Frameworks/Combine.framework/Combine",
+        "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+        "/System/Library/Frameworks/CryptoKit.framework/CryptoKit",
+        "/System/Library/Frameworks/ImageIO.framework/ImageIO",
+        "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+        "/System/Library/Frameworks/UIKit.framework/UIKit",
+        "/System/Library/Frameworks/Vision.framework/Vision",
+        "/usr/lib/swift/libswiftAVFoundation.dylib",
+        "/usr/lib/swift/libswiftAccelerate.dylib",
+        "/usr/lib/swift/libswiftCore.dylib",
+        "/usr/lib/swift/libswiftCoreAudio.dylib",
+        "/usr/lib/swift/libswiftCoreFoundation.dylib",
+        "/usr/lib/swift/libswiftCoreImage.dylib",
+        "/usr/lib/swift/libswiftCoreMIDI.dylib",
+        "/usr/lib/swift/libswiftCoreMedia.dylib",
+        "/usr/lib/swift/libswiftDispatch.dylib",
+        "/usr/lib/swift/libswiftMetal.dylib",
+        "/usr/lib/swift/libswiftOSLog.dylib",
+        "/usr/lib/swift/libswiftObjectiveC.dylib",
+        "/usr/lib/swift/libswiftQuartzCore.dylib",
+        "/usr/lib/swift/libswiftSpatial.dylib",
+        "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+        "/usr/lib/swift/libswiftXPC.dylib",
+        "/usr/lib/swift/libswift_Builtin_float.dylib",
+        "/usr/lib/swift/libswift_Concurrency.dylib",
+        "/usr/lib/swift/libswiftos.dylib",
+        "/usr/lib/swift/libswiftsimd.dylib"
+      ],
+      "runtime_search_paths": [
+        "@executable_path/Frameworks"
+      ]
+    },
+    "engine_resources_verified": 247,
+    "manifest_resources_verified": 246,
+    "classpath_jars_verified": 14,
+    "required_engine_symbols_defined": [
+      "_JNI_CreateJavaVM",
+      "_ms_app_engine_start",
+      "_ms_java_bridge_install",
+      "_ms_bridge_dispatch_owned",
+      "_ms_bridge_free_string",
+      "_JNI_OnLoad_mslzstd",
+      "_JNI_OnUnload_mslzstd",
+      "_Java_com_squareup_zstd_JniZstdCompressor_close",
+      "_Java_com_squareup_zstd_JniZstdCompressor_compressStream2",
+      "_Java_com_squareup_zstd_JniZstdCompressor_setParameter",
+      "_Java_com_squareup_zstd_JniZstdDecompressor_close",
+      "_Java_com_squareup_zstd_JniZstdDecompressor_decompressStream",
+      "_Java_com_squareup_zstd_JniZstdKt_createJniZstd",
+      "_Java_com_squareup_zstd_JniZstdKt_createZstdCompressor",
+      "_Java_com_squareup_zstd_JniZstdKt_createZstdDecompressor",
+      "_Java_com_squareup_zstd_JniZstdKt_jniGetErrorName"
+    ],
+    "file_sha256": {
+      "Payload/MangaShelf.app/CupertinoIcons.ttf": {
+        "path": "Payload/MangaShelf.app/CupertinoIcons.ttf",
+        "bytes": 257628,
+        "sha256": "67c44fe9183b002e79dde7f6977e2988661c9a3e4a3c5fce968787efdbed823c"
+      },
+      "Payload/MangaShelf.app/Info.plist": {
+        "path": "Payload/MangaShelf.app/Info.plist",
+        "bytes": 1535,
+        "sha256": "10e8fdec002caa93daa2da8ecb4cbd1a65426104e410d1700dcf17af69f12d2a"
+      },
+      "Payload/MangaShelf.app/MangaShelf": {
+        "path": "Payload/MangaShelf.app/MangaShelf",
+        "bytes": 18680248,
+        "sha256": "1fc69b5a3dc888ade8b0398b82a50c776ed80fcfc2ed07633728bbe3544e30ad"
+      },
+      "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/Info.plist": {
+        "path": "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/Info.plist",
+        "bytes": 688,
+        "sha256": "11bf6aba73ee31501245c2e692a3d0152d67696dd27d838c02f5c9ac3e72643f"
+      },
+      "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/ar.lproj/Localizable.strings": {
+        "path": "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/ar.lproj/Localizable.strings",
+        "bytes": 93310,
+        "sha256": "f622f044d57a14f51c94a9f5fff5fd0c7c552dc0136d33150ed3584148cdce76"
+      },
+      "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/en.lproj/Localizable.strings": {
+        "path": "Payload/MangaShelf.app/MangaShelf_ReaderCore.bundle/en.lproj/Localizable.strings",
+        "bytes": 75955,
+        "sha256": "5aea05ce438fef5db3b85457300c0c0fc17aab2998f278343e3b64fdbeb314fd"
+      },
+      "Payload/MangaShelf.app/MaterialIcons-LICENSE.txt": {
+        "path": "Payload/MangaShelf.app/MaterialIcons-LICENSE.txt",
+        "bytes": 10285,
+        "sha256": "a0bb7aefef5d928e670ab2fbe27cd098bd7acd8738a65acd3dbf61497390ab60"
+      },
+      "Payload/MangaShelf.app/MaterialIcons-Regular.otf": {
+        "path": "Payload/MangaShelf.app/MaterialIcons-Regular.otf",
+        "bytes": 1645184,
+        "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453"
+      },
+      "Payload/MangaShelf.app/PkgInfo": {
+        "path": "Payload/MangaShelf.app/PkgInfo",
+        "bytes": 8,
+        "sha256": "82502191c9484b04d685374f9879a0066069c49b8acae7a04b01d38d07e8eca0"
+      },
+      "Payload/MangaShelf.app/PrivacyInfo.xcprivacy": {
+        "path": "Payload/MangaShelf.app/PrivacyInfo.xcprivacy",
+        "bytes": 367,
+        "sha256": "6ae61890ed9548b952eb7421258aa85bbc8746ac4fa0e20469e88f0e199b8574"
+      },
+      "Payload/MangaShelf.app/ReferenceUI-manifest.json": {
+        "path": "Payload/MangaShelf.app/ReferenceUI-manifest.json",
+        "bytes": 14250,
+        "sha256": "dd9a9665d0d23106159628e457ff14d1db60feec91325e90300f8752664a0e04"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/AppIcon60x60@2x.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/AppIcon60x60@2x.png",
+        "bytes": 5442,
+        "sha256": "ad29da84ba6dc3b24fff77763b153f4fa4955f9fec231f993e02bf1d76257005"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/AppIcon76x76@2x~ipad.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/AppIcon76x76@2x~ipad.png",
+        "bytes": 7131,
+        "sha256": "bf2b3759ca599021b67f5d93019668eface0798010a4afb815bc4edde91383ae"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%201.png",
+        "bytes": 16938,
+        "sha256": "99a13ee26c70c62bceadfe4bb17e7abea514a8d811bd0e4d10c14b10d5f8a743"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2010.png",
+        "bytes": 25334,
+        "sha256": "4853aa17aa2cccc21507ad1abbb6fbdc17a1179ed3361b987a7bc77bc1876e70"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2014.png",
+        "bytes": 21452,
+        "sha256": "e458eb4f0af97c38d8d9e2b847b7daf1a10921beaeb96cea70d62b26b4fd8345"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2017.png",
+        "bytes": 6856,
+        "sha256": "b71a9e962a59042693848ba1be50dda6ea5f5079d06b5bc181f999db0fbaa8b5"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2018.png",
+        "bytes": 34874,
+        "sha256": "554e86d851629bd51e46da0def1eedf4e977b41c985294271ed52b22fc64ca52"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2019.png",
+        "bytes": 10591,
+        "sha256": "d0d3ab0d387e23899126722018061f40b0ea7c0362c836dc72ec8afc0878650d"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%202.png",
+        "bytes": 7190,
+        "sha256": "a1de8d8515df9bd1967d5335501615817823c0f3e221a070b6443f111cf1b3e9"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2022.png",
+        "bytes": 25977,
+        "sha256": "c761871179e19405de41527da7bd62a48de5f8a1bf894bd53ddb181ad73ce6e4"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2023.png",
+        "bytes": 6331,
+        "sha256": "938e57ee0ee7a81604a297a2b7603cf4c481449c1bd965b3aa1695ce400994ff"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2024.png",
+        "bytes": 6921,
+        "sha256": "80ebdef093d0ed4ef8be3a72ea1d8c63d42f8124b1b40fc8f0fc8f8c8ae06257"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2026.png",
+        "bytes": 32855,
+        "sha256": "951b5933e63d05968188c6540e13dcb69b7af9c202ce473252ca24539603698f"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2027.png",
+        "bytes": 10678,
+        "sha256": "e0c7d610dabe206452f6359c78b56d26364ad0b4701679f243573e0694a9b461"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2028.png",
+        "bytes": 9494,
+        "sha256": "38512852c57239494e17ce95cb583472b6d586f472f0adfcd19e6a081f73aca5"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2029.png",
+        "bytes": 20932,
+        "sha256": "0c632af9fe7025d0f17feb6b0755edcb2b3102df5b21275995a3c7254b2649f4"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%203.png",
+        "bytes": 19597,
+        "sha256": "81f2916fd2f5e016468aca859c06acb3cc294a57a549d2956f4ea621ab85c33b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2030.png",
+        "bytes": 32553,
+        "sha256": "fa8b11a84e0b5b172bde677fd0ea183b9e845ac163fb010011b0949409cfc3f0"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2031.png",
+        "bytes": 24528,
+        "sha256": "885b2be7cbb6db8208c4be52d9901079343fcf406a44d599ea28c206558d6842"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032%20dark.png",
+        "bytes": 6147,
+        "sha256": "93a93527e35a852d7d1a8d1f5630f25526ebbed20d8067bce2eae4dbb2c9d5a2"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2032.png",
+        "bytes": 7224,
+        "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033%20dark.png",
+        "bytes": 5229,
+        "sha256": "04b7d1533adf2077e2780649e5f66ac8fb35a2ed8df1183a861fe3921d7276da"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2033.png",
+        "bytes": 7224,
+        "sha256": "5ee9ac93f94afd049ff803f72f790c260007d5df02ff68b50d4af1e90dbcb59b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2034.png",
+        "bytes": 4936,
+        "sha256": "c5cf080b3ff5e30402aca03bb4c9cfbd14addf7d801c9af65a3083c60cedb8a7"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2035.png",
+        "bytes": 6884,
+        "sha256": "90707b5633aaf0ed8d5c99b06a94daccc389bc3b13a31771c174b634d9ece9a5"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%2037.png",
+        "bytes": 7366,
+        "sha256": "99f319ddd24e588d6d69744923c5577014872f9b471ac63bc993e037322c2754"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%204.png",
+        "bytes": 25548,
+        "sha256": "e089c6fd2829154cfddabe6466d49fddb3f38d7607a738d9fa1282805c0ee0c4"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%205.png",
+        "bytes": 25599,
+        "sha256": "fc0eeb673b1bae616bde16938770c8cf8dd386757a322479501dbdb3bd9c3193"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%206.png",
+        "bytes": 23082,
+        "sha256": "110490d955ff684ed0cfe224911beb245df480afb7007ef3b8d2009ffea3755c"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon%209.png",
+        "bytes": 22427,
+        "sha256": "4d356185d8a1f2ced1bf2663a21e445126a71b410981c9dfbbaa6571a7ddaaff"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/AppIcon.png",
+        "bytes": 5473,
+        "sha256": "5017e6327655fd2cc1625c0a8f3897fc74234df9306c67eed57b39d6d4c5b9de"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-black.png",
+        "bytes": 7229,
+        "sha256": "26c6a7406e619632a826ba74385d9ec3495d6579368758faeb95d56550309b2e"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/LOGO-white.png",
+        "bytes": 7856,
+        "sha256": "c0b0eab4652656a086a0787c1197be8ad1ed4b57ffd1e326e6fa30501dc9ab32"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/dark_icon.png",
+        "bytes": 16910,
+        "sha256": "46595653f3e4a466a8fed8f124d3577cc88f0445f496fc0691b04183fed15e31"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/light_icon.png",
+        "bytes": 16850,
+        "sha256": "d33a24949f98d6496ff73d54b997064315fe456a9663a82f951109e7658955f2"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/skip_chapters_guide.png",
+        "bytes": 9255,
+        "sha256": "e75fb6f8ee15f1fcde394e6265a4f3835c91e0e881da280a14f9cafe31e9613b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/anilist.png",
+        "bytes": 2640,
+        "sha256": "e895ad56da6485b2b3603c22773e6a8a72633b03255d4edf8abe31bbfb2080be"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/bangumi.png",
+        "bytes": 3350,
+        "sha256": "440221c0f9639c63dd2da3cd3b11e07f4b2b89550600e53a74d9b97eb1d86297"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/kavita.png",
+        "bytes": 10794,
+        "sha256": "90a229c10af7186af07488cdfbfcde7972413416db50acca049aa8d1aadfde2a"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/komga.png",
+        "bytes": 24835,
+        "sha256": "484be715616b6b9997f2406065fdc0b13b1a03a167de58bb27388d7b66a192bd"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangabaka.png",
+        "bytes": 26691,
+        "sha256": "cb511dcb57fc37a9def4a89701264db50fa2666e578883ef692cc04674d29c72"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/mangaupdates.png",
+        "bytes": 20183,
+        "sha256": "34e5ce9c98dad4f8ad3bb2324dc15de76c5cccbb6d5bc1cea6b4b9dedd956efa"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/myanimelist.png",
+        "bytes": 5572,
+        "sha256": "c95e2a42ef0d62b11e8538783a90db8f178eb274ca255801ffedcfd7504c5ea4"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/Frameworks/App.framework/flutter_assets/assets/icons/trackers/suwayomi.png",
+        "bytes": 8060,
+        "sha256": "8d1df7f03ea9dbc2b7ef00a992afafc97ab739926a62a6c9b3a561cc68265b8e"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error-black.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error-black.png",
+        "bytes": 1544,
+        "sha256": "df5d7223069042fa7fdca5c0a955941df198f97dd49e5891dac2e3cc4f129a44"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error-black@2x.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error-black@2x.png",
+        "bytes": 2001,
+        "sha256": "2f01868d885727239a1323d7011aabdde28fc18e30e340d258efed40580b45a5"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error.png",
+        "bytes": 371,
+        "sha256": "048c80a9a1e33522e56e0ee76ea8d5ed0b708b8795d79b472f4e14bf70cb9703"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error@2x.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/error@2x.png",
+        "bytes": 739,
+        "sha256": "fd2cbc446f7a2fd89ce5816d5a8a6ffed3621aae562bf472cafa4b2926b23524"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success-black.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success-black.png",
+        "bytes": 1718,
+        "sha256": "96c97b57ed7330f1ce22f87986978f2004b67bf9f3b80773a335d9c3e070d37b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success-black@2x.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success-black@2x.png",
+        "bytes": 2193,
+        "sha256": "b0fde46e2f336ee7e1bf041c2cbb9d4902fb74fc837fff299c18f8ac5460dc80"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success.png",
+        "bytes": 508,
+        "sha256": "ca73293df59e81d911b82401b7dc76d6e2ef0e39c09072551fb903398330002b"
+      },
+      "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success@2x.png": {
+        "path": "Payload/MangaShelf.app/ReferenceUI/SVProgressHUD.bundle/success@2x.png",
+        "bytes": 872,
+        "sha256": "340549b187011bf96504bad5dabde3699d2914549ff6064ff2e17ed5b870ce60"
+      },
+      "Payload/MangaShelf.app/ar.lproj/Localizable.strings": {
+        "path": "Payload/MangaShelf.app/ar.lproj/Localizable.strings",
+        "bytes": 93310,
+        "sha256": "f622f044d57a14f51c94a9f5fff5fd0c7c552dc0136d33150ed3584148cdce76"
+      },
+      "Payload/MangaShelf.app/en.lproj/Localizable.strings": {
+        "path": "Payload/MangaShelf.app/en.lproj/Localizable.strings",
+        "bytes": 75955,
+        "sha256": "5aea05ce438fef5db3b85457300c0c0fc17aab2998f278343e3b64fdbeb314fd"
+      },
+      "Payload/MangaShelf.app/engine-legal/Runtime-ThirdPartyNotices.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/Runtime-ThirdPartyNotices.txt",
+        "bytes": 63235,
+        "sha256": "0bb865b8e1aac0deb582071fbab23f5a5639176668d52770f3dc1257f38a1248"
+      },
+      "Payload/MangaShelf.app/engine-legal/codec/jni-ADDITIONAL_LICENSE_INFO.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/codec/jni-ADDITIONAL_LICENSE_INFO.txt",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/engine-legal/codec/jni-ASSEMBLY_EXCEPTION.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/codec/jni-ASSEMBLY_EXCEPTION.txt",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/engine-legal/codec/jni-LICENSE.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/codec/jni-LICENSE.txt",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/engine-legal/codec/native-COPYING.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/codec/native-COPYING.txt",
+        "bytes": 18091,
+        "sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505"
+      },
+      "Payload/MangaShelf.app/engine-legal/codec/native-LICENSE.txt": {
+        "path": "Payload/MangaShelf.app/engine-legal/codec/native-LICENSE.txt",
+        "bytes": 1549,
+        "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/annotations-13.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/annotations-13.0-sources.jar",
+        "bytes": 17566,
+        "sha256": "42a5e144b8e81d50d6913d1007b695e62e614705268d8cf9f13dbdc478c2c68e"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/annotations-13.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/annotations-13.0.pom",
+        "bytes": 4930,
+        "sha256": "965aeb2bedff369819bdde1bf7a0b3b89b8247dd69c88b86375d76163bb8c397"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/dec-0.1.2-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/dec-0.1.2-sources.jar",
+        "bytes": 89491,
+        "sha256": "064ac1e41f475c1fd0479b6505f44b6e3bb044b948bddc75d56a496ebb85fbc3"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/dec-0.1.2.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/dec-0.1.2.pom",
+        "bytes": 4304,
+        "sha256": "1d3db28e001eb9a01732d0c98be062af9af536d942897a0c937984af8b4228c0"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/jsoup-1.22.2-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/jsoup-1.22.2-sources.jar",
+        "bytes": 271783,
+        "sha256": "3aed3e38ec1e0373eb6755213b01d197802f858850bce20e63d99c93e08818bc"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/jsoup-1.22.2.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/jsoup-1.22.2.pom",
+        "bytes": 20787,
+        "sha256": "54fab990a0ef56297088c252213fa83394fafcefa516059044c09e3a8e05e552"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/jspecify-1.0.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/jspecify-1.0.0-sources.jar",
+        "bytes": 11996,
+        "sha256": "adf0898191d55937fb3192ba971826f4f294292c4a960740f3c27310e7b70296"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/jspecify-1.0.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/jspecify-1.0.0.pom",
+        "bytes": 1511,
+        "sha256": "cdab929a3b95211f43d2090c5e2d0dfe8465960e378bc32b35841dab324433a6"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlin-stdlib-2.4.10-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlin-stdlib-2.4.10-sources.jar",
+        "bytes": 757671,
+        "sha256": "5c4fa84ec945a63453e64bc0141c222ece806a2026c2961fe76b0be483896323"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlin-stdlib-2.4.10.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlin-stdlib-2.4.10.pom",
+        "bytes": 2301,
+        "sha256": "9f81f25e96b919153392ded53bd33216e76624909cfd080a3edb278d44fc34f0"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-coroutines-core-jvm-1.11.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-coroutines-core-jvm-1.11.0-sources.jar",
+        "bytes": 438533,
+        "sha256": "3e0847c0b463965404d5b6fe5d6868000a220b050180dec68501801e9439976a"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-coroutines-core-jvm-1.11.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-coroutines-core-jvm-1.11.0.pom",
+        "bytes": 2168,
+        "sha256": "dd54b97aa3fab91fc24f5df2916c22be9429a339d2f45b7ff092332f6c19dc39"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-core-jvm-1.11.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-core-jvm-1.11.0-sources.jar",
+        "bytes": 111809,
+        "sha256": "9c9b7d4aabc03e671b5297ca5d50931f7c961f3d7e36a67ce945921b08a7be40"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-core-jvm-1.11.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-core-jvm-1.11.0.pom",
+        "bytes": 2068,
+        "sha256": "83039385976fdc494241f4572558a136e7b21116d7279b26daf335478bfacb57"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-jvm-1.11.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-jvm-1.11.0-sources.jar",
+        "bytes": 93490,
+        "sha256": "8a0eae6ac1a42a0fbe1b850ea4e21ad71d2a8aa896ee2257b1492b471bd5c5fe"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-jvm-1.11.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-jvm-1.11.0.pom",
+        "bytes": 2279,
+        "sha256": "dc6ffce390f328d9bca740a63b91092afd09f4473a1f2a80d77d64b3c5b505d3"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-okio-jvm-1.11.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-okio-jvm-1.11.0-sources.jar",
+        "bytes": 3405,
+        "sha256": "bd19fbbcd59a570b1909f82d400944cc221edabbcd67741216ce3eea992e602a"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-okio-jvm-1.11.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/kotlinx-serialization-json-okio-jvm-1.11.0.pom",
+        "bytes": 2684,
+        "sha256": "f74d63ca8639a2acc6b5353ba089c7521f8b5f8d98d5b1f3cf7f6d149571e30d"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-brotli-5.4.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-brotli-5.4.0-sources.jar",
+        "bytes": 1816,
+        "sha256": "1bc81a83232d5f833a57d2f9fee0fb943fb87a460097e1c11e82c375afbdd276"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-brotli-5.4.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-brotli-5.4.0.pom",
+        "bytes": 2040,
+        "sha256": "2df902acc3d4a04797338c42413ceaee47d12431bef45e06861ee267c5fd562c"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-jvm-5.4.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-jvm-5.4.0-sources.jar",
+        "bytes": 393376,
+        "sha256": "52d1992759a1d0da8135b3a6819b881f44d949d2e07cfd3fb3007f804cf1909a"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-jvm-5.4.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-jvm-5.4.0.pom",
+        "bytes": 1860,
+        "sha256": "02ca957550d89f499b561744d9b6a59abfd535723faf31269c3290a0d78c6d0e"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-zstd-5.4.0-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-zstd-5.4.0-sources.jar",
+        "bytes": 1141,
+        "sha256": "58c24491bf7d20a0dd0d861e9fae5548addd5ec9ae808433cfcb67d4ba7ca130"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-zstd-5.4.0.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okhttp-zstd-5.4.0.pom",
+        "bytes": 2057,
+        "sha256": "26858adc2978521c68f6c076bcdc52a201d2d24819fe68471d1815edcb01a899"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okio-jvm-3.18.1-sources.jar": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okio-jvm-3.18.1-sources.jar",
+        "bytes": 192914,
+        "sha256": "967a2e30e8504e48c2de60acfc96d091d2fd44671def26875896a37a1624a0f4"
+      },
+      "Payload/MangaShelf.app/engine-legal/dependency-sources/okio-jvm-3.18.1.pom": {
+        "path": "Payload/MangaShelf.app/engine-legal/dependency-sources/okio-jvm-3.18.1.pom",
+        "bytes": 1715,
+        "sha256": "6457712bf7dfdfa0d1b25a303600288c34a1ff8613d55c24c8c99bcc63301dd0"
+      },
+      "Payload/MangaShelf.app/engine-legal/libffi-LICENSE": {
+        "path": "Payload/MangaShelf.app/engine-legal/libffi-LICENSE",
+        "bytes": 1132,
+        "sha256": "17b64dc60f3b6897a60f971e288b973f655c2edcdf08b25f3c3dd5549857881c"
+      },
+      "Payload/MangaShelf.app/engine-legal/openjdk/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/engine-legal/openjdk/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/engine-legal/openjdk/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/engine-legal/openjdk/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/engine-legal/openjdk/LICENSE": {
+        "path": "Payload/MangaShelf.app/engine-legal/openjdk/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/engine/jars/annotations-13.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/annotations-13.0.jar",
+        "bytes": 17536,
+        "sha256": "ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478"
+      },
+      "Payload/MangaShelf.app/engine/jars/dec-0.1.2.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/dec-0.1.2.jar",
+        "bytes": 98115,
+        "sha256": "615c0c3efef990d77831104475fba6a1f7971388691d4bad1471ad84101f6d52"
+      },
+      "Payload/MangaShelf.app/engine/jars/jsoup-1.22.2.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/jsoup-1.22.2.jar",
+        "bytes": 512826,
+        "sha256": "596785996d3c6df16f544c232d10a9a1d88783b2a4740cf5251cb616f2be704d"
+      },
+      "Payload/MangaShelf.app/engine/jars/jspecify-1.0.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/jspecify-1.0.0.jar",
+        "bytes": 3819,
+        "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+      },
+      "Payload/MangaShelf.app/engine/jars/kotlin-stdlib-2.4.10.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/kotlin-stdlib-2.4.10.jar",
+        "bytes": 1841933,
+        "sha256": "4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df"
+      },
+      "Payload/MangaShelf.app/engine/jars/kotlinx-coroutines-core-jvm-1.11.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/kotlinx-coroutines-core-jvm-1.11.0.jar",
+        "bytes": 1577052,
+        "sha256": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa"
+      },
+      "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-core-jvm-1.11.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-core-jvm-1.11.0.jar",
+        "bytes": 404509,
+        "sha256": "f4a801c647d4351327cd9e1ac4113e2be9ea37a64ab0abae269c25a52e28f35d"
+      },
+      "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-json-jvm-1.11.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-json-jvm-1.11.0.jar",
+        "bytes": 294166,
+        "sha256": "563a25b4eb5c9128ae9c2479f3d1a5c44dcd176112b91cf03682e906eba5c935"
+      },
+      "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-json-okio-jvm-1.11.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/kotlinx-serialization-json-okio-jvm-1.11.0.jar",
+        "bytes": 7101,
+        "sha256": "746b0ab2709dc42e8ddcdefc2a730c98d1bd65ed47eb5163375a82380153a5a0"
+      },
+      "Payload/MangaShelf.app/engine/jars/okhttp-brotli-5.4.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/okhttp-brotli-5.4.0.jar",
+        "bytes": 3969,
+        "sha256": "d77c78fa2cd971a909ba48241cf0cb1cf41ab1adc57b86cbbe6fd77e550f700f"
+      },
+      "Payload/MangaShelf.app/engine/jars/okhttp-jvm-5.4.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/okhttp-jvm-5.4.0.jar",
+        "bytes": 863503,
+        "sha256": "b15e605ca0a4b12c62ea7f657dad413c236c947e875854767349cdbe20df473c"
+      },
+      "Payload/MangaShelf.app/engine/jars/okhttp-zstd-5.4.0.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/okhttp-zstd-5.4.0.jar",
+        "bytes": 2024,
+        "sha256": "9ccd7db01a4704193f9de50da019da734c79606fb875763d8f8921fa54da2564"
+      },
+      "Payload/MangaShelf.app/engine/jars/okio-jvm-3.18.1.jar": {
+        "path": "Payload/MangaShelf.app/engine/jars/okio-jvm-3.18.1.jar",
+        "bytes": 392463,
+        "sha256": "b97b640557a650d15411f2be29aef558c4e422a83653cb18ba494311dbed18be"
+      },
+      "Payload/MangaShelf.app/engine/manifest.json": {
+        "path": "Payload/MangaShelf.app/engine/manifest.json",
+        "bytes": 44915,
+        "sha256": "53a430363d41d8cdb525253ed30332373e1e8ab7398eb352a5c3a1f5d2c34b98"
+      },
+      "Payload/MangaShelf.app/engine/runtime-host.jar": {
+        "path": "Payload/MangaShelf.app/engine/runtime-host.jar",
+        "bytes": 419035,
+        "sha256": "524b99fded26da54bca13fb6586c9ea24d4b2224659cad943155f2730b581cff"
+      },
+      "Payload/MangaShelf.app/icomoon.ttf": {
+        "path": "Payload/MangaShelf.app/icomoon.ttf",
+        "bytes": 6344,
+        "sha256": "17cf3d63edbe81d716f97b110f9659555f81ea6db8b05c02c68c610da0737f5f"
+      },
+      "Payload/MangaShelf.app/lib/conf/jaxp-strict.properties.template": {
+        "path": "Payload/MangaShelf.app/lib/conf/jaxp-strict.properties.template",
+        "bytes": 4937,
+        "sha256": "3cc9b87633769414b22c24c97ecded8a15df630fe5ab12abca2398d88e31b32b"
+      },
+      "Payload/MangaShelf.app/lib/conf/jaxp.properties": {
+        "path": "Payload/MangaShelf.app/lib/conf/jaxp.properties",
+        "bytes": 8222,
+        "sha256": "d4f45052a100e5aef02b6638a3b9c69b2bdd46155ceb58a52671e5d594c30100"
+      },
+      "Payload/MangaShelf.app/lib/conf/logging.properties": {
+        "path": "Payload/MangaShelf.app/lib/conf/logging.properties",
+        "bytes": 2740,
+        "sha256": "8590633e1e8a7d88ffe74cc04189c5c61b1ed4703180cbc851dcd5575efcce74"
+      },
+      "Payload/MangaShelf.app/lib/conf/management/jmxremote.access": {
+        "path": "Payload/MangaShelf.app/lib/conf/management/jmxremote.access",
+        "bytes": 3997,
+        "sha256": "0c25d26ee212ca1e8c33f67c3c460d43fe849c3a1d23dbe341148517602b280c"
+      },
+      "Payload/MangaShelf.app/lib/conf/management/jmxremote.password.template": {
+        "path": "Payload/MangaShelf.app/lib/conf/management/jmxremote.password.template",
+        "bytes": 5570,
+        "sha256": "ea144ecbcf34e05f48aef54b92beb30c65a470c70fd26258ad25a856f84834a3"
+      },
+      "Payload/MangaShelf.app/lib/conf/management/management.properties": {
+        "path": "Payload/MangaShelf.app/lib/conf/management/management.properties",
+        "bytes": 15015,
+        "sha256": "75e60327531d34d1ce5eb507db52711a1d926b9c77d14d6b3a392d747105488d"
+      },
+      "Payload/MangaShelf.app/lib/conf/net.properties": {
+        "path": "Payload/MangaShelf.app/lib/conf/net.properties",
+        "bytes": 7341,
+        "sha256": "f0093906820c30e079cbf79bd744d761aaf32ae917598c7ce71fac7eae16f86d"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/java.security": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/java.security",
+        "bytes": 78548,
+        "sha256": "d3b821fee6c8e69dee5e23253eedab349a70347e68a52acdc722c9048634fd1b"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/README.txt": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/README.txt",
+        "bytes": 2390,
+        "sha256": "6da0747334b0fea7592fd92614b2bbc8b126535e129b1fee483774d914e98eb5"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/limited/default_US_export.policy": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/limited/default_US_export.policy",
+        "bytes": 146,
+        "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/limited/default_local.policy": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/limited/default_local.policy",
+        "bytes": 647,
+        "sha256": "2b2627548e61316150d47ffc3e6cad465ca05b3cccd4785eb7d21aa7baa0f441"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/limited/exempt_local.policy": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/limited/exempt_local.policy",
+        "bytes": 566,
+        "sha256": "8c3d7648abcd95a272ce12db870082937f4d7f6878d730d83cb7fbb31eb8b2c9"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/unlimited/default_US_export.policy": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/unlimited/default_US_export.policy",
+        "bytes": 146,
+        "sha256": "758b930a526fc670ab7537f8c26321527050a31f5f42149a2dda623c56a0a1a9"
+      },
+      "Payload/MangaShelf.app/lib/conf/security/policy/unlimited/default_local.policy": {
+        "path": "Payload/MangaShelf.app/lib/conf/security/policy/unlimited/default_local.policy",
+        "bytes": 193,
+        "sha256": "8d8a318e6d90dfd7e26612d2b6385aa704f686ca6134c551f8928418d92b851a"
+      },
+      "Payload/MangaShelf.app/lib/conf/sound.properties": {
+        "path": "Payload/MangaShelf.app/lib/conf/sound.properties",
+        "bytes": 1210,
+        "sha256": "299c2360b6155eb28990ec49cd21753f97e43442fe8fab03e04f3e213df43a66"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/c-libutl.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/c-libutl.md",
+        "bytes": 1556,
+        "sha256": "bef40679922d6fdfb7e4ddb223ad6722300f6054ba737bbf6188d60fcec517f9"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/cldr.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/cldr.md",
+        "bytes": 8792,
+        "sha256": "aa042321478126d6e72b2e34d6ace5a29304860456715e0db392de00de408faa"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/icu.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/icu.md",
+        "bytes": 4147,
+        "sha256": "00b1690cca67b46a04f324d34c586f9c4d7f9abf9a37e87d08c638c5b1d27b42"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/public_suffix.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/public_suffix.md",
+        "bytes": 17783,
+        "sha256": "861de1e4992a7d28f1de25c73cd50d26a94779ebd749c0643fecfa56442c3429"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/siphash.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/siphash.md",
+        "bytes": 8256,
+        "sha256": "5a792b5a74ad2a5f3d6a7ad8b7a841116e58a772c18bc6e392320a365b222c76"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.base/unicode.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.base/unicode.md",
+        "bytes": 15098,
+        "sha256": "b39cac524df86958b952b894111fd4bccd44f2f38c7b4df86b9fc43fdd421d6b"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.compiler/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.compiler/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.compiler/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.compiler/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.compiler/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.compiler/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.datatransfer/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.datatransfer/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.datatransfer/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.datatransfer/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/colorimaging.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/colorimaging.md",
+        "bytes": 167,
+        "sha256": "04d61e3e8e71dd452ebe52008af5378d9f6640d14578aeb515dc5375973b0189"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/freetype.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/freetype.md",
+        "bytes": 30570,
+        "sha256": "e1f43089a3d7f846ac72709ba3f5e3dfe4a07955cbb1f5b580c3c41cf93792dd"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/giflib.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/giflib.md",
+        "bytes": 1689,
+        "sha256": "206aab89ec75968e48a6a1ed6df7d8b9bfb7aea12cbe4c9345d93e5d97460a25"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/harfbuzz.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/harfbuzz.md",
+        "bytes": 3629,
+        "sha256": "5ec7cba7f8e7fc3a089213140aab6fa1b3bd5bf8a91bf8bddb3b8d315fc5f7d0"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/jpeg.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/jpeg.md",
+        "bytes": 3474,
+        "sha256": "c1dfb9719a71ad9f861f8728550542d681e25c8ef40e6393606e6e2a0c1d653a"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/lcms.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/lcms.md",
+        "bytes": 2655,
+        "sha256": "6d409e73a4ce3c25479b4fb01d05fe79c0458bcd1dccc07f72d3e211d64ac8ce"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/libpng.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/libpng.md",
+        "bytes": 7519,
+        "sha256": "f73afb394792f3aeecd959e89487603677a430e56b44eba596d8b572accfd540"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/mesa3d.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/mesa3d.md",
+        "bytes": 5732,
+        "sha256": "63f4e6f75caebbccb95d903fb43e46ac7111b3624d0a34f146b276d7d9e7b152"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/pipewire.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/pipewire.md",
+        "bytes": 1479,
+        "sha256": "56a8fb1652c70ac204d13bb52ca4d678162e7d21a97d10209c2a633de8082de0"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.desktop/xwd.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.desktop/xwd.md",
+        "bytes": 1348,
+        "sha256": "1d4ffa93c87f35084b02a7aa90a21084b4019db4fe1003c2e5ce775b4a384f59"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.instrument/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.instrument/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.instrument/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.instrument/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.instrument/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.instrument/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.logging/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.logging/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.logging/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.logging/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.logging/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.logging/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management.rmi/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management.rmi/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management.rmi/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management.rmi/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.management/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.management/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.naming/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.naming/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.naming/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.naming/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.naming/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.naming/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.net.http/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.net.http/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.net.http/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.net.http/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.net.http/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.net.http/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.prefs/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.prefs/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.prefs/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.prefs/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.prefs/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.prefs/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.rmi/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.rmi/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.rmi/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.rmi/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.rmi/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.rmi/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.scripting/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.scripting/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.scripting/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.scripting/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.scripting/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.scripting/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.se/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.se/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.se/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.se/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.se/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.se/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.jgss/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.jgss/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.jgss/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.jgss/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.sasl/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.sasl/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.security.sasl/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.security.sasl/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.smartcardio/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.smartcardio/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.smartcardio/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.smartcardio/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.smartcardio/pcsclite.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.smartcardio/pcsclite.md",
+        "bytes": 2155,
+        "sha256": "3ad4c89f51e0c79170a6e5eaaae1429db25745dbe5a84fc61804caeec2fec54f"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql.rowset/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql.rowset/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql.rowset/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql.rowset/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.sql/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.sql/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.transaction.xa/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.transaction.xa/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.transaction.xa/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.transaction.xa/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml.crypto/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml.crypto/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml.crypto/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml.crypto/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml.crypto/santuario.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml.crypto/santuario.md",
+        "bytes": 11505,
+        "sha256": "d08690d25f660f145c73365d260ed522cd0aace8a0e1396706551b7a1ae8c9a3"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/bcel.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/bcel.md",
+        "bytes": 11196,
+        "sha256": "cd578186ad93de46cca29ec8ace2b11f9da751987f3f140e6095c528596cc8c1"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/dom.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/dom.md",
+        "bytes": 3761,
+        "sha256": "6686e8877667584a3a7c07344baadca1a03e29f677162d87c3c0811e990d1148"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/jcup.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/jcup.md",
+        "bytes": 1448,
+        "sha256": "8d5dcfdf50455a3c34c753a98f21e953248af200415a9084e3f102cb6c43b8bf"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/schema10part1.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/schema10part1.md",
+        "bytes": 2138,
+        "sha256": "b220f891e5bfa3aa4b2a4b34dfab53a291553c2ae0fd0b15a4cb1116d4e97770"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/schema10part2.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/schema10part2.md",
+        "bytes": 2136,
+        "sha256": "2350e35e91866d5ee5bd7ee7c303b3e424bbca335d36c71452588aac494eaa3e"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xalan.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xalan.md",
+        "bytes": 13477,
+        "sha256": "02bd013fc3f438dbb8fa41fa57888177e015efa6431d37fce6e794c6f353a6a1"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xerces.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xerces.md",
+        "bytes": 11848,
+        "sha256": "4a6bf6b367193ee68681cb2d9fed30ffc5d62dd2d477bd62e0271707d71b3244"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xhtml10.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xhtml10.md",
+        "bytes": 2634,
+        "sha256": "9a5cde47073ca80cf59127891420f4aed603eb65070738ad027bb19e76fb9319"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xhtml10schema.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xhtml10schema.md",
+        "bytes": 7521,
+        "sha256": "7bc51d884aaae6ef27551ee78d404ba3116356790da3d06b665679eb2e1cc002"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xhtml11.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xhtml11.md",
+        "bytes": 3258,
+        "sha256": "4f99a390896f0f55a0b78376de89bfd2ac845713de85e67e37f884b77e0c3122"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xhtml11schema.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xhtml11schema.md",
+        "bytes": 3224,
+        "sha256": "8cd69b1392e286538008f4cb003f85caea3a375c619e697813d820b69857cf74"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xmlspec.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xmlspec.md",
+        "bytes": 2719,
+        "sha256": "afec263bf5dc67697ee33734ee243f86a878161335ef6298273e4041673b0544"
+      },
+      "Payload/MangaShelf.app/lib/legal/java.xml/xmlxsd.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/java.xml/xmlxsd.md",
+        "bytes": 1951,
+        "sha256": "498a5fec63509a8f3949983bb6878ac5c95aaf1d5e3679272d93314371aa0211"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.accessibility/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.accessibility/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.accessibility/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.accessibility/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.charsets/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.charsets/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.charsets/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.charsets/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md",
+        "bytes": 4493,
+        "sha256": "34a2c0eee072a47a22927e1dbc9c4280947d72aa07fee4e2bee7706023a3f4f9"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/pkcs11wrapper.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.crypto.cryptoki/pkcs11wrapper.md",
+        "bytes": 2131,
+        "sha256": "371974b1fca3744a3892c7ee1fcc593b8b4281fc218f4cafd2f709e9df5fd81d"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.dynalink/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.dynalink/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.dynalink/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.dynalink/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.dynalink/dynalink.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.dynalink/dynalink.md",
+        "bytes": 1502,
+        "sha256": "17312591cabee3ef6c34ed8897d92e4e361ba9cea41ec00dcd61a322a8fc2cdb"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.httpserver/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.httpserver/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.httpserver/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.httpserver/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.incubator.vector/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jdwp.agent/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jfr/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jfr/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.jfr/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.jfr/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.localedata/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.localedata/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.localedata/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.localedata/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.localedata/cldr.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.localedata/cldr.md",
+        "bytes": 8792,
+        "sha256": "aa042321478126d6e72b2e34d6ace5a29304860456715e0db392de00de408faa"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.localedata/thaidict.md": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.localedata/thaidict.md",
+        "bytes": 1346,
+        "sha256": "c326144a2351c9608fa708b5d7d3c5a3da03e82b66479b128e9db4969539824a"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.agent/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.agent/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.agent/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.agent/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management.jfr/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.management/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.management/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.dns/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.naming.rmi/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.net/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.net/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.net/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.net/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.net/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.net/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.nio.mapmode/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.sctp/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.sctp/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.sctp/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.sctp/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.auth/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.auth/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.auth/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.auth/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.security.jgss/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.unsupported/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.unsupported/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.unsupported/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.unsupported/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.xml.dom/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO",
+        "bytes": 2114,
+        "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.zipfs/ASSEMBLY_EXCEPTION": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.zipfs/ASSEMBLY_EXCEPTION",
+        "bytes": 1514,
+        "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+      },
+      "Payload/MangaShelf.app/lib/legal/jdk.zipfs/LICENSE": {
+        "path": "Payload/MangaShelf.app/lib/legal/jdk.zipfs/LICENSE",
+        "bytes": 19274,
+        "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+      },
+      "Payload/MangaShelf.app/lib/lib/classlist": {
+        "path": "Payload/MangaShelf.app/lib/lib/classlist",
+        "bytes": 86756,
+        "sha256": "3b8952a7b42d5bdb0d1162fbd4e6ed3cf320a685b607c042fd62f52dc54b9462"
+      },
+      "Payload/MangaShelf.app/lib/lib/jfr/default.jfc": {
+        "path": "Payload/MangaShelf.app/lib/lib/jfr/default.jfc",
+        "bytes": 40971,
+        "sha256": "40a2b45d688d53b4447f4ca1e547d1d338c8362f0de68affd65fb7148c08c1f8"
+      },
+      "Payload/MangaShelf.app/lib/lib/jfr/profile.jfc": {
+        "path": "Payload/MangaShelf.app/lib/lib/jfr/profile.jfc",
+        "bytes": 40853,
+        "sha256": "666369719b1a8e11f6c16ecf8be9cbc58537f7c305cba10236f11d6bf7ae001e"
+      },
+      "Payload/MangaShelf.app/lib/lib/jrt-fs.jar": {
+        "path": "Payload/MangaShelf.app/lib/lib/jrt-fs.jar",
+        "bytes": 121243,
+        "sha256": "19d167670e01d94eb4da0afe83153a080ab54e858f1f8e885ac06d023b803e34"
+      },
+      "Payload/MangaShelf.app/lib/lib/jvm.cfg": {
+        "path": "Payload/MangaShelf.app/lib/lib/jvm.cfg",
+        "bytes": 42,
+        "sha256": "40aceb62df970fa0c33a9e3f3f88a433fb0b7dc3a78743beac3a9d84a4b5f90d"
+      },
+      "Payload/MangaShelf.app/lib/lib/modules": {
+        "path": "Payload/MangaShelf.app/lib/lib/modules",
+        "bytes": 100176282,
+        "sha256": "4cec7504a28e2918fadb7b739dd4de76227d409392646f8a17753c4974e04807"
+      },
+      "Payload/MangaShelf.app/lib/lib/psfont.properties.ja": {
+        "path": "Payload/MangaShelf.app/lib/lib/psfont.properties.ja",
+        "bytes": 3793,
+        "sha256": "5a4bd51b969bf187ff86d94f4a71fdfbfa602762975fa3c73d264b4575f7c78f"
+      },
+      "Payload/MangaShelf.app/lib/lib/psfontj2d.properties": {
+        "path": "Payload/MangaShelf.app/lib/lib/psfontj2d.properties",
+        "bytes": 11372,
+        "sha256": "d7de87ca829b275cd1e6c3a5d9f1fdd4accc4e77a5b180172e908cdcfd9fa71f"
+      },
+      "Payload/MangaShelf.app/lib/lib/security/blocked.certs": {
+        "path": "Payload/MangaShelf.app/lib/lib/security/blocked.certs",
+        "bytes": 2488,
+        "sha256": "96572f243f31c2ef81a6e627542e596f6a9295cff3c7ae095c1b595cb1457ded"
+      },
+      "Payload/MangaShelf.app/lib/lib/security/cacerts": {
+        "path": "Payload/MangaShelf.app/lib/lib/security/cacerts",
+        "bytes": 133162,
+        "sha256": "aac2644128061f8392547cdd9582614c8ffa097b1764a7a87ca9f62725952dbb"
+      },
+      "Payload/MangaShelf.app/lib/lib/security/public_suffix_list.dat": {
+        "path": "Payload/MangaShelf.app/lib/lib/security/public_suffix_list.dat",
+        "bytes": 227396,
+        "sha256": "16b42002aa6f83a7763c4cdbd399ecf738460377d447e362884495545afd60a3"
+      },
+      "Payload/MangaShelf.app/lib/lib/tzdb.dat": {
+        "path": "Payload/MangaShelf.app/lib/lib/tzdb.dat",
+        "bytes": 102956,
+        "sha256": "5906b44e25a8a730131d7ba1beb5d15af27043f6536f1a169ca8a5d8b8bed8f8"
+      },
+      "Payload/MangaShelf.app/lib/release": {
+        "path": "Payload/MangaShelf.app/lib/release",
+        "bytes": 849,
+        "sha256": "a5b625dea532bb2f356be62a289577e49f115fd6d71966ddf9b347ccf596f6e4"
+      }
+    }
+  },
+  "runtime_selection": {
+    "repository": "badrcoderman/MangaShelf",
+    "run_id": 39818913578,
+    "head_sha": "0e792191ce5b85c66384682f20af37e8e89f16d5",
+    "workflow": ".github/workflows/ios-jvm.yml",
+    "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39818913578",
+    "conclusion": "success",
+    "artifact_id": 12445356524,
+    "artifact_sha256": "15230e0d9a6c8e38cf2c90442a74ae529135e836a06295f32d7bb1e8eb9d346e",
+    "java_modules_present": true,
+    "build_manifest_verified": true,
+    "execution_proven": false
+  },
+  "physical_iphone_tested": false,
+  "real_extension_execution": false,
+  "log_sha256": "6dd0c4a3bd07b096bd76c7b32f2401166347f3eb264e8405fa8c7732cc181e49",
+  "remaining": [
+    "runtime startup on device",
+    "native iOS source networking",
+    "source-owned image downloading",
+    "per-request cancellation",
+    "iPhone end-to-end source verification"
+  ],
+  "new_tests_passed": [
+    "testBooleanTrustWithoutReviewedPublisherCannotReachDispatcher",
+    "testReviewedPublisherPersistsAndRevocationClearsSourceOwnership",
+    "testReviewCannotGrantTrustToAnotherArchive",
+    "testRepeatedAndConcurrentLoadsShareTheLoadedPackage",
+    "testRevocationDuringNativeLoadUnloadsBeforeReturning"
+  ]
+}
