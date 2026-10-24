@@ -54,6 +54,10 @@ extension SecureHTTP: SourceTransport {
            existing.series.sourceID == series.sourceID {
             request.sourceLanguage = existing.series.sourceLanguage
         }
+        if request.sourceMetadataJSON == nil, let existing = saved(series.id),
+           existing.series.sourceID == request.sourceID, existing.series.sourceURL == request.sourceURL {
+            request.sourceMetadataJSON = existing.series.sourceMetadataJSON
+        }
         let selectedLanguage = request.chapterLanguage(preference: language)
         try await store.save(request)
         // Network work is completed before committing the chapter list.
@@ -63,15 +67,19 @@ extension SecureHTTP: SourceTransport {
             details = try await source.details(id: series.id)
             chapters = try await source.chapters(seriesID: series.id, language: selectedLanguage)
         } else {
-            let mangaURL = try series.requireSourceURL()
-            let extDetails = try await SourceEngineCoordinator.shared.fetchDetails(sourceId: series.sourceID, mangaURL: mangaURL)
-            let extChapters = try await SourceEngineCoordinator.shared.fetchChapters(sourceId: series.sourceID, mangaURL: mangaURL)
+            let mangaURL = try request.requireSourceURL()
+            let extDetails = try await SourceEngineCoordinator.shared.fetchDetails(sourceId: series.sourceID, mangaURL: mangaURL,
+                                                                                 sourceMetadataJSON: request.sourceMetadataJSON)
+            let resolvedURL = extDetails.url ?? mangaURL
+            let metadata = extDetails.sourceMetadataJSON ?? request.sourceMetadataJSON
+            let extChapters = try await SourceEngineCoordinator.shared.fetchChapters(sourceId: series.sourceID, mangaURL: resolvedURL,
+                                                                                   sourceMetadataJSON: metadata)
             details = MangaSeries(id: series.id, title: extDetails.title, synopsis: extDetails.description ?? "",
                                   coverURL: extDetails.coverURL ?? series.coverURL,
                                   authors: extDetails.author.map { [$0] } ?? [],
                                   tags: extDetails.genre, status: extDetails.status ?? "ongoing",
-                                  sourceID: series.sourceID, sourceURL: mangaURL,
-                                  sourceLanguage: request.sourceLanguage)
+                                  sourceID: series.sourceID, sourceURL: resolvedURL,
+                                  sourceLanguage: request.sourceLanguage, sourceMetadataJSON: metadata)
             let savedByURL = Dictionary(grouping: saved(series.id)?.chapters ?? [], by: { $0.sourceURL ?? "" })
             chapters = extChapters.map {
                 $0.libraryChapter(seriesID: series.id, language: selectedLanguage, saved: savedByURL[$0.url] ?? [])
@@ -99,8 +107,10 @@ extension SecureHTTP: SourceTransport {
         let seriesItem = state.series.first { $0.id == chapter.seriesID }
         let pages: ChapterPages
         if let sid = seriesItem?.series.sourceID, sid != "mangadex" {
-            let pageItems = try await SourceEngineCoordinator.shared.fetchPages(sourceId: sid, chapterURL: chapter.requireSourceURL())
-            pages = try ChapterPages(chapterID: chapter.id, urls: pageItems.compactMap { $0.imageURL ?? $0.url })
+            let pageItems = try await SourceEngineCoordinator.shared.fetchPages(sourceId: sid, chapterURL: chapter.requireSourceURL(),
+                                                                               sourceMetadataJSON: chapter.sourceMetadataJSON)
+            pages = try ChapterPages(chapterID: chapter.id, urls: pageItems.map { $0.imageURL ?? $0.url },
+                                     sourceMetadataJSON: pageItems.map(\.sourceMetadataJSON))
         } else {
             pages = try await source.pages(chapterID: chapter.id, dataSaver: dataSaver)
         }

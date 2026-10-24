@@ -281,6 +281,28 @@ final class ExtensionEngineTests: XCTestCase {
         }
     }
 
+    func testOwnedNativeResponseDecodesLargeUnicodeResultOnce() throws {
+        NativeDispatchCounter.shared.reset()
+        ms_bridge_register_dispatchers(nil, { _, _, output, length in
+            NativeDispatchCounter.shared.record()
+            let bytes = Array((String(repeating: "a", count: 100_000) + "العربية📚").utf8)
+            guard let output, let length, let allocation = malloc(bytes.count + 1) else {
+                return Int32(MS_BRIDGE_JNI_ERROR)
+            }
+            let target = allocation.assumingMemoryBound(to: CChar.self)
+            for (index, byte) in bytes.enumerated() { target[index] = CChar(bitPattern: byte) }
+            target[bytes.count] = 0
+            output.pointee = target
+            length.pointee = bytes.count
+            return Int32(MS_BRIDGE_OK)
+        })
+        defer { ms_bridge_register_dispatcher(nil) }
+
+        let result = try ExtensionRuntime().dispatch(action: "details")
+        XCTAssertEqual(result, String(repeating: "a", count: 100_000) + "العربية📚")
+        XCTAssertEqual(NativeDispatchCounter.shared.count, 1)
+    }
+
     func testStagedExtensionDisplayName() {
         let inspection = JARInspection(entries: 1, classes: ["Test.class"], maximumClassVersion: 52, manifest: nil)
         let ext1 = StagedExtension(packageName: "eu.kanade.tachiyomi.extension.all.mangadex",

@@ -1070,3 +1070,9 @@
 "The repository identity changed while its extension list was loading." = "تغيّرت هوية المستودع أثناء تحميل قائمة الإضافات.";
 
 "The title identifier belongs to a different source." = "معرّف العنوان مرتبط بمصدر آخر.";
+
+"This source is not loaded. Enable its extension and try again." = "هذا المصدر غير محمّل. فعّل إضافته ثم حاول مرة أخرى.";
+
+"The source took too long to respond. Try again." = "استغرق المصدر وقتًا طويلًا للرد. حاول مرة أخرى.";
+
+"The source request failed. Try again." = "فشل طلب المصدر. حاول مرة أخرى.";

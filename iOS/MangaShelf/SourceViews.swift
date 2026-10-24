@@ -122,6 +122,10 @@ struct SeriesDetailView: View {
         if stored.sourceID == series.sourceID, let knownLanguage = series.sourceLanguage {
             stored.sourceLanguage = knownLanguage
         }
+        if stored.sourceID == series.sourceID, stored.sourceURL == series.sourceURL,
+           stored.sourceMetadataJSON == nil {
+            stored.sourceMetadataJSON = series.sourceMetadataJSON
+        }
         return stored
     }
     private var sourceName: String {

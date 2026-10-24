@@ -33,7 +33,8 @@ extension SourceMangaItem {
         let existing = matches.first { $0.id == canonical } ?? matches.min { $0.id < $1.id }
         return MangaSeries(id: existing?.id ?? canonical, title: title, coverURL: coverURL,
                            sourceID: sourceID, sourceURL: url,
-                           sourceLanguage: sourceLanguage ?? existing?.series.sourceLanguage)
+                           sourceLanguage: sourceLanguage ?? existing?.series.sourceLanguage,
+                           sourceMetadataJSON: sourceMetadataJSON ?? existing?.series.sourceMetadataJSON)
     }
 }
 
@@ -45,6 +46,7 @@ extension SourceChapterItem {
         let existing = matches.first { $0.id == canonical } ?? matches.min { $0.id < $1.id }
         return MangaChapter(id: existing?.id ?? canonical, seriesID: seriesID, title: name,
                             number: String(chapterNumber), language: language, group: scanlator ?? "",
-                            publishedAt: Date(timeIntervalSince1970: TimeInterval(dateUpload)), sourceURL: url)
+                            publishedAt: Date(timeIntervalSince1970: TimeInterval(dateUpload)), sourceURL: url,
+                            sourceMetadataJSON: sourceMetadataJSON ?? existing?.sourceMetadataJSON)
     }
 }

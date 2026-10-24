@@ -1,7 +1,7 @@
 {
-  "recorded_at": "2026-10-19T22:47:25.982397+00:00",
+  "recorded_at": "2026-10-24T00:05:10.825862+00:00",
   "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build",
-  "tests_per_run": 9,
+  "tests_per_run": 12,
   "runs": [
     {
       "mode": "strict",
@@ -21,7 +21,7 @@
           "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/MSJNIBridge.c",
           "/home/user/Documents/Managa-app/MangaShilf/scripts/bridge_regression.c",
           "-o",
-          "/tmp/mangashelf-bridge-z_uixf77/strict"
+          "/tmp/mangashelf-bridge-e6um3bea/strict"
         ],
         "exit_code": 0,
         "stdout": "",
@@ -29,10 +29,10 @@
       },
       "execute": {
         "command": [
-          "/tmp/mangashelf-bridge-z_uixf77/strict"
+          "/tmp/mangashelf-bridge-e6um3bea/strict"
         ],
         "exit_code": 0,
-        "stdout": "PASS: 9 native bridge regression tests\n",
+        "stdout": "PASS: 12 native bridge regression tests\n",
         "stderr": ""
       },
       "passed": true
@@ -58,7 +58,7 @@
           "/home/user/Documents/Managa-app/MangaShilf/Sources/CSafeArchive/MSJNIBridge.c",
           "/home/user/Documents/Managa-app/MangaShilf/scripts/bridge_regression.c",
           "-o",
-          "/tmp/mangashelf-bridge-z_uixf77/asan-ubsan"
+          "/tmp/mangashelf-bridge-e6um3bea/asan-ubsan"
         ],
         "exit_code": 0,
         "stdout": "",
@@ -66,16 +66,16 @@
       },
       "execute": {
         "command": [
-          "/tmp/mangashelf-bridge-z_uixf77/asan-ubsan"
+          "/tmp/mangashelf-bridge-e6um3bea/asan-ubsan"
         ],
         "exit_code": 0,
-        "stdout": "PASS: 9 native bridge regression tests\n",
+        "stdout": "PASS: 12 native bridge regression tests\n",
         "stderr": ""
       },
       "passed": true
     }
   ],
-  "leak_detection": false,
+  "leak_detection": true,
   "concurrency_limit": "disabling/unregistering blocks subsequent snapshots; captured calls may complete",
   "passed": true
 }

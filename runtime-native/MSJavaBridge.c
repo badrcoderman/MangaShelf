@@ -79,7 +79,7 @@ int ms_java_bridge_install(const char *class_name, const char *method_name) {
     strcpy(installed_method, method_name);
     installed = 1;
     active = 1;
-    ms_bridge_register_dispatcher(dispatch_fixed);
+    ms_bridge_register_dispatchers(dispatch_fixed, ms_java_bridge_dispatch_owned);
     pthread_mutex_unlock(&adapter_lock);
     return MS_BRIDGE_OK;
 }

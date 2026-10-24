@@ -65,7 +65,8 @@ jobs:
         run: |
           rm -f validation/runtime-host-build.json validation/runtime-host-tests.json \
             validation/runtime-preferences-host.json validation/runtime-network-host.json validation/runtime-bootstrap-host.json \
-            validation/runtime-source-preferences-host.json \
+            validation/runtime-source-preferences-host.json validation/runtime-source-commands-host.json \
+            validation/bridge-test-results.json validation/java-bridge-host.json \
             validation/runtime-zstd-host.json validation/zstd-native-host.json validation/zstd-native-ios.json \
             validation/extension-archive-verifier-host.json validation/extension-loader-host.json
       - name: Check pinned API and source registry
@@ -80,6 +81,20 @@ jobs:
       - name: Check source settings and callback lifetime
         if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-source-preferences.py
+      - name: Check Source 1.6 JSON conversion and state round trips
+        if: inputs.task == 'runtime-host'
+        run: python3 -u scripts/test-runtime-source-commands.py
+      - name: Check owned C callback responses and sanitizers
+        if: inputs.task == 'runtime-host'
+        run: |
+          if [ "$RUNNER_OS" = macOS ]; then
+            python3 -u scripts/test_bridge.py --no-leak-check
+          else
+            python3 -u scripts/test_bridge.py
+          fi
+      - name: Check common owned response through the actual JNI adapter
+        if: inputs.task == 'runtime-host'
+        run: python3 -u scripts/test-java-bridge.py
       - name: Check authored HTTP sources and TLS on host JVM
         if: inputs.task == 'runtime-host'
         run: python3 -u scripts/test-runtime-network.py
@@ -119,6 +134,9 @@ jobs:
             validation/runtime-network-host.json
             validation/runtime-bootstrap-host.json
             validation/runtime-source-preferences-host.json
+            validation/runtime-source-commands-host.json
+            validation/bridge-test-results.json
+            validation/java-bridge-host.json
             validation/runtime-zstd-host.json
             validation/zstd-native-host.json
             validation/zstd-native-ios.json

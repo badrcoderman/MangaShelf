@@ -8,6 +8,9 @@ public Kotlin sources with a recorded compiler compatibility bridge, and the
 pinned Apache Zstd/Okio Kotlin sources with a separate source-built native codec.
 This module is outside the
 production iOS target. Published extensions have not been executed with it.
+The specifically vetted MangaDex rebuild from pinned public source has now run
+on the host, including live catalogue/details/chapters and page URL resolution;
+[scope and evidence](../docs/MANGADEX-HOST-EXECUTION-AR.md).
 
 ## Build and check
 
@@ -17,6 +20,7 @@ python3 scripts/test-runtime-host.py
 python3 scripts/test-runtime-preferences.py
 python3 scripts/test-runtime-bootstrap.py
 python3 scripts/test-runtime-source-preferences.py
+python3 scripts/test-runtime-source-commands.py
 python3 scripts/test-runtime-network.py
 python3 scripts/test-runtime-zstd.py
 python3 scripts/test-extension-loader.py
@@ -189,6 +193,15 @@ contain the same host JAR. See `validation/runtime-host-40032630971.json`.
 This workflow produces no IPA.
 
 ## HTTP and application services
+
+`mangashelf.host.SourceRuntime.dispatch(String,String):String` is the owned static
+entrypoint for the native adapter. It configures services, verifies and loads a
+package, exposes source commands and drains work during close. `SourceCommands`
+converts models inside registry leases, preserving opaque metadata, millisecond
+dates and source page order. Only host JSON strings leave those leases. This
+entrypoint is distinct from the older project fixture runner, whose sources
+returned JSON strings themselves. See [the wire contract and remaining app
+integration](../docs/SOURCE-RUNTIME-JSON-AR.md).
 
 `HostServices.configure` takes one Application, installs its Context, version
 identity, user agent and NetworkHelper, and registers the same Application,

@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <pthread.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 static int dispatch_calls;
@@ -233,6 +234,66 @@ static void test_in_flight_call_may_finish_after_disable(void) {
     assert(thread_result == MS_BRIDGE_OK);
 }
 
+static int owned_calls;
+static int owned_response(const char *action, const char *payload, char **output, size_t *length) {
+    assert(action && payload && output && length && *output == NULL && *length == 0);
+    assert(ms_bridge_is_vm_available() == 1); /* No bridge lock around callbacks. */
+    ++owned_calls;
+    const size_t count = 100000;
+    *output = malloc(count + 1);
+    assert(*output);
+    memset(*output, 'a', count);
+    (*output)[count] = 0;
+    *length = count;
+    if (strcmp(action, "error") == 0) return MS_BRIDGE_JAVA_EXCEPTION;
+    if (strcmp(action, "oversize") == 0) *length = (size_t)MS_BRIDGE_MAX_RESPONSE_BYTES + 1;
+    if (strcmp(action, "nul") == 0) (*output)[8] = 0;
+    return MS_BRIDGE_OK;
+}
+
+static void test_owned_prefers_one_callback_and_clears_it_on_legacy_replacement(void) {
+    reset_bridge(); owned_calls = 0;
+    ms_bridge_register_dispatchers(response_dispatch, owned_response);
+    char *output = NULL; size_t length = 0;
+    assert(ms_bridge_dispatch_owned("large", "{}", &output, &length) == MS_BRIDGE_OK);
+    assert(length == 100000 && output[length] == 0 && owned_calls == 1 && dispatch_calls == 0);
+    ms_bridge_free_string(output);
+    ms_bridge_register_dispatcher(response_dispatch);
+    assert(ms_bridge_dispatch_owned("small", "{}", &output, &length) == MS_BRIDGE_OK);
+    assert(strcmp(output, "{\"ok\":true}") == 0 && length == 11 && owned_calls == 1 && dispatch_calls == 1);
+    ms_bridge_free_string(output);
+}
+
+static void test_owned_errors_limits_and_embedded_nul_release_allocation(void) {
+    reset_bridge(); owned_calls = 0;
+    ms_bridge_register_dispatchers(NULL, owned_response);
+    const char *actions[] = {"error", "oversize", "nul"};
+    const int expected[] = {MS_BRIDGE_JAVA_EXCEPTION, MS_BRIDGE_BUFFER_TOO_SMALL, MS_BRIDGE_INVALID_RESPONSE};
+    for (size_t i = 0; i < 3; ++i) {
+        char *output = (char *)1; size_t length = 99;
+        assert(ms_bridge_dispatch_owned(actions[i], "{}", &output, &length) == expected[i]);
+        assert(output == NULL && length == 0 && owned_calls == (int)i + 1);
+    }
+}
+
+static void test_owned_availability_and_invalid_inputs_do_not_dispatch(void) {
+    reset_bridge(); owned_calls = 0;
+    ms_bridge_register_dispatchers(NULL, owned_response);
+    char *output = (char *)1; size_t length = 99;
+    assert(ms_bridge_dispatch_owned(NULL, "{}", &output, &length) == MS_BRIDGE_INVALID_ARG);
+    assert(output == NULL && length == 0 && owned_calls == 0);
+    assert(ms_bridge_dispatch_owned("ping", "{}", NULL, &length) == MS_BRIDGE_INVALID_ARG);
+    assert(ms_bridge_dispatch_owned("ping", "{}", &output, NULL) == MS_BRIDGE_INVALID_ARG);
+    ms_bridge_set_vm_available(0);
+    assert(ms_bridge_dispatch_owned("ping", "{}", &output, &length) == MS_BRIDGE_NOT_STARTED);
+    ms_bridge_set_vm_available(1);
+    assert(ms_bridge_is_vm_available() == 1);
+    ms_bridge_register_dispatcher(NULL);
+    ms_bridge_set_vm_available(1);
+    assert(ms_bridge_dispatch_owned("ping", "{}", &output, &length) == MS_BRIDGE_NOT_STARTED);
+    assert(output == NULL && length == 0 && owned_calls == 0);
+}
+
 int main(void) {
     test_absent_dispatcher_cannot_be_enabled();
     test_lifecycle_stops_subsequent_calls();
@@ -243,7 +304,10 @@ int main(void) {
     test_network_rejects_invalid_inputs_without_callback();
     test_network_preserves_callback_outputs();
     test_in_flight_call_may_finish_after_disable();
+    test_owned_prefers_one_callback_and_clears_it_on_legacy_replacement();
+    test_owned_errors_limits_and_embedded_nul_release_allocation();
+    test_owned_availability_and_invalid_inputs_do_not_dispatch();
     reset_bridge();
-    puts("PASS: 9 native bridge regression tests");
+    puts("PASS: 12 native bridge regression tests");
     return 0;
 }

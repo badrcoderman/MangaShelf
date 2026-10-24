@@ -15,13 +15,16 @@ public struct MangaSeries: Codable, Identifiable, Hashable, Sendable {
     /// Language of the individual extension source, independent of UI and browse preferences.
     /// Older libraries may not contain this metadata.
     public var sourceLanguage: String?
+    /// Versioned, opaque source state (including SManga.memo). Never use this as a URL or storage identifier.
+    public var sourceMetadataJSON: String?
     public init(id: String, title: String, synopsis: String = "", coverURL: String? = nil,
                 authors: [String] = [], tags: [String] = [], status: String = "", sourceID: String = "mangadex",
-                sourceURL: String? = nil, sourceLanguage: String? = nil) {
+                sourceURL: String? = nil, sourceLanguage: String? = nil, sourceMetadataJSON: String? = nil) {
         self.id = id; self.title = title; self.synopsis = synopsis; self.coverURL = coverURL
         self.authors = authors; self.tags = tags; self.status = status; self.sourceID = sourceID
         self.sourceURL = sourceURL
         self.sourceLanguage = sourceLanguage
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 
     public func chapterLanguage(preference: String) -> String {
@@ -48,16 +51,18 @@ public struct MangaChapter: Codable, Identifiable, Hashable, Sendable {
     public var externalURL: String?
     /// Extension lookup URL; externalURL instead denotes a publisher-only chapter.
     public var sourceURL: String?
+    public var sourceMetadataJSON: String?
     public var displayTitle: String {
         let label = number.map { ReaderText.format("Chapter %@", String(describing: $0)) } ?? ReaderText.string("Chapter")
         return title.isEmpty ? label : label + " — " + title
     }
     public init(id: String, seriesID: String, title: String = "", number: String? = nil,
                 volume: String? = nil, language: String = "ar", group: String = "", publishedAt: Date? = nil,
-                externalURL: String? = nil, sourceURL: String? = nil) {
+                externalURL: String? = nil, sourceURL: String? = nil, sourceMetadataJSON: String? = nil) {
         self.id = id; self.seriesID = seriesID; self.title = title; self.number = number; self.volume = volume
         self.language = language; self.group = group; self.publishedAt = publishedAt; self.externalURL = externalURL
         self.sourceURL = sourceURL
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 
     public func requireSourceURL() throws -> String {
@@ -71,11 +76,14 @@ public struct MangaChapter: Codable, Identifiable, Hashable, Sendable {
 public struct ChapterPages: Codable, Sendable {
     public let chapterID: String
     public let urls: [String]
-    public init(chapterID: String, urls: [String]) throws {
+    public let sourceMetadataJSON: [String?]?
+    public init(chapterID: String, urls: [String], sourceMetadataJSON: [String?]? = nil) throws {
         guard (UUID(uuidString: chapterID) != nil || (!chapterID.isEmpty && chapterID.count <= 256)),
               !urls.isEmpty, urls.count <= 4096,
+              sourceMetadataJSON.map({ $0.count == urls.count && $0.allSatisfy({ ($0?.utf8.count ?? 0) <= 256 * 1024 }) }) ?? true,
               urls.allSatisfy(HTTPSPolicy.accepts) else { throw ReaderFailure(ReaderText.string("Invalid chapter page list.")) }
         self.chapterID = chapterID; self.urls = urls
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 }
 
@@ -130,6 +138,7 @@ public struct OnlineState: Codable, Sendable {
                   (item.series.sourceID == "mangadex" || (!item.series.sourceID.isEmpty && item.series.sourceID.count <= 256)),
                   !item.series.title.isEmpty, item.series.title.count <= 2048,
                   item.series.sourceLanguage.map({ $0.count <= 32 }) ?? true,
+                  item.series.sourceMetadataJSON.map({ $0.utf8.count <= 256 * 1024 }) ?? true,
                   item.series.coverURL.map(HTTPSPolicy.accepts) ?? true,
                   item.chapters.count <= 30_000, Set(item.chapters.map(\.id)).count == item.chapters.count,
                   item.progress.count <= 30_000 else { throw ReaderFailure(ReaderText.string("Invalid title data.")) }
@@ -154,7 +163,8 @@ public struct OnlineState: Codable, Sendable {
     private static func validateChapter(_ chapter: MangaChapter) throws {
         guard (UUID(uuidString: chapter.id) != nil || (!chapter.id.isEmpty && chapter.id.count <= 256)),
               (UUID(uuidString: chapter.seriesID) != nil || (!chapter.seriesID.isEmpty && chapter.seriesID.count <= 256)),
-              chapter.title.count <= 2048 else { throw ReaderFailure(ReaderText.string("Invalid chapter identifier.")) }
+              chapter.title.count <= 2048,
+              chapter.sourceMetadataJSON.map({ $0.utf8.count <= 256 * 1024 }) ?? true else { throw ReaderFailure(ReaderText.string("Invalid chapter identifier.")) }
     }
 }
 

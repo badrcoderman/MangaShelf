@@ -12,6 +12,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
@@ -400,6 +401,51 @@ object LoaderCheck {
             for (text in invalid) fails("invalid_extension_manifest") { ExtensionManifest.parse(text.toByteArray()) }
             fails("invalid_extension_manifest") { ExtensionManifest.parse(ByteArray(256 * 1024 + 1) { 65 }) }
             fails("invalid_extension_manifest") { ExtensionManifest.parse(byteArrayOf(0xC0.toByte(), 0xAF.toByte())) }
+        }
+        case("static_runtime_close_drains_signed_source_http_before_archive_and_services") {
+            HttpFixtureServer().use { server ->
+                System.setProperty("msl.fixture.http_url", server.url)
+                fun runtime(action: String, body: JsonObject): JsonObject =
+                    Json.parseToJsonElement(SourceRuntime.dispatch(action, body.toString())).jsonObject
+                val configured = runtime("configure", buildJsonObject {
+                    put("dataDirectory", root.resolve("static-runtime").toString()); put("applicationId", "app.mangashelf.runtimefixture")
+                    put("versionName", "test"); put("versionCode", 9); put("userAgent", "MangaShelf-Test/9"); put("platformRelease", "26.2")
+                })
+                check(configured["status"]?.jsonPrimitive?.content == "configured")
+                try {
+                    val http = request("http")
+                    val loaded = runtime("load", buildJsonObject {
+                        put("package", http.packageName); put("path", http.archive.toString()); put("archiveSha256", http.archiveSha256)
+                        put("trustedCertificateSha256", http.trustedCertificateSha256); put("mainClass", http.mainClass)
+                        put("versionCode", http.versionCode.toString()); put("versionName", http.versionName)
+                        put("sources", kotlinx.serialization.json.JsonArray(listOf(buildJsonObject { put("id", "987"); put("language", "en") })))
+                    })
+                    check(loaded["status"]?.jsonPrimitive?.content == "loaded")
+                    check(runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 88) })["error"]?.jsonPrimitive?.content == "source_timeout")
+                    val loader = lastLoader()
+                    coroutineScope {
+                        val call = async(Dispatchers.IO) { runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 99) }) }
+                        try {
+                            check(server.entered.await(5, TimeUnit.SECONDS))
+                            val closing = async(Dispatchers.IO) { runtime("close", buildJsonObject { }) }
+                            until("msl.fixture.http_cleanup_entered")
+                            check(!closing.isCompleted && !loader.isClosed)
+                            System.setProperty("msl.fixture.http_release", "true")
+                            check(call.await()["error"]?.jsonPrimitive?.content == "cancelled")
+                            check(closing.await()["status"]?.jsonPrimitive?.content == "closed")
+                            check(loader.isClosed && System.getProperty("msl.fixture.http_cleanup_done") == "true")
+                            try { HostServices.current; error("Closed runtime retained its services") }
+                            catch (expected: IllegalStateException) { check(expected.message == "source_host_not_configured") }
+                        } finally {
+                            System.setProperty("msl.fixture.http_release", "true"); server.release.countDown()
+                            call.cancelAndJoin()
+                        }
+                    }
+                } finally {
+                    System.setProperty("msl.fixture.http_release", "true"); server.release.countDown()
+                    check(runtime("close", buildJsonObject { })["status"]?.jsonPrimitive?.content == "closed")
+                }
+            }
         }
         System.getProperties().keys.filter { it.toString().startsWith("msl.fixture.") }.toList()
             .forEach { System.getProperties().remove(it) }

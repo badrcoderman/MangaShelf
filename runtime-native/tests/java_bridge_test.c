@@ -56,11 +56,11 @@ static void test_lookup_and_exception_recovery(void) {
     char *owned = (char *)1;
     size_t length = 99;
     int before = calls();
-    assert(ms_java_bridge_dispatch_owned("throw", "", &owned, &length) == MS_BRIDGE_JAVA_EXCEPTION);
+    assert(ms_bridge_dispatch_owned("throw", "", &owned, &length) == MS_BRIDGE_JAVA_EXCEPTION);
     assert(owned == NULL && length == 0 && calls() == before + 1);
-    assert(ms_java_bridge_dispatch_owned("null", "", &owned, &length) == MS_BRIDGE_JAVA_EXCEPTION);
+    assert(ms_bridge_dispatch_owned("null", "", &owned, &length) == MS_BRIDGE_JAVA_EXCEPTION);
     assert(owned == NULL && length == 0);
-    assert(ms_java_bridge_dispatch_owned("echo", "العربية📚", &owned, &length) == MS_BRIDGE_OK);
+    assert(ms_bridge_dispatch_owned("echo", "العربية📚", &owned, &length) == MS_BRIDGE_OK);
     assert(length == strlen("العربية📚") && strcmp(owned, "العربية📚") == 0);
     ms_java_free_string(owned);
     assert_detached();
@@ -88,7 +88,7 @@ static void test_owned_bounds_and_nul(void) {
     char *owned = NULL;
     size_t length = 0;
     int before = calls();
-    assert(ms_java_bridge_dispatch_owned("large", "", &owned, &length) == MS_BRIDGE_OK);
+    assert(ms_bridge_dispatch_owned("large", "", &owned, &length) == MS_BRIDGE_OK);
     assert(length == 100000 + strlen("العربية📚") && owned[length] == 0 && calls() == before + 1);
     ms_java_free_string(owned);
     before = calls();
@@ -96,13 +96,13 @@ static void test_owned_bounds_and_nul(void) {
                                      &owned, &length) == MS_JAVA_LIMIT);
     assert(owned == NULL && length == 0 && calls() == before + 1);
     before = calls();
-    assert(ms_java_bridge_dispatch_owned("oversize", "", &owned, &length) == MS_BRIDGE_BUFFER_TOO_SMALL);
+    assert(ms_bridge_dispatch_owned("oversize", "", &owned, &length) == MS_BRIDGE_BUFFER_TOO_SMALL);
     assert(owned == NULL && length == 0 && calls() == before + 1);
     assert(ms_java_call_string2_owned(fixture, "dispatch", "nul", "", 8,
                                      &owned, &length) == MS_JAVA_OK);
     assert(length == 3 && owned[0] == 'a' && owned[1] == 0 && owned[2] == 'b');
     ms_java_free_string(owned);
-    assert(ms_java_bridge_dispatch_owned("nul", "", &owned, &length) == MS_BRIDGE_JNI_ERROR);
+    assert(ms_bridge_dispatch_owned("nul", "", &owned, &length) == MS_BRIDGE_JNI_ERROR);
     assert(owned == NULL && length == 0);
     before = calls();
     assert(ms_java_call_string2_owned(fixture, "dispatch", "echo", "",
@@ -117,7 +117,7 @@ static void test_owned_bounds_and_nul(void) {
     memset(too_long, 'x', 1024 * 1024 + 1);
     too_long[1024 * 1024 + 1] = 0;
     before = calls();
-    assert(ms_java_bridge_dispatch_owned("echo", too_long, &owned, &length) == MS_BRIDGE_INVALID_ARG);
+    assert(ms_bridge_dispatch_owned("echo", too_long, &owned, &length) == MS_BRIDGE_INVALID_ARG);
     assert(owned == NULL && length == 0 && calls() == before);
     free(too_long);
 }
@@ -154,7 +154,7 @@ static void *concurrent_worker(void *unused) {
     for (int i = 0; i < 20; i++) {
         char *owned = NULL;
         size_t length = 0;
-        assert(ms_java_bridge_dispatch_owned("echo", "worker📚", &owned, &length) == MS_BRIDGE_OK);
+        assert(ms_bridge_dispatch_owned("echo", "worker📚", &owned, &length) == MS_BRIDGE_OK);
         assert(length == strlen("worker📚") && strcmp(owned, "worker📚") == 0);
         ms_java_free_string(owned);
         assert_detached();
@@ -198,7 +198,7 @@ static void test_lifecycle_in_flight(void) {
     assert(ms_bridge_is_vm_available() == 0 && ms_java_is_started() == 1);
     char *owned = (char *)1;
     size_t length = 99;
-    assert(ms_java_bridge_dispatch_owned("echo", "", &owned, &length) == MS_BRIDGE_NOT_STARTED);
+    assert(ms_bridge_dispatch_owned("echo", "", &owned, &length) == MS_BRIDGE_NOT_STARTED);
     assert(owned == NULL && length == 0);
     assert(ms_bridge_dispatch("echo", "", NULL, 0, NULL) == MS_BRIDGE_NOT_STARTED);
     owned = raw_call("release", "", &length);
@@ -207,13 +207,13 @@ static void test_lifecycle_in_flight(void) {
     ms_java_bridge_set_active(1);
     assert(ms_bridge_is_vm_available() == 1);
     owned = NULL;
-    assert(ms_java_bridge_dispatch_owned("echo", "resumed", &owned, &length) == MS_BRIDGE_OK);
+    assert(ms_bridge_dispatch_owned("echo", "resumed", &owned, &length) == MS_BRIDGE_OK);
     assert(strcmp(owned, "resumed") == 0);
     ms_java_free_string(owned);
     ms_java_bridge_uninstall();
     ms_java_bridge_set_active(1);
     assert(ms_bridge_is_vm_available() == 0 && ms_java_is_started() == 1);
-    assert(ms_java_bridge_dispatch_owned("echo", "", &owned, &length) == MS_BRIDGE_NOT_STARTED);
+    assert(ms_bridge_dispatch_owned("echo", "", &owned, &length) == MS_BRIDGE_NOT_STARTED);
 }
 
 int main(int argc, char **argv) {

@@ -34,7 +34,7 @@ def main():
     VALIDATION.mkdir(exist_ok=True)
     report = {"recorded_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
               "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build",
-              "tests_per_run": 9, "runs": [], "leak_detection": not args.no_leak_check,
+              "tests_per_run": 12, "runs": [], "leak_detection": not args.no_leak_check,
               "concurrency_limit": "disabling/unregistering blocks subsequent snapshots; captured calls may complete"}
     with tempfile.TemporaryDirectory(prefix="mangashelf-bridge-") as temporary:
         for name, extra in [("strict", ["-O2"]),

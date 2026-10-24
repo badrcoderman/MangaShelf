@@ -20,6 +20,8 @@ import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import okhttp3.Headers
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.withTimeout
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -110,6 +112,7 @@ class HttpFixture : HttpSource(), ConfigurableSource {
     }
     override fun headersBuilder(): Headers.Builder = super.headersBuilder().add("X-Fixture", resource().take(8))
     override suspend fun getPopularManga(page: Int): MangasPage {
+        if (page == 88) withTimeout(1) { awaitCancellation() }
         val endpoint = if (page == 99) "slow" else "utf8"
         return client.newCall(GET("$baseUrl/$endpoint", headers)).awaitSuccess().use { response ->
             MangasPage(listOf(SManga.create().apply { title = preferences.getString("caption", "") + response.body.string(); url = "/owned/$page" }), false)

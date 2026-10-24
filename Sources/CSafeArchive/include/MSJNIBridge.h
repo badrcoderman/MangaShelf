@@ -17,7 +17,9 @@ enum {
     MS_BRIDGE_NOT_STARTED = 4,
     MS_BRIDGE_JAVA_EXCEPTION = 5,
     MS_BRIDGE_JNI_ERROR = 6,
-    MS_BRIDGE_INVALID_ARG = 7
+    MS_BRIDGE_INVALID_ARG = 7,
+    MS_BRIDGE_INVALID_RESPONSE = 8,
+    MS_BRIDGE_MAX_RESPONSE_BYTES = 16 * 1024 * 1024
 };
 
 typedef void (*ms_bridge_net_fn)(const char *request_json_utf8,
@@ -37,11 +39,21 @@ typedef int (*ms_bridge_dispatch_fn)(const char *action,
                                      size_t capacity,
                                      size_t *needed);
 
+/* Success returns malloc-owned bytes, length excluding a required trailing NUL.
+ * The callback must allocate at least length+1 bytes. No embedded NUL is allowed.
+ * Any non-NULL result, including on error, transfers ownership to the bridge.
+ * Callback code must remain loaded until every captured invocation completes. */
+typedef int (*ms_bridge_owned_dispatch_fn)(const char *action, const char *payload_json,
+                                         char **output, size_t *length);
+
 /* Registration functions */
 void ms_bridge_register_net(ms_bridge_net_fn handler, ms_bridge_free_fn free_fn);
 void ms_bridge_register_channel(ms_bridge_channel_fn handler);
 /* Installing a dispatcher enables dispatch; NULL removes it and disables dispatch. */
 void ms_bridge_register_dispatcher(ms_bridge_dispatch_fn dispatcher);
+/* Atomically selects both interfaces. The legacy registration above clears any
+ * owned callback, so replacing a backend cannot leave a stale owned backend. */
+void ms_bridge_register_dispatchers(ms_bridge_dispatch_fn dispatcher, ms_bridge_owned_dispatch_fn owned);
 
 /* Availability requires an installed dispatcher. Setting zero disables new calls;
  * setting nonzero enables them only while a dispatcher is installed. Callbacks
@@ -59,6 +71,13 @@ int ms_bridge_dispatch(const char *action,
                        char *output,
                        size_t capacity,
                        size_t *needed);
+
+/* Executes one captured callback once. Prefers owned output up to 16 MiB. A
+ * legacy-only backend retains its historical 16 KiB limit; no resize/replay.
+ * Error outputs are NULL/zero. Release success with ms_bridge_free_string. */
+int ms_bridge_dispatch_owned(const char *action, const char *payload_json,
+                             char **output, size_t *length);
+void ms_bridge_free_string(char *output);
 
 /* Initializes each supplied response output to NULL/zero before invoking the
  * network handler. Outputs remain empty with no handler or invalid input:

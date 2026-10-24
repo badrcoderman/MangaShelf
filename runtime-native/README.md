@@ -32,6 +32,15 @@ owned API preserves embedded NUL bytes; the JSON/C-string adapter rejects them.
 The legacy fixed-buffer API remains available. A buffer overflow or size query
 has already executed the Java action and must not be replayed to resize it.
 
+The common C module now exposes `ms_bridge_dispatch_owned` and
+`ms_bridge_free_string` to Swift without depending on JNI headers. Installing the
+Java adapter registers its fixed and owned callbacks together; replacing it via
+the legacy registration clears the owned callback too. `ExtensionRuntime` uses
+the owned path and dispatches asynchronous source operations on a worker.
+Legacy-only callbacks retain their 16 KiB limit and execute once. The new JSON
+backend is explicitly named `mangashelf/host/SourceRuntime`, method `dispatch`;
+it is not installed or started by the main iOS app yet.
+
 `python3 scripts/test-java-bridge.py` exercises the actual registered callback
 through JNI with project-owned Java fixtures, including large responses,
 exception recovery, attachment ownership, concurrent callers and disabling an
@@ -42,7 +51,8 @@ initializer, rather than only a missing target class.
 The separate iPhone check passed on iOS 26.2 with source-built runtime
 39818913578, including its own JAR, filesystem MIME, Arabic/emoji and JNI echo;
 see `validation/ios-jvm-device-39823313828-iphone-report.json`. This subsequent
-dispatcher adapter still needs iOS verification and owned-output exposure to
-Swift. Native-method symbol resolution, Android compatibility, real Okio,
-cookies, source execution and main-app integration remain unproven. These sources
-are outside the production app build until that integration is implemented.
+dispatcher adapter still needs iOS verification. Native-method symbol resolution,
+the new source host, network/cookies and main-app integration remain unproven on
+iPhone. Host MangaDex execution and the new wire boundary are recorded in
+[the JSON contract](../docs/SOURCE-RUNTIME-JSON-AR.md). These native sources remain
+outside the production app build until that integration is implemented.

@@ -14,6 +14,7 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
@@ -115,6 +116,7 @@ object MangaDexCheck {
                         liveCounts["expired_token_refreshes"] = 1
                     }
                 }
+
             }
             case("removal_drains_source_settings_and_releases_verified_archive") {
                 val loader = registry.withSource(english) { it.javaClass.classLoader as VerifiedExtensionClassLoader }
@@ -122,6 +124,65 @@ object MangaDexCheck {
                 check(registry.snapshot().isEmpty() && loader.isClosed)
             }
         } finally { registry.close().forEach { it.await() }; HostServices.close() }
+
+        fun runtime(action: String, request: kotlinx.serialization.json.JsonObject): kotlinx.serialization.json.JsonElement {
+            val result = Json.parseToJsonElement(SourceRuntime.dispatch(action, request.toString()))
+            check(result !is kotlinx.serialization.json.JsonObject || result["error"] == null) { result.toString() }
+            return result
+        }
+        case("static_runtime_verifies_source_metadata_and_manages_all_61_sources") {
+            try {
+                runtime("configure", buildJsonObject {
+                    put("dataDirectory", data.resolve("runtime").toString()); put("applicationId", "app.mangashelf.runtimecheck")
+                    put("versionName", "source-check"); put("versionCode", 8); put("userAgent", "MangaShelf-SourceCheck/8")
+                    put("platformRelease", "26.2")
+                })
+                val rejected = Json.parseToJsonElement(SourceRuntime.dispatch("load", "{}")).jsonObject
+                check(rejected["error"]?.jsonPrimitive?.content == "invalid_request")
+                val loaded = runtime("load", buildJsonObject {
+                    put("package", "eu.kanade.tachiyomi.extension.all.mangadex")
+                    put("path", candidate.resolve("tachiyomi-all.mangadex-v1.6.0.jar").toString())
+                    put("archiveSha256", "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070")
+                    put("trustedCertificateSha256", "a5086c0c2f8e442846a0ea6df55af9cfc70baba17382029e7903de84731bbe7a")
+                    put("versionCode", "106000"); put("versionName", "1.6.0"); put("mainClass", "keiyoushi.source.Generated")
+                    put("sources", kotlinx.serialization.json.JsonArray(sources.map { source -> buildJsonObject {
+                        put("id", source.id.toString()); put("language", source.language)
+                    } }))
+                }).jsonObject
+                check(loaded["status"] == kotlinx.serialization.json.JsonPrimitive("loaded"))
+                check(loaded.getValue("sources").jsonArray.size == 61)
+                check(runtime("sources", buildJsonObject { }).jsonObject.getValue("sources").jsonArray.size == 61)
+                if (live) {
+                case("live_json_commands_roundtrip_actual_manga_chapter_and_page_metadata") {
+                    fun request(url: String? = null, metadata: String? = null) = buildJsonObject {
+                        put("sourceId", english.toString()); put("page", 1)
+                        url?.let { put("url", it) }; metadata?.let { put("sourceMetadataJSON", it) }
+                    }
+                    val catalogue = runtime("popular", request()).jsonObject
+                    val manga = catalogue.getValue("mangas").jsonArray.first().jsonObject
+                    val update = runtime("update", request(
+                        manga.getValue("url").jsonPrimitive.content,
+                        manga.getValue("sourceMetadataJSON").jsonPrimitive.content,
+                    )).jsonObject
+                    check(update.getValue("details").jsonObject.getValue("title").jsonPrimitive.content.isNotBlank())
+                    val chapters = update.getValue("chapters").jsonArray
+                    val chapter = chapters.first().jsonObject
+                    val pages = runtime("pages", request(
+                        chapter.getValue("url").jsonPrimitive.content,
+                        chapter.getValue("sourceMetadataJSON").jsonPrimitive.content,
+                    )).jsonArray.map { it.jsonObject }
+                    check(pages.isNotEmpty() && pages.map { it.getValue("index").jsonPrimitive.int } == pages.indices.toList())
+                    check(pages.all { it.getValue("imageURL").jsonPrimitive.content.toHttpUrl().isHttps })
+                    liveCounts["wire_chapters"] = chapters.size; liveCounts["wire_pages"] = pages.size
+                }
+                }
+                runtime("unload", buildJsonObject { put("package", "eu.kanade.tachiyomi.extension.all.mangadex") })
+                check(runtime("sources", buildJsonObject { }).jsonObject.getValue("sources").jsonArray.isEmpty())
+            } finally {
+                val closed = Json.parseToJsonElement(SourceRuntime.dispatch("close", "{}")).jsonObject
+                check(closed["status"] == kotlinx.serialization.json.JsonPrimitive("closed")) { closed.toString() }
+            }
+        }
         println(buildJsonObject {
             put("passed", true); put("checks", buildJsonObject { checks.forEach { (name, value) -> put(name, value) } })
             put("candidate", "Pinned public source rebuild, debug certificate; not publisher trust bootstrap")

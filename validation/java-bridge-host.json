@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-22T19:57:34.301752+00:00",
+  "recorded_at": "2026-10-24T00:05:10.813717+00:00",
   "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution.",
   "checks": [
     "requires explicit successful VM start and backend resolution",
@@ -17,12 +17,12 @@
   "inputs_sha256": {
     "runtime-native/MSJavaRuntime.c": "518fda37975beaaf4f16441ce842db6200469e9a3b992ec7e5ba8b38c7f066ea",
     "runtime-native/MSJavaRuntime.h": "2926c937dead0e4aca382e5a7e5f716f2e2954bf528b4621b55337c575f8e4ad",
-    "runtime-native/MSJavaBridge.c": "5d292f9b4027c25ac96dde3b73cd83a12e62c06d297eb079e2a73b531e5ae62c",
+    "runtime-native/MSJavaBridge.c": "2b61f467701605ce03b1dea799de2f45af0f6248a9fa97c0e603dfba4a363037",
     "runtime-native/MSJavaBridge.h": "35b7a909ab24ea1f304a41e04881ae86f77d7f9f44fdee7df8b0ff83ad6a2518",
-    "Sources/CSafeArchive/MSJNIBridge.c": "358e08b437f98ba4e590483a52a107a57d9ed441af1df268f75645ce878ae3fb",
-    "Sources/CSafeArchive/include/MSJNIBridge.h": "bfd582b5e3e137e47d331b62c2ae869d3014d3936ca4c5d011a299604f9432e4",
+    "Sources/CSafeArchive/MSJNIBridge.c": "7c032f82c04ed32f6a023b6a39e2e081bb95adcde7d9040ffac1848438ea37b8",
+    "Sources/CSafeArchive/include/MSJNIBridge.h": "2ec64d0b83c9c031adebcd8528d842aefda0852c7a682781b3605d189868adb4",
     "runtime-native/tests/BridgeFixture.java": "ee127959dcd5a3929780e2b7e3d8db9f9fd0af76dbd83b65e9e4bcffceeff58f",
-    "runtime-native/tests/java_bridge_test.c": "b331558eb109f0f44cecaf741b2227b7cb26ea1780a2b72b058bab5dd7ead12d"
+    "runtime-native/tests/java_bridge_test.c": "7885a0950b3915d059bc0e6d3dc18c9f85f39c1105c71b441af866c82bb245d6"
   },
   "exit_code": 0,
   "stdout": "PASS: JNI owned response, callback bridge dispatch, single execution, bounds, exceptions, attachment, concurrency, lifecycle\n",

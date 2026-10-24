@@ -1070,3 +1070,9 @@
 "The repository identity changed while its extension list was loading." = "The repository identity changed while its extension list was loading.";
 
 "The title identifier belongs to a different source." = "The title identifier belongs to a different source.";
+
+"This source is not loaded. Enable its extension and try again." = "This source is not loaded. Enable its extension and try again.";
+
+"The source took too long to respond. Try again." = "The source took too long to respond. Try again.";
+
+"The source request failed. Try again." = "The source request failed. Try again.";

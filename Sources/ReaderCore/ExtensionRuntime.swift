@@ -72,32 +72,35 @@ public final class ExtensionRuntime: @unchecked Sendable {
         })
     }
 
-    /// Executes the native action once with an experimental fixed 16 KiB response buffer.
-    /// A larger response fails: replaying an action to resize can repeat its side effects.
+    /// Executes once and releases the native-owned response after decoding.
+    /// The JNI adapter supports up to 16 MiB; legacy callbacks keep their 16 KiB limit.
     public func dispatch(action: String, payload: String = "{}") throws -> String {
         if let dispatchHandler { return try dispatchHandler(action, payload) }
         registerBridgeHandlersIfNeeded()
+
+        guard !action.contains("\0"), !payload.contains("\0") else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
 
         guard ms_bridge_is_vm_available() != 0 else {
             throw ReaderFailure(ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet."))
         }
 
-        let capacity: size_t = 16384
-        var needed: size_t = 0
-        var buffer = [CChar](repeating: 0, count: capacity)
-
-        let rc = ms_bridge_dispatch(action, payload, &buffer, capacity, &needed)
+        var buffer: UnsafeMutablePointer<CChar>? = nil
+        var length: size_t = 0
+        let rc = ms_bridge_dispatch_owned(action, payload, &buffer, &length)
+        defer { ms_bridge_free_string(buffer) }
         if Int(rc) == Int(MS_BRIDGE_NOT_STARTED) {
             throw ReaderFailure(ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet."))
         }
-        if Int(rc) == Int(MS_BRIDGE_BUFFER_TOO_SMALL) {
+        if Int(rc) == Int(MS_BRIDGE_BUFFER_TOO_SMALL) || Int(rc) == Int(MS_BRIDGE_INVALID_RESPONSE) {
             throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
         }
         guard Int(rc) == Int(MS_BRIDGE_OK) else {
             throw ReaderFailure(ReaderText.format("Extension dispatch failed with code %@.", String(rc)))
         }
-        guard needed <= capacity, let end = buffer.firstIndex(of: 0),
-              let response = String(bytes: buffer[..<end].map { UInt8(bitPattern: $0) }, encoding: .utf8) else {
+        guard length <= Int(MS_BRIDGE_MAX_RESPONSE_BYTES), let buffer,
+              let response = String(data: Data(bytes: buffer, count: length), encoding: .utf8) else {
             throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
         }
         return response
@@ -107,6 +110,49 @@ public final class ExtensionRuntime: @unchecked Sendable {
         let bytes = try JSONSerialization.data(withJSONObject: fields)
         return String(decoding: bytes, as: UTF8.self)
     }
+
+    /// The blocking JNI call owns its worker until it returns. Swift cancellation
+    /// stops queued work and discards late source data; native request cancellation
+    /// still needs a separate control call. Lifecycle acknowledgments must be
+    /// consumed before reporting cancellation so local package state stays accurate.
+    private func dispatchAsync(action: String, payload: String, checkAfterCompletion: Bool = true) async throws -> String {
+        try Task.checkCancellation()
+        let worker = Task.detached(priority: .userInitiated) { [self] in
+            try Task.checkCancellation()
+            return try dispatch(action: action, payload: payload)
+        }
+        return try await withTaskCancellationHandler {
+            let result = try await worker.value
+            if checkAfterCompletion { try Task.checkCancellation() }
+            return result
+        } onCancel: { worker.cancel() }
+    }
+
+    private func sourcePayload(sourceId: String, url: String, metadata: String?) throws -> String {
+        var fields: [String: Any] = ["sourceId": sourceId, "url": url]
+        if let metadata { fields["sourceMetadataJSON"] = metadata }
+        return try payload(fields)
+    }
+
+    private func decodeSource<T: Decodable>(_ type: T.Type, json: String) throws -> T {
+        let data = Data(json.utf8)
+        if let failure = try? JSONDecoder().decode(RuntimeFailure.self, from: data) {
+            if failure.error == "cancelled" { throw CancellationError() }
+            let message: String
+            switch failure.error {
+            case "source_not_registered", "package_not_registered":
+                message = "This source is not loaded. Enable its extension and try again."
+            case "source_timeout":
+                message = "The source took too long to respond. Try again."
+            default:
+                message = "The source request failed. Try again."
+            }
+            throw ReaderFailure(ReaderText.string(message))
+        }
+        return try JSONDecoder().decode(type, from: data)
+    }
+
+    private struct RuntimeFailure: Decodable { let error: String }
 
     private struct LifecycleResponse: Decodable {
         let status: String
@@ -137,17 +183,19 @@ public final class ExtensionRuntime: @unchecked Sendable {
         var dict: [String: String] = ["package": package]
         if let path = path { dict["path"] = path }
         if let mainClass = mainClass { dict["mainClass"] = mainClass }
-        let response = try dispatch(action: "load", payload: payload(dict))
+        let response = try await dispatchAsync(action: "load", payload: payload(dict), checkAfterCompletion: false)
         try requireAcknowledgment(response, status: "loaded")
         addLoadedPackage(package)
+        try Task.checkCancellation()
         return true
     }
 
     public func unloadExtension(package: String) async throws -> Bool {
         guard !package.isEmpty else { return false }
-        let response = try dispatch(action: "unload", payload: payload(["package": package]))
+        let response = try await dispatchAsync(action: "unload", payload: payload(["package": package]), checkAfterCompletion: false)
         try requireAcknowledgment(response, status: "unloaded")
         removeLoadedPackage(package)
+        try Task.checkCancellation()
         return true
     }
 
@@ -159,39 +207,39 @@ public final class ExtensionRuntime: @unchecked Sendable {
 
     public func popular(sourceId: String, page: Int = 1) async throws -> SourceMangaPage {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
-        let jsonStr = try dispatch(action: "popular", payload: payload(["sourceId": sourceId, "page": page]))
-        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "popular", payload: payload(["sourceId": sourceId, "page": page]))
+        return try decodeSource(SourceMangaPage.self, json: jsonStr)
     }
 
     public func latest(sourceId: String, page: Int = 1) async throws -> SourceMangaPage {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
-        let jsonStr = try dispatch(action: "latest", payload: payload(["sourceId": sourceId, "page": page]))
-        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "latest", payload: payload(["sourceId": sourceId, "page": page]))
+        return try decodeSource(SourceMangaPage.self, json: jsonStr)
     }
 
     public func search(sourceId: String, query: String, page: Int = 1) async throws -> SourceMangaPage {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
-        let jsonStr = try dispatch(action: "search", payload: payload(["sourceId": sourceId, "query": query, "page": page]))
-        return try JSONDecoder().decode(SourceMangaPage.self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "search", payload: payload(["sourceId": sourceId, "query": query, "page": page]))
+        return try decodeSource(SourceMangaPage.self, json: jsonStr)
     }
 
-    public func details(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails {
+    public func details(sourceId: String, mangaURL: String, sourceMetadataJSON: String? = nil) async throws -> SourceMangaDetails {
         guard !sourceId.isEmpty else {
             throw ReaderFailure(ReaderText.string("Invalid source identifier."))
         }
-        let jsonStr = try dispatch(action: "details", payload: payload(["sourceId": sourceId, "url": mangaURL]))
-        return try JSONDecoder().decode(SourceMangaDetails.self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "details", payload: sourcePayload(sourceId: sourceId, url: mangaURL, metadata: sourceMetadataJSON))
+        return try decodeSource(SourceMangaDetails.self, json: jsonStr)
     }
 
-    public func chapters(sourceId: String, mangaURL: String) async throws -> [SourceChapterItem] {
+    public func chapters(sourceId: String, mangaURL: String, sourceMetadataJSON: String? = nil) async throws -> [SourceChapterItem] {
         guard !sourceId.isEmpty else { return [] }
-        let jsonStr = try dispatch(action: "chapters", payload: payload(["sourceId": sourceId, "url": mangaURL]))
-        return try JSONDecoder().decode([SourceChapterItem].self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "chapters", payload: sourcePayload(sourceId: sourceId, url: mangaURL, metadata: sourceMetadataJSON))
+        return try decodeSource([SourceChapterItem].self, json: jsonStr)
     }
 
-    public func pages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
+    public func pages(sourceId: String, chapterURL: String, sourceMetadataJSON: String? = nil) async throws -> [SourcePageItem] {
         guard !sourceId.isEmpty else { return [] }
-        let jsonStr = try dispatch(action: "pages", payload: payload(["sourceId": sourceId, "url": chapterURL]))
-        return try JSONDecoder().decode([SourcePageItem].self, from: Data(jsonStr.utf8))
+        let jsonStr = try await dispatchAsync(action: "pages", payload: sourcePayload(sourceId: sourceId, url: chapterURL, metadata: sourceMetadataJSON))
+        return try decodeSource([SourcePageItem].self, json: jsonStr)
     }
 }

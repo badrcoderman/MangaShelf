@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-23T23:47:49.376343+00:00",
+  "recorded_at": "2026-10-24T00:24:07.563411+00:00",
   "passed": true,
   "scope": "Pinned vetted public MangaDex source rebuild, debug certificate and host JVM only; no IPA specimen, publisher trust bootstrap or iOS execution.",
   "source_rebuild_sha256": "23321c50804ace0b0327117d4a453728b10a65e9383eaa4b962d83aac4afa070",
@@ -108,7 +108,7 @@
     "runtime-native/third_party/openjdk-jni/LICENSE": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726",
     "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520",
     "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a",
-    "runtime-host/src/test/mangadex/kotlin/mangashelf/host/MangaDexCheck.kt": "78a4068dacce29b76ecef8390cf11a662668971c405204492068001e1b817a74",
+    "runtime-host/src/test/mangadex/kotlin/mangashelf/host/MangaDexCheck.kt": "1b974b3a6d7592ed997453637cb43b4ea0cd6a3a138d53f8599ba87af0cd5fc9",
     "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e",
     "runtime-host/src/main/kotlin/android/net/Uri.kt": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d",
     "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt": "d093b38f0fb83b01c6ed4176d61b8a3be90b9d511f90a71c7d86960df0fd621d",
@@ -134,8 +134,10 @@
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f",
     "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109",
     "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt": "05a5aa917979d73156fc76ac9ab1d4dda77d9fe6d181bf59fb47ce04017b1c45",
+    "runtime-host/src/main/kotlin/mangashelf/host/SourceCommands.kt": "ca83c19ecf47ee705aaa0e382b62306ada0e3e7f19cc3be1141c9ee41c9657f8",
     "runtime-host/src/main/kotlin/mangashelf/host/SourcePreferenceSession.kt": "0a5e15eb9b9b2ee0b2eb47296013c62cea4c331c847c14bc7b1a24a247358e2b",
     "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt": "054e0919fa8b9abdbf9e591278f281c6b82e90ed56ed4a2c445be687ebf913b2",
+    "runtime-host/src/main/kotlin/mangashelf/host/SourceRuntime.kt": "52d740ed0a666c1aa3fb80623202dabb5fc538f83de2930faa2f72c22d564230",
     "runtime-host/src/main/java/android/R.java": "b9d0f560c58f88a1aec48247ab20cabb537bd953878f15909a8e40d46a8193bf",
     "runtime-host/src/main/java/android/app/Application.java": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec",
     "runtime-host/src/main/java/android/content/Context.java": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2",
@@ -179,7 +181,7 @@
         "-classpath",
         "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-brotli-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-zstd-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-okio-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jsoup-1.22.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/dec-0.1.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jspecify-1.0.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar",
         "-d",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-r01lntro/classes",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-ii8wuhpk/classes",
         "/home/user/Documents/Managa-app/MangaShilf/runtime-host/src/test/mangadex/kotlin/mangashelf/host/MangaDexCheck.kt"
       ],
       "exit_code": 0,
@@ -194,20 +196,20 @@
         "-Xcheck:jni",
         "-Djava.library.path=/home/user/Documents/Managa-app/MangaShilf/build/zstd-native/host",
         "-cp",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-r01lntro/classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-brotli-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-zstd-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-okio-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jsoup-1.22.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/dec-0.1.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jspecify-1.0.0.jar",
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-ii8wuhpk/classes:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/runtime-host.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlin-stdlib-2.4.10.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/annotations-13.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-coroutines-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-core-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-jvm-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okio-jvm-3.18.1.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-brotli-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/okhttp-zstd-5.4.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/kotlinx-serialization-json-okio-jvm-1.11.0.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jsoup-1.22.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/dec-0.1.2.jar:/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/dependencies/jspecify-1.0.0.jar",
         "mangashelf.host.MangaDexCheck",
         "/home/user/Documents/Managa-app/MangaShilf/build/mangadex-source-39768470880/evidence",
-        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-r01lntro/data"
+        "/home/user/Documents/Managa-app/MangaShilf/build/runtime-host/mangadex-check-ii8wuhpk/data"
       ],
       "exit_code": 0,
-      "stdout": "{\"passed\":true,\"checks\":{\"verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\":true,\"actual_source_headers_and_compression_client_construct_with_host_services\":true,\"actual_source_exposes_twelve_settings_with_validation_callbacks\":true,\"removal_drains_source_settings_and_releases_verified_archive\":true},\"candidate\":\"Pinned public source rebuild, debug certificate; not publisher trust bootstrap\",\"source_rebuild_executed\":true,\"live_api_tested\":false,\"ios_execution\":false,\"live_counts\":{}}\n",
-      "stderr": "START verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\nPASS verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\nSTART actual_source_headers_and_compression_client_construct_with_host_services\nPASS actual_source_headers_and_compression_client_construct_with_host_services\nSTART actual_source_exposes_twelve_settings_with_validation_callbacks\nPASS actual_source_exposes_twelve_settings_with_validation_callbacks\nSTART removal_drains_source_settings_and_releases_verified_archive\nPASS removal_drains_source_settings_and_releases_verified_archive\n"
+      "stdout": "{\"passed\":true,\"checks\":{\"verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\":true,\"actual_source_headers_and_compression_client_construct_with_host_services\":true,\"actual_source_exposes_twelve_settings_with_validation_callbacks\":true,\"removal_drains_source_settings_and_releases_verified_archive\":true,\"static_runtime_verifies_source_metadata_and_manages_all_61_sources\":true},\"candidate\":\"Pinned public source rebuild, debug certificate; not publisher trust bootstrap\",\"source_rebuild_executed\":true,\"live_api_tested\":false,\"ios_execution\":false,\"live_counts\":{}}\n",
+      "stderr": "START verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\nPASS verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages\nSTART actual_source_headers_and_compression_client_construct_with_host_services\nPASS actual_source_headers_and_compression_client_construct_with_host_services\nSTART actual_source_exposes_twelve_settings_with_validation_callbacks\nPASS actual_source_exposes_twelve_settings_with_validation_callbacks\nSTART removal_drains_source_settings_and_releases_verified_archive\nPASS removal_drains_source_settings_and_releases_verified_archive\nSTART static_runtime_verifies_source_metadata_and_manages_all_61_sources\nPASS static_runtime_verifies_source_metadata_and_manages_all_61_sources\n"
     }
   ],
   "build_jar": {
     "path": "build/runtime-host/runtime-host.jar",
-    "bytes": 375303,
-    "sha256": "7c7f9b30be74f3bde8f90c849245b41e8783d257296b0a932cb0269b8f618721"
+    "bytes": 419625,
+    "sha256": "e54b6bd960e3be492d3c3409356ce4970554642c86a9e2d0c05551676b97a9cc"
   },
   "test_result": {
     "passed": true,
@@ -215,7 +217,8 @@
       "verified_public_source_rebuild_installs_all_61_metadata_ids_and_languages": true,
       "actual_source_headers_and_compression_client_construct_with_host_services": true,
       "actual_source_exposes_twelve_settings_with_validation_callbacks": true,
-      "removal_drains_source_settings_and_releases_verified_archive": true
+      "removal_drains_source_settings_and_releases_verified_archive": true,
+      "static_runtime_verifies_source_metadata_and_manages_all_61_sources": true
     },
     "candidate": "Pinned public source rebuild, debug certificate; not publisher trust bootstrap",
     "source_rebuild_executed": true,

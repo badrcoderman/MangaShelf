@@ -162,7 +162,7 @@ public actor OnlineStore {
               let bytes = try? LibraryStore.readBounded(metadata, maximum: 4 * 1024 * 1024),
               let value = try? JSONDecoder().decode(ChapterPages.self, from: bytes),
               value.chapterID == id,
-              (try? ChapterPages(chapterID: id, urls: value.urls)) != nil else { return destination }
+              (try? ChapterPages(chapterID: id, urls: value.urls, sourceMetadataJSON: value.sourceMetadataJSON)) != nil else { return destination }
         try FileManager.default.moveItem(at: legacy, to: destination)
         return destination
     }
@@ -171,17 +171,19 @@ public actor OnlineStore {
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
         let value = try JSONDecoder().decode(ChapterPages.self, from: LibraryStore.readBounded(url, maximum: 4 * 1024 * 1024))
         guard value.chapterID == chapterID else { throw ReaderFailure(ReaderText.string("Page data does not belong to this chapter.")) }
-        return try ChapterPages(chapterID: value.chapterID, urls: value.urls)
+        return try ChapterPages(chapterID: value.chapterID, urls: value.urls, sourceMetadataJSON: value.sourceMetadataJSON)
     }
     public func savePages(_ pages: ChapterPages) throws {
-        _ = try ChapterPages(chapterID: pages.chapterID, urls: pages.urls)
+        _ = try ChapterPages(chapterID: pages.chapterID, urls: pages.urls, sourceMetadataJSON: pages.sourceMetadataJSON)
+        let bytes = try JSONEncoder().encode(pages)
+        guard bytes.count <= 4 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("Invalid chapter page list.")) }
         let dir = try directory(pages.chapterID)
         // A refreshed temporary CDN hostname is fine; changed page filenames/counts invalidate the old cache.
         if let old = try cachedPages(chapterID: pages.chapterID), old.urls.map({ URL(string: $0)?.lastPathComponent }) != pages.urls.map({ URL(string: $0)?.lastPathComponent }) {
             try FileManager.default.removeItem(at: dir)
         }
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        try JSONEncoder().encode(pages).write(to: dir.appendingPathComponent("pages.json"), options: .atomic)
+        try bytes.write(to: dir.appendingPathComponent("pages.json"), options: .atomic)
     }
     private func pageURL(chapterID: String, index: Int) throws -> URL {
         guard (0..<4096).contains(index) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }

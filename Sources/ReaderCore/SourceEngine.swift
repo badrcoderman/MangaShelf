@@ -5,8 +5,10 @@ public struct SourceMangaItem: Codable, Identifiable, Sendable {
     public let title: String
     public let coverURL: String?
     public let url: String
-    public init(id: String, title: String, coverURL: String? = nil, url: String) {
+    public let sourceMetadataJSON: String?
+    public init(id: String, title: String, coverURL: String? = nil, url: String, sourceMetadataJSON: String? = nil) {
         self.id = id; self.title = title; self.coverURL = coverURL; self.url = url
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 }
 
@@ -30,12 +32,15 @@ public struct SourceMangaDetails: Codable, Sendable {
     public let genre: [String]
     public let status: String?
     public let coverURL: String?
+    public let url: String?
+    public let sourceMetadataJSON: String?
     public init(title: String, author: String? = nil, artist: String? = nil,
                 description: String? = nil, genre: [String] = [],
-                status: String? = nil, coverURL: String? = nil) {
+                status: String? = nil, coverURL: String? = nil, url: String? = nil, sourceMetadataJSON: String? = nil) {
         self.title = title; self.author = author; self.artist = artist
         self.description = description; self.genre = genre; self.status = status
         self.coverURL = coverURL
+        self.url = url; self.sourceMetadataJSON = sourceMetadataJSON
     }
 }
 
@@ -46,11 +51,13 @@ public struct SourceChapterItem: Codable, Identifiable, Sendable {
     public let chapterNumber: Float
     public let dateUpload: Int64
     public let scanlator: String?
+    public let sourceMetadataJSON: String?
     public init(id: String, name: String, url: String, chapterNumber: Float = 0,
-                dateUpload: Int64 = 0, scanlator: String? = nil) {
+                dateUpload: Int64 = 0, scanlator: String? = nil, sourceMetadataJSON: String? = nil) {
         self.id = id; self.name = name; self.url = url
         self.chapterNumber = chapterNumber; self.dateUpload = dateUpload
         self.scanlator = scanlator
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 }
 
@@ -59,8 +66,10 @@ public struct SourcePageItem: Codable, Identifiable, Sendable {
     public var id: Int { index }
     public let url: String
     public let imageURL: String?
-    public init(index: Int, url: String, imageURL: String? = nil) {
+    public let sourceMetadataJSON: String?
+    public init(index: Int, url: String, imageURL: String? = nil, sourceMetadataJSON: String? = nil) {
         self.index = index; self.url = url; self.imageURL = imageURL
+        self.sourceMetadataJSON = sourceMetadataJSON
     }
 }
 
@@ -105,17 +114,29 @@ public final class SourceEngineCoordinator: SourceEngineProtocol, @unchecked Sen
     }
 
     public func fetchDetails(sourceId: String, mangaURL: String) async throws -> SourceMangaDetails {
+        try await fetchDetails(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: nil)
+    }
+
+    public func fetchDetails(sourceId: String, mangaURL: String, sourceMetadataJSON: String?) async throws -> SourceMangaDetails {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
-        return try await runtime.details(sourceId: sourceId, mangaURL: mangaURL)
+        return try await runtime.details(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
     public func fetchChapters(sourceId: String, mangaURL: String) async throws -> [SourceChapterItem] {
+        try await fetchChapters(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: nil)
+    }
+
+    public func fetchChapters(sourceId: String, mangaURL: String, sourceMetadataJSON: String?) async throws -> [SourceChapterItem] {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
-        return try await runtime.chapters(sourceId: sourceId, mangaURL: mangaURL)
+        return try await runtime.chapters(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
     public func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
+        try await fetchPages(sourceId: sourceId, chapterURL: chapterURL, sourceMetadataJSON: nil)
+    }
+
+    public func fetchPages(sourceId: String, chapterURL: String, sourceMetadataJSON: String?) async throws -> [SourcePageItem] {
         guard !sourceId.isEmpty, !chapterURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source page URL.")) }
-        return try await runtime.pages(sourceId: sourceId, chapterURL: chapterURL)
+        return try await runtime.pages(sourceId: sourceId, chapterURL: chapterURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 }
