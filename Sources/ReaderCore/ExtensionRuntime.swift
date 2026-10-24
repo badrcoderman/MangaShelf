@@ -138,6 +138,9 @@ public final class ExtensionRuntime: @unchecked Sendable {
         let data = Data(json.utf8)
         if let failure = try? JSONDecoder().decode(RuntimeFailure.self, from: data) {
             if failure.error == "cancelled" { throw CancellationError() }
+            if let reason = SourceRequestFailure.Reason(rawValue: failure.error) {
+                throw SourceRequestFailure(reason: reason, httpStatus: failure.httpStatus)
+            }
             let message: String
             switch failure.error {
             case "source_not_registered", "package_not_registered":
@@ -152,7 +155,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
         return try JSONDecoder().decode(type, from: data)
     }
 
-    private struct RuntimeFailure: Decodable { let error: String }
+    private struct RuntimeFailure: Decodable { let error: String; let httpStatus: Int? }
 
     public func configureHost(dataDirectory: URL, applicationID: String, versionName: String, versionCode: Int,
                               userAgent: String, platformRelease: String) async throws {
@@ -260,6 +263,12 @@ public final class ExtensionRuntime: @unchecked Sendable {
         guard !sourceId.isEmpty else { return [] }
         let jsonStr = try await dispatchAsync(action: "chapters", payload: sourcePayload(sourceId: sourceId, url: mangaURL, metadata: sourceMetadataJSON))
         return try decodeSource([SourceChapterItem].self, json: jsonStr)
+    }
+
+    public func update(sourceId: String, mangaURL: String, sourceMetadataJSON: String? = nil) async throws -> SourceMangaUpdate {
+        guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
+        let json = try await dispatchAsync(action: "update", payload: sourcePayload(sourceId: sourceId, url: mangaURL, metadata: sourceMetadataJSON))
+        return try decodeSource(SourceMangaUpdate.self, json: json)
     }
 
     public func pages(sourceId: String, chapterURL: String, sourceMetadataJSON: String? = nil) async throws -> [SourcePageItem] {

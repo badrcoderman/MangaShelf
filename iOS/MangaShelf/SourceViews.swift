@@ -79,7 +79,12 @@ struct SourceCatalogView: View {
                 loading = false
             }
         } catch is CancellationError { if identity == requestID { loading = false } }
-        catch { if identity == requestID { self.error = AppError.describe(error); loading = false } }
+        catch {
+            if identity == requestID {
+                self.error = AppError.describe(error); loading = false
+                DiagnosticsCenter.shared.recordFailure(L10n.string("Browse source"), error)
+            }
+        }
     }
 }
 
@@ -294,6 +299,9 @@ struct SeriesDetailView: View {
     }
     @MainActor private func refresh() async {
         guard !loading else { return }; loading = true; failure = nil; defer { loading = false }
-        do { try await online.refresh(item) } catch is CancellationError { } catch { failure = AppError.describe(error) }
+        do { try await online.refresh(item) } catch is CancellationError { } catch {
+            failure = AppError.describe(error)
+            DiagnosticsCenter.shared.recordFailure(L10n.string("Update source title"), error)
+        }
     }
 }

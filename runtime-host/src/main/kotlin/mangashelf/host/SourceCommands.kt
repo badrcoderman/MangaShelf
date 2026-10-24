@@ -7,6 +7,8 @@ import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import eu.kanade.tachiyomi.source.online.HttpSource
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -24,6 +26,19 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 /** Converts Source 1.6 models inside a registry lease; only a host-owned JSON string leaves it. */
 class SourceCommands(private val registry: SourceRegistry) {
     class CommandException(val code: String) : IllegalArgumentException(code)
+    private data class UpdateKey(val source: Long, val url: String)
+    private class UpdateGate { val mutex = Mutex(); var users = 0 }
+    private val updateLock = Any()
+    private val updates = mutableMapOf<UpdateKey, UpdateGate>()
+
+    // KeiSource rejects overlapping updates for one manga. Keep unrelated
+    // titles concurrent and release idle gates, including cancelled waiters.
+    private suspend fun <T> updating(source: Long, url: String, block: suspend () -> T): T {
+        val key = UpdateKey(source, url)
+        val gate = synchronized(updateLock) { updates.getOrPut(key, ::UpdateGate).also { it.users++ } }
+        try { return gate.mutex.withLock { block() } }
+        finally { synchronized(updateLock) { if (--gate.users == 0) updates.remove(key) } }
+    }
 
     suspend fun execute(action: String, request: JsonObject): String {
         val sourceId = string(request, "sourceId", 32)
@@ -48,18 +63,22 @@ class SourceCommands(private val registry: SourceRegistry) {
                 }
                 "details", "chapters", "update" -> {
                     val manga = readManga(sourceId, request)
-                    val update = source.getMangaUpdate(manga, emptyList(), action != "chapters", action != "details")
-                    if (update.chapters.size > 30_000) fail("response_limit")
-                    when (action) {
-                        "details" -> budget.manga(sourceId, update.manga, details = true)
-                        "chapters" -> JsonArray(update.chapters.map {
-                            currentCoroutineContext().ensureActive(); budget.chapter(sourceId, it)
-                        })
-                        else -> buildJsonObject {
-                            put("details", budget.manga(sourceId, update.manga, details = true))
-                            put("chapters", JsonArray(update.chapters.map {
+                    val lookupURL = manga.url
+                    val originalTitle = try { manga.title } catch (_: UninitializedPropertyAccessException) { null }
+                    updating(id, lookupURL) {
+                        val update = source.getMangaUpdate(manga, emptyList(), action != "chapters", action != "details")
+                        if (update.chapters.size > 30_000) fail("response_limit")
+                        when (action) {
+                            "details" -> budget.manga(sourceId, update.manga, details = true, lookupURL = lookupURL, originalTitle = originalTitle)
+                            "chapters" -> JsonArray(update.chapters.map {
                                 currentCoroutineContext().ensureActive(); budget.chapter(sourceId, it)
-                            }))
+                            })
+                            else -> buildJsonObject {
+                                put("details", budget.manga(sourceId, update.manga, details = true, lookupURL = lookupURL, originalTitle = originalTitle))
+                                put("chapters", JsonArray(update.chapters.map {
+                                    currentCoroutineContext().ensureActive(); budget.chapter(sourceId, it)
+                                }))
+                            }
                         }
                     }
                 }
@@ -112,10 +131,16 @@ class SourceCommands(private val registry: SourceRegistry) {
             return value
         }
 
-        fun manga(sourceId: String, manga: SManga, details: Boolean): JsonObject {
-            if (manga.url.isEmpty() || manga.title.isBlank()) fail("invalid_response")
+        fun manga(sourceId: String, manga: SManga, details: Boolean, lookupURL: String? = null, originalTitle: String? = null): JsonObject {
+            // Details are a partial metadata update. Team X and other sources
+            // legitimately leave url/title uninitialized. Preserve the lookup
+            // identity, as the title's existing library record does in Mihon.
+            val url = lookupURL ?: manga.url
+            val title = (try { manga.title } catch (_: UninitializedPropertyAccessException) { null })
+                ?.takeUnless(String::isBlank) ?: originalTitle
+            if (url.isEmpty() || title.isNullOrBlank()) fail("invalid_response")
             val fields = buildJsonObject {
-                put("url", text(manga.url, 8192)); put("title", text(manga.title, 8192))
+                put("url", text(url, 8192)); put("title", text(title, 8192))
                 put("thumbnail_url", optional(manga.thumbnail_url, 8192))
                 put("author", optional(manga.author, 8192)); put("artist", optional(manga.artist, 8192))
                 put("description", optional(manga.description, 256 * 1024)); put("genre", optional(manga.genre, 32_768))

@@ -90,6 +90,7 @@ struct ShelfHeader<Left: View, Right: View>: View {
     @ViewBuilder var left: () -> Left
     @ViewBuilder var right: () -> Right
     @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .title3) private var titleSize = 20.0
     private var actions: some View {
         HStack(spacing: 0) {
             left().environment(\.layoutDirection, .rightToLeft)
@@ -100,16 +101,16 @@ struct ShelfHeader<Left: View, Right: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             if typeSize.isAccessibilitySize {
-                Text(title).font(.title2.weight(.semibold)).accessibilityAddTraits(.isHeader)
+                Text(title).font(.system(size: titleSize)).accessibilityAddTraits(.isHeader)
                 actions
             } else {
                 ZStack {
-                    Text(title).font(.title3.weight(.semibold)).lineLimit(1)
+                    Text(title).font(.system(size: titleSize)).lineLimit(1)
                         .frame(maxWidth: 140).accessibilityAddTraits(.isHeader)
                     actions
                 }.frame(minHeight: 44)
             }
-        }.padding(.horizontal, 2).padding(.bottom, 4)
+        }.padding(.horizontal, 2)
             .foregroundStyle(ShelfStyle.secondary)
             .background((filled ? ShelfStyle.header : ShelfStyle.background).ignoresSafeArea(edges: .top))
     }

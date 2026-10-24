@@ -61,6 +61,14 @@ public struct SourceChapterItem: Codable, Identifiable, Sendable {
     }
 }
 
+public struct SourceMangaUpdate: Codable, Sendable {
+    public let details: SourceMangaDetails
+    public let chapters: [SourceChapterItem]
+    public init(details: SourceMangaDetails, chapters: [SourceChapterItem]) {
+        self.details = details; self.chapters = chapters
+    }
+}
+
 public struct SourcePageItem: Codable, Identifiable, Sendable {
     public let index: Int
     public var id: Int { index }
@@ -182,6 +190,12 @@ public actor SourceEngineCoordinator: SourceEngineProtocol {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         try await prepareSource(sourceId)
         return try await runtime.chapters(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
+    }
+
+    public func fetchUpdate(sourceId: String, mangaURL: String, sourceMetadataJSON: String? = nil) async throws -> SourceMangaUpdate {
+        guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
+        try await prepareSource(sourceId)
+        return try await runtime.update(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
     public func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {

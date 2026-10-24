@@ -4,14 +4,22 @@ set -euo pipefail
 root="$(pwd)"
 source_root="$root/extension-src/keiyoushi"
 out="$root/build/reference-extension"
+variant="${MSL_REFERENCE_SOURCE:-mangadex}"
+case "$variant" in
+  mangadex) module="all:mangadex" ;;
+  teamx) module="ar:teamx" ;;
+  *) echo "Unsupported reviewed source selection" >&2; exit 2 ;;
+esac
 mkdir -p "$out"
 test "$(git -C "$source_root" rev-parse HEAD)" = 1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa
 git -C "$source_root" diff --exit-code
-python3 - "$source_root" <<'PY'
+python3 - "$source_root" "$variant" <<'PY'
 import hashlib
 from pathlib import Path
 import sys
 root = Path(sys.argv[1])
+variant = sys.argv[2]
+group, name = {'mangadex': ('all', 'mangadex'), 'teamx': ('ar', 'teamx')}[variant]
 pins = {
     'settings.gradle.kts': 'af858989bd885332e6b12f0efbc8d182c36b3d3f0dba7ec566c3050aa409e211',
     'gradle/wrapper/gradle-wrapper.properties': '3cbe35d0020d8393c73f4cc2572838d1db338dd27885dd4d88c46b4d28f762e0',
@@ -23,7 +31,7 @@ settings = inputs['settings.gradle.kts']
 before = b'\nloadAllIndividualExtensions()\n'
 if settings.count(before) != 1:
     raise ValueError('Expected one source selection statement')
-(root / 'settings.gradle.kts').write_bytes(settings.replace(before, b'\nloadIndividualExtension("all", "mangadex")\n'))
+(root / 'settings.gradle.kts').write_bytes(settings.replace(before, f'\nloadIndividualExtension("{group}", "{name}")\n'.encode()))
 # Published at services.gradle.org/distributions/gradle-9.8.1-bin.zip.sha256.
 wrapper = root / 'gradle/wrapper/gradle-wrapper.properties'
 wrapper.write_bytes(inputs['gradle/wrapper/gradle-wrapper.properties'] +
@@ -33,7 +41,7 @@ git -C "$source_root" diff -- settings.gradle.kts gradle/wrapper/gradle-wrapper.
 java -version 2> "$out/java-version.txt"
 (
   cd "$source_root"
-  ./gradlew :src:all:mangadex:assembleRelease --no-daemon --console=plain --stacktrace \
+  ./gradlew ":src:$module:assembleRelease" --no-daemon --console=plain --stacktrace \
     --max-workers=2 -Dorg.gradle.jvmargs=-Xmx4g -Pkotlin.compiler.execution.strategy=in-process
 ) 2>&1 | tee "$out/compile.log"
-python3 scripts/inspect-reference-extension.py "$source_root" "$out"
+python3 scripts/inspect-reference-extension.py "$source_root" "$out" "$variant"

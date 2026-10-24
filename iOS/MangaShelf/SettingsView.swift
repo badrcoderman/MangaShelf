@@ -27,6 +27,7 @@ struct SettingsView: View {
     @AppStorage("diagnostics.enabled") private var developerEnabled = false
     private func row<Destination: View>(_ title: String, _ symbol: String, @ViewBuilder destination: @escaping () -> Destination) -> some View {
         TachiNavigationRow(title: title, symbol: symbol, destination: destination)
+            .accessibilityIdentifier("settings." + symbol)
     }
     var body: some View {
         ScrollView {
@@ -38,17 +39,23 @@ struct SettingsView: View {
                 row(L10n.string("Sync"), "cloud") { FeatureStatusView(feature: .sync) }
                 row(L10n.string("Tracking"), "arrow.triangle.2.circlepath") { FeatureStatusView(feature: .tracking) }
                 row(L10n.string("Extensions"), "safari.fill") { RepositoriesView() }
-                row(L10n.string("Trash"), "trash") { TrashManagementView() }
                 row(L10n.string("Backup and restore"), "arrow.counterclockwise.circle") { BackupHubView() }
                 row(L10n.string("Security settings"), "shield.lefthalf.filled") { PrivacyPreferencesView() }
                 row(L10n.string("Reading insights"), "chart.xyaxis.line") { ReadingInsightsView() }
                 row(L10n.string("Downloads"), "arrow.down.to.line") { DownloadsView() }
                 TachiDivider()
+                ShareLink(item: URL(string: "https://github.com/badrcoderman/MangaShelf")!) {
+                    HStack(spacing: 12) {
+                        TachiRowLabel(title: L10n.string("Share"), symbol: "square.and.arrow.up")
+                        TachiIcon(symbol: L10n.language.direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 17)
+                            .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
+                    }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
+                }.buttonStyle(.plain)
                 row(L10n.string("Help"), "questionmark.circle.fill") { HelpView() }
                 row(L10n.string("About"), "info.circle") { AboutView() }
-                row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() }
+                if developerEnabled { row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() } }
             }.padding(.top, 4)
-        }.shelfRoot(L10n.string("More"), filled: false, left: { EmptyView() }, right: { EmptyView() })
+        }.shelfRoot(L10n.string("More"), filled: true, left: { EmptyView() }, right: { EmptyView() })
     }
 }
 
@@ -94,7 +101,11 @@ struct AboutView: View {
     @AppStorage("diagnostics.enabled") private var developerEnabled = false
     @State private var taps = 0
     @State private var showChanges = false
-    private var version: String { (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? L10n.string("Unknown") }
+    private var version: String {
+        let number = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? L10n.string("Unknown")
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        return number + " (" + build + ")"
+    }
     var body: some View {
         TachiList {
             Section {

@@ -94,7 +94,7 @@ if not runtimes:
     raise SystemExit("No available iOS 26 simulator runtime is installed.")
 runtime = max(runtimes, key=lambda item: tuple(int(part) for part in item["version"].split(".")))
 device_types = {item["name"]: item for item in available["devicetypes"]}
-preferred = ("iPhone 17 Pro", "iPhone 17", "iPhone 16 Pro", "iPhone 16", "iPhone 16e")
+preferred = ("iPhone 11 Pro Max", "iPhone 17 Pro", "iPhone 17", "iPhone 16 Pro", "iPhone 16", "iPhone 16e")
 device_type = next((device_types[name] for name in preferred if name in device_types), None)
 if device_type is None:
     raise SystemExit("No supported iPhone simulator device type is installed.")

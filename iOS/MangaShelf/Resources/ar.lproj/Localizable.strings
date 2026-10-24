@@ -1099,3 +1099,15 @@
 "Disable extension" = "تعطيل الإضافة";
 "Enable extension" = "تفعيل الإضافة";
 "Save extension package" = "حفظ حزمة الإضافة";
+
+"The source returned HTTP %@. Try again or check the source website." = "أرجع المصدر خطأ HTTP %@. حاول مجددًا أو تحقق من موقع المصدر.";
+"This source requires browser verification, which MSL does not support yet." = "يتطلب هذا المصدر تحققًا عبر المتصفح، وهو غير مدعوم في MSL بعد.";
+"The secure connection to this source failed." = "فشل الاتصال الآمن بهذا المصدر.";
+"Could not connect to this source. Check your connection and try again." = "تعذر الاتصال بهذا المصدر. تحقق من اتصالك وحاول مجددًا.";
+"This extension needs a host API that MSL does not support yet." = "تحتاج هذه الإضافة إلى واجهة محرك لا يدعمها MSL بعد.";
+"The source returned data MSL could not read. Update the extension and try again." = "أرجع المصدر بيانات تعذر على MSL قراءتها. حدّث الإضافة وحاول مجددًا.";
+"The source response exceeded the supported size." = "تجاوز رد المصدر الحجم المدعوم.";
+"Source failure: %@; HTTP: %@." = "فشل المصدر: %@؛ HTTP: %@.";
+"Browse source" = "تصفح المصدر";
+"Update source title" = "تحديث عنوان من المصدر";
+"Share" = "مشاركة";

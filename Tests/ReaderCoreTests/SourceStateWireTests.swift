@@ -62,6 +62,28 @@ final class SourceStateWireTests: XCTestCase {
         _ = try await coordinator.fetchPages(sourceId: "73", chapterURL: "/one", sourceMetadataJSON: metadata)
     }
 
+    func testCombinedUpdateUsesOneCommandAndKeepsTheCompleteChapterList() async throws {
+        let metadata = "authored-state"
+        var calls = 0
+        let response = SourceMangaUpdate(details: SourceMangaDetails(title: "Updated", url: "/one", sourceMetadataJSON: "updated-state"),
+            chapters: (0..<1201).map { SourceChapterItem(id: String($0), name: "Chapter \($0)", url: "/chapter/\($0)") })
+        let encoded = String(decoding: try JSONEncoder().encode(response), as: UTF8.self)
+        let runtime = ExtensionRuntime(dispatchHandler: { action, payload in
+            calls += 1
+            XCTAssertEqual(action, "update")
+            let fields = try JSONDecoder().decode([String: String].self, from: Data(payload.utf8))
+            XCTAssertEqual(fields["sourceId"], "73")
+            XCTAssertEqual(fields["url"], "/one")
+            XCTAssertEqual(fields["sourceMetadataJSON"], metadata)
+            return encoded
+        })
+        let result = try await SourceEngineCoordinator(runtime: runtime).fetchUpdate(sourceId: "73", mangaURL: "/one", sourceMetadataJSON: metadata)
+        XCTAssertEqual(calls, 1)
+        XCTAssertEqual(result.details.sourceMetadataJSON, "updated-state")
+        XCTAssertEqual(result.chapters.count, 1201)
+        XCTAssertEqual(result.chapters.last?.url, "/chapter/1200")
+    }
+
     func testCancelledLoadConsumesCommittedAcknowledgmentBeforeReportingCancellation() async throws {
         let entered = expectation(description: "Native fixture entered")
         let release = DispatchSemaphore(value: 0)
@@ -89,6 +111,27 @@ final class SourceStateWireTests: XCTestCase {
         let cancelled = ExtensionRuntime(dispatchHandler: { _, _ in #"{"error":"cancelled"}"# })
         do { _ = try await cancelled.popular(sourceId: "73"); XCTFail("Cancelled source returned data") }
         catch { XCTAssertTrue(error is CancellationError) }
+    }
+
+    func testSourceErrorsKeepSafeCategoriesAndHTTPStatusWithoutRemoteText() async {
+        let cases: [(String, SourceRequestFailure.Reason, Int?)] = [
+            (#"{"error":"source_http_error","httpStatus":429,"message":"https://private.invalid/token"}"#, .http, 429),
+            (#"{"error":"source_browser_verification"}"#, .browserVerification, nil),
+            (#"{"error":"source_tls_failed","message":"https://private.invalid/token"}"#, .tls, nil),
+            (#"{"error":"source_dependency_failed"}"#, .dependency, nil)
+        ]
+        for (response, reason, status) in cases {
+            let runtime = ExtensionRuntime(dispatchHandler: { _, _ in response })
+            do { _ = try await runtime.popular(sourceId: "73"); XCTFail("Source error returned data") }
+            catch {
+                let failure = error as? SourceRequestFailure
+                XCTAssertEqual(failure?.reason, reason)
+                XCTAssertEqual(failure?.httpStatus, status)
+                XCTAssertFalse(error.localizedDescription.contains("private.invalid"))
+                if let status { XCTAssertTrue(error.localizedDescription.contains(String(status))) }
+            }
+        }
+        XCTAssertNil(SourceRequestFailure(reason: .http, httpStatus: 900).httpStatus)
     }
 
     func testOversizedPageStateCannotDeleteTheExistingImageCache() async throws {

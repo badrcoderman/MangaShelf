@@ -422,6 +422,11 @@ object LoaderCheck {
                     })
                     check(loaded["status"]?.jsonPrimitive?.content == "loaded")
                     check(runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 88) })["error"]?.jsonPrimitive?.content == "source_timeout")
+                    val httpFailure = runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 87) })
+                    check(httpFailure["error"]?.jsonPrimitive?.content == "source_http_error" && httpFailure["httpStatus"]?.jsonPrimitive?.content == "429")
+                    check(runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 86) })["error"]?.jsonPrimitive?.content == "source_browser_verification")
+                    val tlsFailure = runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 85) })
+                    check(tlsFailure.keys == setOf("error") && tlsFailure["error"]?.jsonPrimitive?.content == "source_tls_failed")
                     val loader = lastLoader()
                     coroutineScope {
                         val call = async(Dispatchers.IO) { runtime("popular", buildJsonObject { put("sourceId", "987"); put("page", 99) }) }

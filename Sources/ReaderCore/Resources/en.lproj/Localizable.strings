@@ -1099,3 +1099,15 @@
 "Disable extension" = "Disable extension";
 "Enable extension" = "Enable extension";
 "Save extension package" = "Save extension package";
+
+"The source returned HTTP %@. Try again or check the source website." = "The source returned HTTP %@. Try again or check the source website.";
+"This source requires browser verification, which MSL does not support yet." = "This source requires browser verification, which MSL does not support yet.";
+"The secure connection to this source failed." = "The secure connection to this source failed.";
+"Could not connect to this source. Check your connection and try again." = "Could not connect to this source. Check your connection and try again.";
+"This extension needs a host API that MSL does not support yet." = "This extension needs a host API that MSL does not support yet.";
+"The source returned data MSL could not read. Update the extension and try again." = "The source returned data MSL could not read. Update the extension and try again.";
+"The source response exceeded the supported size." = "The source response exceeded the supported size.";
+"Source failure: %@; HTTP: %@." = "Source failure: %@; HTTP: %@.";
+"Browse source" = "Browse source";
+"Update source title" = "Update source title";
+"Share" = "Share";

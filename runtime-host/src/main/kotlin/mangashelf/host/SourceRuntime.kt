@@ -1,6 +1,11 @@
 package mangashelf.host
 
 import android.app.Application
+import eu.kanade.tachiyomi.network.BrowserVerificationRequiredException
+import eu.kanade.tachiyomi.network.HttpException
+import java.io.IOException
+import java.net.SocketTimeoutException
+import javax.net.ssl.SSLException
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlinx.coroutines.CancellationException
@@ -74,6 +79,11 @@ object SourceRuntime {
         catch (error: ExtensionArchiveVerifier.VerificationException) { errorJson(error.code) }
         catch (_: TimeoutCancellationException) { errorJson("source_timeout") }
         catch (_: CancellationException) { errorJson("cancelled") }
+        catch (error: HttpException) { errorJson("source_http_error", error.code.takeIf { it in 100..599 }) }
+        catch (_: BrowserVerificationRequiredException) { errorJson("source_browser_verification") }
+        catch (_: SSLException) { errorJson("source_tls_failed") }
+        catch (_: SocketTimeoutException) { errorJson("source_timeout") }
+        catch (_: IOException) { errorJson("source_network_failed") }
         catch (_: LinkageError) { errorJson("source_dependency_failed") }
         catch (_: Exception) { errorJson("source_failed") }
     }
@@ -161,7 +171,9 @@ object SourceRuntime {
     private fun acknowledgment(status: String, packageName: String? = null) = buildJsonObject {
         put("status", status); packageName?.let { put("package", it) }
     }.toString()
-    private fun errorJson(code: String) = buildJsonObject { put("error", code) }.toString()
+    private fun errorJson(code: String, httpStatus: Int? = null) = buildJsonObject {
+        put("error", code); httpStatus?.let { put("httpStatus", it) }
+    }.toString()
     private fun fail(code: String): Nothing = throw SourceCommands.CommandException(code)
     private fun text(request: JsonObject, key: String, maximum: Int) = SourceCommands.string(request, key, maximum)
 }

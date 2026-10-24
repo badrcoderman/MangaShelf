@@ -78,5 +78,35 @@ final class TabSnapshots: XCTestCase {
                 activity.add(accessibility)
             }
         }
+
+        let settings = [("general", "slider.horizontal.3"), ("appearance", "paintpalette.fill"),
+                        ("library", "books.vertical"), ("reader", "book.closed.fill"),
+                        ("backup", "arrow.counterclockwise.circle"), ("privacy", "shield.lefthalf.filled"),
+                        ("about", "info.circle")]
+        for (page, symbol) in settings {
+            let row = app.buttons["settings." + symbol].firstMatch
+            XCTAssertTrue(row.waitForExistence(timeout: 10))
+            for _ in 0..<5 {
+                if row.isHittable { break }
+                app.scrollViews.firstMatch.swipeUp()
+            }
+            XCTAssertTrue(row.isHittable, "The settings destination must be reachable through the real More page.")
+            row.tap()
+            let back = app.buttons["settings.back"].firstMatch
+            XCTAssertTrue(back.waitForExistence(timeout: 10))
+            XCTAssertTrue(back.isHittable)
+            XCTAssertEqual(app.alerts.count, 0)
+            let name = "msl-\(language)-dark-settings-\(page)"
+            XCTContext.runActivity(named: name) { activity in
+                let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+                screenshot.name = name; screenshot.lifetime = .keepAlways
+                activity.add(screenshot)
+                let accessibility = XCTAttachment(string: app.debugDescription)
+                accessibility.name = name + "-accessibility"; accessibility.lifetime = .keepAlways
+                activity.add(accessibility)
+            }
+            back.tap()
+            XCTAssertTrue(app.buttons["tab.4"].firstMatch.waitForExistence(timeout: 10))
+        }
     }
 }

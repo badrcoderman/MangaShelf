@@ -10,12 +10,14 @@ import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import eu.kanade.tachiyomi.source.online.HttpSource
 import java.nio.file.Path
+import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
@@ -42,6 +44,10 @@ object SourceCommandsCheck {
         val entered = CompletableDeferred<Unit>()
         val resume = CompletableDeferred<Unit>()
         val cleaned = CompletableDeferred<Unit>()
+        val updateEntered = CompletableDeferred<Unit>()
+        val updatesOverlapped = CompletableDeferred<Unit>()
+        val continueUpdate = CompletableDeferred<Unit>()
+        val activeUpdates = AtomicInteger()
         private fun manga() = SManga.create().apply {
             url = "/title/one"; title = "العربية 📚"; author = "Author"; artist = "Artist"
             thumbnail_url = "https://images.example.invalid/cover.png"; genre = "Action, Comedy"
@@ -72,10 +78,22 @@ object SourceCommandsCheck {
             check(manga.update_strategy == UpdateStrategy.ONLY_FETCH_ONCE && manga.memo == this.manga().memo)
             check(chapters.isEmpty())
             called = "update:$fetchDetails:$fetchChapters"
-            return SMangaUpdate(manga, if (fetchChapters) listOf(SChapter.create().apply {
-                url = "/chapter/one"; name = "Chapter العربية"; chapter_number = 2.5f; date_upload = 1_700_000_000_123L
+            if (mode == "held-update") {
+                if (activeUpdates.incrementAndGet() > 1) updatesOverlapped.complete(Unit)
+                updateEntered.complete(Unit)
+                try { continueUpdate.await() } finally { activeUpdates.decrementAndGet() }
+            }
+            val details = when (mode) {
+                "partial-details" -> SManga.create().apply { title = "Updated title"; description = "Partial details" }
+                "partial-no-title" -> SManga.create().apply { description = "Partial details" }
+                "returned-other-url" -> this.manga().apply { url = "/not-the-lookup" }
+                else -> manga
+            }
+            return SMangaUpdate(details, if (fetchChapters) List(if (mode == "partial-details") 1201 else 1) { index -> SChapter.create().apply {
+                url = if (mode == "partial-details") "/chapter/$index" else "/chapter/one"
+                name = "Chapter العربية"; chapter_number = 2.5f; date_upload = 1_700_000_000_123L
                 scanlator = "Group"; memo = buildJsonObject { put("image-key", "secret,token") }
-            }) else emptyList())
+            } } else emptyList())
         }
         override suspend fun getPageList(chapter: SChapter): List<Page> {
             check(chapter.url == "/chapter/one" && chapter.name == "Chapter العربية" && chapter.chapter_number == 2.5f)
@@ -138,6 +156,37 @@ object SourceCommandsCheck {
                 check(chapter.getValue("dateUpload").jsonPrimitive.long == 1_700_000_000L)
                 val metadata = Json.parseToJsonElement(chapter.getValue("sourceMetadataJSON").jsonPrimitive.content).jsonObject
                 check(metadata.getValue("fields").jsonObject.getValue("date_upload").jsonPrimitive.long == 1_700_000_000_123L)
+            }
+            case("partial_source_details_keep_lookup_identity_and_all_returned_chapters") {
+                source.mode = "partial-details"
+                val input = request("url" to manga.getValue("url").jsonPrimitive, "sourceMetadataJSON" to manga.getValue("sourceMetadataJSON").jsonPrimitive)
+                val result = Json.parseToJsonElement(commands.execute("update", input)).jsonObject
+                val details = result.getValue("details").jsonObject
+                check(details["url"] == JsonPrimitive("/title/one") && details["title"] == JsonPrimitive("Updated title"))
+                val fields = Json.parseToJsonElement(details.getValue("sourceMetadataJSON").jsonPrimitive.content).jsonObject.getValue("fields").jsonObject
+                check(fields["url"] == JsonPrimitive("/title/one"))
+                val chapters = result.getValue("chapters").jsonArray
+                check(chapters.size == 1201 && chapters.last().jsonObject["url"] == JsonPrimitive("/chapter/1200"))
+                source.mode = "partial-no-title"
+                val partial = Json.parseToJsonElement(commands.execute("details", input)).jsonObject
+                check(partial["title"] == JsonPrimitive("العربية 📚") && partial["url"] == JsonPrimitive("/title/one"))
+                source.mode = "returned-other-url"
+                check(Json.parseToJsonElement(commands.execute("details", input)).jsonObject["url"] == JsonPrimitive("/title/one"))
+                source.mode = "normal"
+            }
+            case("overlapping_updates_for_one_title_wait_without_reentering_the_source") {
+                source.mode = "held-update"
+                val input = request("url" to manga.getValue("url").jsonPrimitive, "sourceMetadataJSON" to manga.getValue("sourceMetadataJSON").jsonPrimitive)
+                coroutineScope {
+                    val first = async { commands.execute("update", input) }
+                    source.updateEntered.await()
+                    val second = async { commands.execute("update", input) }
+                    try { check(withTimeoutOrNull(150) { source.updatesOverlapped.await() } == null) }
+                    finally { source.continueUpdate.complete(Unit) }
+                    check(first.await() == second.await())
+                    check(source.activeUpdates.get() == 0 && !source.updatesOverlapped.isCompleted)
+                }
+                source.mode = "normal"
             }
             case("pages_keep_returned_order_dense_indices_raw_fields_and_source_image_resolution") {
                 val input = request("url" to chapter.getValue("url").jsonPrimitive, "sourceMetadataJSON" to chapter.getValue("sourceMetadataJSON").jsonPrimitive)

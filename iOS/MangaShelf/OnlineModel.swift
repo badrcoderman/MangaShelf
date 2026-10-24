@@ -68,12 +68,12 @@ extension SecureHTTP: SourceTransport {
             chapters = try await source.chapters(seriesID: series.id, language: selectedLanguage)
         } else {
             let mangaURL = try request.requireSourceURL()
-            let extDetails = try await SourceEngineCoordinator.shared.fetchDetails(sourceId: series.sourceID, mangaURL: mangaURL,
-                                                                                 sourceMetadataJSON: request.sourceMetadataJSON)
-            let resolvedURL = extDetails.url ?? mangaURL
+            let update = try await SourceEngineCoordinator.shared.fetchUpdate(sourceId: series.sourceID, mangaURL: mangaURL,
+                                                                              sourceMetadataJSON: request.sourceMetadataJSON)
+            let extDetails = update.details
+            let resolvedURL = mangaURL
             let metadata = extDetails.sourceMetadataJSON ?? request.sourceMetadataJSON
-            let extChapters = try await SourceEngineCoordinator.shared.fetchChapters(sourceId: series.sourceID, mangaURL: resolvedURL,
-                                                                                   sourceMetadataJSON: metadata)
+            let extChapters = update.chapters
             details = MangaSeries(id: series.id, title: extDetails.title, synopsis: extDetails.description ?? "",
                                   coverURL: extDetails.coverURL ?? series.coverURL,
                                   authors: extDetails.author.map { [$0] } ?? [],

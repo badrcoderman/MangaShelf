@@ -38,7 +38,7 @@ struct BrowseView: View {
         }.shelfRoot(L10n.string("Browse"), left: {
             NavigationLink { HelpView() } label: { ShelfIcon(symbol: "questionmark.circle.fill") }
                 .buttonStyle(.plain).accessibilityLabel(L10n.string("Help"))
-        }, right: { ShelfBackupLink() })
+        }, right: { EmptyView() })
     }
 }
 
@@ -134,16 +134,16 @@ private struct AvailableSourcesContent: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                Text(L10n.string("Last used source")).font(.headline).padding(.top, 8)
+                Text(L10n.string("Last used source")).font(.body).padding(.top, 8)
                 row(lastAvailableID)
                 if pinnedLocal || pinnedMangaDex {
-                    Text(L10n.string("Pinned")).font(.headline)
+                    Text(L10n.string("Pinned")).font(.body)
                     if pinnedLocal { row("local") }
                     if pinnedMangaDex { row("mangadex") }
                 }
-                Text(L10n.string("Local source")).font(.headline)
+                Text(L10n.string("Local source")).font(.body)
                 row("local")
-                Text(L10n.string("Available sources")).font(.headline)
+                Text(L10n.string("Available sources")).font(.body)
                 row("mangadex")
                 ForEach(indexedSources) { source in
                     row(source.id)

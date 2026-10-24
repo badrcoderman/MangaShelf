@@ -11,23 +11,27 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 
-def inspect(source, out):
+def inspect(source, out, variant='mangadex'):
     revision = subprocess.check_output(['git', '-C', str(source), 'rev-parse', 'HEAD'], text=True).strip()
     if revision != '1d3d7c4b3e876fb0c26ae3ade8113fb329af15fa':
         raise ValueError('Unexpected public source revision')
-    module = source / 'src/all/mangadex/build'
+    selections = {'mangadex': ('all', 'mangadex'), 'teamx': ('ar', 'teamx')}
+    group, name = selections[variant]
+    module = source / f'src/{group}/{name}/build'
     jars = list((module / 'outputs/jar/release').glob('*.jar'))
     if len(jars) != 1 or not 0 < jars[0].stat().st_size <= 64 * 1024**2:
         raise ValueError('Expected one bounded source-built JAR')
     metadata = json.loads((module / 'keiyoushi-source-info.json').read_text())
-    expected_package = 'eu.kanade.tachiyomi.extension.all.mangadex'
+    expected_package = f'eu.kanade.tachiyomi.extension.{group}.{name}'
     if metadata['packageName'] != expected_package or metadata['extensionLib'] != '1.6':
         raise ValueError('Unexpected source build metadata')
     sources = metadata['sources']
-    if len(sources) < 2 or len({s['id'] for s in sources}) != len(sources):
+    if not sources or len({s['id'] for s in sources}) != len(sources):
         raise ValueError('Missing or duplicate factory source IDs')
-    if not {'ar', 'en'} <= {s['lang'] for s in sources}:
+    if variant == 'mangadex' and not {'ar', 'en'} <= {s['lang'] for s in sources}:
         raise ValueError('Missing expected source languages')
+    if variant == 'teamx' and (len(sources) != 1 or str(sources[0]['id']) != '4110737012647435874' or sources[0]['lang'] != 'ar'):
+        raise ValueError('Unexpected Team X source identity')
     records, classes = [], []
     with zipfile.ZipFile(jars[0]) as archive:
         entries = archive.infolist()
@@ -85,4 +89,4 @@ def inspect(source, out):
 
 
 if __name__ == '__main__':
-    inspect(Path(sys.argv[1]), Path(sys.argv[2]))
+    inspect(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3] if len(sys.argv) > 3 else 'mangadex')

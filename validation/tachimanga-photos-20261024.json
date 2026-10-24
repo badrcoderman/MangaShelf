@@ -1,0 +1,219 @@
+{
+  "scope": "User-supplied visual references; no screenshots copied into the production app. Inventory is not proof of full UI review.",
+  "files": [
+    {
+      "file": "IMG_5299.png",
+      "sha256": "d23fdc6f9bdadb50b071149832438c81ab4c4de4ab654d55470c7ccee51599ff",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5300.png",
+      "sha256": "4ea1ebe64f8b8c571c4560af8fe9f1d5e23a166b575d3d3e364de2ce47e122d4",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5301.png",
+      "sha256": "3c1c3903a0964a082986525bfe2618367d75121d5862874a17d1a41a890852a3",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5302.png",
+      "sha256": "0ded8ebe0936c4429a8e90a32a87f5edeea24328b236aa941a1a4f3524fd2780",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5303.png",
+      "sha256": "b5803eb85ec500ae7067c23e72672c111b5884e1915b5f7d5d9e45289d326986",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5304.png",
+      "sha256": "3926abebca71589245b4af9c84b7b67c0c7960d3cf1764900a86e9e864feae26",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5312.png",
+      "sha256": "98e7c7504629728d8b18b793bbb9358219374ce2e9079ab80b8d364ccc737ff4",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5313.png",
+      "sha256": "2a9493e8799429f6111c680629d407f65ebf04bb81cbe4804ee15130dde08c45",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5315.png",
+      "sha256": "f33c18c7f977d902c4b3e94e65b25f46e7bc13f52cb6450471f733c66d54f270",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5316.png",
+      "sha256": "97faba19c586d851cdcd0af0ad850beccdeb43f71fccb60556205f668d32cf60",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5317.png",
+      "sha256": "f2eb3e975421a0508c2111efe17551092739d157ecc578ba6f55d4e7f358d8e3",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5318.png",
+      "sha256": "40e7c438de15b044921cbe679a11bfea528ebb007ce4805f544fa02785997100",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5319.png",
+      "sha256": "60c8ade1ece225ca84c66866b18b44b9d685af1d896306f6fa0f744370587ad1",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5320.png",
+      "sha256": "8df4e44855fa63b2410737342d8af049076ecdaaa8260d303bb7b0c2e0697470",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5321.png",
+      "sha256": "95920ed01c11e2661124c18b8380f4231d05c27a74e308aa772b9ac28237f1ac",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5322.png",
+      "sha256": "b4f0eb02ffac11d4174ffbfc3b3d2da78e8eea45fbe5ea6b5fac2f1c19a59bd1",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5323.png",
+      "sha256": "b5253223e9e217fb9f48aff0bc621acd25b47503b41bd2c3cecb996854c3e049",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5324.png",
+      "sha256": "6bb9542baaf0591dcf5e581e765b24135c71fa44ed8c10d097844ae27f1270b7",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5325.png",
+      "sha256": "c9979fea2bd74aeb078de97077da6e6d7d14d20483ed96f126631e73a693a51a",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5326.png",
+      "sha256": "a3503b010af19963cae114e7b37f7ffdac610e61ed4a5fde21719e0f18543e2f",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5327.png",
+      "sha256": "aa26b1cdf1ad7c1f5d12d65242a2e9426cc89c7fb1b94d522556f64f8467a39b",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5328.png",
+      "sha256": "8939200d344665eb75442be28e21130170752e48e61468d82e7afd958a60f9de",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5329.png",
+      "sha256": "b172ad626b76a5b4dbaf360453dd99b2a73ff8426b64319166f2d74133911ed1",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5330.png",
+      "sha256": "2fddd8ff74281589ee173f4d8827005df5bd05568b79ee46dcb1b0339c41aede",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5331.png",
+      "sha256": "74f5cc248e574fb849616647765d2673ed67d7661bc65dc456bf6caa47968124",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5332.png",
+      "sha256": "7c0ab8dd0f246018f03f32df62c8b53f5781208d25c922ca0cc06000bc4871dd",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5333.png",
+      "sha256": "4a15333441a8dca78a23f4ca6bfc57aadc4a5b617bf524e17a67135c86d62891",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5334.png",
+      "sha256": "38b0704b6d0371e4e5d8148cb9e449468deb71a5ad6bfa538ef103d916c14072",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5335.png",
+      "sha256": "5bcd23123629baeae895b8a218218a8b37b5c64aaf0acf6167b8842417c81ef4",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5336.png",
+      "sha256": "917f074bcdd7ee21e068ccb4b2472df6a7d22624ac87b5149ffe776af3c7e7c9",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5337.png",
+      "sha256": "94208881bb17c275a7bc15fb7045d5875f745f3fe5285d1a4ff59d5fb51e22be",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5338.png",
+      "sha256": "61b52539a563c6f1fef17a063423e526fb929ecd3c618f408b4fd594815c4fc0",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5339.png",
+      "sha256": "5b5017a3717bb1db50f78b4d499b0c00110281159ee0aba1e942e5b409c43bb2",
+      "width": 1242,
+      "height": 2688
+    },
+    {
+      "file": "IMG_5340.png",
+      "sha256": "d79a799b03dbfcd0fb456ba9869a21152627acb9ffcb3340312e488a2257be49",
+      "width": 1242,
+      "height": 2688
+    }
+  ],
+  "inspected_this_pass": [
+    "IMG_5299.png",
+    "IMG_5300.png",
+    "IMG_5301.png",
+    "IMG_5302.png",
+    "IMG_5304.png",
+    "IMG_5312.png",
+    "IMG_5320.png"
+  ],
+  "visual_parity_verified": false
+}

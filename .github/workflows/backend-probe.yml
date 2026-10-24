@@ -7,6 +7,7 @@ on:
         type: choice
         options:
           - reference-extension
+          - reference-teamx
           - runtime-host
           - runtime-codec
         default: reference-extension
@@ -14,7 +15,7 @@ permissions:
   contents: read
 jobs:
   compile:
-    if: inputs.task == 'reference-extension'
+    if: inputs.task == 'reference-extension' || inputs.task == 'reference-teamx'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -33,13 +34,15 @@ jobs:
           java-version: '21'
       - name: Install pinned source's Android platform
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0"'
-      - name: Build MangaDex reference JAR from public source
+      - name: Build reviewed reference JAR from public source
+        env:
+          MSL_REFERENCE_SOURCE: ${{ inputs.task == 'reference-teamx' && 'teamx' || 'mangadex' }}
         run: bash scripts/build-reference-extension.sh
       - name: Preserve source JAR and evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: mangadex-source-build
+          name: ${{ inputs.task == 'reference-teamx' && 'teamx-source-build' || 'mangadex-source-build' }}
           path: build/reference-extension/
           if-no-files-found: warn
           retention-days: 14

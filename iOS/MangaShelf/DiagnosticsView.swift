@@ -21,6 +21,10 @@ struct DiagnosticEvent: Identifiable {
         if events.count > 200 { events.removeLast(events.count - 200) }
     }
     func recordFailure(_ operation: String, _ error: Error) {
+        if let failure = error as? SourceRequestFailure {
+            record(operation, L10n.format("Source failure: %@; HTTP: %@.", failure.reason.rawValue, failure.httpStatus.map(String.init) ?? "—"))
+            return
+        }
         // Record no URLs, request bodies, book names, cookies, or localized errors.
         let value = error as NSError
         record(operation, L10n.format("Operation failed; error code: %@", String(describing: value.code)))
@@ -28,7 +32,8 @@ struct DiagnosticEvent: Identifiable {
     func clear() { events.removeAll() }
     func report(books: Int, repositories: Int) -> String {
         let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? L10n.string("Unknown")
-        var lines = [L10n.string("MangaShelf diagnostic report"), L10n.format("Version: %@", String(describing: version)), L10n.format("System: %@", String(describing: UIDevice.current.systemVersion)),
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        var lines = [L10n.string("MangaShelf diagnostic report"), L10n.format("Version: %@", version + " (" + build + ")"), L10n.format("System: %@", String(describing: UIDevice.current.systemVersion)),
                      L10n.format("Books: %@", String(describing: books)), L10n.format("Repositories: %@", String(describing: repositories)), L10n.string("The report excludes book names, source URLs, and login data.")]
         for event in events {
             let date = event.date.formatted(.dateTime.locale(L10n.language.locale).hour().minute().second())

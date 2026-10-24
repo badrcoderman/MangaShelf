@@ -71,13 +71,15 @@ private class UserAgentInterceptor : Interceptor {
     }
 }
 
-/** Detects a browser challenge; no browser verification or challenge bypass is implemented here. */
+class BrowserVerificationRequiredException : IOException("Source requires browser verification")
+
+/** Detects a browser challenge; no browser verification is implemented here. */
 private class CloudflareInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
         if (response.header("cf-mitigated").equals("challenge", ignoreCase = true)) {
             response.close()
-            throw IOException("Source requires browser verification")
+            throw BrowserVerificationRequiredException()
         }
         return response
     }

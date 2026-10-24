@@ -180,11 +180,11 @@ private struct TachiPageModifier: ViewModifier {
                         var transaction = Transaction()
                         transaction.disablesAnimations = true
                         withTransaction(transaction) { dismiss() }
-                    }
-                    Text(title).font(.system(size: titleSize, weight: .semibold))
+                    }.accessibilityIdentifier("settings.back")
+                    Text(title).font(.system(size: titleSize))
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
-                }.padding(.horizontal, 8).padding(.vertical, 5).frame(minHeight: 54)
+                }.padding(.horizontal, 8).frame(minHeight: 44)
                     .background(ShelfStyle.header.ignoresSafeArea(edges: .top))
             }
     }
@@ -209,18 +209,18 @@ struct TachiSectionTitle: View {
 struct TachiRowLabel: View {
     @Environment(\.locale) private var interfaceLocale
     @ScaledMetric(relativeTo: .body) private var titleSize = 16.0
-    @ScaledMetric(relativeTo: .caption) private var subtitleSize = 13.0
+    @ScaledMetric(relativeTo: .caption) private var subtitleSize = 12.0
     let title: String
     var subtitle: String? = nil
     var symbol: String? = nil
     var body: some View {
         HStack(spacing: 16) {
             if let symbol { TachiIcon(symbol: symbol, size: 21).frame(width: 26).foregroundStyle(ShelfStyle.secondary) }
-            VStack(alignment: .leading, spacing: 7) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(title).font(.system(size: titleSize)).foregroundStyle(ShelfStyle.text)
                 if let subtitle { Text(subtitle).font(.system(size: subtitleSize)).foregroundStyle(ShelfStyle.secondary).fixedSize(horizontal: false, vertical: true) }
             }.frame(maxWidth: .infinity, alignment: .leading)
-        }.padding(.vertical, 14)
+        }.padding(.vertical, 10)
     }
 }
 struct TachiNavigationRow<Destination: View>: View {
