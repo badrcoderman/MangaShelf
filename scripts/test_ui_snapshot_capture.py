@@ -41,7 +41,7 @@ class SnapshotCaptureTests(unittest.TestCase):
 
     def test_full_export_preserves_native_bytes_and_leaves_parity_unreviewed(self):
         report = self.run_collect()
-        self.assertEqual(report["captured_screenshots"], 26)
+        self.assertEqual(report["captured_screenshots"], 28)
         self.assertEqual(report["visual_parity"], "NOT REVIEWED")
         for index, name in enumerate(capture.EXPECTED):
             self.assertEqual((self.root / "screenshots" / (name + ".png")).read_bytes(), png(index))

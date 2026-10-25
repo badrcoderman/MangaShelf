@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct ShelfOverflowAction: Identifiable {
     let id: String
@@ -14,10 +15,20 @@ private struct ShelfOverflowModifier: ViewModifier {
     let title: String
     let actions: [ShelfOverflowAction]
     @Environment(\.layoutDirection) private var direction
+    @Environment(\.locale) private var locale
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @AccessibilityFocusState private var menuFocused: Bool
     @State private var contentHeight: CGFloat = 0
+    @ScaledMetric(relativeTo: .body) private var textSize = 16.0
+
+    private var menuWidth: CGFloat {
+        let font = locale.language.languageCode?.identifier == "ar"
+            ? (UIFont(name: "GeezaPro", size: textSize) ?? .systemFont(ofSize: textSize))
+            : UIFont.systemFont(ofSize: textSize)
+        let textWidth = actions.map { ($0.title as NSString).size(withAttributes: [.font: font]).width }.max() ?? 0
+        // Material popup widths advance in 56-point steps, within 112...280.
+        return min(280, max(112, ((textWidth + 64) / 56).rounded(.up) * 56))
+    }
 
     private func dismiss() { isPresented = false }
 
@@ -27,8 +38,8 @@ private struct ShelfOverflowModifier: ViewModifier {
             .overlay {
                 if isPresented {
                     GeometryReader { geometry in
-                        ZStack(alignment: direction == .rightToLeft ? .topTrailing : .topLeading) {
-                            Color.black.opacity(0.12)
+                        ZStack(alignment: .topLeading) {
+                            Color.clear
                                 .contentShape(Rectangle())
                                 .onTapGesture { dismiss() }
                                 .accessibilityHidden(true)
@@ -39,24 +50,25 @@ private struct ShelfOverflowModifier: ViewModifier {
                                             dismiss()
                                             action.perform()
                                         } label: {
-                                            HStack(spacing: 18) {
-                                                TachiIcon(symbol: action.symbol, size: 23)
-                                                    .frame(width: 28)
+                                            HStack(spacing: 16) {
+                                                TachiIcon(symbol: action.symbol, size: 24)
+                                                    .frame(width: 24)
                                                 Text(action.title)
                                                     .shelfFont(.body)
                                                     .multilineTextAlignment(.leading)
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }
-                                            .padding(.horizontal, 20)
-                                            .padding(.vertical, 14)
-                                            .frame(minHeight: 56)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 12)
+                                            .frame(minHeight: 48)
                                             .contentShape(Rectangle())
                                         }
                                         .buttonStyle(.plain)
                                         .disabled(!action.enabled)
                                         .opacity(action.enabled ? 1 : 0.4)
+                                        .accessibilityIdentifier("overflow." + action.id)
                                     }
-                                }
+                                }.padding(.vertical, 8)
                                 .onGeometryChange(for: CGFloat.self) { proxy in
                                     proxy.size.height
                                 } action: { height in
@@ -64,20 +76,21 @@ private struct ShelfOverflowModifier: ViewModifier {
                                 }
                             }
                             .scrollBounceBehavior(.basedOnSize)
-                            .frame(width: min(264, max(0, geometry.size.width - 32)),
-                                   height: min(contentHeight > 0 ? contentHeight : CGFloat(actions.count) * 56,
-                                               max(0, geometry.size.height - 72)))
+                            .frame(width: min(menuWidth, max(0, geometry.size.width - 16)),
+                                   height: min(contentHeight > 0 ? contentHeight : CGFloat(actions.count) * 48 + 16,
+                                               max(0, geometry.size.height - 16)))
                             .foregroundStyle(ShelfStyle.text)
-                            .background(reduceTransparency ? ShelfStyle.menu : ShelfStyle.menu.opacity(0.96), in: RoundedRectangle(cornerRadius: 16))
+                            .background(ShelfStyle.popup, in: RoundedRectangle(cornerRadius: 16))
                             .shadow(color: .black.opacity(0.2), radius: 18, y: 8)
                             .environment(\.layoutDirection, direction)
                             .accessibilityElement(children: .contain)
                             .accessibilityLabel(title)
+                            .accessibilityIdentifier("shelf.overflow")
                             .accessibilityAddTraits(.isModal)
                             .accessibilityFocused($menuFocused)
                             .accessibilityAction(.escape) { dismiss() }
-                            .padding(.top, 48)
-                            .padding(direction == .rightToLeft ? .trailing : .leading, 12)
+                            .padding(.top, 8)
+                            .padding(.leading, 8)
                             .transition(.opacity)
                         }.environment(\.layoutDirection, .leftToRight)
                     }

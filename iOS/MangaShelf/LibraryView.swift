@@ -272,6 +272,7 @@ struct LibraryView: View {
                 Button { showOptions.toggle() } label: {
                     ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90))
                 }.buttonStyle(.plain).accessibilityLabel(L10n.string("Library options"))
+                    .accessibilityIdentifier("library.options")
             }
         }, right: {
             if isRoot { ShelfBackupLink() }

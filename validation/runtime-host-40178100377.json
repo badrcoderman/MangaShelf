@@ -1,0 +1,197 @@
+{
+  "recorded_at": "2026-10-25T15:02:39.995378+00:00",
+  "run_id": 40178100377,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40178100377",
+  "source_commit": "7420caa6a0c1160b1479ad1fc91bbb73a7edc58d",
+  "passed": true,
+  "scope": "Linux/macOS host checks, including source-owned binary image handoff and bounded file/cancellation cases. No physical iPhone execution in this CI.",
+  "platforms": {
+    "ubuntu": {
+      "artifact_id": 12593128924,
+      "artifact_sha256": "sha256:19af5ccb317573527ade5b1a7ae597f3364f7e7d0fde1f0db4c175fd2495d4ab",
+      "crc_verified": true,
+      "archive_entries": 20,
+      "main_source_set_complete": true,
+      "all_declared_source_hashes_match_commit": true,
+      "reports": {
+        "zstd-native-host.json": {
+          "sha256": "72ca866a860aa377b2025590df064fbbf768c5f6db0124bd37c93f23bf4078ad",
+          "passed": true,
+          "scope": "Pinned source-built native codec and authored JNI adapter. iOS target is compile/link inspection only, never device execution."
+        },
+        "bridge-test-results.json": {
+          "sha256": "6a15120ca96429bb69b333e0ef8bdbeaa161f5e37df2615ece0539e13bd645bc",
+          "passed": true,
+          "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build"
+        },
+        "runtime-source-commands-host.json": {
+          "sha256": "bb0885f18bbed99e36058b9e78aa8b6b3a75c72b8d8a738b1c14797662f94ff5",
+          "passed": true,
+          "scope": "Authored source models through the JSON command boundary on host JVM; no JNI, Swift, published extension or iOS execution.",
+          "checks": {
+            "catalogue_latest_search_and_source_pagination_have_distinct_wire_commands": true,
+            "manga_metadata_memo_flags_and_update_strategy_survive_the_wire": true,
+            "chapter_dates_convert_to_seconds_without_losing_milliseconds_or_memo": true,
+            "partial_source_details_keep_lookup_identity_and_all_returned_chapters": true,
+            "overlapping_updates_for_one_title_wait_without_reentering_the_source": true,
+            "pages_keep_returned_order_dense_indices_raw_fields_and_source_image_resolution": true,
+            "image_transfer_uses_source_request_headers_client_and_exact_binary_bytes": true,
+            "image_transfer_rejects_missing_or_wrong_source_state_before_network": true,
+            "image_transfer_size_and_disk_quota_are_bounded_and_consumption_releases_space": true,
+            "cancellation_during_image_body_read_cancels_the_call_and_removes_partial_file": true,
+            "invalid_ids_pages_metadata_ownership_and_typed_fields_are_rejected": true,
+            "source_output_limits_reject_counts_and_multibyte_strings": true,
+            "removal_cancels_suspended_wire_work_and_waits_for_source_cleanup": true
+          }
+        },
+        "extension-archive-verifier-host.json": {
+          "sha256": "f5093bdf7674ed17085a0ebfdc09cebea32ae3c38077b3ea43785fad688b0bb1",
+          "passed": true,
+          "scope": "Host-only JAR v1 cryptographic/data inspection; no archive class loading, iOS, real source execution, publisher/PKIX trust, expiry or revocation proof. No production activation."
+        },
+        "runtime-host-tests.json": {
+          "sha256": "930e0e188d4de4ccb88609045da85d6819cfe15fa0279dd51f1b8911559eb525",
+          "passed": true,
+          "scope": "Authored Source1.6 API/model/HttpSource/network/context descriptors, synthetic sources and SourceFactory registry lifecycle on host. No complete Android bootstrap, real extension class loading, trusted archive loading, actual network or iOS proof in this check."
+        },
+        "runtime-host-build.json": {
+          "sha256": "91302078669489dc948bb18603f9998d2944f1eb50d1c1508f6497258b5f14fb",
+          "passed": true,
+          "scope": "Compile MSL host, verifier and loader, plus pinned Injekt and Zstd/Okio Kotlin sources; native codec is built separately. No extension archive execution during build or iOS execution."
+        },
+        "java-bridge-host.json": {
+          "sha256": "224c3f1285c14aca7f8267ecceb1e8605c3fb4f6d6985a203cb2147107a3b84e",
+          "passed": true,
+          "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution."
+        },
+        "runtime-zstd-host.json": {
+          "sha256": "0858fb95e3720c02282ec174913520633f9dba45551b392f1db0cf3a855e6267",
+          "passed": true,
+          "scope": "Source-built Zstd/Okio and authored host JNI/format/fault fixtures under -Xcheck:jni; dynamic and named builtin loading, no iOS execution or published extension."
+        },
+        "runtime-preferences-host.json": {
+          "sha256": "660fc7969165ff9725afda61bef8352c5a488ee27271489269c2ccfb7ad89b2a",
+          "passed": true,
+          "scope": "Authored Android preference descriptors, application file context and bounded durable preference store on host JVM only. No Android UI, real extension, networking or iOS execution."
+        },
+        "runtime-network-host.json": {
+          "sha256": "54d8d7c76fbdfd6c2415bd594e4f7f7a710cdb5bbc4d6a5c1c22089aab433cd8",
+          "passed": true,
+          "scope": "Authored HTTP source/call fixtures and actual loopback HTTP/HTTPS on host JVM only. No NativeNet/URLSession, published extension, Android UI or iOS execution."
+        },
+        "runtime-source-preferences-host.json": {
+          "sha256": "c0293facdbc9046b71b03282222c2ca81214330c760e0932e4bd255c52878304",
+          "passed": true,
+          "scope": "Authored ConfigurableSource settings, validation, persistence and source-lease lifecycle on host JVM; no published extension, Android rendering, Swift UI or iOS execution."
+        },
+        "runtime-bootstrap-host.json": {
+          "sha256": "585207537200bd59c98b5c39c489dc1991b5d33f8d95c88d1a3f88d431209308",
+          "passed": true,
+          "scope": "Pinned Injekt built from reviewed MIT source and authored application lifecycle tests on host JVM; no published extension, Android UI or iOS execution."
+        },
+        "extension-loader-host.json": {
+          "sha256": "037b2b7a802c804002904bc1bab02b25359f1d8359ce64d52c8bf6e3f5c227e5",
+          "passed": true,
+          "scope": "Host JVM, project-authored signed executable fixtures and loopback HTTP only. No published extension, production activation, NativeNet, publisher trust bootstrap or iOS execution."
+        }
+      },
+      "host_jar_sha256": "9c2ad87e7ae656f3e330689c06cfd9333bd3e302cf73d2faefdc5493fd7962eb"
+    },
+    "macos": {
+      "artifact_id": 12592634717,
+      "artifact_sha256": "sha256:a705741759394caeeea7735498be3c833209888db13c3e3e1cdfe98db2432dd7",
+      "crc_verified": true,
+      "archive_entries": 28,
+      "main_source_set_complete": true,
+      "all_declared_source_hashes_match_commit": true,
+      "reports": {
+        "zstd-native-host.json": {
+          "sha256": "f124c8f367c3433e0662ea1ed43c90c994edec5174c995a7b34562eb02aaf85f",
+          "passed": true,
+          "scope": "Pinned source-built native codec and authored JNI adapter. iOS target is compile/link inspection only, never device execution."
+        },
+        "bridge-test-results.json": {
+          "sha256": "29ebdc92736fbd8977ba4ebdfa0c8aab7949a879da6c5f322613ebda95c90ce5",
+          "passed": true,
+          "scope": "production MSJNIBridge.c with synthetic native callbacks; no Swift/JNI/iOS build"
+        },
+        "runtime-source-commands-host.json": {
+          "sha256": "ca681bd5d10a95b6c52ff16ced89da78d06d5a53cd43c0887d4b57f4df30f818",
+          "passed": true,
+          "scope": "Authored source models through the JSON command boundary on host JVM; no JNI, Swift, published extension or iOS execution.",
+          "checks": {
+            "catalogue_latest_search_and_source_pagination_have_distinct_wire_commands": true,
+            "manga_metadata_memo_flags_and_update_strategy_survive_the_wire": true,
+            "chapter_dates_convert_to_seconds_without_losing_milliseconds_or_memo": true,
+            "partial_source_details_keep_lookup_identity_and_all_returned_chapters": true,
+            "overlapping_updates_for_one_title_wait_without_reentering_the_source": true,
+            "pages_keep_returned_order_dense_indices_raw_fields_and_source_image_resolution": true,
+            "image_transfer_uses_source_request_headers_client_and_exact_binary_bytes": true,
+            "image_transfer_rejects_missing_or_wrong_source_state_before_network": true,
+            "image_transfer_size_and_disk_quota_are_bounded_and_consumption_releases_space": true,
+            "cancellation_during_image_body_read_cancels_the_call_and_removes_partial_file": true,
+            "invalid_ids_pages_metadata_ownership_and_typed_fields_are_rejected": true,
+            "source_output_limits_reject_counts_and_multibyte_strings": true,
+            "removal_cancels_suspended_wire_work_and_waits_for_source_cleanup": true
+          }
+        },
+        "extension-archive-verifier-host.json": {
+          "sha256": "4feebac093e718396e7cacb1c49cc15b6017607fd32a7ae77b20653ee7bcc955",
+          "passed": true,
+          "scope": "Host-only JAR v1 cryptographic/data inspection; no archive class loading, iOS, real source execution, publisher/PKIX trust, expiry or revocation proof. No production activation."
+        },
+        "runtime-host-tests.json": {
+          "sha256": "7b6a96c353f0bd4db1ceaad402dcbe8b7babe2d280e3c07976ddfc6ad6b6914a",
+          "passed": true,
+          "scope": "Authored Source1.6 API/model/HttpSource/network/context descriptors, synthetic sources and SourceFactory registry lifecycle on host. No complete Android bootstrap, real extension class loading, trusted archive loading, actual network or iOS proof in this check."
+        },
+        "runtime-host-build.json": {
+          "sha256": "bab0422ac2316a1e9d03f6871dd7173f5ab4ab1060feb16b2ce124bcb44f4eb0",
+          "passed": true,
+          "scope": "Compile MSL host, verifier and loader, plus pinned Injekt and Zstd/Okio Kotlin sources; native codec is built separately. No extension archive execution during build or iOS execution."
+        },
+        "java-bridge-host.json": {
+          "sha256": "c44caeeb16e347dab176cbf8a270b80a40c89a46fc428b128dd3cf985cf9027b",
+          "passed": true,
+          "scope": "Host JVM and project-owned fixture only; actual ms_bridge_dispatch to JNI adapter. No real extension or iOS adapter execution."
+        },
+        "runtime-zstd-host.json": {
+          "sha256": "f94b5b766130965ffcefdc3fe6bc6ba5454e884b5cf631cc1743b9b112bb6b7d",
+          "passed": true,
+          "scope": "Source-built Zstd/Okio and authored host JNI/format/fault fixtures under -Xcheck:jni; dynamic and named builtin loading, no iOS execution or published extension."
+        },
+        "zstd-native-ios.json": {
+          "sha256": "9fcfcdaa50764c019aab9ec26ed26f5c725366451d3d0d93c823662f309894cd",
+          "passed": true,
+          "scope": "Pinned source-built native codec and authored JNI adapter. iOS target is compile/link inspection only, never device execution."
+        },
+        "runtime-preferences-host.json": {
+          "sha256": "e790e61e29e36ae7d548aa61b2de6222c43cbb8dbe4f7f701a639d48ab149c55",
+          "passed": true,
+          "scope": "Authored Android preference descriptors, application file context and bounded durable preference store on host JVM only. No Android UI, real extension, networking or iOS execution."
+        },
+        "runtime-network-host.json": {
+          "sha256": "e1ae02581169d16356fef75f4fadfaee65a9572bb99bd8e9536da7f151e77ba7",
+          "passed": true,
+          "scope": "Authored HTTP source/call fixtures and actual loopback HTTP/HTTPS on host JVM only. No NativeNet/URLSession, published extension, Android UI or iOS execution."
+        },
+        "runtime-source-preferences-host.json": {
+          "sha256": "6ef0f18bcc4c8973daf1a6cf37c354bb9f1759d7abf6a9fb84faf2be0eb2d1b7",
+          "passed": true,
+          "scope": "Authored ConfigurableSource settings, validation, persistence and source-lease lifecycle on host JVM; no published extension, Android rendering, Swift UI or iOS execution."
+        },
+        "runtime-bootstrap-host.json": {
+          "sha256": "34eb8e6dd7d82a6270f8e95146fd42c80b6e5239d1a1a5f09c74aee099bdb272",
+          "passed": true,
+          "scope": "Pinned Injekt built from reviewed MIT source and authored application lifecycle tests on host JVM; no published extension, Android UI or iOS execution."
+        },
+        "extension-loader-host.json": {
+          "sha256": "10c01b664c37c6e1f18f5ec451d852bc9ce0b1877bcafffe2b6c26fe954e6474",
+          "passed": true,
+          "scope": "Host JVM, project-authored signed executable fixtures and loopback HTTP only. No published extension, production activation, NativeNet, publisher trust bootstrap or iOS execution."
+        }
+      },
+      "host_jar_sha256": "9c2ad87e7ae656f3e330689c06cfd9333bd3e302cf73d2faefdc5493fd7962eb"
+    }
+  }
+}

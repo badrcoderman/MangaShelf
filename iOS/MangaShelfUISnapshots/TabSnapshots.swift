@@ -106,6 +106,21 @@ final class TabSnapshots: XCTestCase {
                 accessibility.lifetime = .keepAlways
                 activity.add(accessibility)
             }
+            if index == 0 {
+                app.buttons["library.options"].firstMatch.tap()
+                let panel = app.descendants(matching: .any)["shelf.overflow"].firstMatch
+                XCTAssertTrue(panel.waitForExistence(timeout: 10))
+                XCTAssertLessThanOrEqual(panel.frame.minX, 9, "The Library menu is anchored to the physical left in both locales.")
+                XCTAssertGreaterThanOrEqual(panel.frame.width, 112)
+                XCTAssertLessThanOrEqual(panel.frame.width, 280)
+                XCTAssertLessThanOrEqual(panel.frame.maxY, app.frame.maxY)
+                let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+                screenshot.name = "msl-\(language)-dark-library-options"
+                screenshot.lifetime = .keepAlways
+                add(screenshot)
+                app.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.65)).tap()
+                XCTAssertTrue(panel.wait(for: \.exists, toEqual: false, timeout: 10))
+            }
         }
 
         let settings = [("general", "slider.horizontal.3"), ("appearance", "paintpalette.fill"),
