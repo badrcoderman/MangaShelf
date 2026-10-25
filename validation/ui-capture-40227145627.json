@@ -1,0 +1,36 @@
+{
+  "run_id": 40227145627,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40227145627",
+  "source_commit": "41f6ddbdb5989ba8e770d9c4f55bd8782fe60c7c",
+  "capture_passed": true,
+  "ui_tests_passed": 4,
+  "screenshots_verified": 36,
+  "visual_parity": false,
+  "artifact": {
+    "id": 12611637008,
+    "sha256": "sha256:a7a566d21c3fbd73b9856a87603ddc262ef1d524b3d503ac427c689e1f4227f5",
+    "crc_verified": true
+  },
+  "capture_report_sha256": "72f9763b1356a3bb4486e1c1dfe6eedbc1d631580d38102944666729b36ef310",
+  "scope": "real production app, five tabs, eight settings pages and Library menu in dark; More, About and Library menu in light; Library menu with accessibility XXXL text; English/Arabic, fresh empty store; first viewport per page",
+  "reviewed_screens": [
+    "msl-ar-dark-05-more.png",
+    "msl-ar-dark-settings-about.png",
+    "msl-ar-dark-library-options.png",
+    "msl-en-dark-05-more.png",
+    "msl-ar-light-more.png",
+    "msl-en-light-about.png",
+    "msl-ar-light-library-options.png",
+    "msl-en-dark-accessibility-menu.png",
+    "msl-ar-dark-accessibility-menu.png"
+  ],
+  "findings": [
+    "Nested About/Changelog return passed in both languages with distinct Back identifiers and transition waits.",
+    "More first-row position and glyph dimensions still match the reference; all five About row-arrow Y positions now match.",
+    "Menu refresh glyph dimensions now match 36x36 pixels; menu action semantics belong to MATCH-02.",
+    "Normal tab icon/capsule geometry is closer, with small residual differences documented separately.",
+    "Accessibility XXXL captions overlap and truncate in the floating bar despite passing frame tests. This visual failure must be fixed before device handoff.",
+    "Light appearance controls saved and restored System in both languages. There is no supplied light reference for an exact light-parity claim."
+  ],
+  "next_build": "0.5.1 (13): compact navigation captions with large content viewer; back glyph refinement"
+}

@@ -132,9 +132,11 @@ struct ShelfTabBar: View {
                     VStack(spacing: 2) {
                         if tab == .library { ShelfBooksIcon().scaleEffect(x: 1.1, y: 0.95) }
                         else { TachiIcon(symbol: tab.symbol, size: tab == .more ? 30 : 28) }
-                        Text(tab.title).font(.system(size: labelSize))
-                            .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
-                            .minimumScaleFactor(typeSize.isAccessibilitySize ? 1 : 0.8)
+                        // Compact navigation captions remain readable in their
+                        // fixed-width slots; the large content viewer provides
+                        // the full title at accessibility text sizes.
+                        Text(tab.title).font(.system(size: min(labelSize, 13)))
+                            .lineLimit(1).minimumScaleFactor(0.8)
                     }.frame(maxWidth: .infinity).frame(minHeight: typeSize.isAccessibilitySize ? 76 : 54)
                         .foregroundStyle(selection.wrappedValue == tab.rawValue ? ShelfStyle.accent : ShelfStyle.text)
                         .background {
@@ -148,6 +150,9 @@ struct ShelfTabBar: View {
                     .accessibilityLabel(tab.title)
                     .accessibilityAddTraits(selection.wrappedValue == tab.rawValue ? .isSelected : [])
                     .accessibilityIdentifier("tab.\(tab.rawValue)")
+                    .accessibilityShowsLargeContentViewer {
+                        Label(tab.title, systemImage: tab.symbol)
+                    }
             }
         }.environment(\.layoutDirection, .leftToRight)
             .padding(.vertical, 4).padding(.horizontal, 8)

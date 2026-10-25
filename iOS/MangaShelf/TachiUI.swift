@@ -208,14 +208,14 @@ private struct TachiPageModifier: ViewModifier {
                         withTransaction(transaction) { dismiss() }
                     } label: {
                         Image(systemName: direction == .rightToLeft ? "chevron.right" : "chevron.left")
-                            .font(.system(size: 24, weight: .semibold))
+                            .font(.system(size: 22, weight: .semibold))
                             .frame(width: 44, height: 44).contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityLabel(L10n.string("Back"))
                         .accessibilityIdentifier(backIdentifier)
                     Text(title).shelfFont(size: titleSize)
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
-                }.padding(.horizontal, 8).frame(minHeight: 44)
+                }.padding(.horizontal, 7.5).frame(minHeight: 44)
                     .background((filled ? ShelfStyle.header : ShelfStyle.background).ignoresSafeArea(edges: .top))
             }
     }

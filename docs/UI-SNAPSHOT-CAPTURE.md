@@ -6,17 +6,26 @@ simulator with an installed iOS 26 runtime. It builds and installs the productio
 MangaShelf target, then launches it through XCTest. No preview app, reference
 binary, sample manga, or rendered web substitute participates in the capture.
 
-The two UI tests select all five real tabs in English and Arabic with the
+The tab-flow UI tests select all five real tabs in English and Arabic with the
 simulator set to dark appearance. Each capture requires the localized tab labels,
 the selected tab, five visible touch targets of at least 44 × 44 points, the
 physical Library → More order, and no blocking alert. The phone remains in
 English to verify that explicit `app.language = ar` overrides the phone language.
 
+The MATCH-01 gate expects **36 named screenshots across four tests**:
+
+- 28 dark captures: five tabs, eight settings pages, and the Library menu in each locale.
+- Six light captures: More, About, and the Library menu in each locale. The test changes the real App theme control, waits for the saved value, and restores System afterwards.
+- Two Library-menu captures at accessibility XXXL text size. The test checks that the app actually enlarged its tab targets and that the panel remains inside the viewport.
+
+The About and Changelog Back controls have separate identifiers. The test waits for the child Back control to disappear and the parent to become hittable before returning to More.
+
 Download the `MangaShelf-UI-<run>-<attempt>` artifact:
 
 | File | Evidence |
 | --- | --- |
-| `screenshots/msl-{en,ar}-dark-0{1…5}-{tab}.png` | Ten full native simulator screenshots, copied without image edits |
+| `screenshots/msl-{en,ar}-dark-0{1…5}-{tab}.png` | Ten tab screenshots; copied without image edits |
+| `screenshots/msl-{en,ar}-{dark,light}-*.png` | Settings, menus, and the scoped light/accessibility cases above |
 | `capture-report.json` | Capture completeness, dimensions, byte hashes, originating test names |
 | `provenance.json` | Commit, working tree, Xcode/SDK, simulator type/runtime/UDID, locales, appearance |
 | `built-app.json` | Installed app version/build/bundle identifier and executable hash |
@@ -32,8 +41,9 @@ can be exported. The workflow uploads available evidence on failure too.
 Successful capture is **not a visual parity pass**. Review the PNGs alongside
 the supplied Tachimanga screenshots and record mismatches in geometry, colors,
 glyphs, empty states and text. The initial pass uses a real empty store; it does
-not prove populated-library geometry, reader parity, source execution, light
-appearance, accessibility modes, a smaller phone, or behavior on physical iPhone.
+not prove populated-library geometry, reader parity, source execution, full light
+or accessibility coverage, a smaller phone, or behavior on physical iPhone. The
+light and large-text cases cover only the components listed above.
 
 On a Mac with Xcode 26 and an installed iOS 26 simulator runtime:
 
