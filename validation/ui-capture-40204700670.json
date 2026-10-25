@@ -1,0 +1,28 @@
+{
+  "run_id": 40204700670,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40204700670",
+  "source_commit": "3520f6d95a732b10936ea036d79d5473ec0a1ec5",
+  "capture_passed": true,
+  "visual_parity": false,
+  "scope": "real production app, five tabs and eight settings pages, English/Arabic, dark, fresh empty store; first viewport per page",
+  "screenshots_verified": 26,
+  "artifact": {
+    "id": 12603617646,
+    "sha256": "sha256:5d408ea093aa7b6bf6f417cb7d0d417a42db73452f5e9c43f274f7dd502dbdf9",
+    "crc_verified": true
+  },
+  "capture_report_sha256": "65c7ef98ae56bb2965c15892478e6c2d190b2f7f2dec8e009594b48b5e457980",
+  "reviewed_screens": [
+    "msl-ar-dark-05-more.png",
+    "msl-ar-dark-settings-about.png",
+    "msl-ar-dark-settings-changelog.png",
+    "msl-ar-dark-settings-appearance.png"
+  ],
+  "findings": [
+    "More colors and first-row insets were corrected; see the separate narrow pixel measurements.",
+    "About now has flat reference-order rows and a separate Changelog route. Project identity remains MangaShelf.",
+    "Appearance retains the bottom tabs in this captured route. Most reference settings are still missing.",
+    "Changelog navigation and return passed in English and Arabic.",
+    "Populated states, reader tools, backups, settings contents, accessibility, and full visual parity remain open."
+  ]
+}

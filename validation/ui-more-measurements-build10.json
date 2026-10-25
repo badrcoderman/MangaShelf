@@ -1,0 +1,196 @@
+{
+  "scope": "More first-row geometry and flat colors only; no full visual parity claim",
+  "reference": {
+    "sha256": "3926abebca71589245b4af9c84b7b67c0c7960d3cf1764900a86e9e864feae26",
+    "pixels": [
+      1242,
+      2688
+    ],
+    "colorspace": "sRGB",
+    "surfaces": "background=srgb(24,24,26) header=srgb(36,38,44)",
+    "row_colors": [
+      {
+        "pixels": 495089,
+        "rgb": "#18181A"
+      },
+      {
+        "pixels": 8544,
+        "rgb": "#C4C7CE"
+      },
+      {
+        "pixels": 1969,
+        "rgb": "#E8EBF2"
+      },
+      {
+        "pixels": 537,
+        "rgb": "#C0C3CA"
+      },
+      {
+        "pixels": 155,
+        "rgb": "#323235"
+      },
+      {
+        "pixels": 137,
+        "rgb": "#5A5B5F"
+      },
+      {
+        "pixels": 87,
+        "rgb": "#3E3E41"
+      },
+      {
+        "pixels": 78,
+        "rgb": "#DBDEE4"
+      }
+    ],
+    "selected_tab_colors": [
+      {
+        "pixels": 11224,
+        "rgb": "#3A3A3C"
+      },
+      {
+        "pixels": 2607,
+        "rgb": "#AEC6FF"
+      },
+      {
+        "pixels": 467,
+        "rgb": "#3B3B3D"
+      },
+      {
+        "pixels": 364,
+        "rgb": "#3B3B3C"
+      },
+      {
+        "pixels": 309,
+        "rgb": "#19191A"
+      },
+      {
+        "pixels": 259,
+        "rgb": "#3C3C3E"
+      },
+      {
+        "pixels": 173,
+        "rgb": "#3D3D3F"
+      },
+      {
+        "pixels": 122,
+        "rgb": "#3E3E40"
+      }
+    ],
+    "first_row_arrow": {
+      "x": 54,
+      "y": 330,
+      "width": 22,
+      "height": 36
+    },
+    "first_row_icon": {
+      "x": 1131,
+      "y": 321,
+      "width": 54,
+      "height": 54
+    }
+  },
+  "native": {
+    "sha256": "342ab7d6d3a473aa2f74a246238332db7e331aa5025964e01176fba8a736be6a",
+    "pixels": [
+      1242,
+      2688
+    ],
+    "colorspace": "sRGB",
+    "surfaces": "background=srgb(24,24,26) header=srgb(36,38,44)",
+    "row_colors": [
+      {
+        "pixels": 494502,
+        "rgb": "#18181A"
+      },
+      {
+        "pixels": 8503,
+        "rgb": "#C4C7CE"
+      },
+      {
+        "pixels": 2497,
+        "rgb": "#E8EBF2"
+      },
+      {
+        "pixels": 445,
+        "rgb": "#BDBFC6"
+      },
+      {
+        "pixels": 239,
+        "rgb": "#202022"
+      },
+      {
+        "pixels": 167,
+        "rgb": "#C5C7CE"
+      },
+      {
+        "pixels": 150,
+        "rgb": "#BCBFC5"
+      },
+      {
+        "pixels": 122,
+        "rgb": "#3C3C3F"
+      }
+    ],
+    "selected_tab_colors": [
+      {
+        "pixels": 13521,
+        "rgb": "#3A3A3C"
+      },
+      {
+        "pixels": 1794,
+        "rgb": "#AEC6FF"
+      },
+      {
+        "pixels": 913,
+        "rgb": "#19191B"
+      },
+      {
+        "pixels": 22,
+        "rgb": "#7784A3"
+      },
+      {
+        "pixels": 16,
+        "rgb": "#3F4044"
+      },
+      {
+        "pixels": 16,
+        "rgb": "#3A3B3D"
+      },
+      {
+        "pixels": 12,
+        "rgb": "#AAC1F8"
+      },
+      {
+        "pixels": 12,
+        "rgb": "#9EB3E5"
+      }
+    ],
+    "first_row_arrow": {
+      "x": 54,
+      "y": 330,
+      "width": 22,
+      "height": 36
+    },
+    "first_row_icon": {
+      "x": 1131,
+      "y": 321,
+      "width": 54,
+      "height": 54
+    }
+  },
+  "native_minus_reference_points": {
+    "first_row_arrow": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0
+    },
+    "first_row_icon": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0
+    }
+  },
+  "full_visual_parity": false
+}
