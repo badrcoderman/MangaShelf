@@ -109,7 +109,7 @@ struct AboutView: View {
         ScrollView {
             VStack(spacing: 0) {
                 TachiIcon(symbol: "books.vertical.fill", size: 56)
-                    .foregroundStyle(ShelfStyle.text).frame(maxWidth: .infinity).frame(height: 96)
+                    .foregroundStyle(ShelfStyle.text).frame(maxWidth: .infinity).frame(height: 90)
                 TachiDivider()
                 Button {
                     guard !developerEnabled else { return }
@@ -117,22 +117,22 @@ struct AboutView: View {
                     if taps >= 7 { developerEnabled = true; taps = 0 }
                 } label: {
                     TachiRowLabel(title: L10n.string("Version"), subtitle: version, symbol: "info.circle")
-                        .frame(minHeight: 76).padding(.horizontal, 16).contentShape(Rectangle())
+                        .frame(minHeight: 72).padding(.horizontal, 16).contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityIdentifier("about.version")
                 if !developerEnabled && taps >= 4 {
                     Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps)))
                         .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                 }
-                TachiNavigationRow(title: L10n.string("Changelog"), symbol: "arrow.counterclockwise.circle") { AboutChangelogView() }
+                TachiNavigationRow(title: L10n.string("Changelog"), symbol: "clock.arrow.circlepath") { AboutChangelogView() }
                     .accessibilityIdentifier("about.changelog")
-                TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle.fill") { HelpView() }
+                TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle") { HelpView() }
                 TachiLinkRow(title: L10n.string("Contact us"), symbol: "bubble.left.and.bubble.right.fill",
                              destination: URL(string: "https://github.com/badrcoderman/MangaShelf/issues")!)
                 TachiLinkRow(title: L10n.string("Help translate"), symbol: "translate",
                              destination: URL(string: "https://github.com/badrcoderman/MangaShelf/tree/improve/ios-engine-image/iOS/MangaShelf/Resources")!)
                 TachiNavigationRow(title: L10n.string("Licenses"), symbol: "doc.text") { MaterialLicenseView() }
             }.padding(.bottom, 24)
-        }.tachiPage(L10n.string("About"), filled: false)
+        }.tachiPage(L10n.string("About"), filled: false, backIdentifier: "settings.back.about")
     }
 }
 
@@ -210,7 +210,7 @@ struct AboutChangelogView: View {
                         }.shelfFont(.footnote).padding(.vertical, 8)
                     }
             }
-        }.tachiPage(L10n.string("Changelog"), filled: false)
+        }.tachiPage(L10n.string("Changelog"), filled: false, backIdentifier: "settings.back.changelog")
     }
 }
 

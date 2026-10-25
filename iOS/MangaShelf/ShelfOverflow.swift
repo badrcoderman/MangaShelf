@@ -18,8 +18,9 @@ private struct ShelfOverflowModifier: ViewModifier {
     @Environment(\.locale) private var locale
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AccessibilityFocusState private var menuFocused: Bool
+    @FocusState private var keyboardFocused: Bool
     @State private var contentHeight: CGFloat = 0
-    @ScaledMetric(relativeTo: .body) private var textSize = 16.0
+    @ScaledMetric(relativeTo: .subheadline) private var textSize = 14.0
 
     private var menuWidth: CGFloat {
         let font = locale.language.languageCode?.identifier == "ar"
@@ -27,7 +28,7 @@ private struct ShelfOverflowModifier: ViewModifier {
             : UIFont.systemFont(ofSize: textSize)
         let textWidth = actions.map { ($0.title as NSString).size(withAttributes: [.font: font]).width }.max() ?? 0
         // Material popup widths advance in 56-point steps, within 112...280.
-        return min(280, max(112, ((textWidth + 64) / 56).rounded(.up) * 56))
+        return min(280, max(112, ((textWidth + 58) / 56).rounded(.up) * 56))
     }
 
     private func dismiss() { isPresented = false }
@@ -51,10 +52,10 @@ private struct ShelfOverflowModifier: ViewModifier {
                                             action.perform()
                                         } label: {
                                             HStack(spacing: 16) {
-                                                TachiIcon(symbol: action.symbol, size: 24)
-                                                    .frame(width: 24)
+                                                TachiIcon(symbol: action.symbol, size: 18)
+                                                    .frame(width: 18)
                                                 Text(action.title)
-                                                    .shelfFont(.body)
+                                                    .shelfFont(.subheadline)
                                                     .multilineTextAlignment(.leading)
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }
@@ -89,12 +90,16 @@ private struct ShelfOverflowModifier: ViewModifier {
                             .accessibilityAddTraits(.isModal)
                             .accessibilityFocused($menuFocused)
                             .accessibilityAction(.escape) { dismiss() }
+                            .focusable()
+                            .focusEffectDisabled()
+                            .focused($keyboardFocused)
+                            .onKeyPress(.escape) { dismiss(); return .handled }
                             .padding(.top, 8)
                             .padding(.leading, 8)
                             .transition(.opacity)
                         }.environment(\.layoutDirection, .leftToRight)
                     }
-                    .onAppear { menuFocused = true }
+                    .onAppear { menuFocused = true; keyboardFocused = true }
                 }
             }
             .animation(reduceMotion ? nil : .easeOut(duration: 0.16), value: isPresented)

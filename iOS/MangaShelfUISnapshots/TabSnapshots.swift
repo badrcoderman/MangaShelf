@@ -16,6 +16,63 @@ final class TabSnapshots: XCTestCase {
         try captureTabs(language: "ar", labels: ["المكتبة", "التحديثات", "تصفح", "التاريخ", "المزيد"])
     }
 
+    @MainActor func testEnglishLargeTextMenu() throws { captureLargeTextMenu(language: "en") }
+    @MainActor func testArabicLargeTextMenu() throws { captureLargeTextMenu(language: "ar") }
+
+    @MainActor private func capture(_ name: String, app: XCUIApplication) {
+        XCTContext.runActivity(named: name) { activity in
+            let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            screenshot.name = name; screenshot.lifetime = .keepAlways; activity.add(screenshot)
+            let state = XCTAttachment(string: app.debugDescription)
+            state.name = name + "-accessibility"; state.lifetime = .keepAlways; activity.add(state)
+        }
+    }
+
+    @MainActor private func reveal(_ row: XCUIElement, app: XCUIApplication, towardBottom: Bool) {
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        for _ in 0..<6 {
+            if row.isHittable { break }
+            if towardBottom { app.scrollViews.firstMatch.swipeUp() }
+            else { app.scrollViews.firstMatch.swipeDown() }
+        }
+        XCTAssertTrue(row.isHittable)
+    }
+
+    @MainActor private func setAppearance(_ title: String, app: XCUIApplication) {
+        let row = app.buttons["settings.paintpalette.fill"].firstMatch
+        reveal(row, app: app, towardBottom: false); row.tap()
+        let theme = app.buttons["appearance.theme"].firstMatch
+        XCTAssertTrue(theme.waitForExistence(timeout: 10) && theme.isHittable)
+        theme.tap()
+        let option = app.buttons[title].firstMatch
+        XCTAssertTrue(option.waitForExistence(timeout: 10) && option.isHittable)
+        option.tap()
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", title), object: theme)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
+        app.buttons["settings.back"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["settings.paintpalette.fill"].firstMatch.wait(for: \.isHittable, toEqual: true, timeout: 10))
+    }
+
+    @MainActor private func captureLargeTextMenu(language: String) {
+        XCUIDevice.shared.orientation = .portrait
+        let app = XCUIApplication()
+        app.launchArguments = ["-app.language", language, "-AppleLanguages", "(en)", "-AppleLocale", "en_US",
+                               "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch(); defer { app.terminate() }
+        let library = app.buttons["tab.0"].firstMatch
+        XCTAssertTrue(library.waitForExistence(timeout: 30)); library.tap()
+        XCTAssertGreaterThanOrEqual(library.frame.height, 76, "The app must actually apply the accessibility text size.")
+        app.buttons["library.options"].firstMatch.tap()
+        let panel = app.descendants(matching: .any)["shelf.overflow"].firstMatch
+        XCTAssertTrue(panel.waitForExistence(timeout: 10))
+        XCTAssertGreaterThanOrEqual(panel.frame.minX, app.frame.minX)
+        XCTAssertLessThanOrEqual(panel.frame.maxX, app.frame.maxX)
+        XCTAssertLessThanOrEqual(panel.frame.maxY, app.frame.maxY)
+        capture("msl-\(language)-dark-accessibility-menu", app: app)
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.8)).tap()
+        XCTAssertTrue(panel.wait(for: \.exists, toEqual: false, timeout: 10))
+    }
+
     @MainActor private func captureTabs(language: String, labels: [String]) throws {
         XCUIDevice.shared.orientation = .portrait
         let app = XCUIApplication()
@@ -136,7 +193,7 @@ final class TabSnapshots: XCTestCase {
             }
             XCTAssertTrue(row.isHittable, "The settings destination must be reachable through the real More page.")
             row.tap()
-            let back = app.buttons["settings.back"].firstMatch
+            let back = app.buttons[page == "about" ? "settings.back.about" : "settings.back"].firstMatch
             XCTAssertTrue(back.waitForExistence(timeout: 10))
             XCTAssertTrue(back.isHittable)
             XCTAssertEqual(app.alerts.count, 0)
@@ -162,11 +219,35 @@ final class TabSnapshots: XCTestCase {
                 screenshot.name = "msl-\(language)-dark-settings-changelog"
                 screenshot.lifetime = .keepAlways
                 add(screenshot)
-                back.tap()
+                let changelogBack = app.buttons["settings.back.changelog"].firstMatch
+                XCTAssertTrue(changelogBack.waitForExistence(timeout: 10) && changelogBack.isHittable)
+                changelogBack.tap()
+                XCTAssertTrue(changelogBack.wait(for: \.exists, toEqual: false, timeout: 10))
                 XCTAssertTrue(app.buttons["about.version"].firstMatch.waitForExistence(timeout: 10))
+                XCTAssertTrue(back.wait(for: \.isHittable, toEqual: true, timeout: 10))
             }
             back.tap()
             XCTAssertTrue(app.buttons["tab.4"].firstMatch.waitForExistence(timeout: 10))
         }
+
+        // Use the real appearance control, including its async persisted value.
+        setAppearance(language == "ar" ? "فاتح" : "Light", app: app)
+        capture("msl-\(language)-light-more", app: app)
+        let about = app.buttons["settings.info.circle"].firstMatch
+        reveal(about, app: app, towardBottom: true); about.tap()
+        let aboutBack = app.buttons["settings.back.about"].firstMatch
+        XCTAssertTrue(aboutBack.waitForExistence(timeout: 10) && aboutBack.isHittable)
+        capture("msl-\(language)-light-about", app: app)
+        aboutBack.tap()
+        XCTAssertTrue(app.buttons["tab.4"].firstMatch.waitForExistence(timeout: 10))
+        app.buttons["tab.0"].firstMatch.tap()
+        app.buttons["library.options"].firstMatch.tap()
+        let panel = app.descendants(matching: .any)["shelf.overflow"].firstMatch
+        XCTAssertTrue(panel.waitForExistence(timeout: 10))
+        capture("msl-\(language)-light-library-options", app: app)
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.65)).tap()
+        XCTAssertTrue(panel.wait(for: \.exists, toEqual: false, timeout: 10))
+        app.buttons["tab.4"].firstMatch.tap()
+        setAppearance(language == "ar" ? "النظام" : "System", app: app)
     }
 }

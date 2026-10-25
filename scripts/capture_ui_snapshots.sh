@@ -110,6 +110,8 @@ provenance = {
     "github_run_id": os.environ.get("GITHUB_RUN_ID"),
     "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
     "appearance": "dark", "languages": ["en", "ar"],
+    "additional_cases": {"light": "selected through the real saved App theme control",
+                         "dynamic_type": "accessibility XXXL launch preference; verified by tab geometry"},
     "store": "new simulator; production empty store; no injected manga content",
     "visual_parity": "NOT REVIEWED",
 }

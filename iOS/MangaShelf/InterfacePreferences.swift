@@ -34,7 +34,7 @@ struct AppearancePreferencesView: View {
             TachiChoiceRow(title: L10n.string("App theme"), symbol: "paintpalette.fill", selection: Binding(get: { model.state.settings.appearance }, set: { value in
                     var changed = model.state.settings; changed.appearance = value
                     Task { await model.perform { try await $0.saveSettings(changed) } }
-                }), choices: [(AppAppearance.system, L10n.string("System")), (.light, L10n.string("Light")), (.dark, L10n.string("Dark"))]).disabled(model.busy)
+                }), choices: [(AppAppearance.system, L10n.string("System")), (.light, L10n.string("Light")), (.dark, L10n.string("Dark"))], identifier: "appearance.theme").disabled(model.busy)
             TachiSectionTitle(L10n.string("Display"))
             TachiStepperRow(title: L10n.string("Items per row"), value: $columns, range: 2...5)
         }

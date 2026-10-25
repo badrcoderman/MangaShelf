@@ -21,6 +21,9 @@ EXPECTED = tuple(f"msl-{language}-dark-{index:02d}-{tab}"
 SETTINGS = ("general", "appearance", "library", "reader", "backup", "privacy", "about", "changelog")
 EXPECTED += tuple(f"msl-{language}-dark-settings-{page}" for language in ("en", "ar") for page in SETTINGS)
 EXPECTED += tuple(f"msl-{language}-dark-library-options" for language in ("en", "ar"))
+EXPECTED += tuple(f"msl-{language}-light-{page}" for language in ("en", "ar")
+                  for page in ("more", "about", "library-options"))
+EXPECTED += tuple(f"msl-{language}-dark-accessibility-menu" for language in ("en", "ar"))
 
 
 def collect(attachments: Path, destination: Path) -> dict:
@@ -69,8 +72,8 @@ def collect(attachments: Path, destination: Path) -> dict:
     return {"captured_at": datetime.now(timezone.utc).isoformat(), "expected_screenshots": len(EXPECTED),
             "captured_screenshots": len(screenshots), "screenshots": screenshots,
             "capture_gate": "passed", "visual_parity": "NOT REVIEWED",
-            "scope": "real production app, five tabs, eight settings pages and Library menu, English/Arabic, dark, fresh empty store; first viewport per page",
-            "remaining": "populated library, light, accessibility, smaller phone, reference comparison, physical iPhone"}
+            "scope": "real production app, five tabs, eight settings pages and Library menu in dark; More, About and Library menu in light; Library menu with accessibility XXXL text; English/Arabic, fresh empty store; first viewport per page",
+            "remaining": "populated library, full light/accessibility coverage, smaller phone, reference comparison, physical iPhone"}
 
 
 def main() -> None:

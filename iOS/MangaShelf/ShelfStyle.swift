@@ -20,7 +20,7 @@ enum ShelfStyle {
     static let accent = color(0xAEC6FF, light: 0x335CA8)
     static let text = color(0xE8EBF2, light: 0x202126)
     static let secondary = color(0xC4C7CE, light: 0x555A63)
-    static let border = color(0x34353A, light: 0xD7D9DE)
+    static let border = color(0x343436, light: 0xD7D9DE)
     static let onAccent = color(0x17223B, light: 0xFFFFFF)
     static let pageInset: CGFloat = 10
     static let gridSpacing: CGFloat = 6
@@ -123,19 +123,26 @@ struct ShelfTabBar: View {
     @Environment(\.locale) private var interfaceLocale
     @Environment(\.shelfTabSelection) private var selection
     @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .caption2) private var labelSize = 11.0
     var body: some View {
         HStack(spacing: 0) {
             // Physical order follows the reference: library on the left, more on the right.
             ForEach(ShelfTab.allCases) { tab in
                 Button { selection.wrappedValue = tab.rawValue } label: {
                     VStack(spacing: 2) {
-                        if tab == .library { ShelfBooksIcon() }
-                        else { TachiIcon(symbol: tab.symbol, size: 25) }
-                        Text(tab.title).shelfFont(.caption2).lineLimit(1).minimumScaleFactor(0.8)
+                        if tab == .library { ShelfBooksIcon().scaleEffect(x: 1.1, y: 0.95) }
+                        else { TachiIcon(symbol: tab.symbol, size: tab == .more ? 30 : 28) }
+                        Text(tab.title).font(.system(size: labelSize))
+                            .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+                            .minimumScaleFactor(typeSize.isAccessibilitySize ? 1 : 0.8)
                     }.frame(maxWidth: .infinity).frame(minHeight: typeSize.isAccessibilitySize ? 76 : 54)
                         .foregroundStyle(selection.wrappedValue == tab.rawValue ? ShelfStyle.accent : ShelfStyle.text)
                         .background {
-                            if selection.wrappedValue == tab.rawValue { Capsule().fill(ShelfStyle.selected) }
+                            if selection.wrappedValue == tab.rawValue {
+                                Capsule().fill(ShelfStyle.selected)
+                                    .frame(height: typeSize.isAccessibilitySize ? nil : 52)
+                                    .padding(.horizontal, -3)
+                            }
                         }.contentShape(Capsule())
                 }.buttonStyle(.plain)
                     .accessibilityLabel(tab.title)
@@ -143,7 +150,7 @@ struct ShelfTabBar: View {
                     .accessibilityIdentifier("tab.\(tab.rawValue)")
             }
         }.environment(\.layoutDirection, .leftToRight)
-            .padding(4)
+            .padding(.vertical, 4).padding(.horizontal, 8)
             .background { if reduceTransparency { Capsule().fill(ShelfStyle.menu) } }
             .glassEffect(reduceTransparency ? .identity : .regular, in: Capsule())
             .frame(maxWidth: 540).padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 6)

@@ -1,0 +1,212 @@
+{
+  "scope": "fixed Arabic dark More, About and Library-menu regions, 414x896 @3x",
+  "threshold": "glyphs: RGB sum > 420; dim row chevrons: > 200; capsule: largest flat #3A3A3C component",
+  "reference": {
+    "sha256": {
+      "more": "3926abebca71589245b4af9c84b7b67c0c7960d3cf1764900a86e9e864feae26",
+      "about": "917f074bcdd7ee21e068ccb4b2472df6a7d22624ac87b5149ffe776af3c7e7c9",
+      "menu": "aa26b1cdf1ad7c1f5d12d65242a2e9426cc89c7fb1b94d522556f64f8467a39b"
+    },
+    "tabs": {
+      "more_icon": {
+        "x": 1013,
+        "y": 2475,
+        "width": 72,
+        "height": 72
+      },
+      "more_label": {
+        "x": 1012,
+        "y": 2562,
+        "width": 73,
+        "height": 28
+      },
+      "library_icon": {
+        "x": 153,
+        "y": 2473,
+        "width": 82,
+        "height": 75
+      },
+      "history_icon": {
+        "x": 799,
+        "y": 2477,
+        "width": 70,
+        "height": 69
+      },
+      "selected_capsule": {
+        "x": 929,
+        "y": 2452,
+        "width": 235,
+        "height": 156
+      }
+    },
+    "about": {
+      "back": {
+        "x": 1142,
+        "y": 169,
+        "width": 33,
+        "height": 58
+      },
+      "row_arrows": [
+        {
+          "x": 55,
+          "y": 864,
+          "width": 21,
+          "height": 34
+        },
+        {
+          "x": 55,
+          "y": 1032,
+          "width": 21,
+          "height": 34
+        },
+        {
+          "x": 55,
+          "y": 1200,
+          "width": 21,
+          "height": 34
+        },
+        {
+          "x": 55,
+          "y": 1368,
+          "width": 21,
+          "height": 34
+        },
+        {
+          "x": 55,
+          "y": 1536,
+          "width": 21,
+          "height": 34
+        }
+      ]
+    },
+    "menu_refresh_icon": {
+      "x": 447,
+      "y": 234,
+      "width": 36,
+      "height": 36
+    }
+  },
+  "native": {
+    "sha256": {
+      "more": "342ab7d6d3a473aa2f74a246238332db7e331aa5025964e01176fba8a736be6a",
+      "about": "a26ca8805171016f08c3b23243b29cb8f13690bf55d6085ee2d0dd3cf47d41e5",
+      "menu": "34d29af528722d933c02571aeb78355b581e8580a1eb14e40d7582b12b2aeacd"
+    },
+    "tabs": {
+      "more_icon": {
+        "x": 1031,
+        "y": 2482,
+        "width": 59,
+        "height": 59
+      },
+      "more_label": {
+        "x": 1034,
+        "y": 2562,
+        "width": 54,
+        "height": 30
+      },
+      "library_icon": {
+        "x": 144,
+        "y": 2471,
+        "width": 75,
+        "height": 79
+      },
+      "history_icon": {
+        "x": 809,
+        "y": 2480,
+        "width": 63,
+        "height": 63
+      },
+      "selected_capsule": {
+        "x": 950,
+        "y": 2455,
+        "width": 220,
+        "height": 160
+      }
+    },
+    "about": {
+      "back": {
+        "x": 1142,
+        "y": 180,
+        "width": 21,
+        "height": 36
+      },
+      "row_arrows": [
+        {
+          "x": 55,
+          "y": 895,
+          "width": 21,
+          "height": 36
+        },
+        {
+          "x": 55,
+          "y": 1063,
+          "width": 21,
+          "height": 36
+        },
+        {
+          "x": 55,
+          "y": 1231,
+          "width": 21,
+          "height": 36
+        },
+        {
+          "x": 55,
+          "y": 1399,
+          "width": 21,
+          "height": 36
+        },
+        {
+          "x": 55,
+          "y": 1567,
+          "width": 21,
+          "height": 36
+        }
+      ]
+    },
+    "menu_refresh_icon": {
+      "x": 432,
+      "y": 804,
+      "width": 48,
+      "height": 48
+    }
+  },
+  "tab_deltas_points": {
+    "more_icon": {
+      "x": 6.0,
+      "y": 2.3333333333333335,
+      "width": -4.333333333333333,
+      "height": -4.333333333333333
+    },
+    "more_label": {
+      "x": 7.333333333333333,
+      "y": 0.0,
+      "width": -6.333333333333333,
+      "height": 0.6666666666666666
+    },
+    "library_icon": {
+      "x": -3.0,
+      "y": -0.6666666666666666,
+      "width": -2.3333333333333335,
+      "height": 1.3333333333333333
+    },
+    "history_icon": {
+      "x": 3.3333333333333335,
+      "y": 1.0,
+      "width": -2.3333333333333335,
+      "height": -2.0
+    },
+    "selected_capsule": {
+      "x": 7.0,
+      "y": 1.0,
+      "width": -5.0,
+      "height": 1.3333333333333333
+    }
+  },
+  "limitations": [
+    "Menu actions differ; compare refresh glyph dimensions only, not row position.",
+    "Glyph bounds do not identify the font or prove full-screen parity.",
+    "Reference About is v5.0(511); static IPA is 5.1/520."
+  ],
+  "full_visual_parity": false
+}

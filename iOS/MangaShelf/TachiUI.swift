@@ -17,6 +17,8 @@ enum TachiGlyph: UInt32, CaseIterable {
     case package = 0xE250, brightness = 0xE10A, spacing = 0xE6B2
     case direction = 0xE625, sun = 0xE6D9, number = 0xE640
     case translate = 0xE67B, discussion = 0xE2C3
+    case infoOutline = 0xE33D, helpOutline = 0xE30B, historyRestore = 0xE314
+    case documentOutline = 0xEFAE
     static func matching(_ symbol: String) -> Self? {
         switch symbol {
         case "books.vertical", "books.vertical.fill": return .library
@@ -39,7 +41,10 @@ enum TachiGlyph: UInt32, CaseIterable {
         case "chart.xyaxis.line": return .insights
         case "arrow.down.to.line", "arrow.down.circle", "square.and.arrow.down": return .download
         case "questionmark.circle.fill": return .help
-        case "info.circle": return .info
+        case "questionmark.circle": return .helpOutline
+        case "info.circle": return .infoOutline
+        case "info.circle.fill": return .info
+        case "clock.arrow.circlepath": return .historyRestore
         case "chevron.left": return .left
         case "chevron.right": return .right
         case "plus": return .add
@@ -64,7 +69,8 @@ enum TachiGlyph: UInt32, CaseIterable {
         case "heart.fill": return .heart
         case "heart": return .heartOutline
         case "globe": return .globe
-        case "doc.text": return .document
+        case "doc.text": return .documentOutline
+        case "doc.text.fill": return .document
         case "pencil": return .edit
         case "book.fill": return .local
         case "shippingbox": return .package
@@ -92,8 +98,11 @@ struct TachiIcon: View {
                 Text(verbatim: String(scalar)).font(.custom("MaterialIcons-Regular", fixedSize: size))
             } else { Image(systemName: symbol).font(.system(size: size, weight: .regular)) }
         }.frame(width: size, height: size)
-            .scaleEffect(x: symbol == "questionmark.circle.fill" && interfaceLocale.language.languageCode?.identifier == "ar" ? -1 : 1, y: 1)
+            .scaleEffect(x: mirrorsInArabic && interfaceLocale.language.languageCode?.identifier == "ar" ? -1 : 1, y: 1)
             .accessibilityHidden(true)
+    }
+    private var mirrorsInArabic: Bool {
+        ["questionmark.circle.fill", "questionmark.circle", "book.closed", "book.closed.fill", "clock", "clock.fill"].contains(symbol)
     }
 }
 
@@ -184,6 +193,7 @@ struct TachiSettingsPage<Content: View>: View {
 private struct TachiPageModifier: ViewModifier {
     let title: String
     let filled: Bool
+    let backIdentifier: String
     @Environment(\.dismiss) private var dismiss
     @Environment(\.layoutDirection) private var direction
     @ScaledMetric(relativeTo: .headline) private var titleSize = 20.0
@@ -192,11 +202,16 @@ private struct TachiPageModifier: ViewModifier {
             .background(ShelfStyle.background.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .top, spacing: 0) {
                 HStack(spacing: 0) {
-                    ShelfIconButton(L10n.string("Back"), symbol: direction == .rightToLeft ? "chevron.right" : "chevron.left") {
+                    Button {
                         var transaction = Transaction()
                         transaction.disablesAnimations = true
                         withTransaction(transaction) { dismiss() }
-                    }.accessibilityIdentifier("settings.back")
+                    } label: {
+                        Image(systemName: direction == .rightToLeft ? "chevron.right" : "chevron.left")
+                            .font(.system(size: 24, weight: .semibold))
+                            .frame(width: 44, height: 44).contentShape(Rectangle())
+                    }.buttonStyle(.plain).accessibilityLabel(L10n.string("Back"))
+                        .accessibilityIdentifier(backIdentifier)
                     Text(title).shelfFont(size: titleSize)
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
@@ -206,7 +221,9 @@ private struct TachiPageModifier: ViewModifier {
     }
 }
 extension View {
-    func tachiPage(_ title: String, filled: Bool = false) -> some View { modifier(TachiPageModifier(title: title, filled: filled)) }
+    func tachiPage(_ title: String, filled: Bool = false, backIdentifier: String = "settings.back") -> some View {
+        modifier(TachiPageModifier(title: title, filled: filled, backIdentifier: backIdentifier))
+    }
     func tachiSheet() -> some View {
         presentationDetents([.medium, .large]).presentationDragIndicator(.visible)
             .presentationCornerRadius(24).presentationBackground(ShelfStyle.background)
@@ -312,6 +329,7 @@ struct TachiChoiceRow<Value: Hashable>: View {
     let symbol: String
     @Binding var selection: Value
     let choices: [(Value, String)]
+    var identifier = ""
     @State private var expanded = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var body: some View {
@@ -323,6 +341,7 @@ struct TachiChoiceRow<Value: Hashable>: View {
                         .font(.system(size: 14)).foregroundStyle(ShelfStyle.secondary)
                 }.padding(.horizontal, 18).contentShape(Rectangle())
             }.buttonStyle(.plain).accessibilityValue(choices.first { $0.0 == selection }?.1 ?? "")
+                .accessibilityIdentifier(identifier)
             if expanded {
                 VStack(spacing: 0) {
                     ForEach(choices, id: \.0) { choice in
@@ -388,6 +407,5 @@ struct TachiStepperRow: View {
 }
 struct TachiDivider: View {
     @Environment(\.locale) private var interfaceLocale
-    @Environment(\.displayScale) private var scale
-    var body: some View { Rectangle().fill(ShelfStyle.border).frame(height: 1 / scale).padding(.vertical, 8) }
+    var body: some View { Rectangle().fill(ShelfStyle.border).frame(height: 1).padding(.vertical, 7.5) }
 }

@@ -9,16 +9,19 @@
     "arabic_navigation_test": "passed",
     "english_navigation_test": "failed",
     "failure": "Expected tab.4 to exist after returning from About, following a Changelog round trip.",
-    "location": "iOS/MangaShelfUISnapshots/TabSnapshots.swift:169"
+    "location": "iOS/MangaShelfUISnapshots/TabSnapshots.swift:169",
+    "failure_hierarchy": "About is still visible with about.version and settings.back; there are no tab.* buttons."
   },
-  "root_cause": "unresolved: inspect failure attachments and accessibility hierarchy before changing navigation or the test",
+  "root_cause": "The shared Back identifier can resolve nested controls before the parent becomes current. Distinct page identifiers and transition waits are being tested; app navigation root cause remains unconfirmed.",
   "failed_step_log_sha256": "8d514fc9a4a59711740f0d4f6bdf6a708573587f5e0a046366c367bfe710b0de",
   "artifact": {
     "id": 12604485357,
     "github_reported_bytes": 115455422,
     "github_reported_digest": "sha256:0c1f20b21706be121946aed80326c5cf4ce8cc37170350843753152ccb9f5220",
-    "downloaded_and_verified": false
+    "downloaded_and_verified": true,
+    "crc_verified": true
   },
   "next_stage": "MATCH-01",
-  "ipa_build_success_is_separate": true
+  "ipa_build_success_is_separate": true,
+  "screenshots_verified": 28
 }

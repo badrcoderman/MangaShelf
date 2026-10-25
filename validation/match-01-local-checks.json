@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-10-25T16:51:13.978544+00:00",
+  "scope": "build 12 working tree: synthetic capture collector and resource integrity only; Swift/Xcode/visual checks pending",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "scripts/test_ui_snapshot_capture.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 2.785s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_ui_resources.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"localization_keys\": 1087,\n  \"icon_glyphs\": 60,\n  \"font_sha256\": \"d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453\",\n  \"failures\": [],\n  \"scope\": \"Resource integrity and format checks; not Swift compilation or visual verification\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}
