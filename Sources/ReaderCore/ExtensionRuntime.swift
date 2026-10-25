@@ -7,6 +7,9 @@ import CryptoKit
 public final class ExtensionRuntime: @unchecked Sendable {
     public static let shared = ExtensionRuntime()
 
+    /// Reports whether a dispatcher is connected. Does not start the VM or load a source.
+    public var isAvailable: Bool { dispatchHandler != nil || ms_bridge_is_vm_available() != 0 }
+
     private let lock = NSLock()
     private var loadedPackages: Set<String> = []
     private var handlersRegistered = false

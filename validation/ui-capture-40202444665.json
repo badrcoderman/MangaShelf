@@ -1,0 +1,27 @@
+{
+  "run_id": 40202444665,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40202444665",
+  "source_commit": "3425b68c4ba8cc493444cfb9bb5cbd01d67702cb",
+  "capture_passed": true,
+  "visual_parity": false,
+  "scope": "real production app, five tabs and seven settings pages, English/Arabic, dark, fresh empty store; first viewport per page",
+  "screenshots_verified": 24,
+  "artifact": {
+    "id": 12602143889,
+    "sha256": "sha256:d1848c3731fc3ce17926951c31555e601cc795f7e6dcdafbc88f047ef84347a3",
+    "crc_verified": true
+  },
+  "capture_report_sha256": "b3186683c91af0e1f509c50255248bcad89833aefc6498fb1e16a3dda3cfef7b",
+  "reviewed_screens": [
+    "msl-ar-dark-05-more.png",
+    "msl-ar-dark-03-browse.png",
+    "msl-en-dark-05-more.png"
+  ],
+  "findings": [
+    "Arabic Naskh typography is substantially closer to the supplied More reference. Latin MangaDex text still renders with a system sans face.",
+    "24-point row icons and chevrons have the same thresholded glyph dimensions as the reference on the first More row.",
+    "First More row arrow is 8 points too far inward; leading icon is 2 points too far inward. Correction queued after capture.",
+    "Measured reference accent and text colors differ from the earlier approximate constants. Correction queued after capture.",
+    "Settings contents, backups, reader tools, populated states, accessibility and full visual parity remain open."
+  ]
+}

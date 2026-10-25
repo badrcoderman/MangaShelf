@@ -29,7 +29,7 @@ struct AppearancePreferencesView: View {
         }
     }
     var body: some View {
-        TachiSettingsPage(title: L10n.string("Appearance")) {
+        TachiSettingsPage(title: L10n.string("Appearance"), showsTabs: true) {
             TachiSectionTitle(L10n.string("Theme"))
             TachiChoiceRow(title: L10n.string("App theme"), symbol: "paintpalette.fill", selection: Binding(get: { model.state.settings.appearance }, set: { value in
                     var changed = model.state.settings; changed.appearance = value

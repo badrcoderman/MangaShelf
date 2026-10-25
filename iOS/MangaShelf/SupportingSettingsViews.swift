@@ -28,7 +28,7 @@ struct FeatureStatusView: View {
             switch self {
             case .sync: return L10n.string("Device sync is not available in this version. You can export your library data from Backup and restore.")
             case .tracking: return L10n.string("Reading tracker services are not connected in this version. Your progress is saved in the app.")
-            case .migration: return L10n.string("Moving a title between sources requires a working extension runtime.")
+            case .migration: return L10n.string("Moving a title to another source is not available in this version.")
             }
         }
     }
@@ -87,7 +87,7 @@ struct HelpView: View {
             Section(L10n.string("Local books")) { Text(L10n.string("In Library, open the options menu and choose Import book. You can import CBZ or ZIP files containing images.")) }
             Section(L10n.string("Sources")) { Text(L10n.string("Open Browse and choose an available source. Search for a title, open its details, then add it to your library or start reading.")) }
             Section(L10n.string("Downloads")) { Text(L10n.string("Open a title's chapter list and tap Download. Chapter status appears in More → Downloads.")) }
-            Section(L10n.string("Extensions")) { Text(L10n.string("Adding a repository only displays its index in this version. Running JAR extensions is not available yet.")) }
+            Section(L10n.string("Extensions")) { Text(L10n.string("Add a repository in Browse → Extensions, install the extension, review its publisher, then open its source in Browse → Sources.")) }
         }.tachiPage(L10n.string("Help"))
     }
 }

@@ -15,10 +15,10 @@ enum ShelfStyle {
     static let header = color(0x24262C, light: 0xECEEF4)
     static let menu = color(0x202124, light: 0xF3F4F8)
     static let card = color(0x1F2024, light: 0xF6F7FA)
-    static let selected = color(0x3B3B3F, light: 0xDFE5F2)
-    static let accent = color(0xA8C2FF, light: 0x345DA8)
-    static let text = color(0xE7E8ED, light: 0x202126)
-    static let secondary = color(0xC7C9D0, light: 0x555A63)
+    static let selected = color(0x3A3A3C, light: 0xDFE5F2)
+    static let accent = color(0xAEC6FF, light: 0x335CA8)
+    static let text = color(0xE8EBF2, light: 0x202126)
+    static let secondary = color(0xC4C7CE, light: 0x555A63)
     static let border = color(0x34353A, light: 0xD7D9DE)
     static let onAccent = color(0x17223B, light: 0xFFFFFF)
     static let pageInset: CGFloat = 10
@@ -64,7 +64,7 @@ struct ShelfIcon: View {
     @Environment(\.locale) private var interfaceLocale
     let symbol: String
     var body: some View {
-        TachiIcon(symbol: symbol, size: 22)
+        TachiIcon(symbol: symbol, size: 24)
             .frame(width: 44, height: 44).contentShape(Rectangle())
     }
 }

@@ -47,9 +47,9 @@ struct SettingsView: View {
                 ShareLink(item: URL(string: "https://github.com/badrcoderman/MangaShelf")!) {
                     HStack(spacing: 12) {
                         TachiRowLabel(title: L10n.string("Share"), symbol: "square.and.arrow.up")
-                        TachiIcon(symbol: L10n.language.direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 17)
+                        TachiIcon(symbol: L10n.language.direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                             .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
-                    }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
+                    }.frame(minHeight: 56).padding(.leading, 16).padding(.trailing, 10).contentShape(Rectangle())
                 }.buttonStyle(.plain)
                 row(L10n.string("Help"), "questionmark.circle.fill") { HelpView() }
                 row(L10n.string("About"), "info.circle") { AboutView() }
@@ -100,29 +100,54 @@ struct AboutView: View {
     @Environment(\.locale) private var interfaceLocale
     @AppStorage("diagnostics.enabled") private var developerEnabled = false
     @State private var taps = 0
-    @State private var showChanges = false
     private var version: String {
         let number = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? L10n.string("Unknown")
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
         return number + " (" + build + ")"
     }
     var body: some View {
-        TachiList {
-            Section {
-                VStack(spacing: 12) {
-                    TachiIcon(symbol: "books.vertical.fill", size: 56).foregroundStyle(ShelfStyle.text)
-                }.frame(maxWidth: .infinity).padding(.vertical, 30)
+        ScrollView {
+            VStack(spacing: 0) {
+                TachiIcon(symbol: "books.vertical.fill", size: 56)
+                    .foregroundStyle(ShelfStyle.text).frame(maxWidth: .infinity).frame(height: 96)
                 TachiDivider()
                 Button {
                     guard !developerEnabled else { return }
                     taps += 1
                     if taps >= 7 { developerEnabled = true; taps = 0 }
-                } label: { TachiRowLabel(title: L10n.string("Version"), subtitle: version, symbol: "info.circle") }
-                if developerEnabled { TachiLabel(L10n.string("Developer tools enabled"), systemImage: "checkmark.circle").foregroundStyle(.secondary) }
-                else if taps >= 4 { Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps))).shelfFont(.caption).foregroundStyle(.secondary) }
-            }
-            Section {
-                DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
+                } label: {
+                    TachiRowLabel(title: L10n.string("Version"), subtitle: version, symbol: "info.circle")
+                        .frame(minHeight: 76).padding(.horizontal, 16).contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityIdentifier("about.version")
+                if !developerEnabled && taps >= 4 {
+                    Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps)))
+                        .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
+                }
+                TachiNavigationRow(title: L10n.string("Changelog"), symbol: "arrow.counterclockwise.circle") { AboutChangelogView() }
+                    .accessibilityIdentifier("about.changelog")
+                TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle.fill") { HelpView() }
+                TachiLinkRow(title: L10n.string("Contact us"), symbol: "bubble.left.and.bubble.right.fill",
+                             destination: URL(string: "https://github.com/badrcoderman/MangaShelf/issues")!)
+                TachiLinkRow(title: L10n.string("Help translate"), symbol: "translate",
+                             destination: URL(string: "https://github.com/badrcoderman/MangaShelf/tree/improve/ios-engine-image/iOS/MangaShelf/Resources")!)
+                TachiNavigationRow(title: L10n.string("Licenses"), symbol: "doc.text") { MaterialLicenseView() }
+            }.padding(.bottom, 24)
+        }.tachiPage(L10n.string("About"), filled: false)
+    }
+}
+
+struct AboutChangelogView: View {
+    @State private var showChanges = true
+    var body: some View {
+        TachiList {
+            DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
+                DisclosureGroup(L10n.string("Sources and interface")) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(L10n.string("October 25, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
+                        Text(L10n.string("Source updates preserve chapter lists, and images use the source's request headers and client."))
+                        Text(L10n.string("Improved Arabic typography and settings layout."))
+                    }.shelfFont(.footnote).padding(.vertical, 8)
+                }.accessibilityIdentifier("changelog.sources")
                     DisclosureGroup(L10n.string("Reader preferences and source corrections")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(L10n.string("October 20, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
@@ -184,15 +209,8 @@ struct AboutView: View {
                             Text(L10n.string("Redacted diagnostics, data validation, storage usage, and cover cache controls."))
                         }.shelfFont(.footnote).padding(.vertical, 8)
                     }
-                }
             }
-            Section {
-                TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle.fill") { HelpView() }
-                TachiNavigationRow(title: L10n.string("Open-source licenses"), symbol: "doc.text") { MaterialLicenseView() }
-                Text(L10n.string("An independent reader with free features. Supports local books and source indexes. Extension execution and translation are not complete yet."))
-                    .shelfFont(.footnote).foregroundStyle(.secondary)
-            }
-        }.tachiPage(L10n.string("About"))
+        }.tachiPage(L10n.string("Changelog"), filled: false)
     }
 }
 

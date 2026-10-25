@@ -18,7 +18,7 @@ import subprocess
 TABS = ("library", "updates", "browse", "history", "more")
 EXPECTED = tuple(f"msl-{language}-dark-{index:02d}-{tab}"
                  for language in ("en", "ar") for index, tab in enumerate(TABS, 1))
-SETTINGS = ("general", "appearance", "library", "reader", "backup", "privacy", "about")
+SETTINGS = ("general", "appearance", "library", "reader", "backup", "privacy", "about", "changelog")
 EXPECTED += tuple(f"msl-{language}-dark-settings-{page}" for language in ("en", "ar") for page in SETTINGS)
 
 
@@ -68,7 +68,7 @@ def collect(attachments: Path, destination: Path) -> dict:
     return {"captured_at": datetime.now(timezone.utc).isoformat(), "expected_screenshots": len(EXPECTED),
             "captured_screenshots": len(screenshots), "screenshots": screenshots,
             "capture_gate": "passed", "visual_parity": "NOT REVIEWED",
-            "scope": "real production app, five tabs and seven settings pages, English/Arabic, dark, fresh empty store; first viewport per page",
+            "scope": "real production app, five tabs and eight settings pages, English/Arabic, dark, fresh empty store; first viewport per page",
             "remaining": "populated library, light, accessibility, smaller phone, reference comparison, physical iPhone"}
 
 

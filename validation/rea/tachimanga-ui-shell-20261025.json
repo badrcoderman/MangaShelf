@@ -1,0 +1,2503 @@
+{
+  "format": 1,
+  "specimen": "Tachimanga 5.1 build 520 (modified supplied sample)",
+  "image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "export_files_sha256": {
+    "tachidesk_sorayomi_src_features_settings_presentation_more_more_screen_lite.dart": "9adf629f1dec188d5b58bc95c55e8e7ca00b0bbed64b57ada02a8912b03e5fb7",
+    "tachidesk_sorayomi_src_features_settings_presentation_general_general_screen.dart": "c3eae17814b12b8b972d2805bf614c94fba5bed54bf9415355002785571b6d1b",
+    "tachidesk_sorayomi_src_features_settings_presentation_general_custom_tabs_config_screen.dart": "4344397a24ca62e5bd84f7713a7ad35a3a662d87d82d23fb7c3bb5d2cdac1948",
+    "tachidesk_sorayomi_src_features_settings_presentation_appearance_widgets_liquid_glass_tab_bar_padding.dart": "566f97d9c15e814b734f8a67dddef93737052298735f9ed428c6d6149555826b",
+    "../text/pp.txt": "54d2987a140bf52a5408f20054171173ced3d326d4e39513873fa1d52f2111b9"
+  },
+  "capstone_version": "5.0.7",
+  "verified_pool_markers": {},
+  "scope": "Static UI shell, tab configuration and padding; no reference code executed",
+  "methods": [
+    {
+      "address": "0x53ae08",
+      "name": "CustomTabsConfigScreen_build",
+      "purpose": "Custom tab configuration screen",
+      "bytes": 2508,
+      "instructions": 627,
+      "code_sha256": "15f61c738557f9af77cd1640e269f463fe70e6a841c3e0bc3c76bd063c680ade",
+      "internal_branches": 40,
+      "direct_calls": [
+        {
+          "at": "0x53ae38",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53ae48",
+          "target": "0x4149f0",
+          "exported_target_names": [
+            "useNativeLiquidGlassActionToolbar"
+          ]
+        },
+        {
+          "at": "0x53ae78",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53ae90",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53aec0",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53aed8",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53af08",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53af20",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53af50",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53af6c",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53afb4",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53afd0",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53afd8",
+          "target": "0x53b7f8",
+          "exported_target_names": [
+            "NavigationBarData.listOf"
+          ]
+        },
+        {
+          "at": "0x53afec",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b004",
+          "target": "0x25ea98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b00c",
+          "target": "0x1b827c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b034",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b05c",
+          "target": "0x796bec",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b088",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b0a4",
+          "target": "0x5bf20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b0c0",
+          "target": "0x167a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b0e4",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b198",
+          "target": "0x1efb68",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b1d4",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b218",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b254",
+          "target": "0x21338",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b264",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b288",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b290",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b2c8",
+          "target": "0x3f7da0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b2ec",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b32c",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b348",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b368",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b3a0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b3b8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b3f0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b410",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b418",
+          "target": "0x30ffac",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b44c",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b464",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b480",
+          "target": "0x2f2808",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b4a0",
+          "target": "0x2f1f98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b4bc",
+          "target": "0x4147a4",
+          "exported_target_names": [
+            "buildNativePageAppBar26"
+          ]
+        },
+        {
+          "at": "0x53b4c4",
+          "target": "0x2dae70",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b4dc",
+          "target": "0x3eea84",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b4f8",
+          "target": "0x53b7ec",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b504",
+          "target": "0x53b7e0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b518",
+          "target": "0x3eea84",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b534",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b554",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b578",
+          "target": "0x480f10",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b580",
+          "target": "0x3eea84",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b59c",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b5b4",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b5d4",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b5e0",
+          "target": "0x53b7d4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b5e8",
+          "target": "0x3eea84",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b5fc",
+          "target": "0x3eea84",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b61c",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b63c",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b65c",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b67c",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b684",
+          "target": "0x45d878",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b6b0",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b6f4",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b740",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b744",
+          "target": "0x444838",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b758",
+          "target": "0x2f19b8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b79c",
+          "target": "0x16794",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7b0",
+          "target": "0x87d8ec",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7b8",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7c0",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7c8",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7cc",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x53b7d0",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 4
+    },
+    {
+      "address": "0x542670",
+      "name": "MoreScreenLite_build",
+      "purpose": "More screen composition",
+      "bytes": 8136,
+      "instructions": 2034,
+      "code_sha256": "7c134d618357b19dbf8d12d87af967c735c9635a9425ce8af39191a30f68d0d5",
+      "internal_branches": 114,
+      "direct_calls": [
+        {
+          "at": "0x542698",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5426c4",
+          "target": "0x3fe29c",
+          "exported_target_names": [
+            "ToastFamily.call"
+          ]
+        },
+        {
+          "at": "0x5426e0",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542700",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542728",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542744",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542780",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54279c",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5427b0",
+          "target": "0x1263c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5427e0",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5427fc",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542810",
+          "target": "0x1263c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542840",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542858",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542888",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5428a0",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5428cc",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5428e4",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542908",
+          "target": "0x87de9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542914",
+          "target": "0x3c31c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542944",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54296c",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542988",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5429ac",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5429d4",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5429f0",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542a18",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542a40",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542a58",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542a88",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542aa4",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542afc",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b14",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b3c",
+          "target": "0x43c314",
+          "exported_target_names": [
+            "MatchedNoticeFamily.call"
+          ]
+        },
+        {
+          "at": "0x542b58",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b68",
+          "target": "0x167a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b7c",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b88",
+          "target": "0x3e2364",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542b98",
+          "target": "0x3e3ff0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542bb8",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542bcc",
+          "target": "0x3e3ff0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542bf4",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542bfc",
+          "target": "0x4149f0",
+          "exported_target_names": [
+            "useNativeLiquidGlassActionToolbar"
+          ]
+        },
+        {
+          "at": "0x542c10",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542c48",
+          "target": "0x3f7d94",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542c68",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542cb0",
+          "target": "0x867394",
+          "exported_target_names": [
+            "CustomTabs26._anon_closure",
+            "DownloadTicketService._anon_closure",
+            "PurchaseService2._anon_closure",
+            "_ToolbarPreview._anon_closure",
+            "_anon_closure"
+          ]
+        },
+        {
+          "at": "0x542cc4",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542cfc",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d10",
+          "target": "0x2e5094",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d24",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d4c",
+          "target": "0x2e4650",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d58",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d70",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542d8c",
+          "target": "0x2f2808",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542dac",
+          "target": "0x2f1f98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542dd8",
+          "target": "0x4475a8",
+          "exported_target_names": [
+            "get_mainPrimaryScrollController"
+          ]
+        },
+        {
+          "at": "0x542de8",
+          "target": "0x167a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542e20",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542e60",
+          "target": "0x432c34",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542e9c",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542ee0",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542f10",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542f54",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542fac",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x542fc4",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543004",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54301c",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54303c",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543068",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543098",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5430b0",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5430c8",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5430e8",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5430f8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543130",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543144",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543198",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5431e8",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543230",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543238",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543270",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543284",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5432d8",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543328",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543370",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543378",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5433b0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5433c4",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543418",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543468",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5434b0",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5434b8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5434f0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543504",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543558",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5435a8",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5435f4",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54360c",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543640",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543678",
+          "target": "0x4aeb14",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54368c",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5436e0",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543730",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543778",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5437ac",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5437e4",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5437f8",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54384c",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54387c",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543894",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5438b4",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5438c4",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5438fc",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543910",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543964",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5439b4",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5439fc",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543a04",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543a3c",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543a50",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543aa4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543af4",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543b3c",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543b44",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543b7c",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543b90",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543be4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543c34",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543c7c",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543c84",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543cbc",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543cd0",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543d24",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543d74",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543dc0",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543dd8",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543e10",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543e48",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543e84",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543ed4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543f24",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543f6c",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543f78",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543f90",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x543fe4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544014",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54402c",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54404c",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54405c",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54408c",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5440a0",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5440f4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544144",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54418c",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5441a0",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5441d8",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5441ec",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544240",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544270",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544288",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5442a8",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5442b8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5442f0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544304",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544358",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5443a8",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5443f0",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5443fc",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544454",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544484",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54449c",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5444bc",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5444e8",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544520",
+          "target": "0x2f0eb4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544550",
+          "target": "0x2f1ac8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544554",
+          "target": "0x432dcc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544568",
+          "target": "0x2f19b8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5445c0",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5445c8",
+          "target": "0x35e0e4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5445f0",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5445f8",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5445fc",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544600",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544604",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544608",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54460c",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544610",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544614",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544618",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54461c",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544620",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544624",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544628",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x54462c",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544630",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x544634",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 16
+    },
+    {
+      "address": "0x5ce9c0",
+      "name": "LiquidGlassTabBarPadding_build",
+      "purpose": "Content padding above the floating tab bar",
+      "bytes": 444,
+      "instructions": 111,
+      "code_sha256": "7aec065c79e3c586dbef02eb1e436817cb3d79e70f335f6ef710c57ef28bd51b",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x5ce9f8",
+          "target": "0x5e7cc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cea3c",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cea54",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cea60",
+          "target": "0x331268",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cea7c",
+          "target": "0x5ceb7c",
+          "exported_target_names": [
+            "_hasBottomBar"
+          ]
+        },
+        {
+          "at": "0x5ceafc",
+          "target": "0x5ab60",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ceb10",
+          "target": "0x2f7038",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ceb30",
+          "target": "0x2f702c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ceb50",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ceb64",
+          "target": "0x87f664",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5ceb7c",
+      "name": "hasBottomBar",
+      "purpose": "Selection toolbar and native root tab visibility",
+      "bytes": 184,
+      "instructions": 46,
+      "code_sha256": "5a5154689ee8efa1ef7fbe2bc8beda86c4a5536e01a5f8e450b585d602584b83",
+      "internal_branches": 7,
+      "direct_calls": [
+        {
+          "at": "0x5cebb8",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cebd0",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cebdc",
+          "target": "0x43b4d0",
+          "exported_target_names": [
+            "NativeRootTabs26.maybeOf"
+          ]
+        },
+        {
+          "at": "0x5cec2c",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5ced1c",
+      "name": "LiquidGlassTabBarBottomSheetBottom_build",
+      "purpose": "Bottom sheet padding above the tab bar",
+      "bytes": 324,
+      "instructions": 81,
+      "code_sha256": "ba602285ca34ed87fab2c99bfd31a314c67ebf2be5d679084665428fb548cc13",
+      "internal_branches": 8,
+      "direct_calls": [
+        {
+          "at": "0x5ced64",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ced7c",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ced88",
+          "target": "0x331268",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5ced94",
+          "target": "0x2eaee4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cedb0",
+          "target": "0x5ceb7c",
+          "exported_target_names": [
+            "_hasBottomBar"
+          ]
+        },
+        {
+          "at": "0x5cedcc",
+          "target": "0x2dae70",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cee30",
+          "target": "0x2dae70",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cee48",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cee54",
+          "target": "0x87f664",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5cee60",
+      "name": "LiquidGlassActionBarPositioned_build",
+      "purpose": "Positioned action bar",
+      "bytes": 1004,
+      "instructions": 251,
+      "code_sha256": "9ab4c527b8255cd464c1df952d60ba298d0d779939e6e9e8186f1c8b80630025",
+      "internal_branches": 24,
+      "direct_calls": [
+        {
+          "at": "0x5cee90",
+          "target": "0x2eaee4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cee9c",
+          "target": "0x4149f0",
+          "exported_target_names": [
+            "useNativeLiquidGlassActionToolbar"
+          ]
+        },
+        {
+          "at": "0x5ceecc",
+          "target": "0x408ab0",
+          "exported_target_names": [
+            "ContextExtensions|get_isSmallTabletOrWider"
+          ]
+        },
+        {
+          "at": "0x5cef28",
+          "target": "0x4dae0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cef50",
+          "target": "0x2e50a8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cef70",
+          "target": "0x2e50c0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cef8c",
+          "target": "0x2b47f0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf010",
+          "target": "0x4dae0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf030",
+          "target": "0x115ac4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf048",
+          "target": "0x115d80",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf074",
+          "target": "0x3c8d94",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf080",
+          "target": "0x2033c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf0a4",
+          "target": "0x2033c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf110",
+          "target": "0x38f0dc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf12c",
+          "target": "0x77a49c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf144",
+          "target": "0x305918",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf164",
+          "target": "0x30530c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf168",
+          "target": "0x2e50a8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf188",
+          "target": "0x3c8ddc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf1b8",
+          "target": "0x312b28",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf1e0",
+          "target": "0x2e50c0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf200",
+          "target": "0x2b47f0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf220",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5cf234",
+          "target": "0x87f664",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5d4500",
+      "name": "CustomTabListTile_build",
+      "purpose": "Custom tab configuration row",
+      "bytes": 480,
+      "instructions": 120,
+      "code_sha256": "3118cd7f1957faaa448f401aa0c528cf6438e20a5599df0d19b19def74c4c183",
+      "internal_branches": 10,
+      "direct_calls": [
+        {
+          "at": "0x5d452c",
+          "target": "0x2033c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4564",
+          "target": "0x2ff6bc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d45c0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d45e8",
+          "target": "0x45df9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d464c",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d46b0",
+          "target": "0x49b028",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d46d8",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5d46e0",
+      "name": "CustomTabs26_build",
+      "purpose": "iOS 26 custom tab preview",
+      "bytes": 1012,
+      "instructions": 253,
+      "code_sha256": "573503d88b3ffa20fa6b9be120764dd01321b4977fc49a103c0311b208fed5cc",
+      "internal_branches": 17,
+      "direct_calls": [
+        {
+          "at": "0x5d4704",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4734",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4750",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4758",
+          "target": "0x53b7f8",
+          "exported_target_names": [
+            "NavigationBarData.listOf"
+          ]
+        },
+        {
+          "at": "0x5d477c",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4798",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d47ac",
+          "target": "0x408ab0",
+          "exported_target_names": [
+            "ContextExtensions|get_isSmallTabletOrWider"
+          ]
+        },
+        {
+          "at": "0x5d47c4",
+          "target": "0x167a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d485c",
+          "target": "0x3f7a5c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4878",
+          "target": "0x5a45ec",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d48c4",
+          "target": "0x1e45c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4908",
+          "target": "0x87d910",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4944",
+          "target": "0x59f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d49bc",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d49d8",
+          "target": "0x25ea98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d49e4",
+          "target": "0x20ce8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d49f8",
+          "target": "0x89818",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4a20",
+          "target": "0x8d0a8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4a38",
+          "target": "0x20fb8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4a40",
+          "target": "0x5d4ad4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4a68",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4aa8",
+          "target": "0x16794",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4abc",
+          "target": "0x87d8ec",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4ac4",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4acc",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 1
+    },
+    {
+      "address": "0x5d4b9c",
+      "name": "CustomTabs_build",
+      "purpose": "Fallback custom tab preview",
+      "bytes": 548,
+      "instructions": 137,
+      "code_sha256": "df399e127dca343372413e6e1466915181e0419c85c0bdd13b0a93d764446e33",
+      "internal_branches": 8,
+      "direct_calls": [
+        {
+          "at": "0x5d4bc0",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4bf0",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4c0c",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4c14",
+          "target": "0x53b7f8",
+          "exported_target_names": [
+            "NavigationBarData.listOf"
+          ]
+        },
+        {
+          "at": "0x5d4c38",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4c54",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4c64",
+          "target": "0x2033c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4c7c",
+          "target": "0x2033c4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4ca4",
+          "target": "0x87de9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4cb4",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4cc8",
+          "target": "0x2e8aa0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4cd0",
+          "target": "0x3b618c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4d38",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4d54",
+          "target": "0x25ea98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4d60",
+          "target": "0x20ce8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4d68",
+          "target": "0x5d4dcc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4d98",
+          "target": "0x5d4dc0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d4db8",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 0
+    },
+    {
+      "address": "0x5d4fbc",
+      "name": "LabelsSwitchTile_build",
+      "purpose": "Tab labels switch",
+      "bytes": 576,
+      "instructions": 144,
+      "code_sha256": "582639591a4d568ebf044a625fe416d20b46e6a3ac4e9ee5a04951b1ed4a9645",
+      "internal_branches": 9,
+      "direct_calls": [
+        {
+          "at": "0x5d4fe8",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5018",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5034",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d504c",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5084",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d509c",
+          "target": "0x408ab0",
+          "exported_target_names": [
+            "ContextExtensions|get_isSmallTabletOrWider"
+          ]
+        },
+        {
+          "at": "0x5d50a8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d50e8",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d512c",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5140",
+          "target": "0x3f0404",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5160",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d51e8",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d51f0",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d51f4",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d51f8",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 3
+    },
+    {
+      "address": "0x5d5300",
+      "name": "GeneralScreen_build",
+      "purpose": "General settings composition",
+      "bytes": 1812,
+      "instructions": 453,
+      "code_sha256": "aaf58ec0038661ff9f82aea45b614c10345ddb60eb629a3129ddbaf610368360",
+      "internal_branches": 19,
+      "direct_calls": [
+        {
+          "at": "0x5d5330",
+          "target": "0x87e684",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5354",
+          "target": "0x4149f0",
+          "exported_target_names": [
+            "useNativeLiquidGlassActionToolbar"
+          ]
+        },
+        {
+          "at": "0x5d5364",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d53a0",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d53dc",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5404",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d541c",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d542c",
+          "target": "0x3f5224",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5440",
+          "target": "0x7855bc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d545c",
+          "target": "0x1ef3ac",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d547c",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d548c",
+          "target": "0x25be48",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5498",
+          "target": "0x20ce8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d54bc",
+          "target": "0x87de7c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d54e4",
+          "target": "0x87d7b4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d54fc",
+          "target": "0x1e9d44",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d550c",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5544",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5558",
+          "target": "0x2f2808",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5574",
+          "target": "0x2f1f98",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5584",
+          "target": "0x4147a4",
+          "exported_target_names": [
+            "buildNativePageAppBar26"
+          ]
+        },
+        {
+          "at": "0x5d5594",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d55cc",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d55e8",
+          "target": "0x3f5224",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d55f0",
+          "target": "0x5d5a14",
+          "exported_target_names": [
+            "getLanguageNameFormLocale"
+          ]
+        },
+        {
+          "at": "0x5d55f8",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d560c",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5668",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5698",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d56d0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d56ec",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5724",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5738",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5794",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d57c4",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5808",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5834",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d586c",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5888",
+          "target": "0x398454",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d58c0",
+          "target": "0x2854a0",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d58d4",
+          "target": "0x315a20",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5930",
+          "target": "0x87ea40",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5960",
+          "target": "0x87f70c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5978",
+          "target": "0x87e648",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5998",
+          "target": "0x1765fc",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d59a4",
+          "target": "0x2f0eb4",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d59b8",
+          "target": "0x2f1ac8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d59bc",
+          "target": "0x2f19b8",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d59f4",
+          "target": "0x87f80c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d59fc",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5a00",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5a04",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5a08",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5a0c",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        },
+        {
+          "at": "0x5d5a10",
+          "target": "0x87fd9c",
+          "exported_target_names": []
+        }
+      ],
+      "indirect_calls": 6
+    }
+  ],
+  "anchors": [
+    {
+      "at": "0x53ae48",
+      "meaning": "tab configuration reads native glass toolbar policy",
+      "verified": true
+    },
+    {
+      "at": "0x53afd8",
+      "meaning": "tab configuration obtains navigation item data",
+      "verified": true
+    },
+    {
+      "at": "0x53b4bc",
+      "meaning": "tab configuration builds native page header",
+      "verified": true
+    },
+    {
+      "at": "0x542bfc",
+      "meaning": "More reads native glass toolbar policy",
+      "verified": true
+    },
+    {
+      "at": "0x542dd8",
+      "meaning": "More obtains the shared primary scroll controller",
+      "verified": true
+    },
+    {
+      "at": "0x5ce9f8",
+      "meaning": "padding reads MediaQuery when available",
+      "verified": true
+    },
+    {
+      "at": "0x5cea54",
+      "meaning": "padding watches the glass-enabled provider",
+      "verified": true
+    },
+    {
+      "at": "0x5cea60",
+      "meaning": "padding reads keyboard view insets",
+      "verified": true
+    },
+    {
+      "at": "0x5cea7c",
+      "meaning": "padding consults bottom bar visibility",
+      "verified": true
+    },
+    {
+      "at": "0x5ceafc",
+      "meaning": "padding copies insets with an explicit bottom value",
+      "verified": true
+    },
+    {
+      "at": "0x5ceb10",
+      "meaning": "padding wraps copied MediaQuery data",
+      "verified": true
+    },
+    {
+      "at": "0x5cebd0",
+      "meaning": "visibility watches selection toolbar state",
+      "verified": true
+    },
+    {
+      "at": "0x5cebdc",
+      "meaning": "visibility looks up native root tabs",
+      "verified": true
+    },
+    {
+      "at": "0x5d4758",
+      "meaning": "iOS 26 preview obtains navigation item data",
+      "verified": true
+    },
+    {
+      "at": "0x5d4c14",
+      "meaning": "fallback preview uses the same navigation data",
+      "verified": true
+    },
+    {
+      "at": "0x5d5354",
+      "meaning": "General reads native glass toolbar policy",
+      "verified": true
+    },
+    {
+      "at": "0x5d5584",
+      "meaning": "General builds native page header",
+      "verified": true
+    }
+  ],
+  "totals": {
+    "methods": 11,
+    "instructions": 4257,
+    "code_bytes": 17028,
+    "anchors": 17
+  },
+  "limits": [
+    "Not original Dart/Flutter source recovery",
+    "No UI or runtime equivalence test",
+    "Indirect callbacks are not resolved by this review",
+    "AOT method names do not establish exact rendered fonts, colors or gestures",
+    "Screenshots show v5.0(511); reviewed AOT sample is modified 5.1(520)"
+  ],
+  "rea_artifact": {
+    "evidence_id": "ev_f602ec35533d70319b91eb38a98331281e2123a6f3fdf6e04be03ebb01273e17",
+    "sha256": "44a67236678fe0b18fe1df71601255f184dbbe189fa001fa75bd976f14b280af",
+    "provider": {
+      "id": "rea-artifact-graph",
+      "name": "REA safe artifact graph provider",
+      "version": "1"
+    },
+    "scope": "Input identity only; artifact inspection does not decompile Flutter"
+  }
+}

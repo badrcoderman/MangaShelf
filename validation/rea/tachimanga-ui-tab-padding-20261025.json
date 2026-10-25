@@ -1,0 +1,60 @@
+{
+  "evidence_id": "ev_3cf59dc22f8e20d5498755282ed84c15b0e4154d3d24e1599860f1d3956f5e7a",
+  "operation": "analyze_function",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.2"
+  },
+  "subject_sha256": "7aec065c79e3c586dbef02eb1e436817cb3d79e70f335f6ef710c57ef28bd51b",
+  "source_image_sha256": "4ee96f784bd111cd23842e98f66d5f8b49fd635ef6ed1bee92d22c763c255469",
+  "slice_address": "0x5ce9c0",
+  "slice_bytes": 444,
+  "raw_evidence_sha256": "a4c72361559f9288928e9e06513be8221ddae6b3927f9f4dcebe985a7b4c30e4",
+  "raw_evidence_location": "external analysis tree flutter-full/ui-shell-followup/rea-tab-padding-function.json",
+  "procedure_body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x5ce9c0",
+        "end": "0x5ceb7b"
+      }
+    ],
+    "total_bytes": 444,
+    "span_bytes": 444,
+    "non_contiguous": false,
+    "contains_entry": true
+  },
+  "instructions": 111,
+  "basic_blocks": 14,
+  "unresolved_calls": 10,
+  "relationship_coverage": {
+    "status": "partial",
+    "limitations": [
+      "Ghidra's callee inventory omits targets of 10 call reference(s) or decoded call(s) without destinations."
+    ],
+    "limited_directions": [
+      "callees"
+    ],
+    "diagnostics": [
+      "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+    ]
+  },
+  "target_executed": false,
+  "limits": [
+    "Static slice; calls outside the slice remain unresolved.",
+    "Ghidra pseudocode uses a generic ARM64 compiler specification, not Dart runtime type recovery.",
+    "No full app call graph or UI equivalence established."
+  ],
+  "pool_query": {
+    "sha256": "6c1adf70a367254c23360215692f491a574a0f0661be3b535959274a38ea920c",
+    "target_executed": false,
+    "bottom_padding_constant": 88.0,
+    "bottom_padding_unboxed_bits": "0x4056000000000000",
+    "providers": {
+      "0x13f20": "liquidGlassEnabledProvider",
+      "0x18690": "hasSelectionToolbarProvider"
+    }
+  }
+}

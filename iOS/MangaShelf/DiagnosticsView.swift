@@ -63,7 +63,7 @@ struct DiagnosticEvent: Identifiable {
                 LabeledContent(L10n.string("Books"), value: model.state.books.count.formatted())
                 LabeledContent(L10n.string("Repositories"), value: model.state.repositories.count.formatted())
                 LabeledContent(L10n.string("Indexed extensions"), value: model.state.repositories.reduce(0) { $0 + $1.index.extensions.count }.formatted())
-                LabeledContent(L10n.string("Extension runtime"), value: L10n.string("Not integrated"))
+                LabeledContent(L10n.string("Extension runtime"), value: L10n.string(ExtensionRuntime.shared.isAvailable ? "Ready" : "Not started"))
                 LabeledContent("JAR", value: model.stagedExtensions.count.formatted())
             }
             Section(L10n.string("Logging and display")) {

@@ -16,6 +16,7 @@ enum TachiGlyph: UInt32, CaseIterable {
     case globe = 0xE4F0, document = 0xE1BF, edit = 0xE21A, local = 0xE399
     case package = 0xE250, brightness = 0xE10A, spacing = 0xE6B2
     case direction = 0xE625, sun = 0xE6D9, number = 0xE640
+    case translate = 0xE67B, discussion = 0xE2C3
     static func matching(_ symbol: String) -> Self? {
         switch symbol {
         case "books.vertical", "books.vertical.fill": return .library
@@ -72,6 +73,8 @@ enum TachiGlyph: UInt32, CaseIterable {
         case "arrow.left.arrow.right": return .direction
         case "sun.max": return .sun
         case "number": return .number
+        case "translate": return .translate
+        case "bubble.left.and.bubble.right.fill": return .discussion
         default: return nil
         }
     }
@@ -163,13 +166,24 @@ struct TachiList<Content: View>: View {
 struct TachiSettingsPage<Content: View>: View {
     @Environment(\.locale) private var interfaceLocale
     let title: String
+    var showsTabs = false
     @ViewBuilder var content: () -> Content
+    private var page: some View {
+        ScrollView { VStack(alignment: .leading, spacing: 0, content: content).padding(.bottom, 24) }.tachiPage(title, filled: true)
+    }
     var body: some View {
-        ScrollView { VStack(alignment: .leading, spacing: 0, content: content).padding(.bottom, 24) }.tachiPage(title)
+        if showsTabs {
+            GeometryReader { geometry in
+                page.safeAreaInset(edge: .bottom, spacing: 0) {
+                    ShelfTabBar().offset(y: min(20, max(0, geometry.safeAreaInsets.bottom)))
+                }
+            }
+        } else { page }
     }
 }
 private struct TachiPageModifier: ViewModifier {
     let title: String
+    let filled: Bool
     @Environment(\.dismiss) private var dismiss
     @Environment(\.layoutDirection) private var direction
     @ScaledMetric(relativeTo: .headline) private var titleSize = 20.0
@@ -187,12 +201,12 @@ private struct TachiPageModifier: ViewModifier {
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
                 }.padding(.horizontal, 8).frame(minHeight: 44)
-                    .background(ShelfStyle.header.ignoresSafeArea(edges: .top))
+                    .background((filled ? ShelfStyle.header : ShelfStyle.background).ignoresSafeArea(edges: .top))
             }
     }
 }
 extension View {
-    func tachiPage(_ title: String) -> some View { modifier(TachiPageModifier(title: title)) }
+    func tachiPage(_ title: String, filled: Bool = false) -> some View { modifier(TachiPageModifier(title: title, filled: filled)) }
     func tachiSheet() -> some View {
         presentationDetents([.medium, .large]).presentationDragIndicator(.visible)
             .presentationCornerRadius(24).presentationBackground(ShelfStyle.background)
@@ -204,7 +218,7 @@ struct TachiSectionTitle: View {
     init(_ title: String) { self.title = title }
     var body: some View {
         Text(title).shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
-            .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 18)
+            .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
             .padding(.top, 24).padding(.bottom, 10).accessibilityAddTraits(.isHeader)
     }
 }
@@ -242,11 +256,27 @@ struct TachiNavigationRow<Destination: View>: View {
                 TachiRowLabel(title: title, symbol: symbol)
                 TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
-            }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
+            }.frame(minHeight: 56).padding(.leading, 16).padding(.trailing, 10).contentShape(Rectangle())
         }.buttonStyle(.plain)
             .navigationDestination(isPresented: $isPresented, destination: destination)
     }
 }
+struct TachiLinkRow: View {
+    let title: String
+    let symbol: String
+    let destination: URL
+    @Environment(\.layoutDirection) private var direction
+    var body: some View {
+        Link(destination: destination) {
+            HStack(spacing: 12) {
+                TachiRowLabel(title: title, symbol: symbol)
+                TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
+                    .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
+            }.frame(minHeight: 56).padding(.leading, 16).padding(.trailing, 10).contentShape(Rectangle())
+        }.buttonStyle(.plain)
+    }
+}
+
 struct TachiMenuRow<Options: View>: View {
     @Environment(\.locale) private var interfaceLocale
     let title: String
@@ -260,7 +290,7 @@ struct TachiMenuRow<Options: View>: View {
                 TachiRowLabel(title: title, subtitle: value, symbol: symbol)
                 TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
-            }.frame(minHeight: 62).padding(.horizontal, 18).contentShape(Rectangle())
+            }.frame(minHeight: 62).padding(.leading, 16).padding(.trailing, 10).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityValue(value)
     }
 }

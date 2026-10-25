@@ -1116,3 +1116,21 @@
 "Too many source images are waiting to be read. Try again shortly." = "توجد صور كثيرة من المصدر تنتظر القراءة. حاول مجددًا بعد قليل.";
 "This source uses an image transport MSL does not support yet." = "يستخدم هذا المصدر طريقة لنقل الصور لا يدعمها MSL بعد.";
 "The cached source page needs to be refreshed." = "يلزم تحديث صفحة المصدر المحفوظة مؤقتًا.";
+
+"Contact us" = "اتصل بنا";
+
+"Help translate" = "ساعد في الترجمة";
+
+"Licenses" = "التراخيص";
+
+"Sources and interface" = "المصادر والواجهة";
+
+"October 25, 2026" = "25 أكتوبر 2026";
+
+"Source updates preserve chapter lists, and images use the source's request headers and client." = "تحافظ تحديثات المصادر على قوائم الفصول، وتُحمّل الصور باستخدام طلب المصدر ورؤوسه.";
+
+"Improved Arabic typography and settings layout." = "تحسين الخط العربي وتخطيط الإعدادات.";
+
+"Ready" = "جاهز";
+
+"Add a repository in Browse → Extensions, install the extension, review its publisher, then open its source in Browse → Sources." = "أضف مستودعًا من تصفح ← الإضافات، ثم ثبّت الإضافة وراجع ناشرها، وافتح مصدرها من تصفح ← المصادر.";

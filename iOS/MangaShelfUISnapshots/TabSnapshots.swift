@@ -125,6 +125,10 @@ final class TabSnapshots: XCTestCase {
             XCTAssertTrue(back.waitForExistence(timeout: 10))
             XCTAssertTrue(back.isHittable)
             XCTAssertEqual(app.alerts.count, 0)
+            if page == "appearance" {
+                XCTAssertTrue(app.buttons["tab.4"].firstMatch.isHittable,
+                              "Appearance retains the floating tabs shown in the supplied reference.")
+            }
             let name = "msl-\(language)-dark-settings-\(page)"
             XCTContext.runActivity(named: name) { activity in
                 let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
@@ -133,6 +137,18 @@ final class TabSnapshots: XCTestCase {
                 let accessibility = XCTAttachment(string: app.debugDescription)
                 accessibility.name = name + "-accessibility"; accessibility.lifetime = .keepAlways
                 activity.add(accessibility)
+            }
+            if page == "about" {
+                let changelog = app.buttons["about.changelog"].firstMatch
+                XCTAssertTrue(changelog.waitForExistence(timeout: 10))
+                changelog.tap()
+                XCTAssertTrue(app.descendants(matching: .any)["changelog.sources"].firstMatch.waitForExistence(timeout: 10))
+                let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+                screenshot.name = "msl-\(language)-dark-settings-changelog"
+                screenshot.lifetime = .keepAlways
+                add(screenshot)
+                back.tap()
+                XCTAssertTrue(app.buttons["about.version"].firstMatch.waitForExistence(timeout: 10))
             }
             back.tap()
             XCTAssertTrue(app.buttons["tab.4"].firstMatch.waitForExistence(timeout: 10))

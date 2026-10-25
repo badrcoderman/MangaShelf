@@ -1116,3 +1116,21 @@
 "Too many source images are waiting to be read. Try again shortly." = "Too many source images are waiting to be read. Try again shortly.";
 "This source uses an image transport MSL does not support yet." = "This source uses an image transport MSL does not support yet.";
 "The cached source page needs to be refreshed." = "The cached source page needs to be refreshed.";
+
+"Contact us" = "Contact us";
+
+"Help translate" = "Help translate";
+
+"Licenses" = "Licenses";
+
+"Sources and interface" = "Sources and interface";
+
+"October 25, 2026" = "October 25, 2026";
+
+"Source updates preserve chapter lists, and images use the source's request headers and client." = "Source updates preserve chapter lists, and images use the source's request headers and client.";
+
+"Improved Arabic typography and settings layout." = "Improved Arabic typography and settings layout.";
+
+"Ready" = "Ready";
+
+"Add a repository in Browse → Extensions, install the extension, review its publisher, then open its source in Browse → Sources." = "Add a repository in Browse → Extensions, install the extension, review its publisher, then open its source in Browse → Sources.";
