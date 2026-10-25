@@ -176,16 +176,16 @@ struct SeriesDetailView: View {
                     NavigationLink { FeatureStatusView(feature: .tracking) } label: {
                         TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath")
                     }.foregroundStyle(ShelfStyle.secondary)
-                }.font(.subheadline).padding(.horizontal, 32)
+                }.shelfFont(.subheadline).padding(.horizontal, 32)
                 if !item.synopsis.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(item.synopsis).font(.subheadline).foregroundStyle(ShelfStyle.secondary)
+                        Text(item.synopsis).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
                             .lineLimit(expanded ? nil : 3).textSelection(.enabled)
-                        Button(expanded ? L10n.string("Show less") : L10n.string("Read description")) { expanded.toggle() }.font(.caption)
+                        Button(expanded ? L10n.string("Show less") : L10n.string("Read description")) { expanded.toggle() }.shelfFont(.caption)
                     }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
                 }
                 if !item.tags.isEmpty {
-                    Text(item.tags.joined(separator: " · ")).font(.caption).foregroundStyle(ShelfStyle.secondary)
+                    Text(item.tags.joined(separator: " · ")).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
                 }
                 if saved?.inLibrary == true, !local.state.categories.isEmpty {
@@ -209,14 +209,14 @@ struct SeriesDetailView: View {
                 if loading { ProgressView(L10n.string("Updating details and chapters…")) }
                 if let failure {
                     VStack(spacing: 8) {
-                        Text(failure).font(.subheadline).foregroundStyle(ShelfStyle.secondary)
+                        Text(failure).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
                         Button(L10n.string("Retry")) { Task { await refresh() } }
                     }.padding(.horizontal, 16)
                 }
                 chapterToolbar
                 if showingChapterSearch { ShelfSearchField(text: $search, prompt: L10n.string("Search chapters")) }
                 if chapters.isEmpty && !loading {
-                    Text(L10n.string("No chapters match the current language and filters.")).font(.subheadline)
+                    Text(L10n.string("No chapters match the current language and filters.")).shelfFont(.subheadline)
                         .foregroundStyle(ShelfStyle.secondary).padding(.horizontal, 16)
                 }
                 LazyVStack(spacing: 0) {
@@ -240,7 +240,7 @@ struct SeriesDetailView: View {
     @State private var showingChapterSearch = false
     private var chapterToolbar: some View {
         HStack(spacing: 0) {
-            Text(L10n.format("%@ chapters", String(describing: chapters.count))).font(.body)
+            Text(L10n.format("%@ chapters", String(describing: chapters.count))).shelfFont(.body)
             Spacer()
             ShelfIconButton(L10n.string("Search chapters"), symbol: "magnifyingglass") {
                 showingChapterSearch.toggle(); if !showingChapterSearch { search = "" }
@@ -273,12 +273,12 @@ struct SeriesDetailView: View {
         HStack(spacing: 12) {
             Button { reading = chapter } label: {
                 VStack(alignment: .leading, spacing: 7) {
-                    Text(chapter.localizedTitle).font(.body)
+                    Text(chapter.localizedTitle).shelfFont(.body)
                         .foregroundStyle(saved?.progress[chapter.id]?.read == true ? ShelfStyle.secondary : ShelfStyle.text)
                     HStack {
                         if let date = chapter.publishedAt { Text(date, style: .date) }
                         if !chapter.group.isEmpty { Text(chapter.group).lineLimit(1) }
-                    }.font(.caption).foregroundStyle(ShelfStyle.secondary)
+                    }.shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                 }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 12).contentShape(Rectangle())
             }.buttonStyle(.plain)
             ShelfIconButton(L10n.string("Download ") + chapter.localizedTitle,

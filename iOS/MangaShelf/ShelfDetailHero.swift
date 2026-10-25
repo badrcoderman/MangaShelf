@@ -13,11 +13,11 @@ struct ShelfDetailHero<Cover: View>: View {
             cover().frame(width: typeSize.isAccessibilitySize ? 88 : 112)
                 .clipShape(RoundedRectangle(cornerRadius: 12)).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 9) {
-                Text(title).font(.title3.weight(.medium)).textSelection(.enabled)
-                Text(author).font(.subheadline)
-                Text("\(status) · \(source)").font(.subheadline)
+                Text(title).shelfFont(.title3, weight: .medium).textSelection(.enabled)
+                Text(author).shelfFont(.subheadline)
+                Text("\(status) · \(source)").shelfFont(.subheadline)
                 NavigationLink { SourceCatalogView(initialQuery: title) } label: {
-                    TachiLabel(L10n.string("Global search"), systemImage: "magnifyingglass").font(.subheadline)
+                    TachiLabel(L10n.string("Global search"), systemImage: "magnifyingglass").shelfFont(.subheadline)
                 }
             }.foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
         }.padding(.horizontal, 12).padding(.top, 12).padding(.bottom, 8)

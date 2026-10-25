@@ -12,24 +12,24 @@ struct DownloadsView: View {
             if online.state.downloads.isEmpty { ContentUnavailableView(L10n.string("Download queue is empty"), systemImage: "arrow.down.circle", description: Text(L10n.string("Choose a download from a title's chapter list."))) }
             ForEach(online.state.downloads) { job in
                 VStack(alignment: .leading, spacing: 9) {
-                    Text(online.saved(job.chapter.seriesID)?.series.title ?? L10n.string("Title")).font(.subheadline.weight(.semibold)).lineLimit(1)
-                    Text(job.chapter.localizedTitle).font(.subheadline)
+                    Text(online.saved(job.chapter.seriesID)?.series.title ?? L10n.string("Title")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
+                    Text(job.chapter.localizedTitle).shelfFont(.subheadline)
                     HStack {
                         TachiLabel(phaseLabel(job.phase), systemImage: job.phase == .complete ? "checkmark.circle.fill" : "arrow.down.circle")
                             .foregroundStyle(job.phase == .failed ? Color.red : Color.secondary)
                         Spacer(); Text("\(job.finishedPages) / \(job.totalPages)").monospacedDigit()
-                    }.font(.caption)
+                    }.shelfFont(.caption)
                     if job.totalPages > 0 { ProgressView(value: Double(job.finishedPages), total: Double(job.totalPages)) }
-                    if let error = job.failure { Text(error).font(.caption).foregroundStyle(.secondary) }
+                    if let error = job.failure { Text(error).shelfFont(.caption).foregroundStyle(.secondary) }
                     HStack {
                         if job.phase == .complete { Button(L10n.string("Offline reading")) { reading = job.chapter } }
                         else if job.phase == .failed || job.phase == .paused { Button(L10n.string("Resume")) { Task { await online.enqueue([job.chapter]) } } }
                         Spacer(); Button(L10n.string("Delete"), role: .destructive) { removing = job.id }
-                    }.font(.caption).buttonStyle(.borderless)
+                    }.shelfFont(.caption).buttonStyle(.borderless)
                 }.padding(.vertical, 7)
             }
             if !online.state.downloads.isEmpty {
-                Section { Text(L10n.string("iOS may pause downloads when the app closes. Completed pages stay saved, and remaining pages can be resumed here.")).font(.footnote).foregroundStyle(.secondary) }
+                Section { Text(L10n.string("iOS may pause downloads when the app closes. Completed pages stay saved, and remaining pages can be resumed here.")).shelfFont(.footnote).foregroundStyle(.secondary) }
             }
         }.shelfPage().navigationTitle(L10n.string("Downloads")).navigationBarTitleDisplayMode(.inline)
             .toolbar {

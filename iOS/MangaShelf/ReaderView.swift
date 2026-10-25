@@ -120,7 +120,7 @@ struct ReaderView: View {
                     HStack {
                         TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
                         Spacer()
-                        Text(model.book(bookID)?.title ?? L10n.string("Reader")).font(.subheadline.weight(.semibold)).lineLimit(1)
+                        Text(model.book(bookID)?.title ?? L10n.string("Reader")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
                         Spacer()
                         ShelfIconButton(L10n.string("Reader settings"), symbol: "slider.horizontal.3") { settingsOpen = true }
                         TachiButton(bookmark ? L10n.string("Remove bookmark") : L10n.string("Add bookmark"), systemImage: bookmark ? "bookmark.fill" : "bookmark") {

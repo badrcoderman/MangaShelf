@@ -84,7 +84,7 @@ struct DiagnosticEvent: Identifiable {
                 } label: {
                     HStack { Text(L10n.string("Validate library consistency")); Spacer(); if checking { ProgressView() } }
                 }.disabled(checking)
-                if let validation { Text(validation).font(.footnote).foregroundStyle(.secondary) }
+                if let validation { Text(validation).shelfFont(.footnote).foregroundStyle(.secondary) }
                 Button(L10n.string("Clear cover cache")) {
                     Task { await CoverService.shared.clear(); diagnostics.record(L10n.string("Reader"), L10n.string("Cover cache cleared")); validation = L10n.string("Cover cache cleared. Book files are preserved.") }
                 }
@@ -111,7 +111,7 @@ struct DiagnosticEvent: Identifiable {
         .sheet(isPresented: $showReport) {
             NavigationStack {
                 let report = diagnostics.report(books: model.state.books.count, repositories: model.state.repositories.count)
-                ScrollView { Text(report).font(.callout).textSelection(.enabled).frame(maxWidth: .infinity, alignment: .leading).padding() }
+                ScrollView { Text(report).shelfFont(.callout).textSelection(.enabled).frame(maxWidth: .infinity, alignment: .leading).padding() }
                     .navigationTitle(L10n.string("Diagnostic report")).navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) { Button(L10n.string("Close")) { showReport = false } }
@@ -134,9 +134,9 @@ struct DiagnosticEvent: Identifiable {
             if filtered.isEmpty { ContentUnavailableView(L10n.string("No events"), systemImage: "list.bullet.rectangle", description: Text(L10n.string("Operation results appear here while diagnostic recording is enabled."))) }
             ForEach(filtered) { event in
                 VStack(alignment: .leading, spacing: 6) {
-                    HStack { Text(event.category).font(.headline); Spacer(); Text(event.date, style: .time).font(.caption).foregroundStyle(.secondary) }
-                    Text(event.message).font(.subheadline)
-                    if let duration = event.duration { Text(L10n.format("Duration: %@ seconds", String(format: "%.2f", duration))).font(.caption).foregroundStyle(.secondary) }
+                    HStack { Text(event.category).shelfFont(.headline); Spacer(); Text(event.date, style: .time).shelfFont(.caption).foregroundStyle(.secondary) }
+                    Text(event.message).shelfFont(.subheadline)
+                    if let duration = event.duration { Text(L10n.format("Duration: %@ seconds", String(format: "%.2f", duration))).shelfFont(.caption).foregroundStyle(.secondary) }
                 }.padding(.vertical, 3)
             }
         }.navigationTitle(L10n.string("Event log")).navigationBarTitleDisplayMode(.inline)

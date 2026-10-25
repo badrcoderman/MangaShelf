@@ -10,7 +10,7 @@ struct GeneralPreferencesView: View {
             TachiChoiceRow(title: L10n.string("Language"), symbol: "globe", selection: $language,
                            choices: AppLanguage.allCases.map { ($0, $0.nativeName) })
             Text(L10n.string("Interface language does not change chapter language or reading direction."))
-                .font(.footnote).foregroundStyle(ShelfStyle.secondary).padding(18)
+                .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary).padding(18)
             TachiDivider()
             TachiNavigationRow(title: L10n.string("Source settings"), symbol: "safari") { SourcePreferencesView() }
             TachiNavigationRow(title: L10n.string("Storage"), symbol: "externaldrive") { StorageView().shelfPage() }
@@ -129,7 +129,7 @@ struct SourcePreferencesView: View {
                            choices: [("ar", L10n.string("Arabic")), ("en", L10n.string("English")), ("ja", L10n.string("Japanese")), ("ko", L10n.string("Korean")), ("fr", L10n.string("French")), ("", L10n.string("All languages"))])
             TachiToggleRow(title: L10n.string("Data saver"), subtitle: L10n.string("Use smaller images for newly opened chapters."), symbol: "arrow.down.circle", isOn: $saver)
             Text(L10n.string("Chapter language filters source results independently of interface language."))
-                .font(.footnote).foregroundStyle(ShelfStyle.secondary).padding(18)
+                .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary).padding(18)
         }
     }
 }

@@ -43,15 +43,15 @@ struct TrashManagementView: View {
         if isMultiSelect && !trashed.isEmpty {
             HStack {
                 Text(L10n.format("%@ selected", String(describing: selectedIDs.count)))
-                    .font(.subheadline.bold())
+                    .shelfFont(.subheadline, weight: .bold)
                 Spacer()
                 Button(selectedIDs.count == trashed.count ? L10n.string("Deselect all") : L10n.string("Select all")) {
                     if selectedIDs.count == trashed.count { selectedIDs.removeAll() }
                     else { selectedIDs = Set(trashed.map(\.id)) }
-                }.font(.caption)
+                }.shelfFont(.caption)
                 Button(L10n.string("Done")) {
                     isMultiSelect = false; selectedIDs.removeAll()
-                }.font(.caption.bold())
+                }.shelfFont(.caption, weight: .bold)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
@@ -88,20 +88,20 @@ struct TrashManagementView: View {
                 } label: {
                     Image(systemName: selectedIDs.contains(book.id) ? "checkmark.circle.fill" : "circle")
                         .foregroundStyle(selectedIDs.contains(book.id) ? ShelfStyle.accent : ShelfStyle.secondary)
-                        .font(.title3)
+                        .shelfFont(.title3)
                 }.buttonStyle(.plain)
             }
             BookCover(book: book)
                 .frame(width: 48, height: 68)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
             VStack(alignment: .leading, spacing: 4) {
-                Text(book.title).font(.body.weight(.medium)).lineLimit(2)
+                Text(book.title).shelfFont(.body, weight: .medium).lineLimit(2)
                 if let deletedAt = book.deletedAt {
                     Text(L10n.format("Deleted: %@", deletedAt.formatted(date: .abbreviated, time: .shortened)))
-                        .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                        .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                 }
                 Text(L10n.format("%@ pages", String(describing: book.pageCount)))
-                    .font(.caption2).foregroundStyle(ShelfStyle.secondary)
+                    .shelfFont(.caption2).foregroundStyle(ShelfStyle.secondary)
             }
             Spacer()
             if !isMultiSelect {

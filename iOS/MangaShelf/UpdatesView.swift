@@ -31,9 +31,9 @@ struct UpdatesView: View {
                                     HStack(spacing: 14) {
                                         RemoteCover(url: entry.0.coverURL).frame(width: 62).clipShape(RoundedRectangle(cornerRadius: 10))
                                         VStack(alignment: .leading, spacing: 7) {
-                                            Text(entry.0.title).font(.body).foregroundStyle(ShelfStyle.text).lineLimit(2)
-                                            Text(entry.1.localizedTitle).font(.subheadline).foregroundStyle(ShelfStyle.secondary).lineLimit(2)
-                                            if let date = entry.1.publishedAt { Text(date, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary) }
+                                            Text(entry.0.title).shelfFont(.body).foregroundStyle(ShelfStyle.text).lineLimit(2)
+                                            Text(entry.1.localizedTitle).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary).lineLimit(2)
+                                            if let date = entry.1.publishedAt { Text(date, style: .date).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary) }
                                         }.frame(maxWidth: .infinity, alignment: .leading)
                                     }.contentShape(Rectangle())
                                 }.buttonStyle(.plain)

@@ -1,0 +1,52 @@
+{
+  "run_id": 40178103104,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40178103104",
+  "source_commit": "7420caa6a0c1160b1479ad1fc91bbb73a7edc58d",
+  "capture_passed": true,
+  "visual_parity": false,
+  "scope": "real production app, five tabs and seven settings pages, English/Arabic, dark, fresh empty store; first viewport per page",
+  "screenshots_verified": 24,
+  "artifact": {
+    "id": 12592429370,
+    "sha256": "sha256:e1965be2e1454f4c96febfac0f166ead0d43ba8aafa34c86f8a687cdae231fe7",
+    "crc_verified": true
+  },
+  "capture_report_sha256": "ce83475dbb2d8006a7b32303e361649fa66a63671e6d05356967b3d1dbd1e438",
+  "device": "iPhone 11 Pro Max, 414x896 points @3x, iOS 26.2",
+  "reviewed_screens": [
+    "msl-ar-dark-05-more.png"
+  ],
+  "findings": [
+    "More header now fills the screen width.",
+    "Tab bar now occupies the reference bottom region. Full geometric comparison remains open.",
+    "Arabic font still differs; Geeza Pro native sample is the closest reviewed candidate. No proprietary font has been copied.",
+    "More row icons are smaller and some glyphs differ. Settings, reader, library states and backups remain incomplete."
+  ],
+  "font_inventory": [
+    {
+      "arabicFallback": "TimesNewRomanPSMT",
+      "requested": "System",
+      "resolved": ".SFUI-Regular"
+    },
+    {
+      "arabicFallback": "GeezaPro",
+      "requested": "GeezaPro",
+      "resolved": "GeezaPro"
+    },
+    {
+      "arabicFallback": "Damascus",
+      "requested": "Damascus",
+      "resolved": "Damascus"
+    },
+    {
+      "arabicFallback": "AlNile",
+      "requested": "AlNile",
+      "resolved": "AlNile"
+    },
+    {
+      "arabicFallback": "ArialMT",
+      "requested": "ArialMT",
+      "resolved": "ArialMT"
+    }
+  ]
+}

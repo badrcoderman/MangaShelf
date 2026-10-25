@@ -18,9 +18,9 @@ struct RepositoriesView: View {
                 ForEach(model.state.repositories) { repository in
                     NavigationLink { RepositoryView(repositoryID: repository.id) } label: {
                         VStack(alignment: .leading, spacing: 5) {
-                            Text(repository.index.name).font(.headline)
-                            Text(L10n.format("%@ indexed extensions", String(describing: repository.index.extensions.count))).font(.caption).foregroundStyle(.secondary)
-                            Text(repository.url).font(.caption2).lineLimit(1).foregroundStyle(.secondary)
+                            Text(repository.index.name).shelfFont(.headline)
+                            Text(L10n.format("%@ indexed extensions", String(describing: repository.index.extensions.count))).shelfFont(.caption).foregroundStyle(.secondary)
+                            Text(repository.url).shelfFont(.caption2).lineLimit(1).foregroundStyle(.secondary)
                         }
                     }
                     .contextMenu { TachiButton(L10n.string("Remove repository"), systemImage: "trash", role: .destructive) { removing = repository } }
@@ -69,7 +69,7 @@ private struct RepositoryView: View {
             TachiList {
                 Section {
                     Toggle(L10n.string("Explicit JAR URLs only"), isOn: $jarOnly)
-                    Text(L10n.string("JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet.")).font(.caption).foregroundStyle(.secondary)
+                    Text(L10n.string("JAR packages can be downloaded for static inspection and staged for a future runtime. Nothing is executed on this device yet.")).shelfFont(.caption).foregroundStyle(.secondary)
                 }
                 let entries = repository.index.extensions.filter {
                     (!jarOnly || $0.jarURL != nil) && (query.isEmpty || $0.name.localizedStandardContains(query) || $0.sources.contains { $0.language.localizedStandardContains(query) })
@@ -77,13 +77,13 @@ private struct RepositoryView: View {
                 Section(L10n.format("%@ extensions", String(describing: entries.count))) {
                     ForEach(entries) { item in
                         VStack(alignment: .leading, spacing: 6) {
-                            HStack { Text(item.name).font(.headline); Spacer(); Text(item.versionName).font(.caption).foregroundStyle(.secondary) }
-                            Text(item.packageName).font(.caption2).foregroundStyle(.secondary).textSelection(.enabled)
-                            Text(Array(Set(item.sources.map(\.language))).sorted().joined(separator: " · ")).font(.caption)
+                            HStack { Text(item.name).shelfFont(.headline); Spacer(); Text(item.versionName).shelfFont(.caption).foregroundStyle(.secondary) }
+                            Text(item.packageName).shelfFont(.caption2).foregroundStyle(.secondary).textSelection(.enabled)
+                            Text(Array(Set(item.sources.map(\.language))).sorted().joined(separator: " · ")).shelfFont(.caption)
                             HStack(spacing: 12) {
                                 if let staged = model.stagedExtension(packageName: item.packageName) {
                                     TachiLabel(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)), systemImage: "checkmark.circle")
-                                        .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                        .shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
                                     Spacer()
                                     Button {
                                         Task {
@@ -96,10 +96,10 @@ private struct RepositoryView: View {
                                         .accessibilityLabel(L10n.string("Remove staged JAR"))
                                 } else if item.jarURL == nil {
                                     TachiLabel(L10n.string("No explicit JAR URL"), systemImage: "shippingbox")
-                                        .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                        .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                                 } else {
                                     TachiLabel(L10n.string("Indexed JAR — not staged"), systemImage: "shippingbox")
-                                        .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                        .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                                     Spacer()
                                     Button {
                                         Task { await inspect(item) }

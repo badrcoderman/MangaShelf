@@ -54,7 +54,7 @@ struct SettingsView: View {
                 row(L10n.string("Help"), "questionmark.circle.fill") { HelpView() }
                 row(L10n.string("About"), "info.circle") { AboutView() }
                 if developerEnabled { row(L10n.string("Developer tools"), "wrench.and.screwdriver") { DeveloperView().shelfPage() } }
-            }.padding(.top, 4)
+            }
         }.shelfRoot(L10n.string("More"), filled: true, left: { EmptyView() }, right: { EmptyView() })
     }
 }
@@ -119,70 +119,70 @@ struct AboutView: View {
                     if taps >= 7 { developerEnabled = true; taps = 0 }
                 } label: { TachiRowLabel(title: L10n.string("Version"), subtitle: version, symbol: "info.circle") }
                 if developerEnabled { TachiLabel(L10n.string("Developer tools enabled"), systemImage: "checkmark.circle").foregroundStyle(.secondary) }
-                else if taps >= 4 { Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps))).font(.caption).foregroundStyle(.secondary) }
+                else if taps >= 4 { Text(L10n.format("%@ more taps to enable developer tools.", String(describing: 7 - taps))).shelfFont(.caption).foregroundStyle(.secondary) }
             }
             Section {
                 DisclosureGroup(L10n.string("Changelog"), isExpanded: $showChanges) {
                     DisclosureGroup(L10n.string("Reader preferences and source corrections")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("October 20, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("October 20, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("Save reading mode, direction, page scale, and tap navigation separately for each title."))
                             Text(L10n.string("Fit pages to the screen or its width, and double-tap to zoom."))
                             Text(L10n.string("Turn pages by tapping the edges in your selected reading direction."))
                             Text(L10n.string("Source queries preserve original title and chapter URLs and show extension runtime failures."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Experimental extension bridge")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("September 22, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("September 22, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("Experimental native bridge tested on the development host. iPhone runtime validation remains pending."))
                             Text(L10n.string("Added source catalog integration and bounded native network callbacks."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Phase three — library and organization")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("September 21, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("Multi-select mode with batch category assignment, batch completion toggle, and safe trash deletion."))
                             Text(L10n.string("Per-category customizable layout (Comfortable Grid, Compact Grid, List) and sorting preferences."))
                             Text(L10n.string("Advanced library filters by source, reading progress, and downloaded status."))
                             Text(L10n.string("Soft deletion with dedicated Trash screen, book restoration, and permanent empty trash."))
                             Text(L10n.string("Personal notes on titles, reading time statistics, and random title picker."))
                             Text(L10n.string("Direct extension download and staging with static bytecode inspection and relative URL resolution."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Phase two — engine bridge and UI polish")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("September 21, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("September 21, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("NativeNet and NativeChannel JNI bridge with strict bounds and binary buffer transport."))
                             Text(L10n.string("Staged packages with explicit trust controls and integrity checks."))
                             Text(L10n.string("RTL-aligned floating overflow menus, OLED dark styling, and Liquid Glass controls."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Interface and language update")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("September 13, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("September 13, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("Compact Material icons, flat settings rows, English by default, and optional Arabic."))
                             Text(L10n.string("Reader settings are shared by local books and source chapters."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Interface update — phase one")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(L10n.string("September 12, 2026")).font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("September 12, 2026")).shelfFont(.caption).foregroundStyle(.secondary)
                             Text(L10n.string("Floating tabs, consistent dark colors, and cover grid and detail layouts."))
                             Text(L10n.string("Source titles integrated with library, history, and updates. Clearing history preserves reading progress."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                     DisclosureGroup(L10n.string("Development version 0.2.0")) {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text(L10n.string("September 11, 2026 — device validation pending")).font(.caption).foregroundStyle(.secondary)
-                            Text(L10n.string("Interface")).font(.subheadline.bold())
+                            Text(L10n.string("September 11, 2026 — device validation pending")).shelfFont(.caption).foregroundStyle(.secondary)
+                            Text(L10n.string("Interface")).shelfFont(.subheadline, weight: .bold)
                             Text(L10n.string("Compact cover grid, titles over artwork, and saved sorting and display preferences."))
                             Text(L10n.string("Separate settings pages and a collapsible changelog."))
-                            Text(L10n.string("Features")).font(.subheadline.bold())
+                            Text(L10n.string("Features")).shelfFont(.subheadline, weight: .bold)
                             Text(L10n.string("Repository index updates and direct access to reading progress from history."))
-                            Text(L10n.string("Developer tools")).font(.subheadline.bold())
+                            Text(L10n.string("Developer tools")).shelfFont(.subheadline, weight: .bold)
                             Text(L10n.string("Redacted diagnostics, data validation, storage usage, and cover cache controls."))
-                        }.font(.footnote).padding(.vertical, 8)
+                        }.shelfFont(.footnote).padding(.vertical, 8)
                     }
                 }
             }
@@ -190,7 +190,7 @@ struct AboutView: View {
                 TachiNavigationRow(title: L10n.string("Help"), symbol: "questionmark.circle.fill") { HelpView() }
                 TachiNavigationRow(title: L10n.string("Open-source licenses"), symbol: "doc.text") { MaterialLicenseView() }
                 Text(L10n.string("An independent reader with free features. Supports local books and source indexes. Extension execution and translation are not complete yet."))
-                    .font(.footnote).foregroundStyle(.secondary)
+                    .shelfFont(.footnote).foregroundStyle(.secondary)
             }
         }.tachiPage(L10n.string("About"))
     }

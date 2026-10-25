@@ -43,7 +43,7 @@ private struct ShelfOverflowModifier: ViewModifier {
                                                 TachiIcon(symbol: action.symbol, size: 23)
                                                     .frame(width: 28)
                                                 Text(action.title)
-                                                    .font(.body)
+                                                    .shelfFont(.body)
                                                     .multilineTextAlignment(.leading)
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }

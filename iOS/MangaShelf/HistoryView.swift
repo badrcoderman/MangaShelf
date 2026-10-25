@@ -80,13 +80,13 @@ struct HistoryView: View {
                         }
                     }.frame(width: 82).clipShape(RoundedRectangle(cornerRadius: 12))
                     VStack(alignment: .leading, spacing: 7) {
-                        Text(entry.title).font(.body.weight(.medium)).foregroundStyle(ShelfStyle.text).lineLimit(2)
+                        Text(entry.title).shelfFont(.body, weight: .medium).foregroundStyle(ShelfStyle.text).lineLimit(2)
                         switch entry.content {
                         case .local(let book): Text(L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
                         case .remote(_, let chapter, _): Text(chapter.localizedTitle).lineLimit(2)
                         }
                         Label { Text(entry.date, style: .relative) } icon: { TachiIcon(symbol: "clock", size: 16) }
-                    }.font(.subheadline).foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
+                    }.shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
                 }.contentShape(Rectangle())
             }.buttonStyle(.plain)
             ShelfIconButton(L10n.string("Remove from history"), symbol: "trash") { removal = entry; confirmRemoval = true }

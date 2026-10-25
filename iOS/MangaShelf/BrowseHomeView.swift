@@ -11,7 +11,7 @@ struct BrowseView: View {
                 ForEach(Array([L10n.string("Sources"), L10n.string("Extensions"), L10n.string("Migrate")].enumerated()), id: \.offset) { index, title in
                     Button { segment = index } label: {
                         VStack(spacing: 14) {
-                            Text(title).font(.subheadline)
+                            Text(title).shelfFont(.subheadline)
                                 .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 1)
                                 .minimumScaleFactor(0.85)
                                 .multilineTextAlignment(.center)
@@ -115,8 +115,8 @@ private struct AvailableSourcesContent: View {
                     TachiIcon(symbol: rowIcon(id), size: 25).foregroundStyle(Color(red: 0.36, green: 0.49, blue: 0.65))
                         .frame(width: 40, height: 40).background(.white, in: RoundedRectangle(cornerRadius: 4))
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(rowTitle(id)).font(.body).foregroundStyle(ShelfStyle.text)
-                        Text(rowSubtitle(id)).font(.subheadline).foregroundStyle(ShelfStyle.secondary)
+                        Text(rowTitle(id)).shelfFont(.body).foregroundStyle(ShelfStyle.text)
+                        Text(rowSubtitle(id)).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
                     }
                     Spacer(minLength: 0)
                 }.frame(minHeight: 80).contentShape(Rectangle())
@@ -134,16 +134,16 @@ private struct AvailableSourcesContent: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                Text(L10n.string("Last used source")).font(.body).padding(.top, 8)
+                Text(L10n.string("Last used source")).shelfFont(.body).padding(.top, 8)
                 row(lastAvailableID)
                 if pinnedLocal || pinnedMangaDex {
-                    Text(L10n.string("Pinned")).font(.body)
+                    Text(L10n.string("Pinned")).shelfFont(.body)
                     if pinnedLocal { row("local") }
                     if pinnedMangaDex { row("mangadex") }
                 }
-                Text(L10n.string("Local source")).font(.body)
+                Text(L10n.string("Local source")).shelfFont(.body)
                 row("local")
-                Text(L10n.string("Available sources")).font(.body)
+                Text(L10n.string("Available sources")).shelfFont(.body)
                 row("mangadex")
                 ForEach(indexedSources) { source in
                     row(source.id)
@@ -180,7 +180,7 @@ struct ExtensionsCatalogView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(L10n.string("Extensions")).font(.headline)
+                Text(L10n.string("Extensions")).shelfFont(.headline)
                 Spacer()
                 NavigationLink { RepositoriesView() } label: { TachiLabel(L10n.string("Repositories"), systemImage: "plus") }
             }.padding(.horizontal, 16).padding(.vertical, 10)
@@ -194,22 +194,22 @@ struct ExtensionsCatalogView: View {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 16) {
                         Text(L10n.string("Download an extension, review its publisher, then enable it to use its sources."))
-                            .font(.footnote).foregroundStyle(ShelfStyle.secondary)
+                            .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary)
                         ForEach(model.state.repositories) { repository in
-                            Text(repository.index.name).font(.headline)
+                            Text(repository.index.name).shelfFont(.headline)
                             ForEach(repository.index.extensions.filter { query.isEmpty || $0.name.localizedStandardContains(query) }) { entry in
                                 HStack(spacing: 14) {
                                     TachiIcon(symbol: "shippingbox", size: 24).frame(width: 40)
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Text(entry.name).font(.body)
+                                        Text(entry.name).shelfFont(.body)
                                         Text(Array(Set(entry.sources.map(\.language))).sorted().joined(separator: " · "))
-                                            .font(.caption).foregroundStyle(ShelfStyle.secondary)
+                                            .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                                     }
                                     Spacer()
                                     if let staged = model.stagedExtension(packageName: entry.packageName) {
                                         VStack(alignment: .trailing, spacing: 4) {
                                             Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
-                                                .font(.caption).foregroundStyle(ShelfStyle.accent)
+                                                .shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
                                             extensionControls(staged, entry: entry, repositoryID: repository.id)
                                         }
                                     } else {
@@ -221,7 +221,7 @@ struct ExtensionsCatalogView: View {
                                             } label: {
                                                 HStack(spacing: 4) {
                                                     TachiIcon(symbol: "arrow.down.circle", size: 14)
-                                                    Text(L10n.string("Download")).font(.caption.weight(.medium))
+                                                    Text(L10n.string("Download")).shelfFont(.caption, weight: .medium)
                                                 }
                                                 .padding(.horizontal, 10).padding(.vertical, 5)
                                                 .background(ShelfStyle.accent.opacity(0.15))
@@ -243,14 +243,14 @@ struct ExtensionsCatalogView: View {
             NavigationStack {
                 Form {
                     Section {
-                        Text(review.name).font(.headline)
-                        Text(review.packageName).font(.caption).textSelection(.enabled)
+                        Text(review.name).shelfFont(.headline)
+                        Text(review.packageName).shelfFont(.caption).textSelection(.enabled)
                     }
                     Section(L10n.string("Publisher fingerprint (SHA-256)")) {
                         Text(review.verification.certificateSHA256)
                             .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
                         Text(L10n.string("Compare this fingerprint with the publisher's published fingerprint before granting trust."))
-                            .font(.footnote).foregroundStyle(ShelfStyle.secondary)
+                            .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary)
                     }
                     Section(L10n.string("Sources")) {
                         ForEach(review.verification.sources, id: \.id) { source in

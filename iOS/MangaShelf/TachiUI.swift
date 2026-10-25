@@ -5,8 +5,8 @@ enum TachiGlyph: UInt32, CaseIterable {
     case library = 0xE17B, bolt = 0xE0EE, browse = 0xE248, history = 0xE6CF
     case settings = 0xE57F, cloud = 0xEF62, search = 0xE567, more = 0xE402
     case filter = 0xE280, delete = 0xE1B9, tune = 0xE683, palette = 0xE46B
-    case reader = 0xE162, sync = 0xE62F, extensions = 0xF037, restore = 0xE534
-    case shield = 0xE596, insights = 0xE347, download = 0xE201, help = 0xE309
+    case reader = 0xE162, sync = 0xE62F, extensions = 0xF037, restore = 0xE582
+    case shield = 0xE569, insights = 0xE347, download = 0xF05B, help = 0xE309
     case info = 0xE33C, left = 0xE15E, right = 0xE15F, add = 0xE047
     case grid = 0xE2EA, bookmark = 0xE0F1, eye = 0xE6BD, refresh = 0xE514
     case storage = 0xE609, folder = 0xE2A3, check = 0xE156, close = 0xE16A
@@ -20,8 +20,8 @@ enum TachiGlyph: UInt32, CaseIterable {
         switch symbol {
         case "books.vertical", "books.vertical.fill": return .library
         case "bolt", "bolt.fill": return .bolt
-        case "safari": return .browse
-        case "safari.fill": return .extensions
+        case "safari": return .extensions
+        case "safari.fill": return .browse
         case "clock", "clock.fill": return .history
         case "gearshape", "gearshape.fill", "wrench.and.screwdriver": return .settings
         case "cloud": return .cloud
@@ -88,7 +88,9 @@ struct TachiIcon: View {
             } else if let glyph = TachiGlyph.matching(symbol), let scalar = UnicodeScalar(glyph.rawValue) {
                 Text(verbatim: String(scalar)).font(.custom("MaterialIcons-Regular", fixedSize: size))
             } else { Image(systemName: symbol).font(.system(size: size, weight: .regular)) }
-        }.frame(width: size, height: size).accessibilityHidden(true)
+        }.frame(width: size, height: size)
+            .scaleEffect(x: symbol == "questionmark.circle.fill" && interfaceLocale.language.languageCode?.identifier == "ar" ? -1 : 1, y: 1)
+            .accessibilityHidden(true)
     }
 }
 
@@ -155,7 +157,7 @@ struct TachiList<Content: View>: View {
                 .listRowInsets(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
         }.listStyle(.plain).environment(\.defaultMinListRowHeight, 52)
             .scrollContentBackground(.hidden).background(ShelfStyle.background)
-            .font(.system(size: textSize)).toggleStyle(TachiToggleStyle())
+            .shelfFont(size: textSize).toggleStyle(TachiToggleStyle())
     }
 }
 struct TachiSettingsPage<Content: View>: View {
@@ -181,7 +183,7 @@ private struct TachiPageModifier: ViewModifier {
                         transaction.disablesAnimations = true
                         withTransaction(transaction) { dismiss() }
                     }.accessibilityIdentifier("settings.back")
-                    Text(title).font(.system(size: titleSize))
+                    Text(title).shelfFont(size: titleSize)
                         .multilineTextAlignment(.center).frame(maxWidth: .infinity).accessibilityAddTraits(.isHeader)
                     Color.clear.frame(width: 44, height: 1)
                 }.padding(.horizontal, 8).frame(minHeight: 44)
@@ -201,7 +203,7 @@ struct TachiSectionTitle: View {
     let title: String
     init(_ title: String) { self.title = title }
     var body: some View {
-        Text(title).font(.caption).foregroundStyle(ShelfStyle.accent)
+        Text(title).shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
             .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 18)
             .padding(.top, 24).padding(.bottom, 10).accessibilityAddTraits(.isHeader)
     }
@@ -215,10 +217,10 @@ struct TachiRowLabel: View {
     var symbol: String? = nil
     var body: some View {
         HStack(spacing: 16) {
-            if let symbol { TachiIcon(symbol: symbol, size: 21).frame(width: 26).foregroundStyle(ShelfStyle.secondary) }
+            if let symbol { TachiIcon(symbol: symbol, size: 24).frame(width: 24).foregroundStyle(ShelfStyle.secondary) }
             VStack(alignment: .leading, spacing: 5) {
-                Text(title).font(.system(size: titleSize)).foregroundStyle(ShelfStyle.text)
-                if let subtitle { Text(subtitle).font(.system(size: subtitleSize)).foregroundStyle(ShelfStyle.secondary).fixedSize(horizontal: false, vertical: true) }
+                Text(title).shelfFont(size: titleSize).foregroundStyle(ShelfStyle.text)
+                if let subtitle { Text(subtitle).shelfFont(size: subtitleSize).foregroundStyle(ShelfStyle.secondary).fixedSize(horizontal: false, vertical: true) }
             }.frame(maxWidth: .infinity, alignment: .leading)
         }.padding(.vertical, 10)
     }
@@ -238,7 +240,7 @@ struct TachiNavigationRow<Destination: View>: View {
         } label: {
             HStack(spacing: 12) {
                 TachiRowLabel(title: title, symbol: symbol)
-                TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 17)
+                TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
             }.frame(minHeight: 56).padding(.horizontal, 18).contentShape(Rectangle())
         }.buttonStyle(.plain)
@@ -256,7 +258,7 @@ struct TachiMenuRow<Options: View>: View {
         Menu(content: options) {
             HStack(spacing: 12) {
                 TachiRowLabel(title: title, subtitle: value, symbol: symbol)
-                TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 17)
+                TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
             }.frame(minHeight: 62).padding(.horizontal, 18).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityValue(value)
@@ -323,7 +325,7 @@ struct TachiToggleStyle: ToggleStyle {
                 Capsule().fill(configuration.isOn ? ShelfStyle.accent : ShelfStyle.selected)
                     .overlay(Capsule().strokeBorder(ShelfStyle.secondary.opacity(configuration.isOn ? 0 : 0.45), lineWidth: 2))
                     .overlay(alignment: configuration.isOn ? .trailing : .leading) {
-                        Circle().fill(configuration.isOn ? ShelfStyle.onAccent : ShelfStyle.secondary.opacity(0.55))
+                        Circle().fill(configuration.isOn ? Color.black : Color(white: 0.5))
                             .frame(width: configuration.isOn ? 24 : 17, height: configuration.isOn ? 24 : 17).padding(configuration.isOn ? 4 : 7.5)
                     }.frame(width: 52, height: 32).frame(width: 56, height: 44).contentShape(Rectangle())
                     .animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: configuration.isOn)

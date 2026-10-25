@@ -196,18 +196,18 @@ struct LibraryView: View {
             if isMultiSelect {
                 HStack {
                     Text(L10n.format("%@ selected", String(describing: selectedIDs.count)))
-                        .font(.subheadline.bold())
+                        .shelfFont(.subheadline, weight: .bold)
                     Spacer()
                     Button(selectedIDs.count == entries.count ? L10n.string("Deselect all") : L10n.string("Select all")) {
                         if selectedIDs.count == entries.count { selectedIDs.removeAll() }
                         else { selectedIDs = Set(entries.map(\.id)) }
-                    }.font(.caption)
+                    }.shelfFont(.caption)
                     Button(L10n.string("Invert")) {
                         selectedIDs = Set(entries.map(\.id)).subtracting(selectedIDs)
-                    }.font(.caption)
+                    }.shelfFont(.caption)
                     Button(L10n.string("Done")) {
                         isMultiSelect = false; selectedIDs.removeAll()
-                    }.font(.caption.bold())
+                    }.shelfFont(.caption, weight: .bold)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
@@ -357,7 +357,7 @@ struct LibraryView: View {
 
             if isMultiSelect {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .font(.title2)
+                    .shelfFont(.title2)
                     .foregroundStyle(isSelected ? ShelfStyle.accent : Color.white.opacity(0.8))
                     .padding(8)
                     .shadow(radius: 2)
@@ -410,7 +410,7 @@ struct LibraryView: View {
             } label: {
                 VStack(spacing: 4) {
                     Image(systemName: "folder")
-                    Text(L10n.string("Category")).font(.caption2)
+                    Text(L10n.string("Category")).shelfFont(.caption2)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -421,7 +421,7 @@ struct LibraryView: View {
             } label: {
                 VStack(spacing: 4) {
                     Image(systemName: "checkmark.circle")
-                    Text(L10n.string("Read")).font(.caption2)
+                    Text(L10n.string("Read")).shelfFont(.caption2)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -432,7 +432,7 @@ struct LibraryView: View {
             } label: {
                 VStack(spacing: 4) {
                     Image(systemName: "circle")
-                    Text(L10n.string("Unread")).font(.caption2)
+                    Text(L10n.string("Unread")).shelfFont(.caption2)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -443,7 +443,7 @@ struct LibraryView: View {
             } label: {
                 VStack(spacing: 4) {
                     Image(systemName: "trash")
-                    Text(L10n.string("Trash")).font(.caption2)
+                    Text(L10n.string("Trash")).shelfFont(.caption2)
                 }
                 .foregroundStyle(Color.red)
                 .frame(maxWidth: .infinity)
@@ -569,7 +569,7 @@ struct LibraryView: View {
     private func categoryTab(_ name: String, id: UUID?) -> some View {
         Button { category = id } label: {
             VStack(spacing: 12) {
-                Text(name).font(.subheadline).foregroundStyle(category == id ? ShelfStyle.accent : ShelfStyle.secondary)
+                Text(name).shelfFont(.subheadline).foregroundStyle(category == id ? ShelfStyle.accent : ShelfStyle.secondary)
                 UnevenRoundedRectangle(topLeadingRadius: 3, topTrailingRadius: 3)
                     .fill(category == id ? ShelfStyle.accent : .clear).frame(height: 3)
             }.fixedSize(horizontal: true, vertical: false)
@@ -594,7 +594,7 @@ struct ShelfListRow: View {
             if isMultiSelect {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundStyle(isSelected ? ShelfStyle.accent : ShelfStyle.secondary)
-                    .font(.title3)
+                    .shelfFont(.title3)
             }
             switch entry {
             case .local(let book):
@@ -608,22 +608,22 @@ struct ShelfListRow: View {
             }
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry.title)
-                    .font(.body.weight(.medium))
+                    .shelfFont(.body, weight: .medium)
                     .foregroundStyle(ShelfStyle.text)
                     .lineLimit(2)
                 HStack(spacing: 6) {
                     Text(entry.sourceDisplayName)
-                        .font(.caption2)
+                        .shelfFont(.caption2)
                         .padding(.horizontal, 6).padding(.vertical, 2)
                         .background(ShelfStyle.header)
                         .clipShape(Capsule())
                     if entry.completed {
                         Text(L10n.string("Completed"))
-                            .font(.caption2)
+                            .shelfFont(.caption2)
                             .foregroundStyle(Color.green)
                     } else if entry.unreadCount > 0 {
                         Text(L10n.format("%@ unread", String(describing: entry.unreadCount)))
-                            .font(.caption2)
+                            .shelfFont(.caption2)
                             .foregroundStyle(ShelfStyle.accent)
                     }
                 }
@@ -631,7 +631,7 @@ struct ShelfListRow: View {
             Spacer()
             if let lastRead = entry.lastReadAt {
                 Text(lastRead, style: .date)
-                    .font(.caption2)
+                    .shelfFont(.caption2)
                     .foregroundStyle(ShelfStyle.secondary)
             }
         }
@@ -658,7 +658,7 @@ struct BookCover: View {
                         Image(uiImage: image).resizable().scaledToFill().frame(width: geometry.size.width, height: geometry.size.height).clipped()
                     } else {
                         Image(systemName: failed ? "photo.badge.exclamationmark" : "book.closed")
-                            .font(.title2).foregroundStyle(ShelfStyle.secondary).frame(width: geometry.size.width, height: geometry.size.height)
+                            .shelfFont(.title2).foregroundStyle(ShelfStyle.secondary).frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 }
             }
@@ -754,7 +754,7 @@ struct BookDetailView: View {
             NavigationLink { FeatureStatusView(feature: .tracking) } label: { TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath") }
                 .foregroundStyle(ShelfStyle.secondary)
         }
-        .font(.subheadline)
+        .shelfFont(.subheadline)
         .padding(.horizontal, 40)
     }
 
@@ -774,7 +774,7 @@ struct BookDetailView: View {
                 Image(systemName: "clock")
                 Text(L10n.format("Reading time: %@", formattedReadingTime(book.totalReadingTime)))
             }
-            .font(.caption)
+            .shelfFont(.caption)
             .foregroundStyle(ShelfStyle.secondary)
             .padding(.horizontal, 16)
         }
@@ -782,7 +782,7 @@ struct BookDetailView: View {
 
     private var chapterHeader: some View {
         HStack {
-            Text(L10n.string("1 chapter")).font(.body)
+            Text(L10n.string("1 chapter")).shelfFont(.body)
             Spacer()
             ShelfIconButton(L10n.string("Book options"), symbol: "line.3.horizontal.decrease") { showingOptions = true }
         }
@@ -793,10 +793,10 @@ struct BookDetailView: View {
     private func bookProgressCard(_ book: LibraryBook) -> some View {
         Button { startPage = nil; reading = true } label: {
             VStack(alignment: .leading, spacing: 8) {
-                Text(book.title).font(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
+                Text(book.title).shelfFont(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
                 Text(book.lastReadAt == nil ? L10n.format("%@ pages", String(describing: book.pageCount)) : L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
-                    .font(.caption).foregroundStyle(ShelfStyle.secondary)
-                Text(book.addedAt, style: .date).font(.caption).foregroundStyle(ShelfStyle.secondary)
+                    .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
+                Text(book.addedAt, style: .date).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)
@@ -809,18 +809,18 @@ struct BookDetailView: View {
     private func notesSection(_ book: LibraryBook) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(L10n.string("Notes")).font(.headline)
+                Text(L10n.string("Notes")).shelfFont(.headline)
                 Spacer()
                 Button(book.notes == nil ? L10n.string("Add note") : L10n.string("Edit note")) {
                     notesText = book.notes ?? ""
                     editingNotes = true
                 }
-                .font(.caption)
+                .shelfFont(.caption)
                 .foregroundStyle(ShelfStyle.accent)
             }
             if let notes = book.notes, !notes.isEmpty {
                 Text(notes)
-                    .font(.body)
+                    .shelfFont(.body)
                     .foregroundStyle(ShelfStyle.text)
                     .padding(12)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -835,7 +835,7 @@ struct BookDetailView: View {
     private func bookmarksSection(_ book: LibraryBook) -> some View {
         if !book.bookmarks.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
-                Text(L10n.string("Bookmarks")).font(.headline)
+                Text(L10n.string("Bookmarks")).shelfFont(.headline)
                 ForEach(book.bookmarks.sorted(), id: \.self) { page in
                     TachiButton(L10n.format("Page %@", String(describing: page + 1)), systemImage: "bookmark.fill") { startPage = page; reading = true }
                 }

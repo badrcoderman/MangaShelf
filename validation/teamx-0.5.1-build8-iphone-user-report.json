@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-25T14:26:20.333661+00:00",
+  "evidence": "user report in conversation",
+  "user_statement": "worked",
+  "context": "User was given 0.5.1 (8) IPA and asked to retry Team X chapter updates, reading images and downloading.",
+  "source": "Team X",
+  "expected_app_version": "0.5.1",
+  "expected_app_build": "8",
+  "user_reports_test_worked": true,
+  "independently_observed": false,
+  "limits": [
+    "No title, chapter count, screenshot, device log or separate confirmation of each requested step supplied.",
+    "Does not establish every source, download/background reliability or visual parity."
+  ]
+}

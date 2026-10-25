@@ -70,8 +70,8 @@ struct OnlineReaderView: View {
                     HStack(spacing: 18) {
                         TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
                         VStack(spacing: 3) {
-                            Text(saved?.series.title ?? L10n.string("Reader")).font(.subheadline.weight(.semibold)).lineLimit(1)
-                            Text(chapter.localizedTitle).font(.caption).lineLimit(1).foregroundStyle(.secondary)
+                            Text(saved?.series.title ?? L10n.string("Reader")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
+                            Text(chapter.localizedTitle).shelfFont(.caption).lineLimit(1).foregroundStyle(.secondary)
                         }.frame(maxWidth: .infinity)
                         TachiButton(L10n.string("Reader settings"), systemImage: "slider.horizontal.3") { settingsOpen = true }.labelStyle(.iconOnly)
                     }.padding().background(ShelfStyle.header.opacity(0.96))
@@ -202,7 +202,7 @@ private struct OnlinePage: View {
                 else { Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity) }
             } else if let failure {
                 VStack(spacing: 12) {
-                    Text(L10n.format("Page %@", String(describing: index + 1))).font(.headline); Text(failure).font(.caption).multilineTextAlignment(.center)
+                    Text(L10n.format("Page %@", String(describing: index + 1))).shelfFont(.headline); Text(failure).shelfFont(.caption).multilineTextAlignment(.center)
                     Button(L10n.string("Retry")) { retry += 1 }
                 }.foregroundStyle(.white).padding().frame(maxWidth: .infinity, minHeight: 300)
                     .contentShape(Rectangle()).onTapGesture { onRevealControls?() }

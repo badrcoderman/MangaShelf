@@ -10,7 +10,7 @@ struct MaterialLicenseView: View {
         return text
     }
     var body: some View {
-        ScrollView { Text(license).font(.footnote).textSelection(.enabled).padding(18) }
+        ScrollView { Text(license).shelfFont(.footnote).textSelection(.enabled).padding(18) }
             .tachiPage(L10n.string("Open-source licenses"))
     }
 }

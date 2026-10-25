@@ -101,11 +101,11 @@ struct ShelfHeader<Left: View, Right: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             if typeSize.isAccessibilitySize {
-                Text(title).font(.system(size: titleSize)).accessibilityAddTraits(.isHeader)
+                Text(title).shelfFont(size: titleSize).accessibilityAddTraits(.isHeader)
                 actions
             } else {
                 ZStack {
-                    Text(title).font(.system(size: titleSize)).lineLimit(1)
+                    Text(title).shelfFont(size: titleSize).lineLimit(1)
                         .frame(maxWidth: 140).accessibilityAddTraits(.isHeader)
                     actions
                 }.frame(minHeight: 44)
@@ -130,7 +130,7 @@ struct ShelfTabBar: View {
                     VStack(spacing: 2) {
                         if tab == .library { ShelfBooksIcon() }
                         else { TachiIcon(symbol: tab.symbol, size: 25) }
-                        Text(tab.title).font(.caption2).lineLimit(1).minimumScaleFactor(0.8)
+                        Text(tab.title).shelfFont(.caption2).lineLimit(1).minimumScaleFactor(0.8)
                     }.frame(maxWidth: .infinity).frame(minHeight: typeSize.isAccessibilitySize ? 76 : 54)
                         .foregroundStyle(selection.wrappedValue == tab.rawValue ? ShelfStyle.accent : ShelfStyle.text)
                         .background {
@@ -213,8 +213,8 @@ struct ShelfEmptyState: View {
         VStack(spacing: 22) {
             Text("( ˘･_･˘ )").font(.system(size: 44, weight: .light))
                 .environment(\.layoutDirection, .leftToRight).accessibilityHidden(true)
-            Text(title).font(.headline).multilineTextAlignment(.center)
-            if let message { Text(message).font(.subheadline).foregroundStyle(ShelfStyle.secondary).multilineTextAlignment(.center) }
+            Text(title).shelfFont(.headline).multilineTextAlignment(.center)
+            if let message { Text(message).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary).multilineTextAlignment(.center) }
         }.padding(24).frame(maxWidth: .infinity)
     }
 }
@@ -222,7 +222,7 @@ struct ShelfEmptyState: View {
 struct ShelfPrimaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var enabled
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label.font(.body).frame(maxWidth: .infinity).padding(.vertical, 16)
+        configuration.label.shelfFont(.body).frame(maxWidth: .infinity).padding(.vertical, 16)
             .foregroundStyle(ShelfStyle.onAccent).background(ShelfStyle.accent, in: Capsule())
             .opacity(enabled ? (configuration.isPressed ? 0.75 : 1) : 0.45)
     }
@@ -237,12 +237,12 @@ struct ShelfCoverLabel: ViewModifier {
                 LinearGradient(colors: [.clear, .black.opacity(0.85)], startPoint: .top, endPoint: .bottom).frame(height: 85)
             }
             .overlay(alignment: .bottomLeading) {
-                Text(title).font(.subheadline).foregroundStyle(.white).lineLimit(2)
+                Text(title).shelfFont(.subheadline).foregroundStyle(.white).lineLimit(2)
                     .multilineTextAlignment(.leading).padding(9)
             }
             .overlay(alignment: .topTrailing) {
                 if let badge {
-                    Text(badge).font(.caption).monospacedDigit()
+                    Text(badge).shelfFont(.caption).monospacedDigit()
                         .foregroundStyle(ShelfStyle.onAccent).padding(.horizontal, 5).padding(.vertical, 5)
                         .background(ShelfStyle.accent, in: Capsule()).padding(7)
                 }

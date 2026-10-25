@@ -8,6 +8,7 @@ import ReaderCore
     var body: some Scene {
         WindowGroup {
             RootView()
+                .shelfFont(.body)
                 .environmentObject(model)
                 .environmentObject(online)
                 .environment(\.locale, language.locale)
