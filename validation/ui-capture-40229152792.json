@@ -1,0 +1,45 @@
+{
+  "run_id": 40229152792,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40229152792",
+  "source_commit": "ca80684b1c8f844c47344bd5ad4af4bded40ce04",
+  "version": "0.5.1",
+  "build": "13",
+  "capture_passed": true,
+  "ui_tests_passed": 4,
+  "screenshots_verified": 36,
+  "visual_parity": false,
+  "ready_for_device_review": true,
+  "physical_iphone_tested": false,
+  "artifact": {
+    "id": 12613185127,
+    "sha256": "sha256:f7972ea6d82315ff467ef488ae5c3e17c6ec77510fd35b8d0d7f76cd96d06fb0",
+    "crc_verified": true
+  },
+  "capture_report_sha256": "183136fa9cf8f15e8b46daa0e1a57bc48381c44a83231ce8487eebd366a24c11",
+  "scope": "real production app, five tabs, eight settings pages and Library menu in dark; More, About and Library menu in light; Library menu with accessibility XXXL text; English/Arabic, fresh empty store; first viewport per page",
+  "reviewed_screens": [
+    "msl-en-dark-accessibility-menu.png",
+    "msl-ar-dark-accessibility-menu.png",
+    "msl-ar-dark-settings-about.png",
+    "msl-ar-dark-05-more.png",
+    "msl-en-light-more.png",
+    "msl-ar-light-about.png",
+    "msl-ar-dark-library-options.png"
+  ],
+  "findings": [
+    "Accessibility XXXL bar captions are now readable without overlap or truncation in the reviewed English/Arabic images. Large Content Viewer and VoiceOver still need physical-device interaction checks.",
+    "About/Changelog navigation and the return to More passed in both locales; light appearance changed through the real saved control and restored System.",
+    "More first-row glyph bounds and positions remain identical to the reference in the narrow measurement. All five About row-arrow Y positions match.",
+    "About Back glyph is now 34x58 versus reference 33x58 pixels, with a one-pixel horizontal difference.",
+    "Menu refresh glyph is 36x36 pixels, matching the reference; actions still belong to MATCH-02.",
+    "Small normal tab-geometry differences remain: the More caption Y differs by 2.33 points, and capsule position by up to 2 points. No full visual parity claim."
+  ],
+  "simulator_identity_note": "Xcode Debug links MangaShelf.debug.dylib; built-app executable hash identifies its loader, not all Swift code. Current-commit provenance and changed captures were reviewed; the Release IPA binary was inspected separately.",
+  "remaining": [
+    "physical iPhone Back/menu/tab and saved appearance checks",
+    "VoiceOver, Reduce Motion/Transparency and large content viewer gestures",
+    "hardware Escape when available",
+    "review small remaining shared-UI differences",
+    "populated states and remaining screens in later stages"
+  ]
+}
