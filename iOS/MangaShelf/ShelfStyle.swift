@@ -111,6 +111,7 @@ struct ShelfHeader<Left: View, Right: View>: View {
                 }.frame(minHeight: 44)
             }
         }.padding(.horizontal, 2)
+            .frame(maxWidth: .infinity)
             .foregroundStyle(ShelfStyle.secondary)
             .background((filled ? ShelfStyle.header : ShelfStyle.background).ignoresSafeArea(edges: .top))
     }
@@ -156,6 +157,7 @@ private struct ShelfRootModifier<Left: View, Right: View>: ViewModifier {
     let left: () -> Left
     let right: () -> Right
     func body(content: Content) -> some View {
+        GeometryReader { geometry in
         content.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(ShelfStyle.background)
             .foregroundStyle(ShelfStyle.text)
@@ -163,8 +165,11 @@ private struct ShelfRootModifier<Left: View, Right: View>: ViewModifier {
             .safeAreaInset(edge: .top, spacing: 0) {
                 ShelfHeader(title: title, filled: filled, left: left, right: right)
             }
-            .safeAreaInset(edge: .bottom, spacing: 0) { if showTabs { ShelfTabBar() } }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if showTabs { ShelfTabBar().offset(y: min(20, max(0, geometry.safeAreaInsets.bottom))) }
+            }
             .background(ShelfStyle.background.ignoresSafeArea())
+        }
     }
 }
 

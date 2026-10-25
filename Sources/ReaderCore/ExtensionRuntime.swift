@@ -1,5 +1,6 @@
 import Foundation
 import CSafeArchive
+import CryptoKit
 
 /// Manages the execution lifecycle of extensions running inside MangaShelf.
 /// Bridges Swift calls to the C/JNI layer, serializes JSON command payloads, and decodes responses.
@@ -9,6 +10,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
     private let lock = NSLock()
     private var loadedPackages: Set<String> = []
     private var handlersRegistered = false
+    private var imageDirectory: URL?
     private let dispatchHandler: ((String, String) throws -> String)?
 
     public init() {
@@ -18,7 +20,8 @@ public final class ExtensionRuntime: @unchecked Sendable {
 
     /// Dependency injection for independently testing the command contract.
     /// The app's public initializer always uses the native bridge.
-    init(dispatchHandler: @escaping (String, String) throws -> String) {
+    init(imageDirectory: URL? = nil, dispatchHandler: @escaping (String, String) throws -> String) {
+        self.imageDirectory = imageDirectory
         self.dispatchHandler = dispatchHandler
     }
 
@@ -164,6 +167,17 @@ public final class ExtensionRuntime: @unchecked Sendable {
                                    "userAgent": userAgent, "platformRelease": platformRelease])
         let result = try await dispatchAsync(action: "configure", payload: request, checkAfterCompletion: false)
         try requireAcknowledgment(result, status: "configured")
+        setImageDirectory(dataDirectory.appendingPathComponent("cache/image-transfers", isDirectory: true))
+    }
+
+    private func setImageDirectory(_ directory: URL) {
+        lock.lock(); defer { lock.unlock() }
+        imageDirectory = directory
+    }
+
+    private func imageRoot() -> URL? {
+        lock.lock(); defer { lock.unlock() }
+        return imageDirectory
     }
 
     private struct LifecycleResponse: Decodable {
@@ -275,5 +289,45 @@ public final class ExtensionRuntime: @unchecked Sendable {
         guard !sourceId.isEmpty else { return [] }
         let jsonStr = try await dispatchAsync(action: "pages", payload: sourcePayload(sourceId: sourceId, url: chapterURL, metadata: sourceMetadataJSON))
         return try decodeSource([SourcePageItem].self, json: jsonStr)
+    }
+
+    private struct ImageTransfer: Decodable, Sendable { let fileName: String; let bytes: Int; let sha256: String }
+
+    public func image(sourceId: String, sourceMetadataJSON: String) async throws -> Data {
+        guard !sourceId.isEmpty, let directory = imageRoot() else {
+            throw ReaderFailure(ReaderText.string("The extension runtime is unavailable. JAR extensions cannot run on this device yet."))
+        }
+        // Consume the committed descriptor even when this Swift task was
+        // cancelled. Its file must be removed after the native worker drains.
+        let json = try await dispatchAsync(action: "image", payload: payload(["sourceId": sourceId, "sourceMetadataJSON": sourceMetadataJSON]), checkAfterCompletion: false)
+        let transfer = try decodeSource(ImageTransfer.self, json: json)
+        let suffix = ".bin"
+        let prefix = String(transfer.fileName.dropLast(suffix.count))
+        guard transfer.fileName.utf8.count == 40, transfer.fileName.hasSuffix(suffix),
+              UUID(uuidString: prefix)?.uuidString.lowercased() == prefix,
+              transfer.bytes > 0, transfer.bytes <= 32 * 1024 * 1024,
+              transfer.sha256.utf8.count == 64,
+              transfer.sha256.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
+        let root = directory.resolvingSymlinksInPath().standardizedFileURL
+        let file = root.appendingPathComponent(transfer.fileName)
+        let attributes = try file.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+        guard attributes.isRegularFile == true, attributes.isSymbolicLink != true,
+              file.resolvingSymlinksInPath().deletingLastPathComponent().path == root.path else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
+        defer { try? FileManager.default.removeItem(at: file) }
+        try Task.checkCancellation()
+        let bytes = try await Task.detached(priority: .userInitiated) {
+            let bytes = try LibraryStore.readBounded(file, maximum: 32 * 1024 * 1024)
+            guard bytes.count == transfer.bytes,
+                  SHA256.hash(data: bytes).map({ String(format: "%02x", $0) }).joined() == transfer.sha256 else {
+                throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+            }
+            return bytes
+        }.value
+        try Task.checkCancellation()
+        return bytes
     }
 }

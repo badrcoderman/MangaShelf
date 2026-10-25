@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mangashelf.host.HostServices
 import okhttp3.Headers
+import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -53,6 +54,9 @@ abstract class HttpSource : CatalogueSource {
     protected open fun imageRequest(page: Page): Request = Request.Builder()
         .url(page.imageUrl ?: throw UnsupportedOperationException("This source must implement getImageUrl for unresolved image pages"))
         .headers(headers).get().build()
+
+    /** Keep source image headers, cookies, interceptors and token refresh intact. */
+    internal fun imageCall(page: Page): Call = client.newCall(imageRequest(page))
 
     fun SChapter.setUrlWithoutDomain(url: String) { this.url = withoutDomain(url) }
     fun SManga.setUrlWithoutDomain(url: String) { this.url = withoutDomain(url) }

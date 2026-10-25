@@ -6,6 +6,7 @@ enum AppError {
     static func describe(_ error: Error) -> String {
         if let failure = error as? ReaderFailure { return L10n.string(failure.message) }
         if let failure = error as? SourceRequestFailure { return failure.localizedDescription }
+        if let failure = error as? SourceHTTPFailure { return failure.message }
         if let failure = error as? StagedExtensionError {
             switch failure {
             case .verificationRequired, .invalidVerification:

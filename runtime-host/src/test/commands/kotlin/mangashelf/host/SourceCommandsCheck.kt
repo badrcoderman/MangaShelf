@@ -10,11 +10,15 @@ import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
 import eu.kanade.tachiyomi.source.online.HttpSource
 import java.nio.file.Path
+import java.nio.file.Files
+import java.security.MessageDigest
+import java.io.IOException
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
@@ -30,6 +34,16 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.long
 import kotlinx.serialization.json.put
 import okhttp3.Request
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.MediaType.Companion.toMediaType
+import okio.Buffer
+import okio.Source
+import okio.Timeout
+import okio.buffer
 
 /** Authored source models with deliberately opaque state, dates and unordered indices. */
 object SourceCommandsCheck {
@@ -48,6 +62,36 @@ object SourceCommandsCheck {
         val updatesOverlapped = CompletableDeferred<Unit>()
         val continueUpdate = CompletableDeferred<Unit>()
         val activeUpdates = AtomicInteger()
+        val imageBody = byteArrayOf(0, 1, 127, -1, 4, 0, 12)
+        val imageRequests = AtomicInteger()
+        var holdImageBody = false
+        val imageBodyEntered = CompletableDeferred<Unit>()
+        override val client: OkHttpClient by lazy {
+            network.client.newBuilder().addInterceptor { chain ->
+                check(chain.request().header("X-Authored") == "token")
+                check(chain.request().header("Referer") == "$baseUrl/")
+                imageRequests.incrementAndGet()
+                val body = if (!holdImageBody) imageBody.toResponseBody("image/png".toMediaType()) else object : ResponseBody() {
+                    private val stream = object : Source {
+                        override fun read(sink: Buffer, byteCount: Long): Long {
+                            imageBodyEntered.complete(Unit)
+                            val deadline = System.nanoTime() + 5_000_000_000L
+                            while (!chain.call().isCanceled()) {
+                                check(System.nanoTime() < deadline) { "Authored image cancellation gate timed out" }
+                                Thread.sleep(5)
+                            }
+                            throw IOException("Authored call cancelled")
+                        }
+                        override fun timeout() = Timeout.NONE
+                        override fun close() { }
+                    }.buffer()
+                    override fun contentLength() = -1L
+                    override fun contentType() = "image/png".toMediaType()
+                    override fun source() = stream
+                }
+                Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("OK").body(body).build()
+            }.build()
+        }
         private fun manga() = SManga.create().apply {
             url = "/title/one"; title = "العربية 📚"; author = "Author"; artist = "Artist"
             thumbnail_url = "https://images.example.invalid/cover.png"; genre = "Action, Comedy"
@@ -103,7 +147,8 @@ object SourceCommandsCheck {
         }
         override fun imageRequest(page: Page): Request {
             check(page.url.startsWith("opaque,token,"))
-            return Request.Builder().url("https://images.example.invalid" + page.imageUrl).header("X-Authored", "token").build()
+            return Request.Builder().url("https://images.example.invalid" + page.imageUrl).header("X-Authored", "token")
+                .header("Referer", "$baseUrl/").build()
         }
         override fun getMangaUrl(manga: SManga) = baseUrl + manga.url
         override fun getChapterUrl(chapter: SChapter) = baseUrl + chapter.url
@@ -130,7 +175,7 @@ object SourceCommandsCheck {
             try { commands.execute(action, request); error("Accepted $code") }
             catch (error: SourceCommands.CommandException) { check(error.code == code) { "${error.code} != $code" } }
         }
-        var manga = JsonObject(emptyMap()); var chapter = JsonObject(emptyMap())
+        var manga = JsonObject(emptyMap()); var chapter = JsonObject(emptyMap()); var imageMetadata = ""
         try {
             case("catalogue_latest_search_and_source_pagination_have_distinct_wire_commands") {
                 val result = Json.parseToJsonElement(commands.execute("popular", request("page" to JsonPrimitive(4)))).jsonObject
@@ -195,8 +240,49 @@ object SourceCommandsCheck {
                 check(pages.map { it.getValue("sourceIndex").jsonPrimitive.int } == listOf(9, 2, 9))
                 check(pages.map { it.getValue("imageURL").jsonPrimitive.content } == listOf("first", "second", "third").map { "https://images.example.invalid/$it.png" })
                 val metadata = Json.parseToJsonElement(pages.first().getValue("sourceMetadataJSON").jsonPrimitive.content).jsonObject
+                imageMetadata = pages.first().getValue("sourceMetadataJSON").jsonPrimitive.content
                 val fields = metadata.getValue("fields").jsonObject
                 check(fields["url"] == JsonPrimitive("opaque,token,1") && fields["imageUrl"] == JsonPrimitive("/first.png"))
+            }
+            case("image_transfer_uses_source_request_headers_client_and_exact_binary_bytes") {
+                val image = Json.parseToJsonElement(commands.execute("image", request("sourceMetadataJSON" to JsonPrimitive(imageMetadata)))).jsonObject
+                val path = Path.of(args.single()).resolve("cache/image-transfers").resolve(image.getValue("fileName").jsonPrimitive.content)
+                check(Files.readAllBytes(path).contentEquals(source.imageBody))
+                check(image.getValue("bytes").jsonPrimitive.long == source.imageBody.size.toLong())
+                check(image.getValue("sha256").jsonPrimitive.content == MessageDigest.getInstance("SHA-256").digest(source.imageBody).joinToString("") { "%02x".format(it) })
+                check(source.imageRequests.get() == 1)
+                Files.delete(path) // The app consumes and removes the handoff file.
+            }
+            case("image_transfer_rejects_missing_or_wrong_source_state_before_network") {
+                failure("invalid_request", "image", request())
+                failure("metadata_mismatch", "image", request("sourceMetadataJSON" to manga.getValue("sourceMetadataJSON").jsonPrimitive))
+                check(source.imageRequests.get() == 1)
+            }
+            case("image_transfer_size_and_disk_quota_are_bounded_and_consumption_releases_space") {
+                fun call() = source.client.newCall(Request.Builder().url("https://images.example.invalid/first.png")
+                    .header("X-Authored", "token").header("Referer", source.baseUrl + "/").build())
+                val small = ImageTransferStore(Path.of(args.single()).resolve("small-images"), 3, 6)
+                try { small.fetch(call()); error("Oversized image accepted") }
+                catch (error: SourceCommands.CommandException) { check(error.code == "response_limit") }
+                check(Files.list(Path.of(args.single()).resolve("small-images")).use { it.count() } == 0L)
+                val quota = ImageTransferStore(Path.of(args.single()).resolve("quota-images"), 7, 14)
+                val first = quota.fetch(call()); val second = quota.fetch(call())
+                try { quota.fetch(call()); error("Disk quota exceeded") }
+                catch (error: SourceCommands.CommandException) { check(error.code == "image_transfer_limit") }
+                quota.discard(first)
+                val third = quota.fetch(call())
+                quota.discard(second); quota.discard(third)
+            }
+            case("cancellation_during_image_body_read_cancels_the_call_and_removes_partial_file") {
+                source.holdImageBody = true
+                coroutineScope {
+                    val task = async { commands.execute("image", request("sourceMetadataJSON" to JsonPrimitive(imageMetadata))) }
+                    source.imageBodyEntered.await()
+                    task.cancelAndJoin()
+                    check(task.isCancelled)
+                }
+                check(Files.list(Path.of(args.single()).resolve("cache/image-transfers")).use { it.count() } == 0L)
+                source.holdImageBody = false
             }
             case("invalid_ids_pages_metadata_ownership_and_typed_fields_are_rejected") {
                 failure("invalid_source_id", "popular", JsonObject(mapOf("sourceId" to JsonPrimitive("073"))))

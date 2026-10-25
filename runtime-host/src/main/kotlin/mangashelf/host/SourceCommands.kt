@@ -1,6 +1,7 @@
 package mangashelf.host
 
 import eu.kanade.tachiyomi.source.model.FilterList
+import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
@@ -30,6 +31,7 @@ class SourceCommands(private val registry: SourceRegistry) {
     private class UpdateGate { val mutex = Mutex(); var users = 0 }
     private val updateLock = Any()
     private val updates = mutableMapOf<UpdateKey, UpdateGate>()
+    private val imageTransfers by lazy { ImageTransferStore(HostServices.current.context.cacheDir.toPath().resolve("image-transfers")) }
 
     // KeiSource rejects overlapping updates for one manga. Keep unrelated
     // titles concurrent and release idle gates, including cancelled waiters.
@@ -45,6 +47,8 @@ class SourceCommands(private val registry: SourceRegistry) {
         val id = sourceId.toLongOrNull()?.takeIf { it.toString() == sourceId } ?: fail("invalid_source_id")
         val budget = Budget()
         return registry.withSource(id) { source ->
+            var transfer: ImageTransferStore.Transfer? = null
+            try {
             val result: JsonElement = when (action) {
                 "popular", "latest", "search" -> {
                     val page = (request["page"] as? JsonPrimitive)?.takeUnless { it.isString }?.intOrNull
@@ -101,12 +105,25 @@ class SourceCommands(private val registry: SourceRegistry) {
                         }
                     })
                 }
+                "image" -> {
+                    if (source !is HttpSource) fail("unsupported_image_source")
+                    val page = readPage(sourceId, request)
+                    if (page.imageUrl == null) page.imageUrl = source.getImageUrl(page)
+                    val image = imageTransfers.fetch(source.imageCall(page))
+                    transfer = image
+                    buildJsonObject {
+                        put("fileName", image.path.fileName.toString()); put("bytes", image.bytes); put("sha256", image.sha256)
+                    }
+                }
                 else -> fail("unknown_action")
             }
             currentCoroutineContext().ensureActive()
             val encoded = result.toString()
             if (encoded.toByteArray(Charsets.UTF_8).size > 16 * 1024 * 1024) fail("response_limit")
+            currentCoroutineContext().ensureActive()
+            transfer = null // Ownership passes to the app; failed encoding/cancellation removes the file below.
             encoded
+            } finally { transfer?.let { imageTransfers.discard(it) } }
         }
     }
 
@@ -190,7 +207,7 @@ class SourceCommands(private val registry: SourceRegistry) {
         }
     }
 
-    private fun fields(sourceId: String, kind: String, request: JsonObject): JsonObject? {
+    private fun fields(sourceId: String, kind: String, request: JsonObject, compareURL: Boolean = true): JsonObject? {
         val raw = request["sourceMetadataJSON"] ?: return null
         if (raw == JsonNull) return null
         val metadata = boundedObject(string(request, "sourceMetadataJSON", 256 * 1024))
@@ -198,8 +215,14 @@ class SourceCommands(private val registry: SourceRegistry) {
             string(metadata, "sourceId", 32) != sourceId || string(metadata, "kind", 16) != kind
         ) fail("metadata_mismatch")
         val fields = metadata["fields"] as? JsonObject ?: fail("invalid_request")
-        if (string(fields, "url", 8192) != string(request, "url", 8192)) fail("metadata_mismatch")
+        if (compareURL && string(fields, "url", 8192) != string(request, "url", 8192)) fail("metadata_mismatch")
         return fields
+    }
+
+    private fun readPage(sourceId: String, request: JsonObject): Page {
+        val fields = fields(sourceId, "page", request, compareURL = false) ?: fail("invalid_request")
+        val index = (fields["index"] as? JsonPrimitive)?.takeUnless { it.isString }?.intOrNull ?: fail("invalid_request")
+        return Page(index, string(fields, "url", 32_768, allowEmpty = true), optional(fields, "imageUrl", 8192))
     }
 
     private fun readManga(sourceId: String, request: JsonObject): SManga {

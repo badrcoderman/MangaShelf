@@ -198,6 +198,11 @@ public actor SourceEngineCoordinator: SourceEngineProtocol {
         return try await runtime.update(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: sourceMetadataJSON)
     }
 
+    public func fetchImage(sourceId: String, sourceMetadataJSON: String) async throws -> Data {
+        try await prepareSource(sourceId)
+        return try await runtime.image(sourceId: sourceId, sourceMetadataJSON: sourceMetadataJSON)
+    }
+
     public func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
         try await fetchPages(sourceId: sourceId, chapterURL: chapterURL, sourceMetadataJSON: nil)
     }

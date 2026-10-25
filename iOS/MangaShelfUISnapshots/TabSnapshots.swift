@@ -1,4 +1,6 @@
 import XCTest
+import UIKit
+import CoreText
 
 /// Runs the production app and its real empty store. No preview views or sample content.
 final class TabSnapshots: XCTestCase {
@@ -25,6 +27,33 @@ final class TabSnapshots: XCTestCase {
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 20))
         XCTAssertTrue(app.buttons["tab.0"].firstMatch.waitForExistence(timeout: 30),
                       "The real library must finish opening before screenshots are captured.")
+
+        if language == "en" {
+            let names = ["System", "GeezaPro", "Damascus", "AlNile", "ArialMT"]
+            let fonts = names.compactMap { name -> (String, UIFont)? in
+                let font = name == "System" ? UIFont.systemFont(ofSize: 18) : UIFont(name: name, size: 18)
+                return font.map { (name, $0) }
+            }
+            let sample = "المكتبة عام المزيد المظهر"
+            let inventory: [[String: String]] = fonts.map { name, font in
+                let ct = CTFontCreateWithName(font.fontName as CFString, 18, nil)
+                let fallback = CTFontCreateForString(ct, sample as CFString, CFRange(location: 0, length: sample.utf16.count))
+                return ["requested": name, "resolved": font.fontName, "arabicFallback": CTFontCopyPostScriptName(fallback) as String]
+            }
+            let image = UIGraphicsImageRenderer(size: CGSize(width: 414, height: CGFloat(fonts.count * 90))).image { context in
+                UIColor(red: 24 / 255, green: 24 / 255, blue: 26 / 255, alpha: 1).setFill()
+                context.fill(CGRect(x: 0, y: 0, width: 414, height: CGFloat(fonts.count * 90)))
+                for (index, pair) in fonts.enumerated() {
+                    (pair.0 as NSString).draw(at: CGPoint(x: 18, y: CGFloat(index * 90 + 8)), withAttributes: [.font: UIFont.systemFont(ofSize: 13), .foregroundColor: UIColor.lightGray])
+                    (sample as NSString).draw(at: CGPoint(x: 18, y: CGFloat(index * 90 + 36)), withAttributes: [.font: pair.1, .foregroundColor: UIColor.white])
+                }
+            }
+            let samples = XCTAttachment(image: image); samples.name = "msl-arabic-font-review"; samples.lifetime = .keepAlways
+            add(samples)
+            let data = try JSONSerialization.data(withJSONObject: inventory, options: [.prettyPrinted, .sortedKeys])
+            let state = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            state.name = "msl-arabic-font-inventory"; state.lifetime = .keepAlways; add(state)
+        }
 
         let names = ["library", "updates", "browse", "history", "more"]
         for index in names.indices {

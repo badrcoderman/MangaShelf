@@ -1111,3 +1111,8 @@
 "Browse source" = "تصفح المصدر";
 "Update source title" = "تحديث عنوان من المصدر";
 "Share" = "مشاركة";
+
+"Could not store the source image. Check available storage and try again." = "تعذر حفظ صورة المصدر. تحقق من المساحة المتاحة وحاول مجددًا.";
+"Too many source images are waiting to be read. Try again shortly." = "توجد صور كثيرة من المصدر تنتظر القراءة. حاول مجددًا بعد قليل.";
+"This source uses an image transport MSL does not support yet." = "يستخدم هذا المصدر طريقة لنقل الصور لا يدعمها MSL بعد.";
+"The cached source page needs to be refreshed." = "يلزم تحديث صفحة المصدر المحفوظة مؤقتًا.";

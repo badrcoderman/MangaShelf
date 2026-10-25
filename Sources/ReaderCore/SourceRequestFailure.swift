@@ -11,6 +11,9 @@ public struct SourceRequestFailure: LocalizedError, Sendable {
         case dependency = "source_dependency_failed"
         case invalidResponse = "invalid_response"
         case responseLimit = "response_limit"
+        case imageStorage = "image_storage_failed"
+        case imageTransferLimit = "image_transfer_limit"
+        case imageTransport = "unsupported_image_source"
     }
     public let reason: Reason
     public let httpStatus: Int?
@@ -35,6 +38,12 @@ public struct SourceRequestFailure: LocalizedError, Sendable {
             return ReaderText.string("The source returned data MSL could not read. Update the extension and try again.")
         case .responseLimit:
             return ReaderText.string("The source response exceeded the supported size.")
+        case .imageStorage:
+            return ReaderText.string("Could not store the source image. Check available storage and try again.")
+        case .imageTransferLimit:
+            return ReaderText.string("Too many source images are waiting to be read. Try again shortly.")
+        case .imageTransport:
+            return ReaderText.string("This source uses an image transport MSL does not support yet.")
         }
     }
 }

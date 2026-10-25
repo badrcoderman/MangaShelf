@@ -1,0 +1,456 @@
+{
+  "recorded_at": "2026-10-25T08:37:39.999798+00:00",
+  "run_id": 40094879017,
+  "source_commit": "1b72ea1705a9bda532f82d9057e382e1df5c9cb8",
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40094879017",
+  "passed": true,
+  "scope": "Linux/macOS host checks and iOS codec compile/link for partial manga updates and safe source errors. No iPhone execution. Source-owned image transfers were added after this commit.",
+  "platforms": {
+    "ubuntu": {
+      "artifact_id": 12561065089,
+      "artifact_sha256": "df8c1278c5327a6abf2bb8d1461bee0b5bf19216bf05f8c03e9963f20e6b853f",
+      "archive_entries": 20,
+      "crc_verified": true,
+      "host_source_map_matches_commit": true,
+      "host_jar_sha256": "e073270d9599d3d02d5fc6385bf6f1dbf940efa19048c4cf39dc45193f844d15",
+      "reports": {
+        "bridge-test-results.json": {
+          "sha256": "d2c26124fb554062691054db92b84c83fb7d517fef54cc243ed4450398db3a7e",
+          "passed": true
+        },
+        "extension-archive-verifier-host.json": {
+          "sha256": "a1c90aef3c35cb2e82a1b4c3364dbc94ae487c98a602ecb37c811166c3c4094d",
+          "passed": true,
+          "test_count": 46
+        },
+        "extension-loader-host.json": {
+          "sha256": "83c921efa761abe4064094c62a8ed5c3e1cb9b35a383b41b414d25a00770b6f8",
+          "passed": true,
+          "checks": [
+            "fixture_classes_are_absent_from_parent_classpath",
+            "verified_open_handle_survives_original_replacement_without_snapshot_paths",
+            "signed_factory_registers_and_invokes_two_real_typed_fixture_sources",
+            "single_source_entrypoint_and_relative_manifest_class",
+            "multi_release_class_selection_and_signed_package_sealing",
+            "unicode_resource_urls_enumeration_and_closed_handle_behavior",
+            "digest_and_pin_rejection_precede_constructor_execution",
+            "manifest_identity_and_api_rejection_precede_initialization",
+            "missing_manifest_and_entity_declarations_are_rejected",
+            "host_class_shadow_and_external_classpath_are_rejected_before_initialization",
+            "unsupported_entrypoint_types_and_abstract_classes_do_not_initialize",
+            "entrypoint_must_resolve_from_verified_child_not_host_parent",
+            "constructor_failure_closes_owned_loader_without_replay",
+            "registration_failure_closes_owned_loader_without_replay",
+            "cancellation_after_constructor_prevents_publication_and_closes_handle",
+            "removal_drains_cancelled_source_before_archive_release",
+            "signed_http_source_fetches_unicode_over_real_http_through_registry",
+            "signed_source_settings_validate_persist_drive_http_and_drain_before_archive_close",
+            "http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup",
+            "manifest_parser_bounds_namespaces_duplicates_and_unsigned_version_range",
+            "static_runtime_close_drains_signed_source_http_before_archive_and_services"
+          ]
+        },
+        "java-bridge-host.json": {
+          "sha256": "3121b4396a619cdc66b4cb475672ea0fe79bb0b830d6a490b2dabe22074cbbdd",
+          "passed": true
+        },
+        "runtime-bootstrap-host.json": {
+          "sha256": "45a80ea23409adce4e10d5272bdc4a2979708ba65debcb7e80d5ddc57a6479f6",
+          "passed": true,
+          "checks": [
+            "application_context_and_network_are_injected_with_exact_parent_type_identity",
+            "public_inline_helpers_cross_modules_and_preserve_the_protected_scope_getter",
+            "close_clears_injection_and_reopen_restores_durable_source_preferences",
+            "startup_failure_preserves_existing_context_and_injector_and_caller_ownership",
+            "duplicate_startup_does_not_replace_live_services_or_close_the_candidate",
+            "preference_close_failure_is_reported_after_global_services_are_cleared"
+          ]
+        },
+        "runtime-host-build.json": {
+          "sha256": "348fea36da9f2f9169757656cb032c3c52fbd7a2a5d57387498894fb65fc33e2",
+          "passed": true
+        },
+        "runtime-host-tests.json": {
+          "sha256": "bdd0c6759642bb022e3e6bcf84af41e383155294ef3143de1ad04844136c3704",
+          "passed": true,
+          "abi": {
+            "classes_checked": 45,
+            "members_checked": 278,
+            "missing": []
+          },
+          "functional_checks": {
+            "scope": "Authored Source 1.6 interfaces/models and suspend calls on host only",
+            "passed": true,
+            "checks": {
+              "manga_factories_and_fields": true,
+              "chapter_factories_and_millisecond_timestamp": true,
+              "pagination_and_compatibility_copies": true,
+              "filter_defaults_and_mutable_states": true,
+              "readonly_sequenced_collection_compatibility_bridges": true,
+              "page_uri_descriptor_and_encoded_value": true,
+              "authored_factory_61_distinct_ids_and_languages": true,
+              "61_source_suspend_popular_calls": true,
+              "source_defaults_and_related_unsupported": true,
+              "suspend_latest_and_search_objects": true,
+              "suspend_update_flags_and_model_values": true,
+              "suspend_page_list_preserves_returned_order": true,
+              "async_source_failure_propagates": true,
+              "suspended_source_cancellation_propagates_and_cleans_up": true
+            },
+            "authored_factory_source_count": 61,
+            "extension_code_executed": false,
+            "registry_tested": false,
+            "network_tested": false,
+            "ios_execution": false
+          },
+          "registry_checks": {
+            "passed": true,
+            "scope": "Authored SourceFactory/Source registry and coroutine lifecycle on host only",
+            "checks": {
+              "factory_registers_61_metadata_id_language_pairs_and_invokes_them": true,
+              "single_source_entrypoint_keeps_signed_long_id_and_language": true,
+              "non_catalogue_source_preserves_metadata_language_without_inventing_a_getter": true,
+              "duplicate_metadata_rejected_before_factory_and_resource_closed": true,
+              "duplicate_factory_ids_reject_entire_package": true,
+              "metadata_id_and_language_mismatch_never_partially_register": true,
+              "cross_package_conflict_is_atomic_and_preserves_existing_handle": true,
+              "package_duplicate_and_global_bounds_preserve_prior_registration": true,
+              "factory_exception_propagates_and_releases_uncommitted_resource": true,
+              "source_failure_does_not_cancel_sibling_or_package": true,
+              "caller_cancellation_reaches_source_and_keeps_package_available": true,
+              "cancelled_caller_waits_for_non_cancellable_source_cleanup": true,
+              "removal_cancels_live_call_then_releases_handle_after_cleanup": true,
+              "already_cancelled_caller_does_not_execute_source": true,
+              "cancelled_factory_preparation_cannot_publish_sources": true,
+              "concurrent_conflicting_installs_have_one_atomic_winner": true,
+              "release_failure_is_reported_without_restoring_removed_source": true,
+              "closed_registry_rejects_registration_and_close_is_idempotent": true,
+              "mutating_returned_snapshot_cannot_mutate_registry": true,
+              "bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size": true
+            },
+            "real_extension_executed": false,
+            "archive_loader_tested": false,
+            "network_tested": false,
+            "ios_execution": false
+          }
+        },
+        "runtime-network-host.json": {
+          "sha256": "d5c05689f8cef2194e36d1d87104874ff5696a3381a9adcd217350462b686dde",
+          "passed": true,
+          "checks": [
+            "request_defaults_overloads_headers_cache_and_binary_upload",
+            "configured_http_source_fetches_unicode_and_exposes_required_client_interceptors",
+            "http_source_id_is_lazy_and_independent_of_turkish_default_locale",
+            "headers_delegate_can_be_replaced_without_mutating_a_final_field",
+            "relative_urls_queries_fragments_and_image_requests_are_preserved",
+            "image_urls_use_source_request_builder_and_preserve_opaque_page_metadata",
+            "redirects_error_status_challenges_and_http_cache_use_real_http",
+            "response_cookies_are_sent_only_to_matching_paths",
+            "jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust",
+            "cancellation_closes_real_inflight_http_and_finishes_callback",
+            "successful_response_ownership_is_transferred_to_caller",
+            "error_response_is_closed_before_http_exception",
+            "cancelled_request_waits_for_callback_and_closes_late_response",
+            "response_lost_to_prompt_cancellation_is_closed",
+            "precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call",
+            "enqueue_failure_does_not_leave_cancellation_drain_waiting",
+            "duplicate_callback_does_not_leak_second_response"
+          ]
+        },
+        "runtime-preferences-host.json": {
+          "sha256": "988cefe7555e1df977bd3d343e9bd872afb5dcbb935c69afe478b3aaa8b2f361",
+          "passed": true,
+          "checks": [
+            "typed_defaults_atomic_editor_and_reopen",
+            "set_input_output_and_get_all_do_not_alias_storage",
+            "clear_remove_null_and_editor_reuse_follow_android_value_rules",
+            "names_and_unicode_keys_stay_distinct_without_path_traversal",
+            "apply_is_immediately_visible_and_commit_waits_for_prior_writes",
+            "failed_atomic_replace_preserves_disk_and_retry_clears_pending_error",
+            "asynchronous_failure_is_observable_and_recoverable_per_store",
+            "unchecked_async_writer_failures_surface_at_flush_and_allow_retry",
+            "pending_write_bytes_and_count_are_bounded_before_memory_publication",
+            "listeners_can_edit_reentrantly_unregister_and_observe_clear",
+            "bad_listener_does_not_retain_plugin_exception_or_block_other_listeners",
+            "concurrent_edits_preserve_disjoint_keys_and_latest_memory_snapshot",
+            "truncated_corrupt_and_symlink_files_are_rejected_without_reset",
+            "limits_and_malformed_unicode_fail_before_memory_publication",
+            "application_context_default_preferences_files_and_shutdown",
+            "writer_uses_host_loader_instead_of_inheriting_plugin_context"
+          ]
+        },
+        "runtime-source-commands-host.json": {
+          "sha256": "b749673ad8b8c4f76747ac43fd63dd245c1f57b245172a49846489b996a8b0e0",
+          "passed": true,
+          "checks": [
+            "catalogue_latest_search_and_source_pagination_have_distinct_wire_commands",
+            "manga_metadata_memo_flags_and_update_strategy_survive_the_wire",
+            "chapter_dates_convert_to_seconds_without_losing_milliseconds_or_memo",
+            "partial_source_details_keep_lookup_identity_and_all_returned_chapters",
+            "overlapping_updates_for_one_title_wait_without_reentering_the_source",
+            "pages_keep_returned_order_dense_indices_raw_fields_and_source_image_resolution",
+            "invalid_ids_pages_metadata_ownership_and_typed_fields_are_rejected",
+            "source_output_limits_reject_counts_and_multibyte_strings",
+            "removal_cancels_suspended_wire_work_and_waits_for_source_cleanup"
+          ]
+        },
+        "runtime-source-preferences-host.json": {
+          "sha256": "9bc1d08b7fb9e9438c23965fc8224cde369c9c82ec1653085c34a07ac34366a9",
+          "passed": true,
+          "checks": [
+            "twelve_row_source_configuration_defaults_and_native_value_snapshot",
+            "list_switch_and_multiselect_changes_persist_and_reject_unlisted_values",
+            "uuid_text_validation_blocks_save_without_mutating_preferences_or_calling_change_listener",
+            "source_namespaces_are_isolated_and_changes_survive_application_restart",
+            "listeners_can_reject_user_changes_and_programmatic_setters_do_not_call_them",
+            "choice_arrays_sets_and_mutable_labels_are_copied_on_assignment",
+            "hidden_disabled_rows_and_positive_button_validation_reject_changes",
+            "invalid_requests_are_bounded_and_do_not_break_a_valid_session",
+            "text_watcher_uses_utf16_edit_indices_and_supports_validator_text_correction",
+            "watcher_corrected_text_reaches_the_change_listener_and_durable_value",
+            "cancelled_queued_change_is_skipped_and_following_requests_continue",
+            "package_removal_cancels_settings_and_waits_for_callback_detachment_before_archive_close",
+            "explicit_session_close_waits_for_detachment_and_keeps_source_installed",
+            "callback_failure_is_sanitized_pending_requests_finish_and_package_can_be_reopened",
+            "cancelled_open_drains_setup_and_detaches_rows_before_returning",
+            "unsupported_missing_and_malformed_screens_fail_without_releasing_a_live_package",
+            "screen_duplicate_key_rejection_and_failed_attach_leave_existing_rows_usable"
+          ]
+        },
+        "runtime-zstd-host.json": {
+          "sha256": "ddae46e83197671a776679382b28426890f3546f3b1a17dc0c179fe59aa076b6",
+          "passed": true
+        },
+        "zstd-native-host.json": {
+          "sha256": "b71a67a82e07d31bf945ee88e60e3722b73d32589b8716cb45cd6dc6b5a2d31c",
+          "passed": true
+        }
+      }
+    },
+    "macos": {
+      "artifact_id": 12560418382,
+      "artifact_sha256": "a560e2c44ca8f20bef7ca80930f6c8c1dd2aa6f0ef32687e81e081130bb42b27",
+      "archive_entries": 28,
+      "crc_verified": true,
+      "host_source_map_matches_commit": true,
+      "host_jar_sha256": "e073270d9599d3d02d5fc6385bf6f1dbf940efa19048c4cf39dc45193f844d15",
+      "reports": {
+        "bridge-test-results.json": {
+          "sha256": "f07e876a11006728fcd5b589d8dca92964085fadcf2e87bc1dcc1335fff4b789",
+          "passed": true
+        },
+        "extension-archive-verifier-host.json": {
+          "sha256": "ffa81ad546751cd87ffb79f935520756e329d461596f33f869507b4c23612f27",
+          "passed": true,
+          "test_count": 46
+        },
+        "extension-loader-host.json": {
+          "sha256": "97675d13d2c9656f402c6176b801538dd89e143300103db217f8e568bac3bf57",
+          "passed": true,
+          "checks": [
+            "fixture_classes_are_absent_from_parent_classpath",
+            "verified_open_handle_survives_original_replacement_without_snapshot_paths",
+            "signed_factory_registers_and_invokes_two_real_typed_fixture_sources",
+            "single_source_entrypoint_and_relative_manifest_class",
+            "multi_release_class_selection_and_signed_package_sealing",
+            "unicode_resource_urls_enumeration_and_closed_handle_behavior",
+            "digest_and_pin_rejection_precede_constructor_execution",
+            "manifest_identity_and_api_rejection_precede_initialization",
+            "missing_manifest_and_entity_declarations_are_rejected",
+            "host_class_shadow_and_external_classpath_are_rejected_before_initialization",
+            "unsupported_entrypoint_types_and_abstract_classes_do_not_initialize",
+            "entrypoint_must_resolve_from_verified_child_not_host_parent",
+            "constructor_failure_closes_owned_loader_without_replay",
+            "registration_failure_closes_owned_loader_without_replay",
+            "cancellation_after_constructor_prevents_publication_and_closes_handle",
+            "removal_drains_cancelled_source_before_archive_release",
+            "signed_http_source_fetches_unicode_over_real_http_through_registry",
+            "signed_source_settings_validate_persist_drive_http_and_drain_before_archive_close",
+            "http_cancellation_retains_archive_until_asynchronous_interceptor_cleanup",
+            "manifest_parser_bounds_namespaces_duplicates_and_unsigned_version_range",
+            "static_runtime_close_drains_signed_source_http_before_archive_and_services"
+          ]
+        },
+        "java-bridge-host.json": {
+          "sha256": "b52d1af12d7493c839940cbff5d70a7bef554443fa0ed3b9712b20ee19b44a3e",
+          "passed": true
+        },
+        "runtime-bootstrap-host.json": {
+          "sha256": "2bfa3fd9556f2cfb9b9edf064a404d0d9db0d4fed569dcf3a6aa8c83ce85ce95",
+          "passed": true,
+          "checks": [
+            "application_context_and_network_are_injected_with_exact_parent_type_identity",
+            "public_inline_helpers_cross_modules_and_preserve_the_protected_scope_getter",
+            "close_clears_injection_and_reopen_restores_durable_source_preferences",
+            "startup_failure_preserves_existing_context_and_injector_and_caller_ownership",
+            "duplicate_startup_does_not_replace_live_services_or_close_the_candidate",
+            "preference_close_failure_is_reported_after_global_services_are_cleared"
+          ]
+        },
+        "runtime-host-build.json": {
+          "sha256": "292d1e35f82f16dba04a291916526420cfef360e4bb9a204decb2a0f2b55c6e0",
+          "passed": true
+        },
+        "runtime-host-tests.json": {
+          "sha256": "a72b2080bbf18df9ec9b39d31c09ffe0b18cc1d2a4e4166a6ef168be0202eddb",
+          "passed": true,
+          "abi": {
+            "classes_checked": 45,
+            "members_checked": 278,
+            "missing": []
+          },
+          "functional_checks": {
+            "scope": "Authored Source 1.6 interfaces/models and suspend calls on host only",
+            "passed": true,
+            "checks": {
+              "manga_factories_and_fields": true,
+              "chapter_factories_and_millisecond_timestamp": true,
+              "pagination_and_compatibility_copies": true,
+              "filter_defaults_and_mutable_states": true,
+              "readonly_sequenced_collection_compatibility_bridges": true,
+              "page_uri_descriptor_and_encoded_value": true,
+              "authored_factory_61_distinct_ids_and_languages": true,
+              "61_source_suspend_popular_calls": true,
+              "source_defaults_and_related_unsupported": true,
+              "suspend_latest_and_search_objects": true,
+              "suspend_update_flags_and_model_values": true,
+              "suspend_page_list_preserves_returned_order": true,
+              "async_source_failure_propagates": true,
+              "suspended_source_cancellation_propagates_and_cleans_up": true
+            },
+            "authored_factory_source_count": 61,
+            "extension_code_executed": false,
+            "registry_tested": false,
+            "network_tested": false,
+            "ios_execution": false
+          },
+          "registry_checks": {
+            "passed": true,
+            "scope": "Authored SourceFactory/Source registry and coroutine lifecycle on host only",
+            "checks": {
+              "factory_registers_61_metadata_id_language_pairs_and_invokes_them": true,
+              "single_source_entrypoint_keeps_signed_long_id_and_language": true,
+              "non_catalogue_source_preserves_metadata_language_without_inventing_a_getter": true,
+              "duplicate_metadata_rejected_before_factory_and_resource_closed": true,
+              "duplicate_factory_ids_reject_entire_package": true,
+              "metadata_id_and_language_mismatch_never_partially_register": true,
+              "cross_package_conflict_is_atomic_and_preserves_existing_handle": true,
+              "package_duplicate_and_global_bounds_preserve_prior_registration": true,
+              "factory_exception_propagates_and_releases_uncommitted_resource": true,
+              "source_failure_does_not_cancel_sibling_or_package": true,
+              "caller_cancellation_reaches_source_and_keeps_package_available": true,
+              "cancelled_caller_waits_for_non_cancellable_source_cleanup": true,
+              "removal_cancels_live_call_then_releases_handle_after_cleanup": true,
+              "already_cancelled_caller_does_not_execute_source": true,
+              "cancelled_factory_preparation_cannot_publish_sources": true,
+              "concurrent_conflicting_installs_have_one_atomic_winner": true,
+              "release_failure_is_reported_without_restoring_removed_source": true,
+              "closed_registry_rejects_registration_and_close_is_idempotent": true,
+              "mutating_returned_snapshot_cannot_mutate_registry": true,
+              "bounded_snapshot_rejects_factory_iterator_that_exceeds_declared_size": true
+            },
+            "real_extension_executed": false,
+            "archive_loader_tested": false,
+            "network_tested": false,
+            "ios_execution": false
+          }
+        },
+        "runtime-network-host.json": {
+          "sha256": "946cf6bf4db7e8756d6d08017e50dd82a132b8d7ff6ba25749cc9409b2188def",
+          "passed": true,
+          "checks": [
+            "request_defaults_overloads_headers_cache_and_binary_upload",
+            "configured_http_source_fetches_unicode_and_exposes_required_client_interceptors",
+            "http_source_id_is_lazy_and_independent_of_turkish_default_locale",
+            "headers_delegate_can_be_replaced_without_mutating_a_final_field",
+            "relative_urls_queries_fragments_and_image_requests_are_preserved",
+            "image_urls_use_source_request_builder_and_preserve_opaque_page_metadata",
+            "redirects_error_status_challenges_and_http_cache_use_real_http",
+            "response_cookies_are_sent_only_to_matching_paths",
+            "jvm_tls_checks_certificates_and_hostnames_with_fixture_only_trust",
+            "cancellation_closes_real_inflight_http_and_finishes_callback",
+            "successful_response_ownership_is_transferred_to_caller",
+            "error_response_is_closed_before_http_exception",
+            "cancelled_request_waits_for_callback_and_closes_late_response",
+            "response_lost_to_prompt_cancellation_is_closed",
+            "precancelled_caller_does_not_enqueue_or_cancel_an_unowned_call",
+            "enqueue_failure_does_not_leave_cancellation_drain_waiting",
+            "duplicate_callback_does_not_leak_second_response"
+          ]
+        },
+        "runtime-preferences-host.json": {
+          "sha256": "e820deb57b92700f1e704a6af98bab37f34683bcee56a8bc72ed2e204b2ec940",
+          "passed": true,
+          "checks": [
+            "typed_defaults_atomic_editor_and_reopen",
+            "set_input_output_and_get_all_do_not_alias_storage",
+            "clear_remove_null_and_editor_reuse_follow_android_value_rules",
+            "names_and_unicode_keys_stay_distinct_without_path_traversal",
+            "apply_is_immediately_visible_and_commit_waits_for_prior_writes",
+            "failed_atomic_replace_preserves_disk_and_retry_clears_pending_error",
+            "asynchronous_failure_is_observable_and_recoverable_per_store",
+            "unchecked_async_writer_failures_surface_at_flush_and_allow_retry",
+            "pending_write_bytes_and_count_are_bounded_before_memory_publication",
+            "listeners_can_edit_reentrantly_unregister_and_observe_clear",
+            "bad_listener_does_not_retain_plugin_exception_or_block_other_listeners",
+            "concurrent_edits_preserve_disjoint_keys_and_latest_memory_snapshot",
+            "truncated_corrupt_and_symlink_files_are_rejected_without_reset",
+            "limits_and_malformed_unicode_fail_before_memory_publication",
+            "application_context_default_preferences_files_and_shutdown",
+            "writer_uses_host_loader_instead_of_inheriting_plugin_context"
+          ]
+        },
+        "runtime-source-commands-host.json": {
+          "sha256": "f6ad588b6861d789979e0ce908cc45362d35e315534cfdbabd6e0d7337b416e9",
+          "passed": true,
+          "checks": [
+            "catalogue_latest_search_and_source_pagination_have_distinct_wire_commands",
+            "manga_metadata_memo_flags_and_update_strategy_survive_the_wire",
+            "chapter_dates_convert_to_seconds_without_losing_milliseconds_or_memo",
+            "partial_source_details_keep_lookup_identity_and_all_returned_chapters",
+            "overlapping_updates_for_one_title_wait_without_reentering_the_source",
+            "pages_keep_returned_order_dense_indices_raw_fields_and_source_image_resolution",
+            "invalid_ids_pages_metadata_ownership_and_typed_fields_are_rejected",
+            "source_output_limits_reject_counts_and_multibyte_strings",
+            "removal_cancels_suspended_wire_work_and_waits_for_source_cleanup"
+          ]
+        },
+        "runtime-source-preferences-host.json": {
+          "sha256": "a199f6781864b60ec16513b4ccf1f01d44b21fe1740b461848edf211bad0ef0c",
+          "passed": true,
+          "checks": [
+            "twelve_row_source_configuration_defaults_and_native_value_snapshot",
+            "list_switch_and_multiselect_changes_persist_and_reject_unlisted_values",
+            "uuid_text_validation_blocks_save_without_mutating_preferences_or_calling_change_listener",
+            "source_namespaces_are_isolated_and_changes_survive_application_restart",
+            "listeners_can_reject_user_changes_and_programmatic_setters_do_not_call_them",
+            "choice_arrays_sets_and_mutable_labels_are_copied_on_assignment",
+            "hidden_disabled_rows_and_positive_button_validation_reject_changes",
+            "invalid_requests_are_bounded_and_do_not_break_a_valid_session",
+            "text_watcher_uses_utf16_edit_indices_and_supports_validator_text_correction",
+            "watcher_corrected_text_reaches_the_change_listener_and_durable_value",
+            "cancelled_queued_change_is_skipped_and_following_requests_continue",
+            "package_removal_cancels_settings_and_waits_for_callback_detachment_before_archive_close",
+            "explicit_session_close_waits_for_detachment_and_keeps_source_installed",
+            "callback_failure_is_sanitized_pending_requests_finish_and_package_can_be_reopened",
+            "cancelled_open_drains_setup_and_detaches_rows_before_returning",
+            "unsupported_missing_and_malformed_screens_fail_without_releasing_a_live_package",
+            "screen_duplicate_key_rejection_and_failed_attach_leave_existing_rows_usable"
+          ]
+        },
+        "runtime-zstd-host.json": {
+          "sha256": "80e97d051c6dd0fc9f19ed021e075ec1c8a8f8138f70fd4abb03485104f88e7e",
+          "passed": true
+        },
+        "zstd-native-host.json": {
+          "sha256": "d7d6e9819eebb143d16d27cf8cd9dc9f475ab1e7bdddbe6e8ce7bc8eadc6ae41",
+          "passed": true
+        },
+        "zstd-native-ios.json": {
+          "sha256": "c3c96813990042f3a80a8bd9897370329133a9f1557662fb25bbc168fa97a5e7",
+          "passed": true
+        }
+      }
+    }
+  }
+}

@@ -124,8 +124,14 @@ extension SecureHTTP: SourceTransport {
         }
         if let data = try await store.cachedImage(chapterID: chapter.id, index: index) { return data }
         let bytes: Data
-        do { bytes = try await SecureHTTP().get(pages.urls[index]) }
+        do { bytes = try await fetchImageBytes(chapter: chapter, pages: pages, index: index) }
         catch is CancellationError { throw CancellationError() }
+        catch let failure as SourceRequestFailure where failure.reason != .http || ![401, 403, 404, 410].contains(failure.httpStatus ?? 0) {
+            throw failure
+        }
+        catch let failure as SourceHTTPFailure where ![401, 403, 404, 410].contains(failure.statusCode) {
+            throw failure
+        }
         catch {
             try Task.checkCancellation()
             let current = try await self.pages(chapter, refresh: true)
@@ -133,12 +139,21 @@ extension SecureHTTP: SourceTransport {
                   current.urls.map({ URL(string: $0)?.lastPathComponent }) == pages.urls.map({ URL(string: $0)?.lastPathComponent }) else {
                 throw ReaderFailure(L10n.string("The chapter pages have changed. Close and reopen the chapter."))
             }
-            bytes = try await SecureHTTP().get(current.urls[index])
+            bytes = try await fetchImageBytes(chapter: chapter, pages: current, index: index)
         }
         try Task.checkCancellation()
         _ = try await Task.detached(priority: .utility) { try ImageDecoder.thumbnail(bytes, maximumDimension: 32) }.value
         try Task.checkCancellation(); try await store.saveImage(bytes, chapterID: chapter.id, index: index)
         return bytes
+    }
+    private func fetchImageBytes(chapter: MangaChapter, pages: ChapterPages, index: Int) async throws -> Data {
+        if let sourceID = state.series.first(where: { $0.id == chapter.seriesID })?.series.sourceID, sourceID != "mangadex" {
+            guard let metadata = pages.sourceMetadataJSON?[index] else {
+                throw ReaderFailure(L10n.string("The cached source page needs to be refreshed."))
+            }
+            return try await SourceEngineCoordinator.shared.fetchImage(sourceId: sourceID, sourceMetadataJSON: metadata)
+        }
+        return try await SecureHTTP().get(pages.urls[index])
     }
     func progress(_ chapter: MangaChapter, page: Int, count: Int) async {
         await mutate { try await $0.progress(seriesID: chapter.seriesID, chapterID: chapter.id, page: page, count: count) }
