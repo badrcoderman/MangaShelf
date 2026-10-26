@@ -2,9 +2,9 @@ import XCTest
 @testable import ReaderCore
 
 final class SourceFilterProtocolTests: XCTestCase {
-    private let hash = String(repeating: "a", count: 64)
+    private let schemaFingerprint = String(repeating: "a", count: 64)
     private func screen(_ mutate: ((inout [String: Any]) -> Void)? = nil) throws -> String {
-        var object: [String: Any] = ["sourceId": "91", "schemaHash": hash, "rows": [
+        var object: [String: Any] = ["sourceId": "91", "schemaHash": schemaFingerprint, "rows": [
             ["path": "0", "name": "Genre العربية", "kind": "group", "children": [
                 ["path": "0.0", "name": "Completed", "kind": "checkbox", "state": ["kind": "toggle", "checked": false]],
                 ["path": "0.1", "name": "Sort", "kind": "sort", "choices": ["Title", "Date"], "state": ["kind": "sort", "index": NSNull(), "ascending": true]]
@@ -25,7 +25,7 @@ final class SourceFilterProtocolTests: XCTestCase {
             XCTAssertEqual(object["page"] as? Int, 2)
             XCTAssertEqual(object["query"] as? String, "")
             let selected = try XCTUnwrap(object["filters"] as? [String: Any])
-            XCTAssertEqual(selected["schemaHash"] as? String, hash)
+            XCTAssertEqual(selected["schemaHash"] as? String, schemaFingerprint)
             let states = try XCTUnwrap(selected["states"] as? [[String: Any]])
             XCTAssertEqual(states.map { $0["path"] as? String }, ["0.0", "0.1", "1"])
             let sort = try XCTUnwrap(states[1]["value"] as? [String: Any])
@@ -77,7 +77,7 @@ final class SourceFilterProtocolTests: XCTestCase {
 
     func testChangedFilterSchemaHasActionableTypedRecovery() async throws {
         let runtime = ExtensionRuntime(dispatchHandler: { _, _ in #"{"error":"source_filters_changed"}"# })
-        let selected = SourceFilterSelection(schemaHash: hash, states: [])
+        let selected = SourceFilterSelection(schemaHash: schemaFingerprint, states: [])
         do { _ = try await runtime.search(sourceId: "91", query: "", page: 1, filters: selected); XCTFail("Stale filter schema accepted") }
         catch { XCTAssertTrue(error is SourceFilterSchemaChanged) }
     }
