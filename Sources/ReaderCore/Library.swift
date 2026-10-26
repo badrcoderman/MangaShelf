@@ -252,6 +252,7 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
         try c.encode(title, forKey: .title)
         try c.encode(pageCount, forKey: .pageCount)
         try c.encode(currentPage, forKey: .currentPage)
+        try c.encode(webtoonOffset, forKey: .webtoonOffset)
         try c.encode(completed, forKey: .completed)
         try c.encode(bookmarks, forKey: .bookmarks)
         try c.encode(categories, forKey: .categories)

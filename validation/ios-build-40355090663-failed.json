@@ -1,0 +1,14 @@
+{
+  "run_id": 40355090663,
+  "source_commit": "8953450",
+  "passed": false,
+  "swift_tests_total": 176,
+  "swift_tests_skipped": 1,
+  "failures": 2,
+  "failing_test": "ReaderProgressPersistenceTests.testLocalFractionSurvivesReopenWhilePrivateHistoryKeepsPreviousTimestamp",
+  "root_cause": "LibraryBook explicit encode omitted webtoonOffset; reopening fell back to 0",
+  "fix": "Encode webtoonOffset alongside currentPage; keep failing persistence test unchanged",
+  "app_compiled": false,
+  "ipa_produced": false,
+  "log_sha256": "a21c30d422ad6872d5bd9ab0af6bd2d78885a167c0c835cd01a06a401e373d97"
+}
