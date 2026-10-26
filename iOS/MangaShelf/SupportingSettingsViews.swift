@@ -45,17 +45,29 @@ struct FeatureStatusView: View {
 
 struct PrivacyPreferencesView: View {
     @Environment(\.locale) private var interfaceLocale
+    @EnvironmentObject private var privacy: AppPrivacy
+    @AppStorage("privacy.privateHistory") private var privateHistory = false
     var body: some View {
-        TachiList {
-            Section(L10n.string("Data")) {
-                Text(L10n.string("Your library and reading progress are stored on your device. Keep exported backups somewhere you trust."))
-                Text(L10n.string("When using a source, search or chapter requests are sent to that source to load content."))
+        TachiSettingsPage(title: L10n.string("Security settings")) {
+            TachiChoiceRow(title: L10n.string("Request unlock"), symbol: "touchid", selection: Binding(get: { privacy.lockEnabled }, set: { value in
+                Task { await privacy.setLockEnabled(value) }
+            }), choices: [(false, L10n.string("Off")), (true, L10n.string("On"))], identifier: "privacy.lock")
+                .disabled(privacy.authenticating)
+            if privacy.lockEnabled {
+                TachiChoiceRow(title: L10n.string("Lock after"), symbol: "clock", selection: $privacy.lockInterval,
+                               choices: [(0, L10n.string("Immediately")), (15, L10n.string("15 seconds")), (60, L10n.string("1 minute")), (300, L10n.string("5 minutes"))])
             }
-            Section(L10n.string("Controls")) {
-                NavigationLink { StorageView().shelfPage() } label: { Text(L10n.string("View storage")) }
-                NavigationLink { RepositoriesView() } label: { Text(L10n.string("Manage repositories")) }
-            }
-        }.tachiPage(L10n.string("Security settings"))
+            TachiDivider()
+            TachiToggleRow(title: L10n.string("Private reading"), subtitle: L10n.string("Pause reading history. Page progress and bookmarks are still saved."), symbol: "eye.slash", isOn: $privateHistory)
+                .accessibilityIdentifier("privacy.private-history")
+            TachiDivider()
+            TachiToggleRow(title: L10n.string("Secure screen"), symbol: "eye.slash", isOn: $privacy.hideAppSwitcher)
+                .accessibilityIdentifier("privacy.secure-screen")
+            TachiRowLabel(title: L10n.string("Secure screen hides app contents when switching between apps."), symbol: "info.circle")
+                .padding(.horizontal, 18).padding(.vertical, 12)
+            if privacy.authenticating { ProgressView().padding(18) }
+            if let error = privacy.error { Text(error).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary).padding(18) }
+        }
     }
 }
 

@@ -113,7 +113,7 @@ class HttpFixture : HttpSource(), ConfigurableSource {
     override fun headersBuilder(): Headers.Builder = super.headersBuilder().add("X-Fixture", resource().take(8))
     override suspend fun getPopularManga(page: Int): MangasPage {
         if (page == 88) withTimeout(1) { awaitCancellation() }
-        if (page == 87) throw eu.kanade.tachiyomi.network.HttpException(429)
+        if (page == 87) throw eu.kanade.tachiyomi.network.HttpException(429, 45.0)
         if (page == 86) throw eu.kanade.tachiyomi.network.BrowserVerificationRequiredException()
         if (page == 85) throw javax.net.ssl.SSLException("https://private.invalid/token=must-not-leak")
         val endpoint = if (page == 99) "slow" else "utf8"

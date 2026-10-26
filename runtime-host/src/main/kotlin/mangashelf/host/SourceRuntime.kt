@@ -81,7 +81,7 @@ object SourceRuntime {
         catch (error: ExtensionArchiveVerifier.VerificationException) { errorJson(error.code) }
         catch (_: TimeoutCancellationException) { errorJson("source_timeout") }
         catch (_: CancellationException) { errorJson("cancelled") }
-        catch (error: HttpException) { errorJson("source_http_error", error.code.takeIf { it in 100..599 }) }
+        catch (error: HttpException) { errorJson("source_http_error", error.code.takeIf { it in 100..599 }, error.retryAfterSeconds) }
         catch (_: BrowserVerificationRequiredException) { errorJson("source_browser_verification") }
         catch (_: SSLException) { errorJson("source_tls_failed") }
         catch (_: SocketTimeoutException) { errorJson("source_timeout") }
@@ -142,6 +142,8 @@ object SourceRuntime {
             host.registry.remove(packageName).await()
             acknowledgment("unloaded", packageName)
         }
+        "network.cache.clear" -> { HostServices.current.network.clearCaches(); acknowledgment("cache_cleared") }
+        "network.cookies.clear" -> { HostServices.current.network.clearCookies(); acknowledgment("cookies_cleared") }
         "sources" -> buildJsonObject { put("sources", sourceInfos(host.registry.snapshot())) }.toString()
         "preferences.open" -> host.mutation.withLock { host.preferences.execute(action, request) }
         "preferences.snapshot", "preferences.change", "preferences.validate", "preferences.click", "preferences.close" -> host.preferences.execute(action, request)
@@ -178,8 +180,9 @@ object SourceRuntime {
     private fun acknowledgment(status: String, packageName: String? = null) = buildJsonObject {
         put("status", status); packageName?.let { put("package", it) }
     }.toString()
-    private fun errorJson(code: String, httpStatus: Int? = null) = buildJsonObject {
+    private fun errorJson(code: String, httpStatus: Int? = null, retryAfterSeconds: Double? = null) = buildJsonObject {
         put("error", code); httpStatus?.let { put("httpStatus", it) }
+        retryAfterSeconds?.takeIf { it.isFinite() && it >= 0 }?.let { put("retryAfterSeconds", it) }
     }.toString()
     private fun fail(code: String): Nothing = throw SourceCommands.CommandException(code)
     private fun text(request: JsonObject, key: String, maximum: Int) = SourceCommands.string(request, key, maximum)

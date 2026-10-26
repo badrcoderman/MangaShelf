@@ -4,6 +4,76 @@ public enum ReaderMode: String, Codable, CaseIterable, Sendable { case paged, we
 public enum ReadingDirection: String, Codable, CaseIterable, Sendable { case rightToLeft, leftToRight }
 public enum AppAppearance: String, Codable, CaseIterable, Sendable { case system, light, dark }
 public enum PageScale: String, Codable, CaseIterable, Sendable { case fitPage, fitWidth }
+public enum ReaderBackground: String, Codable, CaseIterable, Sendable { case black, dark, white, sepia }
+public enum ReaderRotation: String, Codable, CaseIterable, Sendable { case device, portrait, landscape }
+public enum ReaderSpreadMode: String, Codable, CaseIterable, Sendable { case single, automatic, double }
+public enum ReaderTapLayout: String, Codable, CaseIterable, Sendable { case disabled, lShaped, rightAndLeft, edge, kindlish }
+
+public struct ReaderCropInsets: Codable, Equatable, Sendable {
+    public var top: Double
+    public var bottom: Double
+    public var left: Double
+    public var right: Double
+    public init(top: Double = 0.02, bottom: Double = 0.02, left: Double = 0.02, right: Double = 0.02) {
+        self.top = Self.bound(top); self.bottom = Self.bound(bottom)
+        self.left = Self.bound(left); self.right = Self.bound(right)
+    }
+    private static func bound(_ value: Double) -> Double { value.isFinite ? min(0.25, max(0, value)) : 0 }
+    public var normalized: Self { Self(top: top, bottom: bottom, left: left, right: right) }
+}
+
+/// A page and a fraction of its rendered height, independent of the screen width.
+public struct ReaderResumePosition: Codable, Equatable, Hashable, Sendable {
+    public let page: Int
+    public let offset: Double
+    public init(page: Int, offset: Double = 0) {
+        self.page = max(0, page)
+        self.offset = offset.isFinite ? min(1, max(0, offset)) : 0
+    }
+    private enum CodingKeys: String, CodingKey { case page, offset }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(page: try values.decode(Int.self, forKey: .page), offset: try values.decodeIfPresent(Double.self, forKey: .offset) ?? 0)
+    }
+    public func distance(pageHeight: Double) -> Double { max(0, pageHeight.isFinite ? pageHeight : 0) * offset }
+}
+
+public struct ReaderSpread: Equatable, Sendable {
+    public let first: Int
+    public let second: Int?
+    /// A cover or known landscape image fills the spread; an odd last page retains a blank slot.
+    public let fullWidth: Bool
+    public var pages: [Int] { [first] + (second.map { [$0] } ?? []) }
+}
+public enum ReaderSpreadLayout {
+    public static func build(pageCount: Int, doublePages: Bool, separateCover: Bool = true,
+                             singlePages: Set<Int> = []) -> [ReaderSpread] {
+        guard pageCount > 0 else { return [] }
+        var result: [ReaderSpread] = []; var page = 0
+        while page < pageCount {
+            let single = !doublePages || (separateCover && page == 0) || singlePages.contains(page)
+            if single { result.append(ReaderSpread(first: page, second: nil, fullWidth: true)); page += 1 }
+            else if page + 1 < pageCount, !singlePages.contains(page + 1) {
+                result.append(ReaderSpread(first: page, second: page + 1, fullWidth: false)); page += 2
+            } else { result.append(ReaderSpread(first: page, second: nil, fullWidth: false)); page += 1 }
+        }
+        return result
+    }
+}
+
+/// The coefficients follow the observed eight-level gesture contract; the app applies them to its chosen speed.
+public enum ReaderHoldScrollSpeed {
+    public static let factors: [Double] = [3, 2, 1.5, 1.25, 1, 0.75, 0.5, 0.25]
+    public static func level(current: Int, deltaY: Double) -> Int {
+        guard deltaY.isFinite else { return min(7, max(0, current)) }
+        let boundaries: [Double] = [-180, -120, -60, -30, 60, 120, 180]
+        var value = min(7, max(0, current))
+        while value > 0 && deltaY <= boundaries[value - 1] - 12 { value -= 1 }
+        while value < 7 && deltaY >= boundaries[value] + 12 { value += 1 }
+        return value
+    }
+}
+
 public struct ReaderSettings: Codable, Equatable, Sendable {
     public var mode: ReaderMode = .paged
     public var direction: ReadingDirection = .rightToLeft
@@ -12,10 +82,37 @@ public struct ReaderSettings: Codable, Equatable, Sendable {
     public var keepScreenAwake = true
     public var pageScale: PageScale = .fitPage
     public var tapNavigation = false
+    public var tapLayout: ReaderTapLayout = .rightAndLeft
+    public var webtoonTapLayout: ReaderTapLayout = .disabled
+    public var invertTap = false
+    public var doubleTapZoom = true
+    public var limitZoom = false
+    public var background: ReaderBackground = .black
+    public var rotation: ReaderRotation = .device
+    public var spreadMode: ReaderSpreadMode = .single
+    public var separateCover = true
+    public var widePagesSingle = true
+    public var invertDoublePages = false
+    public var cropBorders = false
+    public var cropInsets = ReaderCropInsets()
+    public var pageSpacing: Double = 0
+    public var sidePadding: Double = 0
+    public var dimming: Double = 0
+    public var autoScroll = false
+    public var autoScrollSpeed: Double = 40
+    public var holdToScroll = false
+    public var showScrollIndicator = false
+    public var showStatusBar = true
+    public var keyboardNavigation = true
+    public var mouseWheelSpeed: Double = 1
     public init() {}
 
     private enum CodingKeys: String, CodingKey {
         case mode, direction, appearance, showPageNumber, keepScreenAwake, pageScale, tapNavigation
+        case tapLayout, webtoonTapLayout, invertTap, doubleTapZoom, limitZoom, background, rotation
+        case spreadMode, separateCover, widePagesSingle, invertDoublePages, cropBorders, cropInsets
+        case pageSpacing, sidePadding, dimming, autoScroll, autoScrollSpeed, holdToScroll
+        case showScrollIndicator, showStatusBar, keyboardNavigation, mouseWheelSpeed
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -26,13 +123,57 @@ public struct ReaderSettings: Codable, Equatable, Sendable {
         keepScreenAwake = try c.decodeIfPresent(Bool.self, forKey: .keepScreenAwake) ?? true
         pageScale = try c.decodeIfPresent(PageScale.self, forKey: .pageScale) ?? .fitPage
         tapNavigation = try c.decodeIfPresent(Bool.self, forKey: .tapNavigation) ?? false
+        tapLayout = try c.decodeIfPresent(ReaderTapLayout.self, forKey: .tapLayout) ?? .rightAndLeft
+        webtoonTapLayout = try c.decodeIfPresent(ReaderTapLayout.self, forKey: .webtoonTapLayout) ?? .disabled
+        invertTap = try c.decodeIfPresent(Bool.self, forKey: .invertTap) ?? false
+        doubleTapZoom = try c.decodeIfPresent(Bool.self, forKey: .doubleTapZoom) ?? true
+        limitZoom = try c.decodeIfPresent(Bool.self, forKey: .limitZoom) ?? false
+        background = try c.decodeIfPresent(ReaderBackground.self, forKey: .background) ?? .black
+        rotation = try c.decodeIfPresent(ReaderRotation.self, forKey: .rotation) ?? .device
+        spreadMode = try c.decodeIfPresent(ReaderSpreadMode.self, forKey: .spreadMode) ?? .single
+        separateCover = try c.decodeIfPresent(Bool.self, forKey: .separateCover) ?? true
+        widePagesSingle = try c.decodeIfPresent(Bool.self, forKey: .widePagesSingle) ?? true
+        invertDoublePages = try c.decodeIfPresent(Bool.self, forKey: .invertDoublePages) ?? false
+        cropBorders = try c.decodeIfPresent(Bool.self, forKey: .cropBorders) ?? false
+        cropInsets = (try c.decodeIfPresent(ReaderCropInsets.self, forKey: .cropInsets) ?? ReaderCropInsets()).normalized
+        func bounded(_ key: CodingKeys, _ fallback: Double, _ range: ClosedRange<Double>) throws -> Double {
+            let value = try c.decodeIfPresent(Double.self, forKey: key) ?? fallback
+            return value.isFinite ? min(range.upperBound, max(range.lowerBound, value)) : fallback
+        }
+        pageSpacing = try bounded(.pageSpacing, 0, 0...64)
+        sidePadding = try bounded(.sidePadding, 0, 0...0.25)
+        dimming = try bounded(.dimming, 0, 0...0.75)
+        autoScroll = try c.decodeIfPresent(Bool.self, forKey: .autoScroll) ?? false
+        autoScrollSpeed = try bounded(.autoScrollSpeed, 40, 5...200)
+        holdToScroll = try c.decodeIfPresent(Bool.self, forKey: .holdToScroll) ?? false
+        showScrollIndicator = try c.decodeIfPresent(Bool.self, forKey: .showScrollIndicator) ?? false
+        showStatusBar = try c.decodeIfPresent(Bool.self, forKey: .showStatusBar) ?? true
+        keyboardNavigation = try c.decodeIfPresent(Bool.self, forKey: .keyboardNavigation) ?? true
+        mouseWheelSpeed = try bounded(.mouseWheelSpeed, 1, 0.25...3)
     }
 
-    /// Physical screen coordinates; interface locale never changes page direction.
+    /// Compatibility with the original horizontal edge control.
     public func pageStep(forTapFraction fraction: Double) -> Int {
         guard mode == .paged, tapNavigation, fraction.isFinite, (0...1).contains(fraction) else { return 0 }
         let physicalStep = fraction < 0.3 ? -1 : fraction > 0.7 ? 1 : 0
         return direction == .rightToLeft ? -physicalStep : physicalStep
+    }
+
+    /// Physical screen coordinates; the application locale never mirrors these zones.
+    public func pageStep(x: Double, y: Double, temporarilyDisabled: Bool = false) -> Int {
+        guard !temporarilyDisabled, x.isFinite, y.isFinite, (0...1).contains(x), (0...1).contains(y) else { return 0 }
+        let layout = mode == .webtoon ? webtoonTapLayout : (tapNavigation ? tapLayout : .disabled)
+        let column = min(2, Int(x * 3)); let row = min(2, Int(y * 3))
+        let step: Int
+        switch layout {
+        case .disabled: return 0
+        case .rightAndLeft: step = column == 0 ? -1 : column == 2 ? 1 : 0
+        case .lShaped: step = row == 0 ? -1 : row == 2 ? 1 : column == 0 ? -1 : column == 2 ? 1 : 0
+        case .edge: step = column != 1 ? 1 : row == 2 ? -1 : 0
+        case .kindlish: step = row == 0 ? 0 : column == 0 ? -1 : 1
+        }
+        let reverse = layout == .rightAndLeft ? (direction == .rightToLeft && mode == .paged) : invertTap
+        return reverse ? -step : step
     }
 }
 public enum LibrarySortOption: String, Codable, CaseIterable, Sendable {
@@ -65,6 +206,7 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
     public var title: String
     public let pageCount: Int
     public var currentPage: Int
+    public var webtoonOffset: Double
     public var completed: Bool
     public var bookmarks: Set<Int>
     public var categories: Set<UUID>
@@ -76,13 +218,13 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
     public var deletedAt: Date?
     public var filename: String { id.uuidString + ".cbz" }
     public init(id: UUID = UUID(), title: String, pageCount: Int) {
-        self.id = id; self.title = title; self.pageCount = pageCount; currentPage = 0
+        self.id = id; self.title = title; self.pageCount = pageCount; currentPage = 0; webtoonOffset = 0
         completed = false; bookmarks = []; categories = []; addedAt = Date(); lastReadAt = nil
         notes = nil; totalReadingTime = 0; isDeleted = false; deletedAt = nil
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, title, pageCount, currentPage, completed, bookmarks, categories, addedAt, lastReadAt
+        case id, title, pageCount, currentPage, webtoonOffset, completed, bookmarks, categories, addedAt, lastReadAt
         case notes, totalReadingTime, isDeleted, deletedAt
     }
 
@@ -92,6 +234,7 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
         title = try c.decode(String.self, forKey: .title)
         pageCount = try c.decode(Int.self, forKey: .pageCount)
         currentPage = try c.decode(Int.self, forKey: .currentPage)
+        webtoonOffset = try c.decodeIfPresent(Double.self, forKey: .webtoonOffset) ?? 0
         completed = try c.decode(Bool.self, forKey: .completed)
         bookmarks = try c.decode(Set<Int>.self, forKey: .bookmarks)
         categories = try c.decode(Set<UUID>.self, forKey: .categories)
@@ -199,8 +342,9 @@ public struct LibraryState: Codable, Sendable {
         }
         for book in books {
             guard !book.title.isEmpty, book.title.count <= 512, (1...4096).contains(book.pageCount),
-                  (0..<book.pageCount).contains(book.currentPage),
+                  (0..<book.pageCount).contains(book.currentPage), book.webtoonOffset.isFinite, (0...1).contains(book.webtoonOffset),
                   book.bookmarks.allSatisfy({ (0..<book.pageCount).contains($0) }),
+                  book.totalReadingTime.isFinite, book.totalReadingTime >= 0,
                   book.categories.isSubset(of: categoryIDs) else { throw ReaderFailure(ReaderText.string("Invalid book data.")) }
             if let notes = book.notes {
                 guard notes.count <= 4096 else { throw ReaderFailure(ReaderText.string("Invalid book notes.")) }
@@ -310,11 +454,12 @@ public actor LibraryStore {
         }
         return book
     }
-    public func updateProgress(id: UUID, page: Int) throws {
+    public func updateProgress(id: UUID, page: Int, offset: Double = 0, recordHistory: Bool = true) throws {
         var candidate = state
         guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { throw ReaderFailure(ReaderText.string("The book does not exist.")) }
-        guard (0..<candidate.books[index].pageCount).contains(page) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
-        candidate.books[index].currentPage = page; candidate.books[index].lastReadAt = Date()
+        guard (0..<candidate.books[index].pageCount).contains(page), offset.isFinite, (0...1).contains(offset) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
+        candidate.books[index].currentPage = page; candidate.books[index].webtoonOffset = offset
+        if recordHistory { candidate.books[index].lastReadAt = Date() }
         if page == candidate.books[index].pageCount - 1 { candidate.books[index].completed = true }
         try commit(candidate)
     }
@@ -465,7 +610,7 @@ public actor LibraryStore {
     }
 
     public func addReadingTime(id: UUID, duration: TimeInterval) throws {
-        guard duration > 0 else { return }
+        guard duration.isFinite, duration > 0, duration <= 3600 else { return }
         var candidate = state
         guard let index = candidate.books.firstIndex(where: { $0.id == id }) else { return }
         candidate.books[index].totalReadingTime += duration

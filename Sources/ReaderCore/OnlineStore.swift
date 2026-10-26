@@ -5,17 +5,23 @@ public actor OnlineStore {
     public let root: URL
     private let metadata: URL
     private var state: OnlineState
-    public init(root: URL) throws {
+    private let diskSpaceProvider: (@Sendable () throws -> Int64)?
+    public init(root: URL, diskSpaceProvider: (@Sendable () throws -> Int64)? = nil) throws {
+        self.diskSpaceProvider = diskSpaceProvider
         self.root = root; metadata = root.appendingPathComponent("online.json")
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         if FileManager.default.fileExists(atPath: metadata.path) {
             var restored = try JSONDecoder().decode(OnlineState.self, from: LibraryStore.readBounded(metadata, maximum: 64 * 1024 * 1024))
             try restored.validate()
-            for index in restored.downloads.indices where restored.downloads[index].phase == .downloading || restored.downloads[index].phase == .queued {
-                restored.downloads[index].phase = .paused
+            for index in restored.downloads.indices where restored.downloads[index].phase == .downloading {
+                restored.downloads[index].phase = .queued
             }
+            try Self.recoverDownloadRemovals(root: root, downloads: restored.downloads)
             state = restored
-        } else { state = OnlineState() }
+        } else {
+            try Self.recoverDownloadRemovals(root: root, downloads: [])
+            state = OnlineState()
+        }
     }
     public func snapshot() -> OnlineState { state }
     private func commit(_ candidate: OnlineState) throws {
@@ -80,7 +86,7 @@ public actor OnlineStore {
             for ch in candidate.series[i].chapters {
                 var p = candidate.series[i].progress[ch.id] ?? ChapterProgress()
                 p.read = completed
-                if !completed { p.page = 0 }
+                if !completed { p.page = 0; p.webtoonOffset = 0 }
                 candidate.series[i].progress[ch.id] = p
             }
             if completed { candidate.series[i].newChapterIDs.removeAll() }
@@ -111,12 +117,14 @@ public actor OnlineStore {
         candidate.series[index].checkedAt = now
         try commit(candidate)
     }
-    public func progress(seriesID: String, chapterID: String, page: Int, count: Int) throws {
-        guard (1...4096).contains(count), (0..<count).contains(page) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
+    public func progress(seriesID: String, chapterID: String, page: Int, count: Int, offset: Double = 0, recordHistory: Bool = true) throws {
+        guard (1...4096).contains(count), (0..<count).contains(page), offset.isFinite, (0...1).contains(offset) else { throw ReaderFailure(ReaderText.string("Invalid page number.")) }
         var candidate = state; let i = try seriesIndex(seriesID, in: candidate)
         guard candidate.series[i].chapters.contains(where: { $0.id == chapterID }) else { throw ReaderFailure(ReaderText.string("The chapter does not exist.")) }
         var p = candidate.series[i].progress[chapterID] ?? ChapterProgress()
-        p.page = page; p.pageCount = count; p.lastReadAt = Date(); p.read = p.read || page == count - 1
+        p.page = page; p.webtoonOffset = offset; p.pageCount = count
+        if recordHistory { p.lastReadAt = Date() }
+        p.read = p.read || page == count - 1
         p.bookmarks = p.bookmarks.filter { $0 < count }
         candidate.series[i].progress[chapterID] = p
         candidate.series[i].newChapterIDs.remove(chapterID)
@@ -128,7 +136,7 @@ public actor OnlineStore {
         for id in chapterIDs where ids.contains(id) {
             var progress = candidate.series[i].progress[id] ?? ChapterProgress()
             progress.read = read
-            if !read { progress.page = 0 }
+            if !read { progress.page = 0; progress.webtoonOffset = 0 }
             candidate.series[i].progress[id] = progress
             if read { candidate.series[i].newChapterIDs.remove(id) }
         }
@@ -199,35 +207,173 @@ public actor OnlineStore {
     public func cachedImage(chapterID: String, index: Int) throws -> Data? {
         let url = try pageURL(chapterID: chapterID, index: index)
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
+        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        guard values.isRegularFile == true, values.isSymbolicLink != true,
+              (1...32 * 1024 * 1024).contains(values.fileSize ?? 0) else {
+            throw ReaderFailure(ReaderText.string("Invalid page file."))
+        }
         return try LibraryStore.readBounded(url, maximum: 32 * 1024 * 1024)
     }
     public func saveImage(_ data: Data, chapterID: String, index: Int) throws {
         guard !data.isEmpty, data.count <= 32 * 1024 * 1024, let pages = try cachedPages(chapterID: chapterID),
               pages.urls.indices.contains(index) else { throw ReaderFailure(ReaderText.string("Invalid page file.")) }
+        try requireDownloadSpace(for: data.count)
         try data.write(to: pageURL(chapterID: chapterID, index: index), options: .atomic)
     }
-    public func enqueue(_ chapters: [MangaChapter]) throws {
+    public func enqueue(_ chapters: [MangaChapter], now: Date = Date()) throws {
         var candidate = state
         for chapter in chapters {
             if let i = candidate.downloads.firstIndex(where: { $0.id == chapter.id }) {
+                guard candidate.downloads[i].chapter.seriesID == chapter.seriesID else {
+                    throw ReaderFailure(ReaderText.string("A chapter belongs to a different title."))
+                }
                 if candidate.downloads[i].phase == .complete || candidate.downloads[i].phase == .downloading { continue }
-                candidate.downloads[i].phase = .queued; candidate.downloads[i].failure = nil
+                candidate.downloads[i].phase = (candidate.downloads[i].nextRetryAt ?? .distantPast) > now ? .retrying : .queued
+                candidate.downloads[i].chapter = chapter
+                candidate.downloads[i].failure = nil; candidate.downloads[i].retryCount = 0
             } else { candidate.downloads.append(ChapterDownload(chapter: chapter)) }
         }
         try commit(candidate)
     }
-    public func updateDownload(id: String, phase: DownloadPhase, finished: Int, total: Int, failure: String? = nil) throws {
+    public func updateDownload(id: String, phase: DownloadPhase, finished: Int, total: Int, failure: String? = nil,
+                               retryCount: Int = 0, nextRetryAt: Date? = nil, downloadedBytes: Int64? = nil) throws {
+        guard (0...100).contains(retryCount), downloadedBytes.map({ $0 >= 0 }) ?? true,
+              nextRetryAt.map({ $0.timeIntervalSinceReferenceDate.isFinite }) ?? true else {
+            throw ReaderFailure(ReaderText.string("Invalid download data."))
+        }
         var candidate = state
         guard let index = candidate.downloads.firstIndex(where: { $0.id == id }) else { return }
         candidate.downloads[index].phase = phase; candidate.downloads[index].finishedPages = finished
         candidate.downloads[index].totalPages = total; candidate.downloads[index].failure = failure
+        candidate.downloads[index].retryCount = retryCount
+        candidate.downloads[index].completedAt = phase == .complete ? (candidate.downloads[index].completedAt ?? Date()) : nil
+        // Manual pause/cancel must not bypass a server's Retry-After when resumed.
+        if phase != .paused && phase != .cancelled { candidate.downloads[index].nextRetryAt = nextRetryAt }
+        if let downloadedBytes { candidate.downloads[index].downloadedBytes = downloadedBytes }
         try commit(candidate)
     }
-    public func deleteDownload(id: String) throws {
-        // Caller cancels and joins the worker before deleting its files.
-        var candidate = state; candidate.downloads.removeAll { $0.id == id }
-        let dir = try directory(id)
-        if FileManager.default.fileExists(atPath: dir.path) { try FileManager.default.removeItem(at: dir) }
+    /// Reconcile atomic files after a crash, including a page committed before its counter was saved.
+    public func reconcileDownloads() throws {
+        var candidate = state
+        for index in candidate.downloads.indices {
+            let id = candidate.downloads[index].id
+            let cache: PageCacheState
+            do { cache = try cachedPageState(chapterID: id) }
+            catch {
+                candidate.downloads[index].phase = .failed
+                candidate.downloads[index].finishedPages = 0; candidate.downloads[index].totalPages = 0
+                candidate.downloads[index].downloadedBytes = 0; candidate.downloads[index].completedAt = nil
+                candidate.downloads[index].nextRetryAt = nil
+                candidate.downloads[index].failure = ReaderText.string("The cached chapter data could not be read. Delete its download and try again.")
+                continue
+            }
+            candidate.downloads[index].finishedPages = cache.indices.count
+            candidate.downloads[index].totalPages = cache.totalPages
+            candidate.downloads[index].downloadedBytes = cache.bytes
+            if cache.totalPages > 0 && cache.indices.count == cache.totalPages {
+                candidate.downloads[index].phase = .complete
+                candidate.downloads[index].failure = nil; candidate.downloads[index].nextRetryAt = nil
+                candidate.downloads[index].completedAt = candidate.downloads[index].completedAt ?? cache.lastModifiedAt
+            } else if candidate.downloads[index].phase == .complete || candidate.downloads[index].phase == .downloading {
+                candidate.downloads[index].phase = .queued
+                candidate.downloads[index].completedAt = nil
+            }
+        }
+        try commit(candidate)
+    }
+    public struct PageCacheState: Sendable {
+        public let indices: Set<Int>
+        public let totalPages: Int
+        public let bytes: Int64
+        public let lastModifiedAt: Date?
+    }
+    public func cachedPageState(chapterID: String) throws -> PageCacheState {
+        guard let pages = try cachedPages(chapterID: chapterID) else { return PageCacheState(indices: [], totalPages: 0, bytes: 0, lastModifiedAt: nil) }
+        var indices = Set<Int>(), bytes: Int64 = 0
+        var lastModifiedAt: Date?
+        for index in pages.urls.indices {
+            let url = try pageURL(chapterID: chapterID, index: index)
+            guard FileManager.default.fileExists(atPath: url.path) else { continue }
+            let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey, .contentModificationDateKey])
+            if values.isRegularFile == true, values.isSymbolicLink != true,
+               (1...32 * 1024 * 1024).contains(values.fileSize ?? 0) {
+                indices.insert(index); bytes += Int64(values.fileSize ?? 0)
+                if let modified = values.contentModificationDate { lastModifiedAt = max(lastModifiedAt ?? .distantPast, modified) }
+            } else {
+                // Invalid/partial files cannot count toward an offline chapter.
+                try FileManager.default.removeItem(at: url)
+            }
+        }
+        return PageCacheState(indices: indices, totalPages: pages.urls.count, bytes: bytes, lastModifiedAt: lastModifiedAt)
+    }
+    public func availableDiskBytes() throws -> Int64 {
+        if let diskSpaceProvider { return try diskSpaceProvider() }
+        let attributes = try FileManager.default.attributesOfFileSystem(forPath: root.path)
+        return (attributes[.systemFreeSize] as? NSNumber)?.int64Value ?? 0
+    }
+    public func requireDownloadSpace(for bytes: Int) throws {
+        guard bytes >= 0, try availableDiskBytes() >= Int64(bytes) + 64 * 1024 * 1024 else {
+            throw ReaderFailure(ReaderText.string("Not enough free storage to save this chapter. Free some space and retry."))
+        }
+    }
+    public func deleteDownload(id: String) throws { try deleteDownloads(ids: [id]) }
+    public func deleteDownloads(ids: [String]) throws {
+        // Callers cancel and join only the selected workers before removing their files.
+        let ids = Set(ids)
+        var candidate = state; candidate.downloads.removeAll { ids.contains($0.id) }
+        let trash = root.appendingPathComponent("DownloadRemoval-" + UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: trash, withIntermediateDirectories: true)
+        var moved: [(URL, URL)] = []
+        do {
+            let plan = Dictionary(uniqueKeysWithValues: ids.map { ($0, UUID().uuidString) })
+            let manifest = try JSONEncoder().encode(plan)
+            guard manifest.count <= 8 * 1024 * 1024 else { throw ReaderFailure(ReaderText.string("Invalid download data.")) }
+            try manifest.write(to: trash.appendingPathComponent("removal.json"), options: .atomic)
+            for id in ids.sorted() {
+                let directory = try directory(id)
+                if FileManager.default.fileExists(atPath: directory.path), let name = plan[id] {
+                    let parked = trash.appendingPathComponent(name, isDirectory: true)
+                    try FileManager.default.moveItem(at: directory, to: parked); moved.append((directory, parked))
+                }
+            }
+            try commit(candidate)
+        } catch {
+            for (original, parked) in moved.reversed() { try? FileManager.default.moveItem(at: parked, to: original) }
+            try? FileManager.default.removeItem(at: trash)
+            throw error
+        }
+        try FileManager.default.removeItem(at: trash)
+    }
+    /// A crash before the metadata commit restores parked files; after commit it finishes deletion.
+    private static func recoverDownloadRemovals(root: URL, downloads: [ChapterDownload]) throws {
+        let ids = Set(downloads.map(\.id))
+        let folders = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        for folder in folders where folder.lastPathComponent.hasPrefix("DownloadRemoval-") {
+            let values = try folder.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            guard values.isDirectory == true, values.isSymbolicLink != true else { continue }
+            let manifest = folder.appendingPathComponent("removal.json")
+            if FileManager.default.fileExists(atPath: manifest.path) {
+                let plan = try JSONDecoder().decode([String: String].self, from: LibraryStore.readBounded(manifest, maximum: 8 * 1024 * 1024))
+                for (id, name) in plan where ids.contains(id) {
+                    guard UUID(uuidString: name) != nil, !id.isEmpty, id.count <= 256 else {
+                        throw ReaderFailure(ReaderText.string("Invalid download data."))
+                    }
+                    let parked = folder.appendingPathComponent(name, isDirectory: true)
+                    let name = UUID(uuidString: id)?.uuidString ?? ("sha256-" + SHA256.hash(data: Data(id.utf8)).map { String(format: "%02x", $0) }.joined())
+                    let original = root.appendingPathComponent("Pages", isDirectory: true).appendingPathComponent(name, isDirectory: true)
+                    if FileManager.default.fileExists(atPath: parked.path), !FileManager.default.fileExists(atPath: original.path) {
+                        try FileManager.default.moveItem(at: parked, to: original)
+                    }
+                }
+            }
+            try FileManager.default.removeItem(at: folder)
+        }
+    }
+    public func addReadingTime(seriesID: String, duration: TimeInterval) throws {
+        guard duration.isFinite, duration > 0, duration <= 3600 else { return }
+        var candidate = state
+        guard let index = candidate.series.firstIndex(where: { $0.id == seriesID }) else { return }
+        candidate.series[index].totalReadingTime += duration
         try commit(candidate)
     }
     public func exportMetadata() throws -> Data { try JSONEncoder().encode(state) }
@@ -244,6 +390,7 @@ public actor OnlineStore {
                 if candidate.series[i].series.sourceLanguage == nil {
                     candidate.series[i].series.sourceLanguage = item.series.sourceLanguage
                 }
+                candidate.series[i].totalReadingTime = max(candidate.series[i].totalReadingTime, item.totalReadingTime)
                 candidate.series[i].categories.formUnion(item.categories)
                 for (id, progress) in item.progress {
                     let current = candidate.series[i].progress[id]

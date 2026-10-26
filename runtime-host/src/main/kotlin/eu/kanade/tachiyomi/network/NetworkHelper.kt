@@ -22,9 +22,10 @@ class NetworkHelper(context: Context) : AutoCloseable {
             contextClassLoader = NetworkHelper::class.java.classLoader
         }
     }
+    private val cookies = MemoryCookieJar()
     private val baseClient = OkHttpClient.Builder()
         .dispatcher(Dispatcher(executor))
-        .cookieJar(MemoryCookieJar())
+        .cookieJar(cookies)
         .cache(Cache(context.cacheDir.resolve("http"), 50L * 1024 * 1024))
         .connectTimeout(30, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS)
         .writeTimeout(60, TimeUnit.SECONDS).callTimeout(65, TimeUnit.SECONDS)
@@ -39,6 +40,9 @@ class NetworkHelper(context: Context) : AutoCloseable {
         if (loader == null || loader === NetworkHelper::class.java.classLoader) return baseClient
         return baseClient.newBuilder().apply { interceptors().add(0, PackageContextInterceptor(loader)) }.build()
     }
+
+    fun clearCookies() { cookies.clear() }
+    fun clearCaches() { baseClient.cache?.evictAll() }
 
     override fun close() {
         try {
@@ -88,6 +92,7 @@ private class CloudflareInterceptor : Interceptor {
 internal class MemoryCookieJar : CookieJar {
     private data class Key(val name: String, val domain: String, val path: String)
     private val cookies = LinkedHashMap<Key, Cookie>()
+    @Synchronized fun clear() { cookies.clear() }
     @Synchronized override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
         val now = System.currentTimeMillis()
         this.cookies.entries.removeIf { it.value.expiresAt <= now }

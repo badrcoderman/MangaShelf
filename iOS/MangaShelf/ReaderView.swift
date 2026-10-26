@@ -1,12 +1,15 @@
 import SwiftUI
 import UIKit
 import ImageIO
+import Vision
 import ReaderCore
 
 enum ImageDecoder {
     static func thumbnail(_ data: Data, maximumDimension: Int) throws -> UIImage {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil),
-              let info = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
+            throw ReaderFailure(L10n.string("This image format is unavailable or the image is damaged."))
+        }
+        guard let info = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
               let width = info[kCGImagePropertyPixelWidth] as? NSNumber,
               let height = info[kCGImagePropertyPixelHeight] as? NSNumber,
               width.doubleValue > 0, height.doubleValue > 0,
@@ -22,6 +25,24 @@ enum ImageDecoder {
         }
         return UIImage(cgImage: image)
     }
+    /// Preserve useful width on long strips while bounding the decoded raster to sixteen million pixels.
+    static func page(_ data: Data) throws -> UIImage {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil),
+              let info = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+              let width = info[kCGImagePropertyPixelWidth] as? NSNumber,
+              let height = info[kCGImagePropertyPixelHeight] as? NSNumber,
+              width.doubleValue > 0, height.doubleValue > 0 else {
+            throw ReaderFailure(L10n.string("This image format is unavailable or the image is damaged."))
+        }
+        let w = width.doubleValue, h = height.doubleValue
+        guard w.isFinite, h.isFinite, w * h <= 200_000_000 else {
+            throw ReaderFailure(L10n.string("The image is unsupported or exceeds the dimension limit."))
+        }
+        let factor = min(1, 2048 / w, sqrt(16_000_000 / (w * h)))
+        let dimension = Int(min(32768, max(1, max(w, h) * factor)))
+        return try thumbnail(data, maximumDimension: dimension)
+    }
+
 }
 
 actor CoverService {
@@ -49,20 +70,20 @@ actor ComicSession {
         pages = try ComicArchive.pages(in: data)
         cache.countLimit = 4; cache.totalCostLimit = 96 * 1024 * 1024
     }
+    func pageData(at page: Int) throws -> Data {
+        try Task.checkCancellation()
+        guard pages.indices.contains(page) else { throw ReaderFailure(L10n.string("The page does not exist.")) }
+        return try ComicArchive.extract(pages[page], from: data)
+    }
     func image(at page: Int) throws -> UIImage {
         try Task.checkCancellation()
         guard pages.indices.contains(page) else { throw ReaderFailure(L10n.string("The page does not exist.")) }
         if let cached = cache.object(forKey: NSNumber(value: page)) { return cached }
         let bytes = try ComicArchive.extract(pages[page], from: data)
-        let image = try ImageDecoder.thumbnail(bytes, maximumDimension: 4096)
+        let image = try ImageDecoder.page(bytes)
         cache.setObject(image, forKey: NSNumber(value: page), cost: Int(image.size.width * image.size.height * 4))
         return image
     }
-}
-
-private struct PageFrames: PreferenceKey {
-    static var defaultValue: [Int: CGRect] = [:]
-    static func reduce(value: inout [Int: CGRect], nextValue: () -> [Int: CGRect]) { value.merge(nextValue(), uniquingKeysWith: { _, latest in latest }) }
 }
 
 struct ReaderView: View {
@@ -75,244 +96,168 @@ struct ReaderView: View {
     @State private var session: ComicSession?
     @State private var pageCount = 0
     @State private var page = 0
-    @State private var image: UIImage?
+    @State private var initialOffset = 0.0
+    @State private var position: ReaderResumePosition?
+    @State private var jumpID = 0
     @State private var failure: String?
     @State private var controls = true
     @State private var settingsOpen = false
-    @AppStorage("reader.dim") private var dim = 0.0
-    @AppStorage("reader.spacing") private var spacing = 0.0
+    @State private var autoScrolling = false
     @State private var previousIdleSetting = false
-    @State private var zoomed = false
-    @State private var displayedPages = Set<Int>()
+    @State private var previewImage: UIImage?
+    @State private var bookmarksOpen = false
+    @State private var extracting = false
+    @State private var recognized = ""
+    @State private var textOpen = false
     private var titleKey: String { "local:" + bookID.uuidString }
     private var settings: ReaderSettings { model.state.readerSettings(for: titleKey) }
     private var bookmark: Bool { model.book(bookID)?.bookmarks.contains(page) ?? false }
+    private var suspended: Bool { phase != .active || settingsOpen || textOpen || bookmarksOpen }
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color(settings.background.uiColor).ignoresSafeArea()
             if let failure {
-                ContentUnavailableView(L10n.string("Could not display the page"), systemImage: "exclamationmark.triangle", description: Text(failure)).foregroundStyle(.white)
-                    .onTapGesture { controls.toggle() }
+                ContentUnavailableView(L10n.string("Could not display the page"), systemImage: "exclamationmark.triangle", description: Text(failure))
+                    .foregroundStyle(.white).onTapGesture { controls.toggle() }
             } else if let session, pageCount > 0 {
-                if settings.mode == .webtoon {
-                    webtoon(session)
-                } else if let image {
-                    ZoomableImage(image: image, zoomed: $zoomed, scale: settings.pageScale) { fraction in
-                        let step = zoomed ? 0 : settings.pageStep(forTapFraction: fraction)
-                        if step == 0 { controls.toggle() } else { advance(step) }
-                    }
-                        .simultaneousGesture(DragGesture(minimumDistance: 50).onEnded { value in
-                            guard !zoomed, abs(value.translation.width) > abs(value.translation.height) * 1.4 else { return }
-                            let next = settings.direction == .rightToLeft ? value.translation.width > 0 : value.translation.width < 0
-                            advance(next ? 1 : -1)
-                        })
-                        .ignoresSafeArea(edges: [.top, .bottom])
-                } else {
-                    Color.clear.contentShape(Rectangle()).overlay { ProgressView().tint(.white) }
-                        .onTapGesture { controls.toggle() }
-                }
-            } else { ProgressView(L10n.string("Opening book…")).tint(.white).foregroundStyle(.white) }
-
-            Color.black.opacity(min(0.75, max(0, dim))).allowsHitTesting(false).ignoresSafeArea()
+                ReaderCanvas(contentID: titleKey, pageCount: pageCount, page: page, initialOffset: initialOffset,
+                             jumpID: jumpID, settings: settings, autoScrolling: autoScrolling, suspended: suspended,
+                             load: { try await session.image(at: $0) },
+                             onPosition: { value in page = value.page; position = value },
+                             onNavigate: jump,
+                             onControls: { autoScrolling = false; controls.toggle() },
+                             onTouch: { autoScrolling = false }, onPreview: { previewImage = $0 })
+                    .ignoresSafeArea()
+            } else { ProgressView(L10n.string("Opening book…")).tint(ShelfStyle.accent) }
+            Color.black.opacity(min(0.75, max(0, settings.dimming))).allowsHitTesting(false).ignoresSafeArea()
             if controls {
-                VStack(spacing: 0) {
-                    HStack {
-                        TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
-                        Spacer()
-                        Text(model.book(bookID)?.title ?? L10n.string("Reader")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
-                        Spacer()
-                        ShelfIconButton(L10n.string("Reader settings"), symbol: "slider.horizontal.3") { settingsOpen = true }
-                        TachiButton(bookmark ? L10n.string("Remove bookmark") : L10n.string("Add bookmark"), systemImage: bookmark ? "bookmark.fill" : "bookmark") {
-                            Task { await model.perform { try await $0.toggleBookmark(id: bookID, page: page) } }
-                        }.labelStyle(.iconOnly).disabled(model.busy || pageCount == 0)
-                    }.padding().background(ShelfStyle.header.opacity(0.96))
-                    Spacer()
-                    if pageCount > 0, settings.mode == .paged {
-                        VStack(spacing: 14) {
-                            HStack {
-                                TachiButton(L10n.string("Previous"), systemImage: "backward.end") { advance(-1) }.disabled(page == 0)
-                                Spacer()
-                                Text("\(page + 1) / \(pageCount)").monospacedDigit()
-                                Spacer()
-                                TachiButton(L10n.string("Next"), systemImage: "forward.end") { advance(1) }.disabled(page == pageCount - 1)
-                            }
-                            if pageCount > 1 {
-                                Slider(value: Binding(get: { Double(page) }, set: { page = Int($0) }), in: 0...Double(pageCount-1), step: 1)
-                                    .accessibilityLabel(L10n.string("Go to page"))
-                            }
-                        }.padding().background(ShelfStyle.header.opacity(0.96))
-                    }
-                }.tint(ShelfStyle.accent).foregroundStyle(ShelfStyle.text)
-            }
-            if settings.showPageNumber, !controls || settings.mode == .webtoon, pageCount > 0 {
-                VStack { Spacer(); Text("\(page + 1) / \(pageCount)").font(.caption.monospacedDigit()).padding(7).background(ShelfStyle.header.opacity(0.96), in: Capsule()) }
-                    .padding(.bottom, 10).allowsHitTesting(false)
-            }
+                ReaderChrome(title: model.book(bookID)?.title ?? L10n.string("Reader"), page: page, pageCount: pageCount,
+                             direction: settings.direction, onClose: { dismiss() }, onJump: jump) {
+                    tool("Reader settings", symbol: "gearshape.fill") { settingsOpen = true }
+                    tool("Rotation", symbol: "rotate.right") { cycleRotation() }
+                    if settings.mode == .webtoon {
+                        tool(autoScrolling ? "Pause auto scroll" : "Start auto scroll", symbol: autoScrolling ? "pause.fill" : "play.fill") {
+                            autoScrolling.toggle(); if autoScrolling { controls = false }
+                        }
+                    } else { tool("Reading mode", symbol: "arrow.down") { changeMode() } }
+                    tool(bookmark ? "Remove bookmark" : "Add bookmark", symbol: bookmark ? "bookmark.fill" : "bookmark") {
+                        Task { await model.perform { try await $0.toggleBookmark(id: bookID, page: page) } }
+                    }.disabled(position?.page != page || model.busy)
+                    tool("Bookmarks", symbol: "bookmark.square") { bookmarksOpen = true }
+                    tool("Extract text", symbol: extracting ? "hourglass" : "text.viewfinder") { Task { await extractText() } }
+                        .disabled(extracting || position?.page != page)
+                }
+            } else if settings.showPageNumber, pageCount > 0 { ReaderPageBadge(page: page, count: pageCount) }
         }
-        .preferredColorScheme(.dark)
-        .statusBarHidden(!controls)
+        .modifier(ReaderActivityModifier(active: !suspended && position != nil) { duration in
+            await model.addReadingTime(id: bookID, duration: duration)
+        })
+        .background(ReaderOrientationHost(rotation: settings.rotation).frame(width: 0, height: 0))
+        .preferredColorScheme(.dark).statusBarHidden(!controls || !settings.showStatusBar)
         .sheet(isPresented: $settingsOpen) {
-            NavigationStack { ReaderPreferencesView(titleKey: titleKey) }.tachiSheet()
+            NavigationStack { ReaderPreferencesView(titleKey: titleKey, previewImage: previewImage, autoScrolling: $autoScrolling) }.tachiSheet()
         }
+        .sheet(isPresented: $bookmarksOpen) {
+            NavigationStack {
+                TachiSettingsPage(title: L10n.string("Bookmarks")) {
+                    if let book = model.book(bookID), !book.bookmarks.isEmpty {
+                        ForEach(book.bookmarks.sorted(), id: \.self) { index in
+                            Button { jump(index); bookmarksOpen = false } label: {
+                                TachiRowLabel(title: L10n.format("Page %@", String(index + 1)), symbol: "bookmark.fill").padding(.horizontal, 18)
+                            }
+                        }
+                    } else { Text(L10n.string("No bookmarks yet.")).padding(18) }
+                }
+            }.tachiSheet()
+        }
+        .sheet(isPresented: $textOpen) { ReaderExtractedTextView(text: recognized) }
         .task {
+            await ReaderDisplaySettingsMigration.apply(to: model)
             previousIdleSetting = UIApplication.shared.isIdleTimerDisabled
             UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake
             guard let book = model.book(bookID) else { failure = L10n.string("The book does not exist."); return }
             do {
                 let url = try await model.url(for: book)
                 let opened = try await Task.detached(priority: .userInitiated) { try ComicSession(url: url) }.value
-                let pages = opened.pages
-                guard pages.count == book.pageCount else { throw ReaderFailure(L10n.string("The book file has changed; old progress cannot be applied.")) }
-                pageCount = pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount-1)
-                session = opened
-                if settings.mode == .paged { await loadPage() }
+                try Task.checkCancellation()
+                guard opened.pages.count == book.pageCount else { throw ReaderFailure(L10n.string("The book file has changed; old progress cannot be applied.")) }
+                pageCount = opened.pages.count; page = min(max(0, startPage ?? book.currentPage), pageCount - 1)
+                initialOffset = startPage == nil ? book.webtoonOffset : 0
+                session = opened; autoScrolling = settings.autoScroll && settings.mode == .webtoon
             } catch is CancellationError { } catch { failure = AppError.describe(error) }
         }
-        .task(id: page) {
-            guard session != nil else { return }
-            do { try await Task.sleep(nanoseconds: 180_000_000); try Task.checkCancellation() }
-            catch { return }
-            if settings.mode == .paged { await loadPage() }
-            else if displayedPages.contains(page) { await model.progress(id: bookID, page: page) }
+        .task {
+            var lastSaved: ReaderResumePosition?
+            while !Task.isCancelled {
+                do { try await Task.sleep(nanoseconds: 800_000_000); try Task.checkCancellation() } catch { return }
+                if let position, position != lastSaved {
+                    await model.progress(id: bookID, page: position.page, offset: position.offset); lastSaved = position
+                }
+            }
         }
         .onChange(of: phase) { _, value in
+            if value != .active { autoScrolling = false; persistPosition() }
             UIApplication.shared.isIdleTimerDisabled = value == .active && settings.keepScreenAwake
         }
-        .onChange(of: settings.keepScreenAwake) { _, value in
-            UIApplication.shared.isIdleTimerDisabled = phase == .active && value
-        }
-        .task(id: settings.mode) {
-            if session != nil, settings.mode == .paged { await loadPage() }
-        }
-        .onDisappear {
-            UIApplication.shared.isIdleTimerDisabled = previousIdleSetting
-            if pageCount > 0, failure == nil, displayedPages.contains(page) {
-                let finalPage = page
-                Task { await model.progress(id: bookID, page: finalPage) }
-            }
-        }
+        .onChange(of: settings.keepScreenAwake) { _, value in UIApplication.shared.isIdleTimerDisabled = phase == .active && value }
+        .onChange(of: settings.mode) { _, _ in autoScrolling = false }
+        .onChange(of: settingsOpen) { _, value in if value { autoScrolling = false } }
+        .onChange(of: bookmarksOpen) { _, value in if value { autoScrolling = false } }
+        .onChange(of: textOpen) { _, value in if value { autoScrolling = false } }
+        .onDisappear { autoScrolling = false; UIApplication.shared.isIdleTimerDisabled = previousIdleSetting; persistPosition() }
     }
-    private func advance(_ delta: Int) { page = min(max(0, page + delta), max(0, pageCount - 1)); failure = nil }
-    @MainActor private func loadPage() async {
+    private func tool(_ title: String, symbol: String, action: @escaping () -> Void) -> some View {
+        TachiButton(L10n.string(title), systemImage: symbol, action: action).labelStyle(.iconOnly).frame(maxWidth: .infinity, minHeight: 44)
+    }
+    private func jump(_ index: Int) { autoScrolling = false; page = min(max(0, index), max(0, pageCount - 1)); jumpID += 1 }
+    private func persistPosition() {
+        guard let position else { return }
+        Task { await model.progress(id: bookID, page: position.page, offset: position.offset) }
+    }
+    private func changeMode() {
+        Task { await model.changeReaderSettings(for: titleKey) { $0.mode = $0.mode == .paged ? .webtoon : .paged } }
+    }
+    private func cycleRotation() {
+        Task { await model.changeReaderSettings(for: titleKey) { changed in
+            changed.rotation = changed.rotation == .device ? .landscape : changed.rotation == .landscape ? .portrait : .device
+        } }
+    }
+    @MainActor private func extractText() async {
         guard let session else { return }
-        let requested = page
-        do {
-            let result = try await session.image(at: requested)
-            try Task.checkCancellation()
-            guard requested == page else { return }
-            image = result; failure = nil
-            displayedPages.insert(requested)
-            await model.progress(id: bookID, page: requested)
-        } catch is CancellationError { return }
-        catch { if requested == page { failure = AppError.describe(error) } }
-    }
-    private func webtoon(_ session: ComicSession) -> some View {
-        GeometryReader { viewport in
-            ScrollViewReader { proxy in
-                ScrollView {
-                    LazyVStack(spacing: min(24, max(0, spacing))) {
-                        ForEach(0..<pageCount, id: \.self) { index in
-                            WebtoonPage(session: session, index: index, onReady: { _ = displayedPages.insert(index) }).id(index)
-                        }
-                    }
-                }.coordinateSpace(name: "readerScroll")
-                    .onTapGesture { controls.toggle() }
-                    .onAppear { proxy.scrollTo(page, anchor: .top) }
-                    .onPreferenceChange(PageFrames.self) { frames in
-                        let center = viewport.size.height / 2
-                        let visible = frames.filter { $0.value.maxY > 0 && $0.value.minY < viewport.size.height }
-                        let focused = visible.first { $0.value.minY <= center && $0.value.maxY >= center }
-                            ?? visible.min { abs($0.value.midY-center) < abs($1.value.midY-center) }
-                        if let focused { page = focused.key }
-                    }
-            }
-        }
+        autoScrolling = false; extracting = true; defer { extracting = false }
+        do { recognized = try await ReaderOCR.recognize(try await session.pageData(at: page)); textOpen = true }
+        catch { model.errorMessage = AppError.describe(error) }
     }
 }
 
-private struct WebtoonPage: View {
-    @Environment(\.locale) private var interfaceLocale
-    let session: ComicSession
-    let index: Int
-    let onReady: () -> Void
-    @State private var image: UIImage?
-    @State private var error: String?
+enum ReaderOCR {
+    static func recognize(_ data: Data) async throws -> String {
+        let result = try await Task.detached(priority: .userInitiated) {
+            let request = VNRecognizeTextRequest(); request.recognitionLevel = .accurate
+            request.usesLanguageCorrection = true; request.automaticallyDetectsLanguage = true
+            try VNImageRequestHandler(data: data).perform([request])
+            return (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }.joined(separator: "\n")
+        }.value
+        return result.isEmpty ? L10n.string("No recognizable text was found on this page.") : result
+    }
+}
+
+struct ReaderExtractedTextView: View {
+    @Environment(\.dismiss) private var dismiss
+    let text: String
     var body: some View {
-        Group {
-            if let image {
-                Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity)
-                    .background(GeometryReader { geometry in
-                        Color.clear.preference(key: PageFrames.self, value: [index: geometry.frame(in: .named("readerScroll"))])
-                    })
-            } else if let error { Text(L10n.format("Page %@: %@", String(describing: index + 1), String(describing: error))).foregroundStyle(.white).padding().frame(minHeight: 180) }
-            else { ProgressView().tint(.white).frame(maxWidth: .infinity, minHeight: 300) }
-        }
-        .task {
-            do {
-                let result = try await session.image(at: index)
-                try Task.checkCancellation()
-                image = result; onReady()
-            } catch is CancellationError { } catch { self.error = AppError.describe(error) }
-        }
-        .onDisappear { image = nil }
+        NavigationStack {
+            ScrollView { Text(text).frame(maxWidth: .infinity, alignment: .leading).padding().textSelection(.enabled) }
+                .navigationTitle(L10n.string("Extracted text")).navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    Button(L10n.string("Copy")) { UIPasteboard.general.string = text }
+                    Button(L10n.string("Done")) { dismiss() }
+                }
+        }.tachiSheet()
     }
 }
 
-struct ZoomableImage: UIViewRepresentable {
-    let image: UIImage
-    @Binding var zoomed: Bool
-    var scale: PageScale = .fitPage
-    var onTap: ((Double) -> Void)? = nil
-    func makeUIView(context: Context) -> ZoomScrollView {
-        let view = ZoomScrollView(); view.delegate = context.coordinator
-        view.minimumZoomScale = 1; view.maximumZoomScale = 4
-        view.bouncesZoom = true; view.showsHorizontalScrollIndicator = false; view.showsVerticalScrollIndicator = false
-        view.imageView.contentMode = .scaleAspectFit; view.addSubview(view.imageView)
-        let single = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.singleTap(_:)))
-        let double = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.doubleTap(_:)))
-        double.numberOfTapsRequired = 2
-        single.require(toFail: double)
-        view.addGestureRecognizer(single); view.addGestureRecognizer(double)
-        return view
-    }
-    func updateUIView(_ view: ZoomScrollView, context: Context) {
-        context.coordinator.zoomed = $zoomed
-        context.coordinator.onTap = onTap
-        if view.imageView.image !== image || view.pageScale != scale {
-            view.setZoomScale(1, animated: false)
-            view.contentOffset = .zero
-            view.imageView.image = image; view.pageScale = scale; view.setNeedsLayout()
-        }
-    }
-    func makeCoordinator() -> Coordinator { Coordinator(zoomed: $zoomed) }
-    final class Coordinator: NSObject, UIScrollViewDelegate {
-        var zoomed: Binding<Bool>
-        var onTap: ((Double) -> Void)?
-        init(zoomed: Binding<Bool>) { self.zoomed = zoomed }
-        func viewForZooming(in scrollView: UIScrollView) -> UIView? { (scrollView as? ZoomScrollView)?.imageView }
-        func scrollViewDidZoom(_ scrollView: UIScrollView) {
-            (scrollView as? ZoomScrollView)?.centerImage()
-            let value = scrollView.zoomScale > 1.01
-            DispatchQueue.main.async { if self.zoomed.wrappedValue != value { self.zoomed.wrappedValue = value } }
-        }
-        @objc func singleTap(_ gesture: UITapGestureRecognizer) {
-            guard let view = gesture.view, view.bounds.width > 0 else { return }
-            let x = gesture.location(in: view).x - view.bounds.minX
-            onTap?(Double(x / view.bounds.width))
-        }
-        @objc func doubleTap(_ gesture: UITapGestureRecognizer) {
-            guard let view = gesture.view as? ZoomScrollView else { return }
-            if view.zoomScale > 1.01 { view.setZoomScale(1, animated: true) }
-            else {
-                let point = gesture.location(in: view.imageView)
-                let size = CGSize(width: view.bounds.width / 2.5, height: view.bounds.height / 2.5)
-                view.zoom(to: CGRect(x: point.x - size.width / 2, y: point.y - size.height / 2,
-                                     width: size.width, height: size.height), animated: true)
-            }
-        }
-    }
-}
 final class ZoomScrollView: UIScrollView {
     let imageView = UIImageView()
     var pageScale: PageScale = .fitPage

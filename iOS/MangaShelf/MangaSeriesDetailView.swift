@@ -207,6 +207,8 @@ struct SeriesDetailView: View {
     /// A recently refreshed title can reopen offline, including when returning
     /// from its reader. Manual refresh always bypasses this short cache window.
     private var needsAutomaticRefresh: Bool {
+        if UserDefaults.standard.object(forKey: "library.autoRefreshTitle") as? Bool == false,
+           let saved, !saved.chapters.isEmpty { return false }
         guard let saved, let checkedAt = saved.checkedAt,
               !saved.chapters.isEmpty, item == saved.series else { return true }
         if item.sourceID == "mangadex", !language.isEmpty,
@@ -312,7 +314,7 @@ struct SeriesDetailView: View {
                     Text(chapter.localizedTitle).shelfFont(.body)
                         .foregroundStyle(saved?.progress[chapter.id]?.read == true ? ShelfStyle.secondary : ShelfStyle.text)
                     HStack {
-                        if let date = chapter.publishedAt { Text(date, style: .date) }
+                        if let date = chapter.publishedAt { Text(InterfaceDate.text(date)) }
                         if !chapter.group.isEmpty { Text(chapter.group).lineLimit(1) }
                     }.shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
                 }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 12).contentShape(Rectangle())

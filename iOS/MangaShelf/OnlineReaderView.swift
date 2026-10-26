@@ -1,11 +1,5 @@
 import SwiftUI
-import Vision
 import ReaderCore
-
-private struct OnlinePageFrames: PreferenceKey {
-    static var defaultValue: [Int: CGRect] = [:]
-    static func reduce(value: inout [Int: CGRect], nextValue: () -> [Int: CGRect]) { value.merge(nextValue(), uniquingKeysWith: { _, next in next }) }
-}
 
 struct OnlineReaderView: View {
     @Environment(\.locale) private var interfaceLocale
@@ -16,18 +10,21 @@ struct OnlineReaderView: View {
     @State private var chapter: MangaChapter
     @State private var pages: ChapterPages?
     @State private var page = 0
+    @State private var initialOffset = 0.0
+    @State private var position: ReaderResumePosition?
+    @State private var jumpID = 0
     @State private var controls = true
-    @State private var zoomed = false
     @State private var failure: String?
-    @State private var loaded = Set<Int>()
     @State private var previousIdle = false
     @State private var settingsOpen = false
+    @State private var bookmarksOpen = false
+    @State private var chapterListOpen = false
     @State private var extracting = false
     @State private var recognized = ""
     @State private var textOpen = false
     @State private var retry = 0
-    @AppStorage("reader.dim") private var dim = 0.0
-    @AppStorage("reader.spacing") private var spacing = 0.0
+    @State private var previewImage: UIImage?
+    @State private var autoScrolling = false
     init(chapter: MangaChapter) { _chapter = State(initialValue: chapter) }
     private var titleKey: String { "online:" + (saved?.series.sourceID ?? "unknown") + ":" + chapter.seriesID }
     private var settings: ReaderSettings { local.state.readerSettings(for: titleKey) }
@@ -38,194 +35,145 @@ struct OnlineReaderView: View {
         guard let i = siblings.firstIndex(where: { $0.id == chapter.id }), i > 0 else { return nil }
         return siblings[i - 1]
     }
+    private var sourceURL: URL? {
+        guard let value = chapter.externalURL ?? chapter.sourceURL, let url = URL(string: value),
+              ["https", "http"].contains(url.scheme?.lowercased() ?? "") else { return nil }
+        return url
+    }
+    private var suspended: Bool { phase != .active || settingsOpen || textOpen || bookmarksOpen || chapterListOpen }
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color(settings.background.uiColor).ignoresSafeArea()
             if let failure {
                 VStack(spacing: 20) {
                     ContentUnavailableView(L10n.string("Could not open the chapter"), systemImage: "wifi.exclamationmark", description: Text(failure))
                     Button(L10n.string("Retry")) { retry += 1 }
                 }.foregroundStyle(.white)
             } else if let pages {
-                if settings.mode == .webtoon { webtoon(pages) }
-                else {
-                    OnlinePage(chapter: chapter, pages: pages, index: page, paged: true, zoomed: $zoomed,
-                               scale: settings.pageScale, onTap: { fraction in
-                        let step = zoomed ? 0 : settings.pageStep(forTapFraction: fraction)
-                        if step == 0 { controls.toggle() } else { move(step) }
-                    }, onRevealControls: { controls.toggle() }) { index in
-                        loaded.insert(index)
-                        if index == page { saveProgress(index, count: pages.urls.count) }
-                    }.id(chapter.id + String(page))
-                        .simultaneousGesture(DragGesture(minimumDistance: 55).onEnded { value in
-                            guard !zoomed, abs(value.translation.width) > abs(value.translation.height) * 1.4 else { return }
-                            let forward = settings.direction == .rightToLeft ? value.translation.width > 0 : value.translation.width < 0
-                            move(forward ? 1 : -1)
-                        })
-                }
-            } else { ProgressView(L10n.string("Loading chapter pages…")).foregroundStyle(.white).tint(.white) }
-            Color.black.opacity(min(0.75, max(0, dim))).allowsHitTesting(false).ignoresSafeArea()
+                ReaderCanvas(contentID: chapter.id, pageCount: pages.urls.count, page: page, initialOffset: initialOffset,
+                             jumpID: jumpID, settings: settings, autoScrolling: autoScrolling, suspended: suspended,
+                             load: { index in
+                    let bytes = try await online.imageData(chapter: chapter, pages: pages, index: index)
+                    return try await Task.detached(priority: .userInitiated) { try ImageDecoder.page(bytes) }.value
+                }, onPosition: { value in page = value.page; position = value }, onNavigate: jump,
+                             onControls: { autoScrolling = false; controls.toggle() }, onTouch: { autoScrolling = false },
+                             onPreview: { previewImage = $0 }, pageAccessibilityPrefix: "online.reader.image")
+                    .ignoresSafeArea()
+            } else { ProgressView(L10n.string("Loading chapter pages…")).tint(ShelfStyle.accent) }
+            Color.black.opacity(min(0.75, max(0, settings.dimming))).allowsHitTesting(false).ignoresSafeArea()
             if controls {
-                VStack {
-                    HStack(spacing: 18) {
-                        TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
-                            .accessibilityIdentifier("online.reader.close")
-                        VStack(spacing: 3) {
-                            Text(saved?.series.title ?? L10n.string("Reader")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
-                            Text(chapter.localizedTitle).shelfFont(.caption).lineLimit(1).foregroundStyle(.secondary)
-                        }.frame(maxWidth: .infinity)
-                        TachiButton(L10n.string("Reader settings"), systemImage: "slider.horizontal.3") { settingsOpen = true }.labelStyle(.iconOnly)
-                    }.padding().background(ShelfStyle.header.opacity(0.96))
-                    Spacer()
-                    if let pages {
-                        VStack(spacing: 12) {
-                            HStack(spacing: 22) {
-                                TachiButton(L10n.string("Bookmark"), systemImage: bookmark ? "bookmark.fill" : "bookmark") {
-                                    Task { await online.mutate { try await $0.bookmark(seriesID: chapter.seriesID, chapterID: chapter.id, page: page) } }
-                                }.labelStyle(.iconOnly).disabled(!loaded.contains(page))
-                                TachiButton(L10n.string("Extract text"), systemImage: "text.viewfinder") { Task { await extractText(pages) } }
-                                    .labelStyle(.iconOnly).disabled(extracting || !loaded.contains(page))
-                                if extracting { ProgressView().controlSize(.small) }
-                                Spacer()
-                                Menu {
-                                    ForEach(Array((saved?.progress[chapter.id]?.bookmarks ?? []).sorted()), id: \.self) { index in
-                                        Button(L10n.format("Page %@", String(describing: index + 1))) { page = index }
-                                    }
-                                } label: { ShelfIcon(symbol: "bookmark.square") }.accessibilityLabel(L10n.string("Bookmarks"))
-                                TachiButton(L10n.string("Download chapter"), systemImage: "arrow.down.circle") { Task { await online.enqueue([chapter]) } }.labelStyle(.iconOnly)
-                            }
-                            HStack {
-                                TachiButton(L10n.string("Previous"), systemImage: "backward.end") { move(-1) }.disabled(page == 0)
-                                Spacer(); Text("\(page + 1) / \(pages.urls.count)").monospacedDigit(); Spacer()
-                                TachiButton(L10n.string("Next"), systemImage: "forward.end") { move(1) }.disabled(page >= pages.urls.count - 1)
-                            }
-                            if pages.urls.count > 1 {
-                                Slider(value: Binding(get: { Double(page) }, set: { page = Int($0) }), in: 0...Double(pages.urls.count - 1), step: 1)
-                                    .accessibilityLabel(L10n.string("Go to page"))
-                            }
-                            if let next, page == pages.urls.count - 1 {
-                                TachiButton(L10n.string("Next chapter"), systemImage: "play.fill") { chapter = next }.buttonStyle(.borderedProminent)
-                            }
-                        }.padding().background(ShelfStyle.header.opacity(0.96))
-                    }
-                }.tint(ShelfStyle.accent).foregroundStyle(ShelfStyle.text)
-            } else if settings.showPageNumber, let pages {
-                VStack { Spacer(); Text("\(page + 1) / \(pages.urls.count)").font(.caption.monospacedDigit()).padding(8).background(ShelfStyle.header.opacity(0.96), in: Capsule()) }.padding(.bottom, 6).allowsHitTesting(false)
-            }
-        }.preferredColorScheme(.dark).statusBarHidden(!controls)
-            .accessibilityIdentifier("online.reader")
-            .onAppear { previousIdle = UIApplication.shared.isIdleTimerDisabled; UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake }
-            .onDisappear { UIApplication.shared.isIdleTimerDisabled = previousIdle }
-            .onChange(of: phase) { _, state in UIApplication.shared.isIdleTimerDisabled = state == .active && settings.keepScreenAwake }
-            .onChange(of: settings.keepScreenAwake) { _, value in UIApplication.shared.isIdleTimerDisabled = phase == .active && value }
-            .task(id: chapter.id + String(retry)) {
-                pages = nil; failure = nil; loaded = []; zoomed = false
-                do {
-                    let result = try await online.pages(chapter); try Task.checkCancellation()
-                    page = min(saved?.progress[chapter.id]?.page ?? 0, result.urls.count - 1); pages = result
-                } catch is CancellationError { } catch { failure = AppError.describe(error) }
-            }
-            .sheet(isPresented: $settingsOpen) {
-                NavigationStack { ReaderPreferencesView(titleKey: titleKey) }.tachiSheet()
-            }
-            .sheet(isPresented: $textOpen) {
-                NavigationStack {
-                    ScrollView { Text(recognized).frame(maxWidth: .infinity, alignment: .leading).padding().textSelection(.enabled) }
-                        .navigationTitle(L10n.string("Extracted text")).navigationBarTitleDisplayMode(.inline)
-                        .toolbar { Button(L10n.string("Copy")) { UIPasteboard.general.string = recognized }; Button(L10n.string("Done")) { textOpen = false } }
+                ReaderChrome(title: saved?.series.title ?? L10n.string("Reader"), subtitle: chapter.localizedTitle,
+                             sourceURL: sourceURL, page: page, pageCount: pages?.urls.count ?? 0,
+                             direction: settings.direction, onClose: { dismiss() }, onJump: jump) {
+                    tool("Reader settings", symbol: "gearshape.fill") { settingsOpen = true }
+                    tool("Chapters", symbol: "list.bullet") { chapterListOpen = true }
+                    if settings.mode == .webtoon {
+                        tool(autoScrolling ? "Pause auto scroll" : "Start auto scroll", symbol: autoScrolling ? "pause.fill" : "play.fill") {
+                            autoScrolling.toggle(); if autoScrolling { controls = false }
+                        }
+                    } else { tool("Rotation", symbol: "rotate.right") { cycleRotation() } }
+                    tool(bookmark ? "Remove bookmark" : "Add bookmark", symbol: bookmark ? "bookmark.fill" : "bookmark") {
+                        Task { await online.mutate { try await $0.bookmark(seriesID: chapter.seriesID, chapterID: chapter.id, page: page) } }
+                    }.disabled(position?.page != page)
+                    tool("Bookmarks", symbol: "bookmark.square") { bookmarksOpen = true }
+                    tool("Extract text", symbol: extracting ? "hourglass" : "text.viewfinder") { Task { await extractText() } }
+                        .disabled(extracting || position?.page != page)
+                    tool("Download chapter", symbol: "arrow.down.circle") { Task { await online.enqueue([chapter]) } }
                 }
-            }
-    }
-    private func move(_ delta: Int) {
-        guard let pages else { return }; page = min(max(0, page + delta), pages.urls.count - 1)
-    }
-    private func saveProgress(_ index: Int, count: Int) {
-        let current = chapter
-        Task { await online.progress(current, page: index, count: count) }
-    }
-    private func webtoon(_ pages: ChapterPages) -> some View {
-        GeometryReader { viewport in
-            ScrollViewReader { proxy in
-                ScrollView {
-                    LazyVStack(spacing: min(24, max(0, spacing))) {
-                        ForEach(pages.urls.indices, id: \.self) { index in
-                            OnlinePage(chapter: chapter, pages: pages, index: index, paged: false, zoomed: $zoomed) { loaded.insert($0) }
-                                .id(index)
-                                .background(GeometryReader { geometry in Color.clear.preference(key: OnlinePageFrames.self, value: [index: geometry.frame(in: .named("onlineScroll"))]) })
-                        }
-                    }
-                }.coordinateSpace(name: "onlineScroll").onTapGesture { controls.toggle() }
-                    .onAppear { proxy.scrollTo(page, anchor: .top) }
-                    .onChange(of: page) { _, index in if controls { proxy.scrollTo(index, anchor: .top) } }
-                    .onPreferenceChange(OnlinePageFrames.self) { frames in
-                        let center = viewport.size.height / 2
-                        if let focused = frames.filter({ $0.value.minY <= center && $0.value.maxY > center }).min(by: { $0.key < $1.key }), loaded.contains(focused.key), focused.key != page {
-                            page = focused.key; saveProgress(focused.key, count: pages.urls.count)
-                        }
-                    }
+                if let next, let pages, page == pages.urls.count - 1 {
+                    VStack { Spacer(); Button(L10n.string("Next chapter")) { changeChapter(next) }.buttonStyle(.borderedProminent).padding(.bottom, 130) }
+                }
+            } else if settings.showPageNumber, let pages { ReaderPageBadge(page: page, count: pages.urls.count) }
+        }
+        .modifier(ReaderActivityModifier(active: !suspended && position != nil) { duration in
+            await online.addReadingTime(seriesID: chapter.seriesID, duration: duration)
+        })
+        .background(ReaderOrientationHost(rotation: settings.rotation).frame(width: 0, height: 0))
+        .preferredColorScheme(.dark).statusBarHidden(!controls || !settings.showStatusBar)
+        .accessibilityIdentifier("online.reader")
+        .onAppear { previousIdle = UIApplication.shared.isIdleTimerDisabled; UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake }
+        .onDisappear { autoScrolling = false; persistPosition(); UIApplication.shared.isIdleTimerDisabled = previousIdle }
+        .onChange(of: phase) { _, state in
+            if state != .active { autoScrolling = false; persistPosition() }
+            UIApplication.shared.isIdleTimerDisabled = state == .active && settings.keepScreenAwake
+        }
+        .onChange(of: settings.keepScreenAwake) { _, value in UIApplication.shared.isIdleTimerDisabled = phase == .active && value }
+        .onChange(of: settings.mode) { _, _ in autoScrolling = false }
+        .onChange(of: suspended) { _, value in if value { autoScrolling = false } }
+        .task(id: chapter.id + String(retry)) {
+            await ReaderDisplaySettingsMigration.apply(to: local)
+            pages = nil; failure = nil; position = nil; previewImage = nil; autoScrolling = false
+            do {
+                let result = try await online.pages(chapter); try Task.checkCancellation()
+                guard !result.urls.isEmpty else { throw ReaderFailure(L10n.string("No pages.")) }
+                page = min(max(0, saved?.progress[chapter.id]?.page ?? 0), result.urls.count - 1)
+                initialOffset = saved?.progress[chapter.id]?.webtoonOffset ?? 0
+                jumpID += 1; pages = result; autoScrolling = settings.autoScroll && settings.mode == .webtoon
+            } catch is CancellationError { } catch { failure = AppError.describe(error) }
+        }
+        .task(id: chapter.id) {
+            let current = chapter
+            var lastSaved: ReaderResumePosition?
+            while !Task.isCancelled {
+                do { try await Task.sleep(nanoseconds: 800_000_000); try Task.checkCancellation() } catch { return }
+                if let position, let pages, position != lastSaved {
+                    await online.progress(current, page: position.page, count: pages.urls.count, offset: position.offset); lastSaved = position
+                }
             }
         }
+        .sheet(isPresented: $settingsOpen) {
+            NavigationStack { ReaderPreferencesView(titleKey: titleKey, previewImage: previewImage, autoScrolling: $autoScrolling) }.tachiSheet()
+        }
+        .sheet(isPresented: $bookmarksOpen) {
+            NavigationStack {
+                TachiSettingsPage(title: L10n.string("Bookmarks")) {
+                    let bookmarks = (saved?.progress[chapter.id]?.bookmarks ?? []).sorted()
+                    if bookmarks.isEmpty { Text(L10n.string("No bookmarks yet.")).padding(18) }
+                    ForEach(bookmarks, id: \.self) { index in
+                        Button { jump(index); bookmarksOpen = false } label: {
+                            TachiRowLabel(title: L10n.format("Page %@", String(index + 1)), symbol: "bookmark.fill").padding(.horizontal, 18)
+                        }
+                    }
+                }
+            }.tachiSheet()
+        }
+        .sheet(isPresented: $chapterListOpen) {
+            NavigationStack {
+                TachiSettingsPage(title: L10n.string("Chapters")) {
+                    ForEach(siblings) { item in
+                        Button { changeChapter(item); chapterListOpen = false } label: {
+                            TachiRowLabel(title: item.localizedTitle, symbol: item.id == chapter.id ? "play.fill" : "book.closed").padding(.horizontal, 18)
+                        }
+                    }
+                }
+            }.tachiSheet()
+        }
+        .sheet(isPresented: $textOpen) { ReaderExtractedTextView(text: recognized) }
     }
-    @MainActor private func extractText(_ pages: ChapterPages) async {
-        extracting = true; defer { extracting = false }
+    private func tool(_ title: String, symbol: String, action: @escaping () -> Void) -> some View {
+        TachiButton(L10n.string(title), systemImage: symbol, action: action).labelStyle(.iconOnly).frame(maxWidth: .infinity, minHeight: 44)
+    }
+    private func jump(_ index: Int) {
+        guard let pages else { return }
+        autoScrolling = false; page = min(max(0, index), pages.urls.count - 1); jumpID += 1
+    }
+    private func changeChapter(_ item: MangaChapter) { persistPosition(); autoScrolling = false; chapter = item }
+    private func persistPosition() {
+        guard let position, let pages else { return }
+        let current = chapter
+        Task { await online.progress(current, page: position.page, count: pages.urls.count, offset: position.offset) }
+    }
+    private func cycleRotation() {
+        Task { await local.changeReaderSettings(for: titleKey) { changed in
+            changed.rotation = changed.rotation == .device ? .landscape : changed.rotation == .landscape ? .portrait : .device
+        } }
+    }
+    @MainActor private func extractText() async {
+        guard let pages else { return }
+        autoScrolling = false; extracting = true; defer { extracting = false }
         do {
-            let data = try await online.imageData(chapter: chapter, pages: pages, index: page)
-            recognized = try await Task.detached(priority: .userInitiated) {
-                let request = VNRecognizeTextRequest(); request.recognitionLevel = .accurate
-                request.usesLanguageCorrection = true; request.automaticallyDetectsLanguage = true
-                try VNImageRequestHandler(data: data).perform([request])
-                return (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }.joined(separator: "\n")
-            }.value
-            if recognized.isEmpty { recognized = L10n.string("No recognizable text was found on this page.") }
+            recognized = try await ReaderOCR.recognize(try await online.imageData(chapter: chapter, pages: pages, index: page))
             textOpen = true
         } catch { online.errorMessage = AppError.describe(error) }
-    }
-}
-
-private struct OnlinePage: View {
-    @Environment(\.locale) private var interfaceLocale
-    @EnvironmentObject private var online: OnlineModel
-    let chapter: MangaChapter
-    let pages: ChapterPages
-    let index: Int
-    let paged: Bool
-    @Binding var zoomed: Bool
-    var scale: PageScale = .fitPage
-    var onTap: ((Double) -> Void)? = nil
-    var onRevealControls: (() -> Void)? = nil
-    let onReady: (Int) -> Void
-    @State private var image: UIImage?
-    @State private var failure: String?
-    @State private var retry = 0
-    var body: some View {
-        Group {
-            if let image {
-                if paged {
-                    ZoomableImage(image: image, zoomed: $zoomed, scale: scale, onTap: onTap)
-                        .accessibilityIdentifier("online.reader.image.\(index)")
-                } else {
-                    Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity)
-                        .accessibilityIdentifier("online.reader.image.\(index)")
-                }
-            } else if let failure {
-                VStack(spacing: 12) {
-                    Text(L10n.format("Page %@", String(describing: index + 1))).shelfFont(.headline); Text(failure).shelfFont(.caption).multilineTextAlignment(.center)
-                    Button(L10n.string("Retry")) { retry += 1 }
-                }.foregroundStyle(.white).padding().frame(maxWidth: .infinity, minHeight: 300)
-                    .contentShape(Rectangle()).onTapGesture { onRevealControls?() }
-            } else {
-                Color.clear.contentShape(Rectangle())
-                    .frame(maxWidth: .infinity, minHeight: paged ? 0 : 500)
-                    .overlay { ProgressView().tint(.white) }
-                    .onTapGesture { onRevealControls?() }
-            }
-        }.task(id: retry) {
-            failure = nil
-            do {
-                let bytes = try await online.imageData(chapter: chapter, pages: pages, index: index)
-                let result = try await Task.detached(priority: .userInitiated) { try ImageDecoder.thumbnail(bytes, maximumDimension: 4096) }.value
-                try Task.checkCancellation(); image = result; onReady(index)
-            } catch is CancellationError { } catch { failure = AppError.describe(error) }
-        }.onDisappear { image = nil }
     }
 }

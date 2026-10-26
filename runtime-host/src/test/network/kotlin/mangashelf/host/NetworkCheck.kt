@@ -312,6 +312,9 @@ object NetworkCheck {
                     catch (error: IOException) { check(error.message == "Source requires browser verification") }
                     repeat(2) { client.newCall(GET(server.url + "/cache")).awaitSuccess().use { check(it.body.string() == "cached-1") } }
                     check(server.cached.get() == 1)
+                    HostServices.current.network.clearCaches()
+                    client.newCall(GET(server.url + "/cache")).awaitSuccess().use { check(it.body.string() == "cached-2") }
+                    check(server.cached.get() == 2)
                 } finally { HostServices.close() }
             }
         }
@@ -323,6 +326,9 @@ object NetworkCheck {
                     client.newCall(GET(server.url + "/cookies/set")).awaitSuccess().close()
                     client.newCall(GET(server.url + "/cookies/echo")).awaitSuccess().use { check(it.body.string() == "session=owned") }
                     client.newCall(GET(server.url + "/outside")).awaitSuccess().use { check(it.body.string().isEmpty()) }
+                    HostServices.current.network.clearCookies()
+                    // Previously created source clients share the same jar and lose the cookie too.
+                    client.newCall(GET(server.url + "/cookies/echo")).awaitSuccess().use { check(it.body.string().isEmpty()) }
                 } finally { HostServices.close() }
             }
         }
@@ -382,6 +388,20 @@ object NetworkCheck {
                 call.reply(response)
                 check(task.await() === response && body.closes.get() == 0)
                 response.close(); check(body.closes.get() == 1)
+            }
+        }
+        case("retry_after_header_and_http_date_are_typed_before_body_closes") {
+            check(HttpException.retryAfter("120") == 120.0)
+            check(HttpException.retryAfter("Tue, 14 Nov 2023 22:15:20 GMT", java.time.Instant.ofEpochSecond(1_700_000_000)) == 120.0)
+            check(HttpException.retryAfter("NaN") == null && HttpException.retryAfter("-1") == null)
+            coroutineScope {
+                val call = ControlledCall(); val body = Body()
+                val task = async(start = CoroutineStart.UNDISPATCHED) {
+                    try { call.awaitSuccess(); error("Accepted fixture rate limit") }
+                    catch (error: HttpException) { check(error.code == 429 && error.retryAfterSeconds == 120.0) }
+                }
+                call.reply(call.response(body, 429).newBuilder().header("Retry-After", "120").build())
+                task.await(); check(body.closes.get() == 1)
             }
         }
         case("error_response_is_closed_before_http_exception") {

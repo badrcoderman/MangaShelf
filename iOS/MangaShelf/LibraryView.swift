@@ -61,6 +61,8 @@ struct LibraryView: View {
     @AppStorage("library.bookmarksOnly") private var bookmarksOnly = false
     @AppStorage("library.downloadedOnly") private var downloadedOnly = false
     @AppStorage("library.selectedCategory") private var selectedCategory = ""
+    @AppStorage("library.showCategoryCounts") private var showCategoryCounts = true
+    @AppStorage("library.showUnreadBadges") private var showUnreadBadges = true
 
     @State private var query = ""
     @State private var importing = false
@@ -469,7 +471,7 @@ struct LibraryView: View {
             }
         } else {
             entryCover(entry)
-                .modifier(ShelfCoverLabel(title: entry.title, badge: entry.unreadCount > 0 ? String(entry.unreadCount) : nil))
+                .modifier(ShelfCoverLabel(title: entry.title, badge: showUnreadBadges && entry.unreadCount > 0 ? String(entry.unreadCount) : nil))
         }
     }
 
@@ -485,7 +487,7 @@ struct LibraryView: View {
 
     @ViewBuilder
     private func unreadBadge(_ entry: ShelfLibraryEntry) -> some View {
-        if entry.unreadCount > 0 {
+        if showUnreadBadges && entry.unreadCount > 0 {
             Text(String(entry.unreadCount)).shelfFont(.caption).monospacedDigit()
                 .foregroundStyle(ShelfStyle.onAccent).padding(5)
                 .background(ShelfStyle.accent, in: Capsule()).padding(7)
@@ -738,10 +740,10 @@ struct LibraryView: View {
             VStack(spacing: 12) {
                 HStack(spacing: 5) {
                     Text(name).shelfFont(.subheadline).foregroundStyle(category == id ? ShelfStyle.accent : ShelfStyle.secondary)
-                    Text(String(allEntries.filter { entry in id.map(entry.categoryIDs.contains) ?? true }.count))
+                    if showCategoryCounts { Text(String(allEntries.filter { entry in id.map(entry.categoryIDs.contains) ?? true }.count))
                         .shelfFont(.caption).foregroundStyle(ShelfStyle.text).monospacedDigit()
                         .padding(.horizontal, 5).padding(.vertical, 1)
-                        .background(ShelfStyle.selected, in: Capsule())
+                        .background(ShelfStyle.selected, in: Capsule()) }
                 }.padding(.top, 8)
                 UnevenRoundedRectangle(topLeadingRadius: 3, topTrailingRadius: 3)
                     .fill(category == id ? ShelfStyle.accent : .clear).frame(height: 3)
@@ -850,7 +852,7 @@ struct ShelfListRow: View {
             }
             Spacer()
             if let lastRead = entry.lastReadAt {
-                Text(lastRead, style: .date)
+                Text(InterfaceDate.text(lastRead))
                     .shelfFont(.caption2)
                     .foregroundStyle(ShelfStyle.secondary)
             }
@@ -1104,7 +1106,7 @@ struct BookDetailView: View {
                 Text(book.title).shelfFont(.body).foregroundStyle(book.completed ? ShelfStyle.secondary : ShelfStyle.text)
                 Text(book.lastReadAt == nil ? L10n.format("%@ pages", String(describing: book.pageCount)) : L10n.format("Page %@ of %@", String(describing: book.currentPage + 1), String(describing: book.pageCount)))
                     .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
-                Text(book.addedAt, style: .date).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
+                Text(InterfaceDate.text(book.addedAt)).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)

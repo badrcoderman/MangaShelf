@@ -138,7 +138,7 @@ struct HistoryView: View {
     private func historyDate(_ date: Date) -> String {
         if Calendar.current.isDateInToday(date) { return L10n.string("Today") }
         if Calendar.current.isDateInYesterday(date) { return L10n.string("Yesterday") }
-        return date.formatted(.relative(presentation: .numeric, unitsStyle: .wide).locale(interfaceLocale))
+        return InterfaceDate.text(date)
     }
     private func readingTime(_ duration: TimeInterval) -> String {
         let minutes = max(1, Int(duration) / 60)

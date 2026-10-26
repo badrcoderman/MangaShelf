@@ -44,6 +44,7 @@ enum AppError {
     private var store: LibraryStore?
     private var stagedStore: StagedExtensionStore?
     private var displayWrite: (id: UUID, task: Task<Void, Never>)?
+    private var readerDefaultsWrite: (id: UUID, task: Task<Void, Never>)?
 
     func start() async {
         guard !ready, !busy else { return }
@@ -92,7 +93,12 @@ enum AppError {
             var failures: [String] = []
             for url in urls {
                 let access = url.startAccessingSecurityScopedResource()
-                do { _ = try await store.importComic(from: url) }
+                do {
+                    let imported = try await store.importComic(from: url)
+                    let defaults = Set((UserDefaults.standard.string(forKey: "library.defaultCategoryIDs") ?? "").split(separator: ",").compactMap { UUID(uuidString: String($0)) })
+                    let valid = Set(await store.snapshot().categories.map(\.id))
+                    if !defaults.isEmpty { try await store.batchAssignCategories(bookIDs: [imported.id], categoryIDs: defaults.intersection(valid)) }
+                }
                 catch { failures.append("\(url.lastPathComponent): \(AppError.describe(error))") }
                 if access { url.stopAccessingSecurityScopedResource() }
             }
@@ -110,6 +116,39 @@ enum AppError {
     func categoryDisplayOptions(categoryID: UUID?) -> CategoryDisplayOptions {
         if let categoryID, let opt = state.categoryPreferences[categoryID] { return opt }
         return state.defaultDisplayOptions
+    }
+    func changeReaderDefaults(change: @escaping (inout ReaderSettings) -> Void) async {
+        await changeReaderSettings(change: change)
+    }
+    func changeReaderSettings(for titleKey: String? = nil, change: @escaping (inout ReaderSettings) -> Void) async {
+        guard let store else { return }
+        let previous = readerDefaultsWrite?.task, id = UUID()
+        let task = Task { @MainActor in
+            await previous?.value
+            var settings = await store.snapshot().readerSettings(for: titleKey)
+            change(&settings)
+            do {
+                if let titleKey { try await store.saveReaderSettings(settings, for: titleKey) }
+                else { try await store.saveSettings(settings) }
+                self.state = await store.snapshot()
+            } catch { self.errorMessage = AppError.describe(error) }
+        }
+        readerDefaultsWrite = (id, task); await task.value
+        if readerDefaultsWrite?.id == id { readerDefaultsWrite = nil }
+    }
+    func setReaderOverride(_ enabled: Bool, for titleKey: String) async {
+        guard let store else { return }
+        let previous = readerDefaultsWrite?.task, id = UUID()
+        let task = Task { @MainActor in
+            await previous?.value
+            let settings = await store.snapshot().readerSettings(for: titleKey)
+            do {
+                try await store.saveReaderSettings(enabled ? settings : nil, for: titleKey)
+                self.state = await store.snapshot()
+            } catch { self.errorMessage = AppError.describe(error) }
+        }
+        readerDefaultsWrite = (id, task); await task.value
+        if readerDefaultsWrite?.id == id { readerDefaultsWrite = nil }
     }
     func changeCategoryDisplayOptions(categoryID: UUID?, change: @escaping (inout CategoryDisplayOptions) -> Void) async {
         guard let store else { return }
@@ -153,12 +192,19 @@ enum AppError {
         await perform { try await $0.setBookNotes(id: id, notes: notes) }
     }
     func addReadingTime(id: UUID, duration: TimeInterval) async {
-        await perform { try await $0.addReadingTime(id: id, duration: duration) }
+        guard !UserDefaults.standard.bool(forKey: "privacy.privateHistory") else { return }
+        guard let store else { return }
+        do { try await store.addReadingTime(id: id, duration: duration); state = await store.snapshot() }
+        catch { errorMessage = AppError.describe(error) }
     }
-    func progress(id: UUID, page: Int) async {
+    func progress(id: UUID, page: Int, offset: Double = 0) async {
         // Progress must not be dropped because another UI operation is in flight.
         guard let store else { return }
-        do { try await store.updateProgress(id: id, page: page); state = await store.snapshot() }
+        do {
+            try await store.updateProgress(id: id, page: page, offset: offset,
+                                           recordHistory: !UserDefaults.standard.bool(forKey: "privacy.privateHistory"))
+            state = await store.snapshot()
+        }
         catch { errorMessage = L10n.format("Could not save reading progress: %@", String(describing: AppError.describe(error))) }
     }
     func backup() async throws -> Data {
@@ -322,7 +368,8 @@ final class SecureHTTP: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
             let message = code == 429
                 ? L10n.string("Too many requests to the source. Wait a moment and try again.")
                 : L10n.format("Could not download from the service (HTTP %@).", String(describing: code))
-            throw SourceHTTPFailure(statusCode: code, message: message)
+            throw SourceHTTPFailure(statusCode: code, message: message,
+                                    retryAfterSeconds: DownloadPolicy.retryAfter((response as? HTTPURLResponse)?.value(forHTTPHeaderField: "Retry-After")))
         }
         let maximum = BoundedGzip.maximumBytes
         guard response.expectedContentLength <= Int64(maximum) else { throw ReaderFailure(L10n.string("The index exceeds the allowed limit.")) }

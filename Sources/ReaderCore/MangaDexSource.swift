@@ -20,7 +20,9 @@ public extension SourceTransport {
 public struct SourceHTTPFailure: Error, LocalizedError, Sendable {
     public let statusCode: Int
     public let message: String
-    public init(statusCode: Int, message: String) {
+    public let retryAfterSeconds: TimeInterval?
+    public init(statusCode: Int, message: String, retryAfterSeconds: TimeInterval? = nil) {
+        self.retryAfterSeconds = retryAfterSeconds.flatMap { $0.isFinite && $0 >= 0 && $0 <= 3_153_600_000 ? $0 : nil }
         self.statusCode = statusCode
         self.message = message
     }

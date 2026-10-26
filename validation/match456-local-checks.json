@@ -1,0 +1,23 @@
+{
+  "scope": "Staged MATCH04..06 source snapshot only; no Swift/iOS execution",
+  "passed": true,
+  "audit": {
+    "scope": "provenance/build-structure only, not malware detection or Swift compilation",
+    "prebuilt_app_payloads": 0,
+    "files": 532,
+    "failures": [],
+    "swift_compilation": "NOT RUN",
+    "ios_runtime": "NOT RUN",
+    "live_repository": "NOT TESTED"
+  },
+  "ui_resources": {
+    "localization_keys": 1033,
+    "icon_glyphs": 54,
+    "font_sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453",
+    "failures": [],
+    "scope": "Resource integrity and format checks; not Swift compilation or visual verification"
+  },
+  "native_swift_tests": "Not run locally; requires Xcode CI",
+  "prebuilt_test_fixture_exception": "Only exact SHA256 of three project-owned inert parser JAR fixtures; other executable payloads rejected",
+  "device_acceptance": false
+}

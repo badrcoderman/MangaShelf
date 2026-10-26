@@ -106,7 +106,8 @@ final class SourceStateWireTests: XCTestCase {
         do { _ = try await timedOut.popular(sourceId: "73"); XCTFail("Timeout returned source data") }
         catch {
             XCTAssertFalse(error is CancellationError)
-            XCTAssertEqual((error as? ReaderFailure)?.message, ReaderText.string("The source took too long to respond. Try again."))
+            XCTAssertEqual((error as? SourceRequestFailure)?.reason, .timeout)
+            XCTAssertEqual(error.localizedDescription, ReaderText.string("The source took too long to respond. Try again."))
         }
         let cancelled = ExtensionRuntime(dispatchHandler: { _, _ in #"{"error":"cancelled"}"# })
         do { _ = try await cancelled.popular(sourceId: "73"); XCTFail("Cancelled source returned data") }
@@ -131,7 +132,14 @@ final class SourceStateWireTests: XCTestCase {
                 if let status { XCTAssertTrue(error.localizedDescription.contains(String(status))) }
             }
         }
+        let rateLimited = ExtensionRuntime(dispatchHandler: { _, _ in #"{"error":"source_http_error","httpStatus":429,"retryAfterSeconds":75,"message":"https://private.invalid/token"}"# })
+        do { _ = try await rateLimited.popular(sourceId: "73"); XCTFail("Rate limit returned data") }
+        catch {
+            XCTAssertEqual((error as? SourceRequestFailure)?.retryAfterSeconds, 75)
+            XCTAssertFalse(error.localizedDescription.contains("private.invalid"))
+        }
         XCTAssertNil(SourceRequestFailure(reason: .http, httpStatus: 900).httpStatus)
+        XCTAssertNil(SourceRequestFailure(reason: .http, retryAfterSeconds: .infinity).retryAfterSeconds)
     }
 
     func testOversizedPageStateCannotDeleteTheExistingImageCache() async throws {

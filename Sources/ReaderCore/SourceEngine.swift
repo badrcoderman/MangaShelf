@@ -108,6 +108,17 @@ public actor SourceEngineCoordinator: SourceEngineProtocol {
         self.stagedStore = stagedStore; self.prepareRuntime = prepareRuntime
     }
 
+    public func clearCaches() async throws {
+        try await prepareRuntime?()
+        try await runtime.clearCaches()
+    }
+
+    public func clearCookies() async throws {
+        // Initialize only the project-owned host services, without loading a source package.
+        try await prepareRuntime?()
+        try await runtime.clearCookies()
+    }
+
     public func ensureExtensionLoaded(packageName: String) async throws {
         guard let store = stagedStore else { throw StagedExtensionError.notFound }
         let previous = pending[packageName]?.task

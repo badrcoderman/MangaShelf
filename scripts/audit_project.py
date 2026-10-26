@@ -12,14 +12,22 @@ ROOT=Path(__file__).resolve().parents[1]
 ignored={".git",".build","build","build-artifacts","__pycache__","validation",".agents"}
 forbidden_suffixes={".ipa",".dylib",".so",".a",".class",".jar",".apk",".framework"}
 magic={b"\xcf\xfa\xed\xfe",b"\xfe\xed\xfa\xcf",b"\xca\xfe\xba\xbe",b"\x7fELF"}
+# These three pinned test archives contain deliberately truncated 10-byte class
+# placeholders. They are inert parser fixtures, never production engine inputs.
+parser_fixtures = {
+    "Tests/ReaderCoreTests/Fixtures/extension-manifest.jar": "1040ba7fbc6f1c07df07226fb204bc009b8df3e4b46d2b358fdcc29f60171094",
+    "Tests/ReaderCoreTests/Fixtures/extension-missing-class.jar": "14cf6a573d811731c0743b2c7e75fe32231bd706ed78eace0277f1d568b50aee",
+    "Tests/ReaderCoreTests/Fixtures/plain-probe.jar": "8eec24240365625b42ceae8d53c7cce8b2a5004553649bda8d43e3fad9cc4add",
+}
 hashes=[];failures=[]
 for path in sorted(ROOT.rglob("*")):
     relative=path.relative_to(ROOT)
     if any(part in ignored for part in relative.parts):continue
     if path.is_symlink():failures.append(f"symlink: {relative}");continue
     if not path.is_file():continue
-    if path.suffix in forbidden_suffixes:failures.append(f"prebuilt executable: {relative}")
     data=path.read_bytes()
+    pinned_fixture = parser_fixtures.get(str(relative)) == hashlib.sha256(data).hexdigest()
+    if path.suffix in forbidden_suffixes and not pinned_fixture:failures.append(f"prebuilt executable: {relative}")
     if data[:4] in magic:failures.append(f"binary executable signature: {relative}")
     if path.name in {"res.zip","modules","Tachimanga"}:failures.append(f"specimen payload: {relative}")
     if path.suffix in {".swift",".c",".h",".pbxproj"}:

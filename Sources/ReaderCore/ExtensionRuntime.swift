@@ -146,7 +146,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
             if failure.error == "cancelled" { throw CancellationError() }
             if failure.error == "source_filters_changed" { throw SourceFilterSchemaChanged() }
             if let reason = SourceRequestFailure.Reason(rawValue: failure.error) {
-                throw SourceRequestFailure(reason: reason, httpStatus: failure.httpStatus)
+                throw SourceRequestFailure(reason: reason, httpStatus: failure.httpStatus, retryAfterSeconds: failure.retryAfterSeconds)
             }
             let message: String
             switch failure.error {
@@ -166,7 +166,17 @@ public final class ExtensionRuntime: @unchecked Sendable {
         return try JSONDecoder().decode(type, from: data)
     }
 
-    private struct RuntimeFailure: Decodable { let error: String; let httpStatus: Int? }
+    private struct RuntimeFailure: Decodable { let error: String; let httpStatus: Int?; let retryAfterSeconds: Double? }
+
+    public func clearCaches() async throws {
+        let result = try await dispatchAsync(action: "network.cache.clear", payload: "{}", checkAfterCompletion: false)
+        try requireAcknowledgment(result, status: "cache_cleared")
+    }
+
+    public func clearCookies() async throws {
+        let result = try await dispatchAsync(action: "network.cookies.clear", payload: "{}", checkAfterCompletion: false)
+        try requireAcknowledgment(result, status: "cookies_cleared")
+    }
 
     public func configureHost(dataDirectory: URL, applicationID: String, versionName: String, versionCode: Int,
                               userAgent: String, platformRelease: String) async throws {

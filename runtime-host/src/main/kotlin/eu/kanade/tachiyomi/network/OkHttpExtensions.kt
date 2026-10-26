@@ -54,6 +54,7 @@ suspend fun Call.awaitSuccess(): Response {
     val response = await()
     if (response.isSuccessful) return response
     val code = response.code
+    val retryAfter = HttpException.retryAfter(response.header("Retry-After"))
     response.close()
-    throw HttpException(code)
+    throw HttpException(code, retryAfter)
 }

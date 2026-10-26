@@ -3,25 +3,48 @@ import UIKit
 
 /// Reference-based iPhone point values; final alignment requires native screenshot review.
 enum ShelfStyle {
-    private static func color(_ dark: UInt32, light: UInt32) -> Color {
-        Color(uiColor: UIColor { traits in
-            let hex = traits.userInterfaceStyle == .dark ? dark : light
-            return UIColor(red: CGFloat((hex >> 16) & 255) / 255,
-                           green: CGFloat((hex >> 8) & 255) / 255,
-                           blue: CGFloat(hex & 255) / 255, alpha: 1)
-        })
+    private static func rgb(_ value: UInt32) -> UIColor {
+        UIColor(red: CGFloat((value >> 16) & 255) / 255, green: CGFloat((value >> 8) & 255) / 255,
+                blue: CGFloat(value & 255) / 255, alpha: 1)
     }
-    static let background = color(0x18181A, light: 0xFAFAFC)
-    static let header = color(0x24262C, light: 0xECEEF4)
-    static let menu = color(0x202124, light: 0xF3F4F8)
-    static let popup = color(0x1B1C1E, light: 0xF3F4F8)
-    static let card = color(0x1F2024, light: 0xF6F7FA)
-    static let selected = color(0x3A3A3C, light: 0xDFE5F2)
-    static let accent = color(0xAEC6FF, light: 0x335CA8)
-    static let text = color(0xE8EBF2, light: 0x202126)
-    static let secondary = color(0xC4C7CE, light: 0x555A63)
-    static let border = color(0x343436, light: 0xD7D9DE)
-    static let onAccent = color(0x17223B, light: 0xFFFFFF)
+    private static func mixed(_ base: UInt32, _ tint: UInt32, _ fraction: Double) -> UInt32 {
+        let amount = min(1, max(0, fraction))
+        func channel(_ shift: UInt32) -> UInt32 {
+            UInt32((Double((base >> shift) & 255) * (1 - amount) + Double((tint >> shift) & 255) * amount).rounded())
+        }
+        return channel(16) << 16 | channel(8) << 8 | channel(0)
+    }
+    private static var primary: (dark: UInt32, light: UInt32) {
+        switch InterfaceState.shared.palette {
+        case "green": return (0x7BD79C, 0x286541)
+        case "purple": return (0xCFB8FF, 0x6A42A7)
+        default: return (0xAEC6FF, 0x335CA8)
+        }
+    }
+    private static func color(_ dark: UInt32, light: UInt32, surface: Bool = false) -> Color {
+        let black = InterfaceState.shared.pureBlack
+        let blend = InterfaceState.shared.blend
+        let palette = primary
+        func surfaceColor(_ base: UInt32, darkMode: Bool) -> UInt32 {
+            guard surface else { return base }
+            let level = darkMode && black ? 0 : blend
+            return level >= 10 ? mixed(base, darkMode ? palette.dark : palette.light, (level - 10) / 300)
+                : mixed(base, darkMode ? 0x000000 : 0xFFFFFF, (10 - level) / 300)
+        }
+        let darkValue = surfaceColor(dark, darkMode: true), lightValue = surfaceColor(light, darkMode: false)
+        return Color(uiColor: UIColor { traits in rgb(traits.userInterfaceStyle == .dark ? darkValue : lightValue) })
+    }
+    static var background: Color { color(InterfaceState.shared.pureBlack ? 0x000000 : 0x18181A, light: 0xFAFAFC, surface: true) }
+    static var header: Color { color(0x24262C, light: 0xECEEF4, surface: true) }
+    static var menu: Color { color(0x202124, light: 0xF3F4F8, surface: true) }
+    static var popup: Color { color(0x1B1C1E, light: 0xF3F4F8, surface: true) }
+    static var card: Color { color(0x1F2024, light: 0xF6F7FA, surface: true) }
+    static var selected: Color { color(0x3A3A3C, light: 0xDFE5F2, surface: true) }
+    static var accent: Color { color(primary.dark, light: primary.light) }
+    static var text: Color { color(0xE8EBF2, light: 0x202126) }
+    static var secondary: Color { color(0xC4C7CE, light: 0x555A63) }
+    static var border: Color { color(0x343436, light: 0xD7D9DE) }
+    static var onAccent: Color { color(0x17223B, light: 0xFFFFFF) }
     static let pageInset: CGFloat = 10
     static let gridSpacing: CGFloat = 6
     static let coverRatio: CGFloat = 0.75
@@ -127,7 +150,7 @@ struct ShelfTabBar: View {
     var body: some View {
         HStack(spacing: 0) {
             // Physical order follows the reference: library on the left, more on the right.
-            ForEach(ShelfTab.allCases) { tab in
+            ForEach(InterfaceState.shared.visibleTabs) { tab in
                 Button { selection.wrappedValue = tab.rawValue } label: {
                     VStack(spacing: 2) {
                         if tab == .library { ShelfBooksIcon().scaleEffect(x: 1.1, y: 0.95) }
@@ -135,8 +158,10 @@ struct ShelfTabBar: View {
                         // Compact navigation captions remain readable in their
                         // fixed-width slots; the large content viewer provides
                         // the full title at accessibility text sizes.
-                        Text(tab.title).font(.system(size: min(labelSize, 13)))
-                            .lineLimit(1).minimumScaleFactor(0.8)
+                        if InterfaceState.shared.tabLabels {
+                            Text(tab.title).font(.system(size: min(labelSize, 13)))
+                                .lineLimit(1).minimumScaleFactor(0.8)
+                        }
                     }.frame(maxWidth: .infinity).frame(minHeight: typeSize.isAccessibilitySize ? 76 : 54)
                         .foregroundStyle(selection.wrappedValue == tab.rawValue ? ShelfStyle.accent : ShelfStyle.text)
                         .background {
@@ -156,8 +181,8 @@ struct ShelfTabBar: View {
             }
         }.environment(\.layoutDirection, .leftToRight)
             .padding(.vertical, 4).padding(.horizontal, 8)
-            .background { if reduceTransparency { Capsule().fill(ShelfStyle.menu) } }
-            .glassEffect(reduceTransparency ? .identity : .regular, in: Capsule())
+            .background { if reduceTransparency || !InterfaceState.shared.liquidGlass { Capsule().fill(ShelfStyle.menu) } }
+            .glassEffect(reduceTransparency || !InterfaceState.shared.liquidGlass ? .identity : .regular, in: Capsule())
             .frame(maxWidth: 540).padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 6)
             .frame(maxWidth: .infinity)
     }

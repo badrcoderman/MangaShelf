@@ -7,9 +7,16 @@ extension SecureHTTP: SourceTransport {
 }
 
 struct LibraryUpdateProgress {
+    var seriesID: String? = nil
     let title: String
     let completed: Int
     let total: Int
+}
+
+struct LibraryUpdateResult: Codable {
+    let seriesID: String
+    let newChapters: Int
+    let failure: String?
 }
 
 struct LibraryUpdateSummary: Codable {
@@ -20,6 +27,7 @@ struct LibraryUpdateSummary: Codable {
     let failed: Int
     let newChapters: Int
     let cancelled: Bool
+    var results: [LibraryUpdateResult]? = nil
 }
 
 @MainActor final class OnlineModel: ObservableObject {
@@ -27,6 +35,8 @@ struct LibraryUpdateSummary: Codable {
     @Published private(set) var ready = false
     @Published private(set) var updating = false
     @Published private(set) var downloading = false
+    @Published private(set) var libraryUpdateResults: [LibraryUpdateResult] = []
+    @Published private(set) var libraryUpdatePendingIDs: [String] = []
     @Published private(set) var libraryUpdateProgress: LibraryUpdateProgress?
     @Published private(set) var libraryUpdateSummary: LibraryUpdateSummary? = {
         guard let data = UserDefaults.standard.data(forKey: "library.lastUpdateSummary") else { return nil }
@@ -36,6 +46,12 @@ struct LibraryUpdateSummary: Codable {
     let source = MangaDexSource(transport: SecureHTTP())
     private var store: OnlineStore?
     private var worker: Task<Void, Never>?
+    private var downloadTasks: [String: Task<Void, Never>] = [:]
+    private var stoppingDownloads = Set<String>()
+    private var pausingDownloadQueue = false
+    private var downloadPauseTask: Task<Void, Never>?
+    private var interruptingDownloadQueue = false
+    var downloadsPerSource: Int { max(1, min(3, UserDefaults.standard.integer(forKey: "downloads.perSource"))) }
     private var libraryRefreshTask: Task<Void, Never>?
     var language: String { UserDefaults.standard.string(forKey: "source.language") ?? "ar" }
     var dataSaver: Bool { UserDefaults.standard.bool(forKey: "source.dataSaver") }
@@ -44,6 +60,7 @@ struct LibraryUpdateSummary: Codable {
         do {
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let opened = try OnlineStore(root: support.appendingPathComponent("MangaShelf/Online", isDirectory: true))
+            try await opened.reconcileDownloads()
             store = opened; state = await opened.snapshot(); ready = true
         } catch { errorMessage = L10n.string("Could not open the source library. ") + AppError.describe(error) }
     }
@@ -58,7 +75,15 @@ struct LibraryUpdateSummary: Codable {
         catch { errorMessage = AppError.describe(error); DiagnosticsCenter.shared.recordFailure(L10n.string("Source library"), error) }
     }
     func save(_ series: MangaSeries, favorite: Bool? = nil) async {
-        await mutate { try await $0.save(series, favorite: favorite) }
+        let newlyAdded = favorite == true && saved(series.id)?.inLibrary != true
+        let defaults = Set((UserDefaults.standard.string(forKey: "library.defaultCategoryIDs") ?? "").split(separator: ",").compactMap { UUID(uuidString: String($0)) })
+        await mutate {
+            try await $0.save(series, favorite: favorite)
+            if newlyAdded, !defaults.isEmpty {
+                let current = await $0.snapshot().series.first { $0.id == series.id }?.categories ?? []
+                try await $0.batchSetCategories(seriesIDs: [series.id], categoryIDs: current.union(defaults))
+            }
+        }
     }
     func batchAssignCategories(seriesIDs: [String], categoryIDs: Set<UUID>) async {
         await mutate { try await $0.batchSetCategories(seriesIDs: seriesIDs, categoryIDs: categoryIDs) }
@@ -69,7 +94,7 @@ struct LibraryUpdateSummary: Codable {
     func batchSetCompleted(seriesIDs: [String], completed: Bool) async {
         await mutate { try await $0.batchSetCompleted(seriesIDs: seriesIDs, completed: completed) }
     }
-    func refresh(_ series: MangaSeries) async throws {
+    func refresh(_ series: MangaSeries, updateMetadata: Bool = true) async throws {
         try Task.checkCancellation()
         let store = try requireStore()
         var request = series
@@ -109,16 +134,28 @@ struct LibraryUpdateSummary: Codable {
             }
         }
         try Task.checkCancellation()
-        try await store.save(details)
+        if updateMetadata { try await store.save(details) }
         try await store.setChapters(seriesID: series.id, chapters: chapters, language: selectedLanguage)
         state = await store.snapshot()
         DiagnosticsCenter.shared.record(L10n.string("Sources"), L10n.format("Updated title details and chapters: %@", String(describing: chapters.count)))
     }
     func refreshLibrary(categoryID: UUID? = nil) async {
         guard !updating, !Task.isCancelled else { return }
+        let defaults = UserDefaults.standard
+        let excluded = Set((["updates.excludedCategories", "library.excludedUpdateCategories"].flatMap {
+            (defaults.string(forKey: $0) ?? "").split(separator: ",").compactMap { UUID(uuidString: String($0)) }
+        }))
+        let skipRead = defaults.bool(forKey: "updates.skipReadTitles")
+        let skipDownloaded = defaults.bool(forKey: "updates.skipDownloadedTitles")
+        let completedDownloads = Set(state.downloads.filter { $0.phase == .complete }.map(\.id))
         let items = state.series.filter { item in
-            item.inLibrary && (categoryID.map { item.categories.contains($0) } ?? true)
+            guard item.inLibrary, categoryID.map({ item.categories.contains($0) }) ?? true,
+                  item.categories.isDisjoint(with: excluded) else { return false }
+            if skipRead, !item.chapters.isEmpty, item.chapters.allSatisfy({ item.progress[$0.id]?.read == true }) { return false }
+            if skipDownloaded, !item.chapters.isEmpty, item.chapters.allSatisfy({ completedDownloads.contains($0.id) }) { return false }
+            return true
         }
+        libraryUpdateResults = []; libraryUpdatePendingIDs = items.map(\.id)
         updating = true
         let task = Task { [weak self] in
             guard let self else { return }
@@ -127,29 +164,53 @@ struct LibraryUpdateSummary: Codable {
         libraryRefreshTask = task
         await withTaskCancellationHandler(operation: { await task.value }, onCancel: { task.cancel() })
     }
+    func retryFailedLibraryUpdates() async {
+        guard !updating, !Task.isCancelled else { return }
+        let failed = Set((libraryUpdateSummary?.results ?? []).filter { $0.failure != nil }.map(\.seriesID))
+        let items = state.series.filter { failed.contains($0.id) }
+        guard !items.isEmpty else { return }
+        libraryUpdateResults = []; libraryUpdatePendingIDs = items.map(\.id); updating = true
+        let task = Task<Void, Never> { [weak self] in
+            guard let self else { return }; await self.runLibraryRefresh(items)
+        }
+        libraryRefreshTask = task
+        await withTaskCancellationHandler(operation: { await task.value }, onCancel: { task.cancel() })
+    }
     func cancelLibraryRefresh() { libraryRefreshTask?.cancel() }
     private func runLibraryRefresh(_ items: [SavedSeries]) async {
         let started = Date()
+        var backgroundID: UIBackgroundTaskIdentifier = .invalid
+        if UserDefaults.standard.object(forKey: "updates.continueInBackground") as? Bool ?? true {
+            backgroundID = UIApplication.shared.beginBackgroundTask(withName: L10n.string("Library update")) {
+                Task { @MainActor in self.cancelLibraryRefresh() }
+            }
+        }
+        defer { if backgroundID != .invalid { UIApplication.shared.endBackgroundTask(backgroundID) } }
         var succeeded = 0, failed = 0, newChapters = 0
-        defer { libraryRefreshTask = nil; libraryUpdateProgress = nil; updating = false }
+        defer { libraryRefreshTask = nil; libraryUpdateProgress = nil; libraryUpdatePendingIDs = []; updating = false }
         for item in items {
             if Task.isCancelled { break }
-            libraryUpdateProgress = LibraryUpdateProgress(title: item.series.title, completed: succeeded + failed, total: items.count)
+            libraryUpdateProgress = LibraryUpdateProgress(seriesID: item.id, title: item.series.title, completed: succeeded + failed, total: items.count)
             do {
-                try await refresh(item.series)
+                let metadata = UserDefaults.standard.object(forKey: "library.updateMetadata") as? Bool ?? true
+                try await refresh(item.series, updateMetadata: metadata)
                 succeeded += 1
                 let previous = Set(item.chapters.map(\.id))
-                newChapters += saved(item.id)?.chapters.filter { !previous.contains($0.id) }.count ?? 0
+                let count = saved(item.id)?.chapters.filter { !previous.contains($0.id) }.count ?? 0
+                newChapters += count
+                libraryUpdateResults.append(LibraryUpdateResult(seriesID: item.id, newChapters: count, failure: nil))
             } catch is CancellationError { break }
             catch {
                 if Task.isCancelled { break }
                 failed += 1
+                libraryUpdateResults.append(LibraryUpdateResult(seriesID: item.id, newChapters: 0, failure: AppError.describe(error)))
                 DiagnosticsCenter.shared.recordFailure(L10n.string("Library update"), error)
             }
+            libraryUpdatePendingIDs.removeAll { $0 == item.id }
         }
         let summary = LibraryUpdateSummary(startedAt: started, finishedAt: Date(), total: items.count,
                                            succeeded: succeeded, failed: failed, newChapters: newChapters,
-                                           cancelled: Task.isCancelled)
+                                           cancelled: Task.isCancelled, results: libraryUpdateResults)
         libraryUpdateSummary = summary
         if let data = try? JSONEncoder().encode(summary) { UserDefaults.standard.set(data, forKey: "library.lastUpdateSummary") }
         if failed > 0 { errorMessage = L10n.format("Could not update %@ titles. Saved chapters remain available.", String(failed)) }
@@ -209,72 +270,167 @@ struct LibraryUpdateSummary: Codable {
         }
         return try await SecureHTTP().get(pages.urls[index])
     }
-    func progress(_ chapter: MangaChapter, page: Int, count: Int) async {
-        await mutate { try await $0.progress(seriesID: chapter.seriesID, chapterID: chapter.id, page: page, count: count) }
+    func progress(_ chapter: MangaChapter, page: Int, count: Int, offset: Double = 0) async {
+        let record = !UserDefaults.standard.bool(forKey: "privacy.privateHistory")
+        await mutate { try await $0.progress(seriesID: chapter.seriesID, chapterID: chapter.id, page: page, count: count, offset: offset, recordHistory: record) }
+    }
+    func addReadingTime(seriesID: String, duration: TimeInterval) async {
+        guard !UserDefaults.standard.bool(forKey: "privacy.privateHistory") else { return }
+        await mutate { try await $0.addReadingTime(seriesID: seriesID, duration: duration) }
     }
     func enqueue(_ chapters: [MangaChapter]) async {
         await mutate { try await $0.enqueue(chapters) }
         startDownloads()
     }
+    func setDownloadConcurrency(_ count: Int) {
+        UserDefaults.standard.set(max(1, min(3, count)), forKey: "downloads.perSource")
+        objectWillChange.send()
+        startDownloads()
+    }
     func startDownloads() {
-        guard worker == nil, ready else { return }
+        guard worker == nil, ready, !pausingDownloadQueue,
+              state.downloads.contains(where: { $0.phase == .queued || $0.phase == .retrying }) else { return }
         downloading = true
         worker = Task { await runDownloads() }
     }
     func resumeDownloads() async {
-        await mutate { try await $0.enqueue(self.state.downloads.filter { $0.phase != .complete }.map(\.chapter)) }
+        await mutate { try await $0.enqueue(self.state.downloads.filter { $0.phase != .complete && $0.phase != .cancelled }.map(\.chapter)) }
         startDownloads()
     }
-    func pauseDownloads() async {
-        let task = worker; task?.cancel(); await task?.value
+    func pauseDownloads(interrupted: Bool = false) async {
+        if let pending = downloadPauseTask { await pending.value; return }
+        pausingDownloadQueue = true; interruptingDownloadQueue = interrupted
+        let operation = Task { await finishPausingDownloads(interrupted: interrupted) }
+        downloadPauseTask = operation
+        await operation.value
+        downloadPauseTask = nil
     }
-    func deleteDownload(_ id: String) async {
-        await pauseDownloads()
-        await mutate { try await $0.deleteDownload(id: id) }
+    private func finishPausingDownloads(interrupted: Bool) async {
+        let task = worker
+        task?.cancel()
+        for task in downloadTasks.values { task.cancel() }
+        await task?.value
+        let jobs = state.downloads.filter { $0.phase == .queued || $0.phase == .retrying || $0.phase == .downloading }
+        for job in jobs {
+            await mutate { try await $0.updateDownload(id: job.id, phase: interrupted ? .queued : .paused,
+                finished: job.finishedPages, total: job.totalPages, retryCount: job.retryCount,
+                nextRetryAt: job.nextRetryAt, downloadedBytes: job.downloadedBytes) }
+        }
+        interruptingDownloadQueue = false; pausingDownloadQueue = false
+    }
+    func pauseDownload(_ id: String) async { await stopDownload(id, phase: .paused) }
+    func cancelDownload(_ id: String) async { await stopDownload(id, phase: .cancelled) }
+    private func stopDownload(_ id: String, phase: DownloadPhase) async {
+        guard stoppingDownloads.insert(id).inserted else { return }
+        defer { stoppingDownloads.remove(id) }
+        let task = downloadTasks[id]; task?.cancel(); await task?.value
+        guard let job = download(id), job.phase != .complete else { return }
+        await mutate { try await $0.updateDownload(id: id, phase: phase, finished: job.finishedPages,
+            total: job.totalPages, retryCount: job.retryCount, downloadedBytes: job.downloadedBytes) }
+    }
+    func resumeDownload(_ id: String) async {
+        guard !stoppingDownloads.contains(id), let job = download(id) else { return }
+        await enqueue([job.chapter])
+    }
+    func deleteDownload(_ id: String) async { await deleteDownloads([id]) }
+    func deleteDownloads(_ ids: [String]) async {
+        let ids = Set(ids).subtracting(stoppingDownloads)
+        stoppingDownloads.formUnion(ids)
+        defer { stoppingDownloads.subtract(ids) }
+        // Native image descriptors are consumed before these tasks return, even after late cancellation.
+        let tasks = ids.compactMap { downloadTasks[$0] }
+        for task in tasks { task.cancel() }
+        for task in tasks { await task.value }
+        await mutate { try await $0.deleteDownloads(ids: Array(ids)) }
+        startDownloads()
+    }
+    func downloadStorage() async throws -> (used: Int64, free: Int64) {
+        let store = try requireStore()
+        return (try await store.downloadedBytes(), try await store.availableDiskBytes())
     }
     private func runDownloads() async {
         var backgroundID: UIBackgroundTaskIdentifier = .invalid
         backgroundID = UIApplication.shared.beginBackgroundTask(withName: L10n.string("Save chapter pages")) {
-            Task { @MainActor in self.worker?.cancel() }
+            Task { @MainActor in await self.pauseDownloads(interrupted: true) }
         }
         defer {
             if backgroundID != .invalid { UIApplication.shared.endBackgroundTask(backgroundID) }
             downloading = false; worker = nil
         }
-        while let job = state.downloads.first(where: { $0.phase == .queued }), !Task.isCancelled {
-            var finished = 0, total = job.totalPages
+        while !Task.isCancelled {
+            let sourceIDs = Dictionary(uniqueKeysWithValues: state.series.map { ($0.id, $0.series.sourceID) })
+            let jobs = DownloadPolicy.runnable(state.downloads, activeIDs: Set(downloadTasks.keys).union(stoppingDownloads),
+                sourceIDs: sourceIDs, perSource: downloadsPerSource, now: Date())
+            for job in jobs {
+                downloadTasks[job.id] = Task { await runDownload(job) }
+            }
+            if downloadTasks.isEmpty && !state.downloads.contains(where: { $0.phase == .queued || $0.phase == .retrying }) { break }
+            do { try await Task.sleep(for: .milliseconds(downloadTasks.isEmpty ? 1000 : 200)) }
+            catch { break }
+        }
+        // Join every child before ending the background lease or allowing a restart.
+        let tasks = Array(downloadTasks.values)
+        for task in tasks { task.cancel() }
+        for task in tasks { await task.value }
+    }
+    private func runDownload(_ job: ChapterDownload) async {
+        defer { downloadTasks.removeValue(forKey: job.id) }
+        var finished = job.finishedPages, total = job.totalPages, bytes = job.downloadedBytes
+        var retryCount = job.retryCount
+        do {
+            let store = try requireStore()
+            try Task.checkCancellation()
+            var pages = try await self.pages(job.chapter)
+            // Extensions own their image client. Old URL-only caches need opaque page state before new requests.
+            if saved(job.chapter.seriesID)?.series.sourceID != "mangadex",
+               pages.sourceMetadataJSON?.allSatisfy({ $0 != nil }) != true {
+                let cache = try await store.cachedPageState(chapterID: job.id)
+                if cache.indices.count < pages.urls.count { pages = try await self.pages(job.chapter, refresh: true) }
+            }
+            let cache = try await store.cachedPageState(chapterID: job.id)
+            finished = cache.indices.count; total = pages.urls.count; bytes = cache.bytes
+            try Task.checkCancellation()
+            try await store.updateDownload(id: job.id, phase: .downloading, finished: finished, total: total,
+                                           retryCount: retryCount, downloadedBytes: bytes)
+            state = await store.snapshot()
+            for index in pages.urls.indices where !cache.indices.contains(index) {
+                try Task.checkCancellation()
+                try await store.requireDownloadSpace(for: 32 * 1024 * 1024)
+                let data = try await imageData(chapter: job.chapter, pages: pages, index: index)
+                try Task.checkCancellation()
+                finished += 1; bytes += Int64(data.count); retryCount = 0
+                try await store.updateDownload(id: job.id, phase: .downloading, finished: finished, total: total,
+                                               downloadedBytes: bytes)
+                state = await store.snapshot()
+            }
+            try Task.checkCancellation()
+            let verified = try await store.cachedPageState(chapterID: job.id)
+            guard verified.totalPages == total, verified.indices.count == total else {
+                throw ReaderFailure(L10n.string("The chapter pages have changed. Close and reopen the chapter."))
+            }
+            bytes = verified.bytes
+            try await store.updateDownload(id: job.id, phase: .complete, finished: total, total: total, downloadedBytes: bytes)
+            state = await store.snapshot()
+            DiagnosticsCenter.shared.record(L10n.string("Downloads"), L10n.format("Chapter saved: %@ pages", String(total)))
+        } catch {
+            let cancelled = Task.isCancelled || error is CancellationError
+            let nextRetry = cancelled ? nil : DownloadPolicy.nextRetry(error: error, retryCount: retryCount, now: Date())
             do {
                 let store = try requireStore()
-                let pages = try await self.pages(job.chapter); total = pages.urls.count
-                try await store.updateDownload(id: job.id, phase: .downloading, finished: 0, total: total)
+                // A late atomic page write remains useful, even if cancellation beat its progress update.
+                let cache = try await store.cachedPageState(chapterID: job.id)
+                finished = cache.indices.count; total = cache.totalPages; bytes = cache.bytes
+                try await store.updateDownload(id: job.id,
+                    phase: cancelled ? (interruptingDownloadQueue ? .queued : .paused) : (nextRetry == nil ? .failed : .retrying),
+                    finished: finished, total: total, failure: cancelled ? nil : AppError.describe(error),
+                    retryCount: nextRetry == nil ? retryCount : retryCount + 1,
+                    nextRetryAt: nextRetry ?? job.nextRetryAt, downloadedBytes: bytes)
                 state = await store.snapshot()
-                for index in pages.urls.indices {
-                    try Task.checkCancellation()
-                    _ = try await imageData(chapter: job.chapter, pages: pages, index: index)
-                    try Task.checkCancellation(); finished += 1
-                    try await store.updateDownload(id: job.id, phase: .downloading, finished: finished, total: total)
-                    state = await store.snapshot()
-                }
-                try Task.checkCancellation()
-                try await store.updateDownload(id: job.id, phase: .complete, finished: total, total: total)
-                state = await store.snapshot()
-                DiagnosticsCenter.shared.record(L10n.string("Downloads"), L10n.format("Chapter saved: %@ pages", String(describing: total)))
             } catch {
-                let paused = Task.isCancelled || error is CancellationError
-                let downloadFailure = error
-                do {
-                    let store = try requireStore()
-                    try await store.updateDownload(id: job.id, phase: paused ? .paused : .failed,
-                        finished: finished, total: total, failure: paused ? nil : AppError.describe(downloadFailure))
-                    state = await store.snapshot()
-                } catch {
-                    // If persistence fails, the snapshot can still contain this queued job.
-                    // Stop instead of selecting it repeatedly (e.g. disk full).
-                    errorMessage = AppError.describe(error)
-                    DiagnosticsCenter.shared.recordFailure(L10n.string("Downloads"), error)
-                    break
-                }
-                if paused { break }
+                errorMessage = AppError.describe(error)
+                DiagnosticsCenter.shared.recordFailure(L10n.string("Downloads"), error)
+                // Persistence failure must not spin on an unchanged queued snapshot.
+                worker?.cancel()
             }
         }
     }
@@ -289,13 +445,17 @@ struct LibraryUpdateSummary: Codable {
 actor NetworkImageCache {
     static let shared = NetworkImageCache()
     private let cache = NSCache<NSString, UIImage>()
+    private var revision = UUID()
     init() { cache.totalCostLimit = 64 * 1024 * 1024; cache.countLimit = 120 }
+    func clear() { revision = UUID(); cache.removeAllObjects() }
     func image(_ url: String) async throws -> UIImage {
         if let existing = cache.object(forKey: url as NSString) { return existing }
+        let startedRevision = revision
         let data = try await SecureHTTP().get(url)
         try Task.checkCancellation()
         let image = try ImageDecoder.thumbnail(data, maximumDimension: 700)
-        cache.setObject(image, forKey: url as NSString, cost: Int(image.size.width * image.size.height * 4)); return image
+        if revision == startedRevision { cache.setObject(image, forKey: url as NSString, cost: Int(image.size.width * image.size.height * 4)) }
+        return image
     }
 }
 
@@ -311,7 +471,7 @@ struct RemoteCover: View {
                     else { Image(systemName: "book.closed").foregroundStyle(.secondary).frame(width: geometry.size.width, height: geometry.size.height) }
                 }
             }.aspectRatio(ShelfStyle.coverRatio, contentMode: .fit).clipped()
-            .task(id: url) {
+            .task(id: (url ?? "") + InterfaceState.shared.coverRevision.uuidString) {
                 image = nil; guard let url else { return }
                 do { let result = try await NetworkImageCache.shared.image(url); try Task.checkCancellation(); image = result } catch { }
             }

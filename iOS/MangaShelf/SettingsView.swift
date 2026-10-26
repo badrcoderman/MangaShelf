@@ -43,6 +43,7 @@ struct SettingsView: View {
                 row(L10n.string("Security settings"), "shield.lefthalf.filled") { PrivacyPreferencesView() }
                 row(L10n.string("Reading insights"), "chart.xyaxis.line") { ReadingInsightsView() }
                 row(L10n.string("Downloads"), "arrow.down.to.line") { DownloadsView() }
+                row(L10n.string("Advanced settings"), "slider.horizontal.below.rectangle") { AdvancedPreferencesView() }
                 TachiDivider()
                 ShareLink(item: URL(string: "https://github.com/badrcoderman/MangaShelf")!) {
                     HStack(spacing: 12) {

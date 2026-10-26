@@ -89,11 +89,22 @@ public struct ChapterPages: Codable, Sendable {
 
 public struct ChapterProgress: Codable, Sendable {
     public var page = 0
+    public var webtoonOffset: Double = 0
     public var pageCount = 0
     public var read = false
     public var bookmarks = Set<Int>()
     public var lastReadAt: Date?
     public init() {}
+    private enum CodingKeys: String, CodingKey { case page, webtoonOffset, pageCount, read, bookmarks, lastReadAt }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        page = try values.decodeIfPresent(Int.self, forKey: .page) ?? 0
+        webtoonOffset = try values.decodeIfPresent(Double.self, forKey: .webtoonOffset) ?? 0
+        pageCount = try values.decodeIfPresent(Int.self, forKey: .pageCount) ?? 0
+        read = try values.decodeIfPresent(Bool.self, forKey: .read) ?? false
+        bookmarks = try values.decodeIfPresent(Set<Int>.self, forKey: .bookmarks) ?? []
+        lastReadAt = try values.decodeIfPresent(Date.self, forKey: .lastReadAt)
+    }
 }
 
 public struct SavedSeries: Codable, Identifiable, Sendable {
@@ -104,15 +115,31 @@ public struct SavedSeries: Codable, Identifiable, Sendable {
     public var chapters: [MangaChapter] = []
     public var progress: [String: ChapterProgress] = [:]
     public var addedAt = Date()
+    public var totalReadingTime: TimeInterval = 0
     public var checkedAt: Date?
     public var newChapterIDs = Set<String>()
     public var lastReadAt: Date? { progress.values.compactMap(\.lastReadAt).max() }
     public var unreadCount: Int { chapters.filter { progress[$0.id]?.read != true }.count }
     public var nextChapter: MangaChapter? { chapters.reversed().first { progress[$0.id]?.read != true } }
     public init(series: MangaSeries) { self.series = series }
+    private enum CodingKeys: String, CodingKey { case series, inLibrary, categories, chapters, progress, addedAt, checkedAt, newChapterIDs, totalReadingTime }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        series = try c.decode(MangaSeries.self, forKey: .series)
+        inLibrary = try c.decodeIfPresent(Bool.self, forKey: .inLibrary) ?? false
+        categories = try c.decodeIfPresent(Set<UUID>.self, forKey: .categories) ?? []
+        chapters = try c.decodeIfPresent([MangaChapter].self, forKey: .chapters) ?? []
+        progress = try c.decodeIfPresent([String: ChapterProgress].self, forKey: .progress) ?? [:]
+        addedAt = try c.decodeIfPresent(Date.self, forKey: .addedAt) ?? .distantPast
+        checkedAt = try c.decodeIfPresent(Date.self, forKey: .checkedAt)
+        newChapterIDs = try c.decodeIfPresent(Set<String>.self, forKey: .newChapterIDs) ?? []
+        totalReadingTime = try c.decodeIfPresent(TimeInterval.self, forKey: .totalReadingTime) ?? 0
+    }
 }
 
-public enum DownloadPhase: String, Codable, Sendable { case queued, downloading, paused, failed, complete }
+public enum DownloadPhase: String, Codable, Sendable {
+    case queued, downloading, retrying, paused, cancelled, failed, complete
+}
 public struct ChapterDownload: Codable, Identifiable, Sendable {
     public var id: String { chapter.id }
     public var chapter: MangaChapter
@@ -121,7 +148,35 @@ public struct ChapterDownload: Codable, Identifiable, Sendable {
     public var totalPages = 0
     public var failure: String?
     public var addedAt = Date()
+    /// Failed attempts since the last successfully saved page.
+    public var retryCount = 0
+    public var nextRetryAt: Date?
+    /// Actual bytes of complete image files; a queue count is never used as a size estimate.
+    public var downloadedBytes: Int64 = 0
+    public var completedAt: Date?
     public init(chapter: MangaChapter) { self.chapter = chapter }
+
+    private enum CodingKeys: String, CodingKey {
+        case chapter, phase, finishedPages, totalPages, failure, addedAt, retryCount, nextRetryAt, downloadedBytes, completedAt
+    }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        chapter = try values.decode(MangaChapter.self, forKey: .chapter)
+        phase = try values.decodeIfPresent(DownloadPhase.self, forKey: .phase) ?? .queued
+        finishedPages = try values.decodeIfPresent(Int.self, forKey: .finishedPages) ?? 0
+        totalPages = try values.decodeIfPresent(Int.self, forKey: .totalPages) ?? 0
+        failure = try values.decodeIfPresent(String.self, forKey: .failure)
+        addedAt = try values.decodeIfPresent(Date.self, forKey: .addedAt) ?? .distantPast
+        retryCount = try values.decodeIfPresent(Int.self, forKey: .retryCount) ?? 0
+        nextRetryAt = try values.decodeIfPresent(Date.self, forKey: .nextRetryAt)
+        downloadedBytes = try values.decodeIfPresent(Int64.self, forKey: .downloadedBytes) ?? 0
+        completedAt = try values.decodeIfPresent(Date.self, forKey: .completedAt)
+        guard (0...100).contains(retryCount), downloadedBytes >= 0,
+              nextRetryAt.map({ $0.timeIntervalSinceReferenceDate.isFinite }) ?? true,
+              completedAt.map({ $0.timeIntervalSinceReferenceDate.isFinite }) ?? true else {
+            throw DecodingError.dataCorruptedError(forKey: .retryCount, in: values, debugDescription: "Invalid download retry state")
+        }
+    }
 }
 public struct OnlineState: Codable, Sendable {
     public var version = 1
@@ -136,6 +191,7 @@ public struct OnlineState: Codable, Sendable {
         for item in series {
             guard (UUID(uuidString: item.id) != nil || (!item.id.isEmpty && item.id.count <= 256)),
                   (item.series.sourceID == "mangadex" || (!item.series.sourceID.isEmpty && item.series.sourceID.count <= 256)),
+                  item.totalReadingTime.isFinite, item.totalReadingTime >= 0,
                   !item.series.title.isEmpty, item.series.title.count <= 2048,
                   item.series.sourceLanguage.map({ $0.count <= 32 }) ?? true,
                   item.series.sourceMetadataJSON.map({ $0.utf8.count <= 256 * 1024 }) ?? true,
@@ -146,6 +202,7 @@ public struct OnlineState: Codable, Sendable {
             for (key, value) in item.progress {
                 guard (UUID(uuidString: key) != nil || (!key.isEmpty && key.count <= 256)),
                       (0...4096).contains(value.pageCount), value.page >= 0,
+                      value.webtoonOffset.isFinite, (0...1).contains(value.webtoonOffset),
                       value.page < max(1, value.pageCount), value.bookmarks.allSatisfy({ $0 >= 0 && $0 < value.pageCount }) else {
                     throw ReaderFailure(ReaderText.string("Invalid reading progress."))
                 }
@@ -155,6 +212,9 @@ public struct OnlineState: Codable, Sendable {
             try Self.validateChapter(download.chapter)
             guard series.contains(where: { $0.id == download.chapter.seriesID }),
                   (0...4096).contains(download.totalPages), (0...download.totalPages).contains(download.finishedPages),
+                  (0...100).contains(download.retryCount), download.downloadedBytes >= 0,
+                  download.nextRetryAt.map({ $0.timeIntervalSinceReferenceDate.isFinite }) ?? true,
+                  download.completedAt.map({ $0.timeIntervalSinceReferenceDate.isFinite }) ?? true,
                   download.phase != .complete || (download.totalPages > 0 && download.finishedPages == download.totalPages) else {
                 throw ReaderFailure(ReaderText.string("Invalid download data."))
             }
