@@ -177,6 +177,7 @@ object SourceCommandsCheck {
         }
         var manga = JsonObject(emptyMap()); var chapter = JsonObject(emptyMap()); var imageMetadata = ""
         try {
+            checks.putAll(checkSourceFilters(registry))
             case("catalogue_latest_search_and_source_pagination_have_distinct_wire_commands") {
                 val result = Json.parseToJsonElement(commands.execute("popular", request("page" to JsonPrimitive(4)))).jsonObject
                 check(result["hasNextPage"] == JsonPrimitive(true) && source.called == "popular:4")

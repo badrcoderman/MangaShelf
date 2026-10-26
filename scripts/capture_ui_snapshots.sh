@@ -22,16 +22,38 @@ finish() {
   trap - EXIT
   set +e
   capture_status=1
-  if [ -d "$result_bundle" ]; then
-    xcrun xcresulttool get test-results summary --path "$result_bundle" \
-      > "$artifact_dir/test-summary.json" 2> "$artifact_dir/test-summary-errors.log"
-    xcrun xcresulttool export attachments --path "$result_bundle" \
-      --output-path "$artifact_dir/attachments" > "$artifact_dir/export.log" 2>&1
-    if [ "$?" -eq 0 ]; then
-      python3 scripts/collect_ui_snapshots.py "$artifact_dir/attachments" \
-        "$artifact_dir/screenshots" --provenance "$artifact_dir/provenance.json"
-      capture_status=$?
+  for suite in Tabs Stage23-English Stage23-Arabic; do
+    bundle="$artifact_dir/$suite.xcresult"
+    if [ -d "$bundle" ]; then
+      xcrun xcresulttool get test-results summary --path "$bundle" \
+        > "$artifact_dir/$suite-summary.json" 2> "$artifact_dir/$suite-summary-errors.log"
+      xcrun xcresulttool export attachments --path "$bundle" \
+        --output-path "$artifact_dir/attachments-$suite" > "$artifact_dir/export-$suite.log" 2>&1
     fi
+  done
+  python3 - "$artifact_dir" <<'PY'
+import json, shutil, sys
+from pathlib import Path
+root = Path(sys.argv[1]); output = root / 'attachments'; output.mkdir(exist_ok=True)
+combined = []
+for suite in ('Tabs', 'Stage23-English', 'Stage23-Arabic'):
+    source = root / ('attachments-' + suite)
+    if not (source / 'manifest.json').exists(): continue
+    manifest = json.loads((source / 'manifest.json').read_text())
+    if not isinstance(manifest, list): raise ValueError('Attachment manifest must be a list')
+    combined.extend(manifest)
+    for item in source.iterdir():
+        if item.name == 'manifest.json': continue
+        if not item.is_file() or item.is_symlink(): raise ValueError('Unexpected attachment path')
+        target = output / item.name
+        if target.exists() and target.read_bytes() != item.read_bytes(): raise ValueError('Attachment filename collision')
+        shutil.copyfile(item, target)
+(output / 'manifest.json').write_text(json.dumps(combined))
+PY
+  if [ "$?" -eq 0 ]; then
+    python3 scripts/collect_ui_snapshots.py "$artifact_dir/attachments" \
+      "$artifact_dir/screenshots" --provenance "$artifact_dir/provenance.json" --stage23
+    capture_status=$?
   fi
   python3 - "$artifact_dir" "$command_status" "$capture_status" <<'PY'
 import json
@@ -112,7 +134,7 @@ provenance = {
     "appearance": "dark", "languages": ["en", "ar"],
     "additional_cases": {"light": "selected through the real saved App theme control",
                          "dynamic_type": "accessibility XXXL launch preference; verified by tab geometry"},
-    "store": "new simulator; production empty store; no injected manga content",
+    "store": "new simulator: empty production store for Tabs; then original synthetic persistent library data for Stage23; seed manifest records each file; no fixtures in the app",
     "visual_parity": "NOT REVIEWED",
 }
 (output / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
@@ -144,6 +166,7 @@ binary = app / info["CFBundleExecutable"]
 (output / "built-app.json").write_text(json.dumps({
     "bundle_identifier": info["CFBundleIdentifier"], "version": info["CFBundleShortVersionString"],
     "build": info["CFBundleVersion"], "executable_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
+    "debug_dylib_sha256": hashlib.sha256((app / 'MangaShelf.debug.dylib').read_bytes()).hexdigest() if (app / 'MangaShelf.debug.dylib').is_file() else None,
 }, indent=2) + "\n")
 PY
 xcrun simctl install "$simulator_udid" "$app_path"
@@ -153,3 +176,17 @@ xcodebuild -project iOS/MangaShelfUI.xcodeproj -scheme MangaShelfUI \
   -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 \
   -only-testing:MangaShelfUISnapshots/TabSnapshots CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES test-without-building \
   2>&1 | tee "$artifact_dir/test.log"
+for language in English Arabic; do
+  # Each locale gets a fresh installed container. No production launch flag or
+  # fixture resource is introduced, and no personal library is touched.
+  xcrun simctl uninstall "$simulator_udid" app.mangashelf.reader
+  xcrun simctl install "$simulator_udid" "$app_path"
+  python3 scripts/seed_ui_simulator.py --simulator-udid "$simulator_udid" --report "$artifact_dir/seed-$language.json"
+  xcodebuild -project iOS/MangaShelfUI.xcodeproj -scheme MangaShelfUI \
+    -configuration Debug -destination "platform=iOS Simulator,id=$simulator_udid" \
+    -derivedDataPath build/UISnapshotDerivedData -resultBundlePath "$artifact_dir/Stage23-$language.xcresult" \
+    -parallel-testing-enabled NO -maximum-concurrent-test-simulator-destinations 1 \
+    -only-testing:MangaShelfUISnapshots/StageTwoThreeSnapshots/test${language}SavedFlows CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=YES test-without-building \
+    2>&1 | tee "$artifact_dir/test-stage23-$language.log"
+  python3 scripts/verify_ui_simulator.py --simulator-udid "$simulator_udid" --seed "$artifact_dir/seed-$language.json" --report "$artifact_dir/persistence-$language.json"
+done

@@ -21,6 +21,12 @@ struct AppearancePreferencesView: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
     @AppStorage("library.columns") private var columns = 2
+    private var libraryColumns: Binding<Int> {
+        Binding(get: { model.state.defaultDisplayOptions.columnCount }, set: { value in
+            columns = value
+            Task { await model.changeCategoryDisplayOptions(categoryID: nil) { $0.columnCount = value } }
+        })
+    }
     private var title: String {
         switch model.state.settings.appearance {
         case .system: return L10n.string("System")
@@ -36,21 +42,31 @@ struct AppearancePreferencesView: View {
                     Task { await model.perform { try await $0.saveSettings(changed) } }
                 }), choices: [(AppAppearance.system, L10n.string("System")), (.light, L10n.string("Light")), (.dark, L10n.string("Dark"))], identifier: "appearance.theme").disabled(model.busy)
             TachiSectionTitle(L10n.string("Display"))
-            TachiStepperRow(title: L10n.string("Items per row"), value: $columns, range: 2...5)
+            TachiStepperRow(title: L10n.string("Items per row"), value: libraryColumns, range: 2...5).disabled(model.busy)
         }
     }
 }
 struct LibraryPreferencesView: View {
     @Environment(\.locale) private var interfaceLocale
+    @EnvironmentObject private var model: AppModel
     @AppStorage("library.columns") private var columns = 2
-    @AppStorage("library.sort") private var sorting = "added"
-    private var sortTitle: String { L10n.string(sorting == "title" ? "Title" : sorting == "recent" ? "Last read" : sorting == "pages" ? "Page count" : "Date added") }
+    private var libraryColumns: Binding<Int> {
+        Binding(get: { model.state.defaultDisplayOptions.columnCount }, set: { value in
+            columns = value
+            Task { await model.changeCategoryDisplayOptions(categoryID: nil) { $0.columnCount = value } }
+        })
+    }
+    private var sorting: Binding<LibrarySortOption> {
+        Binding(get: { model.state.defaultDisplayOptions.sortOption }, set: { value in
+            Task { await model.changeCategoryDisplayOptions(categoryID: nil) { $0.sortOption = value } }
+        })
+    }
     var body: some View {
         TachiSettingsPage(title: L10n.string("Library")) {
             TachiSectionTitle(L10n.string("Display"))
-            TachiStepperRow(title: L10n.string("Items per row"), value: $columns, range: 2...5)
-            TachiChoiceRow(title: L10n.string("Sort by"), symbol: "line.3.horizontal.decrease", selection: $sorting,
-                           choices: [("title", L10n.string("Title")), ("added", L10n.string("Date added")), ("recent", L10n.string("Last read")), ("pages", L10n.string("Page count"))])
+            TachiStepperRow(title: L10n.string("Items per row"), value: libraryColumns, range: 2...5).disabled(model.busy)
+            TachiChoiceRow(title: L10n.string("Sort by"), symbol: "line.3.horizontal.decrease", selection: sorting,
+                           choices: [(LibrarySortOption.title, L10n.string("Title")), (.added, L10n.string("Date added")), (.recent, L10n.string("Last read")), (.pages, L10n.string("Page count")), (.unread, L10n.string("Unread chapters"))]).disabled(model.busy)
             TachiNavigationRow(title: L10n.string("Categories"), symbol: "folder") { CategoryManagementView() }
         }
     }

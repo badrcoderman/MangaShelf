@@ -51,6 +51,21 @@ class SnapshotCaptureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing native screenshots"):
             self.run_collect()
 
+    def test_populated_export_requires_every_stage23_capture_and_labels_its_synthetic_scope(self):
+        expected = capture.EXPECTED + capture.STAGE23
+        for index, name in enumerate(capture.STAGE23, len(capture.EXPECTED)):
+            (self.attachments / f"{index}.png").write_bytes(png(index))
+            self.manifest[0]["attachments"].append({"exportedFileName": f"{index}.png", "suggestedHumanReadableName": name + ".png"})
+        (self.attachments / "manifest.json").write_text(json.dumps(self.manifest))
+        report = capture.collect(self.attachments, self.root / "screenshots", expected)
+        self.assertEqual(report["captured_screenshots"], 60)
+        self.assertEqual(len(report["synthetic_store_captures"]), 24)
+        self.assertEqual(report["visual_parity"], "NOT REVIEWED")
+        self.manifest[0]["attachments"].pop()
+        (self.attachments / "manifest.json").write_text(json.dumps(self.manifest))
+        with self.assertRaisesRegex(ValueError, "missing native screenshots"):
+            capture.collect(self.attachments, self.root / "screenshots", expected)
+
     def test_duplicate_capture_fails(self):
         self.manifest[0]["attachments"].append(self.manifest[0]["attachments"][0].copy())
         with self.assertRaisesRegex(ValueError, "duplicate named screenshot"):

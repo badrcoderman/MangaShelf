@@ -17,6 +17,13 @@ struct SourceCatalogView: View {
     @State private var hasMore = false
     @State private var loading = false
     @State private var error: String?
+    @State private var filterScreen: SourceFilterScreen?
+    @State private var selectedFilters: SourceFilterSelection?
+    @State private var presentingFilters = false
+    @State private var loadingFilters = false
+    @State private var filterRevision = 0
+    @State private var activeRequest: UUID?
+    @State private var staleFilters = false
     init(sourceId: String = "mangadex", sourceTitle: String = "MangaDex",
          sourceLanguage: String? = nil, initialQuery: String = "") {
         self.sourceId = sourceId
@@ -25,12 +32,34 @@ struct SourceCatalogView: View {
         _query = State(initialValue: initialQuery)
     }
     private var catalogLanguage: String { sourceId == "mangadex" ? language : (sourceLanguage ?? "") }
-    private var requestID: String { "\(sourceId)|\(query)|\(catalogLanguage)|\(latest)" }
+    private var requestID: String { "\(sourceId)|\(query)|\(catalogLanguage)|\(latest)|\(filterRevision)" }
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                Picker(L10n.string("View"), selection: $latest) { Text(L10n.string("Popular")).tag(false); Text(L10n.string("Latest updates")).tag(true) }
-                    .pickerStyle(.segmented).padding(.horizontal)
+                HStack(spacing: 0) {
+                    ShelfSearchField(text: $query, prompt: L10n.string("Search manga or manhwa"))
+                        .accessibilityIdentifier("source.catalog.search")
+                    if sourceId != "mangadex" {
+                        Button { Task { await openFilters() } } label: {
+                            if loadingFilters { ProgressView().frame(width: 44, height: 44) }
+                            else { ShelfIcon(symbol: "line.3.horizontal.decrease") }
+                        }.buttonStyle(.plain).disabled(loadingFilters)
+                            .accessibilityLabel(L10n.string("Filter titles")).accessibilityIdentifier("source.filters.open")
+                    }
+                    NavigationLink { sourcePreferences } label: { ShelfIcon(symbol: "gearshape") }
+                        .buttonStyle(.plain).accessibilityLabel(L10n.string("Source settings"))
+                        .accessibilityIdentifier("source.catalog.preferences")
+                }.padding(.trailing, 8)
+                if selectedFilters == nil {
+                    Picker(L10n.string("View"), selection: $latest) { Text(L10n.string("Popular")).tag(false); Text(L10n.string("Latest updates")).tag(true) }
+                        .pickerStyle(.segmented).padding(.horizontal)
+                } else {
+                    HStack {
+                        Text(L10n.string("Filtered results")).shelfFont(.subheadline)
+                        Spacer()
+                        Button(L10n.string("Clear filters")) { selectedFilters = nil; filterRevision += 1 }
+                    }.padding(.horizontal, 16)
+                }
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ShelfStyle.gridSpacing), count: typeSize.isAccessibilitySize ? 1 : max(2, min(5, columns))), spacing: ShelfStyle.gridSpacing) {
                     ForEach(items) { item in
                         NavigationLink { SeriesDetailView(series: item) } label: { MangaCard(series: item) }.buttonStyle(.plain)
@@ -39,49 +68,74 @@ struct SourceCatalogView: View {
                 if loading { ProgressView(L10n.string("Loading titles…")).padding() }
                 if let error {
                     Text(error).foregroundStyle(.secondary).multilineTextAlignment(.center).padding()
-                    Button(L10n.string("Retry")) { Task { await fetch(reset: items.isEmpty) } }.disabled(loading)
+                    if staleFilters {
+                        Button(L10n.string("Reset filters")) { Task { await openFilters() } }.disabled(loadingFilters)
+                            .accessibilityIdentifier("source.filters.recover")
+                    } else {
+                        Button(L10n.string("Retry")) { Task { await fetch(reset: items.isEmpty) } }.disabled(loading)
+                    }
                 } else if items.isEmpty && !loading {
                     ContentUnavailableView(L10n.string("No results"), systemImage: "magnifyingglass", description: Text(L10n.string("Try another title or change chapter language in Source settings.")))
                 }
                 if hasMore && !loading { Button(L10n.string("Load more")) { Task { await fetch(reset: false) } }.padding() }
             }.padding(.vertical, 8)
-        }.shelfPage().navigationTitle(sourceTitle).navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $query, prompt: L10n.string("Search manga or manhwa"))
-            .toolbar { NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "slider.horizontal.3") }.accessibilityLabel(L10n.string("Source settings")) }
+        }.tachiPage(sourceTitle, backIdentifier: "source.catalog.back")
             .task(id: requestID) {
                 do { try await Task.sleep(nanoseconds: 350_000_000); try Task.checkCancellation(); await fetch(reset: true) } catch { }
             }.refreshable { await fetch(reset: true) }
+            .sheet(isPresented: $presentingFilters) {
+                if let filterScreen {
+                    SourceFiltersView(sourceID: sourceId, initial: filterScreen, applied: selectedFilters) { selected in
+                        selectedFilters = selected; filterRevision += 1
+                    }.tachiSheet()
+                }
+            }
+    }
+    @MainActor private func openFilters() async {
+        guard !loadingFilters else { return }; loadingFilters = true; defer { loadingFilters = false }
+        do {
+            filterScreen = try await SourceEngineCoordinator.shared.sourceFilters(sourceId: sourceId)
+            presentingFilters = true
+        } catch { self.error = AppError.describe(error) }
+    }
+    @ViewBuilder private var sourcePreferences: some View {
+        if sourceId == "mangadex" { SourcePreferencesView() }
+        else { SourceEnginePreferencesView(sourceID: sourceId, sourceTitle: sourceTitle) }
     }
     @MainActor private func fetch(reset: Bool) async {
+        guard reset || !loading else { return }
+        let token = UUID()
+        activeRequest = token
         let identity = requestID
         if reset { items = []; nextPage = 0; hasMore = false }
-        loading = true; error = nil
+        loading = true; error = nil; staleFilters = false
         do {
             if sourceId == "mangadex" {
                 let result = try await online.source.search(query: query, page: nextPage, language: language, latest: latest)
-                try Task.checkCancellation(); guard identity == requestID else { return }
-                let existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { !existing.contains($0.id) })
+                try Task.checkCancellation(); guard identity == requestID, activeRequest == token else { return }
+                var existing = Set(items.map(\.id)); items.append(contentsOf: result.items.filter { existing.insert($0.id).inserted })
                 hasMore = result.hasMore; nextPage += 1; loading = false
             } else {
                 let result = try await SourceEngineCoordinator.shared.search(
-                    sourceId: sourceId, query: query, page: nextPage + 1, latest: latest)
-                try Task.checkCancellation(); guard identity == requestID else { return }
+                    sourceId: sourceId, query: query, page: nextPage + 1, latest: latest, filters: selectedFilters)
+                try Task.checkCancellation(); guard identity == requestID, activeRequest == token else { return }
                 let savedByURL = Dictionary(grouping: online.state.series.filter { $0.series.sourceID == sourceId },
                                             by: { $0.series.sourceURL ?? "" })
                 let seriesList = result.mangas.map {
                     $0.librarySeries(sourceID: sourceId, sourceLanguage: sourceLanguage,
                                      saved: savedByURL[$0.url] ?? [])
                 }
-                let existing = Set(items.map(\.id))
-                items.append(contentsOf: seriesList.filter { !existing.contains($0.id) })
+                var existing = Set(items.map(\.id))
+                items.append(contentsOf: seriesList.filter { existing.insert($0.id).inserted })
                 hasMore = result.hasNextPage
                 nextPage += 1
                 loading = false
             }
-        } catch is CancellationError { if identity == requestID { loading = false } }
+        } catch is CancellationError { if identity == requestID, activeRequest == token { loading = false } }
         catch {
-            if identity == requestID {
+            if identity == requestID, activeRequest == token {
                 self.error = AppError.describe(error); loading = false
+                staleFilters = error is SourceFilterSchemaChanged
                 DiagnosticsCenter.shared.recordFailure(L10n.string("Browse source"), error)
             }
         }
@@ -103,205 +157,26 @@ struct MangaCard: View {
     }
 }
 
-struct SeriesDetailView: View {
-    @Environment(\.locale) private var interfaceLocale
-    @EnvironmentObject private var online: OnlineModel
-    @EnvironmentObject private var local: AppModel
-    @AppStorage("source.language") private var language = "ar"
-    let series: MangaSeries
-    @State private var loading = false
-    @State private var failure: String?
-    @State private var reading: MangaChapter?
-    @State private var expanded = false
-    @State private var unreadOnly = false
-    @State private var downloadedOnly = false
-    @State private var reversed = false
-    @State private var search = ""
-    private var saved: SavedSeries? { online.saved(series.id) }
-    private var item: MangaSeries {
-        guard var stored = saved?.series else { return series }
-        // A new search result can repair an older library entry that predates sourceURL.
-        if stored.sourceID == series.sourceID, stored.sourceURL?.isEmpty ?? true {
-            stored.sourceURL = series.sourceURL
-        }
-        if stored.sourceID == series.sourceID, let knownLanguage = series.sourceLanguage {
-            stored.sourceLanguage = knownLanguage
-        }
-        if stored.sourceID == series.sourceID, stored.sourceURL == series.sourceURL,
-           stored.sourceMetadataJSON == nil {
-            stored.sourceMetadataJSON = series.sourceMetadataJSON
-        }
-        return stored
-    }
-    private var sourceName: String {
-        if item.sourceID == "mangadex" { return "MangaDex" }
-        for repository in local.state.repositories {
-            for entry in repository.index.extensions {
-                if let source = entry.sources.first(where: { $0.id == item.sourceID }) { return source.name }
-                if entry.packageName == item.sourceID { return entry.name }
-            }
-        }
-        return item.sourceID
-    }
-    private func matchesChapterLanguage(_ chapter: MangaChapter) -> Bool {
-        item.sourceID != "mangadex" || language.isEmpty || chapter.language == language
-    }
-    private var chapters: [MangaChapter] {
-        let entries = (saved?.chapters ?? []).filter {
-            matchesChapterLanguage($0) && (!unreadOnly || saved?.progress[$0.id]?.read != true) &&
-            (!downloadedOnly || online.download($0.id)?.phase == .complete) &&
-            (search.isEmpty || $0.localizedTitle.localizedStandardContains(search))
-        }
-        return reversed ? Array(entries.reversed()) : entries
-    }
-    private var startChapter: MangaChapter? {
-        let available = (saved?.chapters ?? []).filter { matchesChapterLanguage($0) }
-        if let last = available.filter({ saved?.progress[$0.id]?.lastReadAt != nil && saved?.progress[$0.id]?.read != true }).max(by: {
-            (saved?.progress[$0.id]?.lastReadAt ?? .distantPast) < (saved?.progress[$1.id]?.lastReadAt ?? .distantPast)
-        }) { return last }
-        return available.reversed().first { saved?.progress[$0.id]?.read != true } ?? available.last
-    }
+struct SourceSearchChooserView: View {
+    @EnvironmentObject private var model: AppModel
+    let query: String
+    private var sources: [BrowseSource] { BrowseSource.available(in: model) }
     var body: some View {
         ScrollView {
-            VStack(spacing: 22) {
-                ShelfDetailHero(title: item.title,
-                    author: item.authors.isEmpty ? L10n.string("Unknown author") : item.authors.joined(separator: L10n.string(", ")),
-                    source: sourceName, status: statusLabel) { RemoteCover(url: item.coverURL) }
-                HStack {
-                    Button { Task { await online.save(item, favorite: !(saved?.inLibrary ?? false)) } } label: {
-                        TachiLabel(saved?.inLibrary == true ? L10n.string("In library") : L10n.string("Add to library"),
-                              systemImage: saved?.inLibrary == true ? "heart.fill" : "heart")
-                    }.foregroundStyle(ShelfStyle.accent).disabled(!online.ready)
-                    Spacer()
-                    NavigationLink { FeatureStatusView(feature: .tracking) } label: {
-                        TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath")
-                    }.foregroundStyle(ShelfStyle.secondary)
-                }.shelfFont(.subheadline).padding(.horizontal, 32)
-                if !item.synopsis.isEmpty {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(item.synopsis).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
-                            .lineLimit(expanded ? nil : 3).textSelection(.enabled)
-                        Button(expanded ? L10n.string("Show less") : L10n.string("Read description")) { expanded.toggle() }.shelfFont(.caption)
-                    }.frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
-                }
-                if !item.tags.isEmpty {
-                    Text(item.tags.joined(separator: " · ")).shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
-                }
-                if saved?.inLibrary == true, !local.state.categories.isEmpty {
-                    Menu {
-                        ForEach(local.state.categories) { category in
-                            Button {
-                                Task { await online.mutate {
-                                    try await $0.setCategory(seriesID: item.id, categoryID: category.id,
-                                        included: !(saved?.categories.contains(category.id) ?? false))
-                                } }
-                            } label: {
-                                TachiLabel(category.name, systemImage: saved?.categories.contains(category.id) == true ? "checkmark.circle.fill" : "circle")
-                            }
-                        }
-                    } label: { TachiLabel(L10n.string("Library categories"), systemImage: "folder") }
-                }
-                Button(saved?.lastReadAt == nil ? L10n.string("Start reading") : L10n.string("Continue reading")) {
-                    reading = startChapter
-                }.buttonStyle(ShelfPrimaryButtonStyle()).disabled(startChapter == nil)
-                    .padding(.horizontal, 15)
-                if loading { ProgressView(L10n.string("Updating details and chapters…")) }
-                if let failure {
-                    VStack(spacing: 8) {
-                        Text(failure).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
-                        Button(L10n.string("Retry")) { Task { await refresh() } }
-                    }.padding(.horizontal, 16)
-                }
-                chapterToolbar
-                if showingChapterSearch { ShelfSearchField(text: $search, prompt: L10n.string("Search chapters")) }
-                if chapters.isEmpty && !loading {
-                    Text(L10n.string("No chapters match the current language and filters.")).shelfFont(.subheadline)
-                        .foregroundStyle(ShelfStyle.secondary).padding(.horizontal, 16)
-                }
-                LazyVStack(spacing: 0) {
-                    ForEach(chapters) { chapter in chapterRow(chapter) }
-                }
-            }.padding(.bottom, 24)
-        }.shelfPage().navigationTitle("").navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.hidden, for: .navigationBar)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        TachiButton(L10n.string("Refresh"), systemImage: "arrow.clockwise") { Task { await refresh() } }.disabled(loading)
-                        NavigationLink { SourcePreferencesView() } label: { TachiLabel(L10n.string("Source settings"), systemImage: "slider.horizontal.3") }
-                    } label: { ShelfIcon(symbol: "ellipsis").rotationEffect(.degrees(90)) }.accessibilityLabel(L10n.string("Title options"))
+            VStack(alignment: .leading, spacing: 0) {
+                Text(query).shelfFont(.body).foregroundStyle(ShelfStyle.secondary).padding(18)
+                NavigationLink { SourceCatalogView(sourceId: "mangadex", sourceTitle: "MangaDex", initialQuery: query) } label: {
+                    TachiRowLabel(title: "MangaDex", symbol: "globe").padding(.horizontal, 18)
+                }.buttonStyle(.plain).accessibilityIdentifier("source.search.mangadex")
+                ForEach(sources) { source in
+                    NavigationLink { SourceCatalogView(sourceId: source.id, sourceTitle: source.name, sourceLanguage: source.language, initialQuery: query) } label: {
+                        HStack(spacing: 18) {
+                            SourceBadge(iconURL: source.iconURL)
+                            Text(source.name).shelfFont(.body).frame(maxWidth: .infinity, alignment: .leading)
+                        }.frame(minHeight: 72).padding(.horizontal, 18)
+                    }.buttonStyle(.plain).accessibilityIdentifier("source.search.\(source.id)")
                 }
             }
-            .task(id: item.id + item.chapterLanguage(preference: language)) { await refresh() }
-            .refreshable { await refresh() }
-            .fullScreenCover(item: $reading) { OnlineReaderView(chapter: $0) }
-    }
-    @State private var showingChapterSearch = false
-    private var chapterToolbar: some View {
-        HStack(spacing: 0) {
-            Text(L10n.format("%@ chapters", String(describing: chapters.count))).shelfFont(.body)
-            Spacer()
-            ShelfIconButton(L10n.string("Search chapters"), symbol: "magnifyingglass") {
-                showingChapterSearch.toggle(); if !showingChapterSearch { search = "" }
-            }
-            Menu {
-                ForEach([1, 5, 10], id: \.self) { count in
-                    Button(L10n.format("Download %@ unread chapters", String(describing: count))) {
-                        let selected = (saved?.chapters ?? []).reversed().filter {
-                            matchesChapterLanguage($0) && saved?.progress[$0.id]?.read != true
-                        }
-                        Task { await online.enqueue(Array(selected.prefix(count))) }
-                    }
-                }
-                Button(L10n.string("Download visible chapters")) { Task { await online.enqueue(chapters) } }
-            } label: { ShelfIcon(symbol: "arrow.down.to.line") }.accessibilityLabel(L10n.string("Download chapters"))
-            Menu {
-                Toggle(L10n.string("Unread only"), isOn: $unreadOnly)
-                Toggle(L10n.string("Downloaded only"), isOn: $downloadedOnly)
-                Toggle(L10n.string("Oldest first"), isOn: $reversed)
-                Button(L10n.string("Mark visible as read")) {
-                    Task { await online.mutate { try await $0.markRead(seriesID: item.id, chapterIDs: chapters.map(\.id), read: true) } }
-                }
-                Button(L10n.string("Mark visible as unread")) {
-                    Task { await online.mutate { try await $0.markRead(seriesID: item.id, chapterIDs: chapters.map(\.id), read: false) } }
-                }
-            } label: { ShelfIcon(symbol: "line.3.horizontal.decrease") }.accessibilityLabel(L10n.string("Filter chapters"))
-        }.foregroundStyle(ShelfStyle.secondary).padding(.horizontal, 14)
-    }
-    private func chapterRow(_ chapter: MangaChapter) -> some View {
-        HStack(spacing: 12) {
-            Button { reading = chapter } label: {
-                VStack(alignment: .leading, spacing: 7) {
-                    Text(chapter.localizedTitle).shelfFont(.body)
-                        .foregroundStyle(saved?.progress[chapter.id]?.read == true ? ShelfStyle.secondary : ShelfStyle.text)
-                    HStack {
-                        if let date = chapter.publishedAt { Text(date, style: .date) }
-                        if !chapter.group.isEmpty { Text(chapter.group).lineLimit(1) }
-                    }.shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
-                }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 12).contentShape(Rectangle())
-            }.buttonStyle(.plain)
-            ShelfIconButton(L10n.string("Download ") + chapter.localizedTitle,
-                            symbol: online.download(chapter.id)?.phase == .complete ? "checkmark.circle.fill" : "arrow.down.circle") {
-                Task { await online.enqueue([chapter]) }
-            }.foregroundStyle(ShelfStyle.secondary)
-        }.padding(.horizontal, 16)
-            .contextMenu {
-                Button(saved?.progress[chapter.id]?.read == true ? L10n.string("Unread") : L10n.string("Read")) {
-                    Task { await online.mutate {
-                        try await $0.markRead(seriesID: item.id, chapterIDs: [chapter.id], read: saved?.progress[chapter.id]?.read != true)
-                    } }
-                }
-            }
-    }
-    private var statusLabel: String {
-        switch item.status { case "ongoing": return L10n.string("Ongoing"); case "completed": return L10n.string("Completed"); case "hiatus": return L10n.string("Paused"); case "cancelled": return L10n.string("Cancelled"); default: return L10n.string("Unknown status") }
-    }
-    @MainActor private func refresh() async {
-        guard !loading else { return }; loading = true; failure = nil; defer { loading = false }
-        do { try await online.refresh(item) } catch is CancellationError { } catch {
-            failure = AppError.describe(error)
-            DiagnosticsCenter.shared.recordFailure(L10n.string("Update source title"), error)
-        }
+        }.tachiPage(L10n.string("Search sources"), backIdentifier: "source.search.back")
     }
 }

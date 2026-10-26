@@ -6,15 +6,37 @@ extension SecureHTTP: SourceTransport {
     func response(_ url: URL) async throws -> SourceHTTPResponse { try await response(url.absoluteString) }
 }
 
+struct LibraryUpdateProgress {
+    let title: String
+    let completed: Int
+    let total: Int
+}
+
+struct LibraryUpdateSummary: Codable {
+    let startedAt: Date
+    let finishedAt: Date
+    let total: Int
+    let succeeded: Int
+    let failed: Int
+    let newChapters: Int
+    let cancelled: Bool
+}
+
 @MainActor final class OnlineModel: ObservableObject {
     @Published private(set) var state = OnlineState()
     @Published private(set) var ready = false
     @Published private(set) var updating = false
     @Published private(set) var downloading = false
+    @Published private(set) var libraryUpdateProgress: LibraryUpdateProgress?
+    @Published private(set) var libraryUpdateSummary: LibraryUpdateSummary? = {
+        guard let data = UserDefaults.standard.data(forKey: "library.lastUpdateSummary") else { return nil }
+        return try? JSONDecoder().decode(LibraryUpdateSummary.self, from: data)
+    }()
     @Published var errorMessage: String?
     let source = MangaDexSource(transport: SecureHTTP())
     private var store: OnlineStore?
     private var worker: Task<Void, Never>?
+    private var libraryRefreshTask: Task<Void, Never>?
     var language: String { UserDefaults.standard.string(forKey: "source.language") ?? "ar" }
     var dataSaver: Bool { UserDefaults.standard.bool(forKey: "source.dataSaver") }
     func start() async {
@@ -48,6 +70,7 @@ extension SecureHTTP: SourceTransport {
         await mutate { try await $0.batchSetCompleted(seriesIDs: seriesIDs, completed: completed) }
     }
     func refresh(_ series: MangaSeries) async throws {
+        try Task.checkCancellation()
         let store = try requireStore()
         var request = series
         if request.sourceLanguage == nil, let existing = saved(series.id),
@@ -91,14 +114,45 @@ extension SecureHTTP: SourceTransport {
         state = await store.snapshot()
         DiagnosticsCenter.shared.record(L10n.string("Sources"), L10n.format("Updated title details and chapters: %@", String(describing: chapters.count)))
     }
-    func refreshLibrary() async {
-        guard !updating else { return }; updating = true; defer { updating = false }
-        var failures = 0
-        for item in state.series.filter(\.inLibrary) {
-            if Task.isCancelled { break }
-            do { try await refresh(item.series) } catch is CancellationError { break } catch { failures += 1 }
+    func refreshLibrary(categoryID: UUID? = nil) async {
+        guard !updating, !Task.isCancelled else { return }
+        let items = state.series.filter { item in
+            item.inLibrary && (categoryID.map { item.categories.contains($0) } ?? true)
         }
-        if failures > 0 { errorMessage = L10n.format("Could not update %@ titles. Saved chapters remain available.", String(describing: failures)) }
+        updating = true
+        let task = Task { [weak self] in
+            guard let self else { return }
+            await self.runLibraryRefresh(items)
+        }
+        libraryRefreshTask = task
+        await withTaskCancellationHandler(operation: { await task.value }, onCancel: { task.cancel() })
+    }
+    func cancelLibraryRefresh() { libraryRefreshTask?.cancel() }
+    private func runLibraryRefresh(_ items: [SavedSeries]) async {
+        let started = Date()
+        var succeeded = 0, failed = 0, newChapters = 0
+        defer { libraryRefreshTask = nil; libraryUpdateProgress = nil; updating = false }
+        for item in items {
+            if Task.isCancelled { break }
+            libraryUpdateProgress = LibraryUpdateProgress(title: item.series.title, completed: succeeded + failed, total: items.count)
+            do {
+                try await refresh(item.series)
+                succeeded += 1
+                let previous = Set(item.chapters.map(\.id))
+                newChapters += saved(item.id)?.chapters.filter { !previous.contains($0.id) }.count ?? 0
+            } catch is CancellationError { break }
+            catch {
+                if Task.isCancelled { break }
+                failed += 1
+                DiagnosticsCenter.shared.recordFailure(L10n.string("Library update"), error)
+            }
+        }
+        let summary = LibraryUpdateSummary(startedAt: started, finishedAt: Date(), total: items.count,
+                                           succeeded: succeeded, failed: failed, newChapters: newChapters,
+                                           cancelled: Task.isCancelled)
+        libraryUpdateSummary = summary
+        if let data = try? JSONEncoder().encode(summary) { UserDefaults.standard.set(data, forKey: "library.lastUpdateSummary") }
+        if failed > 0 { errorMessage = L10n.format("Could not update %@ titles. Saved chapters remain available.", String(failed)) }
     }
     func pages(_ chapter: MangaChapter, refresh: Bool = false) async throws -> ChapterPages {
         let store = try requireStore()

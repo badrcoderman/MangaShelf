@@ -6,21 +6,41 @@ struct ShelfDetailHero<Cover: View>: View {
     let author: String
     let source: String
     let status: String
+    let sourceID: String?
+    let sourceLanguage: String?
+    let statusSymbol: String
     @ViewBuilder var cover: () -> Cover
     @Environment(\.dynamicTypeSize) private var typeSize
+    init(title: String, author: String, source: String, status: String,
+         sourceID: String? = nil, sourceLanguage: String? = nil, statusSymbol: String = "circle.slash",
+         @ViewBuilder cover: @escaping () -> Cover) {
+        self.title = title; self.author = author; self.source = source; self.status = status
+        self.sourceID = sourceID; self.sourceLanguage = sourceLanguage; self.statusSymbol = statusSymbol; self.cover = cover
+    }
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            cover().frame(width: typeSize.isAccessibilitySize ? 88 : 112)
-                .clipShape(RoundedRectangle(cornerRadius: 12)).accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 9) {
-                Text(title).shelfFont(.title3, weight: .medium).textSelection(.enabled)
+            cover().aspectRatio(contentMode: .fill)
+                .frame(width: typeSize.isAccessibilitySize ? 88 : 112,
+                       height: typeSize.isAccessibilitySize ? 126 : 160)
+                .clipShape(RoundedRectangle(cornerRadius: ShelfStyle.coverRadius)).accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 8) {
+                Text(title).shelfFont(.title3, weight: .medium).foregroundStyle(ShelfStyle.text)
+                    .textSelection(.enabled).accessibilityIdentifier("detail.title")
                 Text(author).shelfFont(.subheadline)
-                Text("\(status) · \(source)").shelfFont(.subheadline)
-                NavigationLink { SourceCatalogView(initialQuery: title) } label: {
-                    TachiLabel(L10n.string("Global search"), systemImage: "magnifyingglass").shelfFont(.subheadline)
+                HStack(alignment: .top, spacing: 5) {
+                    TachiIcon(symbol: statusSymbol, size: 16).accessibilityHidden(true)
+                    Text("\(status) · \(source)").shelfFont(.subheadline)
                 }
+                NavigationLink {
+                    if let sourceID {
+                        SourceCatalogView(sourceId: sourceID, sourceTitle: source,
+                                          sourceLanguage: sourceLanguage, initialQuery: title)
+                    } else { SourceSearchChooserView(query: title) }
+                } label: {
+                    TachiLabel(L10n.string(sourceID == nil ? "Global search" : "Search source"), systemImage: "magnifyingglass").shelfFont(.subheadline)
+                }.frame(minHeight: 44, alignment: .leading).accessibilityIdentifier("detail.global-search")
             }.foregroundStyle(ShelfStyle.secondary).frame(maxWidth: .infinity, alignment: .leading)
-        }.padding(.horizontal, 12).padding(.top, 12).padding(.bottom, 8)
+        }.padding(.horizontal, 12).padding(.top, 8).padding(.bottom, 8)
             .background {
                 GeometryReader { geometry in
                     cover().frame(width: geometry.size.width).blur(radius: 12)

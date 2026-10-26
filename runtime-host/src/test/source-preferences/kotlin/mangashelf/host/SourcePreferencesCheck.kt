@@ -36,6 +36,14 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.put
 
 /** Authored settings sources exercise the public API patterns; no published extension executes here. */
@@ -144,6 +152,66 @@ object SourcePreferencesCheck {
             System.err.println("PASS $name")
         }
         try {
+            case("wire_session_round_trip_validation_and_reopen_preserve_real_preferences") { registry ->
+                register(registry, Settings(71, Model(71)::screen))
+                val commands = SourcePreferenceCommands(registry)
+                val token = UUID.randomUUID().toString()
+                suspend fun call(action: String, extra: JsonObject = buildJsonObject { }): JsonObject {
+                    val request = JsonObject(extra + mapOf("sessionId" to JsonPrimitive(token), "sourceId" to JsonPrimitive("71")))
+                    return Json.parseToJsonElement(commands.execute("preferences.$action", request)).jsonObject
+                }
+                fun rows(value: JsonObject) = value.getValue("screen").jsonObject.getValue("rows").jsonArray
+                try {
+                    val opened = call("open")
+                    check(opened.getValue("sessionId").jsonPrimitive.content == token && rows(opened).size == 12)
+                    check(call("open") == opened) // A retry uses the existing lease and token.
+                    val changed = call("change", buildJsonObject {
+                        put("rowId", 1); put("value", buildJsonObject { put("kind", "text"); put("text", "small") })
+                    })
+                    check(changed.getValue("accepted").jsonPrimitive.boolean)
+                    check(rows(changed)[0].jsonObject.getValue("summary").jsonPrimitive.content == "Small")
+                    val rejected = call("change", buildJsonObject {
+                        put("rowId", 1); put("value", buildJsonObject { put("kind", "text"); put("text", "unknown") })
+                    })
+                    check(!rejected.getValue("accepted").jsonPrimitive.boolean)
+                    val invalid = call("validate", buildJsonObject { put("rowId", 11); put("text", "not-a-uuid") })
+                    check(!invalid.getValue("allowed").jsonPrimitive.boolean && invalid.getValue("error").jsonPrimitive.content.contains("UUID"))
+                    val multiple = call("change", buildJsonObject {
+                        put("rowId", 9); put("value", buildJsonObject { put("kind", "multiple"); put("values", JsonArray(listOf(JsonPrimitive("ar")))) })
+                    })
+                    check(multiple.getValue("accepted").jsonPrimitive.boolean)
+                    try {
+                        call("change", buildJsonObject { put("rowId", 2); put("value", buildJsonObject { put("kind", "toggle"); put("checked", "true") }) })
+                        error("String Boolean accepted")
+                    } catch (error: SourceCommands.CommandException) { check(error.code == "invalid_preference_value") }
+                    call("close"); call("close")
+                    try { call("snapshot"); error("Closed session survived") }
+                    catch (error: SourceCommands.CommandException) { check(error.code == "source_preferences_closed") }
+                    check(rows(call("open"))[0].jsonObject.getValue("summary").jsonPrimitive.content == "Small")
+                } finally { commands.closeAll() }
+            }
+            case("wire_session_limit_close_sources_and_close_all_release_only_owned_leases") { registry ->
+                val commands = SourcePreferenceCommands(registry)
+                val tokens = (80L..84L).associateWith { UUID.randomUUID().toString() }
+                for (id in tokens.keys) register(registry, Settings(id, Model(id)::screen))
+                fun request(id: Long) = buildJsonObject { put("sessionId", tokens.getValue(id)); put("sourceId", id.toString()) }
+                try {
+                    for (id in 80L..83L) commands.execute("preferences.open", request(id))
+                    try { commands.execute("preferences.open", request(84)); error("Unbounded sessions") }
+                    catch (error: SourceCommands.CommandException) { check(error.code == "preference_session_limit") }
+                    commands.closeSources(setOf(81))
+                    try { commands.execute("preferences.snapshot", request(81)); error("Removed source has a session") }
+                    catch (error: SourceCommands.CommandException) { check(error.code == "source_preferences_closed") }
+                    check(registry.snapshot().size == 5 && registry.withSource(81) { it.id } == 81L)
+                    commands.execute("preferences.open", request(84))
+                    commands.execute("preferences.snapshot", request(80))
+                    commands.closeAll()
+                    for (id in tokens.keys) {
+                        try { commands.execute("preferences.snapshot", request(id)); error("Session retained after closeAll") }
+                        catch (error: SourceCommands.CommandException) { check(error.code == "source_preferences_closed") }
+                    }
+                } finally { commands.closeAll() }
+            }
             case("twelve_row_source_configuration_defaults_and_native_value_snapshot") { registry ->
                 val model = Model(-41); register(registry, Settings(-41, model::screen))
                 val session = SourcePreferenceSession.open(registry, -41)

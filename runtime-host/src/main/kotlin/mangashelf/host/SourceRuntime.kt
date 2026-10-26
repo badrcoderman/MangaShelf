@@ -39,6 +39,7 @@ object SourceRuntime {
         val scope = CoroutineScope(Dispatchers.IO + job)
         val registry = SourceRegistry()
         val commands = SourceCommands(registry)
+        val preferences = SourcePreferenceCommands(registry)
         val mutation = Mutex()
         val loader = ExtensionLoader(registry, Files.createDirectories(application.cacheDir.toPath().resolve("verified-extensions")))
         var closing = false
@@ -74,6 +75,7 @@ object SourceRuntime {
                 }
             }
         } catch (error: SourceCommands.CommandException) { errorJson(error.code) }
+        catch (error: SourcePreferenceSession.Failure) { errorJson(error.code) }
         catch (error: ExtensionLoader.LoadException) { errorJson(error.code) }
         catch (error: SourceRegistry.RegistrationException) { errorJson(error.code) }
         catch (error: ExtensionArchiveVerifier.VerificationException) { errorJson(error.code) }
@@ -123,6 +125,7 @@ object SourceRuntime {
             val version = (request["versionCode"] as? JsonPrimitive)?.content ?: fail("invalid_request")
             val versionCode = version.toULongOrNull()?.takeIf { it.toString() == version } ?: fail("invalid_request")
             val packageName = text(request, "package", 512)
+            host.preferences.closeSources(host.registry.snapshot().filter { it.packageName == packageName }.map { it.id }.toSet())
             val installed = host.loader.install(ExtensionLoader.Request(
                 Path.of(text(request, "path", 8192)), text(request, "archiveSha256", 64),
                 text(request, "trustedCertificateSha256", 64), packageName, versionCode,
@@ -135,10 +138,13 @@ object SourceRuntime {
         }
         "unload" -> host.mutation.withLock {
             val packageName = text(request, "package", 512)
+            host.preferences.closeSources(host.registry.snapshot().filter { it.packageName == packageName }.map { it.id }.toSet())
             host.registry.remove(packageName).await()
             acknowledgment("unloaded", packageName)
         }
         "sources" -> buildJsonObject { put("sources", sourceInfos(host.registry.snapshot())) }.toString()
+        "preferences.open" -> host.mutation.withLock { host.preferences.execute(action, request) }
+        "preferences.snapshot", "preferences.change", "preferences.validate", "preferences.click", "preferences.close" -> host.preferences.execute(action, request)
         else -> host.commands.execute(action, request)
     }
 
@@ -152,6 +158,7 @@ object SourceRuntime {
         try {
             runBlocking(Dispatchers.IO) {
                 host.job.cancel(); host.job.join()
+                host.preferences.closeAll()
                 var failure: Throwable? = null
                 for (ticket in host.registry.close()) {
                     try { ticket.await() }

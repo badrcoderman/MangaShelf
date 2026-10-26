@@ -176,6 +176,20 @@ public actor SourceEngineCoordinator: SourceEngineProtocol {
         try await fetchDetails(sourceId: sourceId, mangaURL: mangaURL, sourceMetadataJSON: nil)
     }
 
+    public func sourceFilters(sourceId: String) async throws -> SourceFilterScreen {
+        try await prepareSource(sourceId)
+        return try await runtime.sourceFilters(sourceId: sourceId)
+    }
+    public func search(sourceId: String, query: String, page: Int, latest: Bool, filters: SourceFilterSelection?) async throws -> SourceMangaPage {
+        guard let filters else { return try await search(sourceId: sourceId, query: query, page: page, latest: latest) }
+        guard !sourceId.isEmpty, (1...10000).contains(page), filters.states.count <= 512 else {
+            throw ReaderFailure(ReaderText.string("Invalid source identifier."))
+        }
+        try await prepareSource(sourceId)
+        let clean = String(query.prefix(256)).trimmingCharacters(in: .whitespacesAndNewlines)
+        return try await runtime.search(sourceId: sourceId, query: clean, page: page, filters: filters)
+    }
+
     public func fetchDetails(sourceId: String, mangaURL: String, sourceMetadataJSON: String?) async throws -> SourceMangaDetails {
         guard !sourceId.isEmpty, !mangaURL.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         try await prepareSource(sourceId)
@@ -202,6 +216,20 @@ public actor SourceEngineCoordinator: SourceEngineProtocol {
         try await prepareSource(sourceId)
         return try await runtime.image(sourceId: sourceId, sourceMetadataJSON: sourceMetadataJSON)
     }
+
+    public func openPreferences(_ handle: SourcePreferenceHandle) async throws -> SourcePreferenceResponse {
+        try await prepareSource(handle.sourceId)
+        return try await runtime.openPreferences(handle)
+    }
+    public func readPreferences(_ handle: SourcePreferenceHandle) async throws -> SourcePreferenceResponse { try await runtime.readPreferences(handle) }
+    public func changePreference(_ handle: SourcePreferenceHandle, row: Int, value: SourcePreferenceValue) async throws -> SourcePreferenceResponse {
+        try await runtime.changePreference(handle, row: row, value: value)
+    }
+    public func validatePreference(_ handle: SourcePreferenceHandle, row: Int, text: String) async throws -> SourcePreferenceResponse {
+        try await runtime.validatePreference(handle, row: row, text: text)
+    }
+    public func clickPreference(_ handle: SourcePreferenceHandle, row: Int) async throws -> SourcePreferenceResponse { try await runtime.clickPreference(handle, row: row) }
+    public func closePreferences(_ handle: SourcePreferenceHandle) async throws { try await runtime.closePreferences(handle) }
 
     public func fetchPages(sourceId: String, chapterURL: String) async throws -> [SourcePageItem] {
         try await fetchPages(sourceId: sourceId, chapterURL: chapterURL, sourceMetadataJSON: nil)

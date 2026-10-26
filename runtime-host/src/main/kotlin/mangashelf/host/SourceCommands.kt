@@ -50,13 +50,17 @@ class SourceCommands(private val registry: SourceRegistry) {
             var transfer: ImageTransferStore.Transfer? = null
             try {
             val result: JsonElement = when (action) {
+                "filters" -> SourceFilterCodec(source.getFilterList()).snapshot(sourceId)
                 "popular", "latest", "search" -> {
                     val page = (request["page"] as? JsonPrimitive)?.takeUnless { it.isString }?.intOrNull
                         ?.takeIf { it in 1..10_000 } ?: fail("invalid_page")
                     val returned = when (action) {
                         "popular" -> source.getPopularManga(page)
                         "latest" -> source.getLatestUpdates(page)
-                        else -> source.getSearchManga(page, string(request, "query", 4096, allowEmpty = true), FilterList())
+                        else -> {
+                            val filters = request["filters"]?.let { it as? JsonObject ?: fail("invalid_source_filters") }
+                            source.getSearchManga(page, string(request, "query", 4096, allowEmpty = true), SourceFilterCodec(source.getFilterList()).apply(filters))
+                        }
                     }
                     if (returned.mangas.size > 1000) fail("response_limit")
                     val mangas = returned.mangas.map { manga ->

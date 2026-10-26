@@ -217,6 +217,7 @@ struct AboutChangelogView: View {
 struct CategoryManagementView: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var online: OnlineModel
     @State private var deleting: LibraryCategory?
     @State private var adding = false
     @State private var name = ""
@@ -245,7 +246,15 @@ struct CategoryManagementView: View {
             }
             .confirmationDialog(L10n.string("Delete this category?"), isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } })) {
                 if let deleting {
-                    Button(L10n.string("Delete category"), role: .destructive) { Task { await model.perform { try await $0.removeCategory(id: deleting.id) } }; self.deleting = nil }
+                    Button(L10n.string("Delete category"), role: .destructive) {
+                        Task {
+                            await model.perform { try await $0.removeCategory(id: deleting.id) }
+                            if !model.state.categories.contains(where: { $0.id == deleting.id }) {
+                                await online.mutate { try await $0.removeCategory(id: deleting.id) }
+                            }
+                        }
+                        self.deleting = nil
+                    }
                 }
                 Button(L10n.string("Cancel"), role: .cancel) { deleting = nil }
             } message: { Text(L10n.string("Books remain in the library. Only their association with this category is removed.")) }

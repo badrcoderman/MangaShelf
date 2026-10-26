@@ -43,6 +43,7 @@ enum AppError {
     @Published var errorMessage: String?
     private var store: LibraryStore?
     private var stagedStore: StagedExtensionStore?
+    private var displayWrite: (id: UUID, task: Task<Void, Never>)?
 
     func start() async {
         guard !ready, !busy else { return }
@@ -110,8 +111,25 @@ enum AppError {
         if let categoryID, let opt = state.categoryPreferences[categoryID] { return opt }
         return state.defaultDisplayOptions
     }
-    func setCategoryDisplayOptions(categoryID: UUID?, options: CategoryDisplayOptions) async {
-        await perform { try await $0.setCategoryDisplayOptions(categoryID: categoryID, options: options) }
+    func changeCategoryDisplayOptions(categoryID: UUID?, change: @escaping (inout CategoryDisplayOptions) -> Void) async {
+        guard let store else { return }
+        let previous = displayWrite?.task
+        let id = UUID()
+        let task = Task { @MainActor in
+            await previous?.value
+            // Merge a single control's edit with the last committed settings.
+            // Display writes queue instead of being dropped by the busy guard.
+            let latest = await store.snapshot()
+            var options = categoryID.flatMap { latest.categoryPreferences[$0] } ?? latest.defaultDisplayOptions
+            change(&options)
+            do {
+                try await store.setCategoryDisplayOptions(categoryID: categoryID, options: options)
+                self.state = await store.snapshot()
+            } catch { self.errorMessage = AppError.describe(error) }
+        }
+        displayWrite = (id, task)
+        await task.value
+        if displayWrite?.id == id { displayWrite = nil }
     }
     func batchAssignCategories(bookIDs: [UUID], categoryIDs: Set<UUID>) async {
         await perform { try await $0.batchAssignCategories(bookIDs: bookIDs, categoryIDs: categoryIDs) }
@@ -175,9 +193,15 @@ enum AppError {
     /// Staging stores the inspected package without activating it.
     func stageExtension(_ artifact: DownloadedExtension) async throws {
         guard let stagedStore else { throw ReaderFailure(L10n.string("The extension store is not ready.")) }
+        let previous = stagedExtensions.first { $0.packageName == artifact.packageName }
         _ = try await stagedStore.stage(packageName: artifact.packageName, versionCode: artifact.versionCode,
                                         data: artifact.data, expectedDigest: artifact.digest)
         stagedExtensions = await stagedStore.snapshot()
+        if previous != nil {
+            // Staging a replacement resets its trust and activation. Drain the
+            // old source leases and preference sessions before reporting success.
+            try await SourceEngineCoordinator.shared.unloadExtension(packageName: artifact.packageName)
+        }
         DiagnosticsCenter.shared.record(L10n.string("Extensions"), L10n.string("Extension package saved"))
     }
     func removeStagedExtension(packageName: String) async throws {

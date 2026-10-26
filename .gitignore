@@ -9,3 +9,4 @@ xcuserdata/
 *.mobileprovision
 ExportOptions.plist
 .agents/
+iOS/MangaShelfUI.xcodeproj/

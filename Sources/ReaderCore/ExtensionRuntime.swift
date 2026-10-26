@@ -144,6 +144,7 @@ public final class ExtensionRuntime: @unchecked Sendable {
         let data = Data(json.utf8)
         if let failure = try? JSONDecoder().decode(RuntimeFailure.self, from: data) {
             if failure.error == "cancelled" { throw CancellationError() }
+            if failure.error == "source_filters_changed" { throw SourceFilterSchemaChanged() }
             if let reason = SourceRequestFailure.Reason(rawValue: failure.error) {
                 throw SourceRequestFailure(reason: reason, httpStatus: failure.httpStatus)
             }
@@ -153,6 +154,10 @@ public final class ExtensionRuntime: @unchecked Sendable {
                 message = "This source is not loaded. Enable its extension and try again."
             case "source_timeout":
                 message = "The source took too long to respond. Try again."
+            case "source_not_configurable":
+                message = "This source has no configurable settings."
+            case "source_preferences_closed", "source_unavailable":
+                message = "The source settings session ended. Open it again."
             default:
                 message = "The source request failed. Try again."
             }
@@ -256,6 +261,63 @@ public final class ExtensionRuntime: @unchecked Sendable {
         return try decodeSource(SourceMangaPage.self, json: jsonStr)
     }
 
+    public func openPreferences(_ handle: SourcePreferenceHandle) async throws -> SourcePreferenceResponse {
+        do {
+            let result = try await preferenceCommand("open", handle: handle, checkAfterCompletion: false)
+            try Task.checkCancellation()
+            return result
+        } catch {
+            // The client chooses the token before JNI starts, so late opens can always be closed.
+            _ = try? await Task.detached { [self] in try await closePreferences(handle) }.value
+            throw error
+        }
+    }
+    public func readPreferences(_ handle: SourcePreferenceHandle) async throws -> SourcePreferenceResponse {
+        try await preferenceCommand("snapshot", handle: handle)
+    }
+    public func changePreference(_ handle: SourcePreferenceHandle, row: Int, value: SourcePreferenceValue) async throws -> SourcePreferenceResponse {
+        try validatePreferenceRow(row)
+        let data = try JSONEncoder().encode(value)
+        let encoded = try JSONSerialization.jsonObject(with: data)
+        return try await preferenceCommand("change", handle: handle, fields: ["rowId": row, "value": encoded])
+    }
+    public func validatePreference(_ handle: SourcePreferenceHandle, row: Int, text: String) async throws -> SourcePreferenceResponse {
+        try validatePreferenceRow(row)
+        guard text.utf8.count <= 1024 * 1024 else { throw ReaderFailure(ReaderText.string("Invalid source setting.")) }
+        return try await preferenceCommand("validate", handle: handle, fields: ["rowId": row, "text": text])
+    }
+    public func clickPreference(_ handle: SourcePreferenceHandle, row: Int) async throws -> SourcePreferenceResponse {
+        try validatePreferenceRow(row)
+        return try await preferenceCommand("click", handle: handle, fields: ["rowId": row])
+    }
+    public func closePreferences(_ handle: SourcePreferenceHandle) async throws {
+        try validatePreferenceHandle(handle)
+        let result = try await dispatchAsync(action: "preferences.close", payload: payload(["sessionId": handle.id]), checkAfterCompletion: false)
+        try requireAcknowledgment(result, status: "preferences_closed")
+    }
+    private func preferenceCommand(_ command: String, handle: SourcePreferenceHandle, fields: [String: Any] = [:], checkAfterCompletion: Bool = true) async throws -> SourcePreferenceResponse {
+        try validatePreferenceHandle(handle)
+        var request = fields
+        request["sessionId"] = handle.id; request["sourceId"] = handle.sourceId
+        let result = try await dispatchAsync(action: "preferences." + command, payload: payload(request), checkAfterCompletion: checkAfterCompletion)
+        let response = try decodeSource(SourcePreferenceResponse.self, json: result)
+        try response.validate(handle: handle)
+        guard !["change", "click"].contains(command) || response.accepted != nil,
+              command != "validate" || response.allowed != nil else {
+            throw ReaderFailure(ReaderText.string("The extension runtime returned an invalid response."))
+        }
+        return response
+    }
+    private func validatePreferenceHandle(_ handle: SourcePreferenceHandle) throws {
+        guard UUID(uuidString: handle.id)?.uuidString.lowercased() == handle.id,
+              Int64(handle.sourceId).map({ String($0) == handle.sourceId }) == true else {
+            throw ReaderFailure(ReaderText.string("Invalid source identifier."))
+        }
+    }
+    private func validatePreferenceRow(_ row: Int) throws {
+        guard (1...512).contains(row) else { throw ReaderFailure(ReaderText.string("Invalid source setting.")) }
+    }
+
     public func latest(sourceId: String, page: Int = 1) async throws -> SourceMangaPage {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         let jsonStr = try await dispatchAsync(action: "latest", payload: payload(["sourceId": sourceId, "page": page]))
@@ -266,6 +328,18 @@ public final class ExtensionRuntime: @unchecked Sendable {
         guard !sourceId.isEmpty else { throw ReaderFailure(ReaderText.string("Invalid source identifier.")) }
         let jsonStr = try await dispatchAsync(action: "search", payload: payload(["sourceId": sourceId, "query": query, "page": page]))
         return try decodeSource(SourceMangaPage.self, json: jsonStr)
+    }
+
+    public func sourceFilters(sourceId: String) async throws -> SourceFilterScreen {
+        let result = try await dispatchAsync(action: "filters", payload: payload(["sourceId": sourceId]))
+        let screen = try decodeSource(SourceFilterScreen.self, json: result)
+        try screen.validate(expectedSourceID: sourceId)
+        return screen
+    }
+    public func search(sourceId: String, query: String, page: Int, filters: SourceFilterSelection) async throws -> SourceMangaPage {
+        let encoded = try JSONSerialization.jsonObject(with: JSONEncoder().encode(filters))
+        let request = try payload(["sourceId": sourceId, "query": query, "page": page, "filters": encoded])
+        return try decodeSource(SourceMangaPage.self, json: await dispatchAsync(action: "search", payload: request))
     }
 
     public func details(sourceId: String, mangaURL: String, sourceMetadataJSON: String? = nil) async throws -> SourceMangaDetails {

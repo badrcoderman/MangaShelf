@@ -60,6 +60,11 @@ public actor OnlineStore {
         }
         try commit(candidate)
     }
+    public func removeCategory(id: UUID) throws {
+        var candidate = state
+        for index in candidate.series.indices { candidate.series[index].categories.remove(id) }
+        try commit(candidate)
+    }
     public func batchSetFavorite(seriesIDs: [String], inLibrary: Bool) throws {
         let set = Set(seriesIDs)
         var candidate = state
@@ -75,8 +80,10 @@ public actor OnlineStore {
             for ch in candidate.series[i].chapters {
                 var p = candidate.series[i].progress[ch.id] ?? ChapterProgress()
                 p.read = completed
+                if !completed { p.page = 0 }
                 candidate.series[i].progress[ch.id] = p
             }
+            if completed { candidate.series[i].newChapterIDs.removeAll() }
         }
         try commit(candidate)
     }

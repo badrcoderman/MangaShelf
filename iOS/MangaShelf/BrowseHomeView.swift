@@ -5,6 +5,7 @@ struct BrowseView: View {
     @Environment(\.locale) private var interfaceLocale
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var segment = 0
+    @State private var repositories = false
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .bottom, spacing: 0) {
@@ -12,15 +13,12 @@ struct BrowseView: View {
                     Button { segment = index } label: {
                         VStack(spacing: 14) {
                             Text(title).shelfFont(.subheadline)
-                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 1)
-                                .minimumScaleFactor(0.85)
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity).padding(.horizontal, 8)
+                                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 1).minimumScaleFactor(0.85)
+                                .multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(.horizontal, 8)
                             UnevenRoundedRectangle(topLeadingRadius: 3, topTrailingRadius: 3)
                                 .fill(segment == index ? ShelfStyle.accent : .clear).frame(width: 34, height: 3)
                         }.foregroundStyle(segment == index ? ShelfStyle.accent : ShelfStyle.secondary)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 44)
-                            .padding(.top, 12).contentShape(Rectangle())
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 44).padding(.top, 12).contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityAddTraits(segment == index ? .isSelected : [])
                         .accessibilityIdentifier("browse.segment.\(index)")
                 }
@@ -38,125 +36,156 @@ struct BrowseView: View {
         }.shelfRoot(L10n.string("Browse"), left: {
             NavigationLink { HelpView() } label: { ShelfIcon(symbol: "questionmark.circle.fill") }
                 .buttonStyle(.plain).accessibilityLabel(L10n.string("Help"))
-        }, right: { EmptyView() })
+        }, right: {
+            NavigationLink { RepositoriesView() } label: { ShelfIcon(symbol: "cloud") }
+                .buttonStyle(.plain).accessibilityLabel(L10n.string("Repositories"))
+                .accessibilityIdentifier("browse.repositories")
+        })
+    }
+}
+
+/// Source metadata comes from the exact publisher material the user approved,
+/// so a newer repository version cannot make an enabled installed source disappear.
+struct BrowseSource: Identifiable {
+    let id: String
+    let name: String
+    let language: String
+    let packageName: String?
+    let iconURL: String?
+    @MainActor static func available(in model: AppModel) -> [Self] {
+        var candidates: [String: [Self]] = [:]
+        for package in model.stagedExtensions where package.isActive && package.isTrusted {
+            guard let verified = package.verification else { continue }
+            let matching = model.state.repositories.flatMap(\.index.extensions).first {
+                $0.packageName == package.packageName && $0.versionCode == package.versionCode
+            }
+            for source in verified.sources where source.id != "local" && source.id != "mangadex" {
+                candidates[source.id, default: []].append(Self(id: source.id, name: source.name,
+                    language: source.language, packageName: package.packageName, iconURL: matching?.iconURL))
+            }
+        }
+        return candidates.values.compactMap { $0.count == 1 ? $0.first : nil }.sorted {
+            $0.name.localizedStandardCompare($1.name) == .orderedAscending
+        }
+    }
+}
+
+struct SourceBadge: View {
+    var iconURL: String? = nil
+    var local = false
+    var size: CGFloat = 40
+    var body: some View {
+        Group {
+            if let iconURL, let url = URL(string: iconURL) {
+                AsyncImage(url: url) { phase in
+                    if let image = phase.image { image.resizable().scaledToFit() }
+                    else { fallback }
+                }
+            } else { fallback }
+        }.frame(width: size, height: size).background(local ? Color.white : ShelfStyle.card,
+            in: RoundedRectangle(cornerRadius: 4)).clipShape(RoundedRectangle(cornerRadius: 4))
+            .accessibilityHidden(true)
+    }
+    private var fallback: some View {
+        TachiIcon(symbol: local ? "book.fill" : "puzzlepiece.extension.fill", size: size * 0.68)
+            .foregroundStyle(local ? Color(red: 0.36, green: 0.49, blue: 0.65) : ShelfStyle.secondary)
     }
 }
 
 private struct AvailableSourcesView: View {
-    @EnvironmentObject private var appModel: AppModel
-
-    var body: some View {
-        AvailableSourcesContent(indexedSources: IndexedExtensionSource.available(
-            indexes: appModel.state.repositories.map(\.index), staged: appModel.stagedExtensions))
-    }
-}
-
-private struct AvailableSourcesContent: View {
-    let indexedSources: [IndexedExtensionSource]
     @Environment(\.locale) private var interfaceLocale
-    @EnvironmentObject private var appModel: AppModel
+    @EnvironmentObject private var model: AppModel
     @AppStorage("source.lastUsed") private var lastUsed = "local"
-    @AppStorage("source.pinnedLocal") private var pinnedLocal = false
-    @AppStorage("source.pinnedMangaDex") private var pinnedMangaDex = false
-
-    private var availableIDs: [String] { ["local", "mangadex"] + indexedSources.map(\.id) }
-    private var lastAvailableID: String { availableIDs.contains(lastUsed) ? lastUsed : "local" }
-
-    @ViewBuilder private func destination(_ id: String) -> some View {
-        if id == "local" {
-            LibraryView(isRoot: false).onAppear { lastUsed = id }
-        } else if id == "mangadex" {
-            SourceCatalogView(sourceId: "mangadex", sourceTitle: "MangaDex").onAppear { lastUsed = id }
-        } else {
-            if let source = indexedSources.first(where: { $0.id == id }) {
-                SourceCatalogView(sourceId: source.id, sourceTitle: rowTitle(id),
-                                  sourceLanguage: source.source.language).onAppear { lastUsed = id }
-            }
-        }
+    @AppStorage("source.pinnedIDs") private var pinnedJSON = "[]"
+    @AppStorage("source.pinnedLocal") private var legacyLocal = false
+    @AppStorage("source.pinnedMangaDex") private var legacyDex = false
+    @AppStorage("source.pinsMigrated") private var migrated = false
+    @State private var query = ""
+    private var installed: [BrowseSource] { BrowseSource.available(in: model) }
+    private var sources: [BrowseSource] {
+        [BrowseSource(id: "local", name: L10n.string("Local source"), language: "", packageName: nil, iconURL: nil),
+         BrowseSource(id: "mangadex", name: "MangaDex", language: "multi", packageName: nil, iconURL: nil)] + installed
     }
-
-    private func rowTitle(_ id: String) -> String {
-        if id == "local" { return L10n.string("Local source") }
-        if id == "mangadex" { return "MangaDex" }
-        let name = indexedSources.first { $0.id == id }?.source.name ?? ""
-        return name.isEmpty ? id : name
+    private var pins: Set<String> { Set((try? JSONDecoder().decode([String].self, from: Data(pinnedJSON.utf8))) ?? []) }
+    private var filtered: [BrowseSource] { sources.filter { query.isEmpty || $0.name.localizedStandardContains(query) || languageName($0.language).localizedStandardContains(query) } }
+    private var languageGroups: [String] { Set(filtered.filter { $0.id != "local" }.map(\.language)).sorted { languageName($0).localizedStandardCompare(languageName($1)) == .orderedAscending } }
+    private func languageName(_ code: String) -> String {
+        if code.isEmpty { return L10n.string("Other") }
+        if code == "multi" || code == "all" { return L10n.string("All languages") }
+        return interfaceLocale.localizedString(forLanguageCode: code) ?? code
     }
-
-    private func rowSubtitle(_ id: String) -> String {
-        if id == "local" { return L10n.string("Other") }
-        if let entry = indexedSources.first(where: { $0.id == id }) {
-            return [entry.source.language, entry.extensionName, entry.packageName]
-                .filter { !$0.isEmpty }.joined(separator: " · ")
-        }
-        return L10n.string("Available source")
-    }
-
-    private func rowIcon(_ id: String) -> String {
-        if id == "local" { return "book.fill" }
-        if id == "mangadex" { return "books.vertical.fill" }
-        return "puzzlepiece.extension.fill"
-    }
-
-    private func isPinned(_ id: String) -> Bool {
-        if id == "local" { return pinnedLocal }
-        if id == "mangadex" { return pinnedMangaDex }
-        return false
-    }
-
     private func togglePin(_ id: String) {
-        if id == "local" { pinnedLocal.toggle() }
-        else if id == "mangadex" { pinnedMangaDex.toggle() }
+        var current = pins
+        if !current.insert(id).inserted { current.remove(id) }
+        if let data = try? JSONEncoder().encode(current.sorted()) { pinnedJSON = String(decoding: data, as: UTF8.self) }
     }
-
-    private func row(_ id: String) -> some View {
+    @ViewBuilder private func destination(_ source: BrowseSource) -> some View {
+        if source.id == "local" { LibraryView(isRoot: false).onAppear { lastUsed = source.id } }
+        else { SourceCatalogView(sourceId: source.id, sourceTitle: source.name, sourceLanguage: source.language)
+            .onAppear { lastUsed = source.id } }
+    }
+    @ViewBuilder private func settings(_ source: BrowseSource) -> some View {
+        if source.id == "local" { LibraryPreferencesView() }
+        else if source.id == "mangadex" { SourcePreferencesView() }
+        else { SourceEnginePreferencesView(sourceID: source.id, sourceTitle: source.name) }
+    }
+    private func heading(_ title: String) -> some View {
+        Text(title).shelfFont(.body).foregroundStyle(ShelfStyle.text).padding(.top, 14).padding(.bottom, 10)
+            .accessibilityAddTraits(.isHeader)
+    }
+    private func row(_ source: BrowseSource, section: String) -> some View {
         HStack(spacing: 4) {
-            NavigationLink { destination(id) } label: {
+            NavigationLink { destination(source) } label: {
                 HStack(spacing: 18) {
-                    TachiIcon(symbol: rowIcon(id), size: 25).foregroundStyle(Color(red: 0.36, green: 0.49, blue: 0.65))
-                        .frame(width: 40, height: 40).background(.white, in: RoundedRectangle(cornerRadius: 4))
+                    SourceBadge(iconURL: source.iconURL, local: source.id == "local")
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(rowTitle(id)).shelfFont(.body).foregroundStyle(ShelfStyle.text)
-                        Text(rowSubtitle(id)).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
+                        Text(source.name).shelfFont(.body).foregroundStyle(ShelfStyle.text)
+                        Text(languageName(source.language)).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
                     }
                     Spacer(minLength: 0)
                 }.frame(minHeight: 80).contentShape(Rectangle())
-            }.buttonStyle(.plain)
-            if id == "local" || id == "mangadex" {
-                ShelfIconButton(L10n.string("Pin source"), symbol: isPinned(id) ? "pin.fill" : "pin") {
-                    togglePin(id)
-                }.foregroundStyle(isPinned(id) ? ShelfStyle.accent : ShelfStyle.secondary)
-            }
-            NavigationLink { SourcePreferencesView() } label: { ShelfIcon(symbol: "gearshape") }
-                .buttonStyle(.plain).foregroundStyle(ShelfStyle.secondary).accessibilityLabel(L10n.string("Source settings"))
+            }.buttonStyle(.plain).accessibilityIdentifier("source.open.\(section).\(source.id)")
+            ShelfIconButton(L10n.string(pins.contains(source.id) ? "Unpin source" : "Pin source"), symbol: pins.contains(source.id) ? "pin.fill" : "pin") {
+                togglePin(source.id)
+            }.foregroundStyle(pins.contains(source.id) ? ShelfStyle.accent : ShelfStyle.secondary)
+                .accessibilityIdentifier("source.pin.\(section).\(source.id)")
+            NavigationLink { settings(source) } label: { ShelfIcon(symbol: "gearshape") }
+                .buttonStyle(.plain).foregroundStyle(ShelfStyle.secondary)
+                .accessibilityLabel(L10n.format("Settings for %@", source.name))
+                .accessibilityIdentifier("source.settings.\(section).\(source.id)")
         }
     }
-
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                Text(L10n.string("Last used source")).shelfFont(.body).padding(.top, 8)
-                row(lastAvailableID)
-                if pinnedLocal || pinnedMangaDex {
-                    Text(L10n.string("Pinned")).shelfFont(.body)
-                    if pinnedLocal { row("local") }
-                    if pinnedMangaDex { row("mangadex") }
+            VStack(alignment: .leading, spacing: 0) {
+                if sources.count > 2 { ShelfSearchField(text: $query, prompt: L10n.string("Search sources")).padding(.horizontal, -8) }
+                if query.isEmpty, let recent = sources.first(where: { $0.id == lastUsed }) ?? sources.first {
+                    heading(L10n.string("Last used source")); row(recent, section: "recent")
                 }
-                Text(L10n.string("Local source")).shelfFont(.body)
-                row("local")
-                Text(L10n.string("Available sources")).shelfFont(.body)
-                row("mangadex")
-                ForEach(indexedSources) { source in
-                    row(source.id)
+                let pinned = filtered.filter { pins.contains($0.id) }
+                if !pinned.isEmpty {
+                    heading(L10n.string("Pinned"))
+                    ForEach(pinned) { row($0, section: "pinned") }
                 }
+                if let local = filtered.first(where: { $0.id == "local" }) {
+                    heading(L10n.string("Local source")); row(local, section: "local")
+                }
+                ForEach(languageGroups, id: \.self) { language in
+                    heading(languageName(language))
+                    ForEach(filtered.filter { $0.id != "local" && $0.language == language }) { row($0, section: "language") }
+                }
+                if filtered.isEmpty { ShelfEmptyState(title: L10n.string("No results"), message: L10n.string("Try another source name or language.")) }
                 NavigationLink { HelpView() } label: { TachiLabel(L10n.string("Getting started"), systemImage: "questionmark.circle.fill") }
                     .frame(maxWidth: .infinity).padding(.top, 12)
-            }.padding(.horizontal, 18)
-        }
-        .onChange(of: availableIDs) { _, ids in
-            if appModel.ready && !ids.contains(lastUsed) { lastUsed = "local" }
-        }
-        .onChange(of: appModel.ready, initial: true) { _, ready in
-            if ready && !availableIDs.contains(lastUsed) { lastUsed = "local" }
+            }.padding(.horizontal, 18).padding(.bottom, 16)
+        }.accessibilityIdentifier("browse.sources")
+        .onAppear {
+            if !migrated {
+                var current = pins
+                if legacyLocal { current.insert("local") }; if legacyDex { current.insert("mangadex") }
+                if let bytes = try? JSONEncoder().encode(current.sorted()) { pinnedJSON = String(decoding: bytes, as: UTF8.self) }
+                migrated = true
+            }
         }
     }
 }
@@ -164,200 +193,106 @@ private struct AvailableSourcesContent: View {
 struct ExtensionsCatalogView: View {
     @Environment(\.locale) private var interfaceLocale
     @EnvironmentObject private var model: AppModel
+    var repositoryID: UUID? = nil
     @State private var query = ""
-    @State private var preparingPackage: String?
-    @State private var pendingArtifact: DownloadedExtension?
-    @State private var changingPackage: String?
-    @State private var trustReview: ExtensionTrustReview?
-
-    private struct ExtensionTrustReview: Identifiable {
-        var id: String { packageName }
-        let packageName: String
-        let name: String
-        let digest: String
-        let verification: ExtensionVerification
+    @AppStorage("extensions.languages") private var languageJSON = "[]"
+    @State private var showingLanguages = false
+    private var selectedLanguages: Set<String> {
+        get { Set((try? JSONDecoder().decode([String].self, from: Data(languageJSON.utf8))) ?? []) }
+        nonmutating set { if let data = try? JSONEncoder().encode(newValue.sorted()) { languageJSON = String(decoding: data, as: UTF8.self) } }
+    }
+    private var repositories: [SavedRepository] { model.state.repositories.filter { repositoryID == nil || $0.id == repositoryID } }
+    private var entries: [ExtensionRecord] {
+        let grouped = Dictionary(grouping: repositories.flatMap(\.index.extensions), by: \.packageName)
+        return grouped.values.compactMap { versions in
+            let maxVersion = versions.map(\.versionCode).max()
+            let latest = Set(versions.filter { $0.versionCode == maxVersion })
+            // Ambiguous metadata requires selecting a repository instead of guessing publisher identity.
+            return latest.count == 1 ? latest.first : nil
+        }.filter { (query.isEmpty || $0.name.localizedStandardContains(query) || $0.packageName.localizedStandardContains(query)) &&
+            (selectedLanguages.isEmpty || $0.sources.contains { selectedLanguages.contains($0.language) }) }
+            .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+    }
+    private var staged: [StagedExtension] {
+        model.stagedExtensions.filter { item in
+            (repositoryID == nil || repositories.contains { $0.index.extensions.contains { $0.packageName == item.packageName } }) &&
+            (query.isEmpty || (entries.first { $0.packageName == item.packageName }?.name ?? item.displayName).localizedStandardContains(query) || item.packageName.localizedStandardContains(query)) &&
+            (selectedLanguages.isEmpty || item.verification?.sources.contains { selectedLanguages.contains($0.language) } == true || entries.first { $0.packageName == item.packageName }?.sources.contains { selectedLanguages.contains($0.language) } == true)
+        }.sorted { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending }
+    }
+    private var languages: [String] {
+        Set(repositories.flatMap(\.index.extensions).flatMap(\.sources).map(\.language) +
+            model.stagedExtensions.flatMap { $0.verification?.sources ?? [] }.map(\.language)).sorted()
+    }
+    private func row(packageName: String, entry: ExtensionRecord?, staged: StagedExtension?) -> some View {
+        NavigationLink { ExtensionDetailsView(packageName: packageName, repositoryID: repositoryID) } label: {
+            HStack(spacing: 18) {
+                SourceBadge(iconURL: entry?.iconURL)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(entry?.name ?? staged?.displayName ?? packageName).shelfFont(.body).foregroundStyle(ShelfStyle.text)
+                    HStack(spacing: 5) {
+                        Text((staged?.verification?.versionName ?? (staged == nil ? entry?.versionName : nil)) ?? String(staged?.versionCode ?? 0))
+                        Text(Array(Set((staged?.verification?.sources ?? entry?.sources ?? []).map(\.language))).sorted().map { interfaceLocale.localizedString(forLanguageCode: $0) ?? $0 }.joined(separator: " · "))
+                    }.shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
+                    if let staged, let entry, entry.versionCode > staged.versionCode {
+                        Text(L10n.string("Update available")).shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                Text(L10n.string(staged == nil ? "Download" : "Settings")).shelfFont(.subheadline).foregroundStyle(ShelfStyle.accent)
+            }.frame(minHeight: 72).padding(.vertical, 4).contentShape(Rectangle())
+        }.buttonStyle(.plain).accessibilityIdentifier("extension.details.\(packageName)")
+    }
+    private func header(_ title: String) -> some View {
+        Text(title).shelfFont(.body).padding(.top, 16).padding(.bottom, 8).accessibilityAddTraits(.isHeader)
     }
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(L10n.string("Extensions")).shelfFont(.headline)
-                Spacer()
-                NavigationLink { RepositoriesView() } label: { TachiLabel(L10n.string("Repositories"), systemImage: "plus") }
-            }.padding(.horizontal, 16).padding(.vertical, 10)
-            if model.state.repositories.isEmpty {
-                Spacer()
-                ShelfEmptyState(title: L10n.string("No repositories"), message: L10n.string("Add a repository URL to view its extensions."))
-                NavigationLink(L10n.string("Add repository")) { RepositoriesView() }
-                Spacer()
-            } else {
                 ShelfSearchField(text: $query, prompt: L10n.string("Search extensions"))
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 16) {
-                        Text(L10n.string("Download an extension, review its publisher, then enable it to use its sources."))
-                            .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary)
-                        ForEach(model.state.repositories) { repository in
-                            Text(repository.index.name).shelfFont(.headline)
-                            ForEach(repository.index.extensions.filter { query.isEmpty || $0.name.localizedStandardContains(query) }) { entry in
-                                HStack(spacing: 14) {
-                                    TachiIcon(symbol: "shippingbox", size: 24).frame(width: 40)
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Text(entry.name).shelfFont(.body)
-                                        Text(Array(Set(entry.sources.map(\.language))).sorted().joined(separator: " · "))
-                                            .shelfFont(.caption).foregroundStyle(ShelfStyle.secondary)
-                                    }
-                                    Spacer()
-                                    if let staged = model.stagedExtension(packageName: entry.packageName) {
-                                        VStack(alignment: .trailing, spacing: 4) {
-                                            Text(L10n.format("Staged JAR · %@", String(describing: staged.versionCode)))
-                                                .shelfFont(.caption).foregroundStyle(ShelfStyle.accent)
-                                            extensionControls(staged, entry: entry, repositoryID: repository.id)
-                                        }
-                                    } else {
-                                        if preparingPackage == entry.packageName {
-                                            ProgressView().controlSize(.small)
-                                        } else {
-                                            Button {
-                                                Task { await inspect(entry) }
-                                            } label: {
-                                                HStack(spacing: 4) {
-                                                    TachiIcon(symbol: "arrow.down.circle", size: 14)
-                                                    Text(L10n.string("Download")).shelfFont(.caption, weight: .medium)
-                                                }
-                                                .padding(.horizontal, 10).padding(.vertical, 5)
-                                                .background(ShelfStyle.accent.opacity(0.15))
-                                                .foregroundStyle(ShelfStyle.accent)
-                                                .clipShape(Capsule())
-                                            }
-                                            .buttonStyle(.plain)
-                                            .accessibilityLabel(L10n.format("Download extension %@", entry.name))
-                                        }
-                                    }
-                                }.padding(.vertical, 8)
-                            }
-                        }
-                    }.padding(16)
-                }.refreshable { await model.refreshAllRepositories() }
-            }
-        }
-        .sheet(item: $trustReview) { review in
+                Button { showingLanguages = true } label: { ShelfIcon(symbol: "character.bubble") }
+                    .buttonStyle(.plain).accessibilityLabel(L10n.string("Source languages"))
+                    .accessibilityIdentifier("extensions.languages")
+                NavigationLink { RepositoriesView() } label: { ShelfIcon(symbol: "plus") }
+                    .buttonStyle(.plain).accessibilityLabel(L10n.string("Repositories"))
+                    .accessibilityIdentifier("extensions.repositories")
+            }.padding(.horizontal, 8)
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    let installed = staged.filter { $0.isActive && $0.isTrusted && $0.verification != nil }
+                    let downloaded = staged.filter { !$0.isActive || !$0.isTrusted || $0.verification == nil }
+                    if !installed.isEmpty {
+                        header(L10n.string("Installed"))
+                        ForEach(installed) { item in row(packageName: item.packageName, entry: entries.first { $0.packageName == item.packageName }, staged: item) }
+                    }
+                    if !downloaded.isEmpty {
+                        header(L10n.string("Downloaded packages"))
+                        ForEach(downloaded) { item in row(packageName: item.packageName, entry: entries.first { $0.packageName == item.packageName }, staged: item) }
+                    }
+                    let available = entries.filter { model.stagedExtension(packageName: $0.packageName) == nil }
+                    if !available.isEmpty {
+                        header(L10n.string("Available extensions"))
+                        ForEach(available) { row(packageName: $0.packageName, entry: $0, staged: nil) }
+                    }
+                    if staged.isEmpty && available.isEmpty {
+                        ShelfEmptyState(title: L10n.string(repositories.isEmpty ? "No repositories" : "No results"), message: L10n.string("Add a repository URL to view its extensions."))
+                        NavigationLink(L10n.string("Add repository")) { RepositoriesView() }.frame(maxWidth: .infinity)
+                    }
+                }.padding(.horizontal, 18).padding(.bottom, 16)
+            }.refreshable { await model.refreshAllRepositories() }
+        }.accessibilityIdentifier("browse.extensions")
+        .sheet(isPresented: $showingLanguages) {
             NavigationStack {
-                Form {
-                    Section {
-                        Text(review.name).shelfFont(.headline)
-                        Text(review.packageName).shelfFont(.caption).textSelection(.enabled)
-                    }
-                    Section(L10n.string("Publisher fingerprint (SHA-256)")) {
-                        Text(review.verification.certificateSHA256)
-                            .font(.system(.caption, design: .monospaced)).textSelection(.enabled)
-                        Text(L10n.string("Compare this fingerprint with the publisher's published fingerprint before granting trust."))
-                            .shelfFont(.footnote).foregroundStyle(ShelfStyle.secondary)
-                    }
-                    Section(L10n.string("Sources")) {
-                        ForEach(review.verification.sources, id: \.id) { source in
-                            HStack {
-                                Text(source.name)
-                                Spacer()
-                                Text(source.language).foregroundStyle(ShelfStyle.secondary)
-                            }
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Button(L10n.string("All languages")) { selectedLanguages.removeAll() }.padding(16)
+                        ForEach(languages, id: \.self) { language in
+                            TachiToggleRow(title: interfaceLocale.localizedString(forLanguageCode: language) ?? language, symbol: "globe",
+                                isOn: Binding(get: { selectedLanguages.contains(language) }, set: { on in if on { selectedLanguages.insert(language) } else { selectedLanguages.remove(language) } }))
                         }
                     }
-                }
-                .navigationTitle(L10n.string("Review publisher"))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(L10n.string("Cancel")) { trustReview = nil }
-                    }
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button(L10n.string("Trust publisher")) {
-                            trustReview = nil
-                            Task {
-                                await change(review.packageName) {
-                                    try await model.setExtensionTrust(packageName: review.packageName, trusted: true,
-                                        verification: review.verification, expectedDigest: review.digest)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+                }.shelfPage().navigationTitle(L10n.string("Source languages")).navigationBarTitleDisplayMode(.inline)
+                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.string("Done")) { showingLanguages = false } } }
+            }.tachiSheet()
         }
-        .confirmationDialog(L10n.string("Review JAR before staging"), isPresented: Binding(get: { pendingArtifact != nil }, set: { if !$0 { pendingArtifact = nil } }), titleVisibility: .visible) {
-            if let artifact = pendingArtifact {
-                Button(L10n.string("Save extension package")) {
-                    Task { await stage(artifact) }
-                }
-            }
-            Button(L10n.string("Cancel"), role: .cancel) { pendingArtifact = nil }
-        } message: {
-            if let artifact = pendingArtifact {
-                Text(L10n.format("Static inspection passed for %@. SHA-256: %@. Classes: %@. The package will be stored only; it will not be installed or executed.", artifact.packageName, artifact.digest, String(describing: artifact.inspection.classes.count)))
-            }
-        }
-    }
-
-    private func extensionControls(_ staged: StagedExtension, entry: ExtensionRecord, repositoryID: UUID) -> some View {
-        let reviewed = staged.isTrusted && staged.verification != nil
-        return HStack(spacing: 0) {
-            if changingPackage == entry.packageName {
-                ProgressView().controlSize(.small).frame(width: 44, height: 44)
-            } else {
-                Button {
-                    if reviewed {
-                        Task { await change(entry.packageName) { try await model.setExtensionTrust(packageName: entry.packageName, trusted: false) } }
-                    } else {
-                        do {
-                            let verification = try model.proposedExtensionVerification(packageName: entry.packageName, repositoryID: repositoryID)
-                            trustReview = ExtensionTrustReview(packageName: entry.packageName, name: entry.name,
-                                digest: staged.digest, verification: verification)
-                        } catch { model.errorMessage = AppError.describe(error) }
-                    }
-                } label: {
-                    TachiIcon(symbol: reviewed ? "shield.checkmark.fill" : "shield", size: 16)
-                        .foregroundStyle(reviewed ? ShelfStyle.accent : ShelfStyle.secondary)
-                        .frame(width: 44, height: 44)
-                }.buttonStyle(.plain).accessibilityLabel(L10n.string(reviewed ? "Revoke publisher trust" : "Review publisher"))
-
-                if reviewed {
-                    Button {
-                        Task { await change(entry.packageName) { try await model.setExtensionActive(packageName: entry.packageName, active: !staged.isActive) } }
-                    } label: {
-                        TachiIcon(symbol: staged.isActive ? "checkmark.circle.fill" : "circle", size: 16)
-                            .foregroundStyle(staged.isActive ? ShelfStyle.accent : ShelfStyle.secondary)
-                            .frame(width: 44, height: 44)
-                    }.buttonStyle(.plain).accessibilityLabel(L10n.string(staged.isActive ? "Disable extension" : "Enable extension"))
-                }
-
-                Button {
-                    Task { await change(entry.packageName) { try await model.removeStagedExtension(packageName: entry.packageName) } }
-                } label: {
-                    TachiIcon(symbol: "trash", size: 16).foregroundStyle(ShelfStyle.secondary)
-                        .frame(width: 44, height: 44)
-                }.buttonStyle(.plain).accessibilityLabel(L10n.string("Remove staged JAR"))
-            }
-        }.disabled(changingPackage != nil)
-    }
-
-    @MainActor private func change(_ packageName: String, operation: () async throws -> Void) async {
-        guard changingPackage == nil else { return }
-        changingPackage = packageName
-        defer { changingPackage = nil }
-        do { try await operation() }
-        catch { model.errorMessage = AppError.describe(error) }
-    }
-
-    @MainActor private func inspect(_ item: ExtensionRecord) async {
-        guard preparingPackage == nil else { return }
-        preparingPackage = item.packageName
-        defer { preparingPackage = nil }
-        do { pendingArtifact = try await model.prepareExtension(item) }
-        catch { model.errorMessage = AppError.describe(error) }
-    }
-
-    @MainActor private func stage(_ artifact: DownloadedExtension) async {
-        do {
-            try await model.stageExtension(artifact)
-            pendingArtifact = nil
-        } catch { model.errorMessage = AppError.describe(error) }
     }
 }

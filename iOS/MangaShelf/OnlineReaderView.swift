@@ -69,6 +69,7 @@ struct OnlineReaderView: View {
                 VStack {
                     HStack(spacing: 18) {
                         TachiButton(L10n.string("Close"), systemImage: "xmark") { dismiss() }.labelStyle(.iconOnly)
+                            .accessibilityIdentifier("online.reader.close")
                         VStack(spacing: 3) {
                             Text(saved?.series.title ?? L10n.string("Reader")).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
                             Text(chapter.localizedTitle).shelfFont(.caption).lineLimit(1).foregroundStyle(.secondary)
@@ -112,6 +113,7 @@ struct OnlineReaderView: View {
                 VStack { Spacer(); Text("\(page + 1) / \(pages.urls.count)").font(.caption.monospacedDigit()).padding(8).background(ShelfStyle.header.opacity(0.96), in: Capsule()) }.padding(.bottom, 6).allowsHitTesting(false)
             }
         }.preferredColorScheme(.dark).statusBarHidden(!controls)
+            .accessibilityIdentifier("online.reader")
             .onAppear { previousIdle = UIApplication.shared.isIdleTimerDisabled; UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake }
             .onDisappear { UIApplication.shared.isIdleTimerDisabled = previousIdle }
             .onChange(of: phase) { _, state in UIApplication.shared.isIdleTimerDisabled = state == .active && settings.keepScreenAwake }
@@ -198,8 +200,13 @@ private struct OnlinePage: View {
     var body: some View {
         Group {
             if let image {
-                if paged { ZoomableImage(image: image, zoomed: $zoomed, scale: scale, onTap: onTap) }
-                else { Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity) }
+                if paged {
+                    ZoomableImage(image: image, zoomed: $zoomed, scale: scale, onTap: onTap)
+                        .accessibilityIdentifier("online.reader.image.\(index)")
+                } else {
+                    Image(uiImage: image).resizable().scaledToFit().frame(maxWidth: .infinity)
+                        .accessibilityIdentifier("online.reader.image.\(index)")
+                }
             } else if let failure {
                 VStack(spacing: 12) {
                     Text(L10n.format("Page %@", String(describing: index + 1))).shelfFont(.headline); Text(failure).shelfFont(.caption).multilineTextAlignment(.center)
