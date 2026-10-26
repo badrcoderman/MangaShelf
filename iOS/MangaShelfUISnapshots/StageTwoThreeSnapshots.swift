@@ -42,11 +42,10 @@ final class StageTwoThreeSnapshots: XCTestCase {
         let control = element(id, app: app)
         XCTAssertTrue(control.waitForExistence(timeout: 10))
         let expected = language == "ar" ? (on ? "مفعّل" : "معطّل") : (on ? "On" : "Off")
-        // Custom toggles keep a full accessible row and a physical 56pt switch.
-        if control.value as? String != expected {
-            control.coordinate(withNormalizedOffset: CGVector(dx: language == "ar" ? 0.08 : 0.92, dy: 0.5)).tap()
-        }
-        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", expected), object: control)
+        // SwiftUI exposes native switch values as 1/0 and custom values as localized text.
+        let accepted = [expected, on ? "1" : "0"]
+        if !accepted.contains(control.value as? String ?? "") { control.tap() }
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value IN %@", accepted), object: control)
         XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
     }
     @MainActor private func savedFlows(language: String) {

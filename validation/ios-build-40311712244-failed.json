@@ -1,0 +1,11 @@
+{
+  "run_id": 40311712244,
+  "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/40311712244",
+  "source_commit": "67e88e80f93ee9a923de385290c067c28aba031b",
+  "passed": false,
+  "recorded_at": "2026-10-26T11:05:10.138190+00:00",
+  "scope": "Swift test compilation stopped before app/IPA verification; no device execution.",
+  "failure": "SourceFilterProtocolTests.hash conflicts with NSObject.hash; property renamed to schemaFingerprint.",
+  "fix_commit": "b04e400f6ef3574d8921c8859deece1f42d4aa37",
+  "log_sha256": "df7bf32b4f871aa56716a860c8c40ea32dc1fda2647dc85c8d4ae7f4ef761896"
+}

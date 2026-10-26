@@ -1,0 +1,277 @@
+{
+  "passed": false,
+  "run_id": 40311713369,
+  "source_commit": "67e88e80f93ee9a923de385290c067c28aba031b",
+  "artifact": {
+    "id": 12645656863,
+    "node_id": "MDg6QXJ0aWZhY3QxMjY0NTY1Njg2Mw==",
+    "name": "MangaShelf-UI-40311713369-1",
+    "size_in_bytes": 95200771,
+    "url": "https://api.github.com/repos/badrcoderman/MangaShelf/actions/artifacts/12645656863",
+    "archive_download_url": "https://api.github.com/repos/badrcoderman/MangaShelf/actions/artifacts/12645656863/zip",
+    "expired": false,
+    "digest": "sha256:0b394964ee2b0b6047284ecf0b00f4e76cffd24481d0c77d96758538e4e5e718",
+    "created_at": "2026-10-26T11:16:03Z",
+    "updated_at": "2026-10-26T11:16:03Z",
+    "expires_at": "2026-11-09T11:15:57Z",
+    "workflow_run": {
+      "id": 40311713369,
+      "repository_id": 1364769980,
+      "head_repository_id": 1364769980,
+      "head_branch": "improve/ios-engine-image",
+      "head_sha": "67e88e80f93ee9a923de385290c067c28aba031b"
+    }
+  },
+  "artifact_size_sha256_crc_paths_verified": true,
+  "baseline_summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DCD48F71-0EE6-4040-A9F5-E00D10909AEC",
+          "deviceName": "MangaShelf UI 40311713369",
+          "modelName": "iPhone 11 Pro Max",
+          "osBuildNumber": "23C54",
+          "osVersion": "26.2",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 0,
+        "passedTests": 4,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "MangaShelfUI · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 0,
+    "finishTime": 1793013189.177,
+    "passedTests": 4,
+    "result": "Passed",
+    "skippedTests": 0,
+    "startTime": 1793012850.81,
+    "statistics": [],
+    "testFailures": [],
+    "title": "Test - MangaShelfUI",
+    "topInsights": [],
+    "totalTestCount": 4
+  },
+  "seeded_summary": {
+    "devicesAndConfigurations": [
+      {
+        "device": {
+          "architecture": "arm64",
+          "deviceId": "DCD48F71-0EE6-4040-A9F5-E00D10909AEC",
+          "deviceName": "MangaShelf UI 40311713369",
+          "modelName": "iPhone 11 Pro Max",
+          "osBuildNumber": "23C54",
+          "osVersion": "26.2",
+          "platform": "iOS Simulator"
+        },
+        "expectedFailures": 0,
+        "failedTests": 1,
+        "passedTests": 0,
+        "skippedTests": 0,
+        "testPlanConfiguration": {
+          "configurationId": "1",
+          "configurationName": "Test Scheme Action"
+        }
+      }
+    ],
+    "environmentDescription": "MangaShelfUI · Built with macOS 15.7.9",
+    "expectedFailures": 0,
+    "failedTests": 1,
+    "finishTime": 1793013336.277,
+    "passedTests": 0,
+    "result": "Failed",
+    "skippedTests": 0,
+    "startTime": 1793013216.684,
+    "statistics": [],
+    "testFailures": [
+      {
+        "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "targetName": "MangaShelfUISnapshots",
+        "testIdentifier": 1,
+        "testIdentifierString": "StageTwoThreeSnapshots/testEnglishSavedFlows()",
+        "testIdentifierURL": "test://com.apple.xcode/MangaShelfUI/MangaShelfUISnapshots/StageTwoThreeSnapshots/testEnglishSavedFlows",
+        "testName": "testEnglishSavedFlows()"
+      }
+    ],
+    "title": "Test - MangaShelfUI",
+    "topInsights": [],
+    "totalTestCount": 1
+  },
+  "named_screenshots": [
+    {
+      "name": "msl-ar-light-library-options_0_71CA7130-2A1D-4C96-9398-9B5750FDFD16.png",
+      "sha256": "90e2dd487c85195c27122f93f52c9fe0e14c982723584d2de55def0582661ad4"
+    },
+    {
+      "name": "msl-ar-light-about_0_CE50F5F4-3D37-46D6-B56E-C3437FD183A3.png",
+      "sha256": "7ee16a69a9ab7f0f8f2c6d2a50f4480fa4228d558c6a2d6ed89db4508d167173"
+    },
+    {
+      "name": "msl-ar-light-more_0_E60A1A87-2A9C-4443-955D-720DEDD38B37.png",
+      "sha256": "6d7dc3916d032a37436194cf34757926fd3fb6ba946dae0739fcf12dc4f0c368"
+    },
+    {
+      "name": "msl-ar-dark-settings-changelog_0_5D177B41-08A5-487D-B5C2-5F5636533A3C.png",
+      "sha256": "e49c454ea55397d813e7f3681295690aa1d1245039971a122a0078a21e15b784"
+    },
+    {
+      "name": "msl-ar-dark-settings-about_0_9E844813-1EC7-4645-A428-7B026B46FC53.png",
+      "sha256": "973968193a7ffafacd493f649a43e0f163c247e4dbb285f9eabdd5ae6e6986fb"
+    },
+    {
+      "name": "msl-ar-dark-settings-privacy_0_E9790282-51E1-44D1-839D-BC6A3C052B43.png",
+      "sha256": "fd02584ea15c15c8910d58f7100789f86967b66a5c7f70ee9426abf0b9b6a993"
+    },
+    {
+      "name": "msl-ar-dark-settings-backup_0_74E9A84A-F30E-4651-8E62-509C177AB3B8.png",
+      "sha256": "477e6ac516a792a35ee30c984aa9ff50acc56812e7f2fff0fdfd9d07164ee490"
+    },
+    {
+      "name": "msl-ar-dark-settings-reader_0_87682454-2D89-41B8-B346-54DD9967CBA7.png",
+      "sha256": "7a01d86fe25cd6d6386ce4f218fb01619d60fc6dc8f799e59defb4e45bd6227d"
+    },
+    {
+      "name": "msl-ar-dark-settings-library_0_FEEB862A-4F1B-4475-AAAC-3E1A08E0C072.png",
+      "sha256": "5143160e1f5b03c82c1c40ad08d7bd3015615eee3ed5a954051149d502efcf99"
+    },
+    {
+      "name": "msl-ar-dark-settings-appearance_0_D842BEB8-CCA4-4E0E-A67A-8E9D8DCD4710.png",
+      "sha256": "df289c5cdfbb808ce9fbcd76e415952ea0c9e0ea7ec2840734fbe600b1e637b9"
+    },
+    {
+      "name": "msl-ar-dark-settings-general_0_FB1FA4EB-9323-4A6D-A808-7E81618C28DE.png",
+      "sha256": "56b13ef072d3869eaebfeff6f850d913e424405f3d2f65ed236534a92e8fa4a2"
+    },
+    {
+      "name": "msl-ar-dark-05-more_0_BD728CF2-D234-42BD-9519-6A6AA6B57CC7.png",
+      "sha256": "e950bef57bf8f31d46ba1ae1ba06ba363d5fcc55a5f9af2144ef52df00abcf6e"
+    },
+    {
+      "name": "msl-ar-dark-04-history_0_5A2D8FAA-681A-445E-8F80-5FBF422BACC5.png",
+      "sha256": "2243f329dc312d987077a8bdb6dfbd805a7980e1e806b5c5443af51ff29bdf73"
+    },
+    {
+      "name": "msl-ar-dark-03-browse_0_9A7F1E49-7C2A-422C-B812-85941E4C6AEB.png",
+      "sha256": "539df59ba53a703453257305379435b1e932378fb6143f568232ca8af7f808c5"
+    },
+    {
+      "name": "msl-ar-dark-02-updates_0_54B0C6CD-4B02-4861-B7FF-901EC8EC8ACA.png",
+      "sha256": "108d15f0df243277234a6bc971c6f3b46bc89c6274305be0361caae7109e7d19"
+    },
+    {
+      "name": "msl-ar-dark-library-options_0_14075F3C-F778-4617-AF7B-6C7B9D33E6D6.png",
+      "sha256": "f1e501311aa6cfd161e3f5749f8b81f953f497bab157ca6d449eff0db847ee8f"
+    },
+    {
+      "name": "msl-ar-dark-01-library_0_155723AD-43FB-4598-A06B-EEDAE0AAC2FA.png",
+      "sha256": "47bb4020e19a0ba729237282a71664a729aa099c9110be8bd22699584330e235"
+    },
+    {
+      "name": "msl-ar-dark-accessibility-menu_0_67B5A452-D2C3-4067-A605-6CC344A213ED.png",
+      "sha256": "6a857c3290291b2dc21b3e3591d6c22c08515e6dd598395ed91bc857b39d4b0f"
+    },
+    {
+      "name": "msl-en-light-library-options_0_782767E9-3FEF-462C-B506-3C9353FC7833.png",
+      "sha256": "fea7e7854da7282b5bb7f2ff83f3677635546098b3c8f6be44c6839138805bea"
+    },
+    {
+      "name": "msl-en-light-about_0_3C1A9445-FC93-4AC6-A8FE-E0D1D1F653A2.png",
+      "sha256": "f5b4fd1bccb5d3f6c10733e22d11070d5d85c2be15cb6fb8176b0930289fc357"
+    },
+    {
+      "name": "msl-en-light-more_0_46CBCBBD-1A66-4887-8213-A29D079864EF.png",
+      "sha256": "d476283d8eaa3d57bf0242352f9fec2edfe15ac424c73afa0917669d402e0e01"
+    },
+    {
+      "name": "msl-en-dark-settings-changelog_0_F7FD3712-8E2D-48CD-B8B2-4FDA3D3F2D7F.png",
+      "sha256": "229da15f89b3ebed8d14edad99e815f766065746b993c9319f93d01fc3d50c1e"
+    },
+    {
+      "name": "msl-en-dark-settings-about_0_FF9E1015-D37A-4D7E-A8C9-3D23EFD4B6F6.png",
+      "sha256": "c106d5ec52de2ea1670ae518a7ab1497564a3c4ee3944bb951f9df61c5cb4935"
+    },
+    {
+      "name": "msl-en-dark-settings-privacy_0_ACAF011E-E0D3-4E51-A8BB-09E56E269AE6.png",
+      "sha256": "1bb05b420fcc10071a77da2ada9d031525d217e769da24d0a349aa41a9ebd2d4"
+    },
+    {
+      "name": "msl-en-dark-settings-backup_0_7227066D-CA18-486E-BC00-D34B8C309E76.png",
+      "sha256": "586da14904c572c8596e0b931f058665f3ad517dc9a0503679d3ffe0452adf71"
+    },
+    {
+      "name": "msl-en-dark-settings-reader_0_6771A3A3-A386-42AE-A405-0DA039D1FB1C.png",
+      "sha256": "b7026bbffae2aae228cba1fc8e7fc2830855bc49edb96280dbedf28d24f1dd28"
+    },
+    {
+      "name": "msl-en-dark-settings-library_0_F6D1D609-BD42-4666-BF27-A8AD6EFB6532.png",
+      "sha256": "865ba39bf953b228e2299abf54635bdd14fb1680b5e6b2f428c5339b82774ba0"
+    },
+    {
+      "name": "msl-en-dark-settings-appearance_0_1B488BAC-8D6A-4CD0-8CB7-9A3426B25634.png",
+      "sha256": "d64068d8400dc1a76c21ce5e28c29e2922917626febd2568aabce82b3b2418b5"
+    },
+    {
+      "name": "msl-en-dark-settings-general_0_83CF6318-7307-41CF-982C-46499393B541.png",
+      "sha256": "8d038ac7abffae1824136209cda9c60a43f97fbebfaec918986f7416d1031cec"
+    },
+    {
+      "name": "msl-en-dark-05-more_0_F641A2EE-B8BB-4313-B1FA-579F43E4E058.png",
+      "sha256": "9d97a7ed309c37a7668c3059a166407aec7bcdf44ef05aff8912dfa00fe2e827"
+    },
+    {
+      "name": "msl-en-dark-04-history_0_7225B8F5-7DC9-4294-ADD4-162BB3F3524A.png",
+      "sha256": "5f952410fd0ab6a2d999773cc9cb6be1ae0af16a103f4c29dab98a4a44ea7d67"
+    },
+    {
+      "name": "msl-en-dark-03-browse_0_483260BC-3509-4508-AFAC-F86FFD3EBFA1.png",
+      "sha256": "14234234e11e6f806943fcbd325d4b33a217b67ff806f2cf70b7f76809c315c0"
+    },
+    {
+      "name": "msl-en-dark-02-updates_0_5840136C-4D9B-49C2-8B03-6C84D9CFDA12.png",
+      "sha256": "211dfa14b5ef01d24bb87004d4f966c1792397edbac3ba5abf4bdf294f0c4336"
+    },
+    {
+      "name": "msl-en-dark-library-options_0_FF260E47-9732-44A1-B876-942F731DBA50.png",
+      "sha256": "67d69e534807c04c8165a8ad724aedcda3e7eb186859ccabe296003b18c5240f"
+    },
+    {
+      "name": "msl-en-dark-01-library_0_149059C2-B70D-4C2A-B2F4-F1EBA5E57574.png",
+      "sha256": "b526e0d9dca24cccdffd7f82a4e30123ddd1c52d8c56c23c9286a345223b8d73"
+    },
+    {
+      "name": "msl-arabic-font-review_0_769F887E-9564-49EE-A2E4-C614022215B5.png",
+      "sha256": "0febaa8afd09af02eca5dc61302d81aaefa4ba16e18e33a75b5bddac7765be2b"
+    },
+    {
+      "name": "msl-en-dark-accessibility-menu_0_47581099-B4B1-4BB9-873C-0AC986280CEE.png",
+      "sha256": "5e7469a82e7948197ff24d8d788335545f875f735b1301855bc56f1fb4b192d3"
+    },
+    {
+      "name": "msl-en-stage23-library-filter_0_0834BA4D-0254-49D3-BC55-C1B89590A579.png",
+      "sha256": "f5c4bf9cd1f598aaea0d23791949d181fb4027e9b253aa13b329df8c78b87dbf"
+    },
+    {
+      "name": "msl-en-stage23-category_0_AF731D1E-C385-4D13-AA36-A86313640A23.png",
+      "sha256": "bea57363eb389443c6977c1c59587e82ec4980a8be442e5ba11b10d46cdf638f"
+    },
+    {
+      "name": "msl-en-stage23-library_0_32D9F4C9-7950-411E-8FB7-EEC416E57050.png",
+      "sha256": "3d244c741b37efdb34d94869a459d6a5f2a0d25350759c4a93a3d2ba687f7d7b"
+    }
+  ],
+  "required_total": 60,
+  "failure": "Downloaded toggle expected localized On; actual accessibility value 0. Physical outer-edge tap missed adjacent-to-label switch.",
+  "fix": "Full row toggle button with trailing control; test uses center activation and accepts SwiftUI numeric or localized value, retaining filtered-library and persistence assertions.",
+  "arabic_seeded_test_ran": false,
+  "postflight_persistence_ran": false,
+  "visual_parity": false,
+  "physical_iphone_tested": false,
+  "ci_log_sha256": "656e780a8b662957b5033c7b72eadeff5d41694304f2e4ba51c2a681cc7fcc34"
+}

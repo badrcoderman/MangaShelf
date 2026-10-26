@@ -368,18 +368,19 @@ struct TachiToggleStyle: ToggleStyle {
     @Environment(\.isEnabled) private var enabled
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 12) {
-            configuration.label
-            Button { configuration.isOn.toggle() } label: {
+        Button { if enabled { configuration.isOn.toggle() } } label: {
+            HStack(spacing: 12) {
+                configuration.label.frame(maxWidth: .infinity, alignment: .leading)
                 Capsule().fill(configuration.isOn ? ShelfStyle.accent : ShelfStyle.selected)
                     .overlay(Capsule().strokeBorder(ShelfStyle.secondary.opacity(configuration.isOn ? 0 : 0.45), lineWidth: 2))
                     .overlay(alignment: configuration.isOn ? .trailing : .leading) {
                         Circle().fill(configuration.isOn ? Color.black : Color(white: 0.5))
                             .frame(width: configuration.isOn ? 24 : 17, height: configuration.isOn ? 24 : 17).padding(configuration.isOn ? 4 : 7.5)
-                    }.frame(width: 52, height: 32).frame(width: 56, height: 44).contentShape(Rectangle())
+                    }.frame(width: 52, height: 32).frame(width: 56, height: 44)
                     .animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: configuration.isOn)
-            }.buttonStyle(.plain).accessibilityHidden(true)
-        }.opacity(enabled ? 1 : 0.45).accessibilityElement(children: .combine)
+                    .accessibilityHidden(true)
+            }.frame(minHeight: 44).contentShape(Rectangle())
+        }.buttonStyle(.plain).opacity(enabled ? 1 : 0.45).accessibilityElement(children: .combine)
             .accessibilityValue(L10n.string(configuration.isOn ? "On" : "Off"))
             .accessibilityAction { if enabled { configuration.isOn.toggle() } }
             .accessibilityAdjustableAction { direction in
