@@ -18,7 +18,8 @@ import subprocess
 TABS = ("library", "updates", "browse", "history", "more")
 EXPECTED = tuple(f"msl-{language}-dark-{index:02d}-{tab}"
                  for language in ("en", "ar") for index, tab in enumerate(TABS, 1))
-SETTINGS = ("general", "appearance", "library", "reader", "backup", "privacy", "about", "changelog")
+SETTINGS = ("general", "appearance", "library", "reader", "sync", "tracking", "backup", "privacy",
+            "insights", "downloads", "advanced", "about", "changelog")
 EXPECTED += tuple(f"msl-{language}-dark-settings-{page}" for language in ("en", "ar") for page in SETTINGS)
 EXPECTED += tuple(f"msl-{language}-dark-library-options" for language in ("en", "ar"))
 EXPECTED += tuple(f"msl-{language}-light-{page}" for language in ("en", "ar")
@@ -26,7 +27,8 @@ EXPECTED += tuple(f"msl-{language}-light-{page}" for language in ("en", "ar")
 EXPECTED += tuple(f"msl-{language}-dark-accessibility-menu" for language in ("en", "ar"))
 STAGE23 = tuple(f"msl-{language}-stage23-{page}" for language in ("en", "ar")
                 for page in ("library", "category", "library-filter", "library-selection", "local-detail",
-                             "source-detail", "chapter-filter", "history", "sources", "extensions", "extension-detail", "repositories"))
+                             "source-detail", "series-tracking", "reader", "chapter-filter", "history",
+                             "insights", "downloaded", "sources", "extensions", "extension-detail", "repositories"))
 
 
 def collect(attachments: Path, destination: Path, expected=EXPECTED) -> dict:

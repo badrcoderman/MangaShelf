@@ -1,0 +1,24 @@
+{
+  "link_run_id": 39384594918,
+  "link_head": "514586d23c58f7f98ec81bf8c5bc3669e44877a1",
+  "result": {
+    "link_succeeded": true,
+    "target": "arm64-apple-ios26.0",
+    "executable_sha256": "720d95453dff8ee2955ca137116c42b564b3a0fa292f77d0e216c953381c6a83",
+    "execution_proven": false
+  },
+  "runtime_selection": {
+    "repository": "badrcoderman/MangaShelf",
+    "run_id": 39382504723,
+    "head_sha": "7a8f8b091659b13621ae030a2d65d45c6375510a",
+    "workflow": ".github/workflows/ios-jvm.yml",
+    "run_url": "https://github.com/badrcoderman/MangaShelf/actions/runs/39382504723",
+    "conclusion": "success",
+    "artifact_id": 12246466771,
+    "artifact_sha256": "e02adcacfc39f4e8263e146ba68b6caf254467e0c5d538f8d22befd57e8a9af0",
+    "java_modules_present": false,
+    "build_manifest_verified": false,
+    "execution_proven": false
+  },
+  "limitations": "Link only. Java modules absent from selected legacy runtime. iPhone execution and real sources remain unverified."
+}

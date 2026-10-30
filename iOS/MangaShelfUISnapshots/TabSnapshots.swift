@@ -182,8 +182,10 @@ final class TabSnapshots: XCTestCase {
 
         let settings = [("general", "slider.horizontal.3"), ("appearance", "paintpalette.fill"),
                         ("library", "books.vertical"), ("reader", "book.closed.fill"),
+                        ("sync", "cloud"), ("tracking", "arrow.triangle.2.circlepath"),
                         ("backup", "arrow.counterclockwise.circle"), ("privacy", "shield.lefthalf.filled"),
-                        ("about", "info.circle")]
+                        ("insights", "chart.xyaxis.line"), ("downloads", "arrow.down.to.line"),
+                        ("advanced", "slider.horizontal.below.rectangle"), ("about", "info.circle")]
         for (page, symbol) in settings {
             let row = app.buttons["settings." + symbol].firstMatch
             XCTAssertTrue(row.waitForExistence(timeout: 10))

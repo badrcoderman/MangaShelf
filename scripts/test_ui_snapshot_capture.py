@@ -41,7 +41,7 @@ class SnapshotCaptureTests(unittest.TestCase):
 
     def test_full_export_preserves_native_bytes_and_leaves_parity_unreviewed(self):
         report = self.run_collect()
-        self.assertEqual(report["captured_screenshots"], 36)
+        self.assertEqual(report["captured_screenshots"], 46)
         self.assertEqual(report["visual_parity"], "NOT REVIEWED")
         for index, name in enumerate(capture.EXPECTED):
             self.assertEqual((self.root / "screenshots" / (name + ".png")).read_bytes(), png(index))
@@ -58,8 +58,8 @@ class SnapshotCaptureTests(unittest.TestCase):
             self.manifest[0]["attachments"].append({"exportedFileName": f"{index}.png", "suggestedHumanReadableName": name + ".png"})
         (self.attachments / "manifest.json").write_text(json.dumps(self.manifest))
         report = capture.collect(self.attachments, self.root / "screenshots", expected)
-        self.assertEqual(report["captured_screenshots"], 60)
-        self.assertEqual(len(report["synthetic_store_captures"]), 24)
+        self.assertEqual(report["captured_screenshots"], 78)
+        self.assertEqual(len(report["synthetic_store_captures"]), 32)
         self.assertEqual(report["visual_parity"], "NOT REVIEWED")
         self.manifest[0]["attachments"].pop()
         (self.attachments / "manifest.json").write_text(json.dumps(self.manifest))

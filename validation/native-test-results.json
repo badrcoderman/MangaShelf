@@ -1,5 +1,5 @@
 {
-  "native_tests": 34,
+  "native_tests": 35,
   "failures": 0,
   "errors": 0,
   "random_pb_and_zip_cases": 3000,

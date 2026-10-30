@@ -64,7 +64,8 @@ struct OnlineReaderView: View {
             if controls {
                 ReaderChrome(title: saved?.series.title ?? L10n.string("Reader"), subtitle: chapter.localizedTitle,
                              sourceURL: sourceURL, page: page, pageCount: pages?.urls.count ?? 0,
-                             direction: settings.direction, onClose: { dismiss() }, onJump: jump) {
+                             direction: settings.direction, closeIdentifier: "online.reader.close",
+                             onClose: { dismiss() }, onJump: jump) {
                     tool("Reader settings", symbol: "gearshape.fill") { settingsOpen = true }
                     tool("Chapters", symbol: "list.bullet") { chapterListOpen = true }
                     if settings.mode == .webtoon {
@@ -90,7 +91,6 @@ struct OnlineReaderView: View {
         })
         .background(ReaderOrientationHost(rotation: settings.rotation).frame(width: 0, height: 0))
         .preferredColorScheme(.dark).statusBarHidden(!controls || !settings.showStatusBar)
-        .accessibilityIdentifier("online.reader")
         .onAppear { previousIdle = UIApplication.shared.isIdleTimerDisabled; UIApplication.shared.isIdleTimerDisabled = settings.keepScreenAwake }
         .onDisappear { autoScrolling = false; persistPosition(); UIApplication.shared.isIdleTimerDisabled = previousIdle }
         .onChange(of: phase) { _, state in

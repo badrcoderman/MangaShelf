@@ -7,8 +7,44 @@ static uint16_t u16(const uint8_t *p) { return (uint16_t)(p[0] | (uint16_t)p[1]<
 static uint32_t u32(const uint8_t *p) {
     return (uint32_t)p[0] | (uint32_t)p[1]<<8 | (uint32_t)p[2]<<16 | (uint32_t)p[3]<<24;
 }
+static uint64_t u64(const uint8_t *p) {
+    return (uint64_t)u32(p) | ((uint64_t)u32(p+4)<<32);
+}
 static int span(size_t offset, size_t length, size_t end) {
     return offset <= end && length <= end-offset;
+}
+static ms_status resolve_zip64(const uint8_t *extra, size_t len,
+                               uint32_t *expanded, uint32_t *packed, uint32_t *local) {
+    size_t need = (*expanded==UINT32_MAX ? 8u : 0u) +
+                  (*packed==UINT32_MAX ? 8u : 0u) +
+                  (*local==UINT32_MAX ? 8u : 0u);
+    size_t off = 0;
+    while (off + 4 <= len) {
+        uint16_t tag = u16(extra + off), size = u16(extra + off + 2);
+        if (!span(off + 4, size, len)) return MS_INVALID;
+        if (tag == 0x0001) {
+            if (size < need) return MS_INVALID;
+            const uint8_t *p = extra + off + 4;
+            if (*expanded == UINT32_MAX) {
+                uint64_t v = u64(p); p += 8;
+                if (v >= UINT32_MAX) return MS_LIMIT;
+                *expanded = (uint32_t)v;
+            }
+            if (*packed == UINT32_MAX) {
+                uint64_t v = u64(p); p += 8;
+                if (v >= UINT32_MAX) return MS_LIMIT;
+                *packed = (uint32_t)v;
+            }
+            if (*local == UINT32_MAX) {
+                uint64_t v = u64(p); p += 8;
+                if (v >= UINT32_MAX) return MS_LIMIT;
+                *local = (uint32_t)v;
+            }
+            return MS_OK;
+        }
+        off += (size_t)4 + size;
+    }
+    return off == len ? MS_UNSUPPORTED : MS_INVALID;
 }
 static int safe_name(const uint8_t *p, size_t n) {
     if (!n || p[0]=='/') return 0;
@@ -57,7 +93,10 @@ ms_status ms_zip_next(ms_zip *z, ms_zip_entry *out) {
     if(method!=0 && method!=8) return MS_UNSUPPORTED;
     if(u16(c+34)) return MS_UNSUPPORTED;
     uint32_t packed=u32(c+20), expanded=u32(c+24), local=u32(c+42), crc=u32(c+16);
-    if(packed==UINT32_MAX || expanded==UINT32_MAX || local==UINT32_MAX) return MS_UNSUPPORTED;
+    if(packed==UINT32_MAX || expanded==UINT32_MAX || local==UINT32_MAX) {
+        ms_status z64=resolve_zip64(c+46+nl,el,&expanded,&packed,&local);
+        if(z64!=MS_OK) return z64;
+    }
     if(!safe_name(c+46,nl)) return MS_INVALID;
     uint32_t mode=u32(c+38)>>16;
     if((mode & 0170000)==0120000) return MS_UNSUPPORTED;
@@ -71,7 +110,15 @@ ms_status ms_zip_next(ms_zip *z, ms_zip_entry *out) {
     if(u32(l)!=0x04034b50 || u16(l+6)!=flags || u16(l+8)!=method || lnl!=nl) return MS_INVALID;
     if(!span((size_t)local+30,(size_t)lnl+lel,z->central_offset)) return MS_INVALID;
     if(memcmp(l+30,c+46,nl)) return MS_INVALID;
-    if(!(flags & 8) && (u32(l+14)!=crc || u32(l+18)!=packed || u32(l+22)!=expanded)) return MS_INTEGRITY;
+    if(!(flags & 8)) {
+        uint32_t lpacked=u32(l+18), lexpanded=u32(l+22), dummy_local=0;
+        if((lpacked==UINT32_MAX) != (lexpanded==UINT32_MAX)) return MS_INVALID;
+        if(lpacked==UINT32_MAX) {
+            ms_status lz64=resolve_zip64(l+30+lnl,lel,&lexpanded,&lpacked,&dummy_local);
+            if(lz64!=MS_OK) return lz64;
+        }
+        if(u32(l+14)!=crc || lpacked!=packed || lexpanded!=expanded) return MS_INTEGRITY;
+    }
     size_t data=(size_t)local+30+lnl+lel;
     if(!span(data,packed,z->central_offset)) return MS_INVALID;
     *out=(ms_zip_entry){c+46,nl,method,flags,packed,expanded,crc,data};

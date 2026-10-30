@@ -7,6 +7,7 @@ public actor OnlineStore {
     private var state: OnlineState
     private let diskSpaceProvider: (@Sendable () throws -> Int64)?
     public init(root: URL, diskSpaceProvider: (@Sendable () throws -> Int64)? = nil) throws {
+        if root.lastPathComponent == "Online" { try UnifiedBackup.recoverIfNeeded(root: root.deletingLastPathComponent()) }
         self.diskSpaceProvider = diskSpaceProvider
         self.root = root; metadata = root.appendingPathComponent("online.json")
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
@@ -24,6 +25,14 @@ public actor OnlineStore {
         }
     }
     public func snapshot() -> OnlineState { state }
+    public func reloadAfterRestore() throws {
+        var restored = try JSONDecoder().decode(OnlineState.self, from: LibraryStore.readBounded(metadata, maximum: 64 * 1024 * 1024))
+        try restored.validate()
+        for index in restored.downloads.indices where restored.downloads[index].phase == .downloading {
+            restored.downloads[index].phase = .paused
+        }
+        state = restored
+    }
     private func commit(_ candidate: OnlineState) throws {
         try candidate.validate()
         let bytes = try JSONEncoder().encode(candidate)

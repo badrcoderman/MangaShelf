@@ -260,6 +260,7 @@ struct TachiNavigationRow<Destination: View>: View {
     @State private var isPresented = false
     @Environment(\.locale) private var interfaceLocale
     let title: String
+    var subtitle: String? = nil
     let symbol: String
     @ViewBuilder var destination: () -> Destination
     @Environment(\.layoutDirection) private var direction
@@ -270,7 +271,7 @@ struct TachiNavigationRow<Destination: View>: View {
             withTransaction(transaction) { isPresented = true }
         } label: {
             HStack(spacing: 12) {
-                TachiRowLabel(title: title, symbol: symbol)
+                TachiRowLabel(title: title, subtitle: subtitle, symbol: symbol)
                 TachiIcon(symbol: direction == .rightToLeft ? "chevron.left" : "chevron.right", size: 24)
                     .foregroundStyle(ShelfStyle.secondary.opacity(0.5))
             }.frame(minHeight: 56).padding(.leading, 16).padding(.trailing, 10).contentShape(Rectangle())

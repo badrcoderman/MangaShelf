@@ -1172,7 +1172,7 @@ struct BookDetailView: View {
                     NavigationLink { CategoryManagementView() } label: { Text(L10n.string("Manage categories")) }
                 }
                 Section {
-                    NavigationLink { FeatureStatusView(feature: .tracking) } label: {
+                    NavigationLink { TrackingHubView() } label: {
                         TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath")
                     }
                 }

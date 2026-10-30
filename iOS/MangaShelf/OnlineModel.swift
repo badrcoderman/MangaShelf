@@ -33,6 +33,7 @@ struct LibraryUpdateSummary: Codable {
 @MainActor final class OnlineModel: ObservableObject {
     @Published private(set) var state = OnlineState()
     @Published private(set) var ready = false
+    @Published private(set) var finishedStartup = false
     @Published private(set) var updating = false
     @Published private(set) var downloading = false
     @Published private(set) var libraryUpdateResults: [LibraryUpdateResult] = []
@@ -45,6 +46,7 @@ struct LibraryUpdateSummary: Codable {
     @Published var errorMessage: String?
     let source = MangaDexSource(transport: SecureHTTP())
     private var store: OnlineStore?
+    private var mutationCount = 0
     private var worker: Task<Void, Never>?
     private var downloadTasks: [String: Task<Void, Never>] = [:]
     private var stoppingDownloads = Set<String>()
@@ -56,11 +58,16 @@ struct LibraryUpdateSummary: Codable {
     var language: String { UserDefaults.standard.string(forKey: "source.language") ?? "ar" }
     var dataSaver: Bool { UserDefaults.standard.bool(forKey: "source.dataSaver") }
     func start() async {
-        guard store == nil else { return }
+        guard store == nil else { finishedStartup = true; return }
+        defer { finishedStartup = true }
         do {
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            let opened = try OnlineStore(root: support.appendingPathComponent("MangaShelf/Online", isDirectory: true))
-            try await opened.reconcileDownloads()
+            let onlineRoot = support.appendingPathComponent("MangaShelf/Online", isDirectory: true)
+            let opened = try await Task.detached(priority: .userInitiated) {
+                let store = try OnlineStore(root: onlineRoot)
+                try await store.reconcileDownloads()
+                return store
+            }.value
             store = opened; state = await opened.snapshot(); ready = true
         } catch { errorMessage = L10n.string("Could not open the source library. ") + AppError.describe(error) }
     }
@@ -70,7 +77,9 @@ struct LibraryUpdateSummary: Codable {
         guard let store else { throw ReaderFailure(L10n.string("The source library is not ready. Reopen the app.")) }
         return store
     }
-    func mutate(_ operation: (OnlineStore) async throws -> Void) async {
+    func mutate(allowDuringMaintenance: Bool = false, _ operation: (OnlineStore) async throws -> Void) async {
+        guard allowDuringMaintenance || !BackupMaintenance.shared.isActive else { return }
+        mutationCount += 1; defer { mutationCount -= 1 }
         do { let store = try requireStore(); try await operation(store); state = await store.snapshot() }
         catch { errorMessage = AppError.describe(error); DiagnosticsCenter.shared.recordFailure(L10n.string("Source library"), error) }
     }
@@ -93,8 +102,36 @@ struct LibraryUpdateSummary: Codable {
     }
     func batchSetCompleted(seriesIDs: [String], completed: Bool) async {
         await mutate { try await $0.batchSetCompleted(seriesIDs: seriesIDs, completed: completed) }
+        if completed { await syncTrackingIfNeeded(seriesIDs: seriesIDs) }
+    }
+    func setChaptersRead(seriesID: String, chapterIDs: [String], read: Bool) async {
+        await mutate { try await $0.markRead(seriesID: seriesID, chapterIDs: chapterIDs, read: read) }
+        if read { await syncTrackingIfNeeded(seriesIDs: [seriesID]) }
+    }
+    func syncTrackingIfNeeded(seriesIDs: [String]) async {
+        guard !UserDefaults.standard.bool(forKey: "privacy.privateHistory") else { return }
+        for seriesID in seriesIDs {
+            if let item = saved(seriesID) {
+                await TrackingModel.shared.recordReading(seriesID: seriesID, chapters: item.chapters, progress: item.progress)
+            }
+        }
+    }
+    func applyRemoteTrackingProgress(seriesID: String, remoteProgress: Int) async throws {
+        guard !BackupMaintenance.shared.isActive else { throw TrackingFailure.storage }
+        guard remoteProgress > 0, let item = saved(seriesID) else { return }
+        let toMark = item.chapters.filter { chapter in
+            guard item.progress[chapter.id]?.read != true,
+                  let number = TrackingProgressPolicy.integerChapter(chapter.number) else { return false }
+            return (1...remoteProgress).contains(number)
+        }.map(\.id)
+        guard !toMark.isEmpty else { return }
+        let store = try requireStore()
+        try await store.markRead(seriesID: seriesID, chapterIDs: toMark, read: true)
+        state = await store.snapshot()
     }
     func refresh(_ series: MangaSeries, updateMetadata: Bool = true) async throws {
+        guard !BackupMaintenance.shared.isActive else { throw CancellationError() }
+        let generation = BackupMaintenance.shared.generation
         try Task.checkCancellation()
         let store = try requireStore()
         var request = series
@@ -134,13 +171,14 @@ struct LibraryUpdateSummary: Codable {
             }
         }
         try Task.checkCancellation()
+        guard !BackupMaintenance.shared.isActive, generation == BackupMaintenance.shared.generation else { throw CancellationError() }
         if updateMetadata { try await store.save(details) }
         try await store.setChapters(seriesID: series.id, chapters: chapters, language: selectedLanguage)
         state = await store.snapshot()
         DiagnosticsCenter.shared.record(L10n.string("Sources"), L10n.format("Updated title details and chapters: %@", String(describing: chapters.count)))
     }
     func refreshLibrary(categoryID: UUID? = nil) async {
-        guard !updating, !Task.isCancelled else { return }
+        guard !BackupMaintenance.shared.isActive, !updating, !Task.isCancelled else { return }
         let defaults = UserDefaults.standard
         let excluded = Set((["updates.excludedCategories", "library.excludedUpdateCategories"].flatMap {
             (defaults.string(forKey: $0) ?? "").split(separator: ",").compactMap { UUID(uuidString: String($0)) }
@@ -165,7 +203,7 @@ struct LibraryUpdateSummary: Codable {
         await withTaskCancellationHandler(operation: { await task.value }, onCancel: { task.cancel() })
     }
     func retryFailedLibraryUpdates() async {
-        guard !updating, !Task.isCancelled else { return }
+        guard !BackupMaintenance.shared.isActive, !updating, !Task.isCancelled else { return }
         let failed = Set((libraryUpdateSummary?.results ?? []).filter { $0.failure != nil }.map(\.seriesID))
         let items = state.series.filter { failed.contains($0.id) }
         guard !items.isEmpty else { return }
@@ -216,6 +254,8 @@ struct LibraryUpdateSummary: Codable {
         if failed > 0 { errorMessage = L10n.format("Could not update %@ titles. Saved chapters remain available.", String(failed)) }
     }
     func pages(_ chapter: MangaChapter, refresh: Bool = false) async throws -> ChapterPages {
+        guard !BackupMaintenance.shared.isActive else { throw CancellationError() }
+        let generation = BackupMaintenance.shared.generation
         let store = try requireStore()
         if !refresh, let cached = try await store.cachedPages(chapterID: chapter.id) { return cached }
         if chapter.externalURL != nil { throw ReaderFailure(L10n.string("This chapter is only available on the publisher's website.")) }
@@ -229,10 +269,14 @@ struct LibraryUpdateSummary: Codable {
         } else {
             pages = try await source.pages(chapterID: chapter.id, dataSaver: dataSaver)
         }
-        try Task.checkCancellation(); try await store.savePages(pages)
+        try Task.checkCancellation()
+        guard !BackupMaintenance.shared.isActive, generation == BackupMaintenance.shared.generation else { throw CancellationError() }
+        try await store.savePages(pages)
         return pages
     }
     func imageData(chapter: MangaChapter, pages: ChapterPages, index: Int) async throws -> Data {
+        guard !BackupMaintenance.shared.isActive else { throw CancellationError() }
+        let generation = BackupMaintenance.shared.generation
         let store = try requireStore()
         guard pages.chapterID == chapter.id, pages.urls.indices.contains(index) else {
             throw ReaderFailure(L10n.string("The page does not exist."))
@@ -258,7 +302,9 @@ struct LibraryUpdateSummary: Codable {
         }
         try Task.checkCancellation()
         _ = try await Task.detached(priority: .utility) { try ImageDecoder.thumbnail(bytes, maximumDimension: 32) }.value
-        try Task.checkCancellation(); try await store.saveImage(bytes, chapterID: chapter.id, index: index)
+        try Task.checkCancellation()
+        guard !BackupMaintenance.shared.isActive, generation == BackupMaintenance.shared.generation else { throw CancellationError() }
+        try await store.saveImage(bytes, chapterID: chapter.id, index: index)
         return bytes
     }
     private func fetchImageBytes(chapter: MangaChapter, pages: ChapterPages, index: Int) async throws -> Data {
@@ -272,7 +318,11 @@ struct LibraryUpdateSummary: Codable {
     }
     func progress(_ chapter: MangaChapter, page: Int, count: Int, offset: Double = 0) async {
         let record = !UserDefaults.standard.bool(forKey: "privacy.privateHistory")
+        let wasRead = saved(chapter.seriesID)?.progress[chapter.id]?.read == true
         await mutate { try await $0.progress(seriesID: chapter.seriesID, chapterID: chapter.id, page: page, count: count, offset: offset, recordHistory: record) }
+        if record, !wasRead, saved(chapter.seriesID)?.progress[chapter.id]?.read == true {
+            await syncTrackingIfNeeded(seriesIDs: [chapter.seriesID])
+        }
     }
     func addReadingTime(seriesID: String, duration: TimeInterval) async {
         guard !UserDefaults.standard.bool(forKey: "privacy.privateHistory") else { return }
@@ -288,7 +338,7 @@ struct LibraryUpdateSummary: Codable {
         startDownloads()
     }
     func startDownloads() {
-        guard worker == nil, ready, !pausingDownloadQueue,
+        guard !BackupMaintenance.shared.isActive, worker == nil, ready, !pausingDownloadQueue,
               state.downloads.contains(where: { $0.phase == .queued || $0.phase == .retrying }) else { return }
         downloading = true
         worker = Task { await runDownloads() }
@@ -312,7 +362,7 @@ struct LibraryUpdateSummary: Codable {
         await task?.value
         let jobs = state.downloads.filter { $0.phase == .queued || $0.phase == .retrying || $0.phase == .downloading }
         for job in jobs {
-            await mutate { try await $0.updateDownload(id: job.id, phase: interrupted ? .queued : .paused,
+            await mutate(allowDuringMaintenance: true) { try await $0.updateDownload(id: job.id, phase: interrupted ? .queued : .paused,
                 finished: job.finishedPages, total: job.totalPages, retryCount: job.retryCount,
                 nextRetryAt: job.nextRetryAt, downloadedBytes: job.downloadedBytes) }
         }
@@ -433,6 +483,18 @@ struct LibraryUpdateSummary: Codable {
                 worker?.cancel()
             }
         }
+    }
+    func quiesceForMaintenance() async {
+        let refresh = libraryRefreshTask; refresh?.cancel()
+        await pauseDownloads(interrupted: true)
+        await refresh?.value
+        while mutationCount > 0 { await Task.yield() }
+    }
+    func backupSnapshot() async throws -> OnlineState { try await requireStore().snapshot() }
+    func reloadAfterRestore() async throws {
+        let store = try requireStore()
+        try await store.reloadAfterRestore(); try await store.reconcileDownloads()
+        state = await store.snapshot(); await NetworkImageCache.shared.clear()
     }
     func backup() async throws -> Data { try await requireStore().exportMetadata() }
     func restore(_ url: URL) async {

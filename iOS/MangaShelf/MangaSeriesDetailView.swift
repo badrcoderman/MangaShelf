@@ -7,6 +7,7 @@ struct SeriesDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var online: OnlineModel
     @EnvironmentObject private var local: AppModel
+    @ObservedObject private var tracking = TrackingModel.shared
     @AppStorage("source.language") private var language = "ar"
     let series: MangaSeries
     @State private var loading = false
@@ -98,13 +99,21 @@ struct SeriesDetailView: View {
                     }.foregroundStyle(ShelfStyle.accent).frame(minHeight: 44).disabled(!online.ready)
                         .accessibilityIdentifier("detail.library")
                     Spacer()
+                    NavigationLink {
+                        SeriesTrackingView(seriesID: item.id, title: item.title)
+                    } label: {
+                        TachiLabel(L10n.string("Tracking"), systemImage: "arrow.triangle.2.circlepath")
+                    }.foregroundStyle(tracking.state.links.contains(where: { $0.seriesID == item.id }) ? ShelfStyle.accent : ShelfStyle.secondary)
+                        .frame(minHeight: 44)
+                        .accessibilityIdentifier("detail.tracking")
                     if saved?.inLibrary == true {
+                        Spacer()
                         Button { showingCategories = true } label: {
                             TachiLabel(L10n.string("Categories"), systemImage: "folder")
                         }.foregroundStyle(ShelfStyle.secondary).frame(minHeight: 44)
                             .accessibilityIdentifier("detail.categories")
                     }
-                }.shelfFont(.subheadline).padding(.horizontal, 32)
+                }.shelfFont(.subheadline).padding(.horizontal, 24)
                 if !item.synopsis.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(item.synopsis).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary)
@@ -305,7 +314,7 @@ struct SeriesDetailView: View {
     private func markVisible(read: Bool) {
         // Snapshot the IDs before mutation can remove rows from the active filter.
         let ids = chapters.map(\.id)
-        Task { await online.mutate { try await $0.markRead(seriesID: item.id, chapterIDs: ids, read: read) } }
+        Task { await online.setChaptersRead(seriesID: item.id, chapterIDs: ids, read: read) }
     }
     private func chapterRow(_ chapter: MangaChapter) -> some View {
         HStack(spacing: 12) {
@@ -330,9 +339,8 @@ struct SeriesDetailView: View {
         }.padding(.horizontal, 16)
             .contextMenu {
                 Button(saved?.progress[chapter.id]?.read == true ? L10n.string("Unread") : L10n.string("Read")) {
-                    Task { await online.mutate {
-                        try await $0.markRead(seriesID: item.id, chapterIDs: [chapter.id], read: saved?.progress[chapter.id]?.read != true)
-                    } }
+                    let targetRead = saved?.progress[chapter.id]?.read != true
+                    Task { await online.setChaptersRead(seriesID: item.id, chapterIDs: [chapter.id], read: targetRead) }
                 }
             }
     }

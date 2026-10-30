@@ -1,0 +1,20 @@
+{
+  "run_id": 39382022117,
+  "head_sha": "7a8f8b091659b13621ae030a2d65d45c6375510a",
+  "artifact_id": 12246155756,
+  "ipa_version": "0.5.0",
+  "ipa_build": "6",
+  "minimum_os": "26.0",
+  "sha256": "33ff902cd25d1386d378ef6982b037bff46f0b66f5f3784c0aeef5655421f1f8",
+  "bytes": 3030239,
+  "entries": 66,
+  "zip_crc": "passed",
+  "architecture": "arm64",
+  "swift_tests": 67,
+  "xcode": "26.0.1 (17A400)",
+  "swift": "6.2",
+  "iphoneos_sdk": "26.0",
+  "unsigned": true,
+  "physical_iphone_test": "pending",
+  "jar_extension_execution": "not implemented in this build"
+}

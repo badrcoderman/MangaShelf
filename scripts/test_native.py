@@ -113,6 +113,27 @@ class NativeTests(unittest.TestCase):
     def test_zip64_sentinel(self):
         value=bytearray(archive()); struct.pack_into("<I",value,len(value)-6,0xffffffff)
         self.assertEqual(parse(value)[0],3)
+    def test_zip64_extra_field(self):
+        payload=b"tachimanga-db-bytes"*20
+        crc=zipfile.crc32(payload)&0xffffffff
+        name=b"tachimanga.db"
+        local_extra=struct.pack("<HHQQ",0x0001,16,0,0)
+        local=struct.pack("<IHHHHHIIIHH",0x04034b50,45,0x0808,0,0,0,0,0xffffffff,0xffffffff,len(name),len(local_extra))+name+local_extra
+        desc=struct.pack("<IQQ",crc,len(payload),len(payload))
+        cd_off=len(local)+len(payload)+len(desc)
+        cd_extra=struct.pack("<HHQQ",0x0001,16,len(payload),len(payload))
+        cd=struct.pack("<IHHHHHHIIIHHHHHII",0x02014b50,45,45,0x0808,0,0,0,crc,0xffffffff,0xffffffff,len(name),len(cd_extra),0,0,0,0,0)+name+cd_extra
+        eocd=struct.pack("<IHHHHIIH",0x06054b50,0,0,1,1,len(cd),cd_off,0)
+        zbytes=local+payload+desc+cd+eocd
+        self.assertEqual(parse(zbytes),(0,[("tachimanga.db",payload)]))
+        no_extra_cd=struct.pack("<IHHHHHHIIIHHHHHII",0x02014b50,45,45,0x0808,0,0,0,crc,0xffffffff,0xffffffff,len(name),0,0,0,0,0,0)+name
+        self.assertEqual(parse(local+payload+desc+no_extra_cd+struct.pack("<IHHHHIIH",0x06054b50,0,0,1,1,len(no_extra_cd),cd_off,0))[0],3)
+        short_extra=struct.pack("<HHQ",0x0001,8,len(payload))
+        short_cd=struct.pack("<IHHHHHHIIIHHHHHII",0x02014b50,45,45,0x0808,0,0,0,crc,0xffffffff,0xffffffff,len(name),len(short_extra),0,0,0,0,0)+name+short_extra
+        self.assertEqual(parse(local+payload+desc+short_cd+struct.pack("<IHHHHIIH",0x06054b50,0,0,1,1,len(short_cd),cd_off,0))[0],1)
+        huge_extra=struct.pack("<HHQQ",0x0001,16,0x1_0000_0000,len(payload))
+        huge_cd=struct.pack("<IHHHHHHIIIHHHHHII",0x02014b50,45,45,0x0808,0,0,0,crc,0xffffffff,0xffffffff,len(name),len(huge_extra),0,0,0,0,0)+name+huge_extra
+        self.assertEqual(parse(local+payload+desc+huge_cd+struct.pack("<IHHHHIIH",0x06054b50,0,0,1,1,len(huge_cd),cd_off,0))[0],2)
     def test_multidisk(self):
         value=bytearray(archive()); struct.pack_into("<H",value,len(value)-18,1)
         self.assertEqual(parse(value)[0],3)

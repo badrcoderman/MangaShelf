@@ -1,28 +1,33 @@
 [
   {
     "path": ".github/workflows/backend-probe.yml",
-    "bytes": 1220,
-    "sha256": "7b2ac47dab88b3133fcd89e20a72e9eb5e23a89c25d5c6c395036f02a3443adf"
+    "bytes": 7040,
+    "sha256": "8c4c5baf348943240664ba991500a0831a5e09890fd6f8f18bde4e640f53dd11"
   },
   {
     "path": ".github/workflows/ios-jvm-link.yml",
-    "bytes": 1551,
-    "sha256": "f2a6f8053a74d14eb0ca8e444e666f278519eee0e9d9968dfddc1a54ee4d049d"
+    "bytes": 2923,
+    "sha256": "be32952d3565daf70b4761b75b13cae827a95c791370df780e8f036246763216"
   },
   {
     "path": ".github/workflows/ios-jvm.yml",
-    "bytes": 2236,
-    "sha256": "307418b5df6c923d1db9c36959c625bf2b7a3f7fd7b3dd6b2a9ef9d158c86001"
+    "bytes": 2302,
+    "sha256": "ea90e149ea317ac4543d622e25a5dd9e7aae38db832538e34d13b928bb3ee597"
   },
   {
     "path": ".github/workflows/ios.yml",
-    "bytes": 1600,
-    "sha256": "43e84c90c6426f4c23b27bf005f71503ff51d3f5be07ccd397566b8ad30390c8"
+    "bytes": 4200,
+    "sha256": "c94b1d954d1f098c6d879a9e4734849f36b547bc83f4b4f8f276f80ab233f090"
+  },
+  {
+    "path": ".github/workflows/ui-snapshots.yml",
+    "bytes": 1105,
+    "sha256": "692460b6f7f8c2bf0f23fc2926a7ad18bb03122fc553a1faa357bb7a728fa9b8"
   },
   {
     "path": ".gitignore",
-    "bytes": 123,
-    "sha256": "9c4cf59cbeb7dee47502c2f89da20c639c09069959d3b1e8e1532465da9e323d"
+    "bytes": 151,
+    "sha256": "b119952d76c97b5afdf175796932b0440281c17dbc2a1da46021d70d159a6ca3"
   },
   {
     "path": "AGENT.md",
@@ -31,8 +36,8 @@
   },
   {
     "path": "CHANGELOG.md",
-    "bytes": 4339,
-    "sha256": "f8a87714b71f321d5547ce4d738368efebedf1d7494701bd38bf92a721456205"
+    "bytes": 51498,
+    "sha256": "7ff424232f0f7836592e7653a5355b6aa76da834889d8a7b52d8f01023be29f1"
   },
   {
     "path": "DEPENDENCIES.json",
@@ -41,23 +46,23 @@
   },
   {
     "path": "Package.swift",
-    "bytes": 590,
-    "sha256": "b330a09167bddf74bff2e16dd816e8b288cb94e096ae5ee86a297280676cf410"
+    "bytes": 635,
+    "sha256": "a03e45b7388f19a39624a36686612221dfa105b437a2c2436b91a2a1758de363"
   },
   {
     "path": "README-AR.md",
-    "bytes": 9944,
-    "sha256": "5eb86c9fd50e08f910b00001ca3afdac56f4bebf6eae6bd2571e905f215964a4"
+    "bytes": 10053,
+    "sha256": "1d1592f3fbdfe8d4bcf92991d56b8bd015086366f220ed286e0e93d9296310a7"
   },
   {
     "path": "Sources/CSafeArchive/MSJNIBridge.c",
-    "bytes": 3151,
-    "sha256": "358e08b437f98ba4e590483a52a107a57d9ed441af1df268f75645ce878ae3fb"
+    "bytes": 5259,
+    "sha256": "7c032f82c04ed32f6a023b6a39e2e081bb95adcde7d9040ffac1848438ea37b8"
   },
   {
     "path": "Sources/CSafeArchive/archive.c",
-    "bytes": 7671,
-    "sha256": "72e8514b9d5ed10de7814c62ef3ca9061d3e62baeb8f2a2dbd97d609cd9ae8e2"
+    "bytes": 9524,
+    "sha256": "4a90c1d060bf777ad6667b6f7cc1490384ac205973a5af3c89b7b4a8144ccaf9"
   },
   {
     "path": "Sources/CSafeArchive/include/CSafeArchive.h",
@@ -66,8 +71,8 @@
   },
   {
     "path": "Sources/CSafeArchive/include/MSJNIBridge.h",
-    "bytes": 3318,
-    "sha256": "bfd582b5e3e137e47d331b62c2ae869d3014d3936ca4c5d011a299604f9432e4"
+    "bytes": 4575,
+    "sha256": "2ec64d0b83c9c031adebcd8528d842aefda0852c7a682781b3605d189868adb4"
   },
   {
     "path": "Sources/ReaderCore/Archive.swift",
@@ -75,29 +80,49 @@
     "sha256": "1510d71339e21bb005c64e8127b298065c8048653cafac32b1e08bb5b47d504c"
   },
   {
+    "path": "Sources/ReaderCore/DownloadPolicy.swift",
+    "bytes": 3673,
+    "sha256": "fbe98e6429a73d9913f4856d42e127b4dc8993ddf9802a880bf2f836307f8189"
+  },
+  {
+    "path": "Sources/ReaderCore/ExtensionContentIdentity.swift",
+    "bytes": 2760,
+    "sha256": "6c2fbe7593edd95d011019ddc1718066a88b6cafc9dabfe8f0af4b96292b53dd"
+  },
+  {
+    "path": "Sources/ReaderCore/ExtensionPackageManifest.swift",
+    "bytes": 5536,
+    "sha256": "30f0724b95003bfc3155c993ef279a102ab3830cd297108948fdb7ae6e15b248"
+  },
+  {
     "path": "Sources/ReaderCore/ExtensionRuntime.swift",
-    "bytes": 8672,
-    "sha256": "beb811726bcd6561318b9c83cf375fa84d1127da92a6b990c03d299cf491419b"
+    "bytes": 22799,
+    "sha256": "94c57ffc2b764a270f7c923c38d3097f0a3ddf18dc4299701e94f0a9148bbddb"
+  },
+  {
+    "path": "Sources/ReaderCore/IndexedExtensionSource.swift",
+    "bytes": 1564,
+    "sha256": "3d8e31583bf51285205cd15312659ade4d77d724b7615ca6f0f9779274ba3c00"
   },
   {
     "path": "Sources/ReaderCore/JARInspection.swift",
-    "bytes": 3773,
-    "sha256": "b4d6d8b22ca5903a5888297edca4a8b473c4e23136c7dcbc112388b4cf376726"
+    "bytes": 4739,
+    "sha256": "6a8ecfceeb4908889e05f732a89ca78386a40294091a4b839d51f0f6578235da"
   },
   {
     "path": "Sources/ReaderCore/Library.swift",
-    "bytes": 29693,
-    "sha256": "6411f8b79b198530cff966db81ec7a7c860b1b7ce95226d12cc505c553bc2218"
+    "bytes": 38940,
+    "sha256": "5c80814c506ac96e61d0aae06d684cd30dad5d27a8f3208f9a1ae2f4bdbed808"
   },
   {
     "path": "Sources/ReaderCore/MangaDexSource.swift",
-    "bytes": 8714,
-    "sha256": "0afc16b8d61e9351e0e5644629820a8905893a85748c1a9b11f707ec9aa7af22"
+    "bytes": 9645,
+    "sha256": "ea89141c66093b6f0d83108f36d9d4d99a266c786c3841416a7c3e625721e277"
   },
   {
     "path": "Sources/ReaderCore/NativeBridge.swift",
-    "bytes": 2263,
-    "sha256": "29fd1b88af7940d5fa2b67086f2c1d36fa5d6126dceab5de2a0da98acf9445f5"
+    "bytes": 5332,
+    "sha256": "8d6a7bdebc6420af47ff32d936d4223ffa1d98f503f4803de95f866218c42dce"
   },
   {
     "path": "Sources/ReaderCore/NativeNetworkContract.swift",
@@ -111,13 +136,13 @@
   },
   {
     "path": "Sources/ReaderCore/OnlineModels.swift",
-    "bytes": 8115,
-    "sha256": "2616368b24ed26055e4cd52e6dac1338ce500f2b8916b65f1170321567cb8f5f"
+    "bytes": 13620,
+    "sha256": "72a034856ff385c7183321ddfbe2536e2feca01d0e7485a46a0254631a24502e"
   },
   {
     "path": "Sources/ReaderCore/OnlineStore.swift",
-    "bytes": 15184,
-    "sha256": "899f00518a15fd3c784c72d6f8969e9a397a4038d8cee51ccd9f43990edf3ba1"
+    "bytes": 27065,
+    "sha256": "03a3974afc6bd14023246cb3cdb23170fb2ef06e5231054195017c46e9118055"
   },
   {
     "path": "Sources/ReaderCore/ReaderText.swift",
@@ -126,38 +151,98 @@
   },
   {
     "path": "Sources/ReaderCore/RepositoryClient.swift",
-    "bytes": 5805,
-    "sha256": "31b3435e5f7d6ea185432187f5f7bc1a994c64544b7e876b2bf65533591b9c56"
+    "bytes": 10388,
+    "sha256": "951d70a1533e224418fdf33fad6bc6e7086834b0536619a9221ed9bc07412ff5"
   },
   {
     "path": "Sources/ReaderCore/RepositoryIndex.swift",
-    "bytes": 14261,
-    "sha256": "6139271883059ce2cf8a44c33c24055bb53cf1f24674e08c46b1811bb8677c90"
+    "bytes": 21825,
+    "sha256": "f9e052ec40732c0c66a5392f8692713a932c56d7feee7581daf4eaa20addc24a"
   },
   {
     "path": "Sources/ReaderCore/Resources/ar.lproj/Localizable.strings",
-    "bytes": 89844,
-    "sha256": "2c5402ceb0d52c6e1740cdb7ae4c7ace27fcbab1282515da6cb26b5cbf7ae1b3"
+    "bytes": 127008,
+    "sha256": "9c8d4f7e6793b705fae3bd4c17756b5b4d2449799c58d4760650ffb85dad5ef2"
   },
   {
     "path": "Sources/ReaderCore/Resources/en.lproj/Localizable.strings",
-    "bytes": 73042,
-    "sha256": "6bb917a884791c544fd9de84997f9caea90a1f0912ad3a07608c5010fcccf625"
+    "bytes": 101580,
+    "sha256": "db863e3b974ef7d7c153e4ff496c3b027f8a0692d1a66e6cefc1c4dd938d043f"
   },
   {
     "path": "Sources/ReaderCore/SourceEngine.swift",
-    "bytes": 5085,
-    "sha256": "06065c9c14e2df076934bf3f5fcc14dfb92ea92b2a4079d3593b199f148f755b"
+    "bytes": 13220,
+    "sha256": "f03cce17ee4facc9ade7699a4ffd4f2f82671e130efea6c5afbe083de3885e45"
+  },
+  {
+    "path": "Sources/ReaderCore/SourceFilters.swift",
+    "bytes": 5520,
+    "sha256": "4a945f9bbafa197bc2dd2f26dd545275d85b839f41ad59aab7dd385756f94dcd"
+  },
+  {
+    "path": "Sources/ReaderCore/SourcePreferences.swift",
+    "bytes": 4528,
+    "sha256": "8ebe30f894debd7da6eea0b6e18b1ab86bc83dc42ac72af537e140602a53c7f1"
+  },
+  {
+    "path": "Sources/ReaderCore/SourceRequestFailure.swift",
+    "bytes": 2928,
+    "sha256": "50213ae2d3845d674605fa23bb6e9df5820343e71f7a98128a0a6aa3838af8aa"
   },
   {
     "path": "Sources/ReaderCore/StagedExtensionStore.swift",
-    "bytes": 7457,
-    "sha256": "d1099c6ddc79008473461d7496819dfe2b356f13889e5055175c6875f6c237ce"
+    "bytes": 12548,
+    "sha256": "86e46486adfa12f3d78c52376362e3f851151c1eed443aa0c4c6c8055bbf529f"
+  },
+  {
+    "path": "Sources/ReaderCore/TMBBackup.swift",
+    "bytes": 40476,
+    "sha256": "c7ed6efb251cc0f18f1e56db437293a76916610611106dfc292c56cbbccc8d82"
+  },
+  {
+    "path": "Sources/ReaderCore/TrackingAPI.swift",
+    "bytes": 16005,
+    "sha256": "1d978556b65bdf96532ab3a54b458142298f5cb7f36e046bf9db85a35a50ca4f"
+  },
+  {
+    "path": "Sources/ReaderCore/TrackingModels.swift",
+    "bytes": 8418,
+    "sha256": "2fd8bd0921e68aa802b92016235edabb5bad9c9a7d835fffef77fd8ba94aa213"
+  },
+  {
+    "path": "Sources/ReaderCore/TrackingOAuth.swift",
+    "bytes": 4251,
+    "sha256": "9639729a1f8cfc6c81bd7de01aee0a5347b76c4cc2443f5e1d54bdf7690235ba"
+  },
+  {
+    "path": "Sources/ReaderCore/TrackingStore.swift",
+    "bytes": 14303,
+    "sha256": "55e8b98c91c7c925e40a0c96ef0e5d3cb21a13cfb54a8a58f4e4bf003f47db1c"
+  },
+  {
+    "path": "Sources/ReaderCore/TrackingSyncEngine.swift",
+    "bytes": 3782,
+    "sha256": "785fdf9a2a7f4a667a43858280bc352b3d41fac6d32f544c47301af0090f6216"
+  },
+  {
+    "path": "Sources/ReaderCore/UnifiedBackup.swift",
+    "bytes": 26197,
+    "sha256": "b8ebc74b09e533a7727866438f342ea8a18e5e761c96d6e031590a8784266795"
+  },
+  {
+    "path": "Sources/ReaderCore/UnifiedBackupMerge.swift",
+    "bytes": 15447,
+    "sha256": "2f6919a2a3d5bd34e24fe8b0acb5f32343e6e61a3588158eabbe58d6bc342a1e"
+  },
+  {
+    "path": "Sources/ReaderCore/UnifiedBackupRestore.swift",
+    "bytes": 16543,
+    "sha256": "db38503a7290a5205918cd7543994d8cecbc1c34e8f2c7236b410b9192c195a0"
   },
   {
     "path": "TODO.md",
-    "bytes": 13486,
-    "sha256": "750ef43da0480b1f2d64fb62b6ef72cf44ab9189ecf26934b5c1ef6d900bef73"
+    "bytes": 60210,
+    "sha256": "fb804cf288f5b6c948e7c24893d2ed3cf09e8a4b0d81bc93c62b3a99a4562fdc"
   },
   {
     "path": "Tests/ReaderCoreTests/ChapterCacheIdentityTests.swift",
@@ -165,14 +250,44 @@
     "sha256": "284d1106a4f17cb42ad63a396feb7e526a8f26962305bdce8db482009249b35e"
   },
   {
+    "path": "Tests/ReaderCoreTests/DownloadReliabilityTests.swift",
+    "bytes": 13807,
+    "sha256": "8495d95821bf210b63ce6baa26e3ddd3be28a847724e9499b75a468ee23df11b"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/ExtensionContentIdentityTests.swift",
+    "bytes": 6720,
+    "sha256": "1da80c42c0963ea67c1135f73fa4db458fb2c784e4c315765bc72fc068e0a253"
+  },
+  {
     "path": "Tests/ReaderCoreTests/ExtensionEngineTests.swift",
-    "bytes": 15681,
-    "sha256": "38b56a443ad3f6b878327bc3fec645864c732a686b9a8bea33871df1c5fd8eee"
+    "bytes": 17310,
+    "sha256": "d33e34e91b5eabbcb59ae5fe925cb09e5b888daa9901ed8a0c8672f00ece9f4f"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/ExtensionManifestTests.swift",
+    "bytes": 19698,
+    "sha256": "53c01131db9cf2ca44dbfe29ecb0751e281a56727e97fedba22c4f548d27e3a5"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/ExtensionSourceLanguageTests.swift",
+    "bytes": 5233,
+    "sha256": "e58f41fe59c9d4140c84cd904c745058bb78d51d6a1197656cc95862ecb3c8e2"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/TestComic.cbz",
     "bytes": 873,
     "sha256": "913d4634c7e60637abb0a02fdf01e5810b89144514d60361140e6cc61d074827"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/Fixtures/extension-manifest.jar",
+    "bytes": 680,
+    "sha256": "1040ba7fbc6f1c07df07226fb204bc009b8df3e4b46d2b358fdcc29f60171094"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/Fixtures/extension-missing-class.jar",
+    "bytes": 642,
+    "sha256": "14cf6a573d811731c0743b2c7e75fe32231bd706ed78eace0277f1d568b50aee"
   },
   {
     "path": "Tests/ReaderCoreTests/Fixtures/external-list.pb",
@@ -190,14 +305,34 @@
     "sha256": "50f478374496e331eedcf6fcf35707b3408ebfc44514527f196b0612c4bc3198"
   },
   {
+    "path": "Tests/ReaderCoreTests/Fixtures/plain-probe.jar",
+    "bytes": 130,
+    "sha256": "8eec24240365625b42ceae8d53c7cce8b2a5004553649bda8d43e3fad9cc4add"
+  },
+  {
     "path": "Tests/ReaderCoreTests/HistoryPersistenceTests.swift",
     "bytes": 3828,
     "sha256": "8d2f731f03ee90639d71fef6e3b4e1beec06c6bfd649caaeb746f0f7520df679"
   },
   {
+    "path": "Tests/ReaderCoreTests/IndexedExtensionSourceTests.swift",
+    "bytes": 3906,
+    "sha256": "2b5183b8fcbdf5610a5175982fe556754982a8ed7e0710ed3dc499043ca852fc"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/LibraryBatchPersistenceTests.swift",
+    "bytes": 2848,
+    "sha256": "29da5a7ec1aada31b01e3dea1bf3b258e1d33edcd9db03ff222e170460019eb5"
+  },
+  {
     "path": "Tests/ReaderCoreTests/LocalizationTests.swift",
     "bytes": 1190,
     "sha256": "2cb55a3f2a0eba4036b7af64b47da42b709deafd60e0421e71c1f7d993245cc8"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/NativeBridgeTests.swift",
+    "bytes": 11024,
+    "sha256": "7426e10b022619395e8fce1bd652657dfa644acaa105a6d08c026ae985f2a321"
   },
   {
     "path": "Tests/ReaderCoreTests/NativeNetworkContractTests.swift",
@@ -211,13 +346,18 @@
   },
   {
     "path": "Tests/ReaderCoreTests/PhaseTwoBridgeTests.swift",
-    "bytes": 7891,
-    "sha256": "dfd03c30fbaf304fa4a2b1b4d3367cbae7abcc812afdbe298e23a08f02ff7107"
+    "bytes": 7912,
+    "sha256": "e3537cae8fd59f203cf071faea72d829d7d08717b3f14e375ca391bd2bbe703a"
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderCoreTests.swift",
-    "bytes": 11959,
-    "sha256": "5ea7aa0491bfe10d72b0b59727d4fb8d317e55fdbda8cd0479ddc8499f671c89"
+    "bytes": 16928,
+    "sha256": "943f980b1ad03b0ea863622fe089df611395f842bacf0eb6c2441ba9e883197a"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/ReaderLayoutTests.swift",
+    "bytes": 6531,
+    "sha256": "5d18a23382935cc9de8df9e2a801cfd5c8372587ba418d5ddbe73fd5f682a93e"
   },
   {
     "path": "Tests/ReaderCoreTests/ReaderPreferencesTests.swift",
@@ -225,9 +365,69 @@
     "sha256": "4604669883dbc4485faa65379b832b05ad0c5a341f64d625768cb24a09a76b3a"
   },
   {
+    "path": "Tests/ReaderCoreTests/ReaderProgressPersistenceTests.swift",
+    "bytes": 3344,
+    "sha256": "30a2e97c46536b674f805667a7532180226cd6f734d19887b76cc4b033d4ff61"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/RepositoryProtocolTests.swift",
+    "bytes": 12224,
+    "sha256": "77e7dbf17f08bc2035bfc8338663c1f936af1a65147b6e4ab9d037bb6b3b91be"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceCatalogProtocolTests.swift",
+    "bytes": 5301,
+    "sha256": "b65623df0603a1a352c2fc7f07e3ae5492a4429dc062198de7d9542d57ed66c5"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceFilterProtocolTests.swift",
+    "bytes": 5040,
+    "sha256": "62a54cb9c46a2664c335f9b812cd285251b729602dea00e8c9f9d1c02d75abf7"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceImageTransferTests.swift",
+    "bytes": 4883,
+    "sha256": "e686afba062bfe6ec468e6edb1a022993ec51bd2e572e834d2ce0ff9858d9440"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourcePreferenceProtocolTests.swift",
+    "bytes": 6226,
+    "sha256": "bf52605c58e90dd5e9e403f6185aadb2e95280c9ac255a17ce2ba7c51df3aef4"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceStateWireTests.swift",
+    "bytes": 10004,
+    "sha256": "61bfdc82e9771d80113a5e38eb0588c3ddc943a7be9d7487c108db9d66a8d417"
+  },
+  {
     "path": "Tests/ReaderCoreTests/SourceURLPersistenceTests.swift",
     "bytes": 2841,
     "sha256": "7c0982cd2721cac296854e46f6d127adc7b2337b318e4ff6699cdc6825a487b9"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/SourceWebsiteMetadataTests.swift",
+    "bytes": 3802,
+    "sha256": "4f9f006e28230c44f6816a2b5ac92caf69a18a7df04060242108c441020cf232"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/TMBBackupTests.swift",
+    "bytes": 18331,
+    "sha256": "925205b60cf374a4fb8b7ee6e8b4dbd72aa0731e7e26336666d1736644500693"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/TrackingTests.swift",
+    "bytes": 15741,
+    "sha256": "8ce768211835c8b2da53d109f74e60a40e49bed2b9c78f250cc4e84550e8d81c"
+  },
+  {
+    "path": "Tests/ReaderCoreTests/UnifiedBackupTests.swift",
+    "bytes": 24149,
+    "sha256": "999d14228a586265123c4aa0637eff05d7b7c9c9f8e1c188d38b8402d2aaa710"
+  },
+  {
+    "path": "docs/APP-ENGINE-BUNDLE-AR.md",
+    "bytes": 6142,
+    "sha256": "fd56a88d4be4e6a22a3bee61285376590a4424f2e8156ccb1185f2276dbb2e92"
   },
   {
     "path": "docs/ARCHITECTURE-AR.md",
@@ -246,8 +446,8 @@
   },
   {
     "path": "docs/BUILD-STAGES-AR.md",
-    "bytes": 6662,
-    "sha256": "3082437a59e8e2f3c69267e65d519700f7e0ab449531cc1c2eb6e98b2d7e67f4"
+    "bytes": 7294,
+    "sha256": "dbcbb673aec7df0615a2d1697fad84a413a75035823c9925401ff582c4fd3ada"
   },
   {
     "path": "docs/CODING-STYLE-AR.md",
@@ -256,8 +456,33 @@
   },
   {
     "path": "docs/CONTINUATION-PLAN-AR.md",
-    "bytes": 2815,
-    "sha256": "2a45f6f7b0d55c1613df2a034d3842ac55ee3b742e97427c36d595244f8fa23f"
+    "bytes": 3389,
+    "sha256": "be403372757241b34e3e975895a0da11eefb9c19eb142a0a05a28f752d154338"
+  },
+  {
+    "path": "docs/EXTENSION-CATALOG-AR.md",
+    "bytes": 2824,
+    "sha256": "0ca60494eb0af5ea4ddd75f78dea660b6d10ef4b2d3c52a098fb800c3fa94e74"
+  },
+  {
+    "path": "docs/EXTENSION-CONTENT-IDENTITY-AR.md",
+    "bytes": 2834,
+    "sha256": "895947d16775cd47549fc64681e47dde70d8fa608fa40f9ce7c0b1b6c4e291e2"
+  },
+  {
+    "path": "docs/EXTENSION-JAR-SIGNATURE-AR.md",
+    "bytes": 5289,
+    "sha256": "e0cf9b380c730e90f35a8bd379177749485109f4e9a9851c6a5f861a1584c7d8"
+  },
+  {
+    "path": "docs/EXTENSION-MANIFEST-AR.md",
+    "bytes": 4568,
+    "sha256": "6f735d832cacbc5039f8243e82272f7d8a20955d5c163fe0744efd972423eee8"
+  },
+  {
+    "path": "docs/EXTENSION-SOURCE-LANGUAGE-AR.md",
+    "bytes": 3752,
+    "sha256": "fa43dd820a4827484b867913bcb51ec412bc4e85728f44123f8097c94204e341"
   },
   {
     "path": "docs/FEATURES-AR.md",
@@ -270,14 +495,44 @@
     "sha256": "5637c9091ca8e140aafec0d4d6f37bab777f6374130b8c413e46b8255794d296"
   },
   {
+    "path": "docs/INDEXED-SOURCES-AR.md",
+    "bytes": 2497,
+    "sha256": "62b4af0e070338eeab2c3f997fc297cbfc078ee5fadf8854d88067839b792605"
+  },
+  {
     "path": "docs/INTERFACE-STYLE-AR.md",
-    "bytes": 5353,
-    "sha256": "a6d38f9bf4fec189c8c064cf60b04a1c0b53d10a9dc889a793847082b8ce59f8"
+    "bytes": 5822,
+    "sha256": "37b5273b7b6fd08db3b5a2b485e12e4c47a85a41358ca8d4f2bc9a92565e8401"
+  },
+  {
+    "path": "docs/IOS-FILETYPE-AR.md",
+    "bytes": 3751,
+    "sha256": "f37fdb3ba7d3b792340282fba27d3a45acade4e76408b6c0ece925bdc5f22872"
+  },
+  {
+    "path": "docs/IOS-JAVA-DISPATCH-AR.md",
+    "bytes": 4466,
+    "sha256": "c70d51d791869ba80adce443285da690deaa3585edf176caf642bd6a250d69cb"
+  },
+  {
+    "path": "docs/IOS-JVM-IMAGE-AR.md",
+    "bytes": 16866,
+    "sha256": "a7c62593df7adbf639dac42a17f018b6c882bf282295385aff9ab610a2dd4f6e"
+  },
+  {
+    "path": "docs/IOS-JVM-UTF8-AR.md",
+    "bytes": 5208,
+    "sha256": "dfa736ff914a08914c19bbf032b4f2125165849ffe6c97cb0186f47580436337"
   },
   {
     "path": "docs/IPA-STATIC-ANALYSIS-AR.md",
     "bytes": 3227,
     "sha256": "94229a59747f7f36e476af9d12e150b27552fba493d68b610a04bba0c3fecfed"
+  },
+  {
+    "path": "docs/IPHONE-ENGINE-CHECK-AR.md",
+    "bytes": 10475,
+    "sha256": "c398d6c9e05991b671bd5998307758a1a16f9191edb9110e7437c17b75223e5b"
   },
   {
     "path": "docs/JAR-BACKEND-BUILD.json",
@@ -293,6 +548,31 @@
     "path": "docs/JNI-HOST-RESULT.json",
     "bytes": 434,
     "sha256": "6b2c27fb582ebd29fc6a151c486c5c7a69d2bdeeb46acd3bb67139ea1934543e"
+  },
+  {
+    "path": "docs/MANGADEX-HOST-EXECUTION-AR.md",
+    "bytes": 7212,
+    "sha256": "da83214d4ba16a34a10044748766e321c330c4cd28440444be05bce646333152"
+  },
+  {
+    "path": "docs/MANGADEX-SOURCE-BUILD-AR.md",
+    "bytes": 10022,
+    "sha256": "c52b44f1a2fe11b401f7bfe9183c980807352bb1c558de0991c5c03aea902cd9"
+  },
+  {
+    "path": "docs/MATCH-01-AR.md",
+    "bytes": 11133,
+    "sha256": "5f7b9552bce7b494fc7d3b99d72f671b39394287db489e615bbbed8b666f6b35"
+  },
+  {
+    "path": "docs/MATCH-02-03-AR.md",
+    "bytes": 11614,
+    "sha256": "ec5a7100d04f041af587088f99fb81b01593b835a13de218ab6af48fdc68a5cc"
+  },
+  {
+    "path": "docs/MATCH-04-06-AR.md",
+    "bytes": 5763,
+    "sha256": "24a4304a1a97715de6f3c7ba13841d3131ccf9310c13956fbc3761ef7003e247"
   },
   {
     "path": "docs/PHASE-1-UI-AR.md",
@@ -320,6 +600,16 @@
     "sha256": "d9a9e06934d7e1e80b896ca51a30a24be53197adf7098f4d59c3ce2c1f031f80"
   },
   {
+    "path": "docs/REA-UI-SHELL-AR.md",
+    "bytes": 6222,
+    "sha256": "f9202ff33ec9e89370bfc55e240bbab03a7dd83c9908da734ed0cda1e52f9378"
+  },
+  {
+    "path": "docs/REAL-REPOSITORY-PROBE-AR.md",
+    "bytes": 3792,
+    "sha256": "9ebb236dd6fae59586198c6dc725342cebb0dc44e1365ea180feb24ba5bbccd6"
+  },
+  {
     "path": "docs/RECOVERY-AR.md",
     "bytes": 1341,
     "sha256": "9abfa76794d820af4a4f3570e282938706c6cda654059af61c1630eb467030c6"
@@ -328,6 +618,21 @@
     "path": "docs/REFERENCE-COMPONENTS.json",
     "bytes": 179921,
     "sha256": "d897a86435d9f9e676d10bb4ffddda463871af40a826fcc8415c551d32b097b5"
+  },
+  {
+    "path": "docs/RELEASED-EXTENSION-SIGNATURE-AR.md",
+    "bytes": 6651,
+    "sha256": "b2713d2f75e4236efcf9e3ef08979fc35d0c6515817e959b2df839f7aaed6283"
+  },
+  {
+    "path": "docs/REPOSITORY-FETCH-AR.md",
+    "bytes": 3408,
+    "sha256": "500883f2a187f77870cb3d40bb44d01a396812c5ffff18a1b484496c7c219d5f"
+  },
+  {
+    "path": "docs/RUNTIME-HTTP-PREFERENCES-AR.md",
+    "bytes": 8038,
+    "sha256": "f5eb30ce043ae422f04924a665740d6b9dac6d51723d095997e68b12664aebe2"
   },
   {
     "path": "docs/RUNTIME-PROBE-HOST.json",
@@ -350,19 +655,129 @@
     "sha256": "59bbacfe66e7523f7b9c3adb60b340e351a1c62fcb8c797656690bd2caad76bd"
   },
   {
+    "path": "docs/SOURCE-IMAGE-HANDOFF-AR.md",
+    "bytes": 5261,
+    "sha256": "fd0c45452e36d9d64664db17be80213ae2b996d8366c105fa55bf909984b2abe"
+  },
+  {
+    "path": "docs/SOURCE-INJEKT-BOOTSTRAP-AR.md",
+    "bytes": 5897,
+    "sha256": "828822e34627d7fdfc9ad5a9f015cca3eb84e4255ca24cd30217ffe06534d633"
+  },
+  {
+    "path": "docs/SOURCE-PREFERENCES-AR.md",
+    "bytes": 9114,
+    "sha256": "0e9f670871395de641a2f2684abf43f7c047f750f754b0c3119d8215a20b4019"
+  },
+  {
+    "path": "docs/SOURCE-RUNTIME-JSON-AR.md",
+    "bytes": 9352,
+    "sha256": "fa833d9d3b4feb8ee31fa287cfe2d67b384132e0861701e1dd16be79bcb937bc"
+  },
+  {
+    "path": "docs/SOURCE-ZSTD-AR.md",
+    "bytes": 10669,
+    "sha256": "a0e1e482cbcc605784c4913ef04fc42b0de9b1cbf16edba0d847e9d0dd5a22d8"
+  },
+  {
     "path": "docs/STABILITY-2026-09-15-AR.md",
     "bytes": 1176,
     "sha256": "e7435aa57f1c4e45d159ed451e5133970813920d217a9ae36d2e4b668aca28f6"
   },
   {
     "path": "docs/STATUS-AR.md",
-    "bytes": 4775,
-    "sha256": "7479c59ff3f814853089fe0ce9edace9216b23529557e70e30c9f2547f8b8e96"
+    "bytes": 9154,
+    "sha256": "4a220f9ead20d5d613bcd67a42a2359bdd27c931c8ff4650d6a15a90e7975cc7"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-APPEARANCE-AR.md",
+    "bytes": 8092,
+    "sha256": "650e1a3a8abec4c1103043de222f4797bfea2a1b62183f6a889908d0ef3cf4a4"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-FLUTTER-AR.md",
+    "bytes": 16104,
+    "sha256": "29931a74ed596805408a0723dfa6d63a9e5b8b48bf85adfa7c24ef63c8c1866f"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-FONT-ROUTE-AR.md",
+    "bytes": 8165,
+    "sha256": "55d867c5d2728c2fa2b91070c1fc86eeb5fb7048544764659c88290c00dd4f4a"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-INVESTIGATION-AR.md",
+    "bytes": 16453,
+    "sha256": "75620ba35ab2721db02ac6472e2dcf7329f6183afe2eeca915e7a44a36ed128d"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-JAVA-AR.md",
+    "bytes": 15070,
+    "sha256": "917afc97284b65ac69722c358d66d59a825dd5d95aed7e071daff0d2bba9ba2e"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-JNI-AR.md",
+    "bytes": 14284,
+    "sha256": "ee1200380197ad61c13b17ce70c0b3b25766a3febb4ad605ce3b14be200a6ce9"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-NATIVE-AR.md",
+    "bytes": 16845,
+    "sha256": "3578602b1447b1cb9c0cd40fa2699a23eb54b91ecb5f087d541d29793f374635"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-PACKAGE-AR.md",
+    "bytes": 9074,
+    "sha256": "d1940d8645a28aa1ed4ff9374cb699968d32c03006cdfa1d2413536fbc09ab59"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-PLATFORM-AR.md",
+    "bytes": 11135,
+    "sha256": "e184cf3e1523f49f735ab78010ca45addd726176a1efb2f889dbbb966f2792ce"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-READER-GESTURES-AR.md",
+    "bytes": 11937,
+    "sha256": "8c7432df3984f8662df05e7b185f8fcac24f64cef19083ff9e0884baa38ff0c8"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-READER-NAVIGATION-AR.md",
+    "bytes": 8244,
+    "sha256": "8a84ae1b3ec5a09873ab9f5170fb9f456e6d064d98a902f36b5765c8afac53d7"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-READER-PAIRING-AR.md",
+    "bytes": 9121,
+    "sha256": "2962d11d33defb706b909fad199f14ed3c2b4b046df741c5d7171dff0986a724"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-REPOSITORIES-AR.md",
+    "bytes": 16309,
+    "sha256": "eb0b4a7d1024ab4bd92582df2c39ce752e8bfaaab3cfed0ebb8e3abaf53ff02c"
   },
   {
     "path": "docs/TACHIMANGA-5.1-REVIEW-AR.md",
-    "bytes": 14186,
-    "sha256": "0f01f032c9c9da01dd2747417abd8eb43e92c06932bfad47b1dae21435f145ce"
+    "bytes": 15090,
+    "sha256": "d1e4ba05af19306330dde9c898f80f4ef5017cdd699b02a59e34b074fe0d06ab"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-SETTINGS-BACKUP-GAPS-AR.md",
+    "bytes": 9508,
+    "sha256": "16a0dbc8f30bc550f4717a7589c68bd851b1b1bacff79b11eccaf5114b715e5e"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-SETTINGS-INVENTORY-AR.md",
+    "bytes": 10648,
+    "sha256": "8f50f8479f4e3c265f158cb985f9edaa271610a0e6a303645fd51369b9d5d369"
+  },
+  {
+    "path": "docs/TACHIMANGA-5.1-TRACKING-AR.md",
+    "bytes": 16047,
+    "sha256": "a9e6e06e30ffbd4f39a1d6f1bf9ac98983b49b6a935879fad7d985a2c11b8ef3"
+  },
+  {
+    "path": "docs/TACHIMANGA-UI-STAGES-AR.md",
+    "bytes": 19448,
+    "sha256": "707fdb79c6d6318313ef0fad3de7532b056f478c50c548d892b42c9e14d54852"
   },
   {
     "path": "docs/TACHIYOMI-IOS-REVIEW-AR.md",
@@ -370,9 +785,34 @@
     "sha256": "65e930f3a26f3f1e768ea0e1eb30557384ffd7519910dd12b53527b8842238e4"
   },
   {
+    "path": "docs/TEAMX-REPAIR-AR.md",
+    "bytes": 5002,
+    "sha256": "b4a6df923c235e69cb491562d3af6c6f9ac62c1c7fa80efc4d94d5a9068c7152"
+  },
+  {
+    "path": "docs/UI-CAPTURE-AR.md",
+    "bytes": 5104,
+    "sha256": "347d6bfe4775d467bb21d6869c876d370154358d4760f02149fac4b07c40e577"
+  },
+  {
+    "path": "docs/UI-PHOTO-MATCH-AR.md",
+    "bytes": 10010,
+    "sha256": "b2cc9e1144fac738a4ef9393964c15aa37cce23c39893e59e9da2deb1527b3fa"
+  },
+  {
+    "path": "docs/UI-SNAPSHOT-CAPTURE.md",
+    "bytes": 4861,
+    "sha256": "15d3ead66e3dd96a1afdbf6d450b874f1e1967abfa4ce0d28aa2613fa730de61"
+  },
+  {
     "path": "docs/UPSTREAM-SOURCES.json",
-    "bytes": 3232,
-    "sha256": "28e2a989bc3510e7272b563379ba91e8f45c222b6de02b8cf93dc8b193c28210"
+    "bytes": 4087,
+    "sha256": "3252782f14f446c144d446e8f65525a91268bb3d335ae27f42d4b29998285010"
+  },
+  {
+    "path": "docs/VERIFIED-EXTENSION-LOADER-AR.md",
+    "bytes": 5730,
+    "sha256": "a26a0dac8818424ed1315a5bd9d69d88eeaf4f78104f978d984c1c2b523a8a04"
   },
   {
     "path": "docs/ui-reference-integration.md",
@@ -380,44 +820,94 @@
     "sha256": "d1dd43fb69d5199eeec970b57c073d2282233204410cc44a71c2dec24f68aaa6"
   },
   {
+    "path": "iOS/MangaShelf/AppExtensionEngine.swift",
+    "bytes": 6316,
+    "sha256": "db5e16e9b4ac12aebffb06e24427b0b14fb36f7c928e0d751cafdbb678a2fc3e"
+  },
+  {
     "path": "iOS/MangaShelf/AppModel.swift",
-    "bytes": 13595,
-    "sha256": "6cc379381e8b7d1418a2e8ec511d314af29ec757df32371c092d0092e7bbcb71"
+    "bytes": 25477,
+    "sha256": "f70c90c8f4d22b79583f3eb1d8a68e1ac317cacd67a002c4dbd91c7150634067"
+  },
+  {
+    "path": "iOS/MangaShelf/AppPrivacy.swift",
+    "bytes": 9378,
+    "sha256": "4a5ffc3ffa50b6f251a65679b41a9ac9f8b95a3d97e47758a727bd00388d4b0d"
+  },
+  {
+    "path": "iOS/MangaShelf/BackupCoordinator.swift",
+    "bytes": 17970,
+    "sha256": "b2502bb2b99473d6189bc9ec5c8eed4e9ca77762563e5ceaf21a5d102b5deaa7"
+  },
+  {
+    "path": "iOS/MangaShelf/BackupMaintenance.swift",
+    "bytes": 5421,
+    "sha256": "7caef93d6313f2ad7940da2f0619bc364ddf25d2609a005a001310e857df2b11"
+  },
+  {
+    "path": "iOS/MangaShelf/BackupViews.swift",
+    "bytes": 17144,
+    "sha256": "6a2f07fd7386c309cf40d91a851539cb9c33e4317110067aff113e52cc8751ce"
   },
   {
     "path": "iOS/MangaShelf/BrowseHomeView.swift",
-    "bytes": 14952,
-    "sha256": "75769e63d21d0fd4e2d8f93b057925cb6f3963941106a0a1dfee2b2ac37b08eb"
+    "bytes": 19080,
+    "sha256": "f0dfbb3974b03ce8d3f4834fb6dc3b1138ad06626bc43429e5ba0849a523f555"
   },
   {
     "path": "iOS/MangaShelf/BrowseView.swift",
-    "bytes": 10242,
-    "sha256": "a7e11e15513b863665d3b4a06fce1a0b2588790ff21b77f4b2fdc50585716f31"
+    "bytes": 6600,
+    "sha256": "454bd83a5488ce3057e6bf73f895f87da694f0d537f0af113d84ff501e891d05"
   },
   {
     "path": "iOS/MangaShelf/DiagnosticsView.swift",
-    "bytes": 11080,
-    "sha256": "d3c9e6d24934d2bb673e6da8c5324d4ecfc15f9da5eca4a2d75da335f34b91be"
+    "bytes": 11488,
+    "sha256": "583c752920589e5dab39e794dea72634ff884a5909e0d5cdafe16789a5a14aa1"
+  },
+  {
+    "path": "iOS/MangaShelf/DownloadViews.swift",
+    "bytes": 14319,
+    "sha256": "397f644d72760e3d4c0ce6352e4a1d7998aae752b2ebceae68bc8055677b0a13"
+  },
+  {
+    "path": "iOS/MangaShelf/EngineBase.xcconfig",
+    "bytes": 370,
+    "sha256": "879049be4f1c7a1f2ba93c8fbf35e3cdb4b90beb42e4eccfbe4ed54507e469eb"
+  },
+  {
+    "path": "iOS/MangaShelf/ExtensionDetailsView.swift",
+    "bytes": 11865,
+    "sha256": "c9307a64e8b6626b1c21d43eee5f4592092937033430478d3bab882f1f424e02"
   },
   {
     "path": "iOS/MangaShelf/HistoryView.swift",
-    "bytes": 6130,
-    "sha256": "22badcad2094cd0928a59016f27588ddb64eb6eeb5e22c16da54925aad86de88"
+    "bytes": 9086,
+    "sha256": "e0fe6f7f815b17c1f2152d383255a8d89dc8b1300f8774dbad46751efcd271b4"
   },
   {
     "path": "iOS/MangaShelf/Info.plist",
-    "bytes": 2134,
-    "sha256": "a5be7dd834f31f20f62c2f5487561a063939261918dd7bf9dc3077fa4a73ceab"
+    "bytes": 3536,
+    "sha256": "d2e09a20efdf4597870eede1648f199699f2d6b3a747ca113ab10dd8b0ead6c4"
   },
   {
     "path": "iOS/MangaShelf/InterfacePreferences.swift",
-    "bytes": 8648,
-    "sha256": "5465beaafe38fa3dc8517b4013e42c9aaea1415f33e24c59f020c0fe6d9eecc2"
+    "bytes": 10319,
+    "sha256": "c1fe297ea68f4ddd15b4675f0b07d3a8d5b5344b9789a716b07020b205e992ac"
+  },
+  {
+    "path": "iOS/MangaShelf/InterfaceState.swift",
+    "bytes": 7115,
+    "sha256": "a60cc42a693cdf01a873423e42d8abe9466fff53708434c7463b27374f788672"
+  },
+  {
+    "path": "iOS/MangaShelf/LegacyLocalBackupView.swift",
+    "bytes": 2305,
+    "sha256": "be8fd5a0e629bfb2ce789323f775b1439eb1ac5dc6368b6b30f776731f77bf9d"
   },
   {
     "path": "iOS/MangaShelf/LibraryView.swift",
-    "bytes": 41649,
-    "sha256": "7b3191ba28ebe762b53cbdaaf1756eaa1d4c52581a8a5f474c5aa844ee1ec8a5"
+    "bytes": 58971,
+    "sha256": "fbd16043d952e25558b8c7c3b9d76644e96ad8b3c25a3065393a9ca63821f1c3"
   },
   {
     "path": "iOS/MangaShelf/Localization.swift",
@@ -425,29 +915,39 @@
     "sha256": "ccff9d918f9a4e8e5474a8b60a45a89e9970ecdf6142d4479c35a9b7da32ae32"
   },
   {
+    "path": "iOS/MangaShelf/MangaSeriesDetailView.swift",
+    "bytes": 24738,
+    "sha256": "4f1fba1847be547a7a007822ed5c29b464bf8b778fb4b525b4c9bb76639870c6"
+  },
+  {
+    "path": "iOS/MangaShelf/MangaShelf-Bridging-Header.h",
+    "bytes": 46,
+    "sha256": "caee878eaf8b1f281ab889c270d0282dd1276d29ff072e30a5bc81fadd743d89"
+  },
+  {
     "path": "iOS/MangaShelf/MangaShelfApp.swift",
-    "bytes": 2930,
-    "sha256": "a36c5850f6ff61823ad2c42da8fe3aa60940d1d74345140283534da93cfa4a87"
+    "bytes": 6895,
+    "sha256": "7cbfe26a9a021e2fe24c871b4bcba5bdb32f96f4a13d9b3869cc8abb13d7ca8e"
   },
   {
     "path": "iOS/MangaShelf/MaterialLicenseView.swift",
-    "bytes": 670,
-    "sha256": "f4a49edd77619bcde422ec817e7557683e540fa5daf248afd930e9bfeaf81fed"
+    "bytes": 675,
+    "sha256": "f13897e73696ecd79f83791a0e71a01fefdce9c40d3ccc5c58fb8b4b8f14854c"
   },
   {
     "path": "iOS/MangaShelf/OnlineLibraryViews.swift",
-    "bytes": 5277,
-    "sha256": "aa7f094f3998af03239048f9ffa5af3a97f6112d43fb654e24f42814debe1d22"
+    "bytes": 1650,
+    "sha256": "ba511cf183cda9d3046d59789d6e7142923ff20e15d7559752b034457a6259a6"
   },
   {
     "path": "iOS/MangaShelf/OnlineModel.swift",
-    "bytes": 13280,
-    "sha256": "3a05b4189f7edd2a12b1b917880d0529be7905c890023a336c520e2bf86d16c8"
+    "bytes": 32228,
+    "sha256": "330dc610b31dae985ae0b29db224d755b70958314db3f599b3ec4102bb5eea94"
   },
   {
     "path": "iOS/MangaShelf/OnlineReaderView.swift",
-    "bytes": 14163,
-    "sha256": "0e9c17a9f0ae32ae170c5cf8ede8e992fa39cddc4022702e34ef432df9834bc0"
+    "bytes": 11349,
+    "sha256": "b0e98f906bde7ac8b53199f75739b639244d20fc0a48cf295c9cb05f300e4987"
   },
   {
     "path": "iOS/MangaShelf/PrivacyInfo.xcprivacy",
@@ -455,9 +955,29 @@
     "sha256": "6ae61890ed9548b952eb7421258aa85bbc8746ac4fa0e20469e88f0e199b8574"
   },
   {
+    "path": "iOS/MangaShelf/ReaderActivity.swift",
+    "bytes": 1509,
+    "sha256": "ae33cc4ba9114ae640ac184742cbbd44d27ccd72f7bc7277bfd0d407d64beefb"
+  },
+  {
+    "path": "iOS/MangaShelf/ReaderPresentation.swift",
+    "bytes": 37307,
+    "sha256": "56bc80699cf60188544e893d864de1485d8d21332298335a81f6e8f58521c1ae"
+  },
+  {
+    "path": "iOS/MangaShelf/ReaderSettingsViews.swift",
+    "bytes": 14960,
+    "sha256": "76831a05984991654c602dbc93d4796609950f09c57475364f285ca3604a2f09"
+  },
+  {
     "path": "iOS/MangaShelf/ReaderView.swift",
-    "bytes": 18596,
-    "sha256": "8be3da91e801a38d658941ea08d5a6e594224dd620b1da5d0a36385976083599"
+    "bytes": 16629,
+    "sha256": "4c2457f7bc7d8c2dd2ef32c8981fb626cd9e271ca4cab6caa986833815740cd5"
+  },
+  {
+    "path": "iOS/MangaShelf/ReadingInsightsView.swift",
+    "bytes": 4956,
+    "sha256": "215ee8f9c9a07e5791fce2d3af4c689cb0d048d573abd9137c1cca6e37b709b3"
   },
   {
     "path": "iOS/MangaShelf/Resources/CupertinoIcons.ttf",
@@ -741,13 +1261,13 @@
   },
   {
     "path": "iOS/MangaShelf/Resources/ar.lproj/Localizable.strings",
-    "bytes": 89844,
-    "sha256": "2c5402ceb0d52c6e1740cdb7ae4c7ace27fcbab1282515da6cb26b5cbf7ae1b3"
+    "bytes": 127008,
+    "sha256": "9c8d4f7e6793b705fae3bd4c17756b5b4d2449799c58d4760650ffb85dad5ef2"
   },
   {
     "path": "iOS/MangaShelf/Resources/en.lproj/Localizable.strings",
-    "bytes": 73042,
-    "sha256": "6bb917a884791c544fd9de84997f9caea90a1f0912ad3a07608c5010fcccf625"
+    "bytes": 101580,
+    "sha256": "db863e3b974ef7d7c153e4ff496c3b027f8a0692d1a66e6cefc1c4dd938d043f"
   },
   {
     "path": "iOS/MangaShelf/Resources/icomoon.ttf",
@@ -755,19 +1275,24 @@
     "sha256": "17cf3d63edbe81d716f97b110f9659555f81ea6db8b05c02c68c610da0737f5f"
   },
   {
+    "path": "iOS/MangaShelf/SettingsCustomization.swift",
+    "bytes": 11180,
+    "sha256": "61a24b4e9ea3cee276f6e521d60a718e4349f43fb1735667bb94b48f10b13ee2"
+  },
+  {
     "path": "iOS/MangaShelf/SettingsView.swift",
-    "bytes": 15253,
-    "sha256": "981ff5a1427c1a1c1397300d07cc73b1fe8e171ffa5d3b6e431fec5ee0d188e5"
+    "bytes": 15659,
+    "sha256": "f34cf874b84bd8015d9dc2be46d096ab257e10d13a3a385d2ebc55d98f50e77e"
   },
   {
     "path": "iOS/MangaShelf/ShelfDetailHero.swift",
-    "bytes": 1742,
-    "sha256": "dbf6b34d8d154d5b616a1faf6cef485d3267fe77c5fff524f92aaba6b079aaa3"
+    "bytes": 3091,
+    "sha256": "d3602ef2d9c9bb046e29ebd52c6f0a8ba9317d22c0f732d498068da9e64977c4"
   },
   {
     "path": "iOS/MangaShelf/ShelfOverflow.swift",
-    "bytes": 4994,
-    "sha256": "b725785d8e1e539fc89474cce1d8a9689faabf634bce1ff4d308f65b12906b72"
+    "bytes": 5921,
+    "sha256": "09266b2b880acc16b0d6e9704a71e96c813ef3c45af8368562e4441fab06ba57"
   },
   {
     "path": "iOS/MangaShelf/ShelfScreenPreviews.swift",
@@ -776,38 +1301,63 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfStyle.swift",
-    "bytes": 11462,
-    "sha256": "01c8ad90d527fe25396b7d1ecb357520c286bdf440fa9bc6bbcbb71a08d285d0"
+    "bytes": 14291,
+    "sha256": "abdf8dbb6783b6d278fe24d75f3e3aceeadf22d41162c460432d49cb3a6cf9b2"
+  },
+  {
+    "path": "iOS/MangaShelf/ShelfTypography.swift",
+    "bytes": 2211,
+    "sha256": "b3bb106db7eb0d2b6ed119873850129148079ec3b1259e91d59012b8bc819ae1"
+  },
+  {
+    "path": "iOS/MangaShelf/SourceEnginePreferencesView.swift",
+    "bytes": 10012,
+    "sha256": "86fd58a0d617960d11862caceb8e770c7205f049b205d4f1e428053a02c9ed18"
+  },
+  {
+    "path": "iOS/MangaShelf/SourceFiltersView.swift",
+    "bytes": 6629,
+    "sha256": "966afe30b79d2cd85da79f5c6c51b8dc0be04457d52defce483af1bf3a3adbe9"
   },
   {
     "path": "iOS/MangaShelf/SourceViews.swift",
-    "bytes": 17063,
-    "sha256": "beb76625d6af05e5ebc2a96afdedc25f7560cf238f9d387439b87ad335292f03"
+    "bytes": 10404,
+    "sha256": "463bff9a8197df713298147526fd93351d767cdecee7a1358d89464a4442a3fa"
   },
   {
     "path": "iOS/MangaShelf/SupportingSettingsViews.swift",
-    "bytes": 5009,
-    "sha256": "138eaa4111a219dcfb06bdcdd901339b379da7bac7620da9a8e69e414ec2cf54"
+    "bytes": 4426,
+    "sha256": "fc13417dedb154cdd912cf6efeae8eee063f9f5281b3b511b1581eb070173971"
   },
   {
     "path": "iOS/MangaShelf/TachiUI.swift",
-    "bytes": 17489,
-    "sha256": "6fe2be9d45be6a5ffdc5170e9362fd5b0f52adea4a43351012c5b6744e15f851"
+    "bytes": 20719,
+    "sha256": "0c038caa1c1a4765b4fcae58ed52feca3515c4bb7ab0a51ac48dd5f159b167a4"
+  },
+  {
+    "path": "iOS/MangaShelf/TrackingModel.swift",
+    "bytes": 15314,
+    "sha256": "4ce7ea86b173d81df0d5495c8d29a5599d697257f64f734ae311cd193a8a1e22"
+  },
+  {
+    "path": "iOS/MangaShelf/TrackingViews.swift",
+    "bytes": 21901,
+    "sha256": "a57f6a7a11660aaa72206fa1dcf2a69acb6711f5ee4406401bcae4b642ab80b9"
   },
   {
     "path": "iOS/MangaShelf/TrashManagementView.swift",
-    "bytes": 8369,
-    "sha256": "6b4b36b1dc96d0284e5887dceb38df39b7af487b0f1ea78371d7a21caea94edb"
+    "bytes": 8421,
+    "sha256": "7b4ec6dd5a4ef4e7b255e97febc852eb3cbc2aabede954ff34ab6e247b4b8781"
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
-    "bytes": 3989,
-    "sha256": "125231e681682bd98c2c6b94a6f543518e7e79a78ccdcebdb9db900986da5f5d"
+    "bytes": 16021,
+    "sha256": "8b3251e6fca6a9e453c6593ceeb85b21a1b33ca5f24318f49753205165c9b70a"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/project.pbxproj",
-    "bytes": 17227,
-    "sha256": "43f48fca9f49ec45fffcce46a32ba5f65775bc438867f14edeb11f76c3eb1107"
+    "bytes": 25762,
+    "sha256": "8ee06a0945e4b1d794e3fdde7af51f797bf380a5587b534288d4c6833647fa56"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/xcshareddata/xcschemes/MangaShelf.xcscheme",
@@ -815,29 +1365,994 @@
     "sha256": "ed569dc179be2d8522c00abec7def3e60d4bd0f9d210f5fd121466e531aab492"
   },
   {
+    "path": "iOS/MangaShelfUI.xcodeproj/project.pbxproj",
+    "bytes": 24949,
+    "sha256": "e992670529aa56e76d3a849556e78576f9fdb8bd270c02006a15b00bd6255355"
+  },
+  {
+    "path": "iOS/MangaShelfUI.xcodeproj/xcshareddata/xcschemes/MangaShelfUI.xcscheme",
+    "bytes": 2399,
+    "sha256": "a2fcb5b6c26c2f367dd1434bf069605ea752435dff5fd69dab5886805d5b3873"
+  },
+  {
+    "path": "iOS/MangaShelfUISnapshots/StageTwoThreeSnapshots.swift",
+    "bytes": 10281,
+    "sha256": "88dc1ca370faf856e0a5b946adbdc7ed8045aa162eb74acbcd533693165e6f7b"
+  },
+  {
+    "path": "iOS/MangaShelfUISnapshots/TabSnapshots.swift",
+    "bytes": 15511,
+    "sha256": "1837bde8f459e982714772c2a8932792ad0ccd0106b9947c5b08f9db497df605"
+  },
+  {
+    "path": "runtime-host/README.md",
+    "bytes": 15920,
+    "sha256": "4b732ac47131add1c8fd03d673292173513a82a5eafae59af0940079ee19933c"
+  },
+  {
+    "path": "runtime-host/Runtime-ThirdPartyNotices.txt",
+    "bytes": 63235,
+    "sha256": "0bb865b8e1aac0deb582071fbab23f5a5639176668d52770f3dc1257f38a1248"
+  },
+  {
+    "path": "runtime-host/dependencies.lock.json",
+    "bytes": 17677,
+    "sha256": "2e2337abd525b0243077b3b514a79e308fe77f20ab96cce028dcfa1aad5d8d4b"
+  },
+  {
+    "path": "runtime-host/injekt-compat.patch.json",
+    "bytes": 913,
+    "sha256": "83081b5598023706dc4de591ad9039fce42db4a83e0dc4c0f2f4c0aadee804ea"
+  },
+  {
+    "path": "runtime-host/injekt-source.lock.json",
+    "bytes": 2870,
+    "sha256": "79053c360a923aab8e6761254a17f39204c616459da7c316aa96f2ff34d63007"
+  },
+  {
+    "path": "runtime-host/notices.lock.json",
+    "bytes": 16162,
+    "sha256": "741b1d094630f8ce434be3ab6cf6a92fbc4a9f81309d9fab1ea5ca19e83b4448"
+  },
+  {
+    "path": "runtime-host/reference/LICENSE-extensions-lib.txt",
+    "bytes": 11357,
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+  },
+  {
+    "path": "runtime-host/reference/library.api",
+    "bytes": 21125,
+    "sha256": "28685652e15c6ea010212db5cd94e8d7019c5227f260442cbb985ec0f51cb324"
+  },
+  {
+    "path": "runtime-host/reference/provenance.json",
+    "bytes": 516,
+    "sha256": "0fafb51ef0e4382bc7def90a2c15d1dc8bbd127654742db790338af0d92a4120"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/R.java",
+    "bytes": 181,
+    "sha256": "b9d0f560c58f88a1aec48247ab20cabb537bd953878f15909a8e40d46a8193bf"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/app/Application.java",
+    "bytes": 403,
+    "sha256": "2268e63209de10ef33776b15ac895e89471ce452e1518d148c73a748a9d7d4ec"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/content/Context.java",
+    "bytes": 3792,
+    "sha256": "761f180a6fbec5e27a8559fd26e26cd33ec561818a60e3825204f72eec5672e2"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/content/SharedPreferences.java",
+    "bytes": 1446,
+    "sha256": "c149d71633e95f7d3842ba8567bd512619d4a468cb9fdb440fe719d30a9a2701"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/os/Build.java",
+    "bytes": 648,
+    "sha256": "b79f136025c984bf422e08fd89ca6e7b6ce26851976183915d164a77023db3fc"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/os/SystemClock.java",
+    "bytes": 333,
+    "sha256": "fb3abfe1c816af627298aa2dfe55665036db275b3ea1d4828bef579a2d6c78e5"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/preference/PreferenceManager.java",
+    "bytes": 500,
+    "sha256": "315e9652c1850d1268778a999eadb3537795ae53107c25dd9f6d1c63678a0847"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/text/Editable.java",
+    "bytes": 669,
+    "sha256": "a561796f6f16ff94286884dd089f5993e6937f5d4601aca55664eb15cad63b91"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/text/TextWatcher.java",
+    "bytes": 255,
+    "sha256": "d5dbb9771353841d3d87603fa9171db65ddb92c7d303c5bcf365eee932e717c4"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/util/Log.java",
+    "bytes": 3718,
+    "sha256": "be132702b2545405cdaea268133cd8d7a0d2f9632e4f0f2b87433c8e1d034211"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/view/View.java",
+    "bytes": 1555,
+    "sha256": "5de1b9db4c7135f1241196dc1d5fdf57133004b7630cdfbd2f4c74ddc4d1197a"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/widget/Button.java",
+    "bytes": 154,
+    "sha256": "69406359823efe62692274e83ff87163c003c58b4df21e811af7a3e319b085fe"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/widget/EditText.java",
+    "bytes": 3594,
+    "sha256": "fa26f05410fda719f08dad1b32b09eac01f39a9918ac5416380f2aa2c66634b9"
+  },
+  {
+    "path": "runtime-host/src/main/java/android/widget/TextView.java",
+    "bytes": 667,
+    "sha256": "60f02264c9d871202aac851950009e5cd555d640412079b72f7fcedfbeb2db82"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/CheckBoxPreference.java",
+    "bytes": 193,
+    "sha256": "f5614be39a74cbdb3fe1ecddba7b765dab130f23142ada22c5a46d0dcb1d267a"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/DialogPreference.java",
+    "bytes": 608,
+    "sha256": "fe93c63f76dabd2081b42a2c703392f294b1ada50647292e0fe2a6f4bb5ca5f2"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/EditTextPreference.java",
+    "bytes": 2428,
+    "sha256": "56be9865bdb8f3122f015f5cd4926efdf5554aa69ec8678f7b7b3863970583df"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/ListPreference.java",
+    "bytes": 2998,
+    "sha256": "fa09f45701388afab86a0810ca42030448e2b365b2fbadeac5dda07c69263041"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/MultiSelectListPreference.java",
+    "bytes": 2025,
+    "sha256": "1329614fd4f296f9a10134c5f54e5cf9d4e1b24ee1a3e61972e71c0c04c31283"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/Preference.java",
+    "bytes": 6104,
+    "sha256": "27793d627ac947ddc80b191698864e9367ffb2c57c9a8ee943cdbcb1488b30f6"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/PreferenceScreen.java",
+    "bytes": 2375,
+    "sha256": "865c63ce400c83fed558ef6ce9bc4762571a47818d510dd7c9da4a7e9de58301"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/SwitchPreferenceCompat.java",
+    "bytes": 201,
+    "sha256": "53c1947410175699e3151cd037177a72ef22cd81894311d72889c12ca1bb109b"
+  },
+  {
+    "path": "runtime-host/src/main/java/androidx/preference/TwoStatePreference.java",
+    "bytes": 1569,
+    "sha256": "edf30c0cde8ab569efb4f518ffe5f79bc4e0f4de6e18ee5957f941271639ccf6"
+  },
+  {
+    "path": "runtime-host/src/main/java/mangashelf/host/ExtensionManifest.java",
+    "bytes": 6562,
+    "sha256": "716f3b479bf15fdd36e3cad719a607a1e7a79b62679c3194153129a1e263500d"
+  },
+  {
+    "path": "runtime-host/src/main/java/mangashelf/host/PreferenceStore.java",
+    "bytes": 23119,
+    "sha256": "939238c8c1afdea5f24649f2e370aa28b153a222544cce45814da5e90e9dbe7b"
+  },
+  {
+    "path": "runtime-host/src/main/java/mangashelf/host/VerifiedExtensionClassLoader.java",
+    "bytes": 7972,
+    "sha256": "3848f91e3f1a6950d45b9858ded81f879921c1732a31b7a9593df0e17a07ad3f"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/android/net/Uri.kt",
+    "bytes": 1125,
+    "sha256": "a2c6d4e7510e71bccd0d1eeca1c8c52e5120ab8e4312c7cb61672dd1906f3b7d"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/AppInfo.kt",
+    "bytes": 218,
+    "sha256": "d093b38f0fb83b01c6ed4176d61b8a3be90b9d511f90a71c7d86960df0fd621d"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/HttpException.kt",
+    "bytes": 945,
+    "sha256": "2d5194d8fc28273c3f124662750fb464193155fb5b8faa16e93a5dcbd546fdb4"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/NetworkHelper.kt",
+    "bytes": 4726,
+    "sha256": "52474ab14f99d5fbe054810c3ffd36ca974e5fb43a4354c7cc9a23a43f56a8b1"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/OkHttpExtensions.kt",
+    "bytes": 2525,
+    "sha256": "53c0c5d31c21b634b50aea8e0e63cccf3b27be33ea3055af74d49e62bc1e5d7f"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/network/Requests.kt",
+    "bytes": 999,
+    "sha256": "727aab7d3d3e7a5a3474f90a5d186322642b5620ee88d13cbee6d5613cc8656c"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/CatalogueSource.kt",
+    "bytes": 557,
+    "sha256": "f70b1dd932eaf98660ad22339cdd9f4ed90d9800e6a61a02ca1db84acf7c97d1"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/ConfigurableSource.kt",
+    "bytes": 170,
+    "sha256": "2c96d13a0ba21f99c4c9a79440761e1488ed77596efa5b9e943c31309e41d62f"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/Source.kt",
+    "bytes": 1256,
+    "sha256": "22e2b790ee628cea892dab5b31070afab491a653903c92f9525aaa8c3bd512b4"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/SourceFactory.kt",
+    "bytes": 188,
+    "sha256": "3bdc74dca6c9bbec21fc6c07e3903750249c07289d8329ac1b1aab6f013ba1f0"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Filter.kt",
+    "bytes": 1406,
+    "sha256": "94343deaded4c3b073aa1da3a71aea1aac978785bcfda8a0a7550dabdf88d21d"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/FilterList.kt",
+    "bytes": 314,
+    "sha256": "3714c69d19bcc7975eabe7d2e38b55fa8418a3f2b3c15cb3c4d2f81f5eec0f61"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/MangasPage.kt",
+    "bytes": 628,
+    "sha256": "1dd48e77a02c63f246444536304fd1c36da576338480ce592f7ede1f9dbddf51"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/Page.kt",
+    "bytes": 355,
+    "sha256": "44e9b5724ff407946f1df799b9d44e55c0b1454ce00d38ae620153605efcc427"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapter.kt",
+    "bytes": 459,
+    "sha256": "c07d46bb1b25fd20bfe17024e8610648422ec6011cefc19a7464fec671e4cdd7"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SChapterImpl.kt",
+    "bytes": 494,
+    "sha256": "59e71ed52d82580dd3a670c79dd9b2469523320c6a04cdcc77f9d4e8605bae15"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SManga.kt",
+    "bytes": 805,
+    "sha256": "65a14833f04a58f7c48957d237674ad2bc2238df0b6e137c9fad77e6d692ee21"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaImpl.kt",
+    "bytes": 745,
+    "sha256": "d429c841103392eead3660a00f98d0f4905120d8176b4e7b0b5f658011a7682b"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/SMangaUpdate.kt",
+    "bytes": 194,
+    "sha256": "51d49f44356c43f02703c935af65b85a8c5a951b056993098b0f6b18ffec7457"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/model/UpdateStrategy.kt",
+    "bytes": 112,
+    "sha256": "dbe9479f3daba20ea4f578fd8de20b7922ea2657dfebc4f23fd25570a6515ad3"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/eu/kanade/tachiyomi/source/online/HttpSource.kt",
+    "bytes": 3599,
+    "sha256": "98dd212e3958a7f72ffbd1a57d9cf1f6d89edee7a64e00946c43cf2f72dbcf0b"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/ExtensionExecutionContext.kt",
+    "bytes": 898,
+    "sha256": "be038c6c90326e8342d24b7434b88e36a9837ac0bc85c6118e07ed10b2f8090f"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/ExtensionLoader.kt",
+    "bytes": 3958,
+    "sha256": "c4c4dc577ea7baeea3eb909fed1a562049f0d579d751605768ece580625a4109"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/HostServices.kt",
+    "bytes": 3489,
+    "sha256": "05a5aa917979d73156fc76ac9ab1d4dda77d9fe6d181bf59fb47ce04017b1c45"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/ImageTransferStore.kt",
+    "bytes": 5900,
+    "sha256": "6419b1bc64dd434e5c4feb28a9a1212c94acb527d2d0491c5a9eee0a24264251"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourceCommands.kt",
+    "bytes": 17526,
+    "sha256": "23b21974ac1b3d71b4e24a7d87315d0ec58ee4f9b85ac6ff8f4e10f4ef67b78b"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourceFilterCodec.kt",
+    "bytes": 7854,
+    "sha256": "a8fd9990d5fd06d1fc2fea92ae0659af968f71c6e0746cec60c78079385df658"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourcePreferenceCommands.kt",
+    "bytes": 7677,
+    "sha256": "a6394c03dce4547d90ada781749c0504c2ce3e4c67d2b287046b7b88f80c56d6"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourcePreferenceSession.kt",
+    "bytes": 13115,
+    "sha256": "0a5e15eb9b9b2ee0b2eb47296013c62cea4c331c847c14bc7b1a24a247358e2b"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourceRegistry.kt",
+    "bytes": 9786,
+    "sha256": "054e0919fa8b9abdbf9e591278f281c6b82e90ed56ed4a2c445be687ebf913b2"
+  },
+  {
+    "path": "runtime-host/src/main/kotlin/mangashelf/host/SourceRuntime.kt",
+    "bytes": 10525,
+    "sha256": "c4088d01461d93e10911874aa61a1552571498a2aac1c292b464a67dc0a8d428"
+  },
+  {
+    "path": "runtime-host/src/test/bootstrap/kotlin/mangashelf/host/BootstrapCheck.kt",
+    "bytes": 7765,
+    "sha256": "ac198af4af337f2689601f582ef1372129db8af88bba868022da92a14a18054d"
+  },
+  {
+    "path": "runtime-host/src/test/commands/kotlin/mangashelf/host/SourceCommandsCheck.kt",
+    "bytes": 21465,
+    "sha256": "66190b4811a00592769d9d1dac8b1dae89b7c2553e8e974e1f39c17d80787915"
+  },
+  {
+    "path": "runtime-host/src/test/commands/kotlin/mangashelf/host/SourceFiltersCheck.kt",
+    "bytes": 10330,
+    "sha256": "b3ef6652c1dcd8388e9bd16746624313ceaf4336f5ef3e767043aa15881e47a8"
+  },
+  {
+    "path": "runtime-host/src/test/fixtures/java/fixture/extension/Versioned.java",
+    "bytes": 139,
+    "sha256": "9165c44bbee72c1f9b550b93e83cce2add68fc9830fd0075ea8c7d53903fd708"
+  },
+  {
+    "path": "runtime-host/src/test/fixtures/kotlin/fixture/extension/Generated.kt",
+    "bytes": 4300,
+    "sha256": "fd88af9fc99abea27aefa73d9a57ad4620c91c17548b47c8717e7b5f27b03645"
+  },
+  {
+    "path": "runtime-host/src/test/fixtures/kotlin/fixture/extension/HttpFixture.kt",
+    "bytes": 7224,
+    "sha256": "164310cfdb87dab17c778e14547128532ed3e2fded75472e0056b8b193caf3bd"
+  },
+  {
+    "path": "runtime-host/src/test/fixtures/shadow/kotlin/Shadow.java",
+    "bytes": 45,
+    "sha256": "1d81e75e55e3a5e62f65d5f9c8c4a9ab7fc43eeccf5734db72165fd714301754"
+  },
+  {
+    "path": "runtime-host/src/test/fixtures/versioned/fixture/extension/Versioned.java",
+    "bytes": 144,
+    "sha256": "21d7e43bd2a6b186e94e48cc2b523fe0977447f1f514e56b643dab3937cf1aff"
+  },
+  {
+    "path": "runtime-host/src/test/java/mangashelf/host/PreferenceStoreCheck.java",
+    "bytes": 20732,
+    "sha256": "c503c59ce1c51e96536f51e91cd646ad751d804558d9af7561e6597cb7383919"
+  },
+  {
+    "path": "runtime-host/src/test/kotlin/mangashelf/host/ModelApiCheck.kt",
+    "bytes": 21554,
+    "sha256": "e61a20c5f758715ad1d481ff561437f138e5f7f68e445bde8cfc3f58ea3f6661"
+  },
+  {
+    "path": "runtime-host/src/test/kotlin/mangashelf/host/RegistryCheck.kt",
+    "bytes": 20645,
+    "sha256": "79d47d638ef1d965487ee05edbe8c2d684b0ddb4ec26eeac86f02daa6c96ac08"
+  },
+  {
+    "path": "runtime-host/src/test/loader/mangashelf/host/LoaderCheck.kt",
+    "bytes": 30151,
+    "sha256": "ed79e718c22d66fc33dccf03f152deead1834aed3f03032464b89568a767dd97"
+  },
+  {
+    "path": "runtime-host/src/test/mangadex/kotlin/mangashelf/host/MangaDexCheck.kt",
+    "bytes": 12755,
+    "sha256": "1b974b3a6d7592ed997453637cb43b4ea0cd6a3a138d53f8599ba87af0cd5fc9"
+  },
+  {
+    "path": "runtime-host/src/test/network/kotlin/mangashelf/host/NetworkCheck.kt",
+    "bytes": 27448,
+    "sha256": "717026136b8aeacf5be7a440f4bff87fc3def6e96f0a52fa61b511a7ea32299c"
+  },
+  {
+    "path": "runtime-host/src/test/source-preferences/kotlin/mangashelf/host/SourcePreferencesCheck.kt",
+    "bytes": 37610,
+    "sha256": "2a3a9ada2cf3b5908d2c84645a83f666ba7a72892cd4d325b9e2f1da1a128e71"
+  },
+  {
+    "path": "runtime-host/src/test/teamx/kotlin/mangashelf/host/TeamXCheck.kt",
+    "bytes": 9036,
+    "sha256": "45d079fd7574511ff3e586c0f7d30b0ebe9828808e1b94e2d959675afb21ba0e"
+  },
+  {
+    "path": "runtime-host/src/test/zstd/java/mangashelf/host/ZstdNativeTestHooks.java",
+    "bytes": 554,
+    "sha256": "50b8fc73b9bdc76766737d2c76d0277a9d29832795157d130b51a53bfbfb7f2a"
+  },
+  {
+    "path": "runtime-host/src/test/zstd/kotlin/mangashelf/host/ZstdCheck.kt",
+    "bytes": 16210,
+    "sha256": "b3a089369887c7dda94ef08e84e763a7f7a798fedc1bab13378de84fe43e74ed"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/LICENSE",
+    "bytes": 1146,
+    "sha256": "08a5be6e3c03075440ad532846713849592aefe8c90111cdb5b96cfadaaa850f"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Exceptions.kt",
+    "bytes": 96,
+    "sha256": "96b9bdc6ce4d3e285fa13d8f6ca3a24f794ee3e5600cf41983569fff50d3ee62"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Factory.kt",
+    "bytes": 4082,
+    "sha256": "0a26ae1b2702f1fa2a7167055facf7e929ae7db55efff970757e19faa5846bec"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Modules.kt",
+    "bytes": 541,
+    "sha256": "297e0caf09432c60d9adb4b1db82cd1f68177e3b575a0f41cb5c67e054909781"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Registrar.kt",
+    "bytes": 185,
+    "sha256": "13d283cd67957e6329c2e8330347a87f6a9e4eb81c6beb012de02d7dce5a23a2"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Registry.kt",
+    "bytes": 2493,
+    "sha256": "1bb01b335a4ef71e7896942eaf012fb15e4c74befb00a9b036efb55377934dcc"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/Scope.kt",
+    "bytes": 2918,
+    "sha256": "6f27712d82002f01b301bacba00070a653ec067ae3caef8dcb5a26f828492c4d"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/api/src/main/kotlin/uy/kohesive/injekt/api/TypeInfo.kt",
+    "bytes": 1501,
+    "sha256": "005c8d6416f5295c986194c555126147f92978738bc84b66dd0f0fef7057635d"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/Injekt.kt",
+    "bytes": 1398,
+    "sha256": "153f41ce2ffe201122f362c433fe58e0f39f48296617b2aae70fa943d25f4650"
+  },
+  {
+    "path": "runtime-host/third_party/injekt/core/src/main/kotlin/uy/kohesive/injekt/registry/default/DefaultRegistrar.kt",
+    "bytes": 7560,
+    "sha256": "f7abedc2c60017a7bbe17b3d2aca8f149ae564a2fc929ef3c207b55c950617d5"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/LICENSE",
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/Zstd.kt",
+    "bytes": 1167,
+    "sha256": "a00afad1c734b534508dd78cd396424f265172111cc2b71f79024d025f63f186"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdCompressor.kt",
+    "bytes": 1387,
+    "sha256": "89b919712c8d4ced1592e59e57f48341767809c3f6792f3c960a6a956e4df356"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/commonMain/kotlin/com/squareup/zstd/ZstdDecompressor.kt",
+    "bytes": 1165,
+    "sha256": "7e8eb7284a8ec43f4d46c3345f4f1f7cc3bbf7485596d2ff2d18e3f5e3e4323d"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstd.kt",
+    "bytes": 1086,
+    "sha256": "0c68722d679d9ce819bb99d0a887b18cd17683d5d78d1885ed37840fb92cd304"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdCompressor.kt",
+    "bytes": 1986,
+    "sha256": "94e46b3eb77d42e02c5901a6db9135a05291ef94057e6424dac74479537cfdd0"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/JniZstdDecompressor.kt",
+    "bytes": 1763,
+    "sha256": "6d45d72c6e27ad93873b136e230ed6b8b8d9d29b72ad548cf1a0600a1cf8069e"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jniMain/kotlin/com/squareup/zstd/Zstd.jni.kt",
+    "bytes": 884,
+    "sha256": "b847ea17a8c47843de0bae6ffbbbc2691c8283b62959ea067b6f3766b711d1e9"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp/src/jvmMain/kotlin/com/squareup/zstd/JvmZstd.kt",
+    "bytes": 1696,
+    "sha256": "ae6e0154cf6319bed00a4a9b3e2aa20ccecd8ac8143d10038e975907c9345472"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/Zstd.kt",
+    "bytes": 1279,
+    "sha256": "3cb1ff84e86fb57d880ba95def71858e9f440814efc20c238523d3bc85cd8825"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdCompressSink.kt",
+    "bytes": 4556,
+    "sha256": "985427f2b3bceac984b999717244487642fee260f8ccca4fa861095b8ea85766"
+  },
+  {
+    "path": "runtime-host/third_party/zstd-kmp/zstd-kmp-okio/src/commonMain/kotlin/com/squareup/zstd/okio/ZstdDecompressSource.kt",
+    "bytes": 3484,
+    "sha256": "10d557dafe37a6a7295d30f4820594164cd7fc8bed392634674cc69b57640f9d"
+  },
+  {
+    "path": "runtime-host/zstd-compat.patch.json",
+    "bytes": 1628,
+    "sha256": "527ad24388387da721dd2ff9e0d37249e13ab6d90109176f28c9473000e797ea"
+  },
+  {
+    "path": "runtime-host/zstd-source.lock.json",
+    "bytes": 20444,
+    "sha256": "e93e031636ebb14c39e4a67fb00cd877678fcc47672c16e8fea749b36bde1762"
+  },
+  {
+    "path": "runtime-native/MSAppEngine.c",
+    "bytes": 985,
+    "sha256": "28e69cc167c3587b7a14c56ce6236f192f128d84980a84084200b5d65a90c91e"
+  },
+  {
+    "path": "runtime-native/MSAppEngine.h",
+    "bytes": 666,
+    "sha256": "c80810cee1a1016aceee429dbffaffb76ad68405ab7da2f38da4821c826e5e75"
+  },
+  {
+    "path": "runtime-native/MSJavaBridge.c",
+    "bytes": 4160,
+    "sha256": "2b61f467701605ce03b1dea799de2f45af0f6248a9fa97c0e603dfba4a363037"
+  },
+  {
+    "path": "runtime-native/MSJavaBridge.h",
+    "bytes": 1951,
+    "sha256": "35b7a909ab24ea1f304a41e04881ae86f77d7f9f44fdee7df8b0ff83ad6a2518"
+  },
+  {
     "path": "runtime-native/MSJavaRuntime.c",
-    "bytes": 13553,
-    "sha256": "56b17692b520518d25bf98ea528c712f90dff8f1c320c11832026d8138a8ea30"
+    "bytes": 17850,
+    "sha256": "095bda656e0dce84f6697f40bad8538dbc21cf2c14fe46500af9c72e4a050bdf"
   },
   {
     "path": "runtime-native/MSJavaRuntime.h",
-    "bytes": 2459,
-    "sha256": "6fc8101575711e5da9f27b651e9e1172bc7fdea5cd22eac0f8451039fe2e3cc4"
+    "bytes": 4108,
+    "sha256": "bf604d03f93a5db7a318704376d827319334a190d12ae888090e15b677cf50a6"
+  },
+  {
+    "path": "runtime-native/MSZstdJNI.c",
+    "bytes": 17789,
+    "sha256": "ebb9b243a6486657b8ea66f4a6c813f79aa8d42dcfcd067a3b03f529f962af36"
+  },
+  {
+    "path": "runtime-native/MSZstdJNI.h",
+    "bytes": 584,
+    "sha256": "3fd0b372ef6c5eeaf9dc1a175623b69b523c3b4cb721c384784bf63a62e2a52e"
   },
   {
     "path": "runtime-native/README.md",
-    "bytes": 4095,
-    "sha256": "cd87eefd8ae56402f0807fbf8986508f0b45846fdc62f8c8de41c5bef9ceae47"
+    "bytes": 6294,
+    "sha256": "fff6bb596c1d6c01a5cb833b75c8289c14dc8a4bb4a9eb08f74192300770663d"
   },
   {
     "path": "runtime-native/host_probe.c",
-    "bytes": 16414,
-    "sha256": "e62074396bfa50844111d87bb6a6871186794e9174e4610b43a09565adc9d00e"
+    "bytes": 16633,
+    "sha256": "27299909331eeab6a10342af4d01f9b870bbd66aec8cdea15dc966d290f0f368"
+  },
+  {
+    "path": "runtime-native/ios-probe/main.m",
+    "bytes": 14894,
+    "sha256": "c2a318096f983e96c5d4d92c961e710f08080a493addb72de8c9ae50a3e4add7"
+  },
+  {
+    "path": "runtime-native/ios_filetype.m",
+    "bytes": 2954,
+    "sha256": "1189b849b1e973b6b07486cd6ee336e596ffcbb6a010e792a117b74896aac3e7"
   },
   {
     "path": "runtime-native/ios_jvm_compat.cpp",
-    "bytes": 416,
-    "sha256": "ac66f00db16a724b22bc87471ae00c45d308a9e4e57f130fdb67ccc4fa33b733"
+    "bytes": 1438,
+    "sha256": "f16ec4936bbdb72538e684d487e367f6b6fa2c2d9039ef80054051c501dbe443"
+  },
+  {
+    "path": "runtime-native/tests/BridgeFixture.java",
+    "bytes": 1968,
+    "sha256": "ecd977c91078c4c8d4202a8b183484abd7bc8301746c66e5cef82a3c4783e7f4"
+  },
+  {
+    "path": "runtime-native/tests/java_bridge_test.c",
+    "bytes": 11395,
+    "sha256": "8f01ffa6f293844202158ad58f0dcfb1ea1e5e6f3c5a3b324dbf083459e10b96"
+  },
+  {
+    "path": "runtime-native/third_party/openjdk-jni/ADDITIONAL_LICENSE_INFO",
+    "bytes": 2114,
+    "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+  },
+  {
+    "path": "runtime-native/third_party/openjdk-jni/ASSEMBLY_EXCEPTION",
+    "bytes": 1514,
+    "sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"
+  },
+  {
+    "path": "runtime-native/third_party/openjdk-jni/LICENSE",
+    "bytes": 19274,
+    "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+  },
+  {
+    "path": "runtime-native/third_party/openjdk-jni/src/java.base/share/native/include/jni.h",
+    "bytes": 76300,
+    "sha256": "1e03bd83d1662ac00647f7a06c11d32333767ee537803ec1d153e89888414520"
+  },
+  {
+    "path": "runtime-native/third_party/openjdk-jni/src/java.base/unix/native/include/jni_md.h",
+    "bytes": 2191,
+    "sha256": "8232a5a68d36060aaa426fbfdb4537983ecfdfc5fe07a43230005ddd1a4b986a"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/COPYING",
+    "bytes": 18091,
+    "sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/LICENSE",
+    "bytes": 1549,
+    "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/allocations.h",
+    "bytes": 1637,
+    "sha256": "6a718e8edaca112abdc0bdfa7de67edefaa44c8d9e514b79672ab58ab3a9118a"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/bits.h",
+    "bytes": 5953,
+    "sha256": "a7c538410d152df8a7ec6ecca194804f6d9fb998a92765513b38aa6f00226448"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/bitstream.h",
+    "bytes": 18727,
+    "sha256": "a9461685c9add6f609078acc950a08db4c02e6e6a849d550f45182ba2ae38556"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/compiler.h",
+    "bytes": 17029,
+    "sha256": "e788b6b7f0dc6d73f92c0669bcd3d069d2b3ede4ede7be2241c979e3722362b1"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/cpu.h",
+    "bytes": 5438,
+    "sha256": "23d520b536a6f23114e66549d03a967b1f24b15560c5b1ebd47ee392ccee4a1c"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/debug.c",
+    "bytes": 1091,
+    "sha256": "7ab1ea104acf3243fc1cd4e6d2514046f1dfc1101c7c676145c8da080e8c24ca"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/debug.h",
+    "bytes": 3925,
+    "sha256": "8260cd5087b8309679c61b772b535688993c61a675a30481b8ae55b45740ba15"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/entropy_common.c",
+    "bytes": 13308,
+    "sha256": "7dfce29c6bc807645b1f0c373dad94bbb49603b175a84e72d1739bf9df65feb8"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/error_private.c",
+    "bytes": 3905,
+    "sha256": "3f5873b2626ca1cdf554b7ec7b04ea0ef296fd0f6882d7fad42448b7e2dbb41c"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/error_private.h",
+    "bytes": 6438,
+    "sha256": "ae077bb433eb150ee247410a0357f910b9c07be839c6a9abe0b2e6b18ceb716d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/fse.h",
+    "bytes": 30033,
+    "sha256": "5235ce1e512bf80204d013b1f4cecd776fdaa9effddb48308bce08f6d0b84499"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/fse_decompress.c",
+    "bytes": 12478,
+    "sha256": "84eba7030a036b36363a5108e760428ce549f1a833bec6464dc755f6ed51a6fb"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/huf.h",
+    "bytes": 14119,
+    "sha256": "9a83d899c8c9bf03389d482562090ec2443bc0f87f27864a2b891b180333f2d4"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/mem.h",
+    "bytes": 12939,
+    "sha256": "4dd5fe76fa30a020cd4b3af3134ae143920300a1fe54baac1a5da73297e66783"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/pool.c",
+    "bytes": 11782,
+    "sha256": "9431e26cf7ca46ffb878f17df31198046664d592ae208dfbe3715e82b87af79d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/pool.h",
+    "bytes": 2569,
+    "sha256": "bca19a2408e85f31bad3a13f205de92ac26ecda0c5af96fdd7f213ce03d9fc78"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/portability_macros.h",
+    "bytes": 5613,
+    "sha256": "fb69eb648f4c0e66a2cbf552a8f0e031b795a9c68dd5a1fc6fb35b9747eedcfb"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/threading.c",
+    "bytes": 4886,
+    "sha256": "50448323b46a8e1bde042ee88ec44fcfc646f3d4aeba8a06be54d26a710ed78d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/threading.h",
+    "bytes": 5112,
+    "sha256": "9ca63027ea64046acacccbe056a414d37ea7ea428ce299fe08abe53c204c5c65"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/xxhash.c",
+    "bytes": 607,
+    "sha256": "8444d064922f434b67b708a987981aa21dfeece735b48c82d31f7027d0ccef03"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/xxhash.h",
+    "bytes": 262488,
+    "sha256": "8cb837b21a8fe9a6b9dbcd0961ab16e733bfcbfa9e003f3a496ce07ae80aa8ee"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/zstd_common.c",
+    "bytes": 1797,
+    "sha256": "e85829d25434d841c96491bc9d8bb2d73c0ee80319e3d59e9ca6e2951d9592cf"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/zstd_deps.h",
+    "bytes": 3010,
+    "sha256": "9c77ea7d0afa8d5c868a7839e178a446a82d88eb75fd56f2fd7d9d96c5ab7c11"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/zstd_internal.h",
+    "bytes": 10933,
+    "sha256": "82f438584048fa704ae71166edf8c60bc91dcb2473c53e7049128a04276a27db"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/common/zstd_trace.h",
+    "bytes": 4562,
+    "sha256": "17f6daa4c7e97055cd1ed7bcf4d9241a4e79b465f083c5d732fda1df2f0be11e"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/clevels.h",
+    "bytes": 6860,
+    "sha256": "d764daa89b7a636d26fe96ff3536c5075e9867fb5dddbf8c9d57023a8ff4a155"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/fse_compress.c",
+    "bytes": 24103,
+    "sha256": "5070807a489757b87c1e1f50332b099e8ffe22971228218111eef64d3321ae82"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/hist.c",
+    "bytes": 19422,
+    "sha256": "06073ee418d67ad16ac650d8c812db1e14c114b3da699e5411940285c7d50f5d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/hist.h",
+    "bytes": 3828,
+    "sha256": "1c1a7a020df310d4ac8ee0729acb21bfa6d6a107e07d4036bb193a70570e5d48"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/huf_compress.c",
+    "bytes": 58609,
+    "sha256": "d213b5f8d1e9f5c52df38c432597a00cf046869910993f3a1a22b620f85b31a7"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress.c",
+    "bytes": 351881,
+    "sha256": "51700092a725fc780c1f30310898c238d8fdc787a2f07a9658797af5b33cef3e"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_internal.h",
+    "bytes": 68498,
+    "sha256": "e99de778a2a733bde856172057fe380256c379f082bd3513cac600b005ac2b98"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_literals.c",
+    "bytes": 9155,
+    "sha256": "a8f25f1bd4c0d2d9dda3355d2103c9dfbd0b7056bfd373e29e923662bfea5596"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_literals.h",
+    "bytes": 1613,
+    "sha256": "02270cd6bc060279217861776a53adb67f8d7e54f47f59d2a4ddcef2e705fe2d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_sequences.c",
+    "bytes": 20004,
+    "sha256": "3f4334c19ed770c4007bc12df4098026d4eb1a6fbebfbf36df58054e7babc3e9"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_sequences.h",
+    "bytes": 2224,
+    "sha256": "361d108d7d452ed26f0ae4b39964f8e62166ed91d03347a5229e5d228734efc8"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_superblock.c",
+    "bytes": 34085,
+    "sha256": "dd62ed79ee1feec78b2e5bfc63417ccbdcda426f4220d112b0fcd8a9d0c7e667"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_compress_superblock.h",
+    "bytes": 1168,
+    "sha256": "6b097999ea1d91776ca5a12e5ee02c1ed15edfcd31ba07b9ada94b0955195677"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_cwksp.h",
+    "bytes": 28892,
+    "sha256": "ed77c2739b18b9800b97785262526a1dd4f385311ca5c2caa20b6f2a35f3735d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_double_fast.c",
+    "bytes": 35303,
+    "sha256": "9f6d003c2fe1208737bec685910324220424ba47d0323fa30d9d5f53c50e91da"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_double_fast.h",
+    "bytes": 1767,
+    "sha256": "d9c29c9c004f572532265e12af78d5949c0908f4ef0bb0158977bcf80e1cf92b"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_fast.c",
+    "bytes": 38104,
+    "sha256": "8037320f321836652e73ab6cbf7b8f1f4c97cef38835ac6b4aaf0af716aa398d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_fast.h",
+    "bytes": 1178,
+    "sha256": "dffdf43fae7ee10a2acc04e6a5eaaf03f7d3572898117a06c330d647eed5591d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_lazy.c",
+    "bytes": 102821,
+    "sha256": "dd6ccf357165dc8cb574ea56a34ff1db57b7b31728b32103d0c6b72319fd45b1"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_lazy.h",
+    "bytes": 9684,
+    "sha256": "6f13007fbd6824058a73b097960446defe265e33b22c7c6dc2304dcf53998bbf"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_ldm.c",
+    "bytes": 29313,
+    "sha256": "4a2bef3612ae4a9e15a78a55541a152091fa8ba160410db24d495bd6dd57249e"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_ldm.h",
+    "bytes": 4365,
+    "sha256": "bd0cb86041d3a72fd7846e141a41aadae229c8e331a2117df7f6b70a1b4cb08c"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_ldm_geartab.h",
+    "bytes": 6077,
+    "sha256": "7285ac8ba1f0fa57a8cd8158bd427ded4e70e32a58e73b57c420b83a76e5e6e3"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_opt.c",
+    "bytes": 72006,
+    "sha256": "625936ee3fb02d789abb894c1fbc2918ee47582434094c963b630da13532c876"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_opt.h",
+    "bytes": 3046,
+    "sha256": "9b677efbae28909034d3c24f37dc5c4295d267cf477bf04e14653579f90d8b6e"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_preSplit.c",
+    "bytes": 8729,
+    "sha256": "8d7da15de31318ebb7dfe2f2e2c79f05b0d0563dcb92d4525814d05a279d0d64"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstd_preSplit.h",
+    "bytes": 1175,
+    "sha256": "910facb2e3442e42a6952c514223c4502d95ed957bf7dc73982b3b03785b361b"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstdmt_compress.c",
+    "bytes": 84098,
+    "sha256": "c83db699b4041bf4db89c5558db490dd295635f1eeefd60b643fbc862bbac7b5"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/compress/zstdmt_compress.h",
+    "bytes": 4574,
+    "sha256": "033fb25d96b4295c3d0158edf4d1bd4067f42aac39427706754e6c034b20f80f"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/huf_decompress.c",
+    "bytes": 77026,
+    "sha256": "0086a55ab29623b914453e9d6d07f8f93a868fcf7d6862fb70177587ba09b1f1"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_ddict.c",
+    "bytes": 9182,
+    "sha256": "38bf812283d61f4cd1f6aea30f84b43317418257c4e6fc198b09b436bd484397"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_ddict.h",
+    "bytes": 1319,
+    "sha256": "a97a250fd2f956e3ae419ddde68ae1f9fe4025bc0373254058d31bbd352fa71c"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_decompress.c",
+    "bytes": 102400,
+    "sha256": "029580818b7e9cd38d9d07c63516b00ceaa943ffcfbd099fc5ccbe3628fa362f"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_block.c",
+    "bytes": 101849,
+    "sha256": "3b5578187aab5ec88105e8f6567127d9b5686aad5bff50add3bef979c75ff48a"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_block.h",
+    "bytes": 2682,
+    "sha256": "62ee0c6ae3f7353020538397f436b59743da8acb922068841b346f480f7078ac"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/decompress/zstd_decompress_internal.h",
+    "bytes": 9683,
+    "sha256": "73217b49a644c0fcf567b70677cae31449ba9f50a235ef3b681001c3f36dc56d"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/zstd.h",
+    "bytes": 182252,
+    "sha256": "9e132ed39fc7cf224e1a54ff8c09c98898169208bdf66258ad15b6d7710d096e"
+  },
+  {
+    "path": "runtime-native/third_party/zstd/lib/zstd_errors.h",
+    "bytes": 4278,
+    "sha256": "66a8c3f71d12ea6e797e4f622f31f3f8f81c41b36f48cad4f5de7d8bfb6aac0a"
+  },
+  {
+    "path": "runtime-native/zstd_host_check.c",
+    "bytes": 2689,
+    "sha256": "f3fa3f8e7140a230daad2fc8ffb2b535b274afc4b0612757fb3cd45d359ecc89"
   },
   {
     "path": "runtime-probe/plugin/probe/SourceProbe.java",
@@ -846,43 +2361,58 @@
   },
   {
     "path": "runtime-probe/src/mangashelf/probe/RuntimeProbe.java",
-    "bytes": 4409,
-    "sha256": "f126aa773626ddc874eab94b62fd353f78486872cd5f99312660fdeee6acf7c8"
+    "bytes": 9711,
+    "sha256": "d2e19da9077f7c39c505c13005ad7153c1c4798d9d6f20f8b56a3947c319e17a"
+  },
+  {
+    "path": "runtime-probe/src/mangashelf/runtime/ExtensionArchiveVerifier.java",
+    "bytes": 18083,
+    "sha256": "0dc74495ff42905a77d3083a91a08ea00c172be5c7a9b5a55c6249234ee3195e"
   },
   {
     "path": "runtime-probe/src/mangashelf/runtime/ExtensionRunner.java",
-    "bytes": 19147,
-    "sha256": "7e031e41ecd4436d703b77195096fc5ba11288b1ed562228d09dd92ba5c09db8"
+    "bytes": 19696,
+    "sha256": "4337277e5db73ca666583dc5f8f423942a8880a452d50965d2ce96db622eca69"
   },
   {
     "path": "runtime-probe/tests/fixtures/SyntheticSources.java",
-    "bytes": 4073,
-    "sha256": "424cb6c4affef57849d6a8c53eecaf2bba7591efac69324d371c5147fb9b7479"
+    "bytes": 4487,
+    "sha256": "5e8de104816de244f21e7c4a75a7e7a58eafcc9008659f5794460e313048f1f7"
   },
   {
     "path": "runtime-probe/tests/mangashelf/runtime/RunnerHost.java",
-    "bytes": 1213,
-    "sha256": "f0ddfd83224fdc737c4f78fb936d1ffee0ac02918dbab19a140c0d00c2a4f6fe"
+    "bytes": 1248,
+    "sha256": "8d344d6193a49e3d32090c97b8a42684a5a6faf1fb170daa9d7d8ef29b4352d7"
+  },
+  {
+    "path": "scripts/analyze_tachimanga_package.py",
+    "bytes": 13410,
+    "sha256": "8190211a22f7ecc638d946cd10e12cc7a16c63a2a897e95e3e85b6c8939a229a"
   },
   {
     "path": "scripts/audit_project.py",
-    "bytes": 3369,
-    "sha256": "e4391e55818d035bcb24314f09aa6abf898cc32a24f540a634414de9541f16c5"
+    "bytes": 4051,
+    "sha256": "7aadeffd67bf4ee3ca12a29e2dda9676580fa7d6d2495aef9c067ee0f3bb17b1"
   },
   {
     "path": "scripts/bridge_regression.c",
-    "bytes": 9961,
-    "sha256": "fa3ec69e82baa3675d5249547e1238e86da60a7540987667423fd9b220418ff2"
+    "bytes": 13290,
+    "sha256": "5a3321b52bfea3129266ebd227bba8b0d9befae85101c29ad5038c937108b607"
+  },
+  {
+    "path": "scripts/build-ios-jvm-device-probe.sh",
+    "bytes": 7546,
+    "sha256": "95b78b3e7a3d8acff48e2ca743a4bf5d0e4432ea5c809918d695feffae923f1c"
   },
   {
     "path": "scripts/build-ios-jvm.sh",
-    "bytes": 1930,
-    "sha256": "4b9e9e88881d65ba515a723fee394140d7ea8c60ae5cf367a6d44c8536a41321"
+    "bytes": 7040,
+    "sha256": "b6041cb60287d06dc7e500e345186415d81955dc400926aa4f3d877c92681f68"
   },
   {
     "path": "scripts/build-ios.sh",
-    "bytes": 2352,
-    "sha256": "3d4122551973f36ce86d7ceed4a12a58617e143f8f9d130b6350ea9c66454e4c"
+    "bytes": 2949,
+    "sha256": "2b46e0307fba06f230a07bad3cde6832428140445dbe955960e6956c567d6859"
   },
   {
     "path": "scripts/build-native-runtime-probe.py",
@@ -890,9 +2420,64 @@
     "sha256": "f8b21616fee6c43ccaf92a868c6c0f2a6d84491aee09f2a2eddc164bd7fe5fac"
   },
   {
+    "path": "scripts/build-reference-extension.sh",
+    "bytes": 2313,
+    "sha256": "82e4cb37c55f1e2c656180b66bd5e77f3f5a329e6772799f70a6605d88307f81"
+  },
+  {
+    "path": "scripts/build-runtime-host.py",
+    "bytes": 15809,
+    "sha256": "ef7394922eac721ae796ec2f745f889e73669e2256cb9f1815868d6313282d92"
+  },
+  {
+    "path": "scripts/build-zstd-native.py",
+    "bytes": 8433,
+    "sha256": "22cb71ae7a30e995cfc1d8bc4861786f08858656b49762e2effdb2548c212573"
+  },
+  {
+    "path": "scripts/build_ui_comparison.py",
+    "bytes": 4198,
+    "sha256": "cb1fbccb5b063aa6aebcf7f187b4cc0c14772eaba86e1c4a953c775affdc4bfa"
+  },
+  {
+    "path": "scripts/capture_ui_snapshots.sh",
+    "bytes": 9909,
+    "sha256": "c9d12c724de56897e50ae0520c5b9ae9d3f7207b0e48b7166ad12ec408019ec8"
+  },
+  {
+    "path": "scripts/check-mangadex-host.py",
+    "bytes": 5845,
+    "sha256": "66c22b8d22b60044a75a430963d6d6bef07a50265481ea78006899f8e6735c0c"
+  },
+  {
+    "path": "scripts/check-teamx-host.py",
+    "bytes": 5857,
+    "sha256": "ac78ecd974f8cc956816e38cf35fc1c874a13ab5e0df5ef7f98c4ecd3b6ce1de"
+  },
+  {
     "path": "scripts/check_ui_resources.py",
     "bytes": 4712,
     "sha256": "578b8898ee076f5d1b991e4750f3e2bcfa834058606ccd1cada5b491d59cf551"
+  },
+  {
+    "path": "scripts/collect_ui_snapshots.py",
+    "bytes": 6112,
+    "sha256": "5eb34f3aeda08fdc825df549ec67de55630d73a50c245333c73c1f01dad0812c"
+  },
+  {
+    "path": "scripts/copy-ios-app-engine.py",
+    "bytes": 3205,
+    "sha256": "e5d55723f3df959768c0959ea8afc26531a17daa85b72b07deb76eb4032f4ab6"
+  },
+  {
+    "path": "scripts/download-ios-jvm-evidence.py",
+    "bytes": 6809,
+    "sha256": "6c79131ef39265da225ff5fe823796da82935a159cbb112df4246b063249f401"
+  },
+  {
+    "path": "scripts/download-pinned-repository.py",
+    "bytes": 2064,
+    "sha256": "d5657e1393af5bb474bc53f2d551db8e37774d1e381248020825a46506318786"
   },
   {
     "path": "scripts/fuzz_native.c",
@@ -901,13 +2486,28 @@
   },
   {
     "path": "scripts/generate_xcode_project.py",
-    "bytes": 6577,
-    "sha256": "ec3cfcf702dcd3b52df27364bf28dc684f835dbb9f7ed178fd530247a7595582"
+    "bytes": 11094,
+    "sha256": "c8f1a2138a966f168a496ce18d99bf8b3f731cbc1a1c30878b9f1e55ce419bf0"
+  },
+  {
+    "path": "scripts/inspect-ios-jvm-device.py",
+    "bytes": 22036,
+    "sha256": "5580d2d01f9fc3c37e67d52181a8aa5c3cc5933df46c25ad7b552206548f9302"
+  },
+  {
+    "path": "scripts/inspect-reference-extension.py",
+    "bytes": 5687,
+    "sha256": "16b7f37ed759bda85cc267a08feedf81be2c36efb12688762e58288504ff56d3"
   },
   {
     "path": "scripts/inspect_jar_backend.py",
     "bytes": 2737,
     "sha256": "4d27bd376a6bb4e8a5893cddf2bdc77056e811e4bab27bb996c7fc52e356aeb7"
+  },
+  {
+    "path": "scripts/inspect_jimage.py",
+    "bytes": 5753,
+    "sha256": "40f7e9064a695e5342748ec9bdf9d1d5f89ce995f71e689dc9aa356b5f78c066"
   },
   {
     "path": "scripts/inspect_runtime_reference.py",
@@ -921,8 +2521,8 @@
   },
   {
     "path": "scripts/link-ios-jvm-probe.sh",
-    "bytes": 1781,
-    "sha256": "f3fc922ebe2eac06e50d4591f07885a46f7a1878940b6d0e38de4378dd688631"
+    "bytes": 4465,
+    "sha256": "82db250a42c5b37dfcd4ab132ddd33b23c70283f21fe7152b2c5867ae56064ff"
   },
   {
     "path": "scripts/make_fixtures.py",
@@ -930,14 +2530,84 @@
     "sha256": "f98164aed3fc2969e2559dcd4b3ef35f8b043ca655b281487d550730e0ca583d"
   },
   {
+    "path": "scripts/measure_more_ui.py",
+    "bytes": 2936,
+    "sha256": "d63bebe5298f4ed6e4e573265d134f82451f7401addbd0b125a91fc06323d1cf"
+  },
+  {
+    "path": "scripts/measure_shared_ui.py",
+    "bytes": 5232,
+    "sha256": "206336fafe7402808d7ad3f10b5bcc1450c06be6260ad1c07aff8d42d15806c4"
+  },
+  {
+    "path": "scripts/package_tachimanga_analysis_update.py",
+    "bytes": 5194,
+    "sha256": "624c3be07653742557088860c1478e115fce40c137d9f0f724c16856c18075af"
+  },
+  {
     "path": "scripts/package_unsigned_ipa.py",
     "bytes": 4460,
     "sha256": "6ed1a5c5fca2bbbd6338557c83859746a5b2d58b958a59a9081139fb77fefe7c"
   },
   {
+    "path": "scripts/prepare-ios-app-engine.py",
+    "bytes": 11692,
+    "sha256": "c5824e96b8e28fccd78b1a59d32a85e4ee433434aae25437154b39d0b4730a04"
+  },
+  {
+    "path": "scripts/prepare-ios-jvm-source.py",
+    "bytes": 8457,
+    "sha256": "0e8ba41cddd9bb4bd115b99242d4f962de7be2cc1d2da975d9fe6bbf3813959d"
+  },
+  {
+    "path": "scripts/prepare_tachimanga_pool_tool.py",
+    "bytes": 3233,
+    "sha256": "be824b3aa21666405a2da2d18e1416685c9e07b95619741ac7fa45162b36168e"
+  },
+  {
+    "path": "scripts/review_tachimanga_appearance.py",
+    "bytes": 10600,
+    "sha256": "c7d0f364c4b8d5160828e2e7cfc2756fa317f3547bff21f0bfc3dfe07e90c90b"
+  },
+  {
+    "path": "scripts/review_tachimanga_font_route.py",
+    "bytes": 11381,
+    "sha256": "6a7821034d03f0230e23438178445a963a3d986bfd558416955d4b694fc69717"
+  },
+  {
+    "path": "scripts/review_tachimanga_gestures.py",
+    "bytes": 7527,
+    "sha256": "85a1c39d9eb3254336a3d38dc962d93c859b81c592daf24d6027a4fa2fbc4699"
+  },
+  {
     "path": "scripts/review_tachimanga_ipa.py",
     "bytes": 9854,
     "sha256": "d8df391eba5e3928dc7f132b9ced1fc8f02cb49051fce1e40b489e235aaccbd2"
+  },
+  {
+    "path": "scripts/review_tachimanga_navigation.py",
+    "bytes": 8170,
+    "sha256": "87c0af904223be793bbbf12562d8120ec344a6426864d6e3baf2de79d1963488"
+  },
+  {
+    "path": "scripts/review_tachimanga_pool.py",
+    "bytes": 8417,
+    "sha256": "20705d41d946b924d945ce01d8397161d8c1292593a8fee21f8ba2747f898f1f"
+  },
+  {
+    "path": "scripts/review_tachimanga_reader.py",
+    "bytes": 11722,
+    "sha256": "91b1e16249a636f3c5e85918c6706047309637726cc15d620879125f3ee46057"
+  },
+  {
+    "path": "scripts/review_tachimanga_settings.py",
+    "bytes": 10200,
+    "sha256": "734a3e8825f3c89ebd58bcd1fcd6bce0216257eef0f061c7d5e599583e8d59a0"
+  },
+  {
+    "path": "scripts/review_tachimanga_ui_shell.py",
+    "bytes": 4490,
+    "sha256": "f371c5c4372e3f3740fd9003aa00c6d095171d401a9036925ed4d3b46574e4d2"
   },
   {
     "path": "scripts/run-runtime-probe.py",
@@ -950,19 +2620,104 @@
     "sha256": "a054cd9b3088f824d39ff4713c3246e45102d82ebe0dcca70f318b3b240f9993"
   },
   {
+    "path": "scripts/seed_ui_simulator.py",
+    "bytes": 8452,
+    "sha256": "b63f827e18a6ca19dba5adc0ffedd5a285729ddb78b871d035499d785e92b29c"
+  },
+  {
+    "path": "scripts/tachimanga_object_details.rs",
+    "bytes": 4050,
+    "sha256": "5da4592d123d4a6a8031326563ac994e62f446663f0c6c9ab61edd066b6384f2"
+  },
+  {
+    "path": "scripts/tachimanga_pool_audit.rs",
+    "bytes": 4935,
+    "sha256": "52b5e2fd11f76c0cefd020afc85c724f7685c86105722096085e8ea39343b85f"
+  },
+  {
+    "path": "scripts/test-extension-archive-verifier.py",
+    "bytes": 22584,
+    "sha256": "df0f88e5094e83d40f0a79f5651352934de47608a08507fdbf1ca7baa209f693"
+  },
+  {
+    "path": "scripts/test-extension-loader.py",
+    "bytes": 10112,
+    "sha256": "ccb6c7ede5a92f370475396782969df66995415052d3fef3bc8be389817cefcf"
+  },
+  {
+    "path": "scripts/test-ios-device-fixture.py",
+    "bytes": 6806,
+    "sha256": "9c7356bc49c0d1b23f90d07aecd482fb87f719bb4a87d05407b6fd9f2f73efb7"
+  },
+  {
+    "path": "scripts/test-java-bridge.py",
+    "bytes": 5288,
+    "sha256": "8a04ac6d59a41a429d25363ba4197fd70fa41edccbda094f82713f9a8f7946c7"
+  },
+  {
+    "path": "scripts/test-runtime-bootstrap.py",
+    "bytes": 3319,
+    "sha256": "83fa5289e1e87bd1a2bf4859fbb9d813b45380eb3f3a21314eeeb9b0cb69b164"
+  },
+  {
+    "path": "scripts/test-runtime-host.py",
+    "bytes": 10585,
+    "sha256": "8179e0a3ac1b9dbd760309314241f5a185235f5ae0a61109d99ccbc5c03d366d"
+  },
+  {
+    "path": "scripts/test-runtime-network.py",
+    "bytes": 4464,
+    "sha256": "91ff52c28ec7eba2f916f303f3ab62ec9ac33f3d97a91b2dbab1a04554cc9694"
+  },
+  {
+    "path": "scripts/test-runtime-preferences.py",
+    "bytes": 3125,
+    "sha256": "c92209b73d22a2b9b9c50f24c7ed35054ef77f01040243952cd993fb6774f256"
+  },
+  {
+    "path": "scripts/test-runtime-source-commands.py",
+    "bytes": 3299,
+    "sha256": "d5807e0fb7db85961d9f942a36afd2e085cbdf37c2cabc2ce7df2ae5e80871bb"
+  },
+  {
+    "path": "scripts/test-runtime-source-preferences.py",
+    "bytes": 3399,
+    "sha256": "007ff49cdb8126dc0a7e739eb0a9bcab20536d5dcc50e807f4158908971598d5"
+  },
+  {
+    "path": "scripts/test-runtime-zstd.py",
+    "bytes": 6706,
+    "sha256": "51e3d780fb41dd46a60a8ab7177ec978bfa9935144c6b99f8d50a7f08c85d5df"
+  },
+  {
     "path": "scripts/test_bridge.py",
-    "bytes": 3467,
-    "sha256": "d7c525bffd37326b060d517a9482fe0ea4db9b6636c1f0f141f47b397032882b"
+    "bytes": 3468,
+    "sha256": "47200290b3770d90f817538cb9fec0f96447da30f48514ebdea65d442a2ba847"
   },
   {
     "path": "scripts/test_extension_runner.py",
-    "bytes": 13971,
-    "sha256": "02fc21d1d1b44994308406da81ba52207160d5d7e7b5761cb4a88efbee44ec59"
+    "bytes": 15319,
+    "sha256": "31ca3e2db4bd275ff02acb0549ea422336896bb546c9c093f9e56ccdb276d014"
+  },
+  {
+    "path": "scripts/test_ios_app_engine.py",
+    "bytes": 4384,
+    "sha256": "e5e7ade84dca7a8eb6d33ef63cdf236a9d747938c02aa4f81a516a47f156ca23"
+  },
+  {
+    "path": "scripts/test_ios_jvm_evidence.py",
+    "bytes": 3401,
+    "sha256": "7aa99dfbd7bf52b2ebe5d3de4f7cf1b7fc9590be542d756f0352a35e9ff277f8"
+  },
+  {
+    "path": "scripts/test_ios_jvm_source.py",
+    "bytes": 14144,
+    "sha256": "90619c0eb6be509a63ff43d4417a8781c15554018bb45fdf65e3cccdfdce272b"
   },
   {
     "path": "scripts/test_native.py",
-    "bytes": 9572,
-    "sha256": "42ca7fdf66b14c7d6f0791dec96681fc563bfbd1f3af70fac3263f983536f0f1"
+    "bytes": 11441,
+    "sha256": "7e4a674639b241aa9c829bd57ae7d5faaa2e56adae281126baf6c292210c2ffc"
   },
   {
     "path": "scripts/test_packaging.py",
@@ -970,8 +2725,33 @@
     "sha256": "0128b13710d16603fd764317b48febf2803d29ab0a53429cbfe8ce9a57488e87"
   },
   {
+    "path": "scripts/test_ui_snapshot_capture.py",
+    "bytes": 4383,
+    "sha256": "6e4596970a3a62e5104c324106c7f372118fc7439ef5f2f9c9e6e6093bfa8942"
+  },
+  {
+    "path": "scripts/verify-ios-jvm-encoding.py",
+    "bytes": 10426,
+    "sha256": "5f610fb4fbf0255553b96544f7f484dd2cd7c2bddf4254e75eb9821842877432"
+  },
+  {
+    "path": "scripts/verify-ios-jvm-source.py",
+    "bytes": 11333,
+    "sha256": "2e18f85118760bb520c2feb5f29830dc75f1c8dcc5219686c6e70d34136d1519"
+  },
+  {
     "path": "scripts/verify_ios_archive.py",
     "bytes": 3164,
     "sha256": "90ac15c2a0f971f8d43c42898f9f82c45085d283a24b36220190a7602cf4de0d"
+  },
+  {
+    "path": "scripts/verify_ui_simulator.py",
+    "bytes": 3627,
+    "sha256": "7f7b804d54d1c6e92f8103f7144922c2b94ad7f8d21c61467bb2ebd48c5894cf"
+  },
+  {
+    "path": "scripts/zstd-source.py",
+    "bytes": 3949,
+    "sha256": "429a3b9b2adbb9fb547d54a147f26488f7c0e6b041892d1bf57a9b1feaa2a0b4"
   }
 ]

@@ -20,6 +20,15 @@ enum AppError {
             default: break
             }
         }
+        if let failure = error as? UnifiedBackupError {
+            switch failure {
+            case .recoveryRequired: return L10n.string("Restore recovery is required. Reopen the app.")
+            case .exceededLimits: return L10n.string("The backup exceeds supported limits or available storage.")
+            case .integrityFailure: return L10n.string("The backup is incomplete or its integrity check failed.")
+            case .unsupportedVersion: return L10n.string("This backup version is not supported.")
+            default: break
+            }
+        }
         let code = error as NSError
         if code.domain == NSURLErrorDomain {
             switch code.code {
@@ -37,6 +46,7 @@ enum AppError {
 @MainActor final class AppModel: ObservableObject {
     @Published private(set) var state = LibraryState()
     @Published private(set) var ready = false
+    @Published private(set) var starting = true
     @Published private(set) var busy = false
     @Published private(set) var refreshingRepositories = false
     @Published private(set) var stagedExtensions: [StagedExtension] = []
@@ -47,13 +57,24 @@ enum AppError {
     private var readerDefaultsWrite: (id: UUID, task: Task<Void, Never>)?
 
     func start() async {
-        guard !ready, !busy else { return }
-        busy = true; defer { busy = false }
+        guard !ready, !busy else { starting = false; return }
+        busy = true; defer { busy = false; starting = false }
         do {
             let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let root = support.appendingPathComponent("MangaShelf", isDirectory: true)
-            store = try LibraryStore(root: root)
-            stagedStore = try StagedExtensionStore(root: root.appendingPathComponent("Extensions", isDirectory: true))
+            let (openedStore, openedStaged, pending) = try await Task.detached(priority: .userInitiated) {
+                try UnifiedBackup.recoverIfNeeded(root: root)
+                let pending = try UnifiedBackup.pendingPreferences(root: root)
+                let lib = try LibraryStore(root: root)
+                let staged = try StagedExtensionStore(root: root.appendingPathComponent("Extensions", isDirectory: true))
+                return (lib, staged, pending)
+            }.value
+            if let pending {
+                try BackupCoordinator.applyPreferences(pending); InterfaceState.shared.reload()
+                try UnifiedBackup.acknowledgePreferences(root: root)
+            }
+            store = openedStore
+            stagedStore = openedStaged
             if let stagedStore {
                 let configuration = AppExtensionEngine.Configuration(
                     directory: root.appendingPathComponent("Engine", isDirectory: true),
@@ -80,7 +101,7 @@ enum AppError {
         } catch { errorMessage = L10n.format("Could not open library data. No data was deleted or replaced.\n%@", String(describing: AppError.describe(error))) }
     }
     func perform(_ operation: (LibraryStore) async throws -> Void) async {
-        guard let store, !busy else { return }
+        guard !BackupMaintenance.shared.isActive, let store, !busy else { return }
         busy = true; defer { busy = false }
         do { try await operation(store); state = await store.snapshot() }
         catch {
@@ -121,6 +142,7 @@ enum AppError {
         await changeReaderSettings(change: change)
     }
     func changeReaderSettings(for titleKey: String? = nil, change: @escaping (inout ReaderSettings) -> Void) async {
+        guard !BackupMaintenance.shared.isActive else { return }
         guard let store else { return }
         let previous = readerDefaultsWrite?.task, id = UUID()
         let task = Task { @MainActor in
@@ -137,6 +159,7 @@ enum AppError {
         if readerDefaultsWrite?.id == id { readerDefaultsWrite = nil }
     }
     func setReaderOverride(_ enabled: Bool, for titleKey: String) async {
+        guard !BackupMaintenance.shared.isActive else { return }
         guard let store else { return }
         let previous = readerDefaultsWrite?.task, id = UUID()
         let task = Task { @MainActor in
@@ -151,6 +174,7 @@ enum AppError {
         if readerDefaultsWrite?.id == id { readerDefaultsWrite = nil }
     }
     func changeCategoryDisplayOptions(categoryID: UUID?, change: @escaping (inout CategoryDisplayOptions) -> Void) async {
+        guard !BackupMaintenance.shared.isActive else { return }
         guard let store else { return }
         let previous = displayWrite?.task
         let id = UUID()
@@ -192,12 +216,14 @@ enum AppError {
         await perform { try await $0.setBookNotes(id: id, notes: notes) }
     }
     func addReadingTime(id: UUID, duration: TimeInterval) async {
+        guard !BackupMaintenance.shared.isActive else { return }
         guard !UserDefaults.standard.bool(forKey: "privacy.privateHistory") else { return }
         guard let store else { return }
         do { try await store.addReadingTime(id: id, duration: duration); state = await store.snapshot() }
         catch { errorMessage = AppError.describe(error) }
     }
     func progress(id: UUID, page: Int, offset: Double = 0) async {
+        guard !BackupMaintenance.shared.isActive else { return }
         // Progress must not be dropped because another UI operation is in flight.
         guard let store else { return }
         do {
@@ -207,17 +233,31 @@ enum AppError {
         }
         catch { errorMessage = L10n.format("Could not save reading progress: %@", String(describing: AppError.describe(error))) }
     }
+    func backupSnapshot() async throws -> LibraryState {
+        guard let store, ready else { throw ReaderFailure(L10n.string("The library is not ready.")) }
+        while busy { try await Task.sleep(for: .milliseconds(20)); try Task.checkCancellation() }
+        await readerDefaultsWrite?.task.value; await displayWrite?.task.value
+        return await store.snapshot()
+    }
+    func reloadAfterRestore() async throws {
+        guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
+        try await store.reloadAfterRestore(); state = await store.snapshot()
+        await CoverService.shared.clear()
+    }
     func backup() async throws -> Data {
         guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         return try await store.exportMetadata()
     }
     func refreshRepository(_ url: String) async throws {
+        guard !BackupMaintenance.shared.isActive else { throw CancellationError() }
+        let generation = BackupMaintenance.shared.generation
         guard let store else { throw ReaderFailure(L10n.string("The library is not ready.")) }
         let started = Date()
         let existingID = state.repositories.first { $0.url == url }?.id
         do {
             let repository = try await RepositoryClient(transport: SecureHTTP()).fetch(url: url)
             try Task.checkCancellation()
+            guard !BackupMaintenance.shared.isActive, generation == BackupMaintenance.shared.generation else { throw CancellationError() }
             if let existingID {
                 try await store.updateRepository(id: existingID, index: repository.index, fetchedAt: repository.fetchedAt)
             } else { try await store.saveRepository(repository) }

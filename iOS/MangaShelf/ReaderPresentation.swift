@@ -164,7 +164,7 @@ final class ReaderCanvasView: UIView, UICollectionViewDataSource, UICollectionVi
         collection.backgroundColor = .clear
         zoom.delegate = self; zoom.minimumZoomScale = 1; zoom.maximumZoomScale = 4
         zoom.showsVerticalScrollIndicator = false; zoom.showsHorizontalScrollIndicator = false
-        zoom.contentInsetAdjustmentBehavior = .never
+        zoom.contentInsetAdjustmentBehavior = .never; zoom.isAccessibilityElement = false
         zoom.addSubview(zoom.imageView); zoom.imageView.contentMode = .scaleAspectFit
         addSubview(collection); addSubview(zoom); addSubview(spinner); addSubview(errorLabel)
         spinner.color = .lightGray
@@ -251,16 +251,22 @@ final class ReaderCanvasView: UIView, UICollectionViewDataSource, UICollectionVi
     }
     private func renderPaged() {
         guard let input, let spread = spreads.first(where: { $0.pages.contains(input.page) }) else { return }
-        zoom.imageView.isAccessibilityElement = false; zoom.imageView.accessibilityIdentifier = nil
         for page in spread.pages { requestImage(page) }
         if let failure = spread.pages.compactMap({ errors[$0] }).first {
+            zoom.imageView.isAccessibilityElement = false; zoom.imageView.accessibilityIdentifier = nil
             errorLabel.text = failure + "\n" + L10n.string("Tap to retry"); spinner.stopAnimating(); zoom.imageView.image = nil; return
         }
         errorLabel.text = nil
         guard spread.pages.allSatisfy({ images[$0] != nil }) else {
+            zoom.imageView.isAccessibilityElement = false; zoom.imageView.accessibilityIdentifier = nil
             spinner.startAnimating(); zoom.imageView.image = nil; return
         }
         spinner.stopAnimating()
+        let exposeAccessibility = { [zoom] in
+            zoom.imageView.isAccessibilityElement = true
+            zoom.imageView.accessibilityLabel = L10n.format("Page %@", String(input.page + 1))
+            zoom.imageView.accessibilityIdentifier = input.pageAccessibilityPrefix + "." + String(input.page)
+        }
         let original = images[spread.first]!
         if previewImage !== original {
             previewImage = original; let token = generation
@@ -268,6 +274,7 @@ final class ReaderCanvasView: UIView, UICollectionViewDataSource, UICollectionVi
         }
         if renderedSpread == spread, renderedSettings == input.settings,
            renderedFirst === original, renderedSecond === spread.second.flatMap({ images[$0] }) {
+            exposeAccessibility()
             report(ReaderResumePosition(page: input.page)); return
         }
         renderedSpread = spread; renderedSettings = input.settings
@@ -297,9 +304,7 @@ final class ReaderCanvasView: UIView, UICollectionViewDataSource, UICollectionVi
             zoom.setZoomScale(1, animated: false); zoom.imageView.image = rendered
             zoom.contentOffset = .zero; zoom.setNeedsLayout()
         }
-        zoom.imageView.isAccessibilityElement = true
-        zoom.imageView.accessibilityLabel = L10n.format("Page %@", String(input.page + 1))
-        zoom.imageView.accessibilityIdentifier = input.pageAccessibilityPrefix + "." + String(input.page)
+        exposeAccessibility()
         report(ReaderResumePosition(page: input.page))
         pruneImages()
     }
@@ -423,15 +428,14 @@ final class ReaderCanvasView: UIView, UICollectionViewDataSource, UICollectionVi
         guard input?.suspended == false else { return false }
         input?.onTouch(); if !holdScrolling { stopDisplayLink() }; return true
     }
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let input, !input.suspended else { return false }
-        if gestureRecognizer is UIPanGestureRecognizer {
-            let pan = gestureRecognizer as! UIPanGestureRecognizer
+        if let pan = gestureRecognizer as? UIPanGestureRecognizer, pan.view === self {
             if pan.allowedScrollTypesMask != [] { return input.settings.mode == .webtoon }
             let velocity = pan.velocity(in: self)
             return input.settings.mode == .paged && zoom.zoomScale <= 1.01 && abs(velocity.x) > abs(velocity.y) * 1.4
         }
-        return true
+        return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
     @objc private func tapped(_ gesture: UITapGestureRecognizer) {
         guard let input else { return }
@@ -553,6 +557,7 @@ struct ReaderChrome<Tools: View>: View {
     let page: Int
     let pageCount: Int
     let direction: ReadingDirection
+    var closeIdentifier = "reader.close"
     let onClose: () -> Void
     let onJump: (Int) -> Void
     @ViewBuilder var tools: () -> Tools
@@ -561,7 +566,7 @@ struct ReaderChrome<Tools: View>: View {
         VStack(spacing: 0) {
             HStack(spacing: 8) {
                 TachiButton(L10n.string("Close"), systemImage: "chevron.backward", action: onClose)
-                    .labelStyle(.iconOnly).frame(width: 44, height: 44)
+                    .labelStyle(.iconOnly).frame(width: 44, height: 44).accessibilityIdentifier(closeIdentifier)
                 VStack(spacing: 3) {
                     Text(title).shelfFont(.subheadline, weight: .semibold).lineLimit(1)
                     if let subtitle { Text(subtitle).shelfFont(.caption).lineLimit(1) }

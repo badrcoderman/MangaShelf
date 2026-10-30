@@ -8,7 +8,7 @@ let package = Package(
     products: [.library(name: "ReaderCore", targets: ["ReaderCore"])],
     targets: [
         .target(name: "CSafeArchive", publicHeadersPath: "include", linkerSettings: [.linkedLibrary("z")]),
-        .target(name: "ReaderCore", dependencies: ["CSafeArchive"], resources: [.process("Resources")]),
+        .target(name: "ReaderCore", dependencies: ["CSafeArchive"], resources: [.process("Resources")], linkerSettings: [.linkedLibrary("sqlite3")]),
         .testTarget(name: "ReaderCoreTests", dependencies: ["ReaderCore"], resources: [.copy("Fixtures")])
     ]
 )

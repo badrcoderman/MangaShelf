@@ -1,20 +1,6 @@
 import SwiftUI
 import ReaderCore
 
-struct BackupHubView: View {
-    @Environment(\.locale) private var interfaceLocale
-    var body: some View {
-        TachiList {
-            NavigationLink { BackupPreferencesView() } label: { SettingsRow(title: L10n.string("Local library backup"), symbol: "books.vertical") }
-            NavigationLink { OnlineBackupView() } label: { SettingsRow(title: L10n.string("Source library backup"), symbol: "safari") }
-        }.listStyle(.plain).tachiPage(L10n.string("Backup and restore"))
-    }
-}
-
-
-
-
-
 /// Honest availability information for features scheduled after the interface phase.
 /// These destinations contain no switches that pretend to enable an absent service.
 struct FeatureStatusView: View {
@@ -38,8 +24,8 @@ struct FeatureStatusView: View {
             ShelfEmptyState(title: L10n.string("Not available yet"), message: feature.message)
             if feature == .sync { NavigationLink(L10n.string("Backup")) { BackupHubView() } }
             if feature == .migration { NavigationLink(L10n.string("Repositories")) { RepositoriesView() } }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity).shelfPage()
-            .navigationTitle(feature.title).navigationBarTitleDisplayMode(.inline)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            .tachiPage(feature.title, filled: true)
     }
 }
 
@@ -68,27 +54,6 @@ struct PrivacyPreferencesView: View {
             if privacy.authenticating { ProgressView().padding(18) }
             if let error = privacy.error { Text(error).shelfFont(.subheadline).foregroundStyle(ShelfStyle.secondary).padding(18) }
         }
-    }
-}
-
-struct ReadingInsightsView: View {
-    @Environment(\.locale) private var interfaceLocale
-    @EnvironmentObject private var model: AppModel
-    @EnvironmentObject private var online: OnlineModel
-    private var readChapters: Int { online.state.series.reduce(0) { $0 + $1.progress.values.filter(\.read).count } }
-    var body: some View {
-        TachiList {
-            Section(L10n.string("Library")) {
-                LabeledContent(L10n.string("Local books"), value: "\(model.state.books.count)")
-                LabeledContent(L10n.string("Source titles"), value: "\(online.state.series.filter(\.inLibrary).count)")
-                LabeledContent(L10n.string("Categories"), value: "\(model.state.categories.count)")
-            }
-            Section(L10n.string("Reading")) {
-                LabeledContent(L10n.string("Completed local books"), value: "\(model.state.books.filter(\.completed).count)")
-                LabeledContent(L10n.string("Chapters marked as read"), value: "\(readChapters)")
-                LabeledContent(L10n.string("Downloaded chapters"), value: "\(online.state.downloads.filter { $0.phase == .complete }.count)")
-            }
-        }.tachiPage(L10n.string("Reading insights"))
     }
 }
 

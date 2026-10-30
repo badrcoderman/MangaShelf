@@ -267,7 +267,7 @@ public struct LibraryBook: Codable, Identifiable, Hashable, Sendable {
 public struct LibraryCategory: Codable, Identifiable, Hashable, Sendable {
     public let id: UUID
     public var name: String
-    public init(name: String) { id = UUID(); self.name = name }
+    public init(id: UUID = UUID(), name: String) { self.id = id; self.name = name }
 }
 public struct SavedRepository: Codable, Identifiable, Sendable {
     public let id: UUID
@@ -375,6 +375,7 @@ public actor LibraryStore {
     private var state: LibraryState
     private let manager = FileManager.default
     public init(root: URL) throws {
+        try UnifiedBackup.recoverIfNeeded(root: root)
         self.root = root; metadata = root.appendingPathComponent("library.json")
         try FileManager.default.createDirectory(at: root.appendingPathComponent("Books", isDirectory: true), withIntermediateDirectories: true)
         if FileManager.default.fileExists(atPath: metadata.path) {
@@ -384,6 +385,10 @@ public actor LibraryStore {
         } else { state = LibraryState() }
     }
     public func snapshot() -> LibraryState { state }
+    public func reloadAfterRestore() throws {
+        let restored = try JSONDecoder().decode(LibraryState.self, from: Self.readBounded(metadata, maximum: 32 * 1024 * 1024))
+        try restored.validate(); state = restored
+    }
     public func validateStoredMetadata() throws {
         try state.validate()
         if manager.fileExists(atPath: metadata.path) {

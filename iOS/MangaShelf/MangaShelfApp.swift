@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import ReaderCore
 
 @main struct MangaShelfApp: App {
@@ -7,6 +8,7 @@ import ReaderCore
     @StateObject private var model = AppModel()
     @StateObject private var online = OnlineModel()
     @StateObject private var privacy = AppPrivacy()
+    @StateObject private var maintenance = BackupMaintenance.shared
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
@@ -14,6 +16,7 @@ import ReaderCore
                 .accessibilityHidden(privacy.locked)
                 .overlay { if privacy.locked { AppLockedView(privacy: privacy) } }
                 .background(AppPrivacyWindowShield(privacy: privacy).frame(width: 0, height: 0))
+                .background(BackupMaintenanceWindowShield(maintenance: maintenance).frame(width: 0, height: 0))
                 .shelfFont(.body)
                 .environmentObject(model)
                 .environmentObject(online)
@@ -23,20 +26,44 @@ import ReaderCore
                 .tint(ShelfStyle.accent)
                 .preferredColorScheme(model.state.settings.appearance == .system ? nil : model.state.settings.appearance == .dark ? .dark : .light)
                 .task {
-                    await model.start(); await online.start()
+                    await model.start()
+                    guard model.ready else { return }
+                    await online.start()
+                    TrackingModel.shared.applyRemoteProgress = { [weak online] seriesID, progress in
+                        guard let online else { throw TrackingFailure.storage }
+                        try await online.applyRemoteTrackingProgress(seriesID: seriesID, remoteProgress: progress)
+                    }
+                    BackupCoordinator.shared.bind(model: model, online: online) {
+                        UIApplication.shared.applicationState == .active && !privacy.locked
+                    }
                     await privacy.sceneChanged(scenePhase)
-                    if scenePhase == .active && !privacy.locked { online.startDownloads() }
+                    if scenePhase == .active && !privacy.locked {
+                        await BackupCoordinator.shared.checkAutomaticBackup()
+                        await TrackingModel.shared.start()
+                        if BackupCoordinator.shared.preview == nil { online.startDownloads() }
+                    }
                 }
                 .onChange(of: scenePhase) { _, phase in
                     Task {
                         await privacy.sceneChanged(phase)
                         if phase == .background, UserDefaults.standard.object(forKey: "updates.continueInBackground") as? Bool == false { online.cancelLibraryRefresh() }
-                        if phase == .active && !privacy.locked { online.startDownloads(); InterfaceState.shared.applyOrientation() }
+                        if phase == .active && !privacy.locked {
+                            await BackupCoordinator.shared.checkAutomaticBackup()
+                            await TrackingModel.shared.start()
+                            if BackupCoordinator.shared.preview == nil { online.startDownloads() }
+                            InterfaceState.shared.applyOrientation()
+                        }
                     }
                 }
                 .onChange(of: privacy.locked) { _, locked in
                     if locked { Task { await online.pauseDownloads(interrupted: true) } }
-                    else if scenePhase == .active { online.startDownloads() }
+                    else if scenePhase == .active {
+                        Task {
+                            await BackupCoordinator.shared.checkAutomaticBackup()
+                            await TrackingModel.shared.start()
+                            if BackupCoordinator.shared.preview == nil { online.startDownloads() }
+                        }
+                    }
                 }
                 .alert(L10n.string("Notice"), isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
                     Button(L10n.string("OK"), role: .cancel) { model.errorMessage = nil }
@@ -54,7 +81,7 @@ struct RootView: View {
     @State private var tabGeneration = UUID()
     var body: some View {
         Group {
-            if model.ready {
+            if model.ready && online.finishedStartup {
                 TabView(selection: $selectedTab) {
                     NavigationStack { LibraryView() }.toolbar(.hidden, for: .tabBar).tag(0)
                     NavigationStack { UpdatesView() }.toolbar(.hidden, for: .tabBar).tag(1)
@@ -80,7 +107,7 @@ struct RootView: View {
                 .onChange(of: selectedTab) { _, _ in
                     if !InterfaceState.shared.persistentTabs { tabGeneration = UUID() }
                 }
-            } else if model.busy { ProgressView(L10n.string("Opening library…")) }
+            } else if model.starting || model.busy || (model.ready && !online.finishedStartup) { ProgressView(L10n.string("Opening library…")) }
             else {
                 ContentUnavailableView {
                     TachiLabel(L10n.string("Could not open the library"), systemImage: "externaldrive.badge.exclamationmark")

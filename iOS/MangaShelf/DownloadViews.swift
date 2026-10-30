@@ -13,13 +13,9 @@ struct DownloadsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                NavigationLink { DownloadedTitlesView() } label: {
-                    HStack(spacing: 12) {
-                        TachiIcon(symbol: "arrow.down.to.line", size: 24)
-                        Text(L10n.string("Recently downloaded")).frame(maxWidth: .infinity, alignment: .leading)
-                        TachiIcon(symbol: "chevron.forward", size: 18)
-                    }.padding(.horizontal, 18).frame(minHeight: 56).contentShape(Rectangle())
-                }.buttonStyle(.plain)
+                TachiNavigationRow(title: L10n.string("Recently downloaded"), symbol: "arrow.down.to.line") {
+                    DownloadedTitlesView()
+                }.accessibilityIdentifier("downloads.completed")
                 Rectangle().fill(ShelfStyle.border).frame(height: 1)
                 HStack(spacing: 6) {
                     Button {
@@ -153,7 +149,7 @@ struct DownloadedTitlesView: View {
                     Button(L10n.string("Delete read chapters"), role: .destructive) { removeRead = true }.frame(minHeight: 44)
                 }
             }.padding(.horizontal, 12).padding(.vertical, 10)
-        }.tachiPage(L10n.string("Downloaded"))
+        }.tachiPage(L10n.string("Downloaded"), backIdentifier: "settings.back.downloaded")
             .confirmationDialog(L10n.string("Delete downloaded title"), isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
                 if let item = removing {
                     Button(L10n.string("Delete downloads"), role: .destructive) {
@@ -192,7 +188,7 @@ private struct DownloadedChaptersView: View {
                     ShelfIconButton(L10n.string("Delete download"), symbol: "trash") { removing = job }
                 }
             }
-        }.tachiPage(online.saved(seriesID)?.series.title ?? L10n.string("Downloaded"))
+        }.tachiPage(online.saved(seriesID)?.series.title ?? L10n.string("Downloaded"), backIdentifier: "settings.back.downloaded.chapters")
             .fullScreenCover(item: $reading) { OnlineReaderView(chapter: $0) }
             .confirmationDialog(L10n.string("Delete this chapter's pages from your device?"), isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
                 if let job = removing {
@@ -203,7 +199,7 @@ private struct DownloadedChaptersView: View {
 }
 
 private func bytes(_ count: Int64) -> String {
-    ByteCountFormatter.string(fromByteCount: count, countStyle: .file)
+    ByteCountFormatStyle(style: .file, locale: L10n.language.locale).format(count)
 }
 
 func downloadPhaseLabel(_ phase: DownloadPhase) -> String {
