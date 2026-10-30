@@ -8,11 +8,17 @@ enum ShelfStyle {
                 blue: CGFloat(value & 255) / 255, alpha: 1)
     }
     private static func mixed(_ base: UInt32, _ tint: UInt32, _ fraction: Double) -> UInt32 {
-        let amount = min(1, max(0, fraction))
+        let amount = min(1.0, max(0.0, fraction))
         func channel(_ shift: UInt32) -> UInt32 {
-            UInt32((Double((base >> shift) & 255) * (1 - amount) + Double((tint >> shift) & 255) * amount).rounded())
+            let baseChannel = Double((base >> shift) & 0xFF)
+            let tintChannel = Double((tint >> shift) & 0xFF)
+            let blended = baseChannel * (1.0 - amount) + tintChannel * amount
+            return UInt32(blended.rounded())
         }
-        return channel(16) << 16 | channel(8) << 8 | channel(0)
+        let red = channel(16) << 16
+        let green = channel(8) << 8
+        let blue = channel(0)
+        return red | green | blue
     }
     private static var primary: (dark: UInt32, light: UInt32) {
         switch InterfaceState.shared.palette {

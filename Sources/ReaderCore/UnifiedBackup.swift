@@ -339,6 +339,27 @@ private struct BackupStreamReader {
 }
 
 enum BackupIO {
+    #if canImport(Darwin)
+    private static func isDarwinSystemAlias(_ path: String) -> Bool {
+        let expected: String
+        switch path {
+        case "/var": expected = "private/var"
+        case "/tmp": expected = "private/tmp"
+        case "/etc": expected = "private/etc"
+        default: return false
+        }
+        var buffer = [CChar](repeating: 0, count: 64)
+        let length = buffer.withUnsafeMutableBufferPointer { pointer in
+            path.withCString { cPath in
+                readlink(cPath, pointer.baseAddress, 63)
+            }
+        }
+        guard length > 0, length < 63 else { return false }
+        let bytes = buffer.prefix(length).map { UInt8(bitPattern: $0) }
+        let target = String(decoding: bytes, as: UTF8.self)
+        return target == expected || target == "/" + expected || target == expected + "/" || target == "/" + expected + "/"
+    }
+    #endif
     static func checkAncestors(_ url: URL) throws {
         let absolute = url.standardizedFileURL
         var current = URL(fileURLWithPath: "/", isDirectory: true)
@@ -347,11 +368,9 @@ enum BackupIO {
             var info = stat()
             if lstat(current.path, &info) == 0 {
                 if info.st_mode & mode_t(S_IFMT) == mode_t(S_IFLNK) {
-                    // Darwin's system /var and /tmp aliases are outside the application's trust boundary.
+                    // Darwin's system /var, /tmp, and /etc aliases are outside the application's trust boundary.
                     #if canImport(Darwin)
-                    if current.path == "/var", current.resolvingSymlinksInPath().path == "/private/var" { continue }
-                    if current.path == "/tmp", current.resolvingSymlinksInPath().path == "/private/tmp" { continue }
-                    if current.path == "/etc", current.resolvingSymlinksInPath().path == "/private/etc" { continue }
+                    if isDarwinSystemAlias(current.path) { continue }
                     #endif
                     throw UnifiedBackupError.symbolicLink
                 }

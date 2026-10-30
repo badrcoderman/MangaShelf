@@ -226,8 +226,8 @@
   },
   {
     "path": "Sources/ReaderCore/UnifiedBackup.swift",
-    "bytes": 26197,
-    "sha256": "b8ebc74b09e533a7727866438f342ea8a18e5e761c96d6e031590a8784266795"
+    "bytes": 26828,
+    "sha256": "239fd1fe27c703037c3258a6c46d51fefba7f1949e7ae02565730189e54e24e2"
   },
   {
     "path": "Sources/ReaderCore/UnifiedBackupMerge.swift",
@@ -1301,8 +1301,8 @@
   },
   {
     "path": "iOS/MangaShelf/ShelfStyle.swift",
-    "bytes": 14291,
-    "sha256": "abdf8dbb6783b6d278fe24d75f3e3aceeadf22d41162c460432d49cb3a6cf9b2"
+    "bytes": 14494,
+    "sha256": "37aa3e996c5d712843108c0980e818e3e7901ac43c580ea2cb77200ce8c6422e"
   },
   {
     "path": "iOS/MangaShelf/ShelfTypography.swift",
@@ -1351,8 +1351,8 @@
   },
   {
     "path": "iOS/MangaShelf/UpdatesView.swift",
-    "bytes": 16021,
-    "sha256": "8b3251e6fca6a9e453c6593ceeb85b21a1b33ca5f24318f49753205165c9b70a"
+    "bytes": 16294,
+    "sha256": "0ac3901bc673dcc6adf4c2b15c0da8ca5f9b4cfb15f534d793692cb2ec454fe9"
   },
   {
     "path": "iOS/MangaShelf.xcodeproj/project.pbxproj",

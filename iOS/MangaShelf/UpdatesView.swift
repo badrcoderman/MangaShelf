@@ -17,11 +17,19 @@ struct UpdatesView: View {
     @State private var showSummary = false
     @State private var showSettings = false
     private var updates: [UpdateChapterEntry] {
-        online.state.series.filter(\.inLibrary).flatMap { item in
-            item.chapters.filter { item.newChapterIDs.contains($0.id) }.map {
-                UpdateChapterEntry(series: item.series, chapter: $0, date: $0.publishedAt ?? item.checkedAt ?? .distantPast)
+        var entries: [UpdateChapterEntry] = []
+        for item in online.state.series where item.inLibrary {
+            let fallbackDate: Date = item.checkedAt ?? .distantPast
+            for chapter in item.chapters where item.newChapterIDs.contains(chapter.id) {
+                let date: Date = chapter.publishedAt ?? fallbackDate
+                entries.append(UpdateChapterEntry(series: item.series, chapter: chapter, date: date))
             }
-        }.sorted { $0.date == $1.date ? $0.id < $1.id : $0.date > $1.date }
+        }
+        entries.sort { lhs, rhs in
+            if lhs.date == rhs.date { return lhs.id < rhs.id }
+            return lhs.date > rhs.date
+        }
+        return entries
     }
     private var groups: [(date: Date, entries: [UpdateChapterEntry])] {
         let grouped = Dictionary(grouping: updates) { Calendar.current.startOfDay(for: $0.date) }
